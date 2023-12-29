@@ -36,11 +36,21 @@ export default {
         'desert-storm': '#f5f7fa',
         few: '#3c3c3cb3',
         'info-rgba': 'rgba(0,123,255,.25)',
+        'dark-rgba': 'rgba(255, 255, 255, 0.4)',
       },
       boxShadow: {
         sm: '0 0 0 0.2rem rgba(0,123,255,.25)',
       },
-
+      container: {
+        screens: {
+          xs: '100%',
+          sm: '540px',
+          md: '720px',
+          lg: '960px',
+          xl: '1140px',
+          '2xl': '1140px',
+        },
+      },
       spacing: {
         md: '15px',
         lg: '30px',
@@ -48,6 +58,19 @@ export default {
         '2xl': '60px',
         '3xl': '100px',
         '4xl': '386px',
+      },
+      keyframes: {
+        grow: {
+          to: { height: '300px', overflow: 'visitable' },
+        },
+        shrink: {
+          from: { height: '300px', overflow: 'visitable' },
+          to: { height: '0', overflow: 'hidden' },
+        },
+      },
+      animation: {
+        grow: 'grow .3s linear forwards',
+        shrink: 'shrink .3s linear forwards',
       },
     },
   },

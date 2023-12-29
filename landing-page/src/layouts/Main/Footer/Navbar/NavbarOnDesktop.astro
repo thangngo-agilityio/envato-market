@@ -1,0 +1,28 @@
+---
+// Mocks
+import { NAVBAR } from '@app/mocks';
+
+// TODO: Update to late
+const pathName: string = '/';
+---
+
+<nav class='hidden lg:block mt-4'>
+  <ul class='flex gap-[60px]'>
+    {
+      NAVBAR.map(
+        ({ href, text }): JSX.Element => (
+          <li class='gap-[60px]'>
+            <a
+              href={href}
+              class={` ${
+                href === pathName ? 'text-sun' : ''
+              } text-white hover:text-sun uppercase text-sm`}
+            >
+              {text}
+            </a>
+          </li>
+        ),
+      )
+    }
+  </ul>
+</nav>
