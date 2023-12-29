@@ -54,7 +54,7 @@ export default {
         '@font-face': {
           fontFamily: 'Helvetica',
           fontWeight: '400',
-          src: 'url(/assets/fonts/Helvetica-Neue-Regular.woff2)',
+          src: 'url(/assets/fonts/HelveticaNeueRoman.woff2)',
           fontDisplay: 'swap',
         },
       });
