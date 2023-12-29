@@ -1,7 +1,7 @@
 export enum TYPE_HEADING {
-  MAIN_TITLE = 'main_title',
-  SUB_TITLE = 'sub_title',
-  CARD_TITLE = 'card_title',
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+  ELEMENTARY = 'elementary',
 }
 
 export enum TAG_HEADING {

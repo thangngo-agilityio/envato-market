@@ -8,40 +8,17 @@ export interface HeadingProps {
   isStyle?: boolean;
 }
 
-const {
-  className = '',
-  tag,
-  type = TYPE_HEADING,
-  text = '',
-  isStyle = true,
-} = Astro.props as HeadingProps;
+const { className = '', tag, type = TYPE_HEADING, text = '' } = Astro.props;
 
-const styleMainTitle = {
-  main_title: 'text-3xl text-primary leading-10 md:text-4xl md:leading-giant',
+const styleHeading = {
+  primary: 'text-3xl leading-10 md:text-4xl md:leading-giant',
+  secondary: 'text-2xl text-primary leading-huge',
+  elementary: 'text-base text-primary leading-base',
 };
-
-let styleTitle = '';
-switch (type) {
-  case 'main_title':
-    styleTitle = isStyle
-      ? 'text-primary text-3xl leading-10 md:text-4xl md:leading-giant'
-      : 'text-white';
-  case 'sub_title':
-    styleTitle = isStyle
-      ? 'text-2xl text-primary leading-huge'
-      : 'text-3xl leading-big';
-    break;
-  case 'card_title':
-    styleTitle = isStyle
-      ? 'text-base text-primary leading-base'
-      : 'text-lg leading-md text-average';
-  default:
-    break;
-}
 
 const Heading = tag;
 ---
 
-<Heading class={`font-primary ${styleTitle} ${className}`}>
+<Heading class={`font-primary text-primary ${styleHeading[type]} ${className}`}>
   {text}
 </Heading>
