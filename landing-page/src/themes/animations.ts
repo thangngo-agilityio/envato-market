@@ -3,11 +3,11 @@ import type { Config } from 'tailwindcss';
 export const keyframes: Config['theme'] = {
   keyframes: {
     grow: {
-      to: { height: '300px', overflow: 'visitable' },
+      to: { height: '135px', overflow: 'visitable' },
     },
     shrink: {
-      from: { height: '300px', overflow: 'visitable' },
-      to: { height: '0', overflow: 'hidden' },
+      from: { height: '135px', overflow: 'visitable' },
+      to: { height: '0px', overflow: 'hidden' },
     },
   },
 };
