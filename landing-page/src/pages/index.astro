@@ -1,6 +1,12 @@
 ---
 // Components
 import Global from '@app/layouts/Global.astro';
+import Heading from '@app/components/Heading/index.astro';
 ---
 
-<Global>home</Global>
+<Global>
+  <Heading type='main_title' tag='h2' text='Heading H2' />
+  <Heading type='sub_title' tag='h3' text='Heading H3' />
+  <Heading type='card_title' tag='h4' text='Heading H4' />
+  <Heading type='card_title' tag='h4' text='Heading H4' isStyle={false} />
+</Global>
