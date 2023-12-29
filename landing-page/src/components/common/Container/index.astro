@@ -1,0 +1,12 @@
+---
+// Types
+import type { TComponentStylesProps } from '@app/interfaces';
+
+type Props = TComponentStylesProps;
+
+const { className } = Astro.props;
+---
+
+<div class={`container m-auto px-5 ${className ?? ''}`}>
+  <slot />
+</div>

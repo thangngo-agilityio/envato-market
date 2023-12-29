@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+
+// Components
+import { Container } from '@app/components';
+import NavbarOnSmallDevices from './Navbar/NavbarOnSmallDevices';
+import NavbarOnDesktop from './Navbar/NavbarOnDesktop.astro';
+
+// Images
+import logo from '@app/assets/images/logo.webp';
+---
+
+<footer class='py-20 bg-average'>
+  <Container className='lg:flex justify-between items-center'>
+    <section class='w-[285px]'>
+      <a href='#'>
+        <Image src={logo} alt='This is the logo of the site' />
+      </a>
+      <p class='text-dark-rgba text-xs pt-2.5 leading-6'>
+        Copyright ©2023 All rights reserved | This template is made with by
+        Colorlib
+      </p>
+    </section>
+    <NavbarOnDesktop />
+    <NavbarOnSmallDevices client:visible />
+  </Container>
+</footer>
