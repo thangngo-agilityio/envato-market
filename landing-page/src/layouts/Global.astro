@@ -1,0 +1,29 @@
+---
+// Constants
+import { PAGE_TITLES } from '@app/constants';
+
+type Props = {
+  title?: string;
+};
+
+const { title = PAGE_TITLES.HOME } = Astro.props;
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta
+      name='description'
+      content='This is the landing page of Envato team'
+    />
+    <link
+      rel='shortcut icon'
+      href='/icons/logo-mini-light.svg'
+      type='image/x-icon'
+    />
+    <title>{title}</title>
+  </head>
+  <body><slot /></body>
+</html>
