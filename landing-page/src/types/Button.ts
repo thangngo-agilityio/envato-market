@@ -1,4 +1,5 @@
 export enum TYPE_BUTTON {
+  DEFAULT = 'default',
   PRIMARY = 'primary',
   SECONDARY = 'secondary',
 }
