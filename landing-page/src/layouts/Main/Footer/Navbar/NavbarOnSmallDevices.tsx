@@ -21,13 +21,14 @@ const NavbarOnSmallDevices = (): JSX.Element => {
   const firstStyle: string = !isOpen && !isFirstToggle ? 'hidden' : '';
 
   return (
-    <div className='xs:block lg:hidden transition'>
+    <div className='lg:hidden'>
       <Button
         className='flex justify-center items-center pt-[0] pb-0 px-0 mt-4 w-[36px] h-[30px]'
         onclick={handleToggle}
       >
         <HamburgerMenuIcon width='18' height='18' />
       </Button>
+      {/* ISSUES: height alway 300px */}
       <nav className={`mt-4 h-0 ${firstStyle} ${closeAnimate} ${openAnimate}`}>
         <ul>
           {NAVBAR.map(
