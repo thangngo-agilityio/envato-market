@@ -31,13 +31,16 @@ export default {
         little: '#b3b1b1',
         once: '#212529',
         onceAll: '#6c757d',
-      },
-      backgroundColor: {
         sun: '#fbb710',
         iridium: '#3c3c3c',
-        desertStorm: '#f5f7fa',
+        'desert-storm': '#f5f7fa',
         few: '#3c3c3cb3',
+        'info-rgba': 'rgba(0,123,255,.25)',
       },
+      boxShadow: {
+        sm: '0 0 0 0.2rem rgba(0,123,255,.25)',
+      },
+
       spacing: {
         md: '15px',
         lg: '30px',
@@ -49,13 +52,17 @@ export default {
     },
   },
   plugins: [
-    plugin(function ({ addBase }) {
+    plugin(function ({ addBase, theme }) {
       addBase({
         '@font-face': {
           fontFamily: 'Helvetica',
           fontWeight: '400',
           src: 'url(/assets/fonts/HelveticaNeueRoman.woff2)',
           fontDisplay: 'swap',
+        },
+        '*, input': {
+          fontFamily: theme('fontFamily.primary'),
+          fontWeight: theme('fontWeight.normal'),
         },
       });
     }),
