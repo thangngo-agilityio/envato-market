@@ -58,22 +58,19 @@
 
 Build and Run app:
 
-| Command                                                                     | Action                      |
-| :-------------------------------------------------------------------------- | :-------------------------- |
-| `$ git clone https://gitlab.asoft-python.com/kien.nguyen/envato-market.git` | Clone Repository with HTTPS |
-| `$ git clone git@gitlab.asoft-python.com:kien.nguyen/envato-market.git`     | Clone Repository with SSH   |
-| `$ cd envato-market`                                                        | Redirect to folder          |
-| `$ git checkout dev/phase2`                                                 | Checkout                    |
-
-folder  
-| `cd dashboard` | Redirect to  
-branch |
-| `$ npm i pnpm` | Install packages pnpm |
-| `$ pnpm install` | Install packages dependencies |
-| `$ pnpm run build` | Run build app |
-| `$ pnpm run storybook` | Run Storybook |
-| `$ pnpm test` | Run Unit Test |
-| `$ pnpm dev` | Run webpage |
+| Command                                                                     | Action                        |
+| :-------------------------------------------------------------------------- | :---------------------------- |
+| `$ git clone https://gitlab.asoft-python.com/kien.nguyen/envato-market.git` | Clone Repository with HTTPS   |
+| `$ git clone git@gitlab.asoft-python.com:kien.nguyen/envato-market.git`     | Clone Repository with SSH     |
+| `$ cd envato-market`                                                        | Redirect to folder            |
+| `$ git checkout dev/phase2`                                                 | Checkout branch               |
+| `cd dashboard`                                                              | Redirect to folder            |
+| `$ npm i pnpm`                                                              | Install packages pnpm         |
+| `$ pnpm install`                                                            | Install packages dependencies |
+| `$ pnpm run build`                                                          | Run build app                 |
+| `$ pnpm run storybook`                                                      | Run Storybook                 |
+| `$ pnpm test`                                                               | Run Unit Test                 |
+| `$ pnpm dev`                                                                | Run webpage                   |
 
 ### Prerequisites:
 
