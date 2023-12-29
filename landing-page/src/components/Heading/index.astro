@@ -2,13 +2,17 @@
 import { TYPE_HEADING, TAG_HEADING } from '@app/types/Heading';
 export interface HeadingProps {
   className?: string;
-  tag: TAG_HEADING;
+  tag?: TAG_HEADING;
   type: TYPE_HEADING;
   text: string;
-  isStyle?: boolean;
 }
 
-const { className = '', tag, type = TYPE_HEADING, text = '' } = Astro.props;
+const {
+  className = '',
+  tag = '',
+  type = TYPE_HEADING.PRIMARY,
+  text = '',
+} = Astro.props;
 
 const styleHeading = {
   primary: 'text-3xl leading-10 md:text-4xl md:leading-giant',
