@@ -1,7 +1,9 @@
 import type { Config } from 'tailwindcss';
 
 export const fontFamily: Config['theme'] = {
-  primary: ['Helvetica', 'sans-serif'],
+  fontFamily: {
+    primary: ['Helvetica', 'sans-serif'],
+  },
 };
 
 export const lineHeight: Config['theme'] = {
