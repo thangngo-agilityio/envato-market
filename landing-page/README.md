@@ -1,54 +1,65 @@
-# Astro Starter Kit: Basics
+# **ASTRO PROJECT - E-COMMERCE SITE**
 
-```sh
-npm create astro@latest -- --template basics
-```
+### Overview:
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+- This ecommerce page will allow customers to buy furniture and create transactions per each session.
+- [Design](https://preview.colorlib.com/#amado)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Timeline:
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+- Estimate time: 2 weeks.
 
-## 🚀 Project Structure
+### Developers:
 
-Inside of your Astro project, you'll see the following folders and files:
+- Duong Pham(duong.pham@asnet.com.vn)
+- Son Phan(son.phan@asnet.com.vn)
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## TECH STACKS:
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- [Astro](https://docs.astro.build/en/getting-started/) (latest version)
+- [React](https://react.dev/learn/start-a-new-react-project) (latest version)
+- [Tailwind CSS](https://tailwindcss.com/docs/installation) (latest version)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Debug tool
 
-Any static assets, like images, can be placed in the `public/` directory.
+- [Responsively App](https://responsively.app/): A simple application for developing, help dev test design in many screens.
 
-## 🧞 Commands
+### Hosting
 
-All commands are run from the root of the project, from a terminal:
+- Open http://localhost:4321 to view it in the browser.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### CI/CD, Deployment, Hosting
 
-## 👀 Want to learn more?
+- Vercel
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Document:
+
+- [Requirements and plan](https://docs.google.com/document/d/1eMOSovccPG-BA9SxoSK_XglcKqHEXYaE/edit)
+
+### Flow App
+
+- Update later
+
+### Task Management
+
+- [Trello](https://trello.com/b/xo8WyIM1/envato-market-system)
+
+## Getting started
+
+Build and Run app:
+
+| Command                                                                     | Action                        |
+| :-------------------------------------------------------------------------- | :---------------------------- |
+| `$ git clone https://gitlab.asoft-python.com/kien.nguyen/envato-market.git` | Clone Repository with HTTPS   |
+| `$ git clone git@gitlab.asoft-python.com:kien.nguyen/envato-market.git`     | Clone Repository with SSH     |
+| `$ cd envato-market`                                                        | Redirect to folder            |
+| `$ git checkout dev/phase-2`                                                | Checkout branch               |
+| `$ npm i pnpm`                                                              | Install packages pnpm         |
+| `$ pnpm install`                                                            | Install packages dependencies |
+| `$ pnpm dev`                                                                | Run webpage                   |
+| `$ pnpm run build`                                                          | Run build app                 |
+
+### Prerequisites:
+
+- Node: version 18.18.2
+- Pnpm: version 8.12.1
