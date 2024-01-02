@@ -1,6 +1,20 @@
 ---
 // Components
-import { MainLayout } from '@app/layouts';
+import { ProductCard } from '@app/components';
+
+// Constants
+import { ROUTES } from '@app/constants';
+
+// Mocks
+import { PRODUCTS } from '@app/mocks';
+
+const { id, name, amount, currency, imageURLs } = PRODUCTS[0];
 ---
 
-<MainLayout />
+<ProductCard
+  href={`${ROUTES.PRODUCTS}/${id}`}
+  name={name}
+  amount={amount}
+  currency={currency}
+  imageURL={imageURLs[0]}
+/>

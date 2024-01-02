@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+
+// Types
+import { type IProduct } from '@app/interfaces';
+
+type Props = Pick<IProduct, 'name' | 'amount' | 'currency'> & {
+  imageURL: string;
+  href: string;
+};
+
+const { imageURL, name, currency, amount, href } = Astro.props;
+const hoverStyles: string = [
+  '[&:hover>div>.caption]:text-white',
+  '[&:hover>.pesudo]:bg-black',
+  '[&:hover>.pesudo]:opacity-[0.7]',
+].join(' ');
+const captionStyles: string = [
+  'absolute',
+  'z-10',
+  'top-[30px]',
+  'left-[30px]',
+].join(' ');
+const transitionStyles: string = ['transition', 'duration-300'].join(' ');
+---
+
+<figure class={`relative w-full h-full cursor-pointer ${hoverStyles}`}>
+  <Image
+    src={imageURL}
+    width={250}
+    height={250}
+    alt={`This is the image for ${name}`}
+    class='w-full h-full object-contain'
+  />
+  <div
+    class={`${captionStyles} pt-3 after:absolute after:top-0 after:block after:w-20 after:h-[3px] after:bg-sun`}
+  >
+    <figcaption class=`caption text-base text-sparingly ${transitionStyles}`>
+      From {currency}{amount}
+    </figcaption>
+    <figcaption class={`caption text-2xl ${transitionStyles}`}>
+      {name}
+    </figcaption>
+  </div>
+  <a
+    href={href}
+    class={`pesudo absolute top-0 w-full h-full z-[1] ${transitionStyles}`}
+  >
+  </a>
+</figure>
