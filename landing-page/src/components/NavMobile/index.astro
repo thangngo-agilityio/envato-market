@@ -1,16 +1,24 @@
 ---
+// Libs
 import { Image } from 'astro:assets';
+
+// Component
+import HamburgerMenuIcon from '@app/components/icons/HamburgerMenu/index';
+import Button from '@app/components/Button/index';
 ---
 
 <div
   class='bg-white flex justify-between items-center fixed top-0 left-0 right-0 h-[70px] shadow-navMobile py-2 px-8 md:hidden'
 >
-  <Image src='/assets/images/logo.webp' alt='Logo' width={70} height={28} />
-  <div
-    class='w-7 h-[19px] cursor-pointer [&_div]:w-7 [&_div]:h-[3px] [&_div]:bg-sun [&_div]:mb-[5px] [&_div]:rounded-sm [&_div:last-child]:mb-0'
+  <Image
+    src='/assets/logo-header-mobile.webp'
+    alt='Logo'
+    width={70}
+    height={28}
+  />
+  <Button
+    className='flex justify-center items-center bg-transparent hover:bg-transparent'
   >
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
+    <HamburgerMenuIcon className='fill-sun stroke-2' />
+  </Button>
 </div>
