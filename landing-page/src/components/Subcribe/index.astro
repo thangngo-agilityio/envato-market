@@ -1,0 +1,23 @@
+---
+// Components
+import { Container, Heading } from '@app/components';
+import SubscribeForm from './SubcribeForm';
+---
+
+<section class='mt-[70px] lg:mt-0 py-[100px] bg-iridium'>
+  <Container className='lg:flex gap-[30px] items-center'>
+    <div class='flex-1'>
+      <Heading className='text-3xl text-white font-normal'>
+        Subscribe for a <span class='text-sun'>25% Discount</span>
+      </Heading>
+      <p class='pt-2 text-little text-base font-normal'>
+        Nulla ac convallis lorem, eget euismod nisl. Donec in libero sit amet mi
+        vulputate consectetur. Donec auctor interdum purus, ac finibus massa
+        bibendum nec.
+      </p>
+    </div>
+    <div class='flex-1'>
+      <SubscribeForm client:visible />
+    </div>
+  </Container>
+</section>
