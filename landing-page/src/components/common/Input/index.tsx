@@ -13,7 +13,7 @@ const SIZES = {
 
 const VARIANTS = {
   primary: 'bg-desert-storm',
-  secondary: 'bg-white italic',
+  secondary: 'bg-white italic placeholder:text-sparingly font-normal',
 };
 
 type TInputProps = Omit<
@@ -53,12 +53,12 @@ const Input = ({
     'text-red-600 text-sm min-h-2 min-w-6 absolute top-15 left-0';
 
   return (
-    <div className={`relative ${SIZES[size]}`}>
+    <div className={`relative w-full ${SIZES[size]}`}>
       <input
+        {...rest}
         value={value}
         className={style}
         onChange={handleChangeValue}
-        {...rest}
       />
       {!!errorMessage && <p className={errorMsgStyles}>{errorMessage}</p>}
     </div>
