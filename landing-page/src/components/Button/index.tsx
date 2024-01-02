@@ -1,8 +1,11 @@
 // libs
 import type { ReactNode } from 'react';
 
-// types
-import { TYPE_BUTTON } from '@app/types/Button';
+export enum TYPE_BUTTON {
+  DEFAULT = 'default',
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+}
 interface ButtonProps {
   children?: ReactNode;
   type?: TYPE_BUTTON;
