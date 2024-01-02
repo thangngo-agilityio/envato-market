@@ -1,0 +1,16 @@
+---
+import { Image } from 'astro:assets';
+---
+
+<div
+  class='bg-white flex justify-between items-center fixed top-0 left-0 right-0 h-[70px] shadow-navMobile py-2 px-8 md:hidden'
+>
+  <Image src='/assets/images/logo.webp' alt='Logo' width={70} height={28} />
+  <div
+    class='w-7 h-[19px] cursor-pointer [&_div]:w-7 [&_div]:h-[3px] [&_div]:bg-sun [&_div]:mb-[5px] [&_div]:rounded-sm [&_div:last-child]:mb-0'
+  >
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
