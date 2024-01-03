@@ -1,3 +1,7 @@
-const Transactions = () => <h1>Transactions page</h1>;
+import { Heading } from '@chakra-ui/react';
+
+const Transactions = () => (
+  <Heading fontFamily="primary">Transactions page</Heading>
+);
 
 export default Transactions;

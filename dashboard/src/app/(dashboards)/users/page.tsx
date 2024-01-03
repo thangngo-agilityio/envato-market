@@ -1,3 +1,5 @@
-const Users = () => <h1>Users page</h1>;
+import { Heading } from '@chakra-ui/react';
+
+const Users = () => <Heading fontFamily="primary">User page</Heading>;
 
 export default Users;

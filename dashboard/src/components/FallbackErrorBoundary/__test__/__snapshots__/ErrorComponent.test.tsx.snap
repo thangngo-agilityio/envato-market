@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FallbackErrorBoundary test cases should render correctly 1`] = `
+<div>
+  <div
+    class="chakra-stack css-1pkffy6"
+  >
+    <p
+      class="chakra-text css-oz7p8m"
+      data-testid="error-title"
+    >
+      An error has been occurred!!
+    </p>
+    <p
+      class="chakra-text css-1ly9ogx"
+      data-testid="error-message"
+    >
+      mock error
+    </p>
+  </div>
+</div>
+`;

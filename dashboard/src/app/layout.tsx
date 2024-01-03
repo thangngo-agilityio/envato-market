@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import './globals.css';
 
 // Providers
 import { ChakraProvider, QueryProvider } from '@app/providers';
 
-const inter = Inter({ subsets: ['latin'] });
+// Fonts
+import { fontFamilies } from '@app/themes/bases';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,8 +21,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html
+      lang="en"
+      className={`${fontFamilies.urbanist.variable} ${fontFamilies.poppins.variable}`}
+    >
+      <body>
         <QueryProvider>
           <ChakraProvider>{children}</ChakraProvider>
         </QueryProvider>

@@ -1,3 +1,5 @@
-const Settings = () => <h1>Settings page</h1>;
+import { Heading } from '@chakra-ui/react';
+
+const Settings = () => <Heading fontFamily="primary">Settings page</Heading>;
 
 export default Settings;

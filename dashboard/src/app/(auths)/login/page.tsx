@@ -1,3 +1,5 @@
-const Login = () => <h1>Login page</h1>;
+import { Heading } from '@chakra-ui/react';
+
+const Login = () => <Heading fontFamily="primary">Login page</Heading>;
 
 export default Login;
