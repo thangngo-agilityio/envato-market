@@ -1,18 +1,60 @@
 // Libs
-import { extendTheme } from '@chakra-ui/react';
+import { extendTheme, Tooltip } from '@chakra-ui/react';
 
 // Bases
-import { fonts } from './bases';
+import {
+  radii,
+  space,
+  fonts,
+  fontSizes,
+  fontWeights,
+  lineHeights,
+  letterSpacings,
+  colors,
+  sizes,
+} from './bases';
 
 // Components
-import { Spinner } from './components';
+import {
+  Tag,
+  Button,
+  Checkbox,
+  Drawer,
+  FormError,
+  Heading,
+  Input,
+  Text,
+  Table,
+  Badge,
+  Skeleton,
+  Spinner,
+} from './components';
 
 export const configThemes = {
   ...extendTheme({
     semanticTokens: {
+      radii,
+      space,
       fonts,
+      fontSizes,
+      fontWeights,
+      lineHeights,
+      letterSpacings,
+      colors,
+      sizes,
     },
     components: {
+      Tag,
+      Text,
+      Button,
+      Checkbox,
+      Heading,
+      Input,
+      FormError,
+      Drawer,
+      Table,
+      Badge,
+      Skeleton,
       Spinner,
     },
   }),
@@ -27,3 +69,6 @@ export const configThemes = {
   initialColorMode: 'system',
   useSystemColorMode: true,
 };
+
+// Override the default properties of Tooltip component
+Tooltip.defaultProps = { ...Tooltip.defaultProps, openDelay: 400 };
