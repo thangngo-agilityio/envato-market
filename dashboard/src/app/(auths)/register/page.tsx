@@ -1,3 +1,5 @@
-const Register = () => <h1>Register page</h1>;
+import { Heading } from '@chakra-ui/react';
+
+const Register = () => <Heading fontFamily="primary">Register page</Heading>;
 
 export default Register;
