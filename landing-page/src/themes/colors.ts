@@ -12,9 +12,9 @@ export const colors: Config['theme'] = {
     sun: '#fbb710',
     few: '#3c3c3cb3',
     iridium: '#3c3c3c',
-    'once-all': '#6c757d',
-    'desert-storm': '#f5f7fa',
-    'info-rgba': 'rgba(0,123,255,.25)',
-    'dark-rgba': 'rgba(255, 255, 255, 0.4)',
+    onceAll: '#6c757d',
+    desertStorm: '#f5f7fa',
+    infoRGBA: 'rgba(0,123,255,.25)',
+    darkRGBA: 'rgba(255, 255, 255, 0.4)',
   },
 };

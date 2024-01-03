@@ -1,17 +1,20 @@
+// Constants
+import { ROUTES } from '@app/constants';
+
 export const NAVBAR = [
   {
     id: 1,
-    href: '/',
+    href: ROUTES.HOME,
     text: 'home',
   },
   {
     id: 2,
-    href: '/cart',
+    href: ROUTES.CART,
     text: 'cart',
   },
   {
     id: 3,
-    href: '/checkout',
+    href: ROUTES.CHECKOUT,
     text: 'checkout',
   },
 ];

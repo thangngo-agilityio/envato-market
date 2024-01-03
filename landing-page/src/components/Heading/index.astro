@@ -1,6 +1,16 @@
 ---
-// types
-import { TYPE_HEADING, TAG_HEADING } from '@app/types/Heading';
+// Variable types
+export enum TYPE_HEADING {
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+  ELEMENTARY = 'elementary',
+}
+// Tag format
+export enum TAG_HEADING {
+  H2 = 'h2',
+  H3 = 'h3',
+  H4 = 'h4',
+}
 
 const styleHeading = {
   primary: 'text-3xl leading-10 md:text-4xl md:leading-giant',
@@ -17,7 +27,7 @@ export type Props = {
 
 const {
   variant = TYPE_HEADING.PRIMARY,
-  tag = '',
+  tag = TAG_HEADING.H2,
   text = '',
   className = '',
 } = Astro.props;
@@ -27,5 +37,5 @@ const styles: string = styleHeading[variant];
 ---
 
 <Heading class={`font-primary text-primary ${styles} ${className}`}>
-  {text}
+  {text ? text : <slot />}
 </Heading>

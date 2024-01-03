@@ -1,9 +1,14 @@
 ---
 // Components
+import HeaderMobile from './HeaderMobile/index.tsx';
 import Footer from './Footer/index.astro';
 import GlobalLayout from '@app/layouts/Global/index.astro';
+import { Subscribe } from '@app/components';
 ---
 
 <GlobalLayout>
+  <HeaderMobile />
+  <slot />
+  <Subscribe />
   <Footer />
 </GlobalLayout>
