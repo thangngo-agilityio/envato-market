@@ -10,7 +10,7 @@ type TWrapperProps = {
 };
 
 const Wrapper = ({ children }: TWrapperProps): JSX.Element => {
-  const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(true);
+  const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false);
 
   const handleToggleSidebar = useCallback(
     () => setIsOpenSidebar((prev) => !prev),
