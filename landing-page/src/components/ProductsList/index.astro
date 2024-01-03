@@ -1,0 +1,28 @@
+---
+// Components
+import { ProductCard } from '@app/components';
+
+// Constants
+import { ROUTES } from '@app/constants';
+
+// Mocks
+import { PRODUCTS } from '@app/mocks';
+---
+
+<ul
+  class='w-full columns-1 sm:columns-2 md:columns-1 nearLg:columns-2 nearXl:columns-3 gap-0 transition-all'
+>
+  {
+    PRODUCTS.map(({ id, imageURLs, amount, currency, name }) => (
+      <li class='break-inside-avoid'>
+        <ProductCard
+          amount={amount}
+          currency={currency}
+          href={`${ROUTES.PRODUCTS}/${id}`}
+          imageURL={imageURLs[0]}
+          name={name}
+        />
+      </li>
+    ))
+  }
+</ul>
