@@ -2,6 +2,8 @@ import { memo, type SVGProps } from 'react';
 
 const CloseSideBarMenu = (props: SVGProps<SVGSVGElement>): JSX.Element => (
   <svg
+    width={12}
+    height={12}
     className='fill-white'
     aria-hidden='true'
     xmlns='http://www.w3.org/2000/svg'
