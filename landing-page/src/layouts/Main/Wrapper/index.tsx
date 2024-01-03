@@ -3,7 +3,7 @@ import isEqual from 'react-fast-compare';
 
 // Components
 import HeaderMobile from '../HeaderMobile';
-import SideBarAllDevices from '../Sidebar';
+import SideBarAllDevices from '../SideBar';
 
 type TWrapperProps = {
   children?: ReactNode;
