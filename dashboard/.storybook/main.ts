@@ -1,4 +1,6 @@
 import type { StorybookConfig } from '@storybook/nextjs';
+const path = require('path');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -20,6 +22,18 @@ const config: StorybookConfig = {
       disable: true,
     },
   },
+  webpackFinal: (config) => {
+    if (config.resolve) {
+      config.resolve.plugins = config.resolve.plugins || [];
+      config.resolve.plugins.push(
+        new TsconfigPathsPlugin({
+          configFile: path.resolve(__dirname, '../tsconfig.json'),
+        }),
+      );
+    }
+    return config;
+  },
+
   typescript: {
     check: false,
     checkOptions: {},
