@@ -23,9 +23,9 @@ const Wrapper = ({ children }: TWrapperProps): JSX.Element => {
         isOpen={isOpenSidebar}
         onToggle={handleToggleSidebar}
       />
-      <div className='flex-1'>
+      <div className='flex-1 min-h-[60vh]'>
         <HeaderMobile onToggleSidebar={handleToggleSidebar} />
-        <div className='pt-[70px] md:pt-0'>{children}</div>
+        <div className='pt-[70px] md:pt-0 h-full'>{children}</div>
       </div>
     </section>
   );
