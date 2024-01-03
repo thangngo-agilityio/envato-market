@@ -1,9 +1,11 @@
 import type { Config } from 'tailwindcss';
 
 export const screens: Config['theme'] = {
-  screen: {
+  screens: {
     xs: '320px',
-    // => @media (min-width: 375px) { ... }
+    sm: '576px',
+    nearLg: '992px',
+    nearXl: '1200px',
   },
 };
 

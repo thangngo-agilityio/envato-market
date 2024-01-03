@@ -11,21 +11,24 @@ import { ROUTES } from '@app/constants';
 // TODO: Update to late
 const pathName: string = '/';
 
-// style hover for list item
-// const afterStyle: string = [
-//   'absolute',
-//   'z-10',
-//   'top-[50%]',
-//   'left-[-70px]',
-//   'w-[30px]',
-//   'h-[3px]',
-//   'delay-500',
-//   'duration-500',
-// ].join(' after:');
+type TSidebarProps = {
+  isOpen?: boolean;
+  onToggle?: () => void;
+};
 
-const SideBarAllDevices = (): JSX.Element => (
-  <header className='relative z-10 max-w-[320px] bg-white py-[60px] px-[70px] h-full hidden md:block'>
-    <Button className='bg-sun w-10 h-10 flex justify-center items-center absolute top-0 right-md'>
+const SideBarAllDevices = ({
+  isOpen = false,
+  onToggle,
+}: TSidebarProps): JSX.Element => (
+  <header
+    className={`fixed md:relative z-50 w-[320px] bg-white py-[60px] px-[70px] h-full animate-sidebarSlideIn md:animate-none md:block ${
+      isOpen ? 'block' : 'hidden'
+    }`}
+  >
+    <Button
+      className='flex md:hidden bg-sun w-10 h-10 justify-center items-center absolute top-0 right-md'
+      onclick={onToggle}
+    >
       <CloseSideBar width={10} height={12} />
     </Button>
     <h1 className='mb-[100px]'>
