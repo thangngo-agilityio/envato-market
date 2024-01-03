@@ -1,6 +1,7 @@
 ---
 // Components
 import { ProductCard } from '@app/components';
+import SideBar from '@app/layouts/Main/SideBar/index';
 
 // Constants
 import { ROUTES } from '@app/constants';
@@ -11,10 +12,11 @@ import { PRODUCTS } from '@app/mocks';
 const { id, name, amount, currency, imageURLs } = PRODUCTS[0];
 ---
 
-<ProductCard
+<!-- <ProductCard
   href={`${ROUTES.PRODUCTS}/${id}`}
   name={name}
   amount={amount}
   currency={currency}
   imageURL={imageURLs[0]}
-/>
+/> -->
+<SideBar />
