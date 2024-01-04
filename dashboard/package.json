@@ -10,7 +10,9 @@
     "prepare": "cd .. && husky install dashboard/.husky",
     "pre-commit-lint": "pnpm lint-staged",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test-coverage": "pnpm jest --coverage",
+    "test": "pnpm jest"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.2.0",
@@ -65,9 +67,9 @@
     "typescript": "^5"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": [
+    "app/**/*.{ts,tsx}": [
       "npx prettier --write",
-      "eslint src/*.{js,jsx,ts,tsx} --fix-dry-run --no-error-on-unmatched-pattern"
+      "eslint app/*.{js,jsx,ts,tsx} --fix-dry-run --no-error-on-unmatched-pattern"
     ]
   }
 }
