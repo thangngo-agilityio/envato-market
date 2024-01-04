@@ -11,8 +11,8 @@
     "pre-commit-lint": "pnpm lint-staged",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test-coverage": "pnpm jest --coverage",
-    "test": "pnpm jest"
+    "test-coverage": "jest --coverage",
+    "test": "jest"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.2.0",
