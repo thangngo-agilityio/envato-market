@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions, fade } from 'astro:transitions';
+
 // Constants
 import { PAGE_TITLES } from '@app/constants';
 
@@ -24,6 +26,8 @@ const { title = PAGE_TITLES.HOME } = Astro.props;
       type='image/x-icon'
     />
     <title>{title}</title>
+
+    <ViewTransitions transition:animate={fade({ duration: '0.3s' })} />
   </head>
   <body><slot /></body>
 </html>
