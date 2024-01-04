@@ -24,6 +24,8 @@ const transitionStyles: string = ['transition', 'duration-300'].join(' ');
 <figure class={`relative w-full h-full cursor-pointer ${hoverStyles}`}>
   <Image
     src={imageURL}
+    widths={[250, 526, 622]}
+    sizes={'(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px'}
     width={250}
     height={250}
     alt={`This is the image for ${name}`}
