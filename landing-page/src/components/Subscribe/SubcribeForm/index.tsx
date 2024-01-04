@@ -17,7 +17,10 @@ const SubscribeForm = (): JSX.Element => {
         variant='secondary'
         className='font-normal flex-1'
       />
-      <Button className='text-sm w-[152px]' onclick={handleSubmit}>
+      <Button
+        className='text-sm px-[31px] text-primary !py-0 hover:text-white'
+        onclick={handleSubmit}
+      >
         Subscribe
       </Button>
     </div>

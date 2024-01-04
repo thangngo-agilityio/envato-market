@@ -22,13 +22,11 @@ export type Props = {
   className?: string;
   tag?: TAG_HEADING;
   variant?: TYPE_HEADING;
-  text?: string;
 };
 
 const {
   variant = TYPE_HEADING.PRIMARY,
   tag = TAG_HEADING.H2,
-  text = '',
   className = '',
 } = Astro.props;
 
@@ -37,5 +35,5 @@ const styles: string = styleHeading[variant];
 ---
 
 <Heading class={`font-primary text-primary ${styles} ${className}`}>
-  {text ? text : <slot />}
+  <slot />
 </Heading>
