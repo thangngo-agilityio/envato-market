@@ -65,7 +65,7 @@ const SideBarAllDevices = ({
               <a
                 href={href}
                 className={`${
-                  href === pathName ? 'text-sun' : ''
+                  href === pathName ? 'text-[#714D04]' : ''
                 } text-secondary hover:text-sun uppercase text-sm leading-[53px] py-5 relative ${hoverAfterStyle}`}
               >
                 {text}
