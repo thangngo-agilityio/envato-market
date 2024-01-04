@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  //TODO: update config later
+  reactStrictMode: true,
+  swcMinify: true,
   images: {
     remotePatterns: [
       {
