@@ -4,6 +4,8 @@ import {
   useCallback,
   type InputHTMLAttributes,
   type ChangeEventHandler,
+  forwardRef,
+  type ForwardedRef,
 } from 'react';
 
 const SIZES = {
@@ -28,16 +30,18 @@ type TInputProps = Omit<
   onChange?: (value: string) => void;
 };
 
-const Input = ({
-  isError = false,
-  size = 'lg',
-  variant = 'primary',
-  value = '',
-  className = '',
-  errorMessage = '',
-  onChange,
-  ...rest
-}: TInputProps): JSX.Element => {
+const Input = (
+  {
+    isError = false,
+    size = 'lg',
+    variant = 'primary',
+    className = '',
+    errorMessage = '',
+    onChange,
+    ...rest
+  }: TInputProps,
+  ref: ForwardedRef<HTMLInputElement>,
+): JSX.Element => {
   const handleChangeValue: ChangeEventHandler<HTMLInputElement> = useCallback(
     (e) => {
       const value: string = e.target.value;
@@ -56,15 +60,15 @@ const Input = ({
     <div className={`relative w-full ${SIZES[size]}`}>
       <input
         {...rest}
-        value={value}
+        {...(onChange && { onChange: handleChangeValue })}
+        ref={ref}
         className={style}
-        onChange={handleChangeValue}
       />
       {!!errorMessage && <p className={errorMsgStyles}>{errorMessage}</p>}
     </div>
   );
 };
 
-const InputMemoried = memo(Input, isEqual);
+const InputMemoried = memo(forwardRef(Input), isEqual);
 
 export default InputMemoried;
