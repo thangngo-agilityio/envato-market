@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import type { Preview } from '@storybook/react';
 import { useColorMode } from '@chakra-ui/react';
-import '../src/app/globals.css';
+import '../app/globals.css';
 
 //Providers
-import { ChakraProvider, QueryProvider } from '../src/providers';
+import { ChakraProvider, QueryProvider } from '../app/ui/providers';
 
 // Themes
-import { configThemes } from '../src/themes';
+import { configThemes } from '../app/ui/themes';
 
 interface ColorModeProps {
   colorMode: 'light' | 'dark';
