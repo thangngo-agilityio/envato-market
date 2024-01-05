@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar render Should render match with snapshot. 1`] = `
+<div>
+  <img
+    alt=""
+    data-nimg="1"
+    decoding="async"
+    height="52"
+    src=""
+    style="color: transparent; border-radius: 12px; border-width: 1px; padding-top: 2px; cursor: pointer; object-fit: cover; border-color: #e2e8f0; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+    width="52"
+  />
+</div>
+`;

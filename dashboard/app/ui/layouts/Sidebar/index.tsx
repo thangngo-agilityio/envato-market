@@ -3,8 +3,8 @@ import isEqual from 'react-fast-compare';
 import dynamic from 'next/dynamic';
 
 // components
-import { MiniSidebar } from '@/ui/components';
 const ExpandSidebar = dynamic(() => import('../../components/ExpandSidebar'));
+const MiniSidebar = dynamic(() => import('../../components/MiniSidebar'));
 
 export type SidebarProps = {
   onClose: () => void;

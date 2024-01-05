@@ -1,7 +1,8 @@
 'use client';
 
-import { IMAGES, SIDEBAR } from '@/lib/constants';
-import { SideBar } from '@/ui/layouts';
+import { useEffect } from 'react';
+import { IMAGES, SIDEBAR, TITLES_HEADER } from '@/lib/constants';
+import { Header, SideBar } from '@/ui/layouts';
 import {
   Box,
   Flex,
@@ -9,21 +10,23 @@ import {
   useMediaQuery,
   Image,
 } from '@chakra-ui/react';
-import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
+  //TODO: check sidebar render in server
+  const [isOpenOverlay] = useMediaQuery('(max-width: 1732px)');
   const { isOpen, onOpen, onClose } = useDisclosure({
-    defaultIsOpen: true,
+    defaultIsOpen: isOpenOverlay,
   });
-
-  const [isTablet] = useMediaQuery('(min-width: 768px) and (max-width: 992px)');
 
   // Open mini sidebar on tablet
   useEffect(() => {
-    if (isTablet) {
+    if (isOpenOverlay) {
       onOpen();
     }
-  }, [isTablet, onOpen]);
+  }, [isOpenOverlay, onOpen]);
+
+  const pathname = usePathname();
 
   return (
     <Flex w="full" h="full" bg="background.body.primary">
@@ -45,7 +48,9 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       >
         <SideBar isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
 
-        <p>Header</p>
+        <Header
+          name={TITLES_HEADER[`${pathname.slice(1)}`] || TITLES_HEADER.DEFAULT}
+        />
 
         {/* Button to show Sidebar on mobile */}
         <Image
