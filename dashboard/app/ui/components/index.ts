@@ -10,3 +10,5 @@ export { default as Avatar } from './common/Avatar';
 export { default as IconButton } from './common/IconButton';
 export { default as Dropdown } from './common/Dropdown';
 export { default as SwitchTheme } from './SwitchTheme';
+export { default as CardPayment } from './CardPayment';
+export { default as BoxChat } from './BoxChat';
