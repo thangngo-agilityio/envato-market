@@ -1,4 +1,4 @@
-import { defineConfig, sharpImageService } from 'astro/config';
+import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
@@ -8,7 +8,22 @@ export default defineConfig({
   site: 'https://landing-page-envato.vercel.app',
   image: {
     domains: ['loremflickr', 'preview.colorlib'],
-    service: sharpImageService(),
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+      config: {
+        limitInputPixels: true,
+      },
+    },
+  },
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          chunkFileNames: '[name]-[hash].js',
+          assetFileNames: '[name]-[hash][extname]',
+        },
+      },
+    },
   },
   vite: {
     build: {
