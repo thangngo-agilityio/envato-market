@@ -6,3 +6,7 @@ export { default as ExpandSidebar } from './ExpandSidebar';
 export { default as MiniSidebar } from './MiniSidebar';
 export * from './Icons';
 export * from './Images';
+export { default as Avatar } from './common/Avatar';
+export { default as IconButton } from './common/IconButton';
+export { default as Dropdown } from './common/Dropdown';
+export { default as SwitchTheme } from './SwitchTheme';
