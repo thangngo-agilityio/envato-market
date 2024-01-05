@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SwitchTheme component renders correctly 1`] = `
+<div>
+  <div
+    class="css-1ve4u7y"
+    data-testid="icon-button-component"
+  >
+    <button
+      aria-label="Send email"
+      class="chakra-button css-yt1s1n"
+      data-testid="icon-button"
+      type="button"
+    />
+  </div>
+</div>
+`;

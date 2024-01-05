@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconButton test cases should render correctly 1`] = `
+<div>
+  <div
+    class="css-1ve4u7y"
+    data-testid="icon-button-component"
+  >
+    <button
+      aria-label="Send email"
+      class="chakra-button css-yt1s1n"
+      data-testid="icon-button"
+      type="button"
+    >
+      <svg
+        fill="none"
+        height="24"
+        stroke="gray.800"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="5"
+          stroke-width="1.5"
+        />
+        <path
+          d="M12 2V4"
+          stroke-linecap="round"
+          stroke-width="1.5"
+        />
+        <path
+          d="M12 20V22"
+          stroke-linecap="round"
+          stroke-width="1.5"
+        />
+        <path
+          d="M20.6602 7L18.9281 8"
+          stroke-linecap="round"
+          stroke-width="1.5"
+        />
+        <path
+          d="M5.07178 16L3.33973 17"
+          stroke-linecap="round"
+          stroke-width="1.5"
+        />
+        <path
+          d="M3.33984 7L5.07189 8"
+          stroke-linecap="round"
+          stroke-width="1.5"
+        />
+        <path
+          d="M18.9282 16L20.6603 17"
+          stroke-linecap="round"
+          stroke-width="1.5"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
