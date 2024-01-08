@@ -2,7 +2,6 @@ import { memo } from 'react';
 import dynamic from 'next/dynamic';
 import isEqual from 'react-fast-compare';
 import { Box, Flex, Grid, GridItem } from '@chakra-ui/react';
-import { QueryProvider } from '@/ui/providers';
 
 // lazy loading components
 const TransactionTable = dynamic(
@@ -28,9 +27,7 @@ const Transactions = () => (
         px={6}
         py={5}
       >
-        <QueryProvider>
-          <TransactionTable />
-        </QueryProvider>
+        <TransactionTable />
       </Box>
     </GridItem>
     <GridItem mt={{ base: 6, '2xl': 0 }}>

@@ -29,7 +29,7 @@ const Histories = () => (
         py={5}
       >
         <QueryProvider>
-          <TransactionTable isTableHistory />
+          <TransactionTable />
         </QueryProvider>
       </Box>
     </GridItem>
