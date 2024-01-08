@@ -1,0 +1,41 @@
+.carousel .thumbs-wrapper {
+  margin: 0;
+}
+
+.carousel .thumbs {
+  display: flex;
+  margin-top: 25px;
+  padding: 0;
+}
+
+.carousel .thumb {
+  margin-right: 0;
+  padding: 0;
+  flex: 1;
+  height: 70px;
+}
+
+.carousel .thumb:hover {
+  border: 2px solid #fbb710;
+}
+
+.carousel .thumb.selected {
+  border: 2px solid #fbb710;
+}
+
+.carousel .thumb-image {
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .carousel .thumb {
+    height: 80px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .carousel .thumb {
+    height: 140px;
+  }
+}

@@ -108,3 +108,17 @@ export const PRODUCTS = [
     id: '17',
   },
 ];
+
+export const PRODUCT_DETAIL = {
+  images: [
+    ...PRODUCTS[0].imageURLs,
+    ...PRODUCTS[1].imageURLs,
+    ...PRODUCTS[2].imageURLs,
+    ...PRODUCTS[2].imageURLs,
+  ],
+  name: PRODUCTS[0].name,
+  stock: PRODUCTS[0].stock,
+  amount: PRODUCTS[0].amount,
+  currency: PRODUCTS[0].currency,
+  description: PRODUCTS[0].description,
+};
