@@ -15,7 +15,7 @@ const Carousel = ({ images }: TCarouselProps): JSX.Element => (
     <CarouselLib
       infiniteLoop
       autoPlay
-      interval={20000}
+      interval={2000}
       showArrows={false}
       showIndicators={false}
       showStatus={false}
