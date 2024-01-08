@@ -20,14 +20,4 @@ export default defineConfig({
       },
     },
   },
-  vite: {
-    build: {
-      rollupOptions: {
-        output: {
-          chunkFileNames: '[name]-[hash].js',
-          assetFileNames: '_astro/[name]-[hash][extname]',
-        },
-      },
-    },
-  },
 });
