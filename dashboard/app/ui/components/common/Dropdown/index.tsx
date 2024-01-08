@@ -1,3 +1,5 @@
+'use client';
+
 import { Fragment, memo } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -21,6 +23,9 @@ import { Arrow } from '@/ui/components/Icons';
 // Constants
 import { MENU_LIST, MENU_LIST_ICON } from '@/lib/constants';
 
+// Hooks
+import { useAuth } from '@/lib/hooks';
+
 // Lazy loading components
 const Avatar = dynamic(() => import('../Avatar/index'));
 
@@ -41,6 +46,7 @@ const UserDropdownMenu = ({
   offsetX = 0,
   offsetY = 10,
 }: DropdownProps) => {
+  const { signOut } = useAuth();
   const colorFill = useColorModeValue(
     theme.colors.gray[800],
     theme.colors.white,
@@ -117,10 +123,9 @@ const UserDropdownMenu = ({
                   _focus={{
                     outline: 'none',
                   }}
-                  // TODO: update later
-                  // {...(id === 2 && {
-                  //   onClick: signOut,
-                  // })}
+                  {...(id === 2 && {
+                    onClick: signOut,
+                  })}
                 >
                   <Flex>
                     <Icon color={colorFill} />

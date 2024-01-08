@@ -69,4 +69,5 @@ const Dashboard = () => (
     </GridItem>
   </Grid>
 );
+
 export default Dashboard;

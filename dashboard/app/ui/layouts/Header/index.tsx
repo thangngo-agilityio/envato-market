@@ -14,6 +14,9 @@ import { Dropdown, IconButton, Logo, SwitchTheme } from '@/ui/components';
 // Assets
 import { Bell, Email, Gift } from '@/ui/components/Icons';
 
+// hooks
+import { authStore } from '@/lib/stores';
+
 interface HeaderProps {
   name?: string;
 }
@@ -25,6 +28,13 @@ const HeaderComponent = ({ name }: HeaderProps) => {
   );
 
   //TODO: update user name, image, role later
+  const username = authStore(
+    ({ user }): string | undefined => `${user?.firstName} ${user?.lastName}`,
+  );
+  const avatarURL = authStore(
+    (state): string | undefined => state.user?.avatarURL,
+  );
+
   return (
     <Flex
       h="100%"
@@ -159,9 +169,9 @@ const HeaderComponent = ({ name }: HeaderProps) => {
           <Box display={{ base: 'none', md: 'inline-flex' }}>
             {/* TODO: update later */}
             <Dropdown
-              src="https://i.ibb.co/k0mcgm3/inkshadow-yasuo-prestige-skin-lol-splash-art-4k-wallpaper-uhdpaper-com-475-1-k.jpg"
-              alt="alt mock"
-              name="Canh Vo"
+              src={avatarURL}
+              alt={username}
+              name={username}
               permission="Super Admin"
             />
           </Box>
