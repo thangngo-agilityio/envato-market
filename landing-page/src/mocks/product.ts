@@ -122,3 +122,26 @@ export const PRODUCT_DETAIL = {
   currency: PRODUCTS[0].currency,
   description: PRODUCTS[0].description,
 };
+export const PRODUCTS_CART = [
+  {
+    imageURLs:
+      'https://preview.colorlib.com/theme/amado/img/bg-img/cart1.jpg.webp',
+    name: 'White Modern Chair',
+    currency: '$',
+    amount: '130',
+  },
+  {
+    imageURLs:
+      'https://preview.colorlib.com/theme/amado/img/bg-img/cart2.jpg.webp',
+    name: 'Minimal Plant Pot',
+    currency: '$',
+    amount: '10',
+  },
+  {
+    imageURLs:
+      'https://preview.colorlib.com/theme/amado/img/bg-img/cart3.jpg.webp',
+    name: 'Minimal Plant Pot',
+    currency: '$',
+    amount: '10',
+  },
+];
