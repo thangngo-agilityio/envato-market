@@ -1,18 +1,21 @@
 ---
 // Component
-import Heading from '@app/components/Heading/index.astro';
-import Button from '@app/components/Button/index';
+import Heading, {
+  TAG_HEADING,
+  TYPE_HEADING,
+} from '@app/components/Heading/index.astro';
+import Button, { VARIANTS } from '@app/components/Button/index';
 
 // Mocks
 import { CARD_TOTAL } from '@app/mocks/cardTotal';
 
-interface CardTotalProps {
+type Props = {
   subTotal?: string;
   delivery?: string;
   total?: string;
   prefixCurrency?: string;
   className?: string;
-}
+};
 
 const { className = '' } = Astro.props;
 
@@ -37,7 +40,11 @@ const fontSemibold: string = ['font-semibold'].join(' ');
 
 <div class={`bg-desertStorm font-semibold mt-[118px] py-lg px-5 ${className}`}>
   <div>
-    <Heading tag='h3' variant='secondary' className='font-semibold'>
+    <Heading
+      tag={TAG_HEADING.H3}
+      variant={TYPE_HEADING.SECONDARY}
+      className='font-semibold'
+    >
       Cart Total
     </Heading>
     <div class={`mt-lg ${listStyleDescription}`}>
@@ -54,7 +61,7 @@ const fontSemibold: string = ['font-semibold'].join(' ');
       </p>
     </div>
     <Button
-      variant='baseStyle'
+      variant={VARIANTS.SECONDARY}
       className='text-white hover:bg-secondary hover:text-white w-full h-[55px] font-semibold !leading-14'
     >
       Checkout
