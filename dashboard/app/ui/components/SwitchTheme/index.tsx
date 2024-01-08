@@ -1,3 +1,5 @@
+'use client';
+
 import { ReactElement, memo } from 'react';
 import { ColorMode, useColorMode } from '@chakra-ui/react';
 

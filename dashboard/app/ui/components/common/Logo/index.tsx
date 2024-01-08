@@ -1,3 +1,5 @@
+'use client';
+
 import { Text, useColorModeValue, theme } from '@chakra-ui/react';
 import Link from 'next/link';
 
