@@ -19,7 +19,9 @@ const { imageURLs, name, currency, amount } = Astro.props;
 
 <table class='w-full'>
   <thead>
-    <tr class='grid grid-cols-4 text-left bg-desertStorm'>
+    <tr
+      class='grid grid-cols-4 text-left bg-desertStorm [&>*:nth-child(n)]:text-[12px] [&>*:nth-child(n)]:text-primary [&>*:nth-child(n)]:font-semibold'
+    >
       <th></th>
       <th>Name</th>
       <th>Price</th>
