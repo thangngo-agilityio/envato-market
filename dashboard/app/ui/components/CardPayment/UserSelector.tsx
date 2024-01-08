@@ -50,19 +50,8 @@ const UserSelectorComponent = ({ control }: TTransferControl): JSX.Element => (
         alt={IMAGES.DEBIT_ICON.alt}
         width={24}
         height={24}
-        // fallbackSrc={IMAGES.USER.url}
+        sizes="100vw"
       />
-
-      {/* <Image
-        src={IMAGES.DEBIT_ICON.url}
-        alt={IMAGES.DEBIT_ICON.alt}
-        // fallbackSrc={IMAGES.USER.url}
-        boxSize={6}
-        position="absolute"
-        left={5}
-        top="50%"
-        transform="translateY(-50%)"
-      /> */}
 
       <Text
         sx={{
