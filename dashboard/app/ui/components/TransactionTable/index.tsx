@@ -13,19 +13,13 @@ import {
   ActionCell,
   SearchBar,
   StatusCell,
-  Fetching,
 } from '@/ui/components';
 
 // Utils
 import { getTransactionHomePage } from '@/lib/utils';
 
 // Hooks
-import {
-  TSortField,
-  useDebounce,
-  usePagination,
-  useTransactions,
-} from '@/lib/hooks';
+import { useDebounce, usePagination } from '@/lib/hooks';
 
 // Constants
 import {
@@ -36,6 +30,8 @@ import {
 
 // Types
 import { TDataSource, THeaderTable } from '@/lib/interfaces';
+import { TRANSACTIONS } from '@/lib/mocks';
+import { QueryProvider } from '@/ui/providers';
 
 interface TFilterUserProps {
   isTableHistory?: boolean;
@@ -44,14 +40,15 @@ interface TFilterUserProps {
 const TransactionTableComponent = ({
   isTableHistory = false,
 }: TFilterUserProps) => {
-  const {
-    data: transactions = [],
-    isLoading: isLoadingTransactions,
-    isError: isTransactionsError,
-    sortBy,
-  } = useTransactions({
-    name: '',
-  });
+  //TODO: update call api later
+  // const {
+  //   data: transactions = [],
+  //   isLoading: isLoadingTransactions,
+  //   isError: isTransactionsError,
+  //   sortBy,
+  // } = useTransactions({
+  //   name: '',
+  // });
 
   const {
     data,
@@ -63,7 +60,7 @@ const TransactionTableComponent = ({
     handleChangeLimit,
     handlePageChange,
     handlePageClick,
-  } = usePagination(transactions);
+  } = usePagination(TRANSACTIONS);
 
   // TODO: update handle search later
   // Update search params when end time debounce
@@ -73,17 +70,19 @@ const TransactionTableComponent = ({
     // setSearchTransaction('name', value);
   }, []);
 
+  //TODO: update click transaction later
   const renderHead = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     (title: string, key: string): JSX.Element => {
       const handleClick = () => {
-        sortBy && sortBy(key as TSortField);
+        // sortBy && sortBy(key as TSortField);
       };
 
       if (!title) return <Th w={50} maxW={50} />;
 
       return <HeadCell key={title} title={title} onClick={handleClick} />;
     },
-    [sortBy],
+    [],
   );
 
   const renderNameUser = useCallback(
@@ -145,32 +144,36 @@ const TransactionTableComponent = ({
   return (
     <>
       <SearchBar searchValue="" onSearch={handleDebounceSearch} />
-      <Fetching isLoading={isLoadingTransactions} isError={isTransactionsError}>
-        <Box mt={5}>
-          <Table
-            columns={columns as THeaderTable[]}
-            dataSource={getTransactionHomePage(filterData)}
+      <Box mt={5}>
+        <Table
+          columns={columns as THeaderTable[]}
+          dataSource={getTransactionHomePage(filterData)}
+        />
+      </Box>
+      {!!TRANSACTIONS.length && (
+        <Box mt={8}>
+          <Pagination
+            pageSize={data.limit}
+            currentPage={data.currentPage}
+            isDisabledPrev={isDisabledPrev}
+            isDisableNext={isDisableNext}
+            arrOfCurrButtons={arrOfCurrButtons}
+            onLimitChange={handleChangeLimit}
+            onPageChange={handlePageChange}
+            onClickPage={handlePageClick}
           />
         </Box>
-        {!!transactions.length && (
-          <Box mt={8}>
-            <Pagination
-              pageSize={data.limit}
-              currentPage={data.currentPage}
-              isDisabledPrev={isDisabledPrev}
-              isDisableNext={isDisableNext}
-              arrOfCurrButtons={arrOfCurrButtons}
-              onLimitChange={handleChangeLimit}
-              onPageChange={handlePageChange}
-              onClickPage={handlePageClick}
-            />
-          </Box>
-        )}
-      </Fetching>
+      )}
     </>
   );
 };
 
-const TransactionTable = memo(TransactionTableComponent, isEqual);
+const WrappedTransactionTable = () => (
+  <QueryProvider>
+    <TransactionTableComponent />
+  </QueryProvider>
+);
+
+const TransactionTable = memo(WrappedTransactionTable, isEqual);
 
 export default TransactionTable;

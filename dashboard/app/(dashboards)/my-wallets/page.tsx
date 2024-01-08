@@ -5,7 +5,6 @@ import { Box, Flex, Grid, GridItem } from '@chakra-ui/react';
 
 // Mocks
 import { OVERALL_BALANCE_MOCK } from '@/lib/mocks';
-import { QueryProvider } from '@/ui/providers';
 
 // Lazy loading components
 const TransactionTable = dynamic(
@@ -33,33 +32,31 @@ const MyWallets = () => (
       </Flex>
     </GridItem>
     <GridItem colSpan={{ xl: 3 }} mt={{ base: 6, '3xl': 0 }}>
-      <QueryProvider>
-        <Flex direction="column" gap={6}>
-          <Flex
-            gap={6}
-            direction={{ base: 'column', xl: 'row' }}
-            boxSizing="border-box"
-          >
-            <Box flex={2}>
-              <OverallBalance {...OVERALL_BALANCE_MOCK} />
-            </Box>
-            <Box flex={1}>
-              <Efficiency />
-            </Box>
-          </Flex>
-          <Box>
-            <Box
-              as="section"
-              bgColor="background.component.primary"
-              borderRadius={8}
-              px={6}
-              py={5}
-            >
-              <TransactionTable />
-            </Box>
+      <Flex direction="column" gap={6}>
+        <Flex
+          gap={6}
+          direction={{ base: 'column', xl: 'row' }}
+          boxSizing="border-box"
+        >
+          <Box flex={2}>
+            <OverallBalance {...OVERALL_BALANCE_MOCK} />
+          </Box>
+          <Box flex={1}>
+            <Efficiency />
           </Box>
         </Flex>
-      </QueryProvider>
+        <Box>
+          <Box
+            as="section"
+            bgColor="background.component.primary"
+            borderRadius={8}
+            px={6}
+            py={5}
+          >
+            <TransactionTable />
+          </Box>
+        </Box>
+      </Flex>
     </GridItem>
   </Grid>
 );

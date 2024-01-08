@@ -5,10 +5,10 @@ import dynamic from 'next/dynamic';
 
 // Components
 import { Box, Flex, Text } from '@chakra-ui/react';
-import { Button, InputField, Fetching, Select } from '@/ui/components';
+import { Button, InputField, Select } from '@/ui/components';
 
 // Hooks
-import { useDebounce, useEmployee } from '@/lib/hooks';
+import { useDebounce } from '@/lib/hooks';
 
 // Icons
 import { Search, ChevronIcon } from '@/ui/components/Icons';
@@ -20,8 +20,7 @@ import { FILTER_USER_OPTIONS } from '@/lib/constants';
 import { TOption } from '@/ui/components/common/Select';
 
 // Mock
-import { INITIAL_USER } from '@/lib/mocks';
-import { QueryProvider } from '@/ui/providers';
+import { INITIAL_USER, USERS_MOCK } from '@/lib/mocks';
 
 // Lazy loading components
 const UsersTable = dynamic(() => import('@/ui/components/UsersTable'));
@@ -31,20 +30,21 @@ const Users = () => {
   const [userId, setUserId] = useState<string | null>(null);
   const [seniorityLevel, setSeniorityLevel] = useState<string>('');
 
-  // Users
-  const {
-    data: users = [],
-    isLoading: isEmployeesLoading,
-    isError: isEmployeesError,
-  } = useEmployee('');
+  // TODO: Update call API later
+  // const {
+  //   data: users = [],
+  //   isLoading: isEmployeesLoading,
+  //   isError: isEmployeesError,
+  // } = useEmployee('');
 
   const handleClickUser = useCallback((id: string) => {
     setUserId(id);
   }, []);
 
   const user = useMemo(
-    () => (userId ? users.find((user) => user.id === userId) : users[0]),
-    [userId, users],
+    () =>
+      userId ? USERS_MOCK.find((user) => user.id === userId) : USERS_MOCK[0],
+    [userId],
   );
 
   const renderTitle = useCallback(
@@ -70,9 +70,9 @@ const Users = () => {
   const usersFiltered = useMemo(
     () =>
       seniorityLevel
-        ? users.filter((item) => item.level === seniorityLevel)
-        : users,
-    [users, seniorityLevel],
+        ? USERS_MOCK.filter((item) => item.level === seniorityLevel)
+        : USERS_MOCK,
+    [seniorityLevel],
   );
 
   return (
@@ -140,9 +140,7 @@ const Users = () => {
             </Button>
           </Flex>
         </Flex>
-        <Fetching isLoading={isEmployeesLoading} isError={isEmployeesError}>
-          <UsersTable users={usersFiltered} onClickUser={handleClickUser} />
-        </Fetching>
+        <UsersTable users={usersFiltered} onClickUser={handleClickUser} />
       </Box>
       <Box flex={1} pt={20}>
         <UserCard user={user || INITIAL_USER} />
@@ -151,12 +149,6 @@ const Users = () => {
   );
 };
 
-const WrappedUsers = () => (
-  <QueryProvider>
-    <Users />
-  </QueryProvider>
-);
-
-const UsersPage = memo(WrappedUsers);
+const UsersPage = memo(Users);
 
 export default UsersPage;
