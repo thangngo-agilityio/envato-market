@@ -1,0 +1,20 @@
+---
+export interface InputProps {
+  name: string;
+  type: string;
+  placeholder: string;
+  value: string;
+}
+
+const { name, type, placeholder, value } = Astro.props;
+---
+
+<input
+  name={name}
+  type={type}
+  aria-describedby='helper-text-explanation'
+  class='bg-desertStorm max-w-[60px] md:max-w-[113px] md:py-2'
+  placeholder={placeholder}
+  value={value}
+  required
+/>

@@ -1,0 +1,52 @@
+---
+// Libs
+import { Image } from 'astro:assets';
+// Component
+import InputNumber from './InputNumber/index.astro';
+
+// Mocks
+import { PRODUCTS_CART } from '@app/mocks';
+
+interface ProductCartProp {
+  imageURLs: string;
+  name: string;
+  currency: string;
+  amount: string;
+}
+
+const { imageURLs, name, currency, amount } = Astro.props;
+---
+
+<table class='w-full'>
+  <thead>
+    <tr class='grid grid-cols-4 text-left bg-desertStorm'>
+      <th></th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>
+      {
+        PRODUCTS_CART.map(({ imageURLs, name, currency, amount }) => (
+          <div class='grid grid-cols-4 items-center gap-3 my-6'>
+            <Image
+              src={imageURLs}
+              width={160}
+              height={160}
+              alt={`This is the image for ${name}`}
+              class='object-contain w-[160px] h-full'
+            />
+            <p>{name}</p>
+            <p>
+              {currency}
+              {amount}
+            </p>
+            <InputNumber type='number' />
+          </div>
+        ))
+      }
+    </td>
+  </tr>
+</table>
