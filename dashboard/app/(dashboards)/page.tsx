@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic';
-import { QueryProvider } from '@/ui/providers';
 import { Box, Grid, GridItem, Stack } from '@chakra-ui/react';
 
 // Lazy load components
@@ -7,14 +6,9 @@ const CardPayment = dynamic(() => import('@/ui/components/CardPayment'));
 const BoxChat = dynamic(() => import('@/ui/components/BoxChat'));
 const TotalStatisticList = dynamic(
   () => import('@/ui/components/TotalStatisticList'),
-  { ssr: false },
 );
-const RevenueFlow = dynamic(() => import('@/ui/components/RevenueFlow'), {
-  ssr: false,
-});
-const Efficiency = dynamic(() => import('@/ui/components/Efficiency'), {
-  ssr: false,
-});
+const RevenueFlow = dynamic(() => import('@/ui/components/RevenueFlow'));
+const Efficiency = dynamic(() => import('@/ui/components/Efficiency'));
 const TransactionTable = dynamic(
   () => import('@/ui/components/TransactionTable'),
 );
@@ -39,9 +33,7 @@ const Dashboard = () => (
           <RevenueFlow />
         </GridItem>
         <GridItem display={{ base: 'none', xl: 'block' }}>
-          <QueryProvider>
-            <Efficiency />
-          </QueryProvider>
+          <Efficiency />
         </GridItem>
       </Grid>
 
@@ -54,9 +46,7 @@ const Dashboard = () => (
         py={5}
       >
         {' '}
-        <QueryProvider>
-          <TransactionTable />
-        </QueryProvider>
+        <TransactionTable />
       </Box>
     </GridItem>
     <GridItem mt={{ base: 6, '5xl': 0 }} ml={{ '5xl': 12 }}>

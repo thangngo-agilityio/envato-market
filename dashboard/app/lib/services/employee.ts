@@ -7,7 +7,7 @@ import { END_POINTS } from '@/lib/constants';
 import { IAxiosConfig, TEmployee } from '@/lib/interfaces';
 
 export const employeeHttpRequest: AxiosInstance = axios.create({
-  baseURL: process.env.VITE_API_USER,
+  baseURL: process.env.NEXT_PUBLIC_API_USER,
 });
 
 export const getEmployees = async (

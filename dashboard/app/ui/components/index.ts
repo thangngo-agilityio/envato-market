@@ -8,6 +8,8 @@ export { default as MiniSidebar } from './MiniSidebar';
 export * from './Icons';
 export * from './Images';
 export { default as Avatar } from './common/Avatar';
+export { default as Benefit } from './common/Benefit';
+export { default as Divider } from './common/Divider';
 export { default as IconButton } from './common/IconButton';
 export { default as Dropdown } from './common/Dropdown';
 export { default as Select } from './common/Select';
@@ -31,3 +33,6 @@ export { default as TotalStatisticListSkeleton } from './Skeleton/TotalStatistic
 export { default as TotalStatisticList } from './TotalStatisticList';
 export { default as RevenueFlow } from './RevenueFlow';
 export { default as Efficiency } from './Efficiency';
+export { default as TotalBalance } from './TotalBalance';
+export { default as OverallBalance } from './OverallBalance';
+export { default as UserCard } from './UserCard';
