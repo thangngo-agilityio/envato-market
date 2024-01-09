@@ -14,7 +14,11 @@ interface ProductCartProp {
   amount: string;
 }
 
-const { imageURLs, name, currency, amount } = Astro.props;
+export interface productCartItem {
+  productCartItem: ProductCartProp;
+}
+
+const { productCartItem = {} } = Astro.props;
 ---
 
 <table class='w-full'>
@@ -28,11 +32,11 @@ const { imageURLs, name, currency, amount } = Astro.props;
       <th>Quantity</th>
     </tr>
   </thead>
-  <tr>
-    <td>
-      {
-        PRODUCTS_CART.map(({ imageURLs, name, currency, amount }) => (
-          <div class='grid grid-cols-4 items-center gap-3 my-6'>
+  <tbody>
+    {
+      PRODUCTS_CART.map(({ imageURLs, name, currency, amount }) => (
+        <tr class='grid grid-cols-4 items-center gap-3 my-6'>
+          <td>
             <Image
               src={imageURLs}
               width={160}
@@ -40,15 +44,21 @@ const { imageURLs, name, currency, amount } = Astro.props;
               alt={`This is the image for ${name}`}
               class='object-contain w-[160px] h-full'
             />
+          </td>
+          <td>
             <p>{name}</p>
+          </td>
+          <td>
             <p>
               {currency}
               {amount}
             </p>
+          </td>
+          <td>
             <InputNumber type='number' />
-          </div>
-        ))
-      }
-    </td>
-  </tr>
+          </td>
+        </tr>
+      ))
+    }
+  </tbody>
 </table>
