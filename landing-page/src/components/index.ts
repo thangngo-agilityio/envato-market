@@ -7,3 +7,4 @@ export { default as Subscribe } from './Subscribe/index.astro';
 export { default as ProductsList } from './ProductsList/index.astro';
 export { default as Carousel } from './Carousel';
 export { default as ProductInfo } from './ProductInfo';
+export { default as Toast } from './Toast';

@@ -1,8 +1,27 @@
-import { useCallback, useMemo, useRef, type FormEventHandler } from 'react';
-import { Button } from '..';
+import {
+  useCallback,
+  useMemo,
+  useRef,
+  type FormEventHandler,
+  type ChangeEventHandler,
+} from 'react';
+
+// Components
+import { Button, Toast } from '..';
+
+// Services
+import { addToCart } from '@app/services';
+
+// Constants
+import { SUCCESS_MESSAGE } from '@app/constants';
+
+// Hooks
+import { useToast } from '@app/hooks';
 
 type TProductInfoProps = {
+  id: string;
   name: string;
+  imageURL: string;
   currency: string;
   description: string;
   stock: number;
@@ -10,16 +29,21 @@ type TProductInfoProps = {
 };
 
 const ProductInfo = ({
+  id,
+  imageURL,
   currency,
   amount,
   name,
   stock,
   description,
 }: TProductInfoProps): JSX.Element => {
+  const { toast, showToast, pauseToast, resetToast } = useToast();
   const refQuantity = useRef<HTMLInputElement>(null);
 
+  const isOutStock: boolean = stock <= 0;
+
   const statusStock = useMemo(() => {
-    if (stock <= 0) {
+    if (isOutStock) {
       return {
         title: 'out stock',
         color: 'bg-red-500',
@@ -27,11 +51,47 @@ const ProductInfo = ({
     }
 
     return { title: 'in stock', color: 'bg-green-500' };
-  }, [stock]);
+  }, [isOutStock]);
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = useCallback((e) => {
-    e.preventDefault();
-  }, []);
+  const handleSubmit: FormEventHandler<HTMLFormElement> = useCallback(
+    async (e) => {
+      e.preventDefault();
+
+      try {
+        const quantity: number = parseInt(
+          refQuantity.current ? refQuantity.current.value : '1',
+        );
+
+        await addToCart({
+          productId: id,
+          currency,
+          amount,
+          name,
+          quantity,
+          imageURL,
+        });
+
+        showToast({ message: SUCCESS_MESSAGE.ADD_TO_CART, type: 'success' });
+      } catch (error) {
+        const { message } = error as Error;
+
+        showToast({ message, type: 'error' });
+      }
+    },
+    [amount, currency, id, imageURL, name, showToast],
+  );
+
+  const handleChangeQuantity: ChangeEventHandler<HTMLInputElement> =
+    useCallback((e) => {
+      const value = e.target.value;
+
+      if (parseInt(value) <= 1) {
+        e.target.defaultValue = `${1}`;
+        e.target.value = `${1}`;
+
+        return;
+      }
+    }, []);
 
   return (
     <section className='col-span-12 nearLg:col-span-5 mt-[70px] nearLg:mt-0 font-primary'>
@@ -54,12 +114,27 @@ const ProductInfo = ({
           defaultValue={1}
           type='number'
           className='bg-desertStorm px-3 h-10 w-[100px] text-center'
+          onChange={handleChangeQuantity}
+          disabled={isOutStock}
         />
 
-        <Button className='w-full sm:w-[280px] md:w-[310px] nearLg:w-full lg:w-[310px] '>
+        <Button
+          className={`w-full sm:w-[280px] md:w-[310px] nearLg:w-full lg:w-[310px] ${
+            isOutStock && 'bg-slate-200'
+          }`}
+          disabled={isOutStock}
+        >
           Add to cart
         </Button>
       </form>
+
+      <Toast
+        message={toast.message}
+        isOpen={!!toast.message}
+        type={toast.type}
+        onHover={pauseToast}
+        onBlur={resetToast}
+      />
     </section>
   );
 };

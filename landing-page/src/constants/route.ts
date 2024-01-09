@@ -7,4 +7,5 @@ export const ROUTES = {
 
 export const ENDPOINTS = {
   PRODUCTS: '/products',
+  CARTS: '/carts',
 };
