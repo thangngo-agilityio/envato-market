@@ -27,6 +27,7 @@ import { EFFICIENCY_OPTIONS, END_POINTS } from '@/lib/constants';
 import { EFFICIENCY_MOCK } from '@/lib/mocks';
 import { useGetStatistic } from '@/lib/hooks';
 import { IEfficiency } from '@/lib/interfaces';
+import { QueryProvider } from '@/ui/providers';
 
 const EfficiencyComponent = () => {
   //TODO: update later
@@ -121,6 +122,12 @@ const EfficiencyComponent = () => {
   );
 };
 
-const Efficiency = memo(EfficiencyComponent, isEqual);
+const WrappedEfficiency = () => (
+  <QueryProvider>
+    <EfficiencyComponent />
+  </QueryProvider>
+);
+
+const Efficiency = memo(WrappedEfficiency, isEqual);
 
 export default Efficiency;
