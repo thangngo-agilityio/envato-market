@@ -35,7 +35,7 @@ const { productCartItem = {} } = Astro.props;
   <tbody>
     {
       PRODUCTS_CART.map(({ imageURLs, name, currency, amount }) => (
-        <tr class='grid grid-cols-4 items-center gap-3 my-6'>
+        <tr class='grid grid-cols-4 items-center sm:gap-3 my-6'>
           <td>
             <Image
               src={imageURLs}
@@ -55,7 +55,7 @@ const { productCartItem = {} } = Astro.props;
             </p>
           </td>
           <td>
-            <InputNumber type='number' />
+            <InputNumber />
           </td>
         </tr>
       ))
