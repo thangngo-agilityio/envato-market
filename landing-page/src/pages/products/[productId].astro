@@ -1,0 +1,18 @@
+---
+import { Carousel, ProductInfo } from '@app/components';
+import { MainLayout } from '@app/layouts';
+
+// Mocks
+import { PRODUCT_DETAIL } from '@app/mocks';
+
+export const prerender = false;
+---
+
+<MainLayout>
+  <div
+    class='grid grid-cols-12 px-[15px] nearLg:gap-8 pt-10 nearLg:pt-[100px] pb-11'
+  >
+    <Carousel images={PRODUCT_DETAIL.images} client:visible />
+    <ProductInfo {...PRODUCT_DETAIL} />
+  </div>
+</MainLayout>
