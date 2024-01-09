@@ -1,18 +1,52 @@
 ---
+import type { GetStaticPaths } from 'astro';
+
+// Components
 import { Carousel, ProductInfo } from '@app/components';
 import { MainLayout } from '@app/layouts';
 
 // Mocks
 import { PRODUCT_DETAIL } from '@app/mocks';
 
-export const prerender = false;
+// Types
+import type { IProduct } from '@app/interfaces';
+
+// Services
+import { getProducts } from '@app/services';
+
+type Props = {
+  images: string[];
+  name: string;
+  currency: string;
+  description: string;
+  stock: number;
+  amount: number;
+};
+
+export const getStaticPaths = (async () => {
+  const products: IProduct[] = (await getProducts()) || [];
+  const data = products.map(({ id, ...product }) => ({
+    params: {
+      productId: id,
+    },
+    props: {
+      images: PRODUCT_DETAIL.images,
+      ...product,
+    },
+  }));
+
+  return data;
+}) satisfies GetStaticPaths;
+
+const { images, ...rest } = Astro.props;
+const { productId } = Astro.params;
 ---
 
 <MainLayout>
   <div
     class='grid grid-cols-12 px-[15px] nearLg:gap-8 pt-10 nearLg:pt-[100px] pb-11'
   >
-    <Carousel images={PRODUCT_DETAIL.images} client:visible />
-    <ProductInfo {...PRODUCT_DETAIL} />
+    <Carousel images={images} client:visible />
+    <ProductInfo {...rest} id={productId} imageURL={images[0]} client:visible />
   </div>
 </MainLayout>
