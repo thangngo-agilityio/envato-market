@@ -1,0 +1,64 @@
+---
+// Libs
+import { Image } from 'astro:assets';
+// Component
+import InputNumber from './InputNumber/index.astro';
+
+// Mocks
+import { PRODUCTS_CART } from '@app/mocks';
+
+interface ProductCartProp {
+  imageURLs: string;
+  name: string;
+  currency: string;
+  amount: string;
+}
+
+export interface productCartItem {
+  productCartItem: ProductCartProp;
+}
+
+const { productCartItem = {} } = Astro.props;
+---
+
+<table class='w-full'>
+  <thead>
+    <tr
+      class='grid grid-cols-4 text-left bg-desertStorm [&>*:nth-child(n)]:text-[12px] [&>*:nth-child(n)]:text-primary [&>*:nth-child(n)]:font-semibold'
+    >
+      <th></th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    {
+      PRODUCTS_CART.map(({ imageURLs, name, currency, amount }) => (
+        <tr class='grid grid-cols-4 items-center gap-3 my-6'>
+          <td>
+            <Image
+              src={imageURLs}
+              width={160}
+              height={160}
+              alt={`This is the image for ${name}`}
+              class='object-contain w-[160px] h-full'
+            />
+          </td>
+          <td>
+            <p>{name}</p>
+          </td>
+          <td>
+            <p>
+              {currency}
+              {amount}
+            </p>
+          </td>
+          <td>
+            <InputNumber type='number' />
+          </td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
