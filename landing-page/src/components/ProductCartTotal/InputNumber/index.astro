@@ -9,12 +9,65 @@ export interface InputProps {
 const { name, type, placeholder, value } = Astro.props;
 ---
 
-<input
-  name={name}
-  type={type}
-  aria-describedby='helper-text-explanation'
-  class='bg-desertStorm max-w-[60px] md:max-w-[113px] md:py-2'
-  placeholder={placeholder}
-  value={value}
-  required
-/>
+<div
+  class='flex items-center gap-2 bg-desertStorm max-w-[75px] md:max-w-[113px]'
+>
+  <label
+    for='quantity-input'
+    class='text-primary font-semibold text-[14px] md:ml-[15px]'>Qty</label
+  >
+  <div class='flex'>
+    <button
+      onClick='clickDown()'
+      type='button'
+      id='decrement-button'
+      data-input-counter-decrement='quantity-input'
+    >
+      <svg
+        class='w-2 h-2 text-primary'
+        aria-hidden='true'
+        xmlns='http://www.w3.org/2000/svg'
+        fill='none'
+        viewBox='0 0 18 2'
+      >
+        <path
+          stroke='currentColor'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          stroke-width='2'
+          d='M1 1h16'></path>
+      </svg>
+    </button>
+    <input
+      id='countInput'
+      name={name}
+      type={type}
+      aria-describedby='helper-text-explanation'
+      class='bg-desertStorm md:py-2 w-7 md:w-lg'
+      placeholder={placeholder}
+      value={value}
+      required
+    />
+    <button
+      onClick='clickME()'
+      type='button'
+      id='increment-button'
+      data-input-counter-increment='quantity-input'
+    >
+      <svg
+        class='w-2 h-2 text-primary'
+        aria-hidden='true'
+        xmlns='http://www.w3.org/2000/svg'
+        fill='none'
+        viewBox='0 0 18 18'
+      >
+        <path
+          stroke='currentColor'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          stroke-width='2'
+          d='M9 1v16M1 9h16'></path>
+      </svg>
+    </button>
+  </div>
+</div>
