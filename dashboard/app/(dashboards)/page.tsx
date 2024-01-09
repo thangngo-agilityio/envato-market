@@ -16,6 +16,7 @@ import { IRevenueFlow, ISpendingStatistics } from '@/lib/interfaces';
 
 // Constants
 import { END_POINTS } from '@/lib/constants';
+import { memo } from 'react';
 
 // Lazy load components
 const CardPayment = dynamic(() => import('@/ui/components/CardPayment'));
@@ -29,7 +30,7 @@ const TransactionTable = dynamic(
   () => import('@/ui/components/TransactionTable'),
 );
 
-const Dashboard = () => {
+const DashboardPage = () => {
   const [totalStatistic, revenueFlow] = useGetMultipleStatistics<
     ISpendingStatistics[] | IRevenueFlow[]
   >([END_POINTS.STATISTICS, END_POINTS.REVENUE]);
@@ -122,8 +123,10 @@ const Dashboard = () => {
 
 const DashboardWrapped = () => (
   <QueryProvider>
-    <Dashboard />
+    <DashboardPage />
   </QueryProvider>
 );
 
-export default DashboardWrapped;
+const Dashboard = memo(DashboardWrapped);
+
+export default Dashboard;
