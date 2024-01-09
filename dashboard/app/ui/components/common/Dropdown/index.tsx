@@ -21,7 +21,7 @@ import {
 import { Arrow } from '@/ui/components/Icons';
 
 // Constants
-import { MENU_LIST, MENU_LIST_ICON } from '@/lib/constants';
+import { IMAGES, MENU_LIST, MENU_LIST_ICON } from '@/lib/constants';
 
 // Hooks
 import { useAuth } from '@/lib/hooks';
@@ -39,7 +39,7 @@ interface DropdownProps {
 }
 
 const UserDropdownMenu = ({
-  src = '',
+  src = IMAGES.USER.url,
   name = '',
   alt = '',
   permission = '',

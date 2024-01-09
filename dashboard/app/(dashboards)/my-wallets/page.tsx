@@ -3,9 +3,6 @@ import { memo } from 'react';
 import dynamic from 'next/dynamic';
 import { Box, Flex, Grid, GridItem } from '@chakra-ui/react';
 
-// Mocks
-import { OVERALL_BALANCE_MOCK } from '@/lib/mocks';
-
 // Lazy loading components
 const TransactionTable = dynamic(
   () => import('@/ui/components/TransactionTable'),
@@ -39,7 +36,7 @@ const MyWallets = () => (
           boxSizing="border-box"
         >
           <Box flex={2}>
-            <OverallBalance {...OVERALL_BALANCE_MOCK} />
+            <OverallBalance />
           </Box>
           <Box flex={1}>
             <Efficiency />

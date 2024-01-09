@@ -1,11 +1,14 @@
+'use client';
+
 import isEqual from 'react-fast-compare';
-import { Box, Flex } from '@chakra-ui/react';
 import { ReactNode, memo, useMemo } from 'react';
+import { usePathname } from 'next/navigation';
 
 // Constants
-import { IMAGES, TITLES } from '@/lib/constants';
+import { IMAGES, ROUTES, TITLES } from '@/lib/constants';
 
 // Components
+import { Box, Flex } from '@chakra-ui/react';
 import { Benefit, Divider, Logo, SwitchTheme } from '@/ui/components';
 
 // Types
@@ -14,13 +17,13 @@ import { AuthFooter, AuthHeader } from '@/ui/layouts';
 
 type TAuthLayoutProps = {
   children?: ReactNode;
-  isSignInForm?: boolean;
 };
 
-const AuthLayoutComponent = ({
-  children,
-  isSignInForm = true,
-}: TAuthLayoutProps): JSX.Element => {
+const AuthLayoutComponent = ({ children }: TAuthLayoutProps): JSX.Element => {
+  const pathname = usePathname();
+
+  const isSignInForm = pathname === `/${ROUTES.LOGIN}`;
+
   const title: string = useMemo(
     (): string => (isSignInForm ? TITLES.SIGN_IN : TITLES.SIGN_UP),
     [isSignInForm],

@@ -2,6 +2,7 @@
 
 import { ChangeEvent, memo, useCallback, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   Box,
   Button,
@@ -17,10 +18,10 @@ import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
 import { Controller, SubmitHandler } from 'react-hook-form';
 
 // Hooks
-import { useForm } from '@/lib/hooks';
+import { useAuth, useForm } from '@/lib/hooks';
 
 // Constants
-import { ROUTES, AUTH_SCHEMA } from '@/lib/constants';
+import { ROUTES, AUTH_SCHEMA, ERROR_MESSAGES } from '@/lib/constants';
 
 // Components
 import { InputField } from '@/ui/components';
@@ -37,6 +38,8 @@ type TRegisterForm = Omit<TUserDetail, 'id' | 'createdAt'> & {
 };
 
 const RegisterPage = () => {
+  const { signUp } = useAuth();
+  const router = useRouter();
   // Control form
   const {
     control,
@@ -45,7 +48,7 @@ const RegisterPage = () => {
     },
     watch,
     handleSubmit,
-    // setError,
+    setError,
     clearErrors,
   } = useForm<TRegisterForm>({
     defaultValues: {
@@ -63,9 +66,6 @@ const RegisterPage = () => {
   const { isOpen: isShowConfirmPassword, onToggle: onShowConfirmPassword } =
     useDisclosure();
 
-  // Disable button when wait response from Server
-  //TODO: update later
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
   const isDisabledSubmitBtn: boolean =
     isSubmit || !Object.values(watch()).every((value) => value);
@@ -87,35 +87,33 @@ const RegisterPage = () => {
     [],
   );
 
-  //TODO: update register later
   const handleSubmitForm: SubmitHandler<TRegisterForm> = useCallback(
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async (data) => {
-      // setIsSubmit(true);
-      // const {
-      //   isAcceptPrivacyPolicy: _isAcceptPrivacyPolicy,
-      //   confirmPassword: _confirmPassword,
-      //   ...fieldValues
-      // } = data;
-      // try {
-      //   const { errors } = await signUp(fieldValues);
-      //   if (errors) {
-      //     return Object.entries(errors).forEach(([key, value]) =>
-      //       setError(key as keyof typeof data, {
-      //         type: 'custom',
-      //         message: value,
-      //       }),
-      //     );
-      //   }
-      //   // redirect(ROUTES.ROOT);
-      // } catch (error) {
-      //   setError('root', {
-      //     type: 'custom',
-      //     message: ERROR_MESSAGES.SOMETHING_ERROR,
-      //   });
-      // } finally {
-      //   setIsSubmit(false);
-      // }
+      setIsSubmit(true);
+      const {
+        isAcceptPrivacyPolicy: _isAcceptPrivacyPolicy,
+        confirmPassword: _confirmPassword,
+        ...fieldValues
+      } = data;
+      try {
+        const { errors } = await signUp(fieldValues);
+        if (errors) {
+          return Object.entries(errors).forEach(([key, value]) =>
+            setError(key as keyof typeof data, {
+              type: 'custom',
+              message: value,
+            }),
+          );
+        }
+        router.push(ROUTES.ROOT);
+      } catch (error) {
+        setError('root', {
+          type: 'custom',
+          message: ERROR_MESSAGES.SOMETHING_ERROR,
+        });
+      } finally {
+        setIsSubmit(false);
+      }
     },
     [],
   );
