@@ -98,6 +98,7 @@ const Login = (): JSX.Element => {
         router.push(ROUTES.ROOT);
       } catch (error) {
         const { message } = error as Error;
+        console.log('message', message);
 
         setError('root', { type: 'custom', message });
       } finally {
