@@ -1,9 +1,8 @@
 'use client';
 
 import { ChangeEvent, memo, useCallback, useMemo, useState } from 'react';
-import { signIn as signInNextAuth } from '../../../auth';
 import Link from 'next/link';
-// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
 import {
   Button,
@@ -37,7 +36,7 @@ type TLoginForm = {
 
 const Login = (): JSX.Element => {
   const { signIn } = useAuth();
-  // const router = useRouter();
+  const router = useRouter();
 
   // Control form
   const {
@@ -95,9 +94,8 @@ const Login = (): JSX.Element => {
         const { username, password, isRemember } = data;
 
         await signIn({ email: username, password }, isRemember);
-        console.log('next-auth', signInNextAuth(username));
 
-        // router.push(ROUTES.ROOT);
+        router.push(ROUTES.ROOT);
       } catch (error) {
         const { message } = error as Error;
 
@@ -106,7 +104,7 @@ const Login = (): JSX.Element => {
         setIsSubmit(false);
       }
     },
-    [setError, signIn],
+    [router, setError, signIn],
   );
 
   const handleClearRootError = useCallback(

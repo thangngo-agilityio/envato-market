@@ -1,3 +1,5 @@
+'use client';
+
 import { memo } from 'react';
 
 // Components
@@ -16,6 +18,7 @@ import { Bell, Email, Gift } from '@/ui/components/Icons';
 
 // hooks
 import { authStore } from '@/lib/stores';
+import { useStore } from '@/lib/hooks';
 
 interface HeaderProps {
   name?: string;
@@ -27,13 +30,10 @@ const HeaderComponent = ({ name }: HeaderProps) => {
     theme.colors.white,
   );
 
-  //TODO: update user name, image, role later
-  const username = authStore(
-    ({ user }): string | undefined => `${user?.firstName} ${user?.lastName}`,
-  );
-  const avatarURL = authStore(
-    (state): string | undefined => state.user?.avatarURL,
-  );
+  const user = useStore(authStore, (state) => state.user);
+
+  const username = `${user?.firstName || ''} ${user?.lastName || ''}`;
+  const avatarURL = user?.avatarURL || '';
 
   return (
     <Flex
