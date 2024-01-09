@@ -2,6 +2,7 @@
 
 import { ChangeEvent, memo, useCallback, useMemo, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
 import {
   Button,
@@ -16,7 +17,7 @@ import {
 import { Controller, SubmitHandler } from 'react-hook-form';
 
 // Hooks
-import { useForm } from '@/lib/hooks';
+import { useForm, useAuth } from '@/lib/hooks';
 
 // Constants
 import { ROUTES, AUTH_SCHEMA } from '@/lib/constants';
@@ -34,6 +35,9 @@ type TLoginForm = {
 };
 
 const Login = (): JSX.Element => {
+  const { signIn } = useAuth();
+  const router = useRouter();
+
   // Control form
   const {
     control,
@@ -56,7 +60,6 @@ const Login = (): JSX.Element => {
   const { isOpen: isShowPassword, onToggle: onToggleShowPassword } =
     useDisclosure();
 
-  // Disable button when wait response from Server
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
 
   const isFillAllFields: boolean = !Object.entries(watch()).every(
@@ -88,12 +91,11 @@ const Login = (): JSX.Element => {
     async (data) => {
       setIsSubmit(true);
       try {
-        //TODO: update handle login later
-        // const { username, password, isRemember } = data;
+        const { username, password, isRemember } = data;
 
-        // await signIn({ email: username, password }, isRemember);
-        // redirect(ROUTES.ROOT);
-        console.log(data);
+        await signIn({ email: username, password }, isRemember);
+
+        router.push(ROUTES.ROOT);
       } catch (error) {
         const { message } = error as Error;
 
@@ -102,7 +104,7 @@ const Login = (): JSX.Element => {
         setIsSubmit(false);
       }
     },
-    [setError],
+    [router, setError, signIn],
   );
 
   const handleClearRootError = useCallback(

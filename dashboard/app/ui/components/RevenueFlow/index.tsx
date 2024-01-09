@@ -33,7 +33,7 @@ import { IRevenueFlow, RevenueFlowStatus } from '@/lib/interfaces';
 import { TOption } from '@/ui/components/common/Select';
 
 // Mocks
-import { REVENUE_FLOW_MOCK } from '@/lib/mocks';
+import { INITIAL_REVENUE_FLOW } from '@/lib/mocks';
 
 interface RevenueFlowProps {
   data?: IRevenueFlow[];
@@ -44,8 +44,7 @@ interface ChartDataState {
 }
 
 const RevenueFlowComponent = ({
-  //TODO: call api later
-  data = REVENUE_FLOW_MOCK,
+  data = INITIAL_REVENUE_FLOW,
 }: RevenueFlowProps) => {
   const defaultSeries = useMemo(() => {
     const generatesData = (

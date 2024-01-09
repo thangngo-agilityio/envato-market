@@ -12,24 +12,27 @@ import {
   theme,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { Select } from '@/ui/components';
+import { Fetching, Select } from '@/ui/components';
 import { TOption } from '@/ui/components/common/Select';
 import EfficiencyInfo from './EfficiencyInfo';
+import EfficiencyRefetch from './Refetching';
 
 // Icons
 import { Arrow } from '@/ui/components/Icons';
 
 // Constants
-import { EFFICIENCY_OPTIONS } from '@/lib/constants';
+import { EFFICIENCY_OPTIONS, END_POINTS } from '@/lib/constants';
 
 // Types
 import { EFFICIENCY_MOCK } from '@/lib/mocks';
+import { useGetStatistic } from '@/lib/hooks';
+import { IEfficiency } from '@/lib/interfaces';
+import { QueryProvider } from '@/ui/providers';
 
 const EfficiencyComponent = () => {
   //TODO: update later
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [efficiencyType, setEfficiencyType] = useState<string>('weekly');
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   const [isLoadingSelectEfficiencyType, setLoadingSelectEfficiencyType] =
     useState<boolean>(false);
   const colorFill = useColorModeValue(
@@ -37,15 +40,15 @@ const EfficiencyComponent = () => {
     theme.colors.white,
   );
 
-  // const {
-  //   data: efficiencyData,
-  //   isLoading: isLoadingEfficiency,
-  //   isError: isErrorEfficiency,
-  // } = useGetStatistic<IEfficiency>(
-  //   `${END_POINTS.EFFICIENCY}/${efficiencyType}`,
-  // );
+  const {
+    data: efficiencyData,
+    isLoading: isLoadingEfficiency,
+    isError: isErrorEfficiency,
+  } = useGetStatistic<IEfficiency>(
+    `${END_POINTS.EFFICIENCY}/${efficiencyType}`,
+  );
 
-  const { arrival, spending, statistical } = EFFICIENCY_MOCK;
+  const { arrival, spending, statistical } = efficiencyData || EFFICIENCY_MOCK;
 
   const handleChangeSelectEfficiency = useCallback((data: TOption) => {
     setEfficiencyType(data.value);
@@ -62,52 +65,69 @@ const EfficiencyComponent = () => {
     [colorFill],
   );
 
-  // if (isErrorEfficiency)
-  //   return (
-  //     <Heading
-  //       as="h3"
-  //       color="text.primary"
-  //       bgColor="background.body.secondary"
-  //       rounded="lg"
-  //       boxShadow="sm"
-  //       p={4}
-  //     >
-  //       Efficiency data error
-  //     </Heading>
-  //   );
+  if (isErrorEfficiency)
+    return (
+      <Heading
+        as="h3"
+        color="text.primary"
+        bgColor="background.body.secondary"
+        rounded="lg"
+        boxShadow="sm"
+        p={4}
+      >
+        Efficiency data error
+      </Heading>
+    );
 
   return (
     <Box bg="background.component.primary" rounded="lg">
-      <Flex
-        py={4}
-        px={5}
-        borderBottom="1px"
-        borderColor="border.primary"
-        justifyContent="space-between"
+      <Fetching
+        isLoading={isLoadingEfficiency && !isLoadingSelectEfficiencyType}
+        isError={isErrorEfficiency}
+        variant="secondary"
+        size="md"
       >
-        <Heading variant="heading2Xl" as="h3">
-          Efficiency
-        </Heading>
-        <Box w={102} h={21}>
-          <Select
-            options={EFFICIENCY_OPTIONS}
-            size="sm"
-            variant="no-background"
-            renderTitle={renderTitle}
-            onSelect={handleChangeSelectEfficiency}
-            data-testid="select-efficiency"
+        <Flex
+          py={4}
+          px={5}
+          borderBottom="1px"
+          borderColor="border.primary"
+          justifyContent="space-between"
+        >
+          <Heading variant="heading2Xl" as="h3">
+            Efficiency
+          </Heading>
+          <Box w={102} h={21}>
+            <Select
+              options={EFFICIENCY_OPTIONS}
+              size="sm"
+              variant="no-background"
+              renderTitle={renderTitle}
+              onSelect={handleChangeSelectEfficiency}
+              data-testid="select-efficiency"
+            />
+          </Box>
+        </Flex>
+        {isLoadingEfficiency && isLoadingSelectEfficiencyType ? (
+          <EfficiencyRefetch />
+        ) : (
+          <EfficiencyInfo
+            spending={spending}
+            statistical={statistical}
+            arrival={arrival}
           />
-        </Box>
-      </Flex>
-      <EfficiencyInfo
-        spending={spending}
-        statistical={statistical}
-        arrival={arrival}
-      />
+        )}
+      </Fetching>
     </Box>
   );
 };
 
-const Efficiency = memo(EfficiencyComponent, isEqual);
+const WrappedEfficiency = () => (
+  <QueryProvider>
+    <EfficiencyComponent />
+  </QueryProvider>
+);
+
+const Efficiency = memo(WrappedEfficiency, isEqual);
 
 export default Efficiency;
