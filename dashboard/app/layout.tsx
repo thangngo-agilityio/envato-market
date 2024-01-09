@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 // Providers
-import { ChakraProvider } from '@/ui/providers';
+import { ChakraProvider, CheckAuthenticationProvider } from '@/ui/providers';
 
 // Fonts
 import { fontFamilies } from '@/ui/themes/bases';
@@ -26,7 +26,9 @@ export default function RootLayout({
       className={`${fontFamilies.urbanist.variable} ${fontFamilies.poppins.variable}`}
     >
       <body>
-        <ChakraProvider>{children}</ChakraProvider>
+        <ChakraProvider>
+          <CheckAuthenticationProvider>{children}</CheckAuthenticationProvider>
+        </ChakraProvider>
       </body>
     </html>
   );

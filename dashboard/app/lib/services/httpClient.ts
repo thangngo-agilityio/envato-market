@@ -46,3 +46,5 @@ export const UsersHttpService = new HttpService(USERS_API);
 export const BaseHttpService = new HttpService(BASE_API);
 
 export const StatisticalHttpService = new HttpService(STATISTICAL_API);
+
+export const AuthenticationHttpService = new HttpService(STATISTICAL_API);

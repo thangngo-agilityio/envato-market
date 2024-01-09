@@ -13,6 +13,8 @@ export const END_POINTS = {
   EFFICIENCY: '/efficiency',
   EMPLOYEES: '/employees',
   OVERALL_BALANCE: '/overall-balance',
+  SIGN_IN: '/sign-in',
+  SIGN_UP: '/sign-up',
 };
 
 export const SEARCH_PARAM = {
