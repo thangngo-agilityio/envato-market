@@ -16,6 +16,9 @@ import { Navigation } from '@/ui/components';
 // Constants
 import { ROUTES } from '@/lib/constants';
 
+// Hooks
+import { useAuth } from '@/lib/hooks';
+
 export type TMenuItem = {
   id: number;
   leftIcon?: () => ReactElement;
@@ -38,14 +41,15 @@ const Menu = ({
   onClickMenuItem,
 }: MenuProps) => {
   const router = useRouter();
+  const { signOut } = useAuth();
 
   const handleSignOut = useCallback(
     (e: MouseEvent<HTMLAnchorElement>) => {
       e.preventDefault();
-      // signOut(); TODO: Update later
+      signOut();
       router.push(ROUTES.LOGIN);
     },
-    [router],
+    [router, signOut],
   );
 
   return (

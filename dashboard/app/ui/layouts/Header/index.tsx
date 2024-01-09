@@ -33,7 +33,7 @@ const HeaderComponent = ({ name }: HeaderProps) => {
   const user = useStore(authStore, (state) => state.user);
 
   const username = `${user?.firstName || ''} ${user?.lastName || ''}`;
-  const avatarURL = user?.avatarURL || '';
+  const avatarURL = user?.avatarURL;
 
   return (
     <Flex

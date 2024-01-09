@@ -21,3 +21,5 @@ export * from './pagination';
 export * from './columns';
 export * from './faq';
 export * from './avatar';
+export * from './sizes';
+export * from './setting';

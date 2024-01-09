@@ -36,3 +36,6 @@ export { default as Efficiency } from './Efficiency';
 export { default as TotalBalance } from './TotalBalance';
 export { default as OverallBalance } from './OverallBalance';
 export { default as UserCard } from './UserCard';
+export { default as ItemSideBarSetting } from './ItemSideBarSetting';
+export { default as FaqItem } from './FaqItem';
+export { default as UpdateProfile } from './Profile';
