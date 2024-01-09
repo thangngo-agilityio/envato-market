@@ -14,7 +14,7 @@ const TotalStatisticCard = dynamic(
 import { ISpendingStatistics } from '@/lib/interfaces';
 
 // Mocks
-import { SPENDING_STATISTICS_MOCK } from '@/lib/mocks';
+import { INITIAL_TOTAL_STATISTICS } from '@/lib/mocks';
 
 interface TotalListComponentProps {
   spendingStatistics?: ISpendingStatistics[];
@@ -23,7 +23,7 @@ interface TotalListComponentProps {
 
 const TotalStatisticListComponent = ({
   // TODO: call api later
-  spendingStatistics = SPENDING_STATISTICS_MOCK,
+  spendingStatistics = INITIAL_TOTAL_STATISTICS,
   isLoading = false,
 }: TotalListComponentProps) => {
   if (isLoading) return <TotalStatisticListSkeleton />;

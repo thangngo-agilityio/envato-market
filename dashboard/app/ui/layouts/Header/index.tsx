@@ -1,3 +1,5 @@
+'use client';
+
 import { memo } from 'react';
 
 // Components
@@ -14,6 +16,10 @@ import { Dropdown, IconButton, Logo, SwitchTheme } from '@/ui/components';
 // Assets
 import { Bell, Email, Gift } from '@/ui/components/Icons';
 
+// hooks
+import { authStore } from '@/lib/stores';
+import { useStore } from '@/lib/hooks';
+
 interface HeaderProps {
   name?: string;
 }
@@ -24,7 +30,11 @@ const HeaderComponent = ({ name }: HeaderProps) => {
     theme.colors.white,
   );
 
-  //TODO: update user name, image, role later
+  const user = useStore(authStore, (state) => state.user);
+
+  const username = `${user?.firstName || ''} ${user?.lastName || ''}`;
+  const avatarURL = user?.avatarURL || '';
+
   return (
     <Flex
       h="100%"
@@ -159,9 +169,9 @@ const HeaderComponent = ({ name }: HeaderProps) => {
           <Box display={{ base: 'none', md: 'inline-flex' }}>
             {/* TODO: update later */}
             <Dropdown
-              src="https://i.ibb.co/k0mcgm3/inkshadow-yasuo-prestige-skin-lol-splash-art-4k-wallpaper-uhdpaper-com-475-1-k.jpg"
-              alt="alt mock"
-              name="Canh Vo"
+              src={avatarURL}
+              alt={username}
+              name={username}
               permission="Super Admin"
             />
           </Box>
