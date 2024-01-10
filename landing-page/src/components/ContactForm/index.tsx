@@ -13,16 +13,10 @@ const ContactForm = () => {
     'border-[#80bdff]',
     'focus:border-4',
   ].join(' ');
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
-  console.log(errors);
+  const { register, handleSubmit } = useForm();
   return (
     <form
-      className='flex flex-wrap [&>*:nth-child(n)]:w-full [&>*:nth-child(n)]:mb-4'
+      className='flex flex-wrap [&>*:nth-child(n)]:w-full [&>*:nth-child(n)]:mb-4 [&>*:nth-child(n)]:px-[15px]'
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className='md:!w-[50%] md:pr-[15px]'>
