@@ -7,9 +7,10 @@ import SideBarAllDevices from '../SideBar';
 
 type TWrapperProps = {
   children?: ReactNode;
+  pathName: string;
 };
 
-const Wrapper = ({ children }: TWrapperProps): JSX.Element => {
+const Wrapper = ({ children, pathName }: TWrapperProps): JSX.Element => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false);
 
   const handleToggleSidebar = useCallback(
@@ -20,6 +21,7 @@ const Wrapper = ({ children }: TWrapperProps): JSX.Element => {
   return (
     <section className='flex'>
       <SideBarAllDevices
+        pathName={pathName}
         isOpen={isOpenSidebar}
         onToggle={handleToggleSidebar}
       />

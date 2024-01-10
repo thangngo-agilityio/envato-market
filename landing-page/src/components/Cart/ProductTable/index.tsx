@@ -10,6 +10,9 @@ import type { IProductInCart } from '@app/interfaces';
 // Utils
 import { formatDecimalNumber } from '@app/utils';
 
+// Constants
+import { COMMON } from '@app/constants';
+
 type TProductTableProps = {
   products: IProductInCart[];
   onChangeQuantity: (id: string, quantity: number) => void;
@@ -81,8 +84,7 @@ const ProductTable = ({
         ) : (
           <tr>
             <td colSpan={4} className='text-center text-sm sm:text-md py-10 '>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel,
-              minus?
+              {COMMON.EMPTY_ARRAY}
             </td>
           </tr>
         )}

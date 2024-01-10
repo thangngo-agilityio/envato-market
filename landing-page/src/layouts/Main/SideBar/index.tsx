@@ -8,10 +8,8 @@ import { NAVBAR } from '@app/mocks';
 // Constant
 import { ROUTES } from '@app/constants';
 
-// TODO: Update to late
-const pathName: string = '/';
-
 type TSidebarProps = {
+  pathName: string;
   isOpen?: boolean;
   onToggle?: () => void;
 };
@@ -32,6 +30,7 @@ const hoverAfterStyle: string = [
 
 const SideBarAllDevices = ({
   isOpen = false,
+  pathName,
   onToggle,
 }: TSidebarProps): JSX.Element => (
   <header

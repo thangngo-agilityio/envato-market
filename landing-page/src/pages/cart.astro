@@ -2,10 +2,20 @@
 // Components
 import { Cart as CartPage } from '@app/components';
 import { MainLayout } from '@app/layouts';
+
+// Types
+import type { IProductInCart } from '@app/interfaces';
+
+// Services
+import { getCart } from '@app/services';
+
+export const prerender = false;
+
+const cart: IProductInCart[] = await getCart();
 ---
 
 <MainLayout>
   <main class='p-4 md:py-[100px] nearXl:px-10'>
-    <CartPage client:visible />
+    <CartPage client:visible data={cart} />
   </main>
 </MainLayout>
