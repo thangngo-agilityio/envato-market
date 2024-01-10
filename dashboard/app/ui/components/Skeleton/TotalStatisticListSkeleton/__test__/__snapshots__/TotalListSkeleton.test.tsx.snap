@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TotalListSkeleton component renders correctly 1`] = `
+<div>
+  <div
+    class="css-1j1hvbl"
+  >
+    <div
+      class="css-1gvp5h0"
+    >
+      <div
+        class="chakra-skeleton css-1h2kfne"
+      />
+    </div>
+    <div
+      class="css-1gvp5h0"
+    >
+      <div
+        class="chakra-skeleton css-1h2kfne"
+      />
+    </div>
+    <div
+      class="css-1gvp5h0"
+    >
+      <div
+        class="chakra-skeleton css-1h2kfne"
+      />
+    </div>
+  </div>
+</div>
+`;

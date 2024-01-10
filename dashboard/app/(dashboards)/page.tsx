@@ -5,7 +5,7 @@ import { QueryProvider } from '@/ui/providers';
 import { UseQueryResult } from '@tanstack/react-query';
 
 // Components
-import { Box, Grid, GridItem, Stack } from '@chakra-ui/react';
+import { Box, Grid, GridItem, Skeleton, Stack } from '@chakra-ui/react';
 import { Fetching } from '@/ui/components';
 
 // Hooks
@@ -24,7 +24,9 @@ const BoxChat = dynamic(() => import('@/ui/components/BoxChat'));
 const TotalStatisticList = dynamic(
   () => import('@/ui/components/TotalStatisticList'),
 );
-const RevenueFlow = dynamic(() => import('@/ui/components/RevenueFlow'));
+const RevenueFlow = dynamic(() => import('@/ui/components/RevenueFlow'), {
+  loading: () => <Skeleton bg="background.component.primary" h={330} />,
+});
 const Efficiency = dynamic(() => import('@/ui/components/Efficiency'));
 const TransactionTable = dynamic(
   () => import('@/ui/components/TransactionTable'),

@@ -67,7 +67,9 @@ exports[`TotalList component renders correctly 1`] = `
           <div
             class="css-1sg7bn7"
           >
-            <div />
+            <div
+              class="chakra-skeleton css-9bhriu"
+            />
           </div>
         </div>
       </div>
@@ -134,7 +136,9 @@ exports[`TotalList component renders correctly 1`] = `
           <div
             class="css-1sg7bn7"
           >
-            <div />
+            <div
+              class="chakra-skeleton css-9bhriu"
+            />
           </div>
         </div>
       </div>
@@ -201,7 +205,9 @@ exports[`TotalList component renders correctly 1`] = `
           <div
             class="css-1sg7bn7"
           >
-            <div />
+            <div
+              class="chakra-skeleton css-9bhriu"
+            />
           </div>
         </div>
       </div>
@@ -219,21 +225,21 @@ exports[`TotalList component renders with is loading is true 1`] = `
       class="css-1gvp5h0"
     >
       <div
-        class="chakra-skeleton css-1wu0swh"
+        class="chakra-skeleton css-1h2kfne"
       />
     </div>
     <div
       class="css-1gvp5h0"
     >
       <div
-        class="chakra-skeleton css-1wu0swh"
+        class="chakra-skeleton css-1h2kfne"
       />
     </div>
     <div
       class="css-1gvp5h0"
     >
       <div
-        class="chakra-skeleton css-1wu0swh"
+        class="chakra-skeleton css-1h2kfne"
       />
     </div>
   </div>

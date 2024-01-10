@@ -4,10 +4,11 @@ import { memo } from 'react';
 import dynamic from 'next/dynamic';
 
 // Components
-import { Box, Image, HStack, Text, Flex } from '@chakra-ui/react';
-// import Chart from 'react-apexcharts';
+import { Box, Image, HStack, Text, Flex, Skeleton } from '@chakra-ui/react';
+
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
+  loading: () => <Skeleton bg="background.component.primary" h={108} />,
 });
 
 // Images

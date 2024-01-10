@@ -1,9 +1,8 @@
 import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { MemoryRouter } from 'react-router-dom';
 
 // component
-import { Dropdown } from '@app/components';
+import { Dropdown } from '@/ui/components';
 
 const renderComponent = ({
   name,
@@ -11,10 +10,7 @@ const renderComponent = ({
 }: {
   name?: string;
   permission?: string;
-}) =>
-  render(<Dropdown name={name} permission={permission} />, {
-    wrapper: MemoryRouter,
-  });
+}) => render(<Dropdown name={name} permission={permission} />);
 
 describe('Dropdown render', () => {
   it('Should render match with snapshot.', async () => {

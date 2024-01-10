@@ -14,7 +14,7 @@ const TotalStatisticListSkeleton = ({
     {Array.from({ length: quality }).map((_, index: number) => (
       // eslint-disable-next-line react/no-array-index-key
       <GridItem key={`skeleton-${index}`}>
-        <Skeleton bg="background.component.primary" rounded="lg" />
+        <Skeleton bg="background.component.primary" rounded="lg" h={206} />
       </GridItem>
     ))}
   </Grid>

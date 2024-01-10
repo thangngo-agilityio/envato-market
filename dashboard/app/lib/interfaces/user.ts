@@ -26,10 +26,20 @@ export type TEmployee = Omit<IUserBase, 'email'> & {
   hiringAgent: THiringAgent;
 };
 
-export type TCustomer = Pick<IUserBase, 'id' | 'email'> & {
-  name: string;
+export type TAddress = {
+  street?: string;
+  city?: string;
+  state: string;
+  zip?: number;
+};
+
+export type TCustomer = Pick<IUserBase, 'email'> & {
+  customerId?: string | null;
+  role?: string;
+  firstName: string;
+  lastName: string;
   avatar: string;
-  location: string;
+  address: TAddress;
 };
 
 export type TUserDetail = Omit<IUserBase, 'avatarURL'> & {

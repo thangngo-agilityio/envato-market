@@ -35,8 +35,8 @@ const setup = () => {
 
 const uploadImageMock = jest.fn();
 
-jest.mock('@app/services/image', () => ({
-  ...jest.requireActual('@app/services/image'),
+jest.mock('@/lib/services/image', () => ({
+  ...jest.requireActual('@/lib/services/image'),
   uploadImage: () => uploadImageMock,
 }));
 
