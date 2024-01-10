@@ -25,7 +25,7 @@ const NavbarOnSmallDevices = (): JSX.Element => {
       <Button
         aria-label='Show Menu'
         className='flex justify-center items-center pt-[0] pb-0 px-0 mt-4 w-[36px] h-lg'
-        onclick={handleToggle}
+        onClick={handleToggle}
       >
         <HamburgerMenuIcon width='18' height='18' />
       </Button>

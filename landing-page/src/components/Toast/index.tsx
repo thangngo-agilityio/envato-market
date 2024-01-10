@@ -70,7 +70,7 @@ const Toast = ({
       <Button
         aria-label='Close Button'
         className='flex bg-transparent w-10 h-10 justify-center items-center rounded-[100%] pt-0 pb-[0px] self-end'
-        onclick={handleCloseToast}
+        onClick={handleCloseToast}
       >
         <CloseSideBarMenuMemorized width={10} height={10} fill={button} />
       </Button>
