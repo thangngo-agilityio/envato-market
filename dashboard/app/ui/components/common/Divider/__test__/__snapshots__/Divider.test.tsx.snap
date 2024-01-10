@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders DividerCustom with content 1`] = `
+<div>
+  <div
+    class="css-1wqp5dg"
+  >
+    <hr
+      aria-orientation="horizontal"
+      class="chakra-divider css-ri09he"
+    />
+    <div
+      class="css-18io2yi"
+    >
+      Test Content
+    </div>
+  </div>
+</div>
+`;

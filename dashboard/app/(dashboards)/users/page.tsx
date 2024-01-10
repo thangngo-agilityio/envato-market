@@ -5,10 +5,10 @@ import dynamic from 'next/dynamic';
 
 // Components
 import { Box, Flex, Text } from '@chakra-ui/react';
-import { Button, InputField, Select } from '@/ui/components';
+import { Button, Fetching, InputField, Select } from '@/ui/components';
 
 // Hooks
-import { useDebounce } from '@/lib/hooks';
+import { useDebounce, useEmployee, useSearch } from '@/lib/hooks';
 
 // Icons
 import { Search, ChevronIcon } from '@/ui/components/Icons';
@@ -20,7 +20,10 @@ import { FILTER_USER_OPTIONS } from '@/lib/constants';
 import { TOption } from '@/ui/components/common/Select';
 
 // Mock
-import { INITIAL_USER, USERS_MOCK } from '@/lib/mocks';
+import { INITIAL_USER } from '@/lib/mocks';
+
+// Providers
+import { QueryProvider } from '@/ui/providers';
 
 // Lazy loading components
 const UsersTable = dynamic(() => import('@/ui/components/UsersTable'));
@@ -29,22 +32,21 @@ const UserCard = dynamic(() => import('@/ui/components/UserCard'));
 const Users = () => {
   const [userId, setUserId] = useState<string | null>(null);
   const [seniorityLevel, setSeniorityLevel] = useState<string>('');
+  const { setSearchParam } = useSearch();
 
-  // TODO: Update call API later
-  // const {
-  //   data: users = [],
-  //   isLoading: isEmployeesLoading,
-  //   isError: isEmployeesError,
-  // } = useEmployee('');
+  const {
+    data: users = [],
+    isLoading: isEmployeesLoading,
+    isError: isEmployeesError,
+  } = useEmployee('');
 
   const handleClickUser = useCallback((id: string) => {
     setUserId(id);
   }, []);
 
   const user = useMemo(
-    () =>
-      userId ? USERS_MOCK.find((user) => user.id === userId) : USERS_MOCK[0],
-    [userId],
+    () => (userId ? users.find((user) => user.id === userId) : users[0]),
+    [userId, users],
   );
 
   const renderTitle = useCallback(
@@ -57,10 +59,8 @@ const Users = () => {
     [],
   );
 
-  //TODO: update search later
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSearchUsersByJobTitle = useDebounce((value: string) => {
-    // setSearchParam('jobTitle', value);
+    setSearchParam('jobTitle', value);
   }, []);
 
   const handleFilterUsersBySeniorLevel = useCallback((data: TOption) => {
@@ -70,9 +70,9 @@ const Users = () => {
   const usersFiltered = useMemo(
     () =>
       seniorityLevel
-        ? USERS_MOCK.filter((item) => item.level === seniorityLevel)
-        : USERS_MOCK,
-    [seniorityLevel],
+        ? users.filter((item) => item.level === seniorityLevel)
+        : users,
+    [users, seniorityLevel],
   );
 
   return (
@@ -140,7 +140,9 @@ const Users = () => {
             </Button>
           </Flex>
         </Flex>
-        <UsersTable users={usersFiltered} onClickUser={handleClickUser} />
+        <Fetching isLoading={isEmployeesLoading} isError={isEmployeesError}>
+          <UsersTable users={usersFiltered} onClickUser={handleClickUser} />
+        </Fetching>
       </Box>
       <Box flex={1} pt={20}>
         <UserCard user={user || INITIAL_USER} />
@@ -149,6 +151,12 @@ const Users = () => {
   );
 };
 
-const UsersPage = memo(Users);
+const UsersWrapped = () => (
+  <QueryProvider>
+    <Users />
+  </QueryProvider>
+);
+
+const UsersPage = memo(UsersWrapped);
 
 export default UsersPage;

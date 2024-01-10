@@ -3,10 +3,7 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
 // Components
-import { OverallBalance } from '@app/components';
-
-// Mock
-import { OVERALL_BALANCE_MOCK } from '@app/mocks';
+import { OverallBalance } from '@/ui/components';
 
 jest.mock('react-apexcharts', () => ({
   __esModule: true,
@@ -15,12 +12,12 @@ jest.mock('react-apexcharts', () => ({
 
 describe('OverallBalance component', () => {
   it('renders correctly', () => {
-    const { container } = render(<OverallBalance {...OVERALL_BALANCE_MOCK} />);
+    const { container } = render(<OverallBalance />);
 
     expect(container).toMatchSnapshot();
   });
   test('handleChangeSelect updates chartData correctly', async () => {
-    render(<OverallBalance {...OVERALL_BALANCE_MOCK} />);
+    render(<OverallBalance />);
 
     const menuButton = screen.getByRole('button', {
       name: /jan \- dec/i,

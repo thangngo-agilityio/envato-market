@@ -5,11 +5,15 @@ import isEqual from 'react-fast-compare';
 import dynamic from 'next/dynamic';
 
 // Components
-const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+const Chart = dynamic(() => import('react-apexcharts'), {
+  ssr: false,
+  loading: () => <Skeleton bg="background.component.primary" h={225} />,
+});
 import {
   Box,
   Flex,
   Heading,
+  Skeleton,
   Text,
   theme,
   useColorModeValue,

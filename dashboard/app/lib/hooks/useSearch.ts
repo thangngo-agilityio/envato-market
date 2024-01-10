@@ -6,9 +6,6 @@ import {
   useSearchParams,
 } from 'next/navigation';
 
-// Utils
-// import { cleanUpSearchParam } from '@/lib/utils';
-
 export type TUseSearchParams = ReadonlyURLSearchParams & {
   setSearchParam: (key: string, value: string) => void;
 };
@@ -55,8 +52,6 @@ export const useSearch = () => {
 
     [pathName, router, searchParams],
   );
-
-  console.log(searchParams);
 
   return {
     ...searchParams,

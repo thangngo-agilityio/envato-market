@@ -1,7 +1,10 @@
 import { memo } from 'react';
 import dynamic from 'next/dynamic';
-import { Box, Flex, Text, useColorMode } from '@chakra-ui/react';
-const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+import { Box, Flex, Skeleton, Text, useColorMode } from '@chakra-ui/react';
+const Chart = dynamic(() => import('react-apexcharts'), {
+  ssr: false,
+  loading: () => <Skeleton bg="background.component.primary" h={145} />,
+});
 
 // Components
 import Statistical from './Statistical';

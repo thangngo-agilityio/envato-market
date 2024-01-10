@@ -13,10 +13,11 @@ export const transactionHttpService: AxiosInstance = axios.create({
 export const getTransactions = async (
   searchParam?: string,
   config?: IAxiosConfig,
+  userId?: string,
 ): Promise<TTransaction[]> =>
   (
     await transactionHttpService.get(
-      `${END_POINTS.TRANSACTIONS}${searchParam || ''}`,
+      `${END_POINTS.TRANSACTIONS}/${userId}${searchParam || ''}`,
       config,
     )
   ).data;

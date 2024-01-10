@@ -6,13 +6,13 @@ import { StorageValue } from 'zustand/middleware';
 import { TAuthStoreAction, TAuthStoreData, authStore } from '..';
 
 // Constants
-import { STORE_KEY } from '@app/constants';
+import { STORE_KEY } from '@/lib/constants';
 
 // Utils
-import { getValueFromLocalStore } from '@app/utils';
+import { getValueFromLocalStore } from '@/lib/utils';
 
 // Mocks
-import { MOCK_USER_DATA } from '@app/mocks';
+import { MOCK_USER_DATA } from '@/lib/mocks';
 
 const setup = () =>
   renderHook<TAuthStoreData & TAuthStoreAction, unknown>(authStore);

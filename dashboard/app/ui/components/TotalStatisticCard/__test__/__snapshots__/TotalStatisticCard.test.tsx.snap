@@ -61,7 +61,9 @@ exports[`TotalCard component renders correctly 1`] = `
       <div
         class="css-1sg7bn7"
       >
-        <div />
+        <div
+          class="chakra-skeleton css-9bhriu"
+        />
       </div>
     </div>
   </div>
