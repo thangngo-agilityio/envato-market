@@ -4,16 +4,17 @@ export interface InputProps {
   type: string;
   placeholder: string;
   value: string;
+  className?: string;
 }
 
-const { name, type, placeholder, value } = Astro.props;
+const { name, type, placeholder, value, className = '' } = Astro.props;
 ---
 
 <input
   name={name}
   type={type}
   aria-describedby='helper-text-explanation'
-  class='bg-desertStorm max-w-[60px] md:max-w-[113px] md:py-2'
+  class={`${className}`}
   placeholder={placeholder}
   value={value}
   required
