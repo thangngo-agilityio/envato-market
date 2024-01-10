@@ -7,6 +7,8 @@ import InputNumber from './InputNumber/index.astro';
 // Mocks
 import { PRODUCTS_CART } from '@app/mocks';
 
+// Images
+import ArrowIcon from '@app/components/icons/Carret/index';
 interface ProductCartProp {
   imageURLs: string;
   name: string;
@@ -19,6 +21,10 @@ export interface productCartItem {
 }
 
 const { productCartItem = {} } = Astro.props;
+
+const positionStyle: string = [
+  'absolute xs:right-[5px] sm:-right-[45px]',
+].join();
 ---
 
 <table class='w-full'>
@@ -35,7 +41,7 @@ const { productCartItem = {} } = Astro.props;
   <tbody>
     {
       PRODUCTS_CART.map(({ imageURLs, name, currency, amount }) => (
-        <tr class='grid grid-cols-4 items-center sm:gap-3 my-6'>
+        <tr class='grid grid-cols-4 items-center gap-3 my-6'>
           <td>
             <Image
               src={imageURLs}
@@ -55,7 +61,21 @@ const { productCartItem = {} } = Astro.props;
             </p>
           </td>
           <td>
-            <InputNumber />
+            <div class='relative w-[60px] sm:max-w-[113px]'>
+              <span class={`${positionStyle} top-[5px]`}>
+                <ArrowIcon />
+              </span>
+              <InputNumber
+                min='1'
+                max='300'
+                step='1'
+                value='1'
+                className='sm:text-center bg-desertStorm py-2 w-7 min-w-2xl sm:w-[113px]'
+              />
+              <span class={`${positionStyle} bottom-[5px]`}>
+                <ArrowIcon className='rotate-180' />
+              </span>
+            </div>
           </td>
         </tr>
       ))
