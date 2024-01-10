@@ -31,6 +31,7 @@ const AvatarComponent = ({ src = '', alt = '' }: AvatarProps) => (
         objectFit: 'cover',
         borderColor: colors.secondary[850],
       }}
+      priority
     />
   </Box>
 );

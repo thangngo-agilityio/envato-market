@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { IMAGES, SIDEBAR, TITLES_HEADER } from '@/lib/constants';
-import { Header, SideBar } from '@/ui/layouts';
+import { Header } from '@/ui/layouts';
 import {
   Box,
   Flex,
@@ -11,6 +12,8 @@ import {
   Image,
 } from '@chakra-ui/react';
 import { usePathname } from 'next/navigation';
+
+const SideBar = dynamic(() => import('@/ui/layouts/Sidebar'));
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   //TODO: check sidebar render in server

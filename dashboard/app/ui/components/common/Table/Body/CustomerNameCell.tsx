@@ -1,9 +1,12 @@
-import { Flex, Image, Td, Text, Tooltip } from '@chakra-ui/react';
+import { Box, Flex, Td, Text, Tooltip } from '@chakra-ui/react';
 import { memo } from 'react';
+import Image from 'next/image';
 
 // Types
 import { TDataSource } from '@/lib/interfaces';
-import { IMAGES } from '@/lib/constants';
+
+// Utils
+import { generatePlaceholder } from '@/lib/utils';
 
 const CustomerNameCellComponent = ({
   image,
@@ -20,16 +23,20 @@ const CustomerNameCellComponent = ({
     w={{ base: 350, xl: 250, '4xl': 300, '6xl': 350 }}
   >
     <Flex alignItems="center" gap="10px" w={200}>
-      <Image
-        src={`${image}`}
-        alt={`Image of ${name}`}
-        fallbackSrc={IMAGES.AVATAR_SIGN_UP.url}
-        fallbackStrategy="onError"
-        w={10}
-        h={10}
-        objectFit="cover"
-        borderRadius="full"
-      />
+      <Box pos="relative" w={10} h={10}>
+        <Image
+          src={`${image}`}
+          alt={`Image of ${name}`}
+          fill
+          sizes="100vw"
+          placeholder="blur"
+          blurDataURL={generatePlaceholder(40, 40)}
+          style={{
+            borderRadius: '50%',
+            objectFit: 'cover',
+          }}
+        />
+      </Box>
       <Tooltip
         minW="max-content"
         placement="bottom-start"
