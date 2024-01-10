@@ -46,7 +46,9 @@ const TotalCardComponent = ({
     </Flex>
     <Flex alignItems="center" justifyContent="space-between">
       <Box>
-        <Text variant="text3Xl">${formatDecimalNumber(total)}</Text>
+        <Text variant={{ base: 'textLg', md: 'text3Xl' }}>
+          ${formatDecimalNumber(total)}
+        </Text>
         <HStack>
           <Image
             src={IMAGES.GROWTH.url}
@@ -54,9 +56,16 @@ const TotalCardComponent = ({
             w={4}
             h={3.5}
           />
-          <Text color="primary.500">
+          <Text
+            color={{ base: 'primary.500', sm: 'primary.500' }}
+            variant={{ base: 'textSm', md: 'textMd' }}
+          >
             + {growth}%{' '}
-            <Text as="span" variant="textSm" color="text.textInfo">
+            <Text
+              as="span"
+              variant={{ base: 'textXs', md: 'textSm' }}
+              color="text.textInfo"
+            >
               from last week
             </Text>
           </Text>
