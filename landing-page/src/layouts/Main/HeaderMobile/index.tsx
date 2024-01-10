@@ -22,7 +22,7 @@ const HeaderMobile = ({ onToggleSidebar }: THeaderProps): JSX.Element => (
     </a>
     <Button
       className='flex justify-center items-center bg-transparent hover:bg-transparent'
-      onclick={onToggleSidebar}
+      onClick={onToggleSidebar}
       aria-label='Show Menu'
     >
       <HamburgerMenuIcon className='fill-sun stroke-2' />

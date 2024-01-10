@@ -1,6 +1,6 @@
 export const CARD_TOTAL = {
-  subTotal: '140.00',
+  subTotal: 140,
   delivery: 'Free',
-  total: '140.00',
+  total: 140,
   prefixCurrency: '$',
 };

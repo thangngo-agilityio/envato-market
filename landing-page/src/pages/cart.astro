@@ -1,0 +1,11 @@
+---
+// Components
+import { Cart as CartPage } from '@app/components';
+import { MainLayout } from '@app/layouts';
+---
+
+<MainLayout>
+  <main class='p-4 md:py-[100px] nearXl:px-10'>
+    <CartPage client:visible />
+  </main>
+</MainLayout>

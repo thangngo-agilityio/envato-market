@@ -42,7 +42,7 @@ const SideBarAllDevices = ({
     <Button
       aria-label='Close Button'
       className='flex md:hidden bg-sun w-10 h-10 justify-center items-center absolute top-0 right-md'
-      onclick={onToggle}
+      onClick={onToggle}
     >
       <CloseSideBar width={10} height={12} />
     </Button>
