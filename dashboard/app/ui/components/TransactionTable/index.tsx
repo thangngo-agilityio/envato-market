@@ -10,7 +10,6 @@ import {
   Pagination,
   CustomerNameCell,
   HeadCell,
-  ActionCell,
   SearchBar,
   StatusCell,
   Fetching,
@@ -21,7 +20,6 @@ import { getTransactionHomePage } from '@/lib/utils';
 
 // Hooks
 import {
-  // TSearchTransaction,
   TSortField,
   useDebounce,
   usePagination,
@@ -38,29 +36,40 @@ import {
 
 // Types
 import { TDataSource, THeaderTable } from '@/lib/interfaces';
+
+// Stores
+import { authStore } from '@/lib/stores';
+
+// Providers
 import { QueryProvider } from '@/ui/providers';
 
 interface TFilterUserProps {
+  isOpenModal?: boolean;
   isTableHistory?: boolean;
 }
 
 const TransactionTableComponent = ({
   isTableHistory = false,
 }: TFilterUserProps) => {
-  // TODO: update later
-  const {
-    // searchParam: searchTransaction,
-    setSearchParam: setSearchTransaction,
-  } = useSearch();
+  const { get, setSearchParam: setSearchTransaction } = useSearch();
+
+  const { user } = authStore();
 
   const {
     data: transactions = [],
+    dataHistory,
+    dataTransaction,
     isLoading: isLoadingTransactions,
     isError: isTransactionsError,
     sortBy,
-  } = useTransactions({
-    name: '',
-  });
+  } = useTransactions(
+    {
+      name: get('name') || '',
+    },
+    user?.id,
+  );
+
+  const listData = isTableHistory ? dataHistory : dataTransaction;
 
   const {
     data,
@@ -72,7 +81,7 @@ const TransactionTableComponent = ({
     handleChangeLimit,
     handlePageChange,
     handlePageClick,
-  } = usePagination(transactions);
+  } = usePagination(listData);
 
   // Update search params when end time debounce
   const handleDebounceSearch = useDebounce((value: string) => {
@@ -95,14 +104,7 @@ const TransactionTableComponent = ({
 
   const renderNameUser = useCallback(
     ({ id, image, name }: TDataSource): JSX.Element => (
-      <CustomerNameCell key={id} id={id} image={image} name={name} />
-    ),
-    [],
-  );
-
-  const renderActionIcon = useCallback(
-    (data: TDataSource): JSX.Element => (
-      <ActionCell key={`${data.id}-action`} />
+      <CustomerNameCell id={id} key={id} image={image} name={name} />
     ),
     [],
   );
@@ -113,7 +115,7 @@ const TransactionTableComponent = ({
     ({ paymentStatus }: TDataSource): JSX.Element => (
       <StatusCell
         variant={STATUS_LABEL[`${paymentStatus}` as TStatus]}
-        text={paymentStatus}
+        text={paymentStatus as string}
       />
     ),
     [],
@@ -123,7 +125,7 @@ const TransactionTableComponent = ({
     ({ transactionStatus }: TDataSource): JSX.Element => (
       <StatusCell
         variant={STATUS_LABEL[`${transactionStatus}` as TStatus]}
-        text={transactionStatus}
+        text={transactionStatus as string}
       />
     ),
     [],
@@ -136,13 +138,11 @@ const TransactionTableComponent = ({
         renderNameUser,
         renderPaymentStatus,
         renderTransactionStatus,
-        renderActionIcon,
       );
     }
-    return COLUMNS_DASHBOARD(renderHead, renderNameUser, renderActionIcon);
+    return COLUMNS_DASHBOARD(renderHead, renderNameUser);
   }, [
     isTableHistory,
-    renderActionIcon,
     renderHead,
     renderNameUser,
     renderPaymentStatus,
@@ -151,7 +151,10 @@ const TransactionTableComponent = ({
 
   return (
     <>
-      <SearchBar searchValue={''} onSearch={handleDebounceSearch} />
+      <SearchBar
+        searchValue={get('name') || ''}
+        onSearch={handleDebounceSearch}
+      />
       <Fetching isLoading={isLoadingTransactions} isError={isTransactionsError}>
         <Box mt={5}>
           <Table

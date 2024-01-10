@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ItemSidebarSetting component should renders correctly 1`] = `
+<div>
+  <div
+    class="css-13rbvqk"
+  >
+    <div
+      class="css-8i2j7a"
+    >
+      <div
+        class="css-vwt6je"
+      />
+      <div
+        class="css-0"
+      >
+        <h4
+          class="chakra-heading css-8fxmo4"
+        />
+        <p
+          class="chakra-text css-la7pi6"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

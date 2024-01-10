@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Benefit with content 1`] = `
+<div>
+  <div
+    class="css-1ys2le4"
+  >
+    <img
+      alt="This is sign in image"
+      class="chakra-image css-1egtfbj"
+      src="/icons/signin.svg"
+    />
+    <img
+      alt="This is square image"
+      class="chakra-image css-nuaex1"
+      src="/icons/square.svg"
+    />
+    <img
+      alt="This is vline image"
+      class="chakra-image css-bvz8js"
+      src="/icons/vline.svg"
+    />
+    <img
+      alt="This is dotted image"
+      class="chakra-image css-12wsc5z"
+      src="/icons/dotted.svg"
+    />
+    <div
+      class="css-1wwt0r"
+    >
+      <h2
+        class="chakra-heading css-tmruzz"
+      />
+      <p
+        class="chakra-text css-rm4le2"
+      >
+        BankCo. help you set saving goals, earn cash back offers, Go to disclaimer for more details and get paychecks up to two days early. Get a
+        <span
+          class="chakra-text css-g28uzg"
+        >
+          $20
+        </span>
+        bonus when you receive qualifying direct deposits
+      </p>
+    </div>
+  </div>
+</div>
+`;

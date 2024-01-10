@@ -9,4 +9,5 @@ export enum TRANSACTION_STATUS_ENUM {
   PENDING = 'pending',
   FAILED = 'failed',
   CANCELED = 'cancelled',
+  ARCHIVED = 'archived',
 }

@@ -152,9 +152,9 @@ exports[`RevenueFlow component renders correctly 1`] = `
         </div>
       </div>
     </div>
-    <div>
-      Mocked Chart Component
-    </div>
+    <div
+      class="chakra-skeleton css-1e4rjc1"
+    />
   </div>
 </div>
 `;

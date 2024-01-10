@@ -1,37 +1,55 @@
+import dayjs from 'dayjs';
+
 // Types
-import { TDataSource, TTransaction } from '@/lib/interfaces';
+import { TTransaction } from '@/lib/interfaces';
 
 // Utils
-import { formatDate, formatDecimalNumber, formatUppercaseFirstLetter } from '.';
+import { formatDecimalNumber, formatUppercaseFirstLetter } from '.';
+import { IMAGES } from '../constants';
 
 /**
  * Convert data show for home page
  * @param transactions
  * @returns
  */
-export const getTransactionHomePage = (
-  transactions: TTransaction[] = [],
-): TDataSource[] =>
+export const getTransactionHomePage = (transactions: TTransaction[] = []) =>
   transactions.map((transaction) => {
     const {
-      id,
-      customer: { avatar, name, location, email },
+      _id,
+      customer: {
+        customerId,
+        avatar,
+        firstName,
+        lastName,
+        address: { state, street, city, zip },
+        email,
+        role,
+      },
       amount,
       currency,
-      date,
+      createdAt,
       paymentStatus,
       transactionStatus,
     } = transaction;
 
     return {
-      id,
-      name: formatUppercaseFirstLetter(name),
+      id: _id,
+      name: formatUppercaseFirstLetter(`${firstName} ${lastName}`),
+      customer: {
+        customerId,
+        avatar,
+        firstName,
+        lastName,
+        address: { state, street, city, zip },
+        email,
+        role,
+      },
       email,
-      location,
-      date: formatDate(+date),
+      location: `${street} ${city}`,
+      date: dayjs(createdAt).format('MMM DD, YYYY'),
       paymentStatus: formatUppercaseFirstLetter(paymentStatus),
       transactionStatus: formatUppercaseFirstLetter(transactionStatus),
-      image: avatar,
+      image: IMAGES.BIG_AVATAR.url || avatar,
       spent: `${currency}${formatDecimalNumber(+amount)}`,
     };
   });

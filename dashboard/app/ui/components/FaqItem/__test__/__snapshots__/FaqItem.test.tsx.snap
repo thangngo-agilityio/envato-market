@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders question and answer correctly: answer 1`] = `
+<p
+  class="chakra-text css-153g5n2"
+>
+  In reality, the most important aspect of a great dashboard is the part that gets the least amount of attention: The underlying data. More than any other aspect, the data will make or break a dashboard.Within this definition, successful administration appears to rest on three basic skills, which we will call technical, human, and conceptual.Dashboards are business intelligence.
+</p>
+`;
+
+exports[`renders question and answer correctly: question 1`] = `
+<p
+  class="chakra-text css-xf6n75"
+>
+  What is the most important part of a dashboard?
+</p>
+`;
+
+exports[`renders question and answer correctly: updated answer 1`] = `
+<p
+  class="chakra-text css-153g5n2"
+>
+  In reality, the most important aspect of a great dashboard is the part that gets the least amount of attention: The underlying data. More than any other aspect, the data will make or break a dashboard.Within this definition, successful administration appears to rest on three basic skills, which we will call technical, human, and conceptual.Dashboards are business intelligence.
+</p>
+`;

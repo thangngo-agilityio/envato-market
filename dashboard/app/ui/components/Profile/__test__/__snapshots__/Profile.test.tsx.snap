@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UpdateProfile component Profile component renders correctly 1`] = `
+<div>
+  <div
+    class="css-0"
+  >
+    <h4
+      class="chakra-heading css-1th4bpb"
+    >
+      update profile
+    </h4>
+    <p
+      class="chakra-text css-12zxwfm"
+    >
+      Profile at least Size
+      <span
+        class="chakra-text css-1999y4e"
+      >
+        300x300.
+      </span>
+      Gift to work too.
+    </p>
+    <div
+      class="css-4bwcy0"
+    >
+      <label
+        class="chakra-form__label css-1egtz7w"
+        for="file"
+      >
+        <img
+          alt="This is avatar sign up"
+          class="chakra-image__placeholder css-opaydd"
+          src="/icons/user.svg"
+        />
+      </label>
+      <div
+        class="chakra-input__group css-eh9zni"
+        data-group="true"
+      >
+        <div
+          class="chakra-input__left-element css-o84xzr"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="file"
+          >
+            <img
+              alt="Edit icon"
+              class="chakra-image css-36zrex"
+              src="/icons/edit.svg"
+            />
+          </label>
+          <input
+            accept="image/*"
+            class="chakra-input css-kmhx47"
+            data-testid="upload-image"
+            id="file"
+            type="file"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

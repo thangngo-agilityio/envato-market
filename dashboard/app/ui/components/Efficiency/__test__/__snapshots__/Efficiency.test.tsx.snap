@@ -118,9 +118,9 @@ exports[`Efficiency component renders correctly 1`] = `
       <div
         class="css-wax5jp"
       >
-        <div>
-          EfficiencyInfo component
-        </div>
+        <div
+          class="chakra-skeleton css-1uluuhh"
+        />
         <div
           class="css-0"
         >

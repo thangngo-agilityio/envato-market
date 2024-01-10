@@ -4,7 +4,6 @@ import { TDataSource } from '../interfaces';
 export const COLUMNS_DASHBOARD = (
   onRenderHead: (title: string, key: string) => void,
   onRenderBody: ({ id, image, name }: TDataSource) => void,
-  onRenderActionIcon: (data: TDataSource) => void,
 ) => [
   {
     title: 'Customer name',
@@ -28,9 +27,8 @@ export const COLUMNS_DASHBOARD = (
     renderHead: onRenderHead,
   },
   {
-    title: '',
-    key: 'action',
-    renderBody: onRenderActionIcon,
+    title: 'Role',
+    key: 'role',
     renderHead: onRenderHead,
   },
 ];
@@ -40,7 +38,6 @@ export const COLUMNS_HISTORY = (
   renderBody: ({ id, image, name }: TDataSource) => void,
   renderPaymentStatus: ({ paymentStatus }: TDataSource) => void,
   renderTransactionStatus: ({ paymentStatus }: TDataSource) => void,
-  renderActionIcon: (data: TDataSource) => void,
 ) => [
   {
     title: 'Customer name',
@@ -69,10 +66,5 @@ export const COLUMNS_HISTORY = (
     key: 'transactionStatus',
     renderHead: renderHead,
     renderBody: renderTransactionStatus,
-  },
-  {
-    title: '',
-    key: 'action',
-    renderBody: renderActionIcon,
   },
 ];
