@@ -10,7 +10,7 @@ import { PRODUCTS_CART } from '@app/mocks';
 // Images
 import ArrowIcon from '@app/components/icons/Carret/index';
 interface ProductCartProp {
-  imageURLs: string;
+  imageURL: string;
   name: string;
   currency: string;
   amount: string;
@@ -40,11 +40,11 @@ const positionStyle: string = [
   </thead>
   <tbody>
     {
-      PRODUCTS_CART.map(({ imageURLs, name, currency, amount }) => (
+      PRODUCTS_CART.map(({ imageURL, name, currency, amount }) => (
         <tr class='grid grid-cols-4 items-center gap-3 my-6'>
           <td>
             <Image
-              src={imageURLs}
+              src={imageURL}
               width={160}
               height={160}
               alt={`This is the image for ${name}`}

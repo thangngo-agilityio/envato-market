@@ -17,22 +17,19 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
   variant?: VARIANTS;
   className?: string;
-  onclick?: () => void;
 }
 
 const Button = ({
   className = '',
   children,
-  onclick = () => {},
   variant = VARIANTS.PRIMARY,
   ...rest
 }: ButtonProps): JSX.Element => (
   <button
-    {...rest}
-    onClick={onclick}
     className={`${getStyles(button.baseStyle)} ${getStyles(
       button.variants[variant],
     )} ${className}`}
+    {...rest}
   >
     {children}
   </button>

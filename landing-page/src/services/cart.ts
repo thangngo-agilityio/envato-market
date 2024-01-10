@@ -18,3 +18,8 @@ export const addToCart = async (
     .catch(() => {
       throw new Error(ERROR_MESSAGES.ADD_TO_CART);
     });
+
+export const getCart = (): Promise<IProductInCart[]> =>
+  fetch(`${import.meta.env.PUBLIC_API_PRODUCTS}${ENDPOINTS.CARTS}`).then(
+    (res) => res.json(),
+  );
