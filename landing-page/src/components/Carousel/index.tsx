@@ -22,6 +22,7 @@ const Carousel = ({ images }: TCarouselProps): JSX.Element => (
     >
       {images.map((image) => (
         <img
+          alt='This is product name'
           src={image}
           key={image}
           width={250}
