@@ -16,6 +16,6 @@ const cart: IProductInCart[] = await getCart();
 
 <MainLayout>
   <main class='p-4 md:py-[100px] nearXl:px-10'>
-    <CartPage client:visible data={cart} />
+    <CartPage client:visible data={cart || []} />
   </main>
 </MainLayout>

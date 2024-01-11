@@ -2,11 +2,10 @@
 import type { TRegisterForm } from '@app/components/ContactForm';
 
 // Constants
-import { ENDPOINTS, ERROR_MESSAGES, ROUTES, STORE_KEYS } from '@app/constants';
+import { ENDPOINTS, ERROR_MESSAGES, ROUTES } from '@app/constants';
 
 // Types
 import type { IProductInCart } from '@app/interfaces';
-import { localStore } from '@app/utils';
 
 export const addToCart = async (
   productItem: Omit<IProductInCart, 'id'>,
@@ -23,16 +22,8 @@ export const addToCart = async (
       throw new Error(ERROR_MESSAGES.ADD_TO_CART);
     });
 
-export const addToCartWithLocalStore = (
-  productItem: Omit<IProductInCart, 'id'>,
-) => {
-  const store = localStore(STORE_KEYS.CART);
-
-  store.add([...(store.get<IProductInCart[]>() || []), productItem]);
-};
-
-export const getCart = (): Promise<IProductInCart[]> =>
-  fetch(`${import.meta.env.PUBLIC_API_PRODUCTS}${ENDPOINTS.CARTS}`).then(
+export const getCart = async (): Promise<IProductInCart[]> =>
+  await fetch(`${import.meta.env.PUBLIC_API_PRODUCTS}${ENDPOINTS.CARTS}`).then(
     (res) => res.json(),
   );
 
@@ -41,7 +32,7 @@ export const updateQuantity = (
   quantity: number,
 ): Promise<IProductInCart> =>
   fetch(`${import.meta.env.PUBLIC_API_PRODUCTS}${ENDPOINTS.CARTS}/${id}`, {
-    method: 'Patch',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
@@ -53,7 +44,10 @@ export const updateQuantity = (
       throw new Error(ERROR_MESSAGES.UPDATE_QUANTITY);
     });
 
-export const checkout = (data: TRegisterForm): Promise<void> =>
+export const checkout = (
+  data: TRegisterForm,
+  totalAmount: number,
+): Promise<void> =>
   fetch(`${import.meta.env.PUBLIC_API_CHECKOUT}${ROUTES.CHECKOUT}`, {
     method: 'POST',
     headers: {
@@ -61,8 +55,8 @@ export const checkout = (data: TRegisterForm): Promise<void> =>
     },
     body: JSON.stringify({
       userId: `${import.meta.env.PUBLIC_USER_ID}`,
-      totalAmount: 1,
       ...data,
+      totalAmount,
       zip: +data.zip,
     }),
   }).then((res) => {
@@ -79,7 +73,7 @@ export const deleteCart = (id: string): Promise<void> =>
     body: '',
   }).then((res) => {
     if ([4, 5].includes(+`${res.status}`[0])) {
-      throw new Error(ERROR_MESSAGES.CHECKOUT);
+      throw new Error(ERROR_MESSAGES.REMOVE_CART);
     }
 
     return res.json();
