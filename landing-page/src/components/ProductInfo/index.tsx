@@ -10,7 +10,7 @@ import {
 import { Button, Toast, InputNumber } from '..';
 
 // Services
-import { addToCart, addToCartWithLocalStore } from '@app/services';
+import { addToCart } from '@app/services';
 
 // Constants
 import { SUCCESS_MESSAGE } from '@app/constants';
@@ -78,7 +78,6 @@ const ProductInfo = ({
         };
 
         await addToCart(payload);
-        addToCartWithLocalStore(payload);
 
         showToast({ message: SUCCESS_MESSAGE.ADD_TO_CART, type: 'success' });
       } catch (error) {
