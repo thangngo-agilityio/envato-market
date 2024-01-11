@@ -112,14 +112,14 @@ const ProductInfo = ({
 
   return (
     <section className='col-span-12 nearLg:col-span-5 mt-[70px] nearLg:mt-0 font-primary'>
-      <p className='text-2xl text-sun py-[15px] relative after:absolute after:block after:top-0 after:w-[80px] after:h-[3px] after:bg-sun'>
+      <p className='text-2xl text-secondary py-[15px] relative after:absolute after:block after:top-0 after:w-[80px] after:h-[3px] after:bg-sun'>
         {currency}
         {formatDecimalNumber(amount)}
       </p>
 
-      <h6 className='text-3xl pb-3'>
+      <h2 className='text-3xl text-primary pb-3'>
         <span className='line-clamp-1'>{name}</span>
-      </h6>
+      </h2>
       <p className='flex items-center text-xs text-elementary gap-1'>
         <span
           className={`block w-2 h-2 rounded-full ${statusStock.color}`}
