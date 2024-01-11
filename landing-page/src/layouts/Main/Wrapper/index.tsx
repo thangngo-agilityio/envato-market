@@ -43,7 +43,7 @@ const Wrapper = ({ children, pathName }: TWrapperProps): JSX.Element => {
   }, []);
 
   return (
-    <section className='flex scroll-smooth' id='top'>
+    <section className='flex' id='top'>
       <SideBarAllDevices
         pathName={pathName}
         isOpen={isOpenSidebar}

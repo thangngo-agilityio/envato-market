@@ -22,7 +22,6 @@ const captionStyles: string[] = ['absolute', 'z-10', 'top-lg', 'left-lg'];
 const transitionStyles: string[] = ['transition', 'duration-300'];
 ---
 
-<!-- class={`relative w-full h-full cursor-pointer ${hoverStyles}`} -->
 <figure class:list={['relative w-full h-full cursor-pointer', ...hoverStyles]}>
   <Image
     src={imageURL}
@@ -45,17 +44,8 @@ const transitionStyles: string[] = ['transition', 'duration-300'];
       From {currency}{formatDecimalNumber(amount)}
     </figcaption>
 
-    <figcaption class:list={['caption text-2xl w-full', ...transitionStyles]}>
-      <span class='line-clamp-1'> {name}</span>
+    <figcaption class:list={['caption text-2xl', ...transitionStyles]}>
+      <span class=''> {name}</span>
     </figcaption>
   </div>
 </figure>
-<a
-  href={href}
-  class:list={[
-    'pesudo absolute top-0 w-full h-full z-[1]',
-    ...transitionStyles,
-  ]}
-  aria-label='Read more about'
->
-</a>
