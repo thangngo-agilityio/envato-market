@@ -1,5 +1,8 @@
+// Types
+import type { TRegisterForm } from '@app/components/ContactForm';
+
 // Constants
-import { ENDPOINTS, ERROR_MESSAGES } from '@app/constants';
+import { ENDPOINTS, ERROR_MESSAGES, ROUTES } from '@app/constants';
 
 // Types
 import type { IProductInCart } from '@app/interfaces';
@@ -40,3 +43,35 @@ export const updateQuantity = (
     .catch(() => {
       throw new Error(ERROR_MESSAGES.UPDATE_QUANTITY);
     });
+
+export const checkout = (data: TRegisterForm): Promise<void> =>
+  fetch(`${import.meta.env.PUBLIC_API_CHECKOUT}${ROUTES.CHECKOUT}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      userId: `${import.meta.env.PUBLIC_USER_ID}`,
+      totalAmount: 1,
+      ...data,
+      zip: +data.zip,
+    }),
+  }).then((res) => {
+    if ([4, 5].includes(+`${res.status}`[0])) {
+      throw new Error(ERROR_MESSAGES.CHECKOUT);
+    }
+
+    return res.json();
+  });
+
+export const deleteCart = (id: string): Promise<void> =>
+  fetch(`${import.meta.env.PUBLIC_API_PRODUCTS}${ENDPOINTS.CARTS}/${id}`, {
+    method: 'Delete',
+    body: '',
+  }).then((res) => {
+    if ([4, 5].includes(+`${res.status}`[0])) {
+      throw new Error(ERROR_MESSAGES.CHECKOUT);
+    }
+
+    return res.json();
+  });
