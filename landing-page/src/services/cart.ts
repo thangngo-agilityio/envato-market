@@ -23,3 +23,20 @@ export const getCart = (): Promise<IProductInCart[]> =>
   fetch(`${import.meta.env.PUBLIC_API_PRODUCTS}${ENDPOINTS.CARTS}`).then(
     (res) => res.json(),
   );
+
+export const updateQuantity = (
+  id: string,
+  quantity: number,
+): Promise<IProductInCart> =>
+  fetch(`${import.meta.env.PUBLIC_API_PRODUCTS}${ENDPOINTS.CARTS}/${id}`, {
+    method: 'Patch',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    },
+    body: JSON.stringify({ quantity }),
+  })
+    .then((res) => res.json())
+    .catch(() => {
+      throw new Error(ERROR_MESSAGES.UPDATE_QUANTITY);
+    });

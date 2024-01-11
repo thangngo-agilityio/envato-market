@@ -4,6 +4,7 @@ import {
   useRef,
   type FormEventHandler,
   type ChangeEventHandler,
+  useState,
 } from 'react';
 
 // Components
@@ -17,6 +18,9 @@ import { SUCCESS_MESSAGE } from '@app/constants';
 
 // Hooks
 import { useToast } from '@app/hooks';
+
+// Utils
+import { formatDecimalNumber } from '@app/utils';
 
 type TProductInfoProps = {
   id: string;
@@ -37,6 +41,7 @@ const ProductInfo = ({
   stock,
   description,
 }: TProductInfoProps): JSX.Element => {
+  const [isSubmit, setIsSubmit] = useState<boolean>(false);
   const { toast, showToast, pauseToast, resetToast } = useToast();
   const refQuantity = useRef<HTMLInputElement>(null);
 
@@ -57,6 +62,8 @@ const ProductInfo = ({
     async (e) => {
       e.preventDefault();
 
+      setIsSubmit(true);
+
       try {
         const quantity: number = parseInt(
           refQuantity.current ? refQuantity.current.value : '1',
@@ -76,6 +83,8 @@ const ProductInfo = ({
         const { message } = error as Error;
 
         showToast({ message, type: 'error' });
+      } finally {
+        setIsSubmit(false);
       }
     },
     [amount, currency, id, imageURL, name, showToast],
@@ -97,7 +106,7 @@ const ProductInfo = ({
     <section className='col-span-12 nearLg:col-span-5 mt-[70px] nearLg:mt-0 font-primary'>
       <p className='text-2xl text-sun py-[15px] relative after:absolute after:block after:top-0 after:w-[80px] after:h-[3px] after:bg-sun'>
         {currency}
-        {amount}
+        {formatDecimalNumber(amount)}
       </p>
 
       <h6 className='text-3xl pb-3'>{name}</h6>
@@ -115,14 +124,14 @@ const ProductInfo = ({
           type='number'
           className='bg-desertStorm px-3 h-10 w-[100px] text-center'
           onChange={handleChangeQuantity}
-          disabled={isOutStock}
+          disabled={isOutStock || isSubmit}
         />
 
         <Button
           className={`w-full sm:w-[280px] md:w-[310px] nearLg:w-full lg:w-[310px] ${
             isOutStock && 'bg-slate-200'
-          }`}
-          disabled={isOutStock}
+          } ${isSubmit ? '!bg-gray-400' : 'hover:text-white'}`}
+          disabled={isOutStock || isSubmit}
         >
           Add to cart
         </Button>

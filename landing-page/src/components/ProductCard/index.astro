@@ -1,8 +1,14 @@
 ---
 import { Image } from 'astro:assets';
 
+// Utils
+import { formatDecimalNumber } from '@app/utils';
+
 // Types
 import { type IProduct } from '@app/interfaces';
+
+// Utils
+import { formatDecimalNumber } from '@app/utils';
 
 type Props = Pick<IProduct, 'name' | 'amount' | 'currency'> & {
   imageURL: string;
@@ -39,7 +45,7 @@ const transitionStyles: string[] = ['transition', 'duration-300'];
     <figcaption
       class:list={['caption text-base text-sparingly', ...transitionStyles]}
     >
-      From {currency}{amount}
+      From {currency}{formatDecimalNumber(amount)}
     </figcaption>
     <figcaption class:list={['caption text-2xl truncate', ...transitionStyles]}>
       {name}
