@@ -40,10 +40,10 @@ const SideBarAllDevices = ({
   >
     <Button
       aria-label='Close Button'
-      className='flex md:hidden bg-sun w-10 h-10 justify-center items-center absolute top-0 right-md'
+      className='flex md:hidden bg-sun w-10 h-10 justify-center items-center absolute top-0 right-md !p-0 hover:bg-secondary hover:duration-500'
       onClick={onToggle}
     >
-      <CloseSideBar width={10} height={12} />
+      <CloseSideBar />
     </Button>
     <h1 className='mb-3xl'>
       <a href={ROUTES.HOME}>

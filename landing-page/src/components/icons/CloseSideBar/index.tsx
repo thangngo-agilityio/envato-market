@@ -4,7 +4,7 @@ const CloseSideBarMenu = (props: SVGProps<SVGSVGElement>): JSX.Element => (
   <svg
     width={12}
     height={12}
-    className='fill-white'
+    className='text-white w-9 h-2'
     aria-hidden='true'
     xmlns='http://www.w3.org/2000/svg'
     fill='#ffffff'
