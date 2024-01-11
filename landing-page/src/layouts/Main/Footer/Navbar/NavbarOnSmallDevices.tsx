@@ -24,10 +24,10 @@ const NavbarOnSmallDevices = (): JSX.Element => {
     <div className='lg:hidden'>
       <Button
         aria-label='Show Menu'
-        className='flex justify-center items-center pt-[0] pb-0 px-0 mt-4 w-[36px] h-lg'
+        className='flex justify-center items-center pt-[0] pb-0 mt-4  w-[36px] h-[29px] !p-0 cursor-pointer'
         onClick={handleToggle}
       >
-        <HamburgerMenuIcon width='18' height='18' />
+        <HamburgerMenuIcon width='13' height='13' />
       </Button>
       {/* ISSUES: height alway 300px */}
       <nav className={`mt-4 h-0 ${firstStyle} ${closeAnimate} ${openAnimate}`}>
