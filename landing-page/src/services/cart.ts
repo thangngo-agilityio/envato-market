@@ -2,10 +2,11 @@
 import type { TRegisterForm } from '@app/components/ContactForm';
 
 // Constants
-import { ENDPOINTS, ERROR_MESSAGES, ROUTES } from '@app/constants';
+import { ENDPOINTS, ERROR_MESSAGES, ROUTES, STORE_KEYS } from '@app/constants';
 
 // Types
 import type { IProductInCart } from '@app/interfaces';
+import { localStore } from '@app/utils';
 
 export const addToCart = async (
   productItem: Omit<IProductInCart, 'id'>,
@@ -21,6 +22,14 @@ export const addToCart = async (
     .catch(() => {
       throw new Error(ERROR_MESSAGES.ADD_TO_CART);
     });
+
+export const addToCartWithLocalStore = (
+  productItem: Omit<IProductInCart, 'id'>,
+) => {
+  const store = localStore(STORE_KEYS.CART);
+
+  store.add([...(store.get<IProductInCart[]>() || []), productItem]);
+};
 
 export const getCart = (): Promise<IProductInCart[]> =>
   fetch(`${import.meta.env.PUBLIC_API_PRODUCTS}${ENDPOINTS.CARTS}`).then(

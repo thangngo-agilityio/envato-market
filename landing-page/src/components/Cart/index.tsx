@@ -15,7 +15,7 @@ import { CARD_TOTAL } from '@app/mocks';
 import type { IProductInCart } from '@app/interfaces';
 
 // Services
-import { updateQuantity } from '@app/services';
+// import { updateQuantity } from '@app/services';
 
 // Hooks
 import { useToast } from '@app/hooks';
@@ -41,7 +41,8 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
   const handleChangeQuantity = useCallback(
     async (productId: string, quantity: number): Promise<void> => {
       try {
-        await updateQuantity(productId, quantity);
+        // ! API error CORS
+        // await updateQuantity(productId, quantity);
         setCart((prev: IProductInCart[]) =>
           prev.map((product) => {
             if (product.productId === productId && quantity > 0)
