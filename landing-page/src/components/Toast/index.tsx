@@ -62,19 +62,19 @@ const Toast = ({
 
   return isOpen ? (
     <section
-      className={`fixed flex flex-col z-50 top-10 left-[50%] translate-x-[-50%]  w-[80%] sm:w-[400px] p-1 shadow-2xl rounded-md ${toastBg}`}
+      className={`fixed flex justify-between items-center z-50 top-10 left-[50%] translate-x-[-50%]  w-[80%] sm:w-[400px] p-1 shadow-2xl rounded-md ${toastBg}`}
       onClick={(e) => e.preventDefault()}
       onMouseMove={onHover}
       onMouseLeave={onBlur}
     >
+      <p className={`px-3 text-sm nearLg:text-md ${text}`}>{message}</p>
       <Button
         aria-label='Close Button'
-        className='flex bg-transparent w-10 h-10 justify-center items-center rounded-[100%] pt-0 pb-[0px] self-end'
+        className='flex bg-transparent w-10 h-10 justify-center items-center rounded-[100%] !pt-0 pb-[0px] self-end'
         onClick={handleCloseToast}
       >
         <CloseSideBarMenuMemorized width={10} height={10} fill={button} />
       </Button>
-      <p className={`px-3 pb-3 text-sm nearLg:text-md ${text}`}>{message}</p>
     </section>
   ) : null;
 };
