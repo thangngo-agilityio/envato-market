@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 // Components
 import { ContactForm, Toast } from '@app/components';
@@ -10,42 +10,58 @@ import type { TRegisterForm } from '../ContactForm';
 
 // Hooks
 import { useToast } from '@app/hooks';
-import { ROUTES } from '@app/constants';
+
+// Constants
+import { SUCCESS_MESSAGE } from '@app/constants';
+
+// Services
+import { checkout, deleteCart } from '@app/services';
+
+// Types
+import type { IProductInCart } from '@app/interfaces';
 
 type TCheckoutProps = {
   total: number;
+  cart: IProductInCart[];
 };
 
-const Checkout = ({ total }: TCheckoutProps): JSX.Element => {
-  const { toast, resetToast, pauseToast } = useToast();
+const Checkout = ({ total, cart }: TCheckoutProps): JSX.Element => {
+  const [currentTotal, setCurrentTotal] = useState<number>(total);
+  const { toast, resetToast, pauseToast, showToast } = useToast();
 
   const { register, watch } = useForm<TRegisterForm>({
     defaultValues: {
       firstName: '',
       lastName: '',
       email: '',
-      unitedState: '',
+      state: '',
       address: '',
       street: '',
-      zipCode: '',
+      zip: '',
     },
   });
 
-  const isDisable: boolean = !Object.values(watch()).every((value) => value);
+  const handleCheckout = useCallback(async () => {
+    try {
+      await Promise.all([
+        checkout(watch()),
+        cart.map(({ id }) => deleteCart(id)),
+      ]);
+      showToast({
+        message: SUCCESS_MESSAGE.CHECKOUT,
+      });
+      setCurrentTotal(0);
+    } catch (error) {
+      const { message } = error as Error;
 
-  const handleCheckout = useCallback(() => {
-    fetch(`${import.meta.env.PUBLIC_API_CHECKOUT}${ROUTES.CHECKOUT}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        userId: '1',
-        totalAmount: total,
-        ...watch(),
-      }),
-    });
+      showToast({
+        message,
+        type: 'error',
+      });
+    }
   }, [total, watch]);
+
+  const isDisable: boolean = !Object.values(watch()).every((value) => value);
 
   return (
     <>
@@ -63,8 +79,8 @@ const Checkout = ({ total }: TCheckoutProps): JSX.Element => {
           <CardTotal
             subTotal={140}
             delivery='Free'
-            total={total}
-            isDisableSubmit={isDisable}
+            total={currentTotal}
+            isDisableSubmit={isDisable || !currentTotal}
           />
         </div>
       </form>

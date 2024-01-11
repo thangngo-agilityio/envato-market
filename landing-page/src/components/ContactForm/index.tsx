@@ -5,10 +5,10 @@ export type TRegisterForm = {
   firstName: string;
   lastName: string;
   email: string;
-  unitedState: string;
+  state: string;
   address: string;
   street: string;
-  zipCode: string;
+  zip: string;
 };
 
 type TContactFormProps = {
@@ -61,7 +61,7 @@ const ContactForm = ({ register, onSubmit }: TContactFormProps) => {
       <div>
         <select
           className={`${inputStyle}`}
-          {...register('unitedState', { required: true })}
+          {...register('state', { required: true })}
         >
           <option value=''>Choose...</option>
           <option value='United States'>United States</option>
@@ -90,7 +90,7 @@ const ContactForm = ({ register, onSubmit }: TContactFormProps) => {
         <input
           className={`${inputStyle}`}
           placeholder='Zip Code'
-          {...register('zipCode', { required: true, maxLength: 100 })}
+          {...register('zip', { required: true, maxLength: 100 })}
         />
       </div>
 

@@ -7,9 +7,6 @@ import { formatDecimalNumber } from '@app/utils';
 // Types
 import { type IProduct } from '@app/interfaces';
 
-// Utils
-import { formatDecimalNumber } from '@app/utils';
-
 type Props = Pick<IProduct, 'name' | 'amount' | 'currency'> & {
   imageURL: string;
   href: string;
