@@ -10,7 +10,7 @@ export const prerender = false;
 
 const cart = await getCart();
 const total: number = (await getCart()).reduce(
-  (result, item) => result + item.amount,
+  (result, { amount, quantity }) => result + amount * quantity,
   0,
 );
 ---

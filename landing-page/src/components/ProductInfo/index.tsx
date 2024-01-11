@@ -117,12 +117,14 @@ const ProductInfo = ({
         {formatDecimalNumber(amount)}
       </p>
 
-      <h6 className='text-3xl pb-3'>{name}</h6>
+      <h6 className='text-3xl pb-3'>
+        <span className='line-clamp-1'>{name}</span>
+      </h6>
       <p className='flex items-center text-xs text-elementary gap-1'>
         <span
           className={`block w-2 h-2 rounded-full ${statusStock.color}`}
         ></span>
-        <span>{statusStock.title}</span>
+        <span className='line-clamp-1'>{statusStock.title}</span>
       </p>
       <p className='text-base text-elementary my-12'>{description}</p>
       <form className='flex flex-col gap-14' onSubmit={handleSubmit}>
