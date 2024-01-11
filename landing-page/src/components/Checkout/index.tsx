@@ -40,7 +40,7 @@ const Checkout = ({ total }: TCheckoutProps): JSX.Element => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        userId: '65953d8fb36878a4d7c9f674',
+        userId: `${import.meta.env.PUBLIC_USER_ID}`,
         totalAmount: total,
         ...watch(),
         zip: +watch().zip,
