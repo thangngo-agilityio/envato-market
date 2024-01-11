@@ -1,9 +1,11 @@
-import { useState, memo, type ReactNode, useCallback } from 'react';
+import { useState, memo, type ReactNode, useCallback, useEffect } from 'react';
 import isEqual from 'react-fast-compare';
 
 // Components
 import HeaderMobile from '../HeaderMobile';
 import SideBarAllDevices from '../SideBar';
+import { Button } from '@app/components';
+import { ArrowTop } from '@app/components/icons';
 
 type TWrapperProps = {
   children?: ReactNode;
@@ -18,8 +20,30 @@ const Wrapper = ({ children, pathName }: TWrapperProps): JSX.Element => {
     [],
   );
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const gotoTopBtn: HTMLButtonElement | null =
+        document.querySelector('.go-to-top');
+
+      if (gotoTopBtn) {
+        if (window.scrollY >= 600) {
+          gotoTopBtn.classList.replace('hidden', 'block');
+          return;
+        }
+
+        gotoTopBtn.classList.replace('block', 'hidden');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <section className='flex'>
+    <section className='flex scroll-smooth' id='top'>
       <SideBarAllDevices
         pathName={pathName}
         isOpen={isOpenSidebar}
@@ -29,6 +53,12 @@ const Wrapper = ({ children, pathName }: TWrapperProps): JSX.Element => {
         <HeaderMobile onToggleSidebar={handleToggleSidebar} />
         <div className='pt-[70px] md:pt-0 h-full'>{children}</div>
       </div>
+
+      <Button className='go-to-top hidden fixed z-40 bottom-10 right-10 !w-fit !h-fit !p-0 !pb-0 shadow-md'>
+        <a href='#top' className='!p-3 block'>
+          <ArrowTop width={16} height={16} fill='#fff' />
+        </a>
+      </Button>
     </section>
   );
 };
