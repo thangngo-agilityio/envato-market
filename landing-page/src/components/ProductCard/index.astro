@@ -44,17 +44,18 @@ const transitionStyles: string[] = ['transition', 'duration-300'];
     >
       From {currency}{formatDecimalNumber(amount)}
     </figcaption>
-    <figcaption class:list={['caption text-2xl truncate', ...transitionStyles]}>
-      {name}
+
+    <figcaption class:list={['caption text-2xl w-full', ...transitionStyles]}>
+      <span class='line-clamp-1'> {name}</span>
     </figcaption>
   </div>
-  <a
-    href={href}
-    class:list={[
-      'pesudo absolute top-0 w-full h-full z-[1]',
-      ...transitionStyles,
-    ]}
-    aria-label='Read more about'
-  >
-  </a>
 </figure>
+<a
+  href={href}
+  class:list={[
+    'pesudo absolute top-0 w-full h-full z-[1]',
+    ...transitionStyles,
+  ]}
+  aria-label='Read more about'
+>
+</a>
