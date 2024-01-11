@@ -26,19 +26,20 @@ type TCheckoutProps = {
 };
 
 const Checkout = ({ total, cart }: TCheckoutProps): JSX.Element => {
+  const defaultForm: TRegisterForm = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    state: '',
+    address: '',
+    street: '',
+    zip: '',
+  };
   const [currentTotal, setCurrentTotal] = useState<number>(total);
   const { toast, resetToast, pauseToast, showToast } = useToast();
 
-  const { register, watch } = useForm<TRegisterForm>({
-    defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      state: '',
-      address: '',
-      street: '',
-      zip: '',
-    },
+  const { register, watch, reset } = useForm<TRegisterForm>({
+    defaultValues: defaultForm,
   });
 
   const handleCheckout = useCallback(async () => {
@@ -51,6 +52,7 @@ const Checkout = ({ total, cart }: TCheckoutProps): JSX.Element => {
         message: SUCCESS_MESSAGE.CHECKOUT,
       });
       setCurrentTotal(0);
+      reset(defaultForm);
     } catch (error) {
       const { message } = error as Error;
 
@@ -59,7 +61,7 @@ const Checkout = ({ total, cart }: TCheckoutProps): JSX.Element => {
         type: 'error',
       });
     }
-  }, [total, watch]);
+  }, [total, watch, reset, defaultForm]);
 
   const isDisable: boolean = !Object.values(watch()).every((value) => value);
 
