@@ -45,7 +45,7 @@ const Checkout = ({ total, cart }: TCheckoutProps): JSX.Element => {
   const handleCheckout = useCallback(async () => {
     try {
       await Promise.all([
-        checkout(watch()),
+        checkout(watch(), total),
         cart.map(({ id }) => deleteCart(id)),
       ]);
       showToast({

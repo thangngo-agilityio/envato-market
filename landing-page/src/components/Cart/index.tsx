@@ -6,7 +6,7 @@ import CardTotal from '../CardTotal';
 import { Toast } from '..';
 
 // Constants
-import { ROUTES } from '@app/constants';
+import { ROUTES, SUCCESS_MESSAGE } from '@app/constants';
 
 // Mocks
 import { CARD_TOTAL } from '@app/mocks';
@@ -15,7 +15,7 @@ import { CARD_TOTAL } from '@app/mocks';
 import type { IProductInCart } from '@app/interfaces';
 
 // Services
-// import { updateQuantity } from '@app/services';
+import { deleteCart, updateQuantity } from '@app/services';
 
 // Hooks
 import { useToast } from '@app/hooks';
@@ -41,11 +41,10 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
   const handleChangeQuantity = useCallback(
     async (productId: string, quantity: number): Promise<void> => {
       try {
-        // ! API error CORS
-        // await updateQuantity(productId, quantity);
+        await updateQuantity(productId, quantity);
         setCart((prev: IProductInCart[]) =>
           prev.map((product) => {
-            if (product.productId === productId && quantity > 0)
+            if (product.id === productId && quantity > 0)
               return {
                 ...product,
                 quantity,
@@ -60,7 +59,24 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
         showToast({ message, type: 'error' });
       }
     },
-    [],
+    [showToast],
+  );
+
+  const handleRemoveProductItem = useCallback(
+    async (id: string) => {
+      try {
+        await deleteCart(id);
+        setCart((prev: IProductInCart[]) =>
+          prev.filter((product) => product.id !== id),
+        );
+        showToast({ message: SUCCESS_MESSAGE.REMOVE_CART });
+      } catch (error) {
+        const { message } = error as Error;
+
+        showToast({ message, type: 'error' });
+      }
+    },
+    [showToast],
   );
 
   const handleCheckout = useCallback(() => {
@@ -77,10 +93,11 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
         Shopping Cart
       </h2>
       <section className='nearLg:grid nearLg:grid-cols-12 nearLg:gap-[30px]'>
-        <div className='col-span-12 nearLg:col-span-8 h-[500px] overflow-y-scroll'>
+        <div className='col-span-12 nearLg:col-span-8 h-[500px] overflow-zscroll'>
           <ProductTable
             products={cart}
             onChangeQuantity={handleChangeQuantity}
+            onRemoveProduct={handleRemoveProductItem}
           />
         </div>
         <div className='mt-[118px] nearLg:mt-0 col-span-12 nearLg:col-span-4'>

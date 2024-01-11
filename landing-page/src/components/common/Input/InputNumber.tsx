@@ -21,7 +21,13 @@ type TInputNumberProps = Omit<
 };
 
 const InputNumber = (
-  { onIncrease, onDecrease, onChange, ...props }: TInputNumberProps,
+  {
+    className = '',
+    onIncrease,
+    onDecrease,
+    onChange,
+    ...props
+  }: TInputNumberProps,
   ref: ForwardedRef<HTMLInputElement>,
 ): JSX.Element => {
   const handleChangeInput: ChangeEventHandler<HTMLInputElement> = useCallback(
@@ -41,7 +47,7 @@ const InputNumber = (
   );
 
   return (
-    <div className='relative lg:w-[113px]'>
+    <div className='relative w-fit xl:w-[113px]'>
       <span className={'absolute right-[5px] top-[5px]'}>
         <ArrowIcon onClick={onIncrease} />
       </span>
@@ -50,7 +56,7 @@ const InputNumber = (
         max='300'
         step='1'
         value='1'
-        className='block w-full text-center bg-desertStorm py-2'
+        className={`block w-full text-center bg-desertStorm py-2 ${className}`}
         {...props}
         {...(onChange && { onChange: handleChangeInput })}
         ref={ref}

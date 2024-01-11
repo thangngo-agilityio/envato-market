@@ -19,7 +19,6 @@ const Carousel = ({ images }: TCarouselProps): JSX.Element => (
       showArrows={false}
       showIndicators={false}
       showStatus={false}
-      width='100%'
     >
       {images.map((image) => (
         <img
