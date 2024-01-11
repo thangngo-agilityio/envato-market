@@ -1,23 +1,45 @@
-import { memo } from 'react';
+'use client';
+
+import { memo, useEffect } from 'react';
 import isEqual from 'react-fast-compare';
 import dynamic from 'next/dynamic';
+import { useDisclosure, Image, useMediaQuery } from '@chakra-ui/react';
+import { IMAGES } from '@/lib/constants';
 
 // components
 const ExpandSidebar = dynamic(() => import('../../components/ExpandSidebar'));
 const MiniSidebar = dynamic(() => import('../../components/MiniSidebar'));
 
-export type SidebarProps = {
-  onClose: () => void;
-  onOpen: () => void;
-  isOpen: boolean;
-};
+const Sidebar = () => {
+  const [isDesktop] = useMediaQuery('(min-width: 1732px)');
+  const { isOpen, onOpen, onClose } = useDisclosure({
+    defaultIsOpen: false,
+  });
 
-const Sidebar = ({ onClose, onOpen, isOpen }: SidebarProps) => (
-  <>
-    <ExpandSidebar onClose={onClose} onOpen={onOpen} isOpen={!isOpen} />
-    <MiniSidebar onClose={onClose} isOpen={isOpen} />
-  </>
-);
+  useEffect(() => {
+    if (isDesktop) {
+      onOpen();
+    }
+  }, [isDesktop, onOpen]);
+
+  return (
+    <>
+      <ExpandSidebar isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+      <MiniSidebar isOpen={!isOpen} onClose={onOpen} />
+      <Image
+        src={IMAGES.LEFT_ARROW.url}
+        alt={IMAGES.LEFT_ARROW.alt}
+        position="fixed"
+        top={8}
+        transform="rotate(180deg)"
+        left={0}
+        cursor="pointer"
+        display={{ base: 'block', md: 'none', lg: 'block' }}
+        onClick={onOpen}
+      />
+    </>
+  );
+};
 
 const SideBarComponent = memo(Sidebar, isEqual);
 

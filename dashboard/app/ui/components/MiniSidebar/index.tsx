@@ -1,9 +1,6 @@
 import { memo } from 'react';
 import isEqual from 'react-fast-compare';
 
-// type
-import { SidebarProps } from '@/ui/layouts/Sidebar';
-
 // components
 import {
   Center,
@@ -30,6 +27,12 @@ import {
 
 // Types
 import { TImage } from '@/lib/interfaces';
+
+export type SidebarProps = {
+  onClose: () => void;
+  onOpen: () => void;
+  isOpen: boolean;
+};
 
 const MiniSidebar = ({ onClose, isOpen }: Omit<SidebarProps, 'onOpen'>) => {
   const { colorMode } = useColorMode();

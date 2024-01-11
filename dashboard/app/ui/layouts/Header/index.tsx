@@ -19,16 +19,17 @@ import { Bell, Email, Gift } from '@/ui/components/Icons';
 // hooks
 import { authStore } from '@/lib/stores';
 import { useStore } from '@/lib/hooks';
+import { TITLES_HEADER } from '@/lib/constants';
+import { usePathname } from 'next/navigation';
 
-interface HeaderProps {
-  name?: string;
-}
-
-const HeaderComponent = ({ name }: HeaderProps) => {
+const HeaderComponent = () => {
   const colorFill = useColorModeValue(
     theme.colors.gray[800],
     theme.colors.white,
   );
+  const pathname = usePathname();
+
+  const name = TITLES_HEADER[`${pathname.slice(1)}`] || TITLES_HEADER.DEFAULT;
 
   const user = useStore(authStore, (state) => state.user);
 
