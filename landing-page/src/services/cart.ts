@@ -29,9 +29,10 @@ export const updateQuantity = (
   quantity: number,
 ): Promise<IProductInCart> =>
   fetch(`${import.meta.env.PUBLIC_API_PRODUCTS}${ENDPOINTS.CARTS}/${id}`, {
-    method: 'PATCH',
+    method: 'Patch',
     headers: {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
     },
     body: JSON.stringify({ quantity }),
   })

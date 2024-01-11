@@ -1,6 +1,22 @@
-import { useForm } from 'react-hook-form';
+import type { FormEvent } from 'react';
+import { type UseFormRegister } from 'react-hook-form';
 
-const ContactForm = () => {
+export type TRegisterForm = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  unitedState: string;
+  address: string;
+  street: string;
+  zipCode: string;
+};
+
+type TContactFormProps = {
+  register: UseFormRegister<TRegisterForm>;
+  onSubmit?: () => void;
+};
+
+const ContactForm = ({ register, onSubmit }: TContactFormProps) => {
   const inputStyle: string = [
     'text-onceAll',
     'text-[14px]',
@@ -8,55 +24,46 @@ const ContactForm = () => {
     'border-0',
     'rounded-none',
     'bg-desertStorm',
-    'p-lg',
+    'p-5',
     'focus:outline-none',
-    'border-[#80bdff]',
-    'focus:border-4',
   ].join(' ');
-  const { register, handleSubmit } = useForm();
+
   return (
-    <form
-      className='flex flex-wrap [&>*:nth-child(n)]:w-full [&>*:nth-child(n)]:mb-4 [&>*:nth-child(n)]:px-[15px]'
-      onSubmit={handleSubmit(onSubmit)}
+    <div
+      className='flex flex-wrap [&>*:nth-child(n)]:w-full [&>*:nth-child(n)]:mb-4'
+      onSubmit={(e: FormEvent) => {
+        e.preventDefault();
+
+        onSubmit && onSubmit();
+      }}
     >
       <div className='md:!w-[50%] md:pr-[15px]'>
         <input
           className={`${inputStyle}`}
-          type='text'
           placeholder='First Name'
-          {...register('First Name', { required: true, maxLength: 80 })}
+          {...register('firstName', { required: true, maxLength: 80 })}
         />
       </div>
       <div className='md:!w-[50%] md:pl-[15px]'>
         <input
           className={`${inputStyle}`}
-          type='text'
           placeholder='Last Name'
-          {...register('Last Name', { required: true, maxLength: 100 })}
+          {...register('lastName', { required: true, maxLength: 100 })}
         />
       </div>
       <div>
         <input
           className={`${inputStyle}`}
-          type='text'
-          placeholder='Company Name'
-          {...register('Company Name', { required: true, maxLength: 100 })}
-        />
-      </div>
-      <div>
-        {' '}
-        <input
-          className={`${inputStyle}`}
-          type='text'
           placeholder='Email'
-          {...register('Email', { required: true, pattern: /^\S+@\S+$/i })}
+          {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
         />
       </div>
       <div>
         <select
           className={`${inputStyle}`}
-          {...register('Title', { required: true })}
+          {...register('unitedState', { required: true })}
         >
+          <option value=''>Choose...</option>
           <option value='United States'>United States</option>
           <option value='Germany'>Germany</option>
           <option value='France'>France</option>
@@ -68,47 +75,27 @@ const ContactForm = () => {
       <div>
         <input
           className={`${inputStyle} mb-4`}
-          type='text'
           placeholder='Address'
-          {...register('Company Name', { required: true, maxLength: 100 })}
-        />
-      </div>
-      <div>
-        <input
-          className={`${inputStyle}`}
-          type='text'
-          placeholder='Town'
-          {...register('Town', { required: true, maxLength: 100 })}
+          {...register('address', { required: true, maxLength: 100 })}
         />
       </div>
       <div className='md:!w-[50%] md:pr-[15px]'>
         <input
           className={`${inputStyle}`}
-          type='text'
-          placeholder='Zip Code'
-          {...register('Zip Code', { required: true, maxLength: 100 })}
+          placeholder='Town'
+          {...register('street', { required: true, maxLength: 100 })}
         />
       </div>
-      <div className='md:!w-[50%] md:pl-[15px]'>
-        {' '}
+      <div className='md:!w-[50%] md:pr-[15px]'>
         <input
           className={`${inputStyle}`}
-          type='tel'
-          placeholder='Phone No'
-          {...register('Mobile number', {
-            required: true,
-            minLength: 6,
-            maxLength: 12,
-          })}
+          placeholder='Zip Code'
+          {...register('zipCode', { required: true, maxLength: 100 })}
         />
       </div>
-      <div>
-        <textarea
-          className={`${inputStyle}`}
-          {...register('Leave a comment about your order', {})}
-        />
-      </div>
-    </form>
+
+      {/* <button type='submit'></button> */}
+    </div>
   );
 };
 

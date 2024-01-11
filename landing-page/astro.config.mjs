@@ -16,7 +16,6 @@ export default defineConfig({
     domains: ['loremflickr', 'preview.colorlib'],
     service: sharpImageService(),
   },
-
   vite: {
     build: {
       rollupOptions: {

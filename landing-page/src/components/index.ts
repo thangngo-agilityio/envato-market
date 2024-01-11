@@ -10,3 +10,5 @@ export { default as Carousel } from './Carousel';
 export { default as ProductInfo } from './ProductInfo';
 export { default as Toast } from './Toast';
 export { default as Cart } from './Cart';
+export { default as ContactForm } from './ContactForm';
+export { default as Checkout } from './Checkout';

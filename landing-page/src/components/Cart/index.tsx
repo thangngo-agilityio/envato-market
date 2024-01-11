@@ -42,23 +42,22 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
     async (productId: string, quantity: number): Promise<void> => {
       try {
         await updateQuantity(productId, quantity);
+        setCart((prev: IProductInCart[]) =>
+          prev.map((product) => {
+            if (product.productId === productId && quantity > 0)
+              return {
+                ...product,
+                quantity,
+              };
+
+            return product;
+          }),
+        );
       } catch (error) {
         const { message } = error as Error;
 
         showToast({ message, type: 'error' });
       }
-
-      setCart((prev: IProductInCart[]) =>
-        prev.map((product) => {
-          if (product.productId === productId && quantity > 0)
-            return {
-              ...product,
-              quantity,
-            };
-
-          return product;
-        }),
-      );
     },
     [],
   );
@@ -67,7 +66,7 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
     if (window) {
       window.location.assign(ROUTES.CHECKOUT);
     }
-  }, [total]);
+  }, []);
 
   const isDisableSubmit: boolean = !cart.length;
 

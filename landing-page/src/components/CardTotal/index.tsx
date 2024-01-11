@@ -62,6 +62,7 @@ const CardTotal = ({
           </p>
         </div>
         <Button
+          type='submit'
           disabled={isDisableSubmit}
           variant={VARIANTS.SECONDARY}
           className={`hover:bg-secondary  w-full !h-[55px] font-semibold !leading-14 mt-[70px] ${
