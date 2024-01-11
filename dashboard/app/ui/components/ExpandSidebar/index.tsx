@@ -11,21 +11,24 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react';
 
-// type
-import { SidebarProps } from '@/ui/layouts/Sidebar';
-
 // components
 import { Logo, Menu } from '@/ui/components';
 
 // constants
 import { SIDEBAR, IMAGES, EXPAND_SIDEBAR_MENU_LIST } from '@/lib/constants';
 
-const ExpandSidebar = ({ onClose, onOpen, isOpen }: SidebarProps) => {
-  const [isMobileAndTablet] = useMediaQuery('(max-width: 1732px)');
+export type SidebarProps = {
+  onClose: () => void;
+  onOpen: () => void;
+  isOpen: boolean;
+};
+
+const ExpandSidebar = ({ onClose, isOpen }: SidebarProps) => {
+  const [isMobileAndTablet] = useMediaQuery('(max-width: 1731px)');
 
   const handleCloseSideBar = useCallback(() => {
-    isMobileAndTablet && onOpen();
-  }, [isMobileAndTablet, onOpen]);
+    isMobileAndTablet && onClose();
+  }, [isMobileAndTablet, onClose]);
 
   return (
     <Drawer
@@ -66,7 +69,7 @@ const ExpandSidebar = ({ onClose, onOpen, isOpen }: SidebarProps) => {
             position="absolute"
             top="auto"
             right={0}
-            onClick={onOpen}
+            onClick={onClose}
             cursor="pointer"
             id="close-expand"
           />
