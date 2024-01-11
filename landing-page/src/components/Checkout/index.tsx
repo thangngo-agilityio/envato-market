@@ -24,10 +24,10 @@ const Checkout = ({ total }: TCheckoutProps): JSX.Element => {
       firstName: '',
       lastName: '',
       email: '',
-      unitedState: '',
+      state: '',
       address: '',
       street: '',
-      zipCode: '',
+      zip: '',
     },
   });
 
@@ -40,9 +40,10 @@ const Checkout = ({ total }: TCheckoutProps): JSX.Element => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        userId: '1',
+        userId: '65953d8fb36878a4d7c9f674',
         totalAmount: total,
         ...watch(),
+        zip: +watch().zip,
       }),
     });
   }, [total, watch]);
