@@ -3,6 +3,8 @@ import {
   type ChangeEventHandler,
   type InputHTMLAttributes,
   memo,
+  forwardRef,
+  type ForwardedRef,
 } from 'react';
 import isEqual from 'react-fast-compare';
 
@@ -18,17 +20,22 @@ type TInputNumberProps = Omit<
   onChange?: (value: number) => void;
 };
 
-const InputNumber = ({
-  onIncrease,
-  onDecrease,
-  onChange,
-  ...props
-}: TInputNumberProps): JSX.Element => {
+const InputNumber = (
+  { onIncrease, onDecrease, onChange, ...props }: TInputNumberProps,
+  ref: ForwardedRef<HTMLInputElement>,
+): JSX.Element => {
   const handleChangeInput: ChangeEventHandler<HTMLInputElement> = useCallback(
     (e) => {
-      const value: number = parseInt(e.target.value);
+      const value = e.target.value;
 
-      if (onChange) return onChange(value);
+      if (parseInt(value) <= 1) {
+        e.target.defaultValue = `${1}`;
+        e.target.value = `${1}`;
+
+        return;
+      }
+
+      if (onChange) return onChange(parseInt(e.target.value));
     },
     [onChange],
   );
@@ -45,7 +52,8 @@ const InputNumber = ({
         value='1'
         className='block w-full text-center bg-desertStorm py-2'
         {...props}
-        onChange={handleChangeInput}
+        {...(onChange && { onChange: handleChangeInput })}
+        ref={ref}
       />
       <span className={'absolute right-[5px] bottom-[5px]'}>
         <ArrowIcon className='rotate-180' onClick={onDecrease} />
@@ -54,6 +62,6 @@ const InputNumber = ({
   );
 };
 
-const InputNumberMemorized = memo(InputNumber, isEqual);
+const InputNumberMemorized = memo(forwardRef(InputNumber), isEqual);
 
 export default InputNumberMemorized;

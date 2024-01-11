@@ -3,15 +3,14 @@ import {
   useMemo,
   useRef,
   type FormEventHandler,
-  type ChangeEventHandler,
   useState,
 } from 'react';
 
 // Components
-import { Button, Toast } from '..';
+import { Button, Toast, InputNumber } from '..';
 
 // Services
-import { addToCart } from '@app/services';
+import { addToCart, addToCartWithLocalStore } from '@app/services';
 
 // Constants
 import { SUCCESS_MESSAGE } from '@app/constants';
@@ -21,6 +20,7 @@ import { useToast } from '@app/hooks';
 
 // Utils
 import { formatDecimalNumber } from '@app/utils';
+import type { IProductInCart } from '@app/interfaces';
 
 type TProductInfoProps = {
   id: string;
@@ -68,15 +68,17 @@ const ProductInfo = ({
         const quantity: number = parseInt(
           refQuantity.current ? refQuantity.current.value : '1',
         );
-
-        await addToCart({
+        const payload: Omit<IProductInCart, 'id'> = {
           productId: id,
           currency,
           amount,
           name,
           quantity,
           imageURL,
-        });
+        };
+
+        await addToCart(payload);
+        addToCartWithLocalStore(payload);
 
         showToast({ message: SUCCESS_MESSAGE.ADD_TO_CART, type: 'success' });
       } catch (error) {
@@ -90,17 +92,24 @@ const ProductInfo = ({
     [amount, currency, id, imageURL, name, showToast],
   );
 
-  const handleChangeQuantity: ChangeEventHandler<HTMLInputElement> =
-    useCallback((e) => {
-      const value = e.target.value;
+  const handleChangeQuantityByStep = useCallback(
+    (step: 1 | -1) => () => {
+      if (refQuantity.current) {
+        const currentValue: number = parseInt(refQuantity.current.value);
 
-      if (parseInt(value) <= 1) {
-        e.target.defaultValue = `${1}`;
-        e.target.value = `${1}`;
-
-        return;
+        refQuantity.current.value = `${currentValue + step}`;
       }
-    }, []);
+    },
+    [],
+  );
+
+  const handleChangeQuantity = useCallback((value: number) => {
+    if (refQuantity.current) {
+      const currentValue: number = parseInt(refQuantity.current.value);
+
+      refQuantity.current.value = `${currentValue + value}`;
+    }
+  }, []);
 
   return (
     <section className='col-span-12 nearLg:col-span-5 mt-[70px] nearLg:mt-0 font-primary'>
@@ -118,13 +127,12 @@ const ProductInfo = ({
       </p>
       <p className='text-base text-elementary my-12'>{description}</p>
       <form className='flex flex-col gap-14' onSubmit={handleSubmit}>
-        <input
-          ref={refQuantity}
-          defaultValue={1}
-          type='number'
-          className='bg-desertStorm px-3 h-10 w-[100px] text-center'
-          onChange={handleChangeQuantity}
+        <InputNumber
           disabled={isOutStock || isSubmit}
+          ref={refQuantity}
+          onIncrease={handleChangeQuantityByStep(1)}
+          onDecrease={handleChangeQuantityByStep(-1)}
+          onChange={handleChangeQuantity}
         />
 
         <Button
