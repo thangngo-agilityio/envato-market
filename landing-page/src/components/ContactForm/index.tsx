@@ -18,7 +18,8 @@ type TContactFormProps = {
 
 const ContactForm = ({ register, onSubmit }: TContactFormProps) => {
   const inputStyle: string = [
-    'text-onceAll',
+    'placeholder-onceAll',
+    'text-elementary',
     'text-[14px]',
     'w-full',
     'border-0',
@@ -60,6 +61,7 @@ const ContactForm = ({ register, onSubmit }: TContactFormProps) => {
       </div>
       <div>
         <select
+          aria-label='Select'
           className={`${inputStyle}`}
           {...register('state', { required: true })}
         >

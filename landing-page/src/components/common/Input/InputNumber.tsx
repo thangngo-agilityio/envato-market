@@ -57,6 +57,7 @@ const InputNumber = (
         step='1'
         value='1'
         className={`block w-full text-center bg-desertStorm py-2 ${className}`}
+        aria-label='number'
         {...props}
         {...(onChange && { onChange: handleChangeInput })}
         ref={ref}
