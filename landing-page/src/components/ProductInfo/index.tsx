@@ -43,6 +43,7 @@ const ProductInfo = ({
 }: TProductInfoProps): JSX.Element => {
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
   const { toast, showToast, pauseToast, resetToast } = useToast();
+  const [quantity, setQuantity] = useState(1);
   const refQuantity = useRef<HTMLInputElement>(null);
 
   const isOutStock: boolean = stock <= 0;
@@ -92,21 +93,13 @@ const ProductInfo = ({
   );
 
   const handleChangeQuantityByStep = useCallback(
-    (step: 1 | -1) => () => {
-      if (refQuantity.current) {
-        const currentValue: number = parseInt(refQuantity.current.value);
-
-        refQuantity.current.value = `${currentValue + step}`;
-      }
-    },
+    (step: 1 | -1) => () => setQuantity((prev) => prev + step),
     [],
   );
 
   const handleChangeQuantity = useCallback((value: number) => {
     if (refQuantity.current) {
-      const currentValue: number = parseInt(refQuantity.current.value);
-
-      refQuantity.current.value = `${currentValue + value}`;
+      setQuantity(value);
     }
   }, []);
 
@@ -131,6 +124,7 @@ const ProductInfo = ({
         <InputNumber
           disabled={isOutStock || isSubmit}
           ref={refQuantity}
+          value={quantity}
           onIncrease={handleChangeQuantityByStep(1)}
           onDecrease={handleChangeQuantityByStep(-1)}
           onChange={handleChangeQuantity}
