@@ -46,6 +46,11 @@ const { title = PAGE_TITLES.HOME } = Astro.props;
     <title>{title}</title>
 
     <ViewTransitions transition:animate={fade({ duration: '0.3s' })} />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
   </head>
   <body><slot /></body>
 </html>

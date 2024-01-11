@@ -23,8 +23,8 @@ export const addToCart = async (
     });
 
 export const getCart = async (): Promise<IProductInCart[]> =>
-  await fetch(`${import.meta.env.PUBLIC_API_PRODUCTS}${ENDPOINTS.CARTS}`).then(
-    (res) => res.json(),
+  await fetch(`${import.meta.env.API_PRODUCTS}${ENDPOINTS.CARTS}`).then((res) =>
+    res.json(),
   );
 
 export const updateQuantity = (
