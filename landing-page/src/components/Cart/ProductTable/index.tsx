@@ -3,6 +3,7 @@ import isEqual from 'react-fast-compare';
 
 // Components
 import { InputNumber } from '@app/components';
+import Delete from '@app/components/icons/CloseSideBar/index.tsx';
 
 // Types
 import type { IProductInCart } from '@app/interfaces';
@@ -53,7 +54,7 @@ const ProductTable = ({
             return (
               <tr
                 key={id}
-                className='grid grid-cols-4 items-center gap-3 my-6 nearLg:px-3'
+                className='grid grid-cols-4 items-center gap-2 md:gap-3 my-6 nearLg:px-3'
               >
                 <td>
                   <img
@@ -74,18 +75,23 @@ const ProductTable = ({
                   </p>
                 </td>
                 <td>
-                  <div className='flex gap-3 items-center'>
+                  <div className='flex gap-2 sm:gap-3 items-center'>
                     <div className=''>
                       <InputNumber
                         value={quantity}
                         onChange={handleChange}
                         onIncrease={handleInCrease}
                         onDecrease={handleDecrease}
-                        className='!text-left pl-2 md:!text-center md:!pl-0'
+                        className='!text-left pl-2 md:!text-center md:!pl-0 min-w-10'
                       />
                     </div>
                     <div className=''>
-                      <button onClick={handleRemoveProduct}>X</button>
+                      <button
+                        className='bg-sun p-[5px]'
+                        onClick={handleRemoveProduct}
+                      >
+                        <Delete className='text-primary' />
+                      </button>
                     </div>
                   </div>
                 </td>
