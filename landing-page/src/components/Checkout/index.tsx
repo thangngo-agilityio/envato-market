@@ -67,6 +67,9 @@ const Checkout = ({ total, cart }: TCheckoutProps): JSX.Element => {
 
   return (
     <>
+      <h2 className='capitalize font-primary text-primary text-3xl py-[30px]'>
+        Checkout
+      </h2>
       <form
         className='nearLg:grid nearLg:grid-cols-12 nearLg:gap-[30px]'
         onSubmit={(e) => {
