@@ -29,6 +29,7 @@ export const getDataUser = (users: TEmployee[] = []): TShowEmployee[] =>
       lastPlace,
       salary,
       experience,
+      jobTitle,
     } = user;
 
     return {
@@ -40,6 +41,7 @@ export const getDataUser = (users: TEmployee[] = []): TShowEmployee[] =>
       lastPlace,
       salary,
       experience,
+      jobTitle,
       name: `${firstName} ${lastName}`,
       image: avatarURL,
     };

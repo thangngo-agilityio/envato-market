@@ -31,6 +31,7 @@ const UserCardComponent = ({ user }: userCardProps) => {
     salary,
     experience,
     hiringAgent,
+    jobTitle,
   } = user || USER_MOCK;
 
   const iconButtonStyles = {
@@ -64,7 +65,7 @@ const UserCardComponent = ({ user }: userCardProps) => {
           {`${firstName} ${lastName}`}
         </Heading>
         <Text color="text.nonary">
-          {`${position} • ${lastPlace} • ${lastActive}`}
+          {`${jobTitle} • ${position}, ${lastPlace} • ${lastActive}`}
         </Text>
         <Flex mt={6} gap={4}>
           <IconButton
