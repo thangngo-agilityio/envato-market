@@ -11,15 +11,9 @@ const meta: Meta<typeof OverallBalance> = {
   tags: ['autodocs'],
   component: OverallBalance,
   argTypes: {
-    data: {
+    overallBalanceData: {
       description:
         'The data of the overall balance for 12 months includes: pending, signed and lost',
-    },
-    growth: {
-      description: 'The growth amount of the overall balance',
-    },
-    total: {
-      description: 'The total amount of the overall balance',
     },
   },
   parameters: {
@@ -33,5 +27,7 @@ export default meta;
 type Story = StoryObj<typeof OverallBalance>;
 
 export const Default: Story = {
-  args: OVERALL_BALANCE_MOCK,
+  args: {
+    overallBalanceData: OVERALL_BALANCE_MOCK,
+  },
 };

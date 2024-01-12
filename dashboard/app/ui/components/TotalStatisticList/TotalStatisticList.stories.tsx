@@ -11,7 +11,7 @@ const meta: Meta<typeof TotalStatisticList> = {
   tags: ['autodocs'],
   component: TotalStatisticList,
   argTypes: {
-    spendingStatistics: {
+    data: {
       description: 'The list of total card to display',
     },
   },
@@ -27,6 +27,6 @@ type Story = StoryObj<typeof TotalStatisticList>;
 
 export const Default: Story = {
   args: {
-    spendingStatistics: SPENDING_STATISTICS_MOCK,
+    data: SPENDING_STATISTICS_MOCK,
   },
 };
