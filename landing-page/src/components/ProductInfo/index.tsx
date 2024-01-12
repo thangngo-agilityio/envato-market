@@ -1,16 +1,10 @@
-import {
-  useCallback,
-  useMemo,
-  useRef,
-  type FormEventHandler,
-  useState,
-} from 'react';
+import { useCallback, useMemo, type FormEventHandler, useState } from 'react';
 
 // Components
 import { Button, Toast, InputNumber } from '..';
 
 // Services
-import { addToCart } from '@app/services';
+import { addToCart, getCartByProductId, updateQuantity } from '@app/services';
 
 // Constants
 import { SUCCESS_MESSAGE } from '@app/constants';
@@ -43,7 +37,7 @@ const ProductInfo = ({
 }: TProductInfoProps): JSX.Element => {
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
   const { toast, showToast, pauseToast, resetToast } = useToast();
-  const refQuantity = useRef<HTMLInputElement>(null);
+  const [quantity, setQuantity] = useState(1);
 
   const isOutStock: boolean = stock <= 0;
 
@@ -58,16 +52,19 @@ const ProductInfo = ({
     return { title: 'in stock', color: 'bg-green-500' };
   }, [isOutStock]);
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = useCallback(
-    async (e) => {
-      e.preventDefault();
+  const handleAddToCart = useCallback(async () => {
+    setIsSubmit(true);
 
-      setIsSubmit(true);
+    try {
+      const productInCart: IProductInCart[] = await getCartByProductId(id);
+      const alreadyExist: boolean = !!productInCart.length;
 
-      try {
-        const quantity: number = parseInt(
-          refQuantity.current ? refQuantity.current.value : '1',
+      if (alreadyExist) {
+        await updateQuantity(
+          productInCart[0].id,
+          quantity + productInCart[0].quantity,
         );
+      } else {
         const payload: Omit<IProductInCart, 'id'> = {
           productId: id,
           currency,
@@ -78,37 +75,35 @@ const ProductInfo = ({
         };
 
         await addToCart(payload);
-
-        showToast({ message: SUCCESS_MESSAGE.ADD_TO_CART, type: 'success' });
-      } catch (error) {
-        const { message } = error as Error;
-
-        showToast({ message, type: 'error' });
-      } finally {
-        setIsSubmit(false);
       }
+
+      showToast({ message: SUCCESS_MESSAGE.ADD_TO_CART, type: 'success' });
+    } catch (error) {
+      const { message } = error as Error;
+
+      showToast({ message, type: 'error' });
+    } finally {
+      setIsSubmit(false);
+    }
+  }, [amount, currency, id, imageURL, name, quantity, showToast]);
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = useCallback(
+    async (e) => {
+      e.preventDefault();
+      await handleAddToCart();
     },
-    [amount, currency, id, imageURL, name, showToast],
+    [handleAddToCart],
   );
 
   const handleChangeQuantityByStep = useCallback(
-    (step: 1 | -1) => () => {
-      if (refQuantity.current) {
-        const currentValue: number = parseInt(refQuantity.current.value);
-
-        refQuantity.current.value = `${currentValue + step}`;
-      }
-    },
+    (step: 1 | -1) => () => setQuantity((prev) => prev + step),
     [],
   );
 
-  const handleChangeQuantity = useCallback((value: number) => {
-    if (refQuantity.current) {
-      const currentValue: number = parseInt(refQuantity.current.value);
-
-      refQuantity.current.value = `${currentValue + value}`;
-    }
-  }, []);
+  const handleChangeQuantity = useCallback(
+    (value: number) => setQuantity(value),
+    [],
+  );
 
   return (
     <section className='col-span-12 nearLg:col-span-5 mt-[70px] nearLg:mt-0 font-primary'>
@@ -130,7 +125,7 @@ const ProductInfo = ({
       <form className='flex flex-col gap-14' onSubmit={handleSubmit}>
         <InputNumber
           disabled={isOutStock || isSubmit}
-          ref={refQuantity}
+          value={quantity}
           onIncrease={handleChangeQuantityByStep(1)}
           onDecrease={handleChangeQuantityByStep(-1)}
           onChange={handleChangeQuantity}
