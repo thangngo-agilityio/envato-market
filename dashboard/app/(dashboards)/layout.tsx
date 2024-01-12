@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic';
 import { SIDEBAR } from '@/lib/constants';
-import { Header } from '@/ui/layouts';
 import { Box, Flex } from '@chakra-ui/react';
 
 const SideBar = dynamic(() => import('@/ui/layouts/Sidebar'));
+const Header = dynamic(() => import('@/ui/layouts/Header'));
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => (
   <Flex w="full" h="full" bg="background.body.primary">
