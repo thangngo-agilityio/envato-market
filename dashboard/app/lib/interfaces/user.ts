@@ -23,6 +23,7 @@ export type TEmployee = Omit<IUserBase, 'email'> & {
   position: string;
   salary: number;
   experience: string;
+  jobTitle: string;
   hiringAgent: THiringAgent;
 };
 

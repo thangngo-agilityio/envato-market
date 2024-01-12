@@ -1,4 +1,4 @@
-'use client'; //TODO: check server render later
+'use client';
 
 import { memo, useCallback, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
@@ -36,7 +36,7 @@ const Users = () => {
 
   const {
     data: users = [],
-    isLoading: isEmployeesLoading,
+    isFetching: isEmployeesLoading,
     isError: isEmployeesError,
   } = useEmployee('');
 

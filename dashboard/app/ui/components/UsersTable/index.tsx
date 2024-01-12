@@ -36,13 +36,14 @@ const UsersComponent = ({ users, onClickUser }: TUsersProps): JSX.Element => {
         position,
         lastPlace,
         lastActive,
+        jobTitle,
       }: TDataSource): JSX.Element => (
         <UserInfoCell
           name={`${name}`}
           imageURL={`${image}`}
-          address={`${lastPlace}`}
+          address={`${position}, ${lastPlace}`}
           time={`${lastActive}`}
-          role={`${position}`}
+          role={`${jobTitle}`}
         />
       ),
     },

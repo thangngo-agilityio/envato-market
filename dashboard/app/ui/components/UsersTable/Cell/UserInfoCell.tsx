@@ -63,7 +63,7 @@ const UserInfoComponent = ({
               noOfLines={1}
               title={role}
             >
-              {role}&sdot;
+              {role} •
             </Text>
           </Tooltip>
           <Tooltip
@@ -80,7 +80,7 @@ const UserInfoComponent = ({
               whiteSpace="break-spaces"
               noOfLines={1}
             >
-              {address}&sdot;{time}
+              {address} • {time}
             </Text>
           </Tooltip>
         </Text>

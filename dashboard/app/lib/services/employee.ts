@@ -16,7 +16,7 @@ export const getEmployees = async (
 ): Promise<TEmployee[]> =>
   (
     await employeeHttpRequest.get(
-      `${END_POINTS.EMPLOYEES}?position=${query}`,
+      `${END_POINTS.EMPLOYEES}?jobTitle=${query}`,
       config,
     )
   ).data;
