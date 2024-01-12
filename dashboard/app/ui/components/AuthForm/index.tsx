@@ -429,7 +429,7 @@ const AuthFormComponent = ({
             textDecoration="underline"
             ml={2}
           >
-            {!isRegister ? 'Sign Up' : 'Sing In'}
+            {!isRegister ? 'Sign Up' : 'Sign In'}
           </Text>
         </Text>
         <AuthFooter />

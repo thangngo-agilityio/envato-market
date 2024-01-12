@@ -9,7 +9,7 @@ const AuthHeaderComponent = ({ title }: THeadingProps): JSX.Element => (
   <VStack as="header">
     <HeadingChakra
       as="h1"
-      fontSize="4xl"
+      fontSize={{ base: '3xl', md: '4xl' }}
       fontFamily="secondary"
       fontWeight="semibold"
       textAlign="center"

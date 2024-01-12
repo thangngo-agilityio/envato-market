@@ -4,7 +4,7 @@ import { memo } from 'react';
 import { Grid, GridItem } from '@chakra-ui/react';
 import {
   TotalStatisticCard,
-  TotalStatisticListSkeleton,
+  // TotalStatisticListSkeleton,
 } from '@/ui/components';
 
 // Types
@@ -12,18 +12,20 @@ import { ISpendingStatistics } from '@/lib/interfaces';
 
 // Mocks
 import { INITIAL_TOTAL_STATISTICS } from '@/lib/mocks';
+import { getStatistical } from '@/lib/services';
+import { END_POINTS } from '@/lib/constants';
+import { QueryProvider } from '@/ui/providers';
 
-interface TotalListComponentProps {
-  spendingStatistics?: ISpendingStatistics[];
-  isLoading?: boolean;
-}
+// interface TotalListComponentProps {
+//   spendingStatistics?: ISpendingStatistics[];
+//   isLoading?: boolean;
+// }
 
-const TotalStatisticListComponent = ({
-  // TODO: call api later
-  spendingStatistics = INITIAL_TOTAL_STATISTICS,
-  isLoading = false,
-}: TotalListComponentProps) => {
-  if (isLoading) return <TotalStatisticListSkeleton />;
+const TotalStatisticListComponent = async () => {
+  // if (isLoading) return <TotalStatisticListSkeleton />;
+  const spendingStatistics =
+    (await getStatistical<ISpendingStatistics[]>(END_POINTS.STATISTICS)) ||
+    INITIAL_TOTAL_STATISTICS;
 
   return (
     <Grid
@@ -46,6 +48,12 @@ const TotalStatisticListComponent = ({
   );
 };
 
-const TotalList = memo(TotalStatisticListComponent);
+const WrappedTotalStatisticList = () => (
+  <QueryProvider>
+    <TotalStatisticListComponent />
+  </QueryProvider>
+);
 
-export default TotalList;
+const TotalStatisticList = memo(WrappedTotalStatisticList);
+
+export default TotalStatisticList;

@@ -1,7 +1,6 @@
 'use client';
 
 import { memo, useCallback, useState } from 'react';
-import isEqual from 'react-fast-compare';
 
 // Components
 import {
@@ -128,6 +127,6 @@ const WrappedEfficiency = () => (
   </QueryProvider>
 );
 
-const Efficiency = memo(WrappedEfficiency, isEqual);
+const Efficiency = memo(WrappedEfficiency);
 
 export default Efficiency;
