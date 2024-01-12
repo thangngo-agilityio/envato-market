@@ -135,7 +135,9 @@ const ProductInfo = ({
         <Button
           className={`w-full sm:w-[280px] md:w-[310px] nearLg:w-full lg:w-[310px] ${
             isOutStock && 'bg-slate-200'
-          } ${isSubmit ? '!bg-gray-400' : 'hover:text-white'}`}
+          } ${
+            isSubmit ? '!bg-gray-400' : 'hover:text-white hover:bg-secondary'
+          }`}
           disabled={isOutStock || isSubmit}
         >
           Add to cart
