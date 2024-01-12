@@ -87,6 +87,7 @@ const ProductTable = ({
                     </div>
                     <div className=''>
                       <button
+                        aria-label='Delete Button'
                         className='bg-sun p-2'
                         onClick={handleRemoveProduct}
                       >
