@@ -39,3 +39,4 @@ export { default as UserCard } from './UserCard';
 export { default as ItemSideBarSetting } from './ItemSideBarSetting';
 export { default as FaqItem } from './FaqItem';
 export { default as UpdateProfile } from './Profile';
+export { default as AuthForm } from './AuthForm';

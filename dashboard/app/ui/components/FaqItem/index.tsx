@@ -1,3 +1,5 @@
+'use client';
+
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 import {
   Box,
