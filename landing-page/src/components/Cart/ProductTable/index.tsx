@@ -2,14 +2,14 @@ import { memo } from 'react';
 import isEqual from 'react-fast-compare';
 
 // Components
-import { InputNumber } from '@app/components';
+import { InputNumber, Image } from '@app/components';
 import Delete from '@app/components/icons/CloseSideBar/index.tsx';
 
 // Types
 import type { IProductInCart } from '@app/interfaces';
 
 // Utils
-import { formatDecimalNumber } from '@app/utils';
+import { formatDecimalNumber, generatePlaceholder } from '@app/utils';
 
 // Constants
 import { COMMON } from '@app/constants';
@@ -57,8 +57,9 @@ const ProductTable = ({
                 className='grid grid-cols-4 items-center gap-2 md:gap-3 my-6 nearLg:px-3'
               >
                 <td>
-                  <img
+                  <Image
                     src={imageURL}
+                    placeholderSrc={generatePlaceholder(250, 250)}
                     width={160}
                     height={160}
                     alt={`This is the ${name}`}
