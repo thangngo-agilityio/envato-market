@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Th } from '@chakra-ui/react';
+import { Box, Td, Text, Th } from '@chakra-ui/react';
 import { memo, useCallback, useMemo } from 'react';
 import isEqual from 'react-fast-compare';
 
@@ -13,10 +13,14 @@ import {
   SearchBar,
   StatusCell,
   Fetching,
+  ActionCell,
 } from '@/ui/components';
 
 // Utils
-import { getTransactionHomePage } from '@/lib/utils';
+import {
+  formatUppercaseFirstLetter,
+  getTransactionHomePage,
+} from '@/lib/utils';
 
 // Hooks
 import {
@@ -35,21 +39,22 @@ import {
 } from '@/lib/constants';
 
 // Types
-import { TDataSource, THeaderTable } from '@/lib/interfaces';
+import { TDataSource, THeaderTable, TTransaction } from '@/lib/interfaces';
 
 // Stores
 import { authStore } from '@/lib/stores';
 
 // Providers
 import { QueryProvider } from '@/ui/providers';
+import { TYPE } from '@/lib/constants/notification';
 
 interface TFilterUserProps {
-  isOpenModal?: boolean;
+  isOpenHistoryModal?: boolean;
   isTableHistory?: boolean;
 }
 
 const TransactionTableComponent = ({
-  isTableHistory = false,
+  isOpenHistoryModal = false,
 }: TFilterUserProps) => {
   const { get, setSearchParam: setSearchTransaction } = useSearch();
 
@@ -69,7 +74,7 @@ const TransactionTableComponent = ({
     user?.id,
   );
 
-  const listData = isTableHistory ? dataHistory : dataTransaction;
+  const listData = isOpenHistoryModal ? dataHistory : dataTransaction;
 
   const {
     data,
@@ -131,21 +136,101 @@ const TransactionTableComponent = ({
     [],
   );
 
+  const renderActionIcon = useCallback(
+    (data: TTransaction) => (
+      <ActionCell
+        key={`${data._id}-action`}
+        // TODO: Will update later
+        // isOpenModal={!isOpenHistoryModal}
+        // transaction={data}
+        // onDeleteTransaction={handleDeleteTransaction}
+        // onUpdateTransaction={handleUpdateTransaction}
+      />
+    ),
+    [],
+  );
+
+  const renderRole = useCallback(
+    ({ customer: { role } }: TTransaction): JSX.Element => (
+      <Td
+        py={5}
+        pr={5}
+        pl={0}
+        fontSize="md"
+        color="text.primary"
+        fontWeight="semibold"
+        textAlign="left"
+        w={{ base: 150, md: 20 }}
+      >
+        <Text
+          fontSize="md"
+          fontWeight="semibold"
+          whiteSpace="break-spaces"
+          noOfLines={1}
+          w={{ base: 100, md: 150, '6xl': 250 }}
+          flex={1}
+        >
+          {formatUppercaseFirstLetter(role)}
+        </Text>
+      </Td>
+    ),
+    [],
+  );
+
+  const renderSpent = useCallback(({ amount, type }: TTransaction) => {
+    const isAddMoney = type === TYPE.ADD_MONEY;
+
+    return (
+      <Td
+        py={5}
+        pr={5}
+        pl={0}
+        fontSize="md"
+        color="text.primary"
+        fontWeight="semibold"
+        textAlign="left"
+        w={{ base: 150, md: 20 }}
+      >
+        <Text
+          fontSize="md"
+          fontWeight="semibold"
+          whiteSpace="break-spaces"
+          color={isAddMoney ? 'text.primary' : 'red.500'}
+          noOfLines={1}
+          w={{ base: 100, md: 150, '7xl': 300 }}
+          flex={1}
+        >
+          {amount}
+        </Text>
+      </Td>
+    );
+  }, []);
+
   const columns = useMemo(() => {
-    if (isTableHistory) {
+    if (isOpenHistoryModal) {
       return COLUMNS_HISTORY(
         renderHead,
         renderNameUser,
         renderPaymentStatus,
         renderTransactionStatus,
+        renderActionIcon,
       );
     }
-    return COLUMNS_DASHBOARD(renderHead, renderNameUser);
+    return COLUMNS_DASHBOARD(
+      renderHead,
+      renderRole,
+      renderNameUser,
+      renderActionIcon,
+      renderSpent,
+    );
   }, [
-    isTableHistory,
+    isOpenHistoryModal,
+    renderActionIcon,
     renderHead,
     renderNameUser,
     renderPaymentStatus,
+    renderRole,
+    renderSpent,
     renderTransactionStatus,
   ]);
 
