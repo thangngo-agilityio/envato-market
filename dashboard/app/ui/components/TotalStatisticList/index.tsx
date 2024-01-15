@@ -1,11 +1,6 @@
 'use client';
 
 import { memo } from 'react';
-import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-} from '@tanstack/react-query';
 
 // Components
 import { Grid, GridItem } from '@chakra-ui/react';
@@ -29,8 +24,6 @@ import { useGetStatistic } from '@/lib/hooks';
 
 // Constants
 import { END_POINTS } from '@/lib/constants';
-
-const queryClient = new QueryClient();
 
 const TotalStatisticListComponent = () => {
   const {
@@ -66,9 +59,7 @@ const TotalStatisticListComponent = () => {
 
 const WrappedTotalStatisticList = () => (
   <QueryProvider>
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <TotalStatisticListComponent />
-    </HydrationBoundary>
+    <TotalStatisticListComponent />
   </QueryProvider>
 );
 

@@ -1,5 +1,10 @@
 import dynamic from 'next/dynamic';
 import { memo } from 'react';
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from '@tanstack/react-query';
 
 // Constants
 import { END_POINTS } from '@/lib/constants';
@@ -13,7 +18,13 @@ import {
 
 // Components
 import { Box, Grid, GridItem, Stack } from '@chakra-ui/react';
+
+// Utils
 import { prefetchStatistical } from '@/lib/utils';
+
+// Providers
+import { QueryProvider } from '@/ui/providers';
+import { getStatistical } from '@/lib/services';
 
 // Lazy load components
 const CardPayment = dynamic(() => import('@/ui/components/CardPayment'));
@@ -28,10 +39,21 @@ const TransactionTable = dynamic(
 );
 
 const DashboardPage = async () => {
+  const queryClient = new QueryClient();
   // Prefetch total statistics, revenue and efficiency data
-  await prefetchStatistical<ISpendingStatistics[]>(END_POINTS.STATISTICS);
-  await prefetchStatistical<IRevenueFlow[]>(END_POINTS.REVENUE);
-  await prefetchStatistical<IEfficiency[]>(`${END_POINTS.EFFICIENCY}/weekly`);
+  await queryClient.prefetchQuery({
+    queryKey: [END_POINTS.REVENUE],
+    queryFn: () => getStatistical<ISpendingStatistics>(END_POINTS.REVENUE),
+  });
+  await prefetchStatistical<ISpendingStatistics[]>(
+    END_POINTS.REVENUE,
+    queryClient,
+  );
+  await prefetchStatistical<IRevenueFlow[]>(END_POINTS.REVENUE, queryClient);
+  await prefetchStatistical<IEfficiency[]>(
+    `${END_POINTS.EFFICIENCY}/weekly`,
+    queryClient,
+  );
 
   return (
     <Grid
@@ -42,7 +64,9 @@ const DashboardPage = async () => {
       gap={0}
     >
       <GridItem colSpan={3}>
-        <TotalStatisticList />
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <TotalStatisticList />
+        </HydrationBoundary>
 
         <Grid
           templateColumns={{ base: 'repeat(1, 1fr)', lg: 'repeat(3, 1fr)' }}
@@ -91,6 +115,12 @@ const DashboardPage = async () => {
   );
 };
 
-const Dashboard = memo(DashboardPage);
+const DashboardWrap = () => (
+  <QueryProvider>
+    <DashboardPage />
+  </QueryProvider>
+);
+
+const Dashboard = memo(DashboardWrap);
 
 export default Dashboard;

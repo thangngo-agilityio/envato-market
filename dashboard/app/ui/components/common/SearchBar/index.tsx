@@ -80,7 +80,7 @@ const SearchBarComponent = ({
               placeholder="Search by name, email, or other..."
               variant="secondary"
               leftIcon={<Search color={searchIconColor} />}
-              rightIcon={value && <p onClick={handleResetValue}>Close</p>} //TODO: update later
+              rightIcon={value && <p onClick={handleResetValue}>Close</p>}
               data-testid="search-transaction"
             />
           )}

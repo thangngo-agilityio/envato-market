@@ -25,7 +25,7 @@ export const MESSAGES = [
     localeTime: MESSAGE_TIME,
   },
   {
-    uid: '1',
+    uid: '2',
     isSend: false,
     isAudio: true,
     content: 'Hi, What can i help you with?',
@@ -35,7 +35,7 @@ export const MESSAGES = [
   },
 
   {
-    uid: '2',
+    uid: '3',
     isSend: true,
     isAudio: false,
     content: 'Hello, I want to know more about your product',
@@ -45,7 +45,7 @@ export const MESSAGES = [
   },
 
   {
-    uid: '1',
+    uid: '4',
     isSend: false,
     isAudio: false,
     content: 'Sure, I can help you with that',
