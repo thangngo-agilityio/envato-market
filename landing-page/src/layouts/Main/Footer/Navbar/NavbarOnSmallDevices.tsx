@@ -21,7 +21,7 @@ const NavbarOnSmallDevices = (): JSX.Element => {
   const firstStyle: string = !isOpen && !isFirstToggle ? 'hidden' : '';
 
   return (
-    <div className='lg:hidden'>
+    <div className='relative lg:hidden'>
       <Button
         aria-label='Show Menu'
         className='flex justify-center items-center pt-[0] pb-0 mt-4  w-[36px] h-[29px] !p-0 cursor-pointer'
@@ -30,7 +30,9 @@ const NavbarOnSmallDevices = (): JSX.Element => {
         <HamburgerMenuIcon width='13' height='13' />
       </Button>
       {/* ISSUES: height alway 300px */}
-      <nav className={`mt-4 h-0 ${firstStyle} ${closeAnimate} ${openAnimate}`}>
+      <nav
+        className={`absolute bottom-7 bg-primary pr-10 mt-4 h-0 ${firstStyle} ${closeAnimate} ${openAnimate}`}
+      >
         <ul>
           {NAVBAR.map(
             ({ id, href, text }): JSX.Element => (
