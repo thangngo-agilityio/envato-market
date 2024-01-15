@@ -37,7 +37,6 @@ export const COLUMNS_DASHBOARD = (
     renderBody: onRenderRole,
   },
   {
-    title: '',
     key: 'action',
     renderBody: onRenderActionIcon,
     renderHead: onRenderHead,
