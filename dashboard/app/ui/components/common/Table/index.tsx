@@ -109,7 +109,7 @@ const Table = ({
                             fontWeight="semibold"
                             textAlign="left"
                             whiteSpace="break-spaces"
-                            minW={{ base: 20, md: 40 }}
+                            minW={{ base: 250, xl: 20, '3xl': 100 }}
                             noOfLines={1}
                           >
                             {data[column.key as keyof typeof data] as string}

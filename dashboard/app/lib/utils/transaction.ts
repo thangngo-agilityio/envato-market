@@ -50,6 +50,6 @@ export const getTransactionHomePage = (transactions: TTransaction[] = []) =>
       paymentStatus: formatUppercaseFirstLetter(paymentStatus),
       transactionStatus: formatUppercaseFirstLetter(transactionStatus),
       image: IMAGES.BIG_AVATAR.url || avatar,
-      spent: `${currency}${formatDecimalNumber(+amount)}`,
+      amount: `${currency}${formatDecimalNumber(+amount)}`,
     };
   });
