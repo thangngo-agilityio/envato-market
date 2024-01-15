@@ -18,6 +18,7 @@ import {
 
 // Components
 import { Box, Grid, GridItem, Stack } from '@chakra-ui/react';
+import { prefetchStatistical } from '@/lib/utils';
 
 // Utils
 import { prefetchStatistical } from '@/lib/utils';
