@@ -33,7 +33,6 @@ export const AUTH_SCHEMA = {
     required: false,
   },
   AGREE_POLICY: {
-    //TODO: Refactor later
     validate: (
       value: boolean,
       //eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
