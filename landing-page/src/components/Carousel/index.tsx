@@ -2,6 +2,12 @@ import isEqual from 'react-fast-compare';
 import { Carousel as CarouselLib } from 'react-responsive-carousel';
 import { memo } from 'react';
 
+// Components
+import { Image } from '@app/components';
+
+// Utils
+import { generatePlaceholder } from '@app/utils';
+
 // Styles
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import '@app/styles/carousel.css';
@@ -21,12 +27,14 @@ const Carousel = ({ images }: TCarouselProps): JSX.Element => (
       showStatus={false}
     >
       {images.map((image) => (
-        <img
+        <Image
           alt='This is product name'
           src={image}
           key={image}
+          placeholderSrc={generatePlaceholder(250, 250)}
           width={250}
           height={250}
+          loading='lazy'
           className='thumb-image'
         />
       ))}
