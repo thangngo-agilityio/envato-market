@@ -159,7 +159,6 @@ const TransactionTableComponent = ({
         fontSize="md"
         color="text.primary"
         fontWeight="semibold"
-        textAlign="left"
         w={{ base: 150, md: 20 }}
       >
         <Text
@@ -167,7 +166,7 @@ const TransactionTableComponent = ({
           fontWeight="semibold"
           whiteSpace="break-spaces"
           noOfLines={1}
-          w={{ base: 100, md: 150, '6xl': 250 }}
+          w={{ base: 100, md: 150, '3xl': 100, '6xl': 200 }}
           flex={1}
         >
           {formatUppercaseFirstLetter(role)}
@@ -197,7 +196,7 @@ const TransactionTableComponent = ({
           whiteSpace="break-spaces"
           color={isAddMoney ? 'text.primary' : 'red.500'}
           noOfLines={1}
-          w={{ base: 100, md: 150, '7xl': 300 }}
+          w={{ base: 100, md: 150, '3xl': 100, '7xl': 270 }}
           flex={1}
         >
           {amount}

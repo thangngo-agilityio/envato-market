@@ -80,7 +80,6 @@ export const COLUMNS_HISTORY = (
     renderBody: renderTransactionStatus,
   },
   {
-    title: '',
     key: 'action',
     renderBody: renderActionIcon,
   },
