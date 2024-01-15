@@ -1,7 +1,7 @@
 'use client';
 
-import { Box, Td, Text, Th } from '@chakra-ui/react';
 import { memo, useCallback, useMemo } from 'react';
+import { Box, Td, Text, Th, useToast } from '@chakra-ui/react';
 import isEqual from 'react-fast-compare';
 
 // Components
@@ -35,30 +35,30 @@ import {
 import {
   COLUMNS_DASHBOARD,
   COLUMNS_HISTORY,
+  ERROR_MESSAGES,
+  STATUS,
   STATUS_LABEL,
+  SUCCESS_MESSAGES,
+  TRANSACTION_STATUS_ENUM,
 } from '@/lib/constants';
 
 // Types
 import { TDataSource, THeaderTable, TTransaction } from '@/lib/interfaces';
 
-// Stores
-import { authStore } from '@/lib/stores';
-
 // Providers
 import { QueryProvider } from '@/ui/providers';
 import { TYPE } from '@/lib/constants/notification';
+import { customToast } from '@/lib/utils/toast';
 
 interface TFilterUserProps {
   isOpenHistoryModal?: boolean;
-  isTableHistory?: boolean;
 }
 
 const TransactionTableComponent = ({
   isOpenHistoryModal = false,
 }: TFilterUserProps) => {
+  const toast = useToast();
   const { get, setSearchParam: setSearchTransaction } = useSearch();
-
-  const { user } = authStore();
 
   const {
     data: transactions = [],
@@ -67,14 +67,14 @@ const TransactionTableComponent = ({
     isLoading: isLoadingTransactions,
     isError: isTransactionsError,
     sortBy,
-  } = useTransactions(
-    {
+    deleteTransaction,
+  } = useTransactions({
       name: get('name') || '',
-    },
-    user?.id,
-  );
+    });
 
   const listData = isOpenHistoryModal ? dataHistory : dataTransaction;
+  console.log('listData', listData);
+
 
   const {
     data,
@@ -87,6 +87,39 @@ const TransactionTableComponent = ({
     handlePageChange,
     handlePageClick,
   } = usePagination(listData);
+
+  const handleDeleteTransaction = useCallback(
+    (updateData: Partial<TTransaction & { id: string }>) => {
+      deleteTransaction(
+        {
+          transactionId: updateData.id,
+          userId: updateData.customer?.customerId as string,
+          transactionStatus: TRANSACTION_STATUS_ENUM.ARCHIVED,
+        },
+        {
+          onSuccess: () => {
+            toast(
+              customToast(
+                SUCCESS_MESSAGES.DELETE_SUCCESS.title,
+                SUCCESS_MESSAGES.DELETE_SUCCESS.description,
+                STATUS.SUCCESS,
+              ),
+            );
+          },
+          onError: () => {
+            toast(
+              customToast(
+                ERROR_MESSAGES.DELETE_FAIL.title,
+                ERROR_MESSAGES.DELETE_FAIL.description,
+                STATUS.ERROR,
+              ),
+            );
+          },
+        },
+      );
+    },
+    [deleteTransaction],
+  );
 
   // Update search params when end time debounce
   const handleDebounceSearch = useDebounce((value: string) => {
@@ -140,10 +173,9 @@ const TransactionTableComponent = ({
     (data: TTransaction) => (
       <ActionCell
         key={`${data._id}-action`}
-        // TODO: Will update later
-        // isOpenModal={!isOpenHistoryModal}
-        // transaction={data}
-        // onDeleteTransaction={handleDeleteTransaction}
+        isOpenModal={!isOpenHistoryModal}
+        transaction={data}
+        onDeleteTransaction={handleDeleteTransaction}
         // onUpdateTransaction={handleUpdateTransaction}
       />
     ),
@@ -213,6 +245,7 @@ const TransactionTableComponent = ({
         renderPaymentStatus,
         renderTransactionStatus,
         renderActionIcon,
+        renderSpent,
       );
     }
     return COLUMNS_DASHBOARD(

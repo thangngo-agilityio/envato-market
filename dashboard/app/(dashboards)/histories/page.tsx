@@ -28,9 +28,9 @@ const Histories = () => (
         px={6}
         py={5}
       >
-        <QueryProvider>
+        {/* <QueryProvider> */}
           <TransactionTable />
-        </QueryProvider>
+        {/* </QueryProvider> */}
       </Box>
     </GridItem>
     <GridItem mt={{ base: 6, '2xl': 0 }}>
