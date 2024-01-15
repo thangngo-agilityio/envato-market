@@ -1,8 +1,8 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from '@app/components';
 
 // Utils
-import { formatDecimalNumber } from '@app/utils';
+import { formatDecimalNumber, generatePlaceholder } from '@app/utils';
 
 // Types
 import { type IProduct } from '@app/interfaces';
@@ -25,12 +25,13 @@ const transitionStyles: string[] = ['transition', 'duration-300'];
 <figure class:list={['relative w-full h-full cursor-pointer', ...hoverStyles]}>
   <Image
     src={imageURL}
-    widths={[250, 526, 622]}
+    placeholderSrc={generatePlaceholder(250, 250)}
     sizes={'(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px'}
     width={250}
     height={250}
     alt={`This is the image for ${name}`}
-    class='w-full h-full object-contain'
+    className='w-full h-full object-contain'
+    client:visible
   />
   <div
     class:list={[
