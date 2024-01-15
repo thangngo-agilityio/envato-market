@@ -15,6 +15,7 @@ export const END_POINTS = {
   OVERALL_BALANCE: '/overall-balance',
   SIGN_IN: '/sign-in',
   SIGN_UP: '/sign-up',
+  DELETE_TRANSACTION: '/delete-transactions',
 };
 
 export const SEARCH_PARAM = {

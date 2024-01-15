@@ -17,3 +17,8 @@ export const STATUS_SUBMIT = {
   ERROR: 'error',
   SUCCESS: 'success',
 };
+
+export enum STATUS {
+  ERROR = 'error',
+  SUCCESS = 'success',
+}
