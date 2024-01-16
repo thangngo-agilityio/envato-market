@@ -56,3 +56,9 @@ export type TUserDetail = Omit<IUserBase, 'avatarURL'> & {
   linkedinURL?: string;
   youtubeURL?: string;
 };
+
+export interface TPassword {
+  memberId: string;
+  oldPassword: string;
+  newPassword: string;
+}
