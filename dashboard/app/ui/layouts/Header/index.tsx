@@ -111,6 +111,7 @@ const HeaderComponent = ({ user }: HeaderProps) => {
               <Email color={colorFill} />
             </IconButton>
 
+            {/* TODO: Implement BonusNotification component later */}
             {/* <BonusNotification colorFill={colorFill} /> */}
           </Flex>
           <Box

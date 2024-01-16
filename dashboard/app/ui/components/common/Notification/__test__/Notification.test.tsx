@@ -2,18 +2,18 @@ import { render, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { useNotification } from '@/lib/hooks';
-import Notification from '..';
-import { MOCK_USER_DETAIL } from '@/lib/mocks';
-import { NOTIFICATION_LIST } from '@/lib/constants';
 
 // Components
+import { Notification } from '@/ui/components';
 
 // Hooks
+import { useNotification } from '@/lib/hooks';
 
 // Constants
+import { NOTIFICATION_LIST } from '@/lib/constants';
 
 // Mocks
+import { MOCK_USER_DETAIL } from '@/lib/mocks';
 
 jest.mock('@app/hooks', () => ({
   ...jest.requireActual('@app/hooks'),
