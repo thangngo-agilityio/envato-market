@@ -16,7 +16,7 @@ export const END_POINTS = {
   SIGN_IN: '/sign-in',
   SIGN_UP: '/sign-up',
   DELETE_TRANSACTION: '/delete-transactions',
-  UPDATE_TRANSACTION: '/edit-transactions',
+  EDIT_TRANSACTION: '/edit-transactions',
 };
 
 export const SEARCH_PARAM = {
