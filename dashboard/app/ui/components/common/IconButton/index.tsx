@@ -1,24 +1,25 @@
 import { memo } from 'react';
-import { Box, IconButton } from '@chakra-ui/react';
+import { Box, IconButton, Text } from '@chakra-ui/react';
 
 interface IconButtonProps {
   children: JSX.Element;
   hasNewNotification?: boolean;
-  isNotification?: boolean;
+  quantityNotification?: number;
   onClick?: () => void;
 }
 
 const IconButtonComponent = ({
   children,
   hasNewNotification = false,
-  isNotification = false,
-  onClick,
+  quantityNotification = 0,
+  onClick = () => {},
 }: IconButtonProps) => (
   <Box data-testid="icon-button-component" pos="relative" maxW="fit-content">
-    {isNotification && (
-      <Box
+    {hasNewNotification && (
+      <Text
+        as="p"
         pos="absolute"
-        bg={hasNewNotification ? 'danger.500' : 'secondary.450'}
+        bg="danger.500"
         rounded="full"
         boxSize="15px"
         textAlign="center"
@@ -26,10 +27,15 @@ const IconButtonComponent = ({
         right="-5px"
         fontSize="xs"
         zIndex={1}
-        _light={{ border: 'solid 3px white' }}
-      />
+        color="white"
+        lineHeight="1.4"
+      >
+        {quantityNotification === 0 ? '' : quantityNotification}
+      </Text>
     )}
     <IconButton
+      as="div"
+      cursor="pointer"
       data-testid="icon-button"
       pos="relative"
       variant="iconPrimary"

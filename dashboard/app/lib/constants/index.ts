@@ -24,3 +24,5 @@ export * from './avatar';
 export * from './sizes';
 export * from './setting';
 export * from './termAndCondition';
+export * from './notification';
+export * from './authentication';

@@ -1,12 +1,12 @@
 'use client';
 
 import { Fragment, memo } from 'react';
-import Link from 'next/link';
 import {
   Box,
   Button,
   Divider,
   Flex,
+  Link,
   Menu,
   MenuButton,
   MenuItem,
@@ -17,19 +17,22 @@ import {
 } from '@chakra-ui/react';
 
 // Assets
-import { Arrow } from '@/ui/components/Icons';
+import { Arrow, Avatar } from '@/ui/components';
 
 // Constants
-import { IMAGES, MENU_LIST, MENU_LIST_ICON } from '@/lib/constants';
+import {
+  AUTHENTICATION_ROLE,
+  IMAGES,
+  MENU_LIST,
+  MENU_LIST_ICON,
+} from '@/lib/constants';
 
 // Hooks
 import { useAuth } from '@/lib/hooks';
 
-// Components
-import Avatar from '../Avatar';
-
 interface DropdownProps {
   src?: string;
+  role: string;
   name?: string;
   alt?: string;
   permission?: string;
@@ -40,6 +43,7 @@ interface DropdownProps {
 const UserDropdownMenu = ({
   src = IMAGES.USER.url,
   name = '',
+  role,
   alt = '',
   permission = '',
   offsetX = 0,
@@ -114,9 +118,9 @@ const UserDropdownMenu = ({
                   bg="transparent"
                   _hover={{
                     bg: 'background.component.tertiary',
-                    color: 'primary.500',
-                    svg: { stroke: 'primary.500' },
-                    path: { stroke: 'primary.500' },
+                    color: 'text.currencyColor',
+                    svg: { stroke: 'text.currencyColor' },
+                    path: { stroke: 'text.currencyColor' },
                     borderColor: 'transparent',
                   }}
                   _focus={{
@@ -135,29 +139,33 @@ const UserDropdownMenu = ({
                 </MenuItem>
               );
             })}
-            <Divider my={3.5} color="gray.300" />
-            {MENU_LIST.map(({ id, value, href }) => (
-              <MenuItem
-                key={id}
-                p={3.5}
-                borderRadius="lg"
-                bg="transparent"
-                as={Link}
-                href={href}
-                aria-label={`menu-item-${value}`}
-                _hover={{
-                  bg: 'background.component.tertiary',
-                  color: 'primary.500',
-                  svg: { stroke: 'primary.500' },
-                  borderColor: 'transparent',
-                }}
-                _focus={{
-                  outline: 'none',
-                }}
-              >
-                <Text variant="text4Xl">{value}</Text>
-              </MenuItem>
-            ))}
+            {role === AUTHENTICATION_ROLE.MEMBER ? null : (
+              <>
+                <Divider my={3.5} color="gray.300" />
+                {MENU_LIST(role).map(({ id, value, href }) => (
+                  <MenuItem
+                    key={id}
+                    p={3.5}
+                    borderRadius="lg"
+                    bg="transparent"
+                    as={Link}
+                    href={href}
+                    aria-label={`menu-item-${value}`}
+                    _hover={{
+                      bg: 'background.component.tertiary',
+                      color: 'text.currencyColor',
+                      svg: { stroke: 'text.currencyColor' },
+                      borderColor: 'transparent',
+                    }}
+                    _focus={{
+                      outline: 'none',
+                    }}
+                  >
+                    <Text variant="text4Xl">{value}</Text>
+                  </MenuItem>
+                ))}
+              </>
+            )}
           </MenuList>
         </Box>
       )}

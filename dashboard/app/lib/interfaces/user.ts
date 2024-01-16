@@ -44,6 +44,7 @@ export type TCustomer = Pick<IUserBase, 'email'> & {
 };
 
 export type TUserDetail = Omit<IUserBase, 'avatarURL'> & {
+  title?: string;
   avatarURL?: string;
   password: string;
   phoneNumber: string;
@@ -55,6 +56,8 @@ export type TUserDetail = Omit<IUserBase, 'avatarURL'> & {
   twitterURL?: string;
   linkedinURL?: string;
   youtubeURL?: string;
+  role?: string;
+  description?: string;
 };
 
 export interface TPassword {

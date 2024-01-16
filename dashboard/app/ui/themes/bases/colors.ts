@@ -80,7 +80,7 @@ export const colors = {
       },
       tertiary: {
         default: 'gray.50',
-        _dark: 'secondary.600',
+        _dark: 'gray.700',
       },
       quaternary: {
         default: '#4F5669',
@@ -198,6 +198,10 @@ export const colors = {
     textTime: {
       default: '#4B5772',
       _dark: '#A0AEC0',
+    },
+    currencyColor: {
+      default: '#0C642F',
+      _dark: '#22C55E',
     },
   },
 

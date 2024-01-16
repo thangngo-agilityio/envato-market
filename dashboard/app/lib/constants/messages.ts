@@ -31,6 +31,10 @@ export const ERROR_MESSAGES = {
     title: 'Update failed',
     description: 'Your transaction has not been updated successfully',
   },
+  DELETE_NOTIFICATION: {
+    title: 'Delete failed',
+    description: 'Notification has not been delete successfully',
+  },
   OLD_PASSWORD_INCORRECT: 'Old password is not correct',
 };
 
@@ -43,4 +47,12 @@ export const SUCCESS_MESSAGES = {
     title: 'Delete success',
     description: 'Transactions has been delete successfully',
   },
+  DELETE_NOTIFICATION_SUCCESS: {
+    title: 'Delete success',
+    description: 'Notification has been delete successfully',
+  },
+};
+
+export const CONFIRM_MESSAGE = {
+  DELETE_NOTIFICATION: 'Are you sure delete the notification?',
 };

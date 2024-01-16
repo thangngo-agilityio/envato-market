@@ -4,6 +4,7 @@ import { Box, Flex } from '@chakra-ui/react';
 
 // Component
 import { Header } from '@/ui/layouts';
+
 const SideBar = dynamic(() => import('@/ui/layouts/Sidebar'));
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => (
