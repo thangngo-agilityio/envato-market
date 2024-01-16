@@ -12,13 +12,13 @@ import {
   Td,
 } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon, LockIcon, UnlockIcon } from '@chakra-ui/icons';
-import { TTransaction } from '@/lib/interfaces';
-import { Dot, Modal } from '@/ui/components';
-import { TransactionModal } from '.';
-
-// Icons
 
 // Interfaces
+import { TTransaction } from '@/lib/interfaces';
+
+// Components
+import { Dot, Modal } from '@/ui/components';
+import { TransactionModal } from '.';
 
 interface ActionCallProps {
   transaction?: TTransaction;
@@ -32,8 +32,8 @@ const ActionCellComponent = ({
   transaction,
   isOpenModal = false,
   isOpenUserAction = false,
-  onDeleteTransaction = () => { },
-  onUpdateTransaction = () => { },
+  onDeleteTransaction = () => {},
+  onUpdateTransaction = () => {},
 }: ActionCallProps) => {
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState<boolean>(false);
   const [isDelete, setIsDelete] = useState<boolean>(false);

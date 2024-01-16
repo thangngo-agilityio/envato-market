@@ -69,12 +69,10 @@ const TransactionTableComponent = ({
     sortBy,
     deleteTransaction,
   } = useTransactions({
-      name: get('name') || '',
-    });
+    name: get('name') || '',
+  });
 
   const listData = isOpenHistoryModal ? dataHistory : dataTransaction;
-  console.log('listData', listData);
-
 
   const {
     data,
@@ -176,6 +174,7 @@ const TransactionTableComponent = ({
         isOpenModal={!isOpenHistoryModal}
         transaction={data}
         onDeleteTransaction={handleDeleteTransaction}
+        // TODO: Handle later
         // onUpdateTransaction={handleUpdateTransaction}
       />
     ),
