@@ -18,7 +18,6 @@ import {
 
 // Components
 import { Box, Grid, GridItem, Stack } from '@chakra-ui/react';
-import { prefetchStatistical } from '@/lib/utils';
 
 // Utils
 import { prefetchStatistical } from '@/lib/utils';
@@ -43,13 +42,9 @@ const DashboardPage = async () => {
   const queryClient = new QueryClient();
   // Prefetch total statistics, revenue and efficiency data
   await queryClient.prefetchQuery({
-    queryKey: [END_POINTS.REVENUE],
-    queryFn: () => getStatistical<ISpendingStatistics>(END_POINTS.REVENUE),
+    queryKey: [END_POINTS.STATISTICS],
+    queryFn: () => getStatistical<ISpendingStatistics>(END_POINTS.STATISTICS),
   });
-  await prefetchStatistical<ISpendingStatistics[]>(
-    END_POINTS.REVENUE,
-    queryClient,
-  );
   await prefetchStatistical<IRevenueFlow[]>(END_POINTS.REVENUE, queryClient);
   await prefetchStatistical<IEfficiency[]>(
     `${END_POINTS.EFFICIENCY}/weekly`,

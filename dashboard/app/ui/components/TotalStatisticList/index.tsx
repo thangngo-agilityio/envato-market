@@ -1,11 +1,6 @@
 'use client';
 
 import { memo } from 'react';
-import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-} from '@tanstack/react-query';
 
 // Components
 import { Grid, GridItem } from '@chakra-ui/react';

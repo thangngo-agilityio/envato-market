@@ -24,9 +24,7 @@ type TSort = {
 };
 export type TSortHandler = (field: TSortField) => void;
 
-export const useTransactions = (
-  queryParam?: TSearchTransaction,
-) => {
+export const useTransactions = (queryParam?: TSearchTransaction) => {
   const queryClient = useQueryClient();
 
   const { user } = authStore();
