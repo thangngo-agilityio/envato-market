@@ -116,6 +116,25 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
     handleDeleteNotification(currentNotificationId);
   };
 
+  const modalContent = (): JSX.Element => (
+    <Box>
+      <Text fontSize="lg">{CONFIRM_MESSAGE.DELETE_NOTIFICATION}</Text>
+      <Flex my={4} justifyContent="center">
+        <Button w={44} bg="green.600" mr={3} onClick={handleDeleteData}>
+          Delete
+        </Button>
+        <Button
+          w={44}
+          bg="orange.300"
+          _hover={{ bg: 'orange.400' }}
+          onClick={handleTriggerToggleModal}
+        >
+          Cancel
+        </Button>
+      </Flex>
+    </Box>
+  );
+
   return (
     <>
       <Menu placement="auto" closeOnSelect={false}>
@@ -196,24 +215,7 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
           title="Delete Notification"
           isOpen={isOpenConfirmModal}
           haveCloseButton
-          body={
-            <Box>
-              <Text fontSize="lg">{CONFIRM_MESSAGE.DELETE_NOTIFICATION}</Text>
-              <Flex my={4} justifyContent="center">
-                <Button w={44} bg="green.600" mr={3} onClick={handleDeleteData}>
-                  Delete
-                </Button>
-                <Button
-                  w={44}
-                  bg="orange.300"
-                  _hover={{ bg: 'orange.400' }}
-                  onClick={handleTriggerToggleModal}
-                >
-                  Cancel
-                </Button>
-              </Flex>
-            </Box>
-          }
+          body={modalContent()}
           onClose={handleTriggerToggleModal}
         />
       )}

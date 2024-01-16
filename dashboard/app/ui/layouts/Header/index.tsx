@@ -38,10 +38,9 @@ const HeaderComponent = () => {
   const name = TITLES_HEADER[`${pathname.slice(1)}`] || TITLES_HEADER.DEFAULT;
 
   const user = useStore(authStore, (state) => state.user);
-  const { firstName, lastName, role, avatarURL } = user as TUserDetail;
 
-  const username = `${firstName || ''} ${lastName || ''}`;
-  const roles = role === AUTHENTICATION_ROLE.SUPER_ADMIN;
+  const username = `${user?.firstName || ''} ${user?.lastName || ''}`;
+  const roles = user?.role === AUTHENTICATION_ROLE.SUPER_ADMIN;
 
   return (
     <Flex
@@ -68,7 +67,7 @@ const HeaderComponent = () => {
             name={username}
             role={user?.role as string}
             permission="Super Admin"
-            src={avatarURL}
+            src={user?.avatarURL}
           />
         </Box>
       </Flex>
@@ -123,7 +122,7 @@ const HeaderComponent = () => {
               name={username}
               role={user?.role as string}
               permission={roles ? AUTHENTICATION_ROLE.SUPER_ADMIN : ''}
-              src={avatarURL}
+              src={user?.avatarURL}
             />
           </Box>
         </Flex>
@@ -139,7 +138,7 @@ const HeaderComponent = () => {
             name={username}
             role={user?.role as string}
             permission={roles ? AUTHENTICATION_ROLE.SUPER_ADMIN : ''}
-            src={avatarURL}
+            src={user?.avatarURL}
           />
         </Box>
       </Flex>
