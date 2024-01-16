@@ -41,3 +41,4 @@ export { default as FaqItem } from './FaqItem';
 export { default as UpdateProfile } from './Profile';
 export { default as AuthForm } from './AuthForm';
 export { default as Modal } from './common/Modal';
+export { default as Notification } from './common/Notification';
