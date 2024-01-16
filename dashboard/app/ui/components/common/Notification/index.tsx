@@ -27,6 +27,7 @@ import {
   ERROR_MESSAGES,
   STATUS,
   SUCCESS_MESSAGES,
+  TYPE,
 } from '@/lib/constants';
 
 // Interfaces
@@ -49,7 +50,7 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
     useState<string>('');
 
   const handleToggleModal = useCallback(
-    (id?: string, event?: React.MouseEvent<SVGElement, MouseEvent>) => {
+    (event?: React.MouseEvent<SVGElement, MouseEvent>, id?: string) => {
       event?.stopPropagation();
       setCurrentNotificationId(id as string);
       setIsOpenConfirmModal(!isOpenConfirmModal);
@@ -170,11 +171,21 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
                   },
                 }}
               >
-                <NotificationItem
-                  notification={data}
-                  onToggleModal={handleCloseModal}
-                  onUpdateNotification={handleUpdateNotification}
-                />
+                {data.map((item: TNotification, index) => {
+                  const isLastItem = index === data.length - 1;
+                  const isAddMoney = item.type === TYPE.ADD_MONEY;
+
+                  return (
+                    <NotificationItem
+                      key={item._id}
+                      notification={item}
+                      isAddMoney={isAddMoney}
+                      isLastItem={isLastItem}
+                      onToggleModal={handleToggleModal}
+                      onUpdateNotification={handleUpdateNotification}
+                    />
+                  );
+                })}
               </Flex>
             </MenuList>
           </Box>
