@@ -51,3 +51,7 @@ export const SUCCESS_MESSAGES = {
     description: 'Notification has been delete successfully',
   },
 };
+
+export const CONFIRM_MESSAGE = {
+  DELETE_NOTIFICATION: 'Are you sure delete the notification?',
+};

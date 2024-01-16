@@ -6,16 +6,13 @@ import { memo, useCallback, useState } from 'react';
 import {
   Box,
   Button,
-  Divider,
   Flex,
   Menu,
   MenuButton,
-  MenuItem,
   MenuList,
   Text,
   useToast,
 } from '@chakra-ui/react';
-import { DeleteIcon } from '@chakra-ui/icons';
 import { Bell, IconButton, Modal } from '@/ui/components';
 
 // Utils
@@ -26,18 +23,18 @@ import { useNotification } from '@/lib/hooks';
 
 // Constants
 import {
+  CONFIRM_MESSAGE,
   ERROR_MESSAGES,
   STATUS,
   SUCCESS_MESSAGES,
-  TYPE,
 } from '@/lib/constants';
 
 // Interfaces
 import { TNotification, TUserDetail } from '@/lib/interfaces';
 
 // Utils
-import { convertDateToTime } from '@/lib/utils';
 import { QueryProvider } from '@/ui/providers';
+import { NotificationItem } from './Body';
 
 interface NotificationProps {
   colorFill: string;
@@ -173,86 +170,11 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
                   },
                 }}
               >
-                {data?.map((item: TNotification, index) => {
-                  const isLastItem = index === data.length - 1;
-                  const isAddMoney = item.type === TYPE.ADD_MONEY;
-
-                  const handleUpdateData = () => handleUpdateNotification(item);
-
-                  return (
-                    <MenuItem
-                      key={item._id}
-                      py={0}
-                      bg={
-                        item.isMarkAsRead
-                          ? 'transparent'
-                          : 'background.component.tertiary'
-                      }
-                      _hover={{
-                        bg: 'background.component.tertiary',
-                        color: 'text.currencyColor',
-                      }}
-                    >
-                      <Flex flexDirection="column" w="full">
-                        <Flex
-                          alignItems="center"
-                          justifyContent="space-between"
-                        >
-                          <Box
-                            {...(!item.isMarkAsRead
-                              ? { onClick: handleUpdateData }
-                              : { cursor: 'not-allowed' })}
-                          >
-                            <Text fontSize="sm" color="text.nonary" mt={2}>
-                              <Text
-                                as="span"
-                                fontWeight="bold"
-                                pr={1}
-                                fontSize="sm"
-                              >
-                                {item?.sender}
-                              </Text>
-                              {item?.content}
-                              {!isAddMoney && (
-                                <Text as="span" fontWeight="bold" fontSize="sm">
-                                  &nbsp;{item.receiver}
-                                </Text>
-                              )}
-                              &nbsp;totaling
-                              <Text
-                                as="span"
-                                color={
-                                  isAddMoney ? 'text.currencyColor' : 'red.500'
-                                }
-                                px={1}
-                                fontSize="sm"
-                              >
-                                ${item.amount}
-                              </Text>
-                            </Text>
-                            <Text
-                              fontSize="xs"
-                              color="text.textTime"
-                              mt={2}
-                              mb={3}
-                            >
-                              {convertDateToTime(item.createdAt as string)}
-                            </Text>
-                          </Box>
-                          <DeleteIcon
-                            position="relative"
-                            zIndex={10}
-                            data-testid="delete-icon"
-                            onClick={(event) =>
-                              handleToggleModal(item._id, event)
-                            }
-                          />
-                        </Flex>
-                        {!isLastItem && <Divider color="gray.300" />}
-                      </Flex>
-                    </MenuItem>
-                  );
-                })}
+                <NotificationItem
+                  notification={data}
+                  onToggleModal={handleCloseModal}
+                  onUpdateNotification={handleUpdateNotification}
+                />
               </Flex>
             </MenuList>
           </Box>
@@ -265,7 +187,7 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
           haveCloseButton
           body={
             <Box>
-              <Text fontSize="lg">Are you sure delete the notification?</Text>
+              <Text fontSize="lg">{CONFIRM_MESSAGE.DELETE_NOTIFICATION}</Text>
               <Flex my={4} justifyContent="center">
                 <Button w={44} bg="green.600" mr={3} onClick={handleDeleteData}>
                   Delete
