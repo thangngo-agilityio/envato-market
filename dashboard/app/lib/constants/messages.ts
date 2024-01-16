@@ -31,6 +31,10 @@ export const ERROR_MESSAGES = {
     title: 'Update failed',
     description: 'Your transaction has not been updated successfully',
   },
+  DELETE_NOTIFICATION: {
+    title: 'Delete failed',
+    description: 'Notification has not been delete successfully',
+  },
 };
 
 export const SUCCESS_MESSAGES = {
@@ -41,5 +45,9 @@ export const SUCCESS_MESSAGES = {
   DELETE_SUCCESS: {
     title: 'Delete success',
     description: 'Transactions has been delete successfully',
+  },
+  DELETE_NOTIFICATION_SUCCESS: {
+    title: 'Delete success',
+    description: 'Notification has been delete successfully',
   },
 };
