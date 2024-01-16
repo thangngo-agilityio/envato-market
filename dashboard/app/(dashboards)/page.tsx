@@ -24,7 +24,6 @@ import { prefetchStatistical } from '@/lib/utils';
 
 // Providers
 import { QueryProvider } from '@/ui/providers';
-import { getStatistical } from '@/lib/services';
 
 // Lazy load components
 const CardPayment = dynamic(() => import('@/ui/components/CardPayment'));
@@ -41,10 +40,10 @@ const TransactionTable = dynamic(
 const DashboardPage = async () => {
   const queryClient = new QueryClient();
   // Prefetch total statistics, revenue and efficiency data
-  await queryClient.prefetchQuery({
-    queryKey: [END_POINTS.STATISTICS],
-    queryFn: () => getStatistical<ISpendingStatistics>(END_POINTS.STATISTICS),
-  });
+  await prefetchStatistical<ISpendingStatistics[]>(
+    END_POINTS.STATISTICS,
+    queryClient,
+  );
   await prefetchStatistical<IRevenueFlow[]>(END_POINTS.REVENUE, queryClient);
   await prefetchStatistical<IEfficiency[]>(
     `${END_POINTS.EFFICIENCY}/weekly`,
@@ -70,10 +69,14 @@ const DashboardPage = async () => {
           gap={6}
         >
           <GridItem colSpan={{ base: 3, xl: 2 }}>
-            <RevenueFlow />
+            <HydrationBoundary state={dehydrate(queryClient)}>
+              <RevenueFlow />
+            </HydrationBoundary>
           </GridItem>
           <GridItem display={{ base: 'none', xl: 'block' }}>
-            <Efficiency />
+            <HydrationBoundary state={dehydrate(queryClient)}>
+              <Efficiency />
+            </HydrationBoundary>
           </GridItem>
         </Grid>
 
@@ -111,12 +114,12 @@ const DashboardPage = async () => {
   );
 };
 
-const DashboardWrap = () => (
+const WrappedDashboard = () => (
   <QueryProvider>
     <DashboardPage />
   </QueryProvider>
 );
 
-const Dashboard = memo(DashboardWrap);
+const Dashboard = memo(WrappedDashboard);
 
 export default Dashboard;
