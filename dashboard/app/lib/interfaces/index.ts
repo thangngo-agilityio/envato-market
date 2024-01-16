@@ -7,3 +7,4 @@ export * from './transaction';
 export * from './table';
 export * from './config';
 export * from './pagination';
+export * from './chat';
