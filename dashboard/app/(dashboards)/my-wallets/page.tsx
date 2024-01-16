@@ -1,9 +1,25 @@
 import { memo } from 'react';
 import dynamic from 'next/dynamic';
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from '@tanstack/react-query';
+
+//Components
 import { Box, Flex, Grid, GridItem } from '@chakra-ui/react';
-import { getStatistical } from '@/lib/services';
-import { TOverallBalance } from '@/lib/interfaces';
+
+// Type
+import { IEfficiency, TOverallBalance } from '@/lib/interfaces';
+
+// Constants
 import { END_POINTS } from '@/lib/constants';
+
+// Utils
+import { prefetchStatistical } from '@/lib/utils';
+
+// Providers
+import { QueryProvider } from '@/ui/providers';
 
 // Lazy loading components
 const TransactionTable = dynamic(
@@ -15,8 +31,16 @@ const TotalBalance = dynamic(() => import('@/ui/components/TotalBalance'));
 const OverallBalance = dynamic(() => import('@/ui/components/OverallBalance'));
 
 const MyWallets = async () => {
-  const overallBalance = await getStatistical<TOverallBalance>(
+  const queryClient = new QueryClient();
+
+  await prefetchStatistical<IEfficiency[]>(
+    `${END_POINTS.EFFICIENCY}/weekly`,
+    queryClient,
+  );
+
+  await prefetchStatistical<TOverallBalance>(
     END_POINTS.OVERALL_BALANCE,
+    queryClient,
   );
 
   return (
@@ -43,10 +67,14 @@ const MyWallets = async () => {
             boxSizing="border-box"
           >
             <Box flex={2}>
-              <OverallBalance overallBalanceData={overallBalance} />
+              <HydrationBoundary state={dehydrate(queryClient)}>
+                <OverallBalance />
+              </HydrationBoundary>
             </Box>
             <Box flex={1}>
-              <Efficiency />
+              <HydrationBoundary state={dehydrate(queryClient)}>
+                <Efficiency />
+              </HydrationBoundary>
             </Box>
           </Flex>
           <Box>
@@ -66,6 +94,12 @@ const MyWallets = async () => {
   );
 };
 
-const MyWalletPage = memo(MyWallets);
+const WrappedMyWallets = () => (
+  <QueryProvider>
+    <MyWallets />
+  </QueryProvider>
+);
+
+const MyWalletPage = memo(WrappedMyWallets);
 
 export default MyWalletPage;

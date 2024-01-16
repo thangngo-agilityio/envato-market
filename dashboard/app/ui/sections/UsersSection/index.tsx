@@ -22,9 +22,6 @@ import { TOption } from '@/ui/components/common/Select';
 // Mock
 import { INITIAL_USER } from '@/lib/mocks';
 
-// Providers
-import { QueryProvider } from '@/ui/providers';
-
 // Lazy loading components
 const UsersTable = dynamic(() => import('@/ui/components/UsersTable'));
 const UserCard = dynamic(() => import('@/ui/components/UserCard'));
@@ -151,12 +148,6 @@ const UsersSections = () => {
   );
 };
 
-const UsersWrapped = () => (
-  <QueryProvider>
-    <UsersSections />
-  </QueryProvider>
-);
-
-const UsersPage = memo(UsersWrapped);
+const UsersPage = memo(UsersSections);
 
 export default UsersPage;
