@@ -1,7 +1,7 @@
 import { UseToastOptions } from '@chakra-ui/react';
-import { SHOW_TIME, STATUS } from '../constants';
 
 // Constants
+import { SHOW_TIME, STATUS } from '../constants';
 
 export const customToast = (
   title?: string,
