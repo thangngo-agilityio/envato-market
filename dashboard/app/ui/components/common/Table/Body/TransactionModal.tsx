@@ -125,6 +125,7 @@ const TransactionModal = ({
               {...field}
               isError={!!error}
               errorMessages={error?.message}
+              // TODO: Will update later
               onChange={handleChangeValue('customer', onChange)}
             />
           )}
@@ -141,6 +142,7 @@ const TransactionModal = ({
               {...field}
               isError={!!error}
               errorMessages={error?.message}
+              // TODO: Will update later
               onChange={handleChangeValue('customer', field.onChange)}
             />
           )}
@@ -160,6 +162,7 @@ const TransactionModal = ({
               {...field}
               isError={!!error}
               errorMessages={error?.message}
+              // TODO: Will update later
               onChange={handleChangeValue('customer', onChange)}
             />
           )}
@@ -176,6 +179,7 @@ const TransactionModal = ({
               {...field}
               isError={!!error}
               errorMessages={error?.message}
+              // TODO: Will update later
               onChange={handleChangeValue('customer', field.onChange)}
             />
           )}
@@ -195,6 +199,7 @@ const TransactionModal = ({
               {...field}
               isError={!!error}
               errorMessages={error?.message}
+              // TODO: Will update later
               onChange={handleChangeValue('customer', onChange)}
             />
           )}
@@ -211,6 +216,7 @@ const TransactionModal = ({
               {...field}
               isError={!!error}
               errorMessages={error?.message}
+              // TODO: Will update later
               onChange={handleChangeValue('customer', field.onChange)}
             />
           )}
