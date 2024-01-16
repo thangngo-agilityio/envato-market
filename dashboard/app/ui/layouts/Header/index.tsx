@@ -13,7 +13,13 @@ import {
   theme,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { Dropdown, IconButton, Logo, SwitchTheme } from '@/ui/components';
+import {
+  BonusNotification,
+  Dropdown,
+  IconButton,
+  Logo,
+  SwitchTheme,
+} from '@/ui/components';
 
 // Assets
 import { Email } from '@/ui/components/Icons';
@@ -107,12 +113,7 @@ const HeaderComponent = () => {
               <Email color={colorFill} />
             </IconButton>
 
-            <IconButton>
-              <Email color={colorFill} />
-            </IconButton>
-
-            {/* TODO: Implement BonusNotification component later */}
-            {/* <BonusNotification colorFill={colorFill} /> */}
+            <BonusNotification colorFill={colorFill} />
           </Flex>
           <Box
             display={{ base: 'none', default: 'inline-flex', md: 'none' }}

@@ -272,7 +272,7 @@ const TransactionTableComponent = ({
           whiteSpace="break-spaces"
           color={isAddMoney ? 'text.primary' : 'red.500'}
           noOfLines={1}
-          w={{ base: 100, md: 150, '3xl': 100, '7xl': 270 }}
+          w={{ base: 100, md: 150, '3xl': 100, '7xl': 200 }}
           flex={1}
         >
           {amount}
