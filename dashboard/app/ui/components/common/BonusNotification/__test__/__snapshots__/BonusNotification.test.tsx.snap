@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BonusNotification test cases should render correctly 1`] = `
+<div>
+  <button
+    aria-controls="menu-list-:r1:"
+    aria-expanded="false"
+    aria-haspopup="menu"
+    class="chakra-menu__menu-button"
+    id="menu-button-:r1:"
+  >
+    <span
+      class="css-xl71ch"
+    >
+      <div
+        class="css-1ve4u7y"
+        data-testid="icon-button-component"
+      >
+        <p
+          class="chakra-text css-tlt4oo"
+        >
+          5
+        </p>
+        <div
+          aria-label="Send email"
+          class="chakra-button css-yt1s1n"
+          data-testid="icon-button"
+        >
+          <svg
+            fill="none"
+            height="24"
+            stroke="mock"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 11H20M4 11C2.89543 11 2 10.1046 2 9V8C2 6.89543 2.89543 6 4 6H20C21.1046 6 22 6.89543 22 8V9C22 10.1046 21.1046 11 20 11M4 11L4 20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V11M12 6H16C17.1046 6 18 5.10457 18 4C18 2.89543 17.1046 2 16 2C13.7909 2 12 3.79086 12 6ZM12 6H8C6.89543 6 6 5.10457 6 4C6 2.89543 6.89543 2 8 2C10.2091 2 12 3.79086 12 6ZM12 6V22"
+              stroke-linecap="round"
+              stroke-width="1.5"
+            />
+          </svg>
+        </div>
+      </div>
+    </span>
+  </button>
+  <div
+    class="css-0"
+    style="visibility: hidden; position: absolute; min-width: max-content; inset: 0 auto auto 0;"
+  >
+    <div
+      aria-orientation="vertical"
+      class="chakra-menu__menu-list css-gqxg0i"
+      id="menu-list-:r1:"
+      role="menu"
+      style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
+      tabindex="-1"
+    >
+      <div
+        class="css-job24k"
+      >
+        <h3
+          class="chakra-text css-owlh8f"
+        >
+          60
+          % Bonus
+        </h3>
+        <p
+          class="chakra-text css-3fpd34"
+        >
+          Create an Account and Get Bonus
+        </p>
+        <div
+          class="css-n6nw9n"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
