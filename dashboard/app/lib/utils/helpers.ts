@@ -117,3 +117,14 @@ export const formatAllowOnlyNumbers = (
   // Replace any non-digit character with an empty string
   return input.replace(/[^0-9]/g, '');
 };
+
+export const getStatusColor = (status: string): string => {
+  switch (status.toLowerCase()) {
+    case 'online':
+      return 'green.500';
+    case 'offline':
+      return 'gray.500';
+    default:
+      return 'gray.500';
+  }
+};
