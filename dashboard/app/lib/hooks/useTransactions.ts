@@ -175,7 +175,7 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
       >,
     ) =>
       await transactionHttpService.put<TTransaction>(
-        END_POINTS.UPDATE_TRANSACTION,
+        END_POINTS.EDIT_TRANSACTION,
         transaction,
       ),
     onSettled: () => {
