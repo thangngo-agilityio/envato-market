@@ -1,6 +1,7 @@
 'use client';
 
 import { memo } from 'react';
+import { useStore } from 'zustand';
 import { usePathname } from 'next/navigation';
 
 // Components
@@ -22,13 +23,12 @@ import { AUTHENTICATION_ROLE, TITLES_HEADER } from '@/lib/constants';
 
 // Components
 import Notification from '@/ui/components/common/Notification';
+
+// Stores
+import { authStore } from '@/lib/stores';
 import { TUserDetail } from '@/lib/interfaces';
 
-interface HeaderProps {
-  user: TUserDetail;
-}
-
-const HeaderComponent = ({ user }: HeaderProps) => {
+const HeaderComponent = () => {
   const colorFill = useColorModeValue(
     theme.colors.gray[800],
     theme.colors.white,
@@ -37,7 +37,8 @@ const HeaderComponent = ({ user }: HeaderProps) => {
 
   const name = TITLES_HEADER[`${pathname.slice(1)}`] || TITLES_HEADER.DEFAULT;
 
-  const { firstName, lastName, role, avatarURL } = user;
+  const user = useStore(authStore, (state) => state.user);
+  const { firstName, lastName, role, avatarURL } = user as TUserDetail;
 
   const username = `${firstName || ''} ${lastName || ''}`;
   const roles = role === AUTHENTICATION_ROLE.SUPER_ADMIN;
@@ -101,7 +102,7 @@ const HeaderComponent = ({ user }: HeaderProps) => {
           >
             <SwitchTheme />
 
-            <Notification colorFill={colorFill} user={user} />
+            <Notification colorFill={colorFill} user={user as TUserDetail} />
 
             <IconButton>
               <Email color={colorFill} />
