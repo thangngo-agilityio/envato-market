@@ -6,15 +6,16 @@ import { Box, Flex } from '@chakra-ui/react';
 
 // Component
 import { Header } from '@/ui/layouts';
-import { TAuthStoreData, authStore } from '@/lib/stores';
+import { authStore } from '@/lib/stores';
 
 // Interfaces
 import { TUserDetail } from '@/lib/interfaces';
+import { useStore } from 'zustand';
 
 const SideBar = dynamic(() => import('@/ui/layouts/Sidebar'));
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
-  const user = authStore((state): TAuthStoreData['user'] => state.user);
+  const user = useStore(authStore, (state) => state.user);
 
   return (
     <Flex w="full" h="full" bg="background.body.primary">
