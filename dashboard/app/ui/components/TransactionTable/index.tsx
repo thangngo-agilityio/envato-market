@@ -21,6 +21,7 @@ import {
   formatUppercaseFirstLetter,
   getTransactionHomePage,
 } from '@/lib/utils';
+import { customToast } from '@/lib/utils/toast';
 
 // Hooks
 import {
@@ -41,14 +42,16 @@ import {
   SUCCESS_MESSAGES,
   TRANSACTION_STATUS_ENUM,
 } from '@/lib/constants';
+import { TYPE } from '@/lib/constants/notification';
 
 // Types
 import { TDataSource, THeaderTable, TTransaction } from '@/lib/interfaces';
 
 // Providers
 import { QueryProvider } from '@/ui/providers';
-import { TYPE } from '@/lib/constants/notification';
-import { customToast } from '@/lib/utils/toast';
+
+// Stores
+import { authStore } from '@/lib/stores';
 
 interface TFilterUserProps {
   isOpenHistoryModal?: boolean;
@@ -58,6 +61,7 @@ const TransactionTableComponent = ({
   isOpenHistoryModal = false,
 }: TFilterUserProps) => {
   const toast = useToast();
+  const { user } = authStore();
   const { get, setSearchParam: setSearchTransaction } = useSearch();
 
   const {
@@ -67,6 +71,7 @@ const TransactionTableComponent = ({
     isLoading: isLoadingTransactions,
     isError: isTransactionsError,
     sortBy,
+    updateTransaction,
     deleteTransaction,
   } = useTransactions({
     name: get('name') || '',
@@ -85,6 +90,47 @@ const TransactionTableComponent = ({
     handlePageChange,
     handlePageClick,
   } = usePagination(listData);
+
+  const handleUpdateTransaction = useCallback(
+    (updateCustomer: TTransaction) => {
+      const {
+        customer: { firstName, lastName, address },
+      } = updateCustomer;
+      updateTransaction(
+        {
+          transactionId: updateCustomer._id,
+          userId: user?.id,
+          firstName: firstName,
+          lastName: lastName,
+          state: address.state,
+          street: address.street,
+          city: address.city,
+          zip: address.zip,
+        },
+        {
+          onSuccess: () => {
+            toast(
+              customToast(
+                SUCCESS_MESSAGES.UPDATE_SUCCESS.title,
+                SUCCESS_MESSAGES.DELETE_SUCCESS.description,
+                STATUS.SUCCESS,
+              ),
+            );
+          },
+          onError: () => {
+            toast(
+              customToast(
+                ERROR_MESSAGES.UPDATE_TRANSACTION_FAIL.title,
+                ERROR_MESSAGES.UPDATE_TRANSACTION_FAIL.description,
+                STATUS.ERROR,
+              ),
+            );
+          },
+        },
+      );
+    },
+    [updateTransaction],
+  );
 
   const handleDeleteTransaction = useCallback(
     (updateData: Partial<TTransaction & { id: string }>) => {
@@ -174,8 +220,7 @@ const TransactionTableComponent = ({
         isOpenModal={!isOpenHistoryModal}
         transaction={data}
         onDeleteTransaction={handleDeleteTransaction}
-        // TODO: Handle later
-        // onUpdateTransaction={handleUpdateTransaction}
+        onUpdateTransaction={handleUpdateTransaction}
       />
     ),
     [],

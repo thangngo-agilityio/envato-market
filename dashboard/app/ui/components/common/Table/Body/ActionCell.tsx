@@ -1,5 +1,6 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { memo, useCallback, useState } from 'react';
 import {
   Button,
@@ -17,8 +18,11 @@ import { DeleteIcon, EditIcon, LockIcon, UnlockIcon } from '@chakra-ui/icons';
 import { TTransaction } from '@/lib/interfaces';
 
 // Components
-import { Dot, Modal } from '@/ui/components';
-import { TransactionModal } from '.';
+import { Dot } from '@/ui/components';
+const TransactionModal = dynamic(
+  () => import('@/ui/components/common/Table/Body/TransactionModal'),
+);
+const Modal = dynamic(() => import('@/ui/components/common/Modal'));
 
 interface ActionCallProps {
   transaction?: TTransaction;

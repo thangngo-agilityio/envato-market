@@ -168,6 +168,23 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
     [sortType],
   );
 
+  const { mutate: updateTransaction } = useMutation({
+    mutationFn: async (
+      transaction: Partial<
+        TTransaction & TCustomer & TAddress & { transactionId: string }
+      >,
+    ) =>
+      await transactionHttpService.put<TTransaction>(
+        END_POINTS.UPDATE_TRANSACTION,
+        transaction,
+      ),
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: [END_POINTS.TRANSACTIONS],
+      });
+    },
+  });
+
   const { mutate: deleteTransaction } = useMutation({
     mutationFn: async (
       transaction: Partial<
@@ -175,7 +192,7 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
       >,
     ) =>
       await transactionHttpService.put<TTransaction>(
-        `${END_POINTS.DELETE_TRANSACTION}`,
+        END_POINTS.DELETE_TRANSACTION,
         transaction,
       ),
     onSettled: () => {
@@ -191,6 +208,7 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
     dataTransaction,
     dataHistory,
     sortBy,
+    updateTransaction,
     deleteTransaction,
   };
 };
