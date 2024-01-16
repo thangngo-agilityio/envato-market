@@ -59,3 +59,9 @@ export type TUserDetail = Omit<IUserBase, 'avatarURL'> & {
   role?: string;
   description?: string;
 };
+
+export interface TPassword {
+  memberId: string;
+  oldPassword: string;
+  newPassword: string;
+}

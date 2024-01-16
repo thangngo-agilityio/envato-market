@@ -28,3 +28,6 @@ export * from './Setting';
 export * from './ChevronIcon';
 export * from './Eye';
 export * from './EyeSlash';
+export * from './SendIconLight';
+export * from './EditIcon';
+export * from './Security';

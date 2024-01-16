@@ -16,9 +16,6 @@ import { ISpendingStatistics } from '@/lib/interfaces';
 // Mocks
 import { INITIAL_TOTAL_STATISTICS } from '@/lib/mocks';
 
-// Providers
-import { QueryProvider } from '@/ui/providers';
-
 // Hooks
 import { useGetStatistic } from '@/lib/hooks';
 
@@ -57,12 +54,6 @@ const TotalStatisticListComponent = () => {
   );
 };
 
-const WrappedTotalStatisticList = () => (
-  <QueryProvider>
-    <TotalStatisticListComponent />
-  </QueryProvider>
-);
-
-const TotalStatisticList = memo(WrappedTotalStatisticList);
+const TotalStatisticList = memo(TotalStatisticListComponent);
 
 export default TotalStatisticList;

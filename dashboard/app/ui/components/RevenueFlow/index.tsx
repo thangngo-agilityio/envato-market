@@ -2,11 +2,6 @@
 
 import { memo, useCallback, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
-import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-} from '@tanstack/react-query';
 
 // Components
 const Chart = dynamic(() => import('react-apexcharts'), {
@@ -45,11 +40,6 @@ import { INITIAL_REVENUE_FLOW } from '@/lib/mocks';
 
 // Hooks
 import { useGetStatistic } from '@/lib/hooks';
-
-// Provides
-import { QueryProvider } from '@/ui/providers';
-
-const queryClient = new QueryClient();
 
 const RevenueFlowComponent = () => {
   const [option, setOption] = useState<string>('Jan,Dec');
@@ -215,14 +205,6 @@ const RevenueFlowComponent = () => {
   );
 };
 
-const WrappedRevenueFlow = () => (
-  <QueryProvider>
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <RevenueFlowComponent />
-    </HydrationBoundary>
-  </QueryProvider>
-);
-
-const RevenueFlow = memo(WrappedRevenueFlow);
+const RevenueFlow = memo(RevenueFlowComponent);
 
 export default RevenueFlow;

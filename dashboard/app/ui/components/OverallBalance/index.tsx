@@ -24,6 +24,7 @@ import { Arrow } from '@/ui/components/Icons';
 
 // Constants
 import {
+  END_POINTS,
   OVERALL_BALANCE_COLORS,
   REVENUE_FLOW_OPTIONS,
   REVENUE_FLOW_STATUS,
@@ -34,6 +35,7 @@ import { IRevenueFlow, TOverallBalance } from '@/lib/interfaces';
 
 // Components
 import Select, { TOption } from '@/ui/components/common/Select';
+import { Fetching } from '..';
 
 // Utils
 import { formatDecimalNumber } from '@/lib/utils';
@@ -41,15 +43,17 @@ import { formatDecimalNumber } from '@/lib/utils';
 // Mocks
 import { INITIAL_OVERALL_BALANCE } from '@/lib/mocks';
 
+// Hooks
+import { useGetStatistic } from '@/lib/hooks';
+
 type TOverallData = Omit<IRevenueFlow, 'pending'>[];
 
-interface OverallBalanceProps {
-  overallBalanceData?: TOverallBalance;
-}
-
-const OverallBalanceComponent = ({
-  overallBalanceData = INITIAL_OVERALL_BALANCE,
-}: OverallBalanceProps) => {
+const OverallBalanceComponent = () => {
+  const {
+    data: overallBalanceData = INITIAL_OVERALL_BALANCE,
+    isLoading: isLoadingOverallBalance,
+    isError: isErrorOverallBalance,
+  } = useGetStatistic<TOverallBalance>(END_POINTS.OVERALL_BALANCE);
   const { data, total, growth } = overallBalanceData;
 
   const [option, setOption] = useState<string>('');
@@ -84,82 +88,89 @@ const OverallBalanceComponent = ({
   }, []);
 
   return (
-    <Box bg="background.component.primary" rounded="lg">
-      <Box>
-        <Flex
-          py={4}
-          px={{ base: 0, md: 5 }}
-          borderBottom="1px"
-          borderColor="border.primary"
-          justifyContent="space-between"
-        >
-          <Box p={3}>
-            <Text variant="textSm">Overall Balance</Text>
-            <Flex align="center" gap={2}>
-              <Heading variant="heading2Xl" as="h3">
-                ${formatDecimalNumber(total)}
-              </Heading>
-              <Text color="primary.500">{growth}%</Text>
-            </Flex>
-          </Box>
-          <Flex gap={7} display={{ base: 'none', lg: 'flex' }}>
-            {REVENUE_FLOW_STATUS.slice(0, -1).map((item, index) => (
-              <Flex key={item} gap={2} alignItems="center">
-                <Box
-                  bgColor={OVERALL_BALANCE_COLORS[index]}
-                  w={3}
-                  height={3}
-                  rounded="50%"
-                />
-                <Text variant="textSm">{item}</Text>
+    <Fetching
+      isLoading={isLoadingOverallBalance}
+      isError={isErrorOverallBalance}
+      errorMessage="Overall Balance data error"
+      variant="secondary"
+      size="md"
+    >
+      <Box bg="background.component.primary" rounded="lg">
+        <Box>
+          <Flex
+            py={4}
+            px={{ base: 0, md: 5 }}
+            borderBottom="1px"
+            borderColor="border.primary"
+            justifyContent="space-between"
+          >
+            <Box p={3}>
+              <Text variant="textSm">Overall Balance</Text>
+              <Flex align="center" gap={2}>
+                <Heading variant="heading2Xl" as="h3">
+                  ${formatDecimalNumber(total)}
+                </Heading>
+                <Text color="primary.500">{growth}%</Text>
               </Flex>
-            ))}
+            </Box>
+            <Flex gap={7} display={{ base: 'none', lg: 'flex' }}>
+              {REVENUE_FLOW_STATUS.slice(0, -1).map((item, index) => (
+                <Flex key={item} gap={2} alignItems="center">
+                  <Box
+                    bgColor={OVERALL_BALANCE_COLORS[index]}
+                    w={3}
+                    height={3}
+                    rounded="50%"
+                  />
+                  <Text variant="textSm">{item}</Text>
+                </Flex>
+              ))}
+            </Flex>
+            <Box w={125} h="21px">
+              <Select
+                options={REVENUE_FLOW_OPTIONS}
+                variant="no-border"
+                renderTitle={renderTitle}
+                onSelect={handleChangeSelect}
+              />
+            </Box>
           </Flex>
-          <Box w={125} h="21px">
-            <Select
-              options={REVENUE_FLOW_OPTIONS}
-              variant="no-border"
-              renderTitle={renderTitle}
-              onSelect={handleChangeSelect}
-            />
-          </Box>
-        </Flex>
-        <Chart
-          options={{
-            chart: {
-              stacked: true,
-              toolbar: {
-                show: false,
-              },
-            },
-            xaxis: {
-              categories: dataSelected.map((item) => item.title),
-              axisTicks: {
-                show: false,
-              },
-              labels: {
-                style: {
-                  colors: colorFill,
+          <Chart
+            options={{
+              chart: {
+                stacked: true,
+                toolbar: {
+                  show: false,
                 },
               },
-            },
-            yaxis: {
-              labels: {
-                style: {
-                  colors: colorFill,
+              xaxis: {
+                categories: dataSelected.map((item) => item.title),
+                axisTicks: {
+                  show: false,
+                },
+                labels: {
+                  style: {
+                    colors: colorFill,
+                  },
                 },
               },
-            },
-            legend: {
-              show: false,
-            },
-            colors: OVERALL_BALANCE_COLORS,
-            dataLabels: {
-              enabled: false,
-            },
-            tooltip: {
-              custom: function ({ series, dataPointIndex }) {
-                return `<div style="padding: 10px; background-color: black; color: common.white">
+              yaxis: {
+                labels: {
+                  style: {
+                    colors: colorFill,
+                  },
+                },
+              },
+              legend: {
+                show: false,
+              },
+              colors: OVERALL_BALANCE_COLORS,
+              dataLabels: {
+                enabled: false,
+              },
+              tooltip: {
+                custom: function ({ series, dataPointIndex }) {
+                  return `<div style="padding: 10px; background-color: black; color: common.white">
                 <div>
                 ${dataSelected[dataPointIndex].title}
                 </div>
@@ -174,23 +185,24 @@ const OverallBalanceComponent = ({
                 )}
                 </p>
                 </div>`;
+                },
               },
-            },
-          }}
-          series={[
-            {
-              data: dataSelected.map(({ signed }) => signed),
-            },
-            {
-              data: dataSelected.map(({ lost }) => lost),
-            },
-          ]}
-          type="area"
-          height="210"
-          width="100%"
-        />
+            }}
+            series={[
+              {
+                data: dataSelected.map(({ signed }) => signed),
+              },
+              {
+                data: dataSelected.map(({ lost }) => lost),
+              },
+            ]}
+            type="area"
+            height="210"
+            width="100%"
+          />
+        </Box>
       </Box>
-    </Box>
+    </Fetching>
   );
 };
 

@@ -1,7 +1,7 @@
 ---
 // Components
 import GlobalLayout from '@app/layouts/Global/index.astro';
-import Subscribe from '@app/components/Subscribe/index.astro';
+import Subscribe from '@app/components/Subscribe/index.tsx';
 import Wrapper from './Wrapper';
 import Footer from './Footer/index.astro';
 
@@ -12,6 +12,6 @@ const currentPathName: string = Astro.url.pathname;
   <Wrapper client:visible pathName={currentPathName}>
     <slot />
   </Wrapper>
-  <Subscribe />
+  <Subscribe client:visible />
   <Footer />
 </GlobalLayout>

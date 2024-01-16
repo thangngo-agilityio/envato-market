@@ -35,6 +35,7 @@ export const ERROR_MESSAGES = {
     title: 'Delete failed',
     description: 'Notification has not been delete successfully',
   },
+  OLD_PASSWORD_INCORRECT: 'Old password is not correct',
 };
 
 export const SUCCESS_MESSAGES = {
