@@ -37,6 +37,7 @@ export const COLUMNS_DASHBOARD = (
     renderBody: onRenderRole,
   },
   {
+    title: '',
     key: 'action',
     renderBody: onRenderActionIcon,
     renderHead: onRenderHead,
@@ -79,6 +80,7 @@ export const COLUMNS_HISTORY = (
     renderBody: renderTransactionStatus,
   },
   {
+    title: '',
     key: 'action',
     renderBody: renderActionIcon,
   },
