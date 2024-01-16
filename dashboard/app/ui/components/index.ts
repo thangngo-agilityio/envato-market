@@ -44,3 +44,4 @@ export { default as Modal } from './common/Modal';
 export { default as FallbackImage } from './FallbackImage';
 export { default as ChatMember } from './ChatMember';
 export { default as Conversation } from './Conversation';
+export { default as PinCode } from './common/PinCode';

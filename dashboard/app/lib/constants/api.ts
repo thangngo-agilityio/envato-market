@@ -17,6 +17,14 @@ export const END_POINTS = {
   SIGN_UP: '/sign-up',
   DELETE_TRANSACTION: '/delete-transactions',
   EDIT_TRANSACTION: '/edit-transactions',
+  CREATE_PIN: '/create-pin-code',
+  CONFIRM_PIN: '/pin-code',
+  UPDATE_PASSWORD: '/update-password',
+  NOTIFICATION: '/notifications',
+  MY_WALLET: '/wallets',
+  ADD_MONEY: '/add-money',
+  SEND_MONEY: '/send-money',
+  SUPPORT: '/supports',
 };
 
 export const SEARCH_PARAM = {

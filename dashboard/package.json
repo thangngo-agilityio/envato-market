@@ -31,7 +31,8 @@
     "react-fast-compare": "^3.2.2",
     "react-hook-form": "^7.49.2",
     "react-quill": "^2.0.0",
-    "zustand": "^4.4.7"
+    "zustand": "^4.4.7",
+    "firebase": "^10.7.1"
   },
   "devDependencies": {
     "@chakra-ui/storybook-addon": "^5.1.0",

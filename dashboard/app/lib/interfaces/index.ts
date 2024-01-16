@@ -8,3 +8,4 @@ export * from './table';
 export * from './config';
 export * from './pagination';
 export * from './chat';
+export * from './form';

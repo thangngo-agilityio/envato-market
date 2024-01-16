@@ -55,4 +55,5 @@ export type TUserDetail = Omit<IUserBase, 'avatarURL'> & {
   twitterURL?: string;
   linkedinURL?: string;
   youtubeURL?: string;
+  pinCode?: string;
 };
