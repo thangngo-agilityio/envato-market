@@ -297,9 +297,9 @@ const TransactionTableComponent = ({
   );
 };
 
-const WrappedTransactionTable = () => (
+const WrappedTransactionTable = (props: TFilterUserProps) => (
   <QueryProvider>
-    <TransactionTableComponent />
+    <TransactionTableComponent {...props} />
   </QueryProvider>
 );
 
