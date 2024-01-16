@@ -66,7 +66,7 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
     updateNotification,
   } = useNotification(user?.id);
 
-  const handleCloseModal = () => handleToggleModal();
+  const handleTriggerToggleModal = () => handleToggleModal();
 
   const handleUpdateNotification = useCallback(
     (updateData: TNotification) => {
@@ -95,7 +95,7 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
                 STATUS.SUCCESS,
               ),
             );
-            handleCloseModal();
+            handleTriggerToggleModal();
           },
           onError: () => {
             toast(
@@ -109,7 +109,7 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
         },
       );
     },
-    [deleteNotification, handleCloseModal],
+    [deleteNotification, handleTriggerToggleModal],
   );
 
   const handleDeleteData = () => {
@@ -207,14 +207,14 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
                   w={44}
                   bg="orange.300"
                   _hover={{ bg: 'orange.400' }}
-                  onClick={handleCloseModal}
+                  onClick={handleTriggerToggleModal}
                 >
                   Cancel
                 </Button>
               </Flex>
             </Box>
           }
-          onClose={handleCloseModal}
+          onClose={handleTriggerToggleModal}
         />
       )}
     </>
