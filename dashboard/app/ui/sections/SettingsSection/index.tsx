@@ -25,6 +25,18 @@ const Faq = dynamic(() =>
   })),
 );
 
+const TermCondition = dynamic(() =>
+  import('@/ui/components/Icons/TermCondition').then((module) => ({
+    default: module.TermCondition,
+  })),
+);
+
+const TermAndCondition = dynamic(() =>
+  import('@/ui/components/TermAndCondition').then((module) => ({
+    default: module.default,
+  })),
+);
+
 const UserForm = dynamic(() => import('@/ui/components/Personal'));
 const FaqPage = dynamic(() => import('@/ui/components/Faq'));
 
@@ -36,9 +48,46 @@ const SettingsSection = () => {
   const pages: Record<string, ReactElement> = {
     [OPTION_SETTING.USER_FORM]: <UserForm />,
     [OPTION_SETTING.FAQ_PAGE]: <FaqPage />,
+    [OPTION_SETTING.TERM_AND_CONDITION]: <TermAndCondition />,
   };
 
   const handleItemClick = useCallback((id: string) => setActiveItemId(id), []);
+
+  const renderSettingOptions = useCallback(() => {
+    const ITEMS = [
+      {
+        id: OPTION_SETTING.USER_FORM,
+        title: 'Personal Informations',
+        content: 'Fill in your personal information',
+        icon: <AvatarSetting />,
+      },
+      {
+        id: OPTION_SETTING.FAQ_PAGE,
+        title: 'FAQ',
+        content: 'Frequently asked questions',
+        icon: <Faq />,
+      },
+      {
+        id: OPTION_SETTING.TERM_AND_CONDITION,
+        title: 'Term and Conditions',
+        content: 'Term and Conditions of use and privacy policy',
+        icon: <TermCondition />,
+      },
+    ];
+
+    return ITEMS.map(({ id, icon, title, content }) => (
+      <ItemSideBarSetting
+        key={id}
+        id={id}
+        activeItemId={activeItemId}
+        onClick={handleItemClick}
+        title={title}
+        content={content}
+      >
+        {icon}
+      </ItemSideBarSetting>
+    ));
+  }, [activeItemId, handleItemClick]);
 
   return (
     <Grid
@@ -52,25 +101,7 @@ const SettingsSection = () => {
       py={12}
     >
       <GridItem px={4} py={6} colSpan={3} bg="background.body.quaternary">
-        <ItemSideBarSetting
-          id={OPTION_SETTING.USER_FORM}
-          activeItemId={activeItemId}
-          onClick={handleItemClick}
-          title="Personal Informations"
-          content="Fill in your personal information"
-        >
-          <AvatarSetting />
-        </ItemSideBarSetting>
-
-        <ItemSideBarSetting
-          id={OPTION_SETTING.FAQ_PAGE}
-          activeItemId={activeItemId}
-          onClick={handleItemClick}
-          title="FAQ"
-          content="Frequently asked questions"
-        >
-          <Faq />
-        </ItemSideBarSetting>
+        {renderSettingOptions()}
       </GridItem>
 
       <GridItem colSpan={9} px={10} py={8} bg="background.body.quaternary">
@@ -81,4 +112,5 @@ const SettingsSection = () => {
 };
 
 const Settings = memo(SettingsSection);
+
 export default Settings;
