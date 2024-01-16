@@ -50,6 +50,7 @@ export const COLUMNS_HISTORY = (
   renderPaymentStatus: ({ paymentStatus }: TDataSource) => void,
   renderTransactionStatus: ({ paymentStatus }: TDataSource) => void,
   renderActionIcon: (data: TTransaction) => void,
+  renderSpent: (spent: TTransaction) => void,
 ) => [
   {
     title: 'Customer name',
@@ -66,6 +67,7 @@ export const COLUMNS_HISTORY = (
     title: 'Amount',
     key: 'spent',
     renderHead: renderHead,
+    renderBody: renderSpent,
   },
   {
     title: 'Payment',

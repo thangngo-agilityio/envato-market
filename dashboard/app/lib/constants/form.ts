@@ -8,6 +8,15 @@ export const AUTH_SCHEMA = {
   LAST_NAME: {
     required: ERROR_MESSAGES.FIELD_REQUIRED('Last Name'),
   },
+  STREET: {
+    required: ERROR_MESSAGES.FIELD_REQUIRED('Street'),
+  },
+  STATE: {
+    required: ERROR_MESSAGES.FIELD_REQUIRED('State'),
+  },
+  CITY: {
+    required: ERROR_MESSAGES.FIELD_REQUIRED('City'),
+  },
   EMAIL: {
     required: ERROR_MESSAGES.FIELD_REQUIRED('Email'),
     pattern: {
@@ -80,6 +89,13 @@ export const AUTH_SCHEMA = {
     pattern: {
       value: REGEX.YOUTUBE,
       message: ERROR_MESSAGES.YOUTUBE_INVALID,
+    },
+  },
+
+  ZIP_CODE: {
+    pattern: {
+      value: REGEX.ZIP_CODE,
+      message: ERROR_MESSAGES.ZIP_CODE_INVALID,
     },
   },
 };

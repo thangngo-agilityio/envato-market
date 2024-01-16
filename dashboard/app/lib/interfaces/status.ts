@@ -8,6 +8,7 @@ export enum Status {
   CANCELLED = 'Cancelled',
   PENDING = 'Pending',
   COMPLETED = 'Completed',
+  ARCHIVED = 'Archived',
 }
 
 export enum RevenueFlowStatus {
