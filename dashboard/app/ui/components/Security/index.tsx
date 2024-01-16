@@ -90,7 +90,7 @@ const SecurityPage = () => {
         onError: () => {
           toast(
             customToast(
-              ERROR_MESSAGES.UPDATE_PASSWORD_FAIL,
+              ERROR_MESSAGES.OLD_PASSWORD_INCORRECT,
               ERROR_MESSAGES.UPDATE_FAIL.description,
               STATUS.ERROR,
             ),

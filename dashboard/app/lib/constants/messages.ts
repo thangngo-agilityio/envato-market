@@ -31,7 +31,7 @@ export const ERROR_MESSAGES = {
     title: 'Update failed',
     description: 'Your transaction has not been updated successfully',
   },
-  UPDATE_PASSWORD_FAIL: 'Old password is not correct',
+  OLD_PASSWORD_INCORRECT: 'Old password is not correct',
 };
 
 export const SUCCESS_MESSAGES = {
