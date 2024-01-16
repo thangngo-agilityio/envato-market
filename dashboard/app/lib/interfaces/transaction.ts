@@ -14,6 +14,7 @@ export type TTransaction = {
   name: string;
   location: string;
   image: string;
+  type: string;
   paymentStatus: PAYMENT_STATUS_ENUM;
   transactionStatus: TRANSACTION_STATUS_ENUM;
 };

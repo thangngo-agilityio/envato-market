@@ -2,7 +2,6 @@ import { memo } from 'react';
 import { Box, Flex, Grid, GridItem } from '@chakra-ui/react';
 import isEqual from 'react-fast-compare';
 import dynamic from 'next/dynamic';
-import { QueryProvider } from '@/ui/providers';
 
 // Lazy loading components
 const CardPayment = dynamic(() => import('@/ui/components/CardPayment'));
@@ -28,9 +27,7 @@ const Histories = () => (
         px={6}
         py={5}
       >
-        <QueryProvider>
-          <TransactionTable />
-        </QueryProvider>
+        <TransactionTable isOpenHistoryModal />
       </Box>
     </GridItem>
     <GridItem mt={{ base: 6, '2xl': 0 }}>

@@ -15,4 +15,5 @@ export const REGEX = {
 
   YOUTUBE:
     /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|live\/|v\/)?)([\w\-]+)(\S+)?$/,
+  ZIP_CODE: /^\d{5}$/,
 };

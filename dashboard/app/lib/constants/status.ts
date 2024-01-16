@@ -10,6 +10,7 @@ export const STATUS_LABEL = {
   [Status.CANCELLED]: 'tertiary',
   [Status.PENDING]: 'quaternary',
   [Status.COMPLETED]: 'primary',
+  [Status.ARCHIVED]: 'quaternary',
 };
 
 export const STATUS_SUBMIT = {
@@ -17,3 +18,8 @@ export const STATUS_SUBMIT = {
   ERROR: 'error',
   SUCCESS: 'success',
 };
+
+export enum STATUS {
+  ERROR = 'error',
+  SUCCESS = 'success',
+}

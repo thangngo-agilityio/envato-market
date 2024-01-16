@@ -20,7 +20,7 @@ const CustomerNameCellComponent = ({
     color="text.primary"
     fontWeight="semibold"
     textAlign="left"
-    w={{ base: 350, xl: 250, '4xl': 300, '6xl': 350 }}
+    w={{ base: 350, xl: 100, '4xl': 200, '6xl': 350 }}
   >
     <Flex alignItems="center" gap="10px" w={200}>
       <Box pos="relative" w={10} h={10}>

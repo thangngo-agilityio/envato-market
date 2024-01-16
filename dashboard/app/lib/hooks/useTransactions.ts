@@ -1,14 +1,15 @@
 import { useCallback, useMemo, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 // Services
-import { getTransactions } from '@/lib/services';
+import { getTransactions, transactionHttpService } from '@/lib/services';
 
 // Constants
 import { END_POINTS, TRANSACTION_STATUS_ENUM } from '@/lib/constants';
 
 // Types
-import { IDataList, TTransaction } from '@/lib/interfaces';
+import { IDataList, TAddress, TCustomer, TTransaction } from '@/lib/interfaces';
+import { authStore } from '../stores';
 
 export type TSearchTransaction = {
   name: string;
@@ -23,10 +24,11 @@ type TSort = {
 };
 export type TSortHandler = (field: TSortField) => void;
 
-export const useTransactions = (
-  queryParam?: TSearchTransaction,
-  userId?: string,
-) => {
+export const useTransactions = (queryParam?: TSearchTransaction) => {
+  const queryClient = useQueryClient();
+
+  const { user } = authStore();
+
   const { name: searchName, month: searchMonth }: TSearchTransaction =
     Object.assign(
       {
@@ -51,7 +53,7 @@ export const useTransactions = (
 
   const { data = [], ...query } = useQuery({
     queryKey: [END_POINTS.TRANSACTIONS, searchName, searchMonth],
-    queryFn: ({ signal }) => getTransactions('', { signal }, userId),
+    queryFn: ({ signal }) => getTransactions('', { signal }, user?.id),
   });
 
   //  sort transactions
@@ -166,11 +168,29 @@ export const useTransactions = (
     [sortType],
   );
 
+  const { mutate: deleteTransaction } = useMutation({
+    mutationFn: async (
+      transaction: Partial<
+        TTransaction & TCustomer & TAddress & { transactionId: string }
+      >,
+    ) =>
+      await transactionHttpService.put<TTransaction>(
+        `${END_POINTS.DELETE_TRANSACTION}`,
+        transaction,
+      ),
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: [END_POINTS.TRANSACTIONS],
+      });
+    },
+  });
+
   return {
     ...query,
     data: transactions,
     dataTransaction,
     dataHistory,
     sortBy,
+    deleteTransaction,
   };
 };

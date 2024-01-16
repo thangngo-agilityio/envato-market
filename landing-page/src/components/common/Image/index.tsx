@@ -19,7 +19,7 @@ const ImageCustom = ({
     img.onload = () => setImgSrc(src);
   }, [src]);
 
-  return <img loading='lazy' {...{ src: imgSrc, ...props }} />;
+  return <img {...{ src: imgSrc, ...props }} />;
 };
 
 const ImageMemorized = memo(ImageCustom, isEqual);
