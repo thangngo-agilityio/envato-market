@@ -19,6 +19,7 @@ export const END_POINTS = {
   DELETE_TRANSACTION: '/delete-transactions',
   EDIT_TRANSACTION: '/edit-transactions',
   UPDATE_PASSWORD: '/update-password',
+  SUPPORT: '/supports',
 };
 
 export const SEARCH_PARAM = {
