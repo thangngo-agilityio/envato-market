@@ -1,8 +1,9 @@
 'use client';
 
 import { memo, useCallback, useMemo } from 'react';
+import dynamic from 'next/dynamic';
 import { Controller, useForm } from 'react-hook-form';
-import ReactQuill from 'react-quill';
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 // Components
 import {
@@ -47,7 +48,7 @@ const SupportsSection = () => {
 
   const user = authStore((state) => state.user);
   const { id, email, firstName, lastName, phoneNumber, title, description } =
-    user as TUserDetail;
+    (user as TUserDetail) || {};
 
   const {
     data: listIssue,
