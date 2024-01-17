@@ -12,8 +12,10 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import ReactQuill from 'react-quill';
+
 import 'react-quill/dist/quill.snow.css';
+
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 // themes
 import { colors } from '@/ui/themes/bases/colors';
@@ -38,6 +40,7 @@ import { authStore } from '@/lib/stores';
 
 // Interfaces
 import { MessageType } from '@/lib/interfaces/messages';
+import dynamic from 'next/dynamic';
 
 export type Props = {
   activeMember?: string;
