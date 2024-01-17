@@ -2,7 +2,11 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 // Providers
-import { ChakraProvider, CheckAuthenticationProvider } from '@/ui/providers';
+import {
+  ChakraProvider,
+  CheckAuthenticationProvider,
+  QueryProvider,
+} from '@/ui/providers';
 
 // Fonts
 import { fontFamilies } from '@/ui/themes/bases';
@@ -47,9 +51,13 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <ChakraProvider>
-          <CheckAuthenticationProvider>{children}</CheckAuthenticationProvider>
-        </ChakraProvider>
+        <QueryProvider>
+          <ChakraProvider>
+            <CheckAuthenticationProvider>
+              {children}
+            </CheckAuthenticationProvider>
+          </ChakraProvider>
+        </QueryProvider>
       </body>
     </html>
   );

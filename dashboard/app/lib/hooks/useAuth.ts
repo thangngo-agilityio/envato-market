@@ -63,9 +63,11 @@ export const useAuth = () => {
       {
         email,
         password,
+        fcmToken = '',
       }: {
         email: string;
         password: string;
+        fcmToken?: string;
       },
       isRemember?: boolean,
     ): Promise<void> => {
@@ -76,6 +78,7 @@ export const useAuth = () => {
             {
               email,
               password,
+              fcmToken,
             },
             {},
           );
@@ -102,11 +105,11 @@ export const useAuth = () => {
 
   const handleSignUp = useCallback(
     async (
-      userInfo: Omit<TUserDetail, 'id' | 'createdAt'>,
+      userInfo: Omit<TUserDetail, 'id' | 'createdAt'> & { fcmToken: string },
     ): Promise<{
       errors?: TSignUpErrorField;
     }> => {
-      const { email, password, firstName, lastName } = userInfo;
+      const { email, password, firstName, lastName, fcmToken } = userInfo;
       try {
         const { data }: AxiosResponse<TUserAxiosResponse | undefined> =
           await AuthenticationHttpService.post<TUserAxiosResponse | undefined>(
@@ -119,6 +122,7 @@ export const useAuth = () => {
               password,
               firstName,
               lastName,
+              fcmToken,
             },
             {},
           );

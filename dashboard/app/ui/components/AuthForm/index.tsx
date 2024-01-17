@@ -28,9 +28,12 @@ import { ROUTES, AUTH_SCHEMA, TITLES, ERROR_MESSAGES } from '@/lib/constants';
 import { Divider, InputField } from '@/ui/components';
 
 // Utils
-import { validatePassword } from '@/lib/utils';
+import { requestForToken, validatePassword } from '@/lib/utils';
+
+// Types
 import { TUserDetail } from '@/lib/interfaces';
 import { AuthFooter, AuthHeader } from '@/ui/layouts';
+import { getMessaging } from 'firebase/messaging';
 
 type TAuthForm = Omit<TUserDetail, 'id' | 'createdAt'> & {
   confirmPassword: string;
@@ -90,6 +93,8 @@ const AuthFormComponent = ({
     },
   );
 
+  const messaging = getMessaging();
+
   const isDisabledSubmitBtn: boolean = isSubmit || isFillAllFields;
 
   const renderPasswordIcon = useCallback(
@@ -114,8 +119,9 @@ const AuthFormComponent = ({
       setIsSubmit(true);
       try {
         const { email, password, isRemember } = data;
+        const fcmToken = (await requestForToken(messaging)) || '';
 
-        await signIn({ email, password }, isRemember);
+        await signIn({ email, password, fcmToken }, isRemember);
 
         router.push(ROUTES.ROOT);
       } catch (error) {
@@ -138,7 +144,8 @@ const AuthFormComponent = ({
         ...fieldValues
       } = data;
       try {
-        const { errors } = await signUp(fieldValues);
+        const fcmToken = (await requestForToken(messaging)) || '';
+        const { errors } = await signUp({ ...fieldValues, fcmToken });
         if (errors) {
           return Object.entries(errors).forEach(([key, value]) =>
             setError(key as keyof typeof data, {
