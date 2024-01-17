@@ -5,12 +5,15 @@ import { Box, Heading } from '@chakra-ui/react';
 import { Control } from 'react-hook-form';
 
 // Hooks
-import { useForm } from '@/lib/hooks';
+import { useForm, useWallet } from '@/lib/hooks';
 
 // Components
-import { CardBalance } from './CardBalance';
 import { UserSelector } from './UserSelector';
 import { EnterMoney } from './EnterMoney';
+import CardBalance from './CardBalance';
+
+// Stores
+import { authStore } from '@/lib/stores';
 
 export interface CardPaymentProps {
   balance?: number;
@@ -25,15 +28,18 @@ export type TTransferControl = {
 };
 
 const CardPaymentComponent = ({
-  balance = 24098,
   onSubmit = () => {},
 }: CardPaymentProps): JSX.Element => {
+  const user = authStore((state) => state.user);
+
   const { control, handleSubmit } = useForm<TTransfer>({
     defaultValues: {
       money: '',
       userId: '',
     },
   });
+
+  const { currentWalletMoney } = useWallet(user?.id);
 
   return (
     <Box
@@ -55,7 +61,7 @@ const CardPaymentComponent = ({
         my wallet
       </Heading>
 
-      <CardBalance balance={balance} />
+      <CardBalance balance={currentWalletMoney?.balance || 0} />
 
       <Box as="form" mt={4} onSubmit={handleSubmit(onSubmit)}>
         <UserSelector control={control} />

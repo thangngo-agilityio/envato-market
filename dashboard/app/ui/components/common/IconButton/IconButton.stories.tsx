@@ -19,11 +19,6 @@ const meta: Meta<typeof IconButton> = {
         'The children of the IconButton, e.g. text, react components, etc.',
     },
 
-    isNotification: {
-      description:
-        'Indicates that the IconButton is being notified and display a gray dot in the top right corner',
-    },
-
     hasNewNotification: {
       description:
         'Indicates that the IconButton has a new notification and display a red dot in the top right corner',
@@ -48,14 +43,12 @@ export const Default: Story = {
 export const Notification: Story = {
   args: {
     children: <DarkTheme color={`${theme.colors.gray[800]}`} />,
-    isNotification: true,
   },
 };
 
 export const Email: Story = {
   args: {
     children: <EmailIcon color={`${theme.colors.gray[800]}`} />,
-    isNotification: true,
     hasNewNotification: true,
   },
 };
