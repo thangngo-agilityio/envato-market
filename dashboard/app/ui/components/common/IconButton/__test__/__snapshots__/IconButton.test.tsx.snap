@@ -6,11 +6,10 @@ exports[`IconButton test cases should render correctly 1`] = `
     class="css-1ve4u7y"
     data-testid="icon-button-component"
   >
-    <button
+    <div
       aria-label="Send email"
-      class="chakra-button css-yt1s1n"
+      class="chakra-button css-1l63kb4"
       data-testid="icon-button"
-      type="button"
     >
       <svg
         fill="none"
@@ -57,7 +56,7 @@ exports[`IconButton test cases should render correctly 1`] = `
           stroke-width="1.5"
         />
       </svg>
-    </button>
+    </div>
   </div>
 </div>
 `;

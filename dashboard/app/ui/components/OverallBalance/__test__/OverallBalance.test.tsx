@@ -4,20 +4,30 @@ import '@testing-library/jest-dom';
 
 // Components
 import { OverallBalance } from '@/ui/components';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 jest.mock('react-apexcharts', () => ({
   __esModule: true,
   default: () => <div />,
 }));
 
+const queryClient = new QueryClient();
+
+const setup = () =>
+  render(
+    <QueryClientProvider client={queryClient}>
+      <OverallBalance />
+    </QueryClientProvider>,
+  );
+
 describe('OverallBalance component', () => {
   it('renders correctly', () => {
-    const { container } = render(<OverallBalance />);
+    const { container } = setup();
 
     expect(container).toMatchSnapshot();
   });
   test('handleChangeSelect updates chartData correctly', async () => {
-    render(<OverallBalance />);
+    setup();
 
     const menuButton = screen.getByRole('button', {
       name: /jan \- dec/i,

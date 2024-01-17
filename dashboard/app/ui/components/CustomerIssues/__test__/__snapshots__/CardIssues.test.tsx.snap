@@ -3,12 +3,12 @@
 exports[`CardIssues render Should render match with snapshot. 1`] = `
 <div>
   <div
-    class="css-1ten0p5"
+    class="css-l441xw"
   >
     <img
-      alt="This is avatar"
+      alt="This is avatar sign up"
       class="chakra-image css-xerxct"
-      src="/images/avatar.webp"
+      src="/images/avatar-sign-up.webp"
     />
     <div
       class="css-m75dnw"
@@ -17,13 +17,13 @@ exports[`CardIssues render Should render match with snapshot. 1`] = `
         class="css-k008qs"
       >
         <p
-          class="chakra-text css-3ptjhf"
+          class="chakra-text css-1pm52oa"
         >
           Joel Becker
           <span
             class="chakra-text css-1y8hbw7"
           >
-            12h
+            Invalid Date
           </span>
         </p>
       </div>

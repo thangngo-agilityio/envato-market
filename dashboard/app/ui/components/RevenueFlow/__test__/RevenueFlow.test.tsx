@@ -4,15 +4,22 @@ import { render } from '@testing-library/react';
 import { RevenueFlow } from '@/ui/components';
 
 // Mock
-import { REVENUE_FLOW_MOCK } from '@/lib/mocks';
 import userEvent from '@testing-library/user-event';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 jest.mock('react-apexcharts', () => ({
   __esModule: true,
   default: () => <div>Mocked Chart Component</div>,
 }));
 
-const setup = () => render(<RevenueFlow data={REVENUE_FLOW_MOCK} />);
+const queryClient = new QueryClient();
+
+const setup = () =>
+  render(
+    <QueryClientProvider client={queryClient}>
+      <RevenueFlow />
+    </QueryClientProvider>,
+  );
 
 describe('RevenueFlow component', () => {
   it('renders correctly', () => {

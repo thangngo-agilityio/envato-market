@@ -20,6 +20,18 @@ exports[`Dropdown render Should render match with snapshot. 1`] = `
           class="css-70qvj9"
         >
           <div
+            class="css-1xrprra"
+          >
+            <img
+              alt=""
+              data-nimg="fill"
+              decoding="async"
+              fetchpriority="high"
+              src="/icons/user.svg"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; object-fit: cover; color: transparent; border-radius: 12px; border-width: 1px; padding-top: 2px; cursor: pointer; border-color: #e2e8f0; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+            />
+          </div>
+          <div
             class="css-1eben70"
           >
             <div
@@ -75,7 +87,7 @@ exports[`Dropdown render Should render match with snapshot. 1`] = `
       >
         <a
           aria-label="menu-icon-My profile"
-          class="chakra-menu__menuitem css-4otqo"
+          class="chakra-link chakra-menu__menuitem css-18wf392"
           data-index="0"
           href="/settings"
           id="menu-list-:r1:-menuitem-:r2:"
@@ -121,7 +133,7 @@ exports[`Dropdown render Should render match with snapshot. 1`] = `
         </a>
         <a
           aria-label="menu-icon-Logout"
-          class="chakra-menu__menuitem css-4otqo"
+          class="chakra-link chakra-menu__menuitem css-18wf392"
           data-index="1"
           href="/login"
           id="menu-list-:r1:-menuitem-:r3:"
@@ -157,19 +169,16 @@ exports[`Dropdown render Should render match with snapshot. 1`] = `
           class="chakra-divider css-19ob8qo"
         />
         <a
-          aria-label="menu-item-User"
-          class="chakra-menu__menuitem css-mdob6w"
+          aria-label="menu-item-undefined"
+          class="chakra-link chakra-menu__menuitem css-crchys"
           data-index="2"
-          href="/users"
           id="menu-list-:r1:-menuitem-:r4:"
           role="menuitem"
           tabindex="-1"
         >
           <p
             class="chakra-text css-0"
-          >
-            User
-          </p>
+          />
         </a>
       </div>
     </div>

@@ -23,7 +23,7 @@ exports[`BonusNotification test cases should render correctly 1`] = `
         </p>
         <div
           aria-label="Send email"
-          class="chakra-button css-yt1s1n"
+          class="chakra-button css-1l63kb4"
           data-testid="icon-button"
         >
           <svg
