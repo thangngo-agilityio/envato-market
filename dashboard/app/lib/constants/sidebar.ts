@@ -5,6 +5,7 @@ import {
   MyWalletIcon,
   SettingIcon,
   SignOutIcon,
+  SupportIcon,
   TransactionIcon,
   UserIcon,
 } from '@/ui/components/Icons';
@@ -45,6 +46,12 @@ export const MENU_ITEM_LIST = [
 ];
 
 export const HELP_ITEM_LIST = [
+  {
+    id: 5,
+    leftIcon: SupportIcon,
+    menuItemContent: 'Supports',
+    destination: `/${ROUTES.SUPPORT}`,
+  },
   {
     id: 6,
     leftIcon: SettingIcon,

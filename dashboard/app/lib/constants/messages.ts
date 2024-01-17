@@ -36,6 +36,10 @@ export const ERROR_MESSAGES = {
     description: 'Notification has not been delete successfully',
   },
   OLD_PASSWORD_INCORRECT: 'Old password is not correct',
+  CREATE_ISSUES_FAIL: {
+    title: 'Create issues failed',
+    description: 'Issues has not been add successfully',
+  },
 };
 
 export const SUCCESS_MESSAGES = {
@@ -50,6 +54,10 @@ export const SUCCESS_MESSAGES = {
   DELETE_NOTIFICATION_SUCCESS: {
     title: 'Delete success',
     description: 'Notification has been delete successfully',
+  },
+  CREATE_ISSUES: {
+    title: 'Create issues successfully',
+    description: 'Your issues has been added',
   },
 };
 
