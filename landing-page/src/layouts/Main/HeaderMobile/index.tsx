@@ -9,8 +9,13 @@ type THeaderProps = {
   onToggleSidebar?: () => void;
 };
 
-const HeaderMobile = ({ onToggleSidebar }: THeaderProps): JSX.Element => (
-  <header className='bg-white flex justify-between items-center fixed z-20 top-0 left-0 right-0 h-[70px] shadow-navMobile py-2 px-8 md:hidden'>
+const HeaderMobile = ({ onToggleSidebar }: THeaderProps): JSX.Element => {
+
+  // Styles CSS
+  const styleHeader: string = 'bg-white flex justify-between items-center fixed z-20 top-0 left-0 right-0 h-[70px] shadow-navMobile py-2 px-8 md:hidden';
+
+  return (
+    <header className={`${styleHeader}`}>
     <a href={ROUTES.HOME} className='text-infoRGBA'>
       <img
         src='/assets/logo-header-mobile.webp'
@@ -28,6 +33,7 @@ const HeaderMobile = ({ onToggleSidebar }: THeaderProps): JSX.Element => (
       <HamburgerMenuIcon className='fill-sun stroke-2' />
     </Button>
   </header>
-);
-
+  );
+  
+};
 export default HeaderMobile;

@@ -104,10 +104,14 @@ const ProductInfo = ({
     (value: number) => setQuantity(value),
     [],
   );
-
+  
+  // Styles CSS
+  const stylesSectionProductInfo: string = 'col-span-12 nearLg:col-span-5 mt-[70px] nearLg:mt-0 font-primary';
+  const styleLineText: string = 'after:absolute after:block after:top-0 after:w-[80px] after:h-[3px] after:bg-sun';
+  
   return (
-    <section className='col-span-12 nearLg:col-span-5 mt-[70px] nearLg:mt-0 font-primary'>
-      <p className='text-2xl text-secondary py-[15px] relative after:absolute after:block after:top-0 after:w-[80px] after:h-[3px] after:bg-sun'>
+    <section className={`${stylesSectionProductInfo}`}>
+      <p className={`text-2xl text-secondary py-[15px] relative ${styleLineText}`}>
         {currency}
         {formatDecimalNumber(amount)}
       </p>

@@ -12,11 +12,14 @@ import type { IProduct } from '@app/interfaces';
 import { getProducts } from '@app/services';
 
 const products: IProduct[] = (await getProducts()) || [];
+
+// Style CSS
+const styleProductList: string[] = [
+  'w-full columns-1 sm:columns-2 md:columns-1 nearLg:columns-2 nearXl:columns-3 gap-0 transition-all',
+];
 ---
 
-<ul
-  class='w-full columns-1 sm:columns-2 md:columns-1 nearLg:columns-2 nearXl:columns-3 gap-0 transition-all'
->
+<ul class:list={[...styleProductList]}>
   {
     products.map(({ id, imageURLs, amount, currency, name }) => (
       <li class='break-inside-avoid'>
