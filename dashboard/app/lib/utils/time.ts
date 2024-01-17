@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 export const getCurrentYear = (): number => {
   const currentYear = new Date().getFullYear();
   return currentYear;
@@ -36,6 +38,9 @@ export const getExpireTime = (
  */
 export const loginExpired = (expiredTime: number): boolean =>
   expiredTime - getCurrentTimeSeconds() < 0;
+
+export const convertTimeStampToTime = (value: string) =>
+  dayjs(value).format('H:m:s');
 
 export const convertDateToTime = (value: string) => {
   const minutes = 60 * 1000;
