@@ -9,5 +9,6 @@ export * from './config';
 export * from './pagination';
 export * from './notification';
 export * from './chat';
+export * from './issues';
 export * from './form';
 export * from './wallet';
