@@ -1,12 +1,20 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import userEvent from '@testing-library/user-event';
 
 // Components
 import CardPayment from '@/ui/components/CardPayment';
-import userEvent from '@testing-library/user-event';
+
+const queryClient = new QueryClient();
 
 describe('CardPayment test cases', () => {
-  const setup = () => render(<CardPayment balance={123} />);
+  const setup = () =>
+    render(
+      <QueryClientProvider client={queryClient}>
+        <CardPayment balance={123} />
+      </QueryClientProvider>,
+    );
 
   test('CardPayment component renders correctly', () => {
     const { container } = setup();

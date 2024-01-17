@@ -3,11 +3,7 @@
 exports[`OverallBalance component renders correctly 1`] = `
 <div>
   <div
-    class="css-mejsgu"
-  >
-    <div
-      class="chakra-skeleton css-1wu0swh"
-    />
-  </div>
+    class="chakra-skeleton css-1wu0swh"
+  />
 </div>
 `;

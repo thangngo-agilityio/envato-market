@@ -1,11 +1,11 @@
 import { render, waitFor } from '@testing-library/react';
-
-// Components
-import { CustomerIssues } from '@app/components';
 import userEvent from '@testing-library/user-event';
 
+// Components
+import { CustomerIssues } from '@/ui/components';
+
 const fetchNextPage = jest.fn();
-jest.mock('@app/hooks', () => ({
+jest.mock('@/lib/hooks', () => ({
   useGetListIssues: () => ({
     fetchNextPage,
     hasNextPage: true,
@@ -21,11 +21,9 @@ describe('CustomerIssues render', () => {
   });
 
   test('calls fetchNextPage on button click', async () => {
-    const { getByTestId } = render(
-      <CustomerIssues onLoadMore={fetchNextPage} />,
-    );
+    const { getByText } = render(<CustomerIssues onLoadMore={fetchNextPage} />);
 
-    const showMoreButton = getByTestId('Load more');
+    const showMoreButton = getByText('Load More');
     await userEvent.click(showMoreButton);
 
     await waitFor(() => expect(fetchNextPage).toHaveBeenCalled());

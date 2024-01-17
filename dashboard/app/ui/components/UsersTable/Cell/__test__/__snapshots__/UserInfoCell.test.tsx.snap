@@ -35,13 +35,13 @@ exports[`TotalCard component renders correctly 1`] = `
                 title="Finance managers"
               >
                 Finance managers
-                ⋅
+                 •
               </span>
               <span
                 class="chakra-text css-1rgac5r"
               >
                 Jakarta, Indonesia
-                ⋅
+                 • 
                 2 days ago
               </span>
             </p>

@@ -9,7 +9,6 @@ import { TNotification } from '@/lib/interfaces';
 import { convertDateToTime } from '@/lib/utils';
 
 interface NotificationProps {
-  key?: string;
   notification: TNotification;
   isLastItem?: boolean;
   isAddMoney?: boolean;

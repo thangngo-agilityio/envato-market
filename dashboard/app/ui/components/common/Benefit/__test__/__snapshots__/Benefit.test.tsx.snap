@@ -3,12 +3,12 @@
 exports[`renders Benefit with content 1`] = `
 <div>
   <div
-    class="css-1ys2le4"
+    class="css-qkf3zz"
   >
     <img
-      alt="This is sign in image"
-      class="chakra-image css-1egtfbj"
-      src="/icons/signin.svg"
+      alt="This is sign up image"
+      class="chakra-image css-6gb11t"
+      src="/icons/signup.svg"
     />
     <img
       alt="This is square image"
@@ -30,7 +30,9 @@ exports[`renders Benefit with content 1`] = `
     >
       <h2
         class="chakra-heading css-tmruzz"
-      />
+      >
+        Speady, Easy and Fast
+      </h2>
       <p
         class="chakra-text css-rm4le2"
       >

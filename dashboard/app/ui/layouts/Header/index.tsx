@@ -41,7 +41,7 @@ const HeaderComponent = () => {
   );
   const pathname = usePathname();
 
-  const name = TITLES_HEADER[`${pathname.slice(1)}`] || TITLES_HEADER.DEFAULT;
+  const name = TITLES_HEADER[`${pathname?.slice(1)}`] || TITLES_HEADER.DEFAULT;
 
   const user = useStore(authStore, (state) => state.user);
 

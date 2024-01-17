@@ -45,16 +45,16 @@ exports[`UserTable component should renders correctly 1`] = `
                 >
                   <span
                     class="chakra-text css-9feaud"
-                    title="Finance managers"
+                    title="undefined"
                   >
-                    Finance managers
-                    ⋅
+                    undefined
+                     •
                   </span>
                   <span
                     class="chakra-text css-1rgac5r"
                   >
-                    Jakarta, Indonesia
-                    ⋅
+                    Finance managers, Jakarta, Indonesia
+                     • 
                     2 days ago
                   </span>
                 </p>
@@ -146,16 +146,16 @@ exports[`UserTable component should renders correctly 1`] = `
                 >
                   <span
                     class="chakra-text css-9feaud"
-                    title="Finance managers"
+                    title="undefined"
                   >
-                    Finance managers
-                    ⋅
+                    undefined
+                     •
                   </span>
                   <span
                     class="chakra-text css-1rgac5r"
                   >
-                    Jakarta, Indonesia
-                    ⋅
+                    Finance managers, Jakarta, Indonesia
+                     • 
                     4 days ago
                   </span>
                 </p>

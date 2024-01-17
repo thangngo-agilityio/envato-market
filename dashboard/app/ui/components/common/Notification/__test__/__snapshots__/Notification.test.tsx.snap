@@ -64,7 +64,358 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
         </p>
         <div
           class="css-13o6kil"
-        />
+        >
+          <div
+            class="css-0"
+            data-testid="notification-item"
+          >
+            <button
+              class="chakra-menu__menuitem css-17w3qw2"
+              data-index="0"
+              id="menu-list-:r1:-menuitem-:r2:"
+              role="menuitem"
+              tabindex="-1"
+              type="button"
+            >
+              <div
+                class="css-fxiqdw"
+              >
+                <div
+                  class="css-1lekzkb"
+                >
+                  <div
+                    class="css-0"
+                  >
+                    <p
+                      class="chakra-text css-pkq0nw"
+                    >
+                      <span
+                        class="chakra-text css-1ymdeb"
+                      >
+                        James Eusobio
+                      </span>
+                      send a new payment for
+                      <span
+                        class="chakra-text css-tpthxy"
+                      >
+                         
+                        SEO
+                      </span>
+                       totaling
+                      <span
+                        class="chakra-text css-1lt82"
+                      >
+                        $
+                        $29.00
+                      </span>
+                    </p>
+                    <p
+                      class="chakra-text css-q6u698"
+                    >
+                      NaN years ago
+                    </p>
+                  </div>
+                  <svg
+                    class="chakra-icon css-o4w93"
+                    data-testid="delete-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <g
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M19.452 7.5H4.547a.5.5 0 00-.5.545l1.287 14.136A2 2 0 007.326 24h9.347a2 2 0 001.992-1.819L19.95 8.045a.5.5 0 00-.129-.382.5.5 0 00-.369-.163zm-9.2 13a.75.75 0 01-1.5 0v-9a.75.75 0 011.5 0zm5 0a.75.75 0 01-1.5 0v-9a.75.75 0 011.5 0zM22 4h-4.75a.25.25 0 01-.25-.25V2.5A2.5 2.5 0 0014.5 0h-5A2.5 2.5 0 007 2.5v1.25a.25.25 0 01-.25.25H2a1 1 0 000 2h20a1 1 0 000-2zM9 3.75V2.5a.5.5 0 01.5-.5h5a.5.5 0 01.5.5v1.25a.25.25 0 01-.25.25h-5.5A.25.25 0 019 3.75z"
+                      />
+                    </g>
+                  </svg>
+                </div>
+                <hr
+                  aria-orientation="horizontal"
+                  class="chakra-divider css-hahno4"
+                />
+              </div>
+            </button>
+          </div>
+          <div
+            class="css-0"
+            data-testid="notification-item"
+          >
+            <button
+              class="chakra-menu__menuitem css-i0nlth"
+              data-index="1"
+              id="menu-list-:r1:-menuitem-:r3:"
+              role="menuitem"
+              tabindex="-1"
+              type="button"
+            >
+              <div
+                class="css-fxiqdw"
+              >
+                <div
+                  class="css-1lekzkb"
+                >
+                  <div
+                    class="css-vdhlfv"
+                  >
+                    <p
+                      class="chakra-text css-pkq0nw"
+                    >
+                      <span
+                        class="chakra-text css-1ymdeb"
+                      >
+                        Devon Lane
+                      </span>
+                      send a new payment for
+                      <span
+                        class="chakra-text css-tpthxy"
+                      >
+                         
+                        HR
+                      </span>
+                       totaling
+                      <span
+                        class="chakra-text css-1lt82"
+                      >
+                        $
+                        $199.00
+                      </span>
+                    </p>
+                    <p
+                      class="chakra-text css-q6u698"
+                    >
+                      NaN years ago
+                    </p>
+                  </div>
+                  <svg
+                    class="chakra-icon css-o4w93"
+                    data-testid="delete-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <g
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M19.452 7.5H4.547a.5.5 0 00-.5.545l1.287 14.136A2 2 0 007.326 24h9.347a2 2 0 001.992-1.819L19.95 8.045a.5.5 0 00-.129-.382.5.5 0 00-.369-.163zm-9.2 13a.75.75 0 01-1.5 0v-9a.75.75 0 011.5 0zm5 0a.75.75 0 01-1.5 0v-9a.75.75 0 011.5 0zM22 4h-4.75a.25.25 0 01-.25-.25V2.5A2.5 2.5 0 0014.5 0h-5A2.5 2.5 0 007 2.5v1.25a.25.25 0 01-.25.25H2a1 1 0 000 2h20a1 1 0 000-2zM9 3.75V2.5a.5.5 0 01.5-.5h5a.5.5 0 01.5.5v1.25a.25.25 0 01-.25.25h-5.5A.25.25 0 019 3.75z"
+                      />
+                    </g>
+                  </svg>
+                </div>
+                <hr
+                  aria-orientation="horizontal"
+                  class="chakra-divider css-hahno4"
+                />
+              </div>
+            </button>
+          </div>
+          <div
+            class="css-0"
+            data-testid="notification-item"
+          >
+            <button
+              class="chakra-menu__menuitem css-17w3qw2"
+              data-index="2"
+              id="menu-list-:r1:-menuitem-:r4:"
+              role="menuitem"
+              tabindex="-1"
+              type="button"
+            >
+              <div
+                class="css-fxiqdw"
+              >
+                <div
+                  class="css-1lekzkb"
+                >
+                  <div
+                    class="css-0"
+                  >
+                    <p
+                      class="chakra-text css-pkq0nw"
+                    >
+                      <span
+                        class="chakra-text css-1ymdeb"
+                      >
+                        Bessie Cooper
+                      </span>
+                      send a new payment for
+                       totaling
+                      <span
+                        class="chakra-text css-ft41km"
+                      >
+                        $
+                        $10.00
+                      </span>
+                    </p>
+                    <p
+                      class="chakra-text css-q6u698"
+                    >
+                      NaN years ago
+                    </p>
+                  </div>
+                  <svg
+                    class="chakra-icon css-o4w93"
+                    data-testid="delete-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <g
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M19.452 7.5H4.547a.5.5 0 00-.5.545l1.287 14.136A2 2 0 007.326 24h9.347a2 2 0 001.992-1.819L19.95 8.045a.5.5 0 00-.129-.382.5.5 0 00-.369-.163zm-9.2 13a.75.75 0 01-1.5 0v-9a.75.75 0 011.5 0zm5 0a.75.75 0 01-1.5 0v-9a.75.75 0 011.5 0zM22 4h-4.75a.25.25 0 01-.25-.25V2.5A2.5 2.5 0 0014.5 0h-5A2.5 2.5 0 007 2.5v1.25a.25.25 0 01-.25.25H2a1 1 0 000 2h20a1 1 0 000-2zM9 3.75V2.5a.5.5 0 01.5-.5h5a.5.5 0 01.5.5v1.25a.25.25 0 01-.25.25h-5.5A.25.25 0 019 3.75z"
+                      />
+                    </g>
+                  </svg>
+                </div>
+                <hr
+                  aria-orientation="horizontal"
+                  class="chakra-divider css-hahno4"
+                />
+              </div>
+            </button>
+          </div>
+          <div
+            class="css-0"
+            data-testid="notification-item"
+          >
+            <button
+              class="chakra-menu__menuitem css-i0nlth"
+              data-index="3"
+              id="menu-list-:r1:-menuitem-:r5:"
+              role="menuitem"
+              tabindex="-1"
+              type="button"
+            >
+              <div
+                class="css-fxiqdw"
+              >
+                <div
+                  class="css-1lekzkb"
+                >
+                  <div
+                    class="css-vdhlfv"
+                  >
+                    <p
+                      class="chakra-text css-pkq0nw"
+                    >
+                      <span
+                        class="chakra-text css-1ymdeb"
+                      >
+                        Fepaciy Russell
+                      </span>
+                      send a new payment for
+                      <span
+                        class="chakra-text css-tpthxy"
+                      >
+                         
+                        SEO
+                      </span>
+                       totaling
+                      <span
+                        class="chakra-text css-1lt82"
+                      >
+                        $
+                        $1.00
+                      </span>
+                    </p>
+                    <p
+                      class="chakra-text css-q6u698"
+                    >
+                      NaN years ago
+                    </p>
+                  </div>
+                  <svg
+                    class="chakra-icon css-o4w93"
+                    data-testid="delete-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <g
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M19.452 7.5H4.547a.5.5 0 00-.5.545l1.287 14.136A2 2 0 007.326 24h9.347a2 2 0 001.992-1.819L19.95 8.045a.5.5 0 00-.129-.382.5.5 0 00-.369-.163zm-9.2 13a.75.75 0 01-1.5 0v-9a.75.75 0 011.5 0zm5 0a.75.75 0 01-1.5 0v-9a.75.75 0 011.5 0zM22 4h-4.75a.25.25 0 01-.25-.25V2.5A2.5 2.5 0 0014.5 0h-5A2.5 2.5 0 007 2.5v1.25a.25.25 0 01-.25.25H2a1 1 0 000 2h20a1 1 0 000-2zM9 3.75V2.5a.5.5 0 01.5-.5h5a.5.5 0 01.5.5v1.25a.25.25 0 01-.25.25h-5.5A.25.25 0 019 3.75z"
+                      />
+                    </g>
+                  </svg>
+                </div>
+                <hr
+                  aria-orientation="horizontal"
+                  class="chakra-divider css-hahno4"
+                />
+              </div>
+            </button>
+          </div>
+          <div
+            class="css-0"
+            data-testid="notification-item"
+          >
+            <button
+              class="chakra-menu__menuitem css-i0nlth"
+              data-index="4"
+              id="menu-list-:r1:-menuitem-:r6:"
+              role="menuitem"
+              tabindex="-1"
+              type="button"
+            >
+              <div
+                class="css-fxiqdw"
+              >
+                <div
+                  class="css-1lekzkb"
+                >
+                  <div
+                    class="css-vdhlfv"
+                  >
+                    <p
+                      class="chakra-text css-pkq0nw"
+                    >
+                      <span
+                        class="chakra-text css-1ymdeb"
+                      >
+                        Somav Russell
+                      </span>
+                      send a new payment for
+                      <span
+                        class="chakra-text css-tpthxy"
+                      >
+                         
+                        SEO
+                      </span>
+                       totaling
+                      <span
+                        class="chakra-text css-1lt82"
+                      >
+                        $
+                        $2.00
+                      </span>
+                    </p>
+                    <p
+                      class="chakra-text css-q6u698"
+                    >
+                      NaN years ago
+                    </p>
+                  </div>
+                  <svg
+                    class="chakra-icon css-o4w93"
+                    data-testid="delete-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <g
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M19.452 7.5H4.547a.5.5 0 00-.5.545l1.287 14.136A2 2 0 007.326 24h9.347a2 2 0 001.992-1.819L19.95 8.045a.5.5 0 00-.129-.382.5.5 0 00-.369-.163zm-9.2 13a.75.75 0 01-1.5 0v-9a.75.75 0 011.5 0zm5 0a.75.75 0 01-1.5 0v-9a.75.75 0 011.5 0zM22 4h-4.75a.25.25 0 01-.25-.25V2.5A2.5 2.5 0 0014.5 0h-5A2.5 2.5 0 007 2.5v1.25a.25.25 0 01-.25.25H2a1 1 0 000 2h20a1 1 0 000-2zM9 3.75V2.5a.5.5 0 01.5-.5h5a.5.5 0 01.5.5v1.25a.25.25 0 01-.25.25h-5.5A.25.25 0 019 3.75z"
+                      />
+                    </g>
+                  </svg>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

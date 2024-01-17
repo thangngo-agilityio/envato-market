@@ -5,11 +5,10 @@ import '@testing-library/jest-dom';
 import Header from '../';
 
 describe('Header render', () => {
-  const renderComponent = ({ name }: { name?: string }) =>
-    render(<Header name={name || 'Dashboard'} />);
+  const renderComponent = () => render(<Header />);
 
   it('Should render match with snapshot.', () => {
-    const { container } = renderComponent({});
+    const { container } = renderComponent();
     expect(container).toMatchSnapshot();
   });
 });
