@@ -1,4 +1,4 @@
-import { TEmployee } from '@/lib/interfaces';
+import { TEmployee, TUserDetail } from '@/lib/interfaces';
 
 export const USER_MOCK: TEmployee = {
   avatarURL: 'https://cdn-icons-png.flaticon.com/512/5556/5556468.png',
@@ -255,3 +255,21 @@ export const MOCK_USERS_DATA = [
     createdAt: 1703044079353,
   },
 ];
+
+export const MOCK_USER_DETAIL: TUserDetail = {
+  title: 'What is the issues',
+  avatarURL: 'https://cdn-icons-png.flaticon.com/512/5556/5556468.png',
+  password: '123456',
+  phoneNumber: '02342423',
+  country: 'LD',
+  city: 'DL',
+  address: '123 TMT',
+  postalCode: '1234',
+  firstName: 'Abdur',
+  lastName: 'Rohman',
+  email: 'test@gmail.com',
+  role: 'member',
+  description: 'description',
+  id: '1',
+  createdAt: 3123123,
+};

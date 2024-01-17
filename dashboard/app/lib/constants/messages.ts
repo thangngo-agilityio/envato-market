@@ -57,6 +57,7 @@ export const ERROR_MESSAGES = {
     description:
       'An error has occurred when sending money. Please check your total balance and try again',
   },
+  OLD_PASSWORD_INCORRECT: 'Old password is not correct',
 };
 
 export const SUCCESS_MESSAGES = {
@@ -92,4 +93,8 @@ export const SUCCESS_MESSAGES = {
     title: 'Add money successfully',
     description: 'Your money has been sent to the transfer account',
   },
+};
+
+export const CONFIRM_MESSAGE = {
+  DELETE_NOTIFICATION: 'Are you sure delete the notification?',
 };

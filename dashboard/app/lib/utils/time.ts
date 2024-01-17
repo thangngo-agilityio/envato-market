@@ -36,3 +36,39 @@ export const getExpireTime = (
  */
 export const loginExpired = (expiredTime: number): boolean =>
   expiredTime - getCurrentTimeSeconds() < 0;
+
+export const convertDateToTime = (value: string) => {
+  const minutes = 60 * 1000;
+  const hours = minutes * 60;
+  const days = hours * 24;
+  const months = days * 30;
+  const years = days * 365;
+
+  const date = new Date(value).getTime();
+  const elapsed = Date.now() - date;
+
+  let result;
+
+  switch (true) {
+    case elapsed < minutes:
+      result = Math.round(elapsed / 1000) + ' seconds ago';
+      break;
+    case elapsed < hours:
+      result = Math.round(elapsed / minutes) + ' minutes ago';
+      break;
+    case elapsed < days:
+      result = Math.round(elapsed / hours) + ' hours ago';
+      break;
+    case elapsed < months:
+      result = Math.round(elapsed / days) + ' days ago';
+      break;
+    case elapsed < years:
+      result = Math.round(elapsed / months) + ' months ago';
+      break;
+    default:
+      result = Math.round(elapsed / years) + ' years ago';
+      break;
+  }
+
+  return result;
+};

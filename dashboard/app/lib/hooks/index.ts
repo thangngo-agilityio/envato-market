@@ -9,3 +9,5 @@ export * from './usePagination';
 export * from './useStore';
 export * from './useUser';
 export * from './usePinCode';
+export * from './useNotification';
+export * from './useWallet';

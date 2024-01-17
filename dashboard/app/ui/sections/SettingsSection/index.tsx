@@ -25,6 +25,12 @@ const Faq = dynamic(() =>
   })),
 );
 
+const Security = dynamic(() =>
+  import('@/ui/components/Icons/Security').then((module) => ({
+    default: module.Security,
+  })),
+);
+
 const TermCondition = dynamic(() =>
   import('@/ui/components/Icons/TermCondition').then((module) => ({
     default: module.TermCondition,
@@ -39,6 +45,7 @@ const TermAndCondition = dynamic(() =>
 
 const UserForm = dynamic(() => import('@/ui/components/Personal'));
 const FaqPage = dynamic(() => import('@/ui/components/Faq'));
+const SecurityPage = dynamic(() => import('@/ui/components/Security'));
 
 const SettingsSection = () => {
   const [activeItemId, setActiveItemId] = useState<string>(
@@ -48,6 +55,7 @@ const SettingsSection = () => {
   const pages: Record<string, ReactElement> = {
     [OPTION_SETTING.USER_FORM]: <UserForm />,
     [OPTION_SETTING.FAQ_PAGE]: <FaqPage />,
+    [OPTION_SETTING.SECURITY_PAGE]: <SecurityPage />,
     [OPTION_SETTING.TERM_AND_CONDITION]: <TermAndCondition />,
   };
 
@@ -66,6 +74,12 @@ const SettingsSection = () => {
         title: 'FAQ',
         content: 'Frequently asked questions',
         icon: <Faq />,
+      },
+      {
+        id: OPTION_SETTING.SECURITY_PAGE,
+        title: 'Security',
+        content: 'Change your password',
+        icon: <Security />,
       },
       {
         id: OPTION_SETTING.TERM_AND_CONDITION,
