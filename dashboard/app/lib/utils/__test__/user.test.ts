@@ -14,6 +14,7 @@ describe('getDataUser', () => {
       lastActive,
       lastPlace,
       salary,
+      jobTitle,
       firstName,
       lastName,
       avatarURL,
@@ -32,6 +33,7 @@ describe('getDataUser', () => {
         experience,
         name: `${firstName} ${lastName}`,
         image: avatarURL,
+        jobTitle,
       },
     ]);
   });
