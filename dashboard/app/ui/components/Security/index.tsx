@@ -101,10 +101,13 @@ const SecurityPage = () => {
     [handleUpdatePasswordSuccess, toast, updatePassword],
   );
 
-  const { isOpen: isShowPassword, onToggle: onShowPassword } = useDisclosure();
+  const { isOpen: isShowOldPassword, onToggle: onShowOldPassWord } =
+    useDisclosure();
+  const { isOpen: isShowNewPassword, onToggle: onShowNewPassWord } =
+    useDisclosure();
 
   const renderPasswordIcon = useCallback(
-    (isCorrect: boolean, callback: typeof onShowPassword): JSX.Element => {
+    (isCorrect: boolean, callback: typeof onShowOldPassWord): JSX.Element => {
       const Icon = isCorrect ? ViewIcon : ViewOffIcon;
 
       return (
@@ -168,9 +171,12 @@ const SecurityPage = () => {
                   Old password
                 </FormLabel>
                 <InputField
-                  type={isShowPassword ? 'text' : 'password'}
+                  type={isShowOldPassword ? 'text' : 'password'}
                   variant="authentication"
-                  rightIcon={renderPasswordIcon(isShowPassword, onShowPassword)}
+                  rightIcon={renderPasswordIcon(
+                    isShowOldPassword,
+                    onShowOldPassWord,
+                  )}
                   {...rest}
                   isError={!!message}
                   errorMessages={message}
@@ -199,9 +205,12 @@ const SecurityPage = () => {
                 New password
               </FormLabel>
               <InputField
-                type={isShowPassword ? 'text' : 'password'}
+                type={isShowNewPassword ? 'text' : 'password'}
                 variant="authentication"
-                rightIcon={renderPasswordIcon(isShowPassword, onShowPassword)}
+                rightIcon={renderPasswordIcon(
+                  isShowNewPassword,
+                  onShowNewPassWord,
+                )}
                 {...rest}
                 isError={!!error}
                 errorMessages={error?.message}
