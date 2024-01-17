@@ -10,7 +10,7 @@ import {
 import { useAuth, usePinCode } from '@/lib/hooks';
 import { TPinCodeForm } from '@/lib/interfaces';
 import { TAuthStoreData, authStore } from '@/lib/stores';
-import { customToast } from '@/lib/utils';
+import { app, customToast } from '@/lib/utils';
 import { Modal, PinCode } from '@/ui/components';
 import { useDisclosure, useToast } from '@chakra-ui/react';
 import { useQueryClient } from '@tanstack/react-query';
@@ -104,28 +104,29 @@ const CheckPinCodeProvider = ({ children }: { children: React.ReactNode }) => {
 
   const queryClient = useQueryClient();
 
-  const messaging = getMessaging();
+  const messaging = typeof window !== 'undefined' ? getMessaging(app) : null;
 
-  onMessage(messaging, (payload) => {
-    queryClient.invalidateQueries({
-      queryKey: [END_POINTS.MY_WALLET],
-    });
-    queryClient.invalidateQueries({
-      queryKey: [END_POINTS.TRANSACTIONS],
-    });
-    queryClient.invalidateQueries({
-      queryKey: [END_POINTS.NOTIFICATION],
-    });
+  messaging &&
+    onMessage(messaging, (payload) => {
+      queryClient.invalidateQueries({
+        queryKey: [END_POINTS.MY_WALLET],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [END_POINTS.TRANSACTIONS],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [END_POINTS.NOTIFICATION],
+      });
 
-    toast({
-      title: payload?.notification?.title,
-      description: payload?.notification?.body,
-      status: 'success',
-      duration: SHOW_TIME,
-      isClosable: true,
-      position: 'top-right',
+      toast({
+        title: payload?.notification?.title,
+        description: payload?.notification?.body,
+        status: 'success',
+        duration: SHOW_TIME,
+        isClosable: true,
+        position: 'top-right',
+      });
     });
-  });
 
   return (
     <>

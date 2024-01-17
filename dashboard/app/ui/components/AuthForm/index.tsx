@@ -28,7 +28,7 @@ import { ROUTES, AUTH_SCHEMA, TITLES, ERROR_MESSAGES } from '@/lib/constants';
 import { Divider, InputField } from '@/ui/components';
 
 // Utils
-import { requestForToken, validatePassword } from '@/lib/utils';
+import { app, requestForToken, validatePassword } from '@/lib/utils';
 
 // Types
 import { TUserDetail } from '@/lib/interfaces';
@@ -93,7 +93,7 @@ const AuthFormComponent = ({
     },
   );
 
-  const messaging = getMessaging();
+  const messaging = typeof window !== 'undefined' ? getMessaging(app) : null;
 
   const isDisabledSubmitBtn: boolean = isSubmit || isFillAllFields;
 
@@ -119,7 +119,8 @@ const AuthFormComponent = ({
       setIsSubmit(true);
       try {
         const { email, password, isRemember } = data;
-        const fcmToken = (await requestForToken(messaging)) || '';
+        const fcmToken =
+          (messaging && (await requestForToken(messaging))) || '';
 
         await signIn({ email, password, fcmToken }, isRemember);
 
@@ -144,7 +145,8 @@ const AuthFormComponent = ({
         ...fieldValues
       } = data;
       try {
-        const fcmToken = (await requestForToken(messaging)) || '';
+        const fcmToken =
+          (messaging && (await requestForToken(messaging))) || '';
         const { errors } = await signUp({ ...fieldValues, fcmToken });
         if (errors) {
           return Object.entries(errors).forEach(([key, value]) =>
