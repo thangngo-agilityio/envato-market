@@ -1,0 +1,138 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomerIssues render Should render match with snapshot. 1`] = `
+<div>
+  <div
+    class="css-1rdd54d"
+  >
+    <p
+      class="chakra-text css-vk907l"
+    >
+      Recent Support
+    </p>
+    <div
+      class="css-k008qs"
+    >
+      <div
+        class="css-1ten0p5"
+      >
+        <img
+          alt="This is avatar"
+          class="chakra-image css-xerxct"
+          src="/images/avatar.webp"
+        />
+        <div
+          class="css-m75dnw"
+        >
+          <div
+            class="css-k008qs"
+          >
+            <p
+              class="chakra-text css-3ptjhf"
+            >
+              Joel Becker
+              <span
+                class="chakra-text css-1y8hbw7"
+              >
+                12h
+              </span>
+            </p>
+          </div>
+          <p
+            class="chakra-text css-31rn8f"
+          >
+            When is the Sketch version available for download?
+          </p>
+          <p
+            class="chakra-text css-qnadlj"
+          >
+            Love this so much! What tools do you use to create your 3d illustrations ?
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-k008qs"
+    >
+      <div
+        class="css-1ten0p5"
+      >
+        <img
+          alt="This is the big avatar"
+          class="chakra-image css-xerxct"
+          src="/images/big-avatar.webp"
+        />
+        <div
+          class="css-m75dnw"
+        >
+          <div
+            class="css-k008qs"
+          >
+            <p
+              class="chakra-text css-3ptjhf"
+            >
+              Joel Becker
+              <span
+                class="chakra-text css-1y8hbw7"
+              >
+                1h
+              </span>
+            </p>
+          </div>
+          <p
+            class="chakra-text css-31rn8f"
+          >
+            When is the Sketch version available for download?
+          </p>
+          <p
+            class="chakra-text css-qnadlj"
+          >
+            Love this so much! What tools do you use to create your 3d illustrations ?
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-k008qs"
+    >
+      <div
+        class="css-1ten0p5"
+      >
+        <img
+          alt="This is avatar sign up"
+          class="chakra-image css-xerxct"
+          src="/images/avatar-sign-up.webp"
+        />
+        <div
+          class="css-m75dnw"
+        >
+          <div
+            class="css-k008qs"
+          >
+            <p
+              class="chakra-text css-3ptjhf"
+            >
+              Joel Becker
+              <span
+                class="chakra-text css-1y8hbw7"
+              >
+                6h
+              </span>
+            </p>
+          </div>
+          <p
+            class="chakra-text css-31rn8f"
+          >
+            When is the Sketch version available for download?
+          </p>
+          <p
+            class="chakra-text css-qnadlj"
+          >
+            Love this so much! What tools do you use to create your 3d illustrations ?
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
