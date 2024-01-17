@@ -10,6 +10,7 @@ export const ROUTES = {
   FORGOT_PASSWORD: 'forgot-password',
   SIGN_OUT: 'sign-out',
   NOT_FOUND: '*',
+  SUPPORT: 'supports',
 };
 
 export const COMMON_ROUTES = [

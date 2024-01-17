@@ -147,6 +147,10 @@ export const colors = {
       default: '#E5E7EB',
       _dark: '#2A313C',
     },
+    octonary: {
+      default: 'primary.700',
+      _dark: 'gray.400',
+    },
   },
 
   text: {
@@ -202,6 +206,10 @@ export const colors = {
     currencyColor: {
       default: '#0C642F',
       _dark: '#22C55E',
+    },
+    textLoadMore: {
+      default: '#FFF',
+      _dark: '#1A202C',
     },
   },
 

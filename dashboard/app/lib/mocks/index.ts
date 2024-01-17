@@ -5,3 +5,4 @@ export * from './user';
 export * from './time';
 export * from './statistic';
 export * from './chat';
+export * from './issues';

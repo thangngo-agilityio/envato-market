@@ -7,7 +7,7 @@ import { END_POINTS } from '@/lib/constants';
 import { IAxiosConfig, TWallet } from '@/lib/interfaces';
 
 export const walletHttpRequest: AxiosInstance = axios.create({
-  baseURL: process.env.VITE_API_ENDPOINT,
+  baseURL: process.env.NEXT_PUBLIC_API,
 });
 
 export const getUserWallet = async (

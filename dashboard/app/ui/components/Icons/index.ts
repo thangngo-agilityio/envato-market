@@ -31,3 +31,4 @@ export * from './EyeSlash';
 export * from './SendIconLight';
 export * from './EditIcon';
 export * from './Security';
+export * from './SupportIcon';

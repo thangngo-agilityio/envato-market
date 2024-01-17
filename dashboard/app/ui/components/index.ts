@@ -46,4 +46,6 @@ export { default as FallbackImage } from './FallbackImage';
 export { default as ChatMember } from './ChatMember';
 export { default as Conversation } from './Conversation';
 export { default as BonusNotification } from './common/BonusNotification';
+export { default as CardIssues } from './CustomerIssues/CardIssues';
+export { default as CustomerIssues } from './CustomerIssues';
 export { default as PinCode } from './common/PinCode';
