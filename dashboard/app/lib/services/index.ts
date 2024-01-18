@@ -6,3 +6,4 @@ export * from './notification';
 export * from './support';
 export * from './wallet';
 export * from './money';
+export * from './users';

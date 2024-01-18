@@ -1,18 +1,27 @@
 import { Box, Select, Text } from '@chakra-ui/react';
-import Image from 'next/image';
 import { memo } from 'react';
-import { Controller } from 'react-hook-form';
+import { Control, Controller } from 'react-hook-form';
 
 // Icons
 import { ChevronIcon } from '../Icons';
 
-// Constants
-import { IMAGES } from '@/lib/constants';
+// Types
+import { TTransfer } from '.';
+import { TUserDetail } from '@/lib/interfaces';
 
-// Components
-import { TTransferControl } from '.';
+export type TUseSelectorProps = {
+  control: Control<TTransfer>;
+  listUser?: Array<
+    Omit<TUserDetail, 'id'> & {
+      _id: string;
+    }
+  >;
+};
 
-const UserSelectorComponent = ({ control }: TTransferControl): JSX.Element => (
+const UserSelectorComponent = ({
+  control,
+  listUser = [],
+}: TUseSelectorProps): JSX.Element => (
   <>
     <Text
       fontWeight="bold"
@@ -27,9 +36,13 @@ const UserSelectorComponent = ({ control }: TTransferControl): JSX.Element => (
     <Box position="relative">
       <Controller
         control={control}
-        name="userId"
-        render={() => (
+        name="memberId"
+        defaultValue=""
+        rules={{ required: true }}
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        render={({ field: { onChange, ref: _, ...rest } }) => (
           <Select
+            {...rest}
             size="lg"
             sx={{
               paddingLeft: '50px',
@@ -37,36 +50,23 @@ const UserSelectorComponent = ({ control }: TTransferControl): JSX.Element => (
             borderColor="border.secondary"
             color="text.primary"
             icon={<ChevronIcon />}
+            onChange={onChange}
           >
-            <option value="debit" color="text.primary">
-              Debit
+            <option selected hidden disabled value="">
+              Choose an account to transfer
             </option>
+            {listUser.map((user) => (
+              <option key={user._id} value={user._id} color="text.primary">
+                {user.email}
+              </option>
+            ))}
           </Select>
         )}
       />
-
-      <Image
-        src={IMAGES.DEBIT_ICON.url}
-        alt={IMAGES.DEBIT_ICON.alt}
-        width={24}
-        height={24}
-        sizes="100vw"
-      />
-
-      <Text
-        sx={{
-          position: 'absolute',
-          right: 10,
-          top: '50%',
-          transform: 'translateY(-50%)',
-        }}
-        fontWeight="bold"
-        fontSize="sm"
-      >
-        $ 10,431
-      </Text>
     </Box>
   </>
 );
 
-export const UserSelector = memo(UserSelectorComponent);
+const UserSelector = memo(UserSelectorComponent);
+
+export default UserSelector;
