@@ -1,17 +1,17 @@
 'use client';
 
-// import dynamic from 'next/dynamic';
-import { SIDEBAR } from '@/lib/constants';
+import { useEffect } from 'react';
 import { Box, Flex, useDisclosure, useMediaQuery } from '@chakra-ui/react';
+
+// Constants
+import { MEDIA_SCREEN, SIDEBAR } from '@/lib/constants';
 
 // Component
 import { Header, SideBar } from '@/ui/layouts';
 import { CheckPinCodeProvider } from '@/ui/providers';
-import { useEffect } from 'react';
-// const SideBar = dynamic(() => import('@/ui/layouts/Sidebar'));
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
-  const [isDesktop] = useMediaQuery('(min-width: 1732px)');
+  const [isDesktop] = useMediaQuery(MEDIA_SCREEN);
   const { isOpen, onOpen, onClose } = useDisclosure({
     defaultIsOpen: false,
   });
