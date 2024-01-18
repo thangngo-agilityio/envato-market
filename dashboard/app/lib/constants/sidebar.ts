@@ -91,3 +91,7 @@ export const EXPAND_SIDEBAR_MENU_LIST = [
     listItem: OTHER_ITEM_LIST,
   },
 ];
+
+export const SCREEN_SIZES = {
+  LARGE_DESKTOP: '(min-width: 1732px)',
+};
