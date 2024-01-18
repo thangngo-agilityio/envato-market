@@ -14,15 +14,23 @@ import { getProducts } from '@app/services';
 const products: IProduct[] = (await getProducts()) || [];
 
 // Style CSS
+const styleListItem: string[] = ['break-inside-avoid'];
 const styleProductList: string[] = [
-  'w-full columns-1 sm:columns-2 md:columns-1 nearLg:columns-2 nearXl:columns-3 gap-0 transition-all',
+  'w-full',
+  'columns-1',
+  'sm:columns-2',
+  'md:columns-1',
+  'nearLg:columns-2',
+  'nearXl:columns-3',
+  'gap-0',
+  'transition-all',
 ];
 ---
 
 <ul class:list={[...styleProductList]}>
   {
     products.map(({ id, imageURLs, amount, currency, name }) => (
-      <li class='break-inside-avoid'>
+      <li class:list={[...styleListItem]}>
         <ProductCard
           amount={amount}
           currency={currency}

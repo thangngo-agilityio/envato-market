@@ -5,8 +5,9 @@ import type { TComponentStylesProps } from '@app/interfaces';
 type Props = TComponentStylesProps;
 
 const { className } = Astro.props;
+const styleContainer: string[] = ['container', 'm-auto', 'px-5'];
 ---
 
-<div class={`container m-auto px-5 ${className ?? ''}`}>
+<div class:list={[...styleContainer, `${className ?? ''}`]}>
   <slot />
 </div>
