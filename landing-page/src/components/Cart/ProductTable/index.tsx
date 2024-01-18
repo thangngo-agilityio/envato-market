@@ -25,10 +25,14 @@ const ProductTable = ({
   onChangeQuantity,
   onRemoveProduct,
 }: TProductTableProps): JSX.Element => {
+
+  // Styles CSS
+  const stylesRowTable = 'grid grid-cols-4 text-left bg-desertStorm [&>*:nth-child(n)]:text-[12px] [&>*:nth-child(n)]:text-primary [&>*:nth-child(n)]:font-semibold p-3';
+
   return (
     <table className='w-full'>
       <thead>
-        <tr className='grid grid-cols-4 text-left bg-desertStorm [&>*:nth-child(n)]:text-[12px] [&>*:nth-child(n)]:text-primary [&>*:nth-child(n)]:font-semibold p-3'>
+        <tr className={`${stylesRowTable}`}>
           <th></th>
           <th>Name</th>
           <th>Price</th>

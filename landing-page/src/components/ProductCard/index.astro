@@ -13,16 +13,43 @@ type Props = Pick<IProduct, 'name' | 'amount' | 'currency'> & {
 };
 
 const { imageURL, name, currency, amount, href } = Astro.props;
+
+// Styles CSS
+const styleFigure: string[] = [
+  'relative',
+  'w-full',
+  'h-full',
+  'cursor-pointer',
+];
 const hoverStyles: string[] = [
   '[&:hover>div>.caption]:text-white',
   '[&:hover>.pesudo]:bg-black',
   '[&:hover>.pesudo]:opacity-[0.7]',
 ];
-const captionStyles: string[] = ['absolute', 'z-10', 'top-lg', 'left-lg'];
+const captionStyles: string[] = [
+  'after:absolute',
+  'after:top-0',
+  'after:block',
+  'after:w-20',
+  'after:h-[3px]',
+  'after:bg-sun',
+  'absolute',
+  'z-10',
+  'top-lg',
+  'left-lg',
+];
 const transitionStyles: string[] = ['transition', 'duration-300'];
+const styleLinkTagItems: string[] = [
+  'pesudo',
+  'absolute',
+  'top-0',
+  'w-full',
+  'h-full',
+  'z-[1]',
+];
 ---
 
-<figure class:list={['relative w-full h-full cursor-pointer', ...hoverStyles]}>
+<figure class:list={[...styleFigure, ...hoverStyles]}>
   <Image
     src={imageURL}
     placeholderSrc={generatePlaceholder(250, 250)}
@@ -33,12 +60,7 @@ const transitionStyles: string[] = ['transition', 'duration-300'];
     className='w-full h-full object-contain'
     client:visible
   />
-  <div
-    class:list={[
-      'pt-3 after:absolute after:top-0 after:block after:w-20 after:h-[3px] after:bg-sun',
-      ...captionStyles,
-    ]}
-  >
+  <div class:list={['pt-3', ...captionStyles]}>
     <figcaption
       class:list={['caption text-base text-sparingly', ...transitionStyles]}
     >
@@ -51,10 +73,7 @@ const transitionStyles: string[] = ['transition', 'duration-300'];
   </div>
   <a
     href={href}
-    class:list={[
-      'pesudo absolute top-0 w-full h-full z-[1]',
-      ...transitionStyles,
-    ]}
+    class:list={[...styleLinkTagItems, ...transitionStyles]}
     aria-label='Read more about'
   >
   </a>

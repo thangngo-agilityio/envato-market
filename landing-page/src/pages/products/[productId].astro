@@ -40,12 +40,15 @@ export const getStaticPaths = (async () => {
 
 const { images, ...rest } = Astro.props;
 const { productId } = Astro.params;
+
+// Styles CSS
+const styleSectionProductDetails: string[] = [
+  'grid grid-cols-12 px-[15px] nearLg:gap-8 pt-10 nearLg:pt-[100px] pb-11',
+];
 ---
 
 <MainLayout>
-  <div
-    class='grid grid-cols-12 px-[15px] nearLg:gap-8 pt-10 nearLg:pt-[100px] pb-11'
-  >
+  <div class:list={[...styleSectionProductDetails]}>
     <Carousel images={images} client:visible />
     <ProductInfo {...rest} id={productId} imageURL={images[0]} client:visible />
   </div>

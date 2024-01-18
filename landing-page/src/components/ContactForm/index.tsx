@@ -17,17 +17,9 @@ type TContactFormProps = {
 };
 
 const ContactForm = ({ register, onSubmit }: TContactFormProps) => {
-  const inputStyle: string = [
-    'placeholder-onceAll',
-    'text-elementary',
-    'text-[14px]',
-    'w-full',
-    'border-0',
-    'rounded-none',
-    'bg-desertStorm',
-    'p-5',
-    'focus:outline-none',
-  ].join(' ');
+
+  // Styles CSS
+  const inputStyle: string = 'placeholder-onceAll text-elementary text-[14px] w-full border-0 rounded-none bg-desertStorm p-5 focus:outline-none';
 
   return (
     <div

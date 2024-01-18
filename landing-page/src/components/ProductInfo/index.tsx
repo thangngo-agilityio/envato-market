@@ -104,10 +104,15 @@ const ProductInfo = ({
     (value: number) => setQuantity(value),
     [],
   );
-
+  
+  // Styles CSS
+  const stylesSectionProductInfo: string = 'col-span-12 nearLg:col-span-5 mt-[70px] nearLg:mt-0 font-primary';
+  const styleLineText: string = 'after:absolute after:block after:top-0 after:w-[80px] after:h-[3px] after:bg-sun';
+  const colorElementary: string = 'text-elementary';
+  
   return (
-    <section className='col-span-12 nearLg:col-span-5 mt-[70px] nearLg:mt-0 font-primary'>
-      <p className='text-2xl text-secondary py-[15px] relative after:absolute after:block after:top-0 after:w-[80px] after:h-[3px] after:bg-sun'>
+    <section className={stylesSectionProductInfo}>
+      <p className={`text-2xl text-secondary py-[15px] relative ${styleLineText}`}>
         {currency}
         {formatDecimalNumber(amount)}
       </p>
@@ -115,13 +120,13 @@ const ProductInfo = ({
       <h2 className='text-3xl text-primary pb-3'>
         <span className='line-clamp-1'>{name}</span>
       </h2>
-      <p className='flex items-center text-xs text-elementary gap-1'>
+      <p className={`flex items-center text-xs gap-1 ${colorElementary}`}>
         <span
           className={`block w-2 h-2 rounded-full ${statusStock.color}`}
         ></span>
         <span className='line-clamp-1'>{statusStock.title}</span>
       </p>
-      <p className='text-base text-elementary my-12'>{description}</p>
+      <p className={`text-base my-12 ${colorElementary}`}>{description}</p>
       <form className='flex flex-col gap-14' onSubmit={handleSubmit}>
         <InputNumber
           disabled={isOutStock || isSubmit}

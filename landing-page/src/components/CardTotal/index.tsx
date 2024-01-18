@@ -26,14 +26,9 @@ const CardTotal = ({
   total = 0,
   onCheckout,
 }: TCardTotalProps): JSX.Element => {
-  const listStyleDescription: string = [
-    '[&>*:nth-child(n)]:mb-lg',
-    '[&>*:nth-child(n)]:font-primary',
-    '[&>*:nth-child(n)]:text-[14px]',
-    '[&>*:nth-child(n)]:text-elementary',
-    '[&>*:nth-child(n)]:flex',
-    '[&>*:nth-child(n)]:justify-between',
-  ].join(' ');
+
+  // Styles CSS
+  const listStyleDescription: string = '[&>*:nth-child(n)]:mb-lg [&>*:nth-child(n)]:font-primary [&>*:nth-child(n)]:text-[14px] [&>*:nth-child(n)]:text-elementary [&>*:nth-child(n)]:flex [&>*:nth-child(n)]:justify-between';
   const fontSemibold: string = 'font-semibold';
 
   return (
