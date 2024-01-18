@@ -4,14 +4,14 @@ import { useEffect } from 'react';
 import { Box, Flex, useDisclosure, useMediaQuery } from '@chakra-ui/react';
 
 // Constants
-import { MEDIA_SCREEN, SIDEBAR } from '@/lib/constants';
+import { SCREEN_SIZES, SIDEBAR } from '@/lib/constants';
 
 // Component
 import { Header, SideBar } from '@/ui/layouts';
 import { CheckPinCodeProvider } from '@/ui/providers';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
-  const [isDesktop] = useMediaQuery(MEDIA_SCREEN);
+  const [isDesktop] = useMediaQuery(SCREEN_SIZES.LARGE_DESKTOP);
   const { isOpen, onOpen, onClose } = useDisclosure({
     defaultIsOpen: false,
   });

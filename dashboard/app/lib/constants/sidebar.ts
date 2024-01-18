@@ -92,4 +92,6 @@ export const EXPAND_SIDEBAR_MENU_LIST = [
   },
 ];
 
-export const MEDIA_SCREEN = '(min-width: 1732px)';
+export const SCREEN_SIZES = {
+  LARGE_DESKTOP: '(min-width: 1732px)',
+};
