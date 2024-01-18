@@ -1,6 +1,7 @@
 import {
   useInfiniteQuery,
   useMutation,
+  useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
 
@@ -8,7 +9,11 @@ import {
 import { IIssues, TPassword, TUserDetail } from '@/lib/interfaces';
 
 // Services
-import { UsersHttpService, getSupports } from '@/lib/services';
+import {
+  UsersHttpService,
+  getAllUserDetailsExceptWithId,
+  getSupports,
+} from '@/lib/services';
 
 // Constants
 import { END_POINTS } from '@/lib/constants';
@@ -88,5 +93,16 @@ export const useCreateIssues = () => {
   return {
     ...rest,
     error: error?.message || '',
+  };
+};
+
+export const useGetUserDetails = (id: string) => {
+  const { data: listUserDetail } = useQuery({
+    queryKey: [END_POINTS.USERS, id],
+    queryFn: () => getAllUserDetailsExceptWithId(id),
+  });
+
+  return {
+    listUserDetail,
   };
 };

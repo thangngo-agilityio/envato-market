@@ -1,14 +1,23 @@
 import { memo } from 'react';
 import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
-import { Controller } from 'react-hook-form';
+import { Control, Controller } from 'react-hook-form';
 
-// Components
-import { TTransferControl } from '.';
+// Types
+import { TTransfer } from '.';
 
 // Utils
 import { formatDecimalInput } from '@/lib/utils';
+import { AUTH_SCHEMA } from '@/lib/constants';
 
-const EnterMoneyComponent = ({ control }: TTransferControl): JSX.Element => (
+export type TEnterMoneyProps = {
+  control: Control<TTransfer>;
+  isDisabled?: boolean;
+};
+
+const EnterMoneyComponent = ({
+  control,
+  isDisabled = false,
+}: TEnterMoneyProps): JSX.Element => (
   <>
     <Box
       border="1px solid"
@@ -24,7 +33,9 @@ const EnterMoneyComponent = ({ control }: TTransferControl): JSX.Element => (
         </Text>
         <Controller
           control={control}
-          name="money"
+          rules={AUTH_SCHEMA.TRANSFER_AMOUNT}
+          name="amount"
+          defaultValue=""
           render={({ field: { value, onChange } }) => {
             const handleChange = (
               event: React.ChangeEvent<HTMLInputElement>,
@@ -44,14 +55,16 @@ const EnterMoneyComponent = ({ control }: TTransferControl): JSX.Element => (
                 _dark={{
                   border: 'none',
                 }}
+                placeholder="0.00"
                 sx={{ border: 'none', padding: 0 }}
                 color="text.primary"
                 fontWeight="bold"
                 fontSize="2xl"
                 ml={2}
                 value={value}
-                name="money"
+                name="amount"
                 onChange={handleChange}
+                autoComplete="off"
               />
             );
           }}
@@ -65,10 +78,12 @@ const EnterMoneyComponent = ({ control }: TTransferControl): JSX.Element => (
       colorScheme="primary"
       fontWeight="bold"
       type="submit"
+      isDisabled={isDisabled}
     >
       Send Money
     </Button>
   </>
 );
 
-export const EnterMoney = memo(EnterMoneyComponent);
+const EnterMoney = memo(EnterMoneyComponent);
+export default EnterMoney;
