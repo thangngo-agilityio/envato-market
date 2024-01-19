@@ -3,7 +3,7 @@ import { useCallback, useMemo, useState } from 'react';
 // Components
 import ProductTable from './ProductTable';
 import CardTotal from '../CardTotal';
-import { Toast } from '..';
+import { Indicator, Toast } from '..';
 
 // Constants
 import { ROUTES, SUCCESS_MESSAGE } from '@app/constants';
@@ -18,13 +18,14 @@ import type { IProductInCart } from '@app/interfaces';
 import { deleteCart, updateQuantity } from '@app/services';
 
 // Hooks
-import { useToast } from '@app/hooks';
+import { useIndicator, useToast } from '@app/hooks';
 
 type TCartProps = {
   data: IProductInCart[];
 };
 
 const Cart = ({ data }: TCartProps): JSX.Element => {
+  const { isOpen, onToggle } = useIndicator();
   const { toast, showToast, pauseToast, resetToast } = useToast();
   const [cart, setCart] = useState<IProductInCart[]>(data);
 
@@ -40,6 +41,8 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
 
   const handleChangeQuantity = useCallback(
     async (productId: string, quantity: number): Promise<void> => {
+      onToggle();
+
       try {
         await updateQuantity(productId, quantity);
         setCart((prev: IProductInCart[]) =>
@@ -57,13 +60,17 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
         const { message } = error as Error;
 
         showToast({ message, type: 'error' });
+      } finally {
+        onToggle();
       }
     },
-    [showToast],
+    [onToggle, showToast],
   );
 
   const handleRemoveProductItem = useCallback(
     async (id: string) => {
+      onToggle();
+
       try {
         await deleteCart(id);
         setCart((prev: IProductInCart[]) =>
@@ -74,9 +81,11 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
         const { message } = error as Error;
 
         showToast({ message, type: 'error' });
+      } finally {
+        onToggle();
       }
     },
-    [showToast],
+    [onToggle, showToast],
   );
 
   const handleCheckout = useCallback(() => {
@@ -88,7 +97,7 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
   const isDisableSubmit: boolean = !cart.length;
 
   return (
-    <>
+    <Indicator isOpen={isOpen}>
       <h2 className='capitalize font-primary text-primary text-3xl py-[30px]'>
         Shopping Cart
       </h2>
@@ -117,7 +126,7 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
         onHover={pauseToast}
         onBlur={resetToast}
       />
-    </>
+    </Indicator>
   );
 };
 

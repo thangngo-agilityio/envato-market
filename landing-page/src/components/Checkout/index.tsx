@@ -2,14 +2,14 @@ import { useForm } from 'react-hook-form';
 import { useCallback, useState } from 'react';
 
 // Components
-import { ContactForm, Toast } from '@app/components';
+import { ContactForm, Indicator, Toast } from '@app/components';
 import CardTotal from '../CardTotal';
 
 // Types
 import type { TRegisterForm } from '../ContactForm';
 
 // Hooks
-import { useToast } from '@app/hooks';
+import { useIndicator, useToast } from '@app/hooks';
 
 // Constants
 import { SUCCESS_MESSAGE } from '@app/constants';
@@ -25,16 +25,18 @@ type TCheckoutProps = {
   cart: IProductInCart[];
 };
 
+const defaultForm: TRegisterForm = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  state: '',
+  address: '',
+  street: '',
+  zip: '',
+};
+
 const Checkout = ({ total, cart }: TCheckoutProps): JSX.Element => {
-  const defaultForm: TRegisterForm = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    state: '',
-    address: '',
-    street: '',
-    zip: '',
-  };
+  const { isOpen, onToggle } = useIndicator();
   const [currentTotal, setCurrentTotal] = useState<number>(total);
   const { toast, resetToast, pauseToast, showToast } = useToast();
 
@@ -43,6 +45,8 @@ const Checkout = ({ total, cart }: TCheckoutProps): JSX.Element => {
   });
 
   const handleCheckout = useCallback(async () => {
+    onToggle();
+
     try {
       await Promise.all([
         checkout(watch(), total),
@@ -60,13 +64,15 @@ const Checkout = ({ total, cart }: TCheckoutProps): JSX.Element => {
         message,
         type: 'error',
       });
+    } finally {
+      onToggle();
     }
-  }, [total, watch, reset, defaultForm]);
+  }, [onToggle, watch, total, cart, showToast, reset]);
 
   const isDisable: boolean = !Object.values(watch()).every((value) => value);
 
   return (
-    <>
+    <Indicator isOpen={isOpen}>
       <h2 className='capitalize font-primary text-primary text-3xl py-[30px]'>
         Checkout
       </h2>
@@ -95,7 +101,7 @@ const Checkout = ({ total, cart }: TCheckoutProps): JSX.Element => {
         onHover={pauseToast}
         isOpen={!!toast.message}
       />
-    </>
+    </Indicator>
   );
 };
 

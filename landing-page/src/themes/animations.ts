@@ -14,6 +14,14 @@ export const keyframes: Config['theme'] = {
         transform: 'translateX(-100%)',
       },
     },
+    spinner: {
+      from: {
+        transform: 'rotate(0deg)',
+      },
+      to: {
+        transform: 'rotate(360deg)',
+      },
+    },
   },
 };
 
@@ -22,5 +30,6 @@ export const animation: Config['theme'] = {
     grow: 'grow .3s linear forwards',
     shrink: 'shrink .3s linear forwards',
     sidebarSlideIn: 'sidebarSlideIn .3s linear',
+    spinner: 'spinner 1.2s linear infinite',
   },
 };
