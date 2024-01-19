@@ -7,6 +7,7 @@ import { NAVBAR } from '@app/mocks';
 
 // Constant
 import { ROUTES } from '@app/constants';
+import { useEffect, type MouseEventHandler, useCallback } from 'react';
 
 type TSidebarProps = {
   pathName: string;
@@ -15,54 +16,81 @@ type TSidebarProps = {
 };
 
 // Styles CSS
-const styleHeader: string = 'fixed md:relative z-50 w-[320px] bg-white py-2xl px-[70px] h-full animate-sidebarSlideIn md:animate-none md:block md:p-xl md:basis-[280px] lg:basis-[320px] lg:py-2xl lg:px-[70px]';
-const hoverAfterStyle: string = 'after:w-0 after:h-1 after:transition-all after:duration-500 hover:after:absolute hover:after:z-10 hover:after:top-[50%] hover:after:left-[-70px] hover:after:w-[30px] hover:after:h-[3px] hover:after:bg-sun';
+const styleHeader: string =
+  'fixed md:relative z-50 w-[320px] bg-white py-2xl px-[70px] h-full animate-sidebarSlideIn md:animate-none md:block md:p-xl md:basis-[280px] lg:basis-[320px] lg:py-2xl lg:px-[70px]';
+const hoverAfterStyle: string =
+  'after:w-0 after:h-1 after:transition-all after:duration-500 hover:after:absolute hover:after:z-10 hover:after:top-[50%] hover:after:left-[-70px] hover:after:w-[30px] hover:after:h-[3px] hover:after:bg-sun';
 
 const SideBarAllDevices = ({
   isOpen = false,
   pathName,
   onToggle,
-}: TSidebarProps): JSX.Element => (
-  <header
-    className={`${styleHeader} ${isOpen ? 'block' : 'hidden'}`}
-  >
-    <Button
-      aria-label='Close Button'
-      className='flex md:hidden bg-sun w-10 h-10 justify-center items-center absolute top-0 right-md !p-0 hover:bg-secondary hover:duration-500'
-      onClick={onToggle}
+}: TSidebarProps): JSX.Element => {
+  const handleStopEvent: MouseEventHandler<HTMLHeadElement> = useCallback(
+    (e) => e.stopPropagation(),
+    [],
+  );
+
+  useEffect(() => {
+    const handleCloseSidebar = () => {
+      onToggle && onToggle();
+    };
+
+    if (isOpen) {
+      window.addEventListener('click', handleCloseSidebar);
+    }
+
+    return () => {
+      window.removeEventListener('click', handleCloseSidebar);
+    };
+  }, [isOpen, onToggle]);
+
+  return (
+    <header
+      className={`${styleHeader} ${isOpen ? 'block' : 'hidden'}`}
+      onClick={handleStopEvent}
     >
-      <CloseSideBar />
-    </Button>
-    <h1 className='mb-3xl'>
-      <a href={ROUTES.HOME}>
-        <img
-          src='/assets/logo-header-mobile.webp'
-          alt='Logo'
-          width={137}
-          height={55}
-          loading='lazy'
-        />
-      </a>
-    </h1>
-    <nav>
-      <ul>
-        {NAVBAR.map(
-          ({ id, href, text }): JSX.Element => (
-            <li key={id}>
-              <a
-                href={href}
-                className={`${
-                  href === pathName ? '!text-[#956A04]' : ''
-                } text-secondary font-semibold hover:text-sun uppercase text-sm leading-[53px] py-5 relative ${hoverAfterStyle}`}
-              >
-                {text}
-              </a>
-            </li>
-          ),
-        )}
-      </ul>
-    </nav>
-  </header>
-);
+      <Button
+        aria-label='Close Button'
+        className='btn-open-sidebar flex md:hidden bg-sun w-10 h-10 justify-center items-center absolute top-0 right-md !p-0 hover:bg-secondary hover:duration-500'
+        onClick={(e) => {
+          onToggle && onToggle();
+          e.stopPropagation();
+        }}
+      >
+        <CloseSideBar />
+      </Button>
+      <h1 className='mb-3xl'>
+        <a href={ROUTES.HOME}>
+          <img
+            src='/assets/logo-header-mobile.webp'
+            alt='Logo'
+            width={137}
+            height={55}
+            loading='lazy'
+          />
+        </a>
+      </h1>
+      <nav>
+        <ul>
+          {NAVBAR.map(
+            ({ id, href, text }): JSX.Element => (
+              <li key={id}>
+                <a
+                  href={href}
+                  className={`${
+                    href === pathName ? '!text-[#956A04]' : ''
+                  } text-secondary font-semibold hover:text-sun uppercase text-sm leading-[53px] py-5 relative ${hoverAfterStyle}`}
+                >
+                  {text}
+                </a>
+              </li>
+            ),
+          )}
+        </ul>
+      </nav>
+    </header>
+  );
+};
 
 export default SideBarAllDevices;
