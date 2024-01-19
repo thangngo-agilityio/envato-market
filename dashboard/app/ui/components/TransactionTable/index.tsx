@@ -317,7 +317,7 @@ const TransactionTableComponent = ({
         onSearch={handleDebounceSearch}
       />
       <Fetching isLoading={isLoadingTransactions} isError={isTransactionsError}>
-        <Box mt={5}>
+        <Box overflowX="scroll" mt={5}>
           <Table
             columns={columns as THeaderTable[]}
             dataSource={getTransactionHomePage(filterData)}
