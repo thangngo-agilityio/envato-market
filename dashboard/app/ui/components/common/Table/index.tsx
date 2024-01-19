@@ -30,10 +30,7 @@ const Table = ({
   onClickTableRow,
   ...props
 }: TTableProps): JSX.Element => (
-  <TableContainer
-    overflowX={{ base: 'auto', xl: 'initial', '3xl': 'auto', '4xl': 'initial' }}
-    overflowY={{ base: 'auto', xl: 'initial', '3xl': 'auto', '4xl': 'initial' }}
-  >
+  <TableContainer>
     <TableChakra {...props}>
       <Thead>
         <Tr>
