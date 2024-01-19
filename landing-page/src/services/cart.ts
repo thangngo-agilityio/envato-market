@@ -22,12 +22,8 @@ export const addToCart = async (
       throw new Error(ERROR_MESSAGES.ADD_TO_CART);
     });
 
-export const getCartByProductId = async (productId: string) =>
-  await fetch(
-    `${import.meta.env.PUBLIC_API_PRODUCTS}${
-      ENDPOINTS.CARTS
-    }?productId=${productId}`,
-  )
+export const getCartOnClient = async () =>
+  await fetch(`${import.meta.env.PUBLIC_API_PRODUCTS}${ENDPOINTS.CARTS}`)
     .then((res) => res.json())
     .catch(() => {
       throw new Error(ERROR_MESSAGES.ADD_TO_CART);
