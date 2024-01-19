@@ -34,7 +34,7 @@ import {
 } from '@/lib/constants';
 
 // Components
-import { InputField, UpdateProfile } from '@/ui/components';
+import { Indicator, InputField, UpdateProfile } from '@/ui/components';
 
 // Stores
 import { authStore } from '@/lib/stores';
@@ -48,7 +48,7 @@ import { QueryProvider } from '@/ui/providers';
 const UserFormComponent = () => {
   const { setUser } = useAuth();
   const user = authStore((state) => state.user);
-  const { mutate: updateUser, status } = useUpdateUser();
+  const { mutate: updateUser, status, isPending: isSubmit } = useUpdateUser();
   const toast = useToast();
 
   const {
@@ -137,7 +137,7 @@ const UserFormComponent = () => {
   );
 
   return (
-    <>
+    <Indicator isOpen={isSubmit}>
       <VStack
         as="form"
         id="register-form"
@@ -500,7 +500,7 @@ const UserFormComponent = () => {
           </GridItem>
         </Grid>
       </VStack>
-    </>
+    </Indicator>
   );
 };
 
