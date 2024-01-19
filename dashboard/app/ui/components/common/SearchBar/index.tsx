@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { FormEventHandler, memo, useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Box, HStack, useColorModeValue } from '@chakra-ui/react';
 // import { CloseIcon } from '@chakra-ui/icons';
@@ -58,8 +58,19 @@ const SearchBarComponent = ({
     onSearch('');
   }, [onSearch]);
 
+  const handleStopSubmitForm: FormEventHandler<HTMLDivElement> = useCallback(
+    (e) => e.preventDefault(),
+    [],
+  );
+
   return (
-    <HStack as="form" data-testid="search-bar" h={14} gap={5}>
+    <HStack
+      as="form"
+      data-testid="search-bar"
+      h={14}
+      gap={5}
+      onSubmit={handleStopSubmitForm}
+    >
       <Box
         display={{
           base: 'none',
