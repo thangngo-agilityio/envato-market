@@ -70,13 +70,21 @@ const UserDropdownMenu = ({
               bg: 'none',
             }}
             isActive={isOpen}
+            title={name}
           >
             <Flex alignItems="center">
               <Avatar src={src} alt={alt} />
               <Box display={{ base: 'none', '3xl': 'inline' }}>
                 <Flex flexDirection="column" alignItems="start" ml={18}>
                   <Flex alignItems="center">
-                    <Text mr="15px" w={68} fontWeight="bold" variant="text5Xl">
+                    <Text
+                      mr="15px"
+                      w={68}
+                      fontWeight="bold"
+                      variant="text5Xl"
+                      whiteSpace="break-spaces"
+                      noOfLines={1}
+                    >
                       {name}
                     </Text>
                     <Arrow color={colorFill} />
