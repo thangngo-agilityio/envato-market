@@ -7,6 +7,7 @@ export { default as ExpandSidebar } from './ExpandSidebar';
 export { default as MiniSidebar } from './MiniSidebar';
 export * from './Icons';
 export * from './Images';
+export { default as Indicator } from './Indicator';
 export { default as Avatar } from './common/Avatar';
 export { default as Benefit } from './common/Benefit';
 export { default as Divider } from './common/Divider';
