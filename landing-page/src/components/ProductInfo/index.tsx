@@ -4,7 +4,7 @@ import { useCallback, useMemo, type FormEventHandler, useState } from 'react';
 import { Button, Toast, InputNumber, Indicator } from '..';
 
 // Services
-import { addToCart, getCartByProductId, updateQuantity } from '@app/services';
+import { addToCart, getCartOnClient, updateQuantity } from '@app/services';
 
 // Constants
 import { SUCCESS_MESSAGE } from '@app/constants';
@@ -55,15 +55,16 @@ const ProductInfo = ({
   const handleAddToCart = useCallback(async () => {
     onOpen();
 
+    console.log(id);
+
     try {
-      const productInCart: IProductInCart[] = await getCartByProductId(id);
-      const alreadyExist: boolean = !!productInCart.length;
+      const productInCart: IProductInCart[] = await getCartOnClient();
+      const alreadyExist: IProductInCart | undefined = productInCart.find(
+        (item) => item.productId === id,
+      );
 
       if (alreadyExist) {
-        await updateQuantity(
-          productInCart[0].id,
-          quantity + productInCart[0].quantity,
-        );
+        await updateQuantity(alreadyExist.id, quantity + alreadyExist.quantity);
       } else {
         const payload: Omit<IProductInCart, 'id'> = {
           productId: id,
