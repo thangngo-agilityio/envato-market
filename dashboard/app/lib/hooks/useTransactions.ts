@@ -68,16 +68,19 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
       prevValue: string,
       nextValue: string,
     ): number => {
-      if (type === 'asc') {
-        if (prevValue.trim() > nextValue.trim()) return 1;
+      const convertPreValue: string = prevValue.toString();
+      const convertNextValue: string = nextValue.toString();
 
-        if (prevValue.trim() < nextValue.trim()) return -1;
+      if (type === 'asc') {
+        if (convertPreValue.trim() > convertNextValue.trim()) return 1;
+
+        if (convertPreValue.trim() < convertNextValue.trim()) return -1;
       }
 
       if (type === 'desc') {
-        if (prevValue.trim() > nextValue.trim()) return -1;
+        if (convertPreValue.trim() > convertNextValue.trim()) return -1;
 
-        if (prevValue.trim() < nextValue.trim()) return 1;
+        if (convertPreValue.trim() < convertNextValue.trim()) return 1;
       }
 
       return 0;
