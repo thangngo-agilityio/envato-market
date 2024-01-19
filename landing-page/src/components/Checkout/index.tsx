@@ -12,7 +12,7 @@ import type { TRegisterForm } from '../ContactForm';
 import { useIndicator, useToast } from '@app/hooks';
 
 // Constants
-import { SUCCESS_MESSAGE } from '@app/constants';
+import { ROUTES, SUCCESS_MESSAGE } from '@app/constants';
 
 // Services
 import { checkout, deleteCart } from '@app/services';
@@ -52,11 +52,16 @@ const Checkout = ({ total, cart }: TCheckoutProps): JSX.Element => {
         checkout(watch(), total),
         cart.map(({ id }) => deleteCart(id)),
       ]);
+
       showToast({
         message: SUCCESS_MESSAGE.CHECKOUT,
       });
+
       setCurrentTotal(0);
+
       reset(defaultForm);
+
+      window.location.replace(ROUTES.HOME);
     } catch (error) {
       const { message } = error as Error;
 
