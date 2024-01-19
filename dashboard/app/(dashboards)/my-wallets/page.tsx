@@ -50,7 +50,7 @@ const MyWallets = async () => {
       py={12}
       templateColumns={{ base: 'repeat(1, 1fr)', '3xl': 'repeat(4, 1fr)' }}
       gap={{ base: 0, '2xl': 6 }}
-      display={{ sm: 'block', md: 'grid' }}
+      display={{ sm: 'block', xl: 'grid' }}
       minH="100vh"
     >
       <GridItem colSpan={1}>
@@ -59,9 +59,10 @@ const MyWallets = async () => {
           <CardPayment />
         </Flex>
       </GridItem>
-      <GridItem colSpan={{ xl: 3 }} mt={{ base: 6, '3xl': 0 }}>
+      <GridItem colSpan={{ base: 1, xl: 3 }} mt={{ base: 6, '3xl': 0 }}>
         <Flex direction="column" gap={6}>
           <Flex
+            flex={1}
             gap={6}
             direction={{ base: 'column', xl: 'row' }}
             boxSizing="border-box"
