@@ -174,9 +174,7 @@ const UsersSections = () => {
                   variant="no-focus"
                   value={value}
                   leftIcon={<Search color="#94A3B8" />}
-                  rightIcon={
-                    get('name') && <CloseIcon onClick={handleResetValue} />
-                  }
+                  rightIcon={value && <CloseIcon onClick={handleResetValue} />}
                   placeholder="Search by name"
                   sx={{
                     svg: {
