@@ -28,20 +28,21 @@ export const useNotification = (userId?: string) => {
     { quantity: 0, hasNewNotification: false },
   );
 
-  const { mutate: deleteNotification } = useMutation({
-    mutationFn: async (
-      payload: Partial<
-        TNotification & { userId: string; notificationId: string }
-      >,
-    ) => {
-      await notificationHttpRequest.delete(END_POINTS.NOTIFICATION, {
-        data: payload,
-      });
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: [END_POINTS.NOTIFICATION] });
-    },
-  });
+  const { mutate: deleteNotification, isPending: isDeleteNotification } =
+    useMutation({
+      mutationFn: async (
+        payload: Partial<
+          TNotification & { userId: string; notificationId: string }
+        >,
+      ) => {
+        await notificationHttpRequest.delete(END_POINTS.NOTIFICATION, {
+          data: payload,
+        });
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries({ queryKey: [END_POINTS.NOTIFICATION] });
+      },
+    });
 
   const { mutate: updateNotification } = useMutation({
     mutationFn: async (
@@ -65,6 +66,7 @@ export const useNotification = (userId?: string) => {
     data,
     quantity,
     hasNewNotification,
+    isDeleteNotification,
     deleteNotification,
     updateNotification,
   };
