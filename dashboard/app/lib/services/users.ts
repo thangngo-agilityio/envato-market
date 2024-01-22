@@ -11,8 +11,8 @@ export const userHttpRequest: AxiosInstance = axios.create({
 });
 
 export const getAllUserDetailsExceptWithId = async (
-  userId?: string | undefined,
-  searchParam?: string,
+  userId = '',
+  searchParam = '',
   config?: IAxiosConfig,
 ): Promise<
   Array<
