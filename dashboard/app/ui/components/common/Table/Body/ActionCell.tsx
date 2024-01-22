@@ -13,29 +13,33 @@ import {
   Td,
 } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon, LockIcon, UnlockIcon } from '@chakra-ui/icons';
+import { Dot, Modal } from '@/ui/components';
 
-// Interfaces
-import { TTransaction } from '@/lib/interfaces';
-
-// Components
-import { Dot } from '@/ui/components';
 const TransactionModal = dynamic(
   () => import('@/ui/components/common/Table/Body/TransactionModal'),
 );
-const Modal = dynamic(() => import('@/ui/components/common/Modal'));
+
+// Interfaces
+import { TTransaction, TUserDetail } from '@/lib/interfaces';
 
 interface ActionCallProps {
+  user?: TUserDetail;
   transaction?: TTransaction;
   isOpenModal?: boolean;
   isOpenUserAction?: boolean;
   onDeleteTransaction?: (transactionData: TTransaction) => void;
   onUpdateTransaction?: (transactionData: TTransaction) => void;
+  onLockUser?: (userData?: TUserDetail) => void;
+  onUnlockUser?: (userData?: TUserDetail) => void;
 }
 
 const ActionCellComponent = ({
+  user,
   transaction,
   isOpenModal = false,
   isOpenUserAction = false,
+  onLockUser = () => {},
+  onUnlockUser = () => {},
   onDeleteTransaction = () => {},
   onUpdateTransaction = () => {},
 }: ActionCallProps) => {
@@ -56,9 +60,19 @@ const ActionCellComponent = ({
     setIsOpenConfirmModal(!isOpenConfirmModal);
   }, [isOpenConfirmModal]);
 
-  const handleDeleteTransaction = useCallback(
-    () => onDeleteTransaction(transaction as TTransaction),
-    [onDeleteTransaction, transaction],
+  const handleDeleteTransaction = useCallback(() => {
+    handleToggleModal();
+    onDeleteTransaction(transaction as TTransaction);
+  }, [handleToggleModal, onDeleteTransaction, transaction]);
+
+  const handleLockUser = useCallback(
+    () => onLockUser(user),
+    [onLockUser, user],
+  );
+
+  const handleUnLockUser = useCallback(
+    () => onUnlockUser(user),
+    [onUnlockUser, user],
   );
 
   return (
@@ -110,8 +124,21 @@ const ActionCellComponent = ({
                     >
                       {isOpenUserAction ? (
                         <>
-                          <LockIcon w={5} h={5} />
-                          <UnlockIcon w={5} h={5} />
+                          {user?.isBlock ? (
+                            <UnlockIcon
+                              ml={3}
+                              w={5}
+                              h={5}
+                              onClick={handleUnLockUser}
+                            />
+                          ) : (
+                            <LockIcon
+                              ml={3}
+                              w={5}
+                              h={5}
+                              onClick={handleLockUser}
+                            />
+                          )}
                         </>
                       ) : (
                         <>

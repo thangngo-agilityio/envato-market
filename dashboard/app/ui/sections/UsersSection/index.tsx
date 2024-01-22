@@ -1,76 +1,149 @@
 'use client';
 
-import { memo, useCallback, useMemo, useState } from 'react';
+import { memo, useCallback } from 'react';
 import dynamic from 'next/dynamic';
+import { Controller, useForm } from 'react-hook-form';
+import { CloseIcon } from '@chakra-ui/icons';
 
 // Components
-import { Box, Flex, Text } from '@chakra-ui/react';
-import { Button, Fetching, InputField, Select } from '@/ui/components';
+import { Box, Flex, useToast } from '@chakra-ui/react';
+import { Fetching, InputField } from '@/ui/components';
 
 // Hooks
-import { useDebounce, useEmployee, useSearch } from '@/lib/hooks';
+import {
+  useDebounce,
+  useGetUserDetails,
+  usePagination,
+  useSearch,
+} from '@/lib/hooks';
 
 // Icons
-import { Search, ChevronIcon } from '@/ui/components/Icons';
+import { Search } from '@/ui/components/Icons';
 
 // Constants
-import { FILTER_USER_OPTIONS } from '@/lib/constants';
+import {
+  END_POINTS,
+  ERROR_MESSAGES,
+  STATUS,
+  SUCCESS_MESSAGES,
+} from '@/lib/constants';
 
-// Types
-import { TOption } from '@/ui/components/common/Select';
+// Stores
+import { authStore } from '@/lib/stores';
 
-// Mock
-import { INITIAL_USER } from '@/lib/mocks';
+// Interfaces
+import { TSearchValue } from '@/ui/components/common/SearchBar';
+import { TUserDetail } from '@/lib/interfaces';
+
+// Utils
+import { customToast } from '@/lib/utils';
 
 // Lazy loading components
 const UsersTable = dynamic(() => import('@/ui/components/UsersTable'));
-const UserCard = dynamic(() => import('@/ui/components/UserCard'));
 
 const UsersSections = () => {
-  const [userId, setUserId] = useState<string | null>(null);
-  const [seniorityLevel, setSeniorityLevel] = useState<string>('');
-  const { setSearchParam } = useSearch();
+  const toast = useToast();
+  const user = authStore((state) => state.user);
+
+  const { get, setSearchParam: setSearchUser } = useSearch();
+
+  const { control, resetField } = useForm<TSearchValue>({
+    defaultValues: {
+      search: get('name') || '',
+    },
+  });
 
   const {
-    data: users = [],
-    isFetching: isEmployeesLoading,
-    isError: isEmployeesError,
-  } = useEmployee('');
+    filterDataUser,
+    isLoading: isLoadingUser,
+    isError: isUserError,
+    isFetching: isUserLoading,
+    managementUser,
+  } = useGetUserDetails(user?.id || '', {
+    name: get('name') || '',
+  });
 
-  const handleClickUser = useCallback((id: string) => {
-    setUserId(id);
+  const {
+    data,
+    filterData,
+    arrOfCurrButtons,
+    isDisabledPrev,
+    isDisableNext,
+    resetPage,
+    handleChangeLimit,
+    handlePageChange,
+    handlePageClick,
+  } = usePagination(filterDataUser as []);
+
+  const handleDebounceSearch = useDebounce((value: string) => {
+    resetPage();
+    setSearchUser('name', value);
   }, []);
 
-  const user = useMemo(
-    () => (userId ? users.find((user) => user.id === userId) : users[0]),
-    [userId, users],
-  );
-
-  const renderTitle = useCallback(
-    ({ label }: TOption) => (
-      <Flex alignItems="center" justifyContent="space-between">
-        <Text>{label}</Text>
-        <ChevronIcon />
-      </Flex>
-    ),
-    [],
-  );
-
-  const handleSearchUsersByJobTitle = useDebounce((value: string) => {
-    setSearchParam('jobTitle', value);
+  const handleResetValue = useCallback(() => {
+    resetField('search');
+    setSearchUser('name', '');
   }, []);
 
-  const handleFilterUsersBySeniorLevel = useCallback((data: TOption) => {
-    setSeniorityLevel(data.value);
+  const handleLockUser = useCallback((lockUserData?: TUserDetail) => {
+    managementUser(
+      {
+        urlEndpoint: END_POINTS.LOCK,
+        userId: user?.id,
+        memberId: lockUserData?.id,
+      },
+      {
+        onSuccess: () => {
+          toast(
+            customToast(
+              SUCCESS_MESSAGES.LOCK_USER_SUCCESS.title,
+              SUCCESS_MESSAGES.LOCK_USER_SUCCESS.description,
+              STATUS.SUCCESS,
+            ),
+          );
+        },
+        onError: () => {
+          toast(
+            customToast(
+              ERROR_MESSAGES.LOCK_USER_FAIL.title,
+              ERROR_MESSAGES.LOCK_USER_FAIL.description,
+              STATUS.ERROR,
+            ),
+          );
+        },
+      },
+    );
   }, []);
 
-  const usersFiltered = useMemo(
-    () =>
-      seniorityLevel
-        ? users.filter((item) => item.level === seniorityLevel)
-        : users,
-    [users, seniorityLevel],
-  );
+  const handleUnlockUser = useCallback((lockUserData?: TUserDetail) => {
+    managementUser(
+      {
+        urlEndpoint: END_POINTS.UNLOCK,
+        userId: user?.id,
+        memberId: lockUserData?.id,
+      },
+      {
+        onSuccess: () => {
+          toast(
+            customToast(
+              SUCCESS_MESSAGES.UNLOCK_USER_SUCCESS.title,
+              SUCCESS_MESSAGES.UNLOCK_USER_SUCCESS.description,
+              STATUS.SUCCESS,
+            ),
+          );
+        },
+        onError: () => {
+          toast(
+            customToast(
+              ERROR_MESSAGES.UNLOCK_USER_FAIL.title,
+              ERROR_MESSAGES.UNLOCK_USER_FAIL.description,
+              STATUS.ERROR,
+            ),
+          );
+        },
+      },
+    );
+  }, []);
 
   return (
     <Flex
@@ -91,58 +164,48 @@ const UsersSections = () => {
           mb={8}
           alignItems="center"
         >
-          <InputField
-            flex={4}
-            variant="no-focus"
-            leftIcon={<Search color="#94A3B8" />}
-            placeholder="Job Title"
-            sx={{
-              svg: {
-                position: 'absolute',
-              },
-            }}
-            onChange={handleSearchUsersByJobTitle}
-          />
-          <Flex gap={8}>
-            <Box
-              w={220}
-              px={5}
-              borderRight="solid 1px"
-              borderLeft="solid 1px"
-              borderColor="border.primary"
-              display={{ base: 'none', xl: 'block' }}
-            >
-              <Select
-                options={FILTER_USER_OPTIONS}
-                variant="no-background"
-                renderTitle={renderTitle}
-                onSelect={handleFilterUsersBySeniorLevel}
+          <Controller
+            control={control}
+            name="search"
+            render={({ field: { value, onChange } }) => (
+              <InputField
+                flex={4}
+                variant="no-focus"
+                value={value}
+                leftIcon={<Search color="#94A3B8" />}
+                rightIcon={
+                  get('name') && <CloseIcon onClick={handleResetValue} />
+                }
+                placeholder="Search by name"
+                sx={{
+                  svg: {
+                    position: 'absolute',
+                  },
+                }}
+                onChange={(value: string) => {
+                  onChange(value);
+                  handleDebounceSearch(value);
+                }}
               />
-            </Box>
-            <Button
-              size="md"
-              aria-label="btn-search"
-              bg="background.component.quaternary"
-              fontWeight="medium"
-              sx={{
-                py: 7,
-                borderRadius: 'lg',
-                display: { base: 'none', md: 'inline-flex' },
-                _hover: {
-                  bg: 'background.component.quaternary',
-                },
-              }}
-            >
-              Search
-            </Button>
-          </Flex>
+            )}
+          />
         </Flex>
-        <Fetching isLoading={isEmployeesLoading} isError={isEmployeesError}>
-          <UsersTable users={usersFiltered} onClickUser={handleClickUser} />
+        <Fetching isLoading={isUserLoading} isError={isUserError}>
+          <UsersTable
+            users={filterData}
+            data={data}
+            isUserError={isUserError}
+            isLoadingUser={isLoadingUser}
+            isDisableNext={isDisableNext}
+            arrOfCurrButtons={arrOfCurrButtons}
+            isDisabledPrev={isDisabledPrev}
+            onChangeLimit={handleChangeLimit}
+            onPageChange={handlePageChange}
+            onPageClick={handlePageClick}
+            onLockUser={handleLockUser}
+            onUnlockUser={handleUnlockUser}
+          />
         </Fetching>
-      </Box>
-      <Box flex={1} pt={20}>
-        <UserCard user={user || INITIAL_USER} />
       </Box>
     </Flex>
   );
