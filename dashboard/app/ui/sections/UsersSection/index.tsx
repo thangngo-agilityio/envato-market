@@ -7,7 +7,7 @@ import { CloseIcon } from '@chakra-ui/icons';
 
 // Components
 import { Box, Flex, useToast } from '@chakra-ui/react';
-import { Fetching, InputField } from '@/ui/components';
+import { Indicator, InputField } from '@/ui/components';
 
 // Hooks
 import {
@@ -57,7 +57,7 @@ const UsersSections = () => {
     filterDataUser,
     isLoading: isLoadingUser,
     isError: isUserError,
-    isFetching: isUserLoading,
+    isSendRequestUser,
     managementUser,
   } = useGetUserDetails(user?.id || '', {
     name: get('name') || '',
@@ -146,51 +146,49 @@ const UsersSections = () => {
   }, []);
 
   return (
-    <Flex
-      p={12}
-      bgColor="background.body.tertiary"
-      minH="calc(100vh - 112px)"
-      gap={11}
-      direction={{ base: 'column', '3xl': 'row' }}
-    >
-      <Box flex={{ '3xl': 3 }}>
-        <Flex
-          p={{
-            base: 1,
-            md: 4,
-          }}
-          rounded="lg"
-          bg="background.body.quaternary"
-          mb={8}
-          alignItems="center"
-        >
-          <Controller
-            control={control}
-            name="search"
-            render={({ field: { value, onChange } }) => (
-              <InputField
-                flex={4}
-                variant="no-focus"
-                value={value}
-                leftIcon={<Search color="#94A3B8" />}
-                rightIcon={
-                  get('name') && <CloseIcon onClick={handleResetValue} />
-                }
-                placeholder="Search by name"
-                sx={{
-                  svg: {
-                    position: 'absolute',
-                  },
-                }}
-                onChange={(value: string) => {
-                  onChange(value);
-                  handleDebounceSearch(value);
-                }}
-              />
-            )}
-          />
-        </Flex>
-        <Fetching isLoading={isUserLoading} isError={isUserError}>
+    <Indicator isOpen={isSendRequestUser}>
+      <Flex
+        p={12}
+        bgColor="background.body.tertiary"
+        minH="calc(100vh - 112px)"
+        gap={11}
+        direction={{ base: 'column', '3xl': 'row' }}
+      >
+        <Box flex={{ '3xl': 3 }}>
+          <Flex
+            p={{
+              base: 1,
+              md: 4,
+            }}
+            rounded="lg"
+            bg="background.body.quaternary"
+            mb={8}
+            alignItems="center"
+          >
+            <Controller
+              control={control}
+              name="search"
+              render={({ field: { value, onChange } }) => (
+                <InputField
+                  flex={4}
+                  variant="no-focus"
+                  value={value}
+                  leftIcon={<Search color="#94A3B8" />}
+                  rightIcon={value && <CloseIcon onClick={handleResetValue} />}
+                  placeholder="Search by name"
+                  sx={{
+                    svg: {
+                      position: 'absolute',
+                    },
+                  }}
+                  onChange={(value: string) => {
+                    onChange(value);
+                    handleDebounceSearch(value);
+                  }}
+                />
+              )}
+            />
+          </Flex>
           <UsersTable
             users={filterData}
             data={data}
@@ -205,9 +203,9 @@ const UsersSections = () => {
             onLockUser={handleLockUser}
             onUnlockUser={handleUnlockUser}
           />
-        </Fetching>
-      </Box>
-    </Flex>
+        </Box>
+      </Flex>
+    </Indicator>
   );
 };
 
