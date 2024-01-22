@@ -66,6 +66,10 @@ export const ERROR_MESSAGES = {
     title: 'Unlock failed',
     description: 'User has not been unlocked successfully',
   },
+  FORGOT_PASSWORD: {
+    title: 'Recover password failed',
+    description: 'An error has occurred when checking your email address',
+  },
 };
 
 export const SUCCESS_MESSAGES = {
@@ -108,6 +112,10 @@ export const SUCCESS_MESSAGES = {
   UNLOCK_USER_SUCCESS: {
     title: 'Unlock success',
     description: 'User has been unlocked successfully',
+  },
+  FORGOT_PASSWORD: {
+    title: 'Recover password successfully',
+    description: 'Check your email inbox to recover your password',
   },
 };
 

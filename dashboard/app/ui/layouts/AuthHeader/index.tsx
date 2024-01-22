@@ -3,9 +3,13 @@ import { memo } from 'react';
 
 type THeadingProps = {
   title: string;
+  isForgotPasswordPage?: boolean;
 };
 
-const AuthHeaderComponent = ({ title }: THeadingProps): JSX.Element => (
+const AuthHeaderComponent = ({
+  title,
+  isForgotPasswordPage = false,
+}: THeadingProps): JSX.Element => (
   <VStack as="header">
     <HeadingChakra
       as="h1"
@@ -16,9 +20,11 @@ const AuthHeaderComponent = ({ title }: THeadingProps): JSX.Element => (
     >
       {title}
     </HeadingChakra>
-    <Text fontSize="md" color="text.secondary" fontWeight="medium">
-      Send, spend and save smarter
-    </Text>
+    {!isForgotPasswordPage && (
+      <Text fontSize="md" color="text.secondary" fontWeight="medium">
+        Send, spend and save smarter
+      </Text>
+    )}
   </VStack>
 );
 
