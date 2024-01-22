@@ -61,7 +61,7 @@ const TransactionTableComponent = ({
   isOpenHistoryModal = false,
 }: TFilterUserProps) => {
   const toast = useToast();
-  const { user } = authStore();
+  const userId = authStore((state) => state.user?.id);
   const { get, setSearchParam: setSearchTransaction } = useSearch();
 
   const {
@@ -99,7 +99,7 @@ const TransactionTableComponent = ({
       updateTransaction(
         {
           transactionId: updateCustomer._id,
-          userId: user?.id,
+          userId: userId,
           firstName: firstName,
           lastName: lastName,
           state: address.state,
@@ -137,7 +137,7 @@ const TransactionTableComponent = ({
       deleteTransaction(
         {
           transactionId: updateData.id,
-          userId: updateData.customer?.customerId as string,
+          userId: userId,
           transactionStatus: TRANSACTION_STATUS_ENUM.ARCHIVED,
         },
         {
