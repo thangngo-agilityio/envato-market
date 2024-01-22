@@ -119,13 +119,9 @@ export const useGetUserDetails = (
   const isNameMatchWith = (target: string): boolean =>
     (target || '').trim().toLowerCase().includes(searchName);
 
-  const filterDataUser = listUserDetail?.filter(({ firstName, lastName }) => {
-    const isMatchWithName: boolean = isNameMatchWith(
-      `${firstName} ${lastName}`,
-    );
-
-    return isMatchWithName;
-  });
+  const filterDataUser = listUserDetail?.filter(({ firstName, lastName }) =>
+    isNameMatchWith(`${firstName} ${lastName}`),
+  );
 
   const { mutate: managementUser } = useMutation({
     mutationFn: async ({

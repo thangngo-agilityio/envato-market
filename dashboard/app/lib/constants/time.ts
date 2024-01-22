@@ -9,3 +9,5 @@ export const EXPIRED_DAY = {
 export const DEBOUNCE_TIME = 600; // ms
 
 export const SHOW_TIME = 3000;
+
+export const TIME_FORMAT = 'MMM DD, YYYY';

@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import { TEmployee, TDataSource, TUserDetail } from '@/lib/interfaces';
 
 // Constants
-import { IMAGES } from '@/lib/constants';
+import { IMAGES, TIME_FORMAT } from '@/lib/constants';
 
 export type TShowEmployee = Omit<
   TEmployee,
@@ -30,7 +30,7 @@ export const formatUserResponse = (users: TUserDetail[] = []) =>
       name: `${firstName} ${lastName}`,
       image: avatarURL || IMAGES.AVATAR.url,
       email,
-      createdAt: dayjs(createdAt).format('MMM DD, YYYY'),
+      createdAt: dayjs(createdAt).format(TIME_FORMAT),
       isBlock,
     };
   });

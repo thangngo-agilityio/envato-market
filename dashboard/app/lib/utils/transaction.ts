@@ -5,7 +5,9 @@ import { TTransaction } from '@/lib/interfaces';
 
 // Utils
 import { formatDecimalNumber, formatUppercaseFirstLetter } from '.';
-import { IMAGES } from '../constants';
+
+// Constants
+import { IMAGES, TIME_FORMAT } from '../constants';
 
 /**
  * Convert data show for home page
@@ -46,7 +48,7 @@ export const getTransactionHomePage = (transactions: TTransaction[] = []) =>
       },
       email,
       location: `${street} ${city}`,
-      date: dayjs(createdAt).format('MMM DD, YYYY'),
+      date: dayjs(createdAt).format(TIME_FORMAT),
       paymentStatus: formatUppercaseFirstLetter(paymentStatus),
       transactionStatus: formatUppercaseFirstLetter(transactionStatus),
       image: IMAGES.BIG_AVATAR.url || avatar,
