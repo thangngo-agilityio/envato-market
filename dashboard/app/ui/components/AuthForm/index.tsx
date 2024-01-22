@@ -207,8 +207,8 @@ const AuthFormComponent = ({
           },
         }}
       >
-        <AuthHeader title={isRegister ? TITLES.SIGN_UP : TITLES.SIGN_IN} />
-        <Divider content={TITLES.AUTH_DiVIDER} />
+        {/* <AuthHeader title={isRegister ? TITLES.SIGN_UP : TITLES.SIGN_IN} />
+        <Divider content={TITLES.AUTH_DiVIDER} /> */}
         <VStack gap={6}>
           {isRegister && (
             <HStack
