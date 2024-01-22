@@ -114,7 +114,6 @@ export const PRODUCT_DETAIL = {
     ...PRODUCTS[0].imageURLs,
     ...PRODUCTS[1].imageURLs,
     ...PRODUCTS[2].imageURLs,
-    ...PRODUCTS[2].imageURLs,
   ],
   name: PRODUCTS[0].name,
   stock: PRODUCTS[0].stock,
