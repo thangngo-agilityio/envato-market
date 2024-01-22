@@ -62,6 +62,7 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
     data,
     quantity,
     hasNewNotification,
+    isDeleteNotification,
     deleteNotification,
     updateNotification,
   } = useNotification(user?.id);
@@ -120,7 +121,13 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
     <Box>
       <Text fontSize="lg">{CONFIRM_MESSAGE.DELETE_NOTIFICATION}</Text>
       <Flex my={4} justifyContent="center">
-        <Button w={44} bg="green.600" mr={3} onClick={handleDeleteData}>
+        <Button
+          w={44}
+          bg="green.600"
+          mr={3}
+          isDisabled={isDeleteNotification}
+          onClick={handleDeleteData}
+        >
           Delete
         </Button>
         <Button
