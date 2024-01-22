@@ -48,6 +48,10 @@ const HeaderComponent = () => {
   const username = `${user?.firstName || ''} ${user?.lastName || ''}`;
   const roles = user?.role === AUTHENTICATION_ROLE.SUPER_ADMIN;
 
+  const bonusTimes = authStore(
+    (state): number | undefined => state.user?.bonusTimes,
+  );
+
   return (
     <Flex
       h="100%"
@@ -113,7 +117,10 @@ const HeaderComponent = () => {
               <Email color={colorFill} />
             </IconButton>
 
-            <BonusNotification colorFill={colorFill} />
+            <BonusNotification
+              colorFill={colorFill}
+              limitOfBonus={bonusTimes}
+            />
           </Flex>
           <Box
             display={{ base: 'none', default: 'inline-flex', md: 'none' }}

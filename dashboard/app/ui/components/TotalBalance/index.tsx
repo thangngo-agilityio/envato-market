@@ -18,7 +18,12 @@ import { Modal, PinCode } from '..';
 import { TPinCodeForm } from '@/lib/interfaces';
 
 // Constants
-import { ERROR_MESSAGES, STATUS, SUCCESS_MESSAGES } from '@/lib/constants';
+import {
+  DEFAULT_DISCOUNT_PERCENTAGE,
+  ERROR_MESSAGES,
+  STATUS,
+  SUCCESS_MESSAGES,
+} from '@/lib/constants';
 import { customToast } from '@/lib/utils';
 
 export type TAddMoneyForm = {
@@ -77,9 +82,19 @@ const TotalBalanceComponent = (): JSX.Element => {
   const toast = useToast();
   const { addMoneyToUserWallet } = useMoney();
 
+  const bonusTimes = authStore((state): number => state.user?.bonusTimes ?? 0);
+  console.log('bonusTimes', bonusTimes);
+
   const onSubmitAddMoney: SubmitHandler<TAddMoneyForm> = useCallback(
     (data) => {
-      const dataToSubmit = { ...data, amount: Number(data.amount) };
+      const addMoneyAmount: number = Number(data.amount);
+
+      const dataToSubmit = {
+        ...data,
+        amount:
+          addMoneyAmount +
+          (bonusTimes ? addMoneyAmount * DEFAULT_DISCOUNT_PERCENTAGE : 0),
+      };
 
       addMoneyToUserWallet(dataToSubmit);
     },

@@ -23,9 +23,17 @@ import {
 // Utils
 import { customToast, getErrorMessageFromAxiosError } from '@/lib/utils';
 
+// Stores
+import { authStore } from '@/lib/stores';
+
 export const useMoney = () => {
   const queryClient = useQueryClient();
   const toast = useToast();
+
+  const { user, setUser } = authStore((state) => ({
+    user: state.user,
+    setUser: state.updateStore,
+  }));
 
   const handleTransferMoneySuccess = (defaultSuccess: {
     title: string;
@@ -38,6 +46,14 @@ export const useMoney = () => {
         STATUS.SUCCESS,
       ),
     );
+    if (user?.bonusTimes) {
+      setUser({
+        user: {
+          ...user,
+          bonusTimes: --user.bonusTimes,
+        },
+      });
+    }
   };
 
   const handleTransferMoneyError = (

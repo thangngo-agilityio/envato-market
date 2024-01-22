@@ -10,24 +10,25 @@ import BonusContent from './BonusContent';
 import { DEFAULT_DISCOUNT_PERCENTAGE, LIMIT_OF_BONUS } from '@/lib/constants';
 
 export type TBonusNotificationProps = {
-  isExpired?: boolean;
   colorFill: string;
   discount?: number;
   limitOfBonus?: number;
 };
 const BonusNotification = ({
-  isExpired = false,
   colorFill,
-  discount = DEFAULT_DISCOUNT_PERCENTAGE,
+  discount = DEFAULT_DISCOUNT_PERCENTAGE * 100,
   limitOfBonus = LIMIT_OF_BONUS,
 }: TBonusNotificationProps) => (
   <Menu placement="bottom-end" offset={[0, 20]}>
     <MenuButton as="button">
-      <IconButton hasNewNotification quantityNotification={limitOfBonus}>
+      <IconButton
+        hasNewNotification={!!limitOfBonus}
+        quantityNotification={limitOfBonus}
+      >
         <Gift color={colorFill} />
       </IconButton>
     </MenuButton>
-    {!isExpired && <BonusContent discount={discount} />}
+    {!!limitOfBonus && <BonusContent discount={discount} />}
   </Menu>
 );
 
