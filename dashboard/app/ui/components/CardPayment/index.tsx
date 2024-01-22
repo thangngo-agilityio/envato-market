@@ -60,7 +60,7 @@ const CardPaymentComponent = (): JSX.Element => {
 
   const { currentWalletMoney } = useWallet(user?.id);
 
-  const { listUserDetail } = useGetUserDetails(user?.id || '');
+  const { filterDataUser } = useGetUserDetails(user?.id || '');
 
   const {
     isOpen: isSetPinCodeModalOpen,
@@ -257,7 +257,7 @@ const CardPaymentComponent = (): JSX.Element => {
         <CardBalance balance={currentWalletMoney?.balance || 0} />
 
         <Box as="form" mt={4} onSubmit={handleOnSubmitSendMoney}>
-          <UserSelector control={control} listUser={listUserDetail} />
+          <UserSelector control={control} listUser={filterDataUser} />
           <EnterMoney isDisabled={!isValid || isSubmitting} control={control} />
         </Box>
       </Box>
