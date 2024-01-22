@@ -73,20 +73,11 @@ export const useMoney = () => {
 
   const { mutate: addMoneyToUserWallet } = useMutation({
     mutationFn: (userData: TAddMoney) => addMoneyToUser(userData),
-    onSuccess: () => handleTransferMoneySuccess(SUCCESS_MESSAGES.ADD_MONEY),
+    onSuccess: () => {
+      handleTransferMoneySuccess(SUCCESS_MESSAGES.ADD_MONEY);
+    },
     onError: (error) =>
       handleTransferMoneyError(error, ERROR_MESSAGES.ADD_MONEY),
-    onSettled: () => {
-      queryClient.invalidateQueries({
-        queryKey: [END_POINTS.MY_WALLET],
-      });
-      queryClient.invalidateQueries({
-        queryKey: [END_POINTS.TRANSACTIONS],
-      });
-      queryClient.invalidateQueries({
-        queryKey: [END_POINTS.NOTIFICATION],
-      });
-    },
   });
 
   const { mutate: sendMoneyToUserWallet } = useMutation({
