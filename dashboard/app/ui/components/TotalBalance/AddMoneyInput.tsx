@@ -3,7 +3,7 @@ import { Box, Flex, Input, Text } from '@chakra-ui/react';
 import { Control, Controller } from 'react-hook-form';
 
 // Utils
-import { formatDecimalInput } from '@/lib/utils';
+import { formatAmountNumber } from '@/lib/utils';
 
 // Types
 import { TAddMoneyForm } from '.';
@@ -37,7 +37,7 @@ const AddMoneyInputField = ({
             const value: string = event.target.value;
 
             // Remove non-numeric characters and leading zeros
-            const sanitizedValue = formatDecimalInput(value);
+            const sanitizedValue = formatAmountNumber(value);
 
             onChange(sanitizedValue);
           };

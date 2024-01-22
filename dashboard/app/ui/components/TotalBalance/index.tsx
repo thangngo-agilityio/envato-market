@@ -83,7 +83,6 @@ const TotalBalanceComponent = (): JSX.Element => {
   const { addMoneyToUserWallet } = useMoney();
 
   const bonusTimes = authStore((state): number => state.user?.bonusTimes ?? 0);
-  console.log('bonusTimes', bonusTimes);
 
   const onSubmitAddMoney: SubmitHandler<TAddMoneyForm> = useCallback(
     (data) => {
