@@ -6,7 +6,7 @@ import { Control, Controller } from 'react-hook-form';
 import { TTransfer } from '.';
 
 // Utils
-import { formatDecimalInput } from '@/lib/utils';
+import { formatAmountNumber } from '@/lib/utils';
 import { AUTH_SCHEMA } from '@/lib/constants';
 
 export type TEnterMoneyProps = {
@@ -43,7 +43,7 @@ const EnterMoneyComponent = ({
               const value: string = event.target.value;
 
               // Remove non-numeric characters and leading zeros
-              const sanitizedValue = formatDecimalInput(value);
+              const sanitizedValue = formatAmountNumber(value);
 
               onChange(sanitizedValue);
             };

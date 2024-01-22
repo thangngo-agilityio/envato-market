@@ -130,6 +130,7 @@ const UserDropdownMenu = ({
                     svg: { stroke: 'text.currencyColor' },
                     path: { stroke: 'text.currencyColor' },
                     borderColor: 'transparent',
+                    textDecoration: 'none',
                   }}
                   _focus={{
                     outline: 'none',
@@ -164,6 +165,7 @@ const UserDropdownMenu = ({
                       color: 'text.currencyColor',
                       svg: { stroke: 'text.currencyColor' },
                       borderColor: 'transparent',
+                      textDecoration: 'none',
                     }}
                     _focus={{
                       outline: 'none',

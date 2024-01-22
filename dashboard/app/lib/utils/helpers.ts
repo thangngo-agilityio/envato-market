@@ -84,6 +84,36 @@ export const formatDecimalInput = (value = ''): string => {
   return formatValue;
 };
 
+export const formatAmountNumber = (value: string): string => {
+  if (!value) {
+    return value;
+  }
+
+  if (Number.isNaN(parseFloat(value))) {
+    return '';
+  }
+
+  const dotIndex = value.indexOf('.');
+  const decimalValue = dotIndex > -1 ? value.slice(dotIndex) : '';
+  const newValue =
+    dotIndex > -1
+      ? value.slice(0, dotIndex).replaceAll(',', '')
+      : value.replaceAll(',', '');
+
+  const newValueFormat = newValue.replace(REGEX.FORMAT_MONEY, '$1,');
+
+  if (
+    !REGEX.AMOUNT_PATTERN.test(newValue) ||
+    !REGEX.DECIMAL_PATTERN.test(decimalValue)
+  ) {
+    return `${newValueFormat}.${decimalValue
+      .substring(0, 3)
+      .replaceAll(/[.]/, '')}`;
+  }
+
+  return decimalValue ? `${newValueFormat}${decimalValue}` : newValueFormat;
+};
+
 /**
  * Format number rg: 12345 -> 12,345.00 if isOmitDecimals = false or 12,345 if isOmitDecimals = true
  * @param number
