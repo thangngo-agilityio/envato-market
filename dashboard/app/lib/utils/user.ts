@@ -1,5 +1,10 @@
+import dayjs from 'dayjs';
+
 // Types
-import { TEmployee, TDataSource } from '@/lib/interfaces';
+import { TEmployee, TDataSource, TUserDetail } from '@/lib/interfaces';
+
+// Constants
+import { IMAGES, TIME_FORMAT } from '@/lib/constants';
 
 export type TShowEmployee = Omit<
   TEmployee,
@@ -15,34 +20,17 @@ export type TShowEmployee = Omit<
  * @param users
  * @returns
  */
-export const getDataUser = (users: TEmployee[] = []): TShowEmployee[] =>
+export const formatUserResponse = (users: TUserDetail[] = []) =>
   users.map((user) => {
-    const {
-      id,
-      firstName,
-      lastName,
-      level,
-      workTime,
-      avatarURL,
-      position,
-      lastActive,
-      lastPlace,
-      salary,
-      experience,
-      jobTitle,
-    } = user;
+    const { _id, firstName, lastName, avatarURL, createdAt, email, isBlock } =
+      user;
 
     return {
-      id,
-      workTime,
-      level,
-      position,
-      lastActive,
-      lastPlace,
-      salary,
-      experience,
-      jobTitle,
+      id: _id,
       name: `${firstName} ${lastName}`,
-      image: avatarURL,
+      image: avatarURL || IMAGES.AVATAR.url,
+      email,
+      createdAt: dayjs(createdAt).format(TIME_FORMAT),
+      isBlock,
     };
   });

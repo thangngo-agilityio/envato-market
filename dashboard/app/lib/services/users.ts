@@ -11,7 +11,8 @@ export const userHttpRequest: AxiosInstance = axios.create({
 });
 
 export const getAllUserDetailsExceptWithId = async (
-  userId?: string | undefined,
+  userId = '',
+  searchParam = '',
   config?: IAxiosConfig,
 ): Promise<
   Array<
@@ -27,7 +28,7 @@ export const getAllUserDetailsExceptWithId = async (
           _id: string;
         }
       >
-    >(`${END_POINTS.USERS}/${userId}`, config)
+    >(`${END_POINTS.USERS}/${userId}${searchParam || ''}`, config)
   ).data;
 
   return responseListUserDetails;

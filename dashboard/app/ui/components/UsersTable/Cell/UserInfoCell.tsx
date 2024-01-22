@@ -4,17 +4,13 @@ import { memo } from 'react';
 type TUserInfoProps = {
   name: string;
   imageURL: string;
-  role: string;
-  address: string;
-  time: string;
+  email: string;
 };
 
 const UserInfoComponent = ({
   imageURL,
   name,
-  address,
-  time,
-  role,
+  email,
 }: TUserInfoProps): JSX.Element => (
   <Td
     py={5}
@@ -23,7 +19,7 @@ const UserInfoComponent = ({
     color="text.primary"
     fontWeight="semibold"
     textAlign="left"
-    minW={470}
+    minW={{ base: 470, xl: 270 }}
   >
     <Flex alignItems="center" gap="10px">
       <Img
@@ -55,21 +51,10 @@ const UserInfoComponent = ({
           lineHeight={8}
           display="flex"
         >
-          <Tooltip minW="max-content" placement="bottom-start" label={role}>
-            <Text
-              as="span"
-              maxW={230}
-              whiteSpace="break-spaces"
-              noOfLines={1}
-              title={role}
-            >
-              {role} •
-            </Text>
-          </Tooltip>
           <Tooltip
             minW="max-content"
             placement="bottom-start"
-            label={`${address} ${time}`}
+            label={`${email}`}
           >
             <Text
               as="span"
@@ -80,7 +65,7 @@ const UserInfoComponent = ({
               whiteSpace="break-spaces"
               noOfLines={1}
             >
-              {address} • {time}
+              {email}
             </Text>
           </Tooltip>
         </Text>

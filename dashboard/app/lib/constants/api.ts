@@ -25,6 +25,8 @@ export const END_POINTS = {
   ADD_MONEY: '/add-money',
   SEND_MONEY: '/send-money',
   SUPPORT: '/supports',
+  LOCK: '/lock',
+  UNLOCK: '/unlock',
 };
 
 export const SEARCH_PARAM = {

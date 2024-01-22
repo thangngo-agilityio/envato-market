@@ -7,12 +7,14 @@ import {
 
 // Interfaces
 import { IIssues, TPassword, TUserDetail } from '@/lib/interfaces';
+import { TSearchTransaction } from '.';
 
 // Services
 import {
   UsersHttpService,
   getAllUserDetailsExceptWithId,
   getSupports,
+  userHttpRequest,
 } from '@/lib/services';
 
 // Constants
@@ -96,13 +98,54 @@ export const useCreateIssues = () => {
   };
 };
 
-export const useGetUserDetails = (id: string) => {
-  const { data: listUserDetail } = useQuery({
-    queryKey: [END_POINTS.USERS, id],
-    queryFn: () => getAllUserDetailsExceptWithId(id),
+export const useGetUserDetails = (
+  id: string,
+  queryParam?: TSearchTransaction,
+) => {
+  const queryClient = useQueryClient();
+
+  const { name: searchName }: TSearchTransaction = Object.assign(
+    {
+      name: '',
+    },
+    queryParam,
+  );
+
+  const { data: listUserDetail, ...query } = useQuery({
+    queryKey: [END_POINTS.USERS, searchName],
+    queryFn: () => getAllUserDetailsExceptWithId(id, ''),
+  });
+
+  const isNameMatchWith = (target: string): boolean =>
+    (target || '').trim().toLowerCase().includes(searchName);
+
+  const filterDataUser = listUserDetail?.filter(({ firstName, lastName }) =>
+    isNameMatchWith(`${firstName} ${lastName}`),
+  );
+
+  const { mutate: managementUser } = useMutation({
+    mutationFn: async ({
+      urlEndpoint = '',
+      ...user
+    }: Partial<
+      TUserDetail & { memberId: string; userId: string; urlEndpoint: string }
+    >) => await userHttpRequest.put<TUserDetail>(urlEndpoint, user),
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: [END_POINTS.LOCK],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [END_POINTS.USERS, searchName],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [END_POINTS.SIGN_IN],
+      });
+    },
   });
 
   return {
-    listUserDetail,
+    ...query,
+    filterDataUser,
+    managementUser,
   };
 };
