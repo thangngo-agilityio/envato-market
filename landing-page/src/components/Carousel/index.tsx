@@ -1,6 +1,6 @@
 import isEqual from 'react-fast-compare';
 import { Carousel as CarouselLib } from 'react-responsive-carousel';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 
 // Components
 import { Image } from '@app/components';
@@ -16,17 +16,10 @@ type TCarouselProps = {
   images: string[];
 };
 
-const Carousel = ({ images }: TCarouselProps): JSX.Element => (
-  <div className='col-span-12 nearLg:col-span-7'>
-    <CarouselLib
-      infiniteLoop
-      autoPlay
-      interval={2000}
-      showArrows={false}
-      showIndicators={false}
-      showStatus={false}
-    >
-      {images.map((image) => (
+const Carousel = ({ images }: TCarouselProps): JSX.Element => {
+  const renderCarouselItem = useCallback(
+    () =>
+      images.map((image) => (
         <Image
           alt='This is product name'
           src={image}
@@ -36,10 +29,26 @@ const Carousel = ({ images }: TCarouselProps): JSX.Element => (
           height={250}
           className='thumb-image'
         />
-      ))}
-    </CarouselLib>
-  </div>
-);
+      )),
+    [images],
+  );
+
+  return (
+    <div className='col-span-12 nearLg:col-span-7'>
+      <CarouselLib
+        infiniteLoop
+        autoPlay
+        interval={2000}
+        showArrows={false}
+        showIndicators={false}
+        showStatus={false}
+        renderThumbs={renderCarouselItem}
+      >
+        {renderCarouselItem()}
+      </CarouselLib>
+    </div>
+  );
+};
 
 const CarouselMemorized = memo(Carousel, isEqual);
 
