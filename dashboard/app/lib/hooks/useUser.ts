@@ -123,7 +123,7 @@ export const useGetUserDetails = (
     isNameMatchWith(`${firstName} ${lastName}`),
   );
 
-  const { mutate: managementUser } = useMutation({
+  const { mutate: managementUser, isPending: isSendRequestUser } = useMutation({
     mutationFn: async ({
       urlEndpoint = '',
       ...user
@@ -146,6 +146,7 @@ export const useGetUserDetails = (
   return {
     ...query,
     filterDataUser,
+    isSendRequestUser,
     managementUser,
   };
 };
