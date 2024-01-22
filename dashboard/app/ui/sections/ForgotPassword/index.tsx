@@ -26,7 +26,6 @@ import { sendPasswordResetEmail } from 'firebase/auth';
 
 // Utils
 import { auth, customToast } from '@/lib/utils';
-import { withAuthenticationLayout } from '@/lib/hocs';
 
 type TForgotPasswordForm = {
   email: string;
@@ -136,8 +135,6 @@ const ForgotPasswordSection = (): JSX.Element => {
   );
 };
 
-const ForgotPassword = memo(
-  withAuthenticationLayout(ForgotPasswordSection, false, true),
-);
+const ForgotPassword = memo(ForgotPasswordSection);
 
 export default ForgotPassword;
