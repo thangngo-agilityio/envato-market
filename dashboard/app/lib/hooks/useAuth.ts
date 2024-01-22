@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { shallow } from 'zustand/shallow';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 // Constants
 import { END_POINTS, ERROR_MESSAGES, IMAGES } from '@/lib/constants';
@@ -12,7 +13,7 @@ import { AuthenticationHttpService } from '@/lib/services';
 import { TUserDetail } from '@/lib/interfaces/user';
 
 // Utils
-import { formatUppercaseFirstLetter, getCurrentTimeSeconds } from '@/lib/utils';
+import { getCurrentTimeSeconds } from '@/lib/utils';
 
 // Stores
 import { authStore } from '@/lib/stores';
@@ -58,6 +59,23 @@ export const useAuth = () => {
     shallow,
   );
 
+  const handleSignInWithFirebase = useCallback(
+    async (email: string, password: string) => {
+      const auth = getAuth();
+      return await signInWithEmailAndPassword(auth, email, password).then(
+        (userCredential) => {
+          const { uid, email } = userCredential.user;
+
+          return {
+            uid,
+            email,
+          };
+        },
+      );
+    },
+    [],
+  );
+
   const handleSignIn = useCallback(
     async (
       {
@@ -72,6 +90,8 @@ export const useAuth = () => {
       isRemember?: boolean,
     ): Promise<void> => {
       try {
+        const { uid } = await handleSignInWithFirebase(email, password);
+
         const { data }: AxiosResponse<TUserAxiosResponse | undefined> =
           await AuthenticationHttpService.post<TUserAxiosResponse | undefined>(
             `${END_POINTS.SIGN_IN}`,
@@ -79,6 +99,7 @@ export const useAuth = () => {
               email,
               password,
               fcmToken,
+              uid,
             },
             {},
           );
@@ -95,12 +116,10 @@ export const useAuth = () => {
           date: getCurrentTimeSeconds(),
         });
       } catch (error) {
-        const { response } = error as AxiosError<string>;
-
-        throw new Error(formatUppercaseFirstLetter(response?.data));
+        throw new Error(ERROR_MESSAGES.AUTH_INCORRECT);
       }
     },
-    [updateStore],
+    [handleSignInWithFirebase, updateStore],
   );
 
   const handleSignUp = useCallback(
@@ -152,5 +171,6 @@ export const useAuth = () => {
     signIn: handleSignIn,
     signUp: handleSignUp,
     signOut: clearStore,
+    handleSignInWithFirebase,
   };
 };
