@@ -39,8 +39,5 @@ export const Default: Story = {
   args: {
     name: USERS[0].name,
     imageURL: USERS[0].image,
-    address: 'Jakarta, Indonesia',
-    time: '2 days ago',
-    role: 'Finance managers',
   },
 };
