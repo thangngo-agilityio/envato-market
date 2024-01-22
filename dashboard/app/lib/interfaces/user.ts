@@ -44,6 +44,7 @@ export type TCustomer = Pick<IUserBase, 'email'> & {
 };
 
 export type TUserDetail = Omit<IUserBase, 'avatarURL'> & {
+  _id?: string;
   title?: string;
   avatarURL?: string;
   password: string;
@@ -59,6 +60,8 @@ export type TUserDetail = Omit<IUserBase, 'avatarURL'> & {
   pinCode?: string;
   role?: string;
   description?: string;
+  bonusTimes?: number;
+  isBlock: boolean;
 };
 
 export interface TPassword {

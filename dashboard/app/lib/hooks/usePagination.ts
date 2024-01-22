@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 // Types
-import { TTransaction } from '@/lib/interfaces';
+import { PaginationType } from '../interfaces';
 import { TOption } from '@/ui/components/common/Select';
-import { PaginationType } from '@/lib/interfaces/pagination';
 
 // Utils
 import { formatPagination } from '@/lib/utils';
@@ -11,7 +10,7 @@ import { formatPagination } from '@/lib/utils';
 // Constants
 import { PAGE_SIZE, PREV } from '@/lib/constants';
 
-export const usePagination = (transactions: TTransaction[]) => {
+export const usePagination = (transactions: []) => {
   const [data, setData] = useState<PaginationType>({
     limit: PAGE_SIZE,
     currentPage: 1,
@@ -19,7 +18,7 @@ export const usePagination = (transactions: TTransaction[]) => {
   });
 
   const { limit, currentPage, arrOfCurrButtons } = data;
-  const totalCount = transactions.length;
+  const totalCount = transactions?.length;
 
   const isDisabledPrev = currentPage <= 1;
   const lastPage = Math.floor((totalCount + limit - 1) / limit);
@@ -29,7 +28,7 @@ export const usePagination = (transactions: TTransaction[]) => {
     const start = (currentPage - 1) * limit;
     const end = limit + start;
 
-    return transactions.slice(start, end);
+    return transactions?.slice(start, end);
   }, [currentPage, limit, transactions]);
 
   const resetPage = useCallback(

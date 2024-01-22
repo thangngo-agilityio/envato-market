@@ -9,6 +9,8 @@ export enum Status {
   PENDING = 'Pending',
   COMPLETED = 'Completed',
   ARCHIVED = 'Archived',
+  LOCK = 'Lock',
+  UNLOCK = 'Unlock',
 }
 
 export enum RevenueFlowStatus {
