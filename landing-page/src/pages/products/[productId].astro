@@ -30,7 +30,7 @@ export const getStaticPaths = (async () => {
       productId: id,
     },
     props: {
-      images: product.imageURLs,
+      images: [...product.imageURLs, ...PRODUCT_DETAIL.images],
       ...product,
     },
   }));
