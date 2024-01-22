@@ -11,6 +11,7 @@ export const ROUTES = {
   SIGN_OUT: 'sign-out',
   NOT_FOUND: '*',
   SUPPORT: 'supports',
+  INBOX: 'inbox',
 };
 
 export const COMMON_ROUTES = [

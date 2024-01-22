@@ -11,6 +11,8 @@ export const STATUS_LABEL = {
   [Status.PENDING]: 'quaternary',
   [Status.COMPLETED]: 'primary',
   [Status.ARCHIVED]: 'quaternary',
+  [Status.LOCK]: 'quaternary',
+  [Status.UNLOCK]: 'primary',
 };
 
 export const STATUS_SUBMIT = {

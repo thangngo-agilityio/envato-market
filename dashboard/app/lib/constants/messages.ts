@@ -58,6 +58,14 @@ export const ERROR_MESSAGES = {
       'An error has occurred when sending money. Please check your total balance and try again',
   },
   OLD_PASSWORD_INCORRECT: 'Old password is not correct',
+  LOCK_USER_FAIL: {
+    title: 'Lock failed',
+    description: 'User has not been locked successfully',
+  },
+  UNLOCK_USER_FAIL: {
+    title: 'Unlock failed',
+    description: 'User has not been unlocked successfully',
+  },
 };
 
 export const SUCCESS_MESSAGES = {
@@ -92,6 +100,14 @@ export const SUCCESS_MESSAGES = {
   SEND_MONEY: {
     title: 'Add money successfully',
     description: 'Your money has been sent to the transfer account',
+  },
+  LOCK_USER_SUCCESS: {
+    title: 'Lock success',
+    description: 'User has been locked successfully',
+  },
+  UNLOCK_USER_SUCCESS: {
+    title: 'Unlock success',
+    description: 'User has been unlocked successfully',
   },
 };
 
