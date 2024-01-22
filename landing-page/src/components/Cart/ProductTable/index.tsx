@@ -25,9 +25,9 @@ const ProductTable = ({
   onChangeQuantity,
   onRemoveProduct,
 }: TProductTableProps): JSX.Element => {
-
   // Styles CSS
-  const stylesRowTable = 'grid grid-cols-4 text-left bg-desertStorm [&>*:nth-child(n)]:text-[12px] [&>*:nth-child(n)]:text-primary [&>*:nth-child(n)]:font-semibold p-3';
+  const stylesRowTable =
+    'grid grid-cols-4 text-left bg-desertStorm [&>*:nth-child(n)]:text-[12px] [&>*:nth-child(n)]:text-primary [&>*:nth-child(n)]:font-semibold p-3';
 
   return (
     <table className='w-full'>
@@ -67,7 +67,7 @@ const ProductTable = ({
                     width={160}
                     height={160}
                     alt={`This is the ${name}`}
-                    className='object-contain w-[160px] h-full'
+                    className='object-cover w-[160px] h-[160px]'
                   />
                 </td>
                 <td>
