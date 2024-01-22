@@ -34,7 +34,6 @@ import {
 import { TNotification, TUserDetail } from '@/lib/interfaces';
 
 // Utils
-import { QueryProvider } from '@/ui/providers';
 import { NotificationItem } from './Body';
 
 interface NotificationProps {
@@ -231,11 +230,11 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
   );
 };
 
-const WrappedNotification = (props: NotificationProps) => (
-  <QueryProvider>
-    <NotificationComponent {...props} />
-  </QueryProvider>
-);
+// const WrappedNotification = (props: NotificationProps) => (
+//   <QueryProvider>
+//     <NotificationComponent {...props} />
+//   </QueryProvider>
+// );
 
-const Notification = memo(WrappedNotification);
+const Notification = memo(NotificationComponent);
 export default Notification;
