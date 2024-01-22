@@ -15,10 +15,6 @@ const meta: Meta<typeof BonusNotification> = {
     discount: {
       description: 'The discount percentage for the bonus notification',
     },
-    isExpired: {
-      description: 'Determine whether the bonus notification is expired or not',
-      defaultValue: false,
-    },
     limitOfBonus: {
       description: 'Determine the current number of bonus notifications limit',
       defaultValue: 5,
@@ -44,7 +40,6 @@ type Story = StoryObj<typeof BonusNotification>;
 
 export const Primary: Story = {
   args: {
-    isExpired: false,
     limitOfBonus: 5,
   },
   render: function Render(props) {

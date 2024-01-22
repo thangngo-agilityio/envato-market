@@ -257,6 +257,8 @@ export const MOCK_USERS_DATA = [
 ];
 
 export const MOCK_USER_DETAIL: TUserDetail = {
+  id: '1',
+  _id: '1',
   title: 'What is the issues',
   avatarURL: 'https://cdn-icons-png.flaticon.com/512/5556/5556468.png',
   password: '123456',
@@ -270,6 +272,6 @@ export const MOCK_USER_DETAIL: TUserDetail = {
   email: 'test@gmail.com',
   role: 'member',
   description: 'description',
-  id: '1',
   createdAt: 3123123,
+  isBlock: false,
 };
