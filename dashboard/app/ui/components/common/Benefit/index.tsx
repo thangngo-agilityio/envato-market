@@ -25,6 +25,7 @@ const BenefitComponent = () => {
       position="relative"
       flexDirection="column"
       display={{ base: 'none', lg: 'block' }}
+      width="50%"
       backgroundColor="background.section.primary"
     >
       <Image src={url} alt={alt} w={width} height={height} />

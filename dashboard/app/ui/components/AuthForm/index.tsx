@@ -14,6 +14,8 @@ import {
   Box,
   Link as ChakraLink,
   Flex,
+  FormErrorMessage,
+  Input,
 } from '@chakra-ui/react';
 
 import { Controller, SubmitHandler } from 'react-hook-form';
@@ -266,17 +268,31 @@ const AuthFormComponent = ({
             rules={AUTH_SCHEMA.EMAIL}
             control={control}
             name="email"
-            render={({ field, fieldState: { error } }) => (
-              <InputField
-                variant="authentication"
-                placeholder="Email"
-                isError={!!error?.message}
-                errorMessages={error?.message}
-                isDisabled={isSubmit}
-                {...field}
-                onBlur={handleClearRootError}
-              />
-            )}
+            render={({ field: { value, onChange }, fieldState: { error } }) => {
+              const handleChange = (event: { target: { value: string } }) => {
+                const value: string = event.target.value;
+                const sanitizedValue = value.trim();
+
+                onChange(sanitizedValue);
+              };
+
+              return (
+                <>
+                  <Input
+                    variant="authentication"
+                    placeholder="Username or email"
+                    isDisabled={isSubmit}
+                    value={value}
+                    name="username"
+                    onChange={handleChange}
+                    onBlur={handleClearRootError}
+                  />
+                  {!!error?.message && (
+                    <FormErrorMessage>{error?.message}</FormErrorMessage>
+                  )}
+                </>
+              );
+            }}
           />
 
           <Controller

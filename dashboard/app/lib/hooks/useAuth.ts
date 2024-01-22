@@ -12,7 +12,7 @@ import { AuthenticationHttpService } from '@/lib/services';
 import { TUserDetail } from '@/lib/interfaces/user';
 
 // Utils
-import { getCurrentTimeSeconds } from '@/lib/utils';
+import { formatUppercaseFirstLetter, getCurrentTimeSeconds } from '@/lib/utils';
 
 // Stores
 import { authStore } from '@/lib/stores';
@@ -95,9 +95,9 @@ export const useAuth = () => {
           date: getCurrentTimeSeconds(),
         });
       } catch (error) {
-        const { response } = error as AxiosError<{ message: string }>;
+        const { response } = error as AxiosError<string>;
 
-        throw new Error(response?.data.message);
+        throw new Error(formatUppercaseFirstLetter(response?.data));
       }
     },
     [updateStore],
