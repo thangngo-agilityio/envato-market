@@ -12,7 +12,7 @@ import type { TRegisterForm } from '../ContactForm';
 import { useIndicator, useToast } from '@app/hooks';
 
 // Constants
-import { ROUTES, SUCCESS_MESSAGE } from '@app/constants';
+import { ROUTES, SUBTOTAL, SUCCESS_MESSAGE } from '@app/constants';
 
 // Services
 import { checkout, deleteCart } from '@app/services';
@@ -93,9 +93,9 @@ const Checkout = ({ total, cart }: TCheckoutProps): JSX.Element => {
         </div>
         <div className='mt-[50px] nearLg:mt-0 col-span-12 nearLg:col-span-4'>
           <CardTotal
-            subTotal={140}
+            subTotal={!currentTotal ? 0 : SUBTOTAL}
             delivery='Free'
-            total={currentTotal}
+            total={currentTotal + SUBTOTAL}
             isDisableSubmit={isDisable || !currentTotal}
           />
         </div>
