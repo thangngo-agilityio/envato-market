@@ -6,7 +6,7 @@ import CardTotal from '../CardTotal';
 import { Indicator, Toast } from '..';
 
 // Constants
-import { ROUTES, SUCCESS_MESSAGE } from '@app/constants';
+import { ROUTES, SUBTOTAL, SUCCESS_MESSAGE } from '@app/constants';
 
 // Mocks
 import { CARD_TOTAL } from '@app/mocks';
@@ -95,6 +95,8 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
   }, []);
 
   const isDisableSubmit: boolean = !cart.length;
+  const subtotal: number = isDisableSubmit ? 0 : SUBTOTAL;
+  const totalProp: number = total + subtotal;
 
   return (
     <Indicator isOpen={isOpen}>
@@ -113,7 +115,8 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
           <CardTotal
             {...CARD_TOTAL}
             currency='$'
-            total={total}
+            total={totalProp}
+            subTotal={subtotal}
             onCheckout={handleCheckout}
             isDisableSubmit={isDisableSubmit}
           />
