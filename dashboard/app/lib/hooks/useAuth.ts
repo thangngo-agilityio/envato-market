@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { shallow } from 'zustand/shallow';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
@@ -13,7 +13,7 @@ import { AuthenticationHttpService } from '@/lib/services';
 import { TUserDetail } from '@/lib/interfaces/user';
 
 // Utils
-import { getCurrentTimeSeconds } from '@/lib/utils';
+import { formatUppercaseFirstLetter, getCurrentTimeSeconds } from '@/lib/utils';
 
 // Stores
 import { authStore } from '@/lib/stores';
@@ -116,7 +116,15 @@ export const useAuth = () => {
           date: getCurrentTimeSeconds(),
         });
       } catch (error) {
-        throw new Error(ERROR_MESSAGES.AUTH_INCORRECT);
+        const { response } = error as AxiosError<string>;
+
+        if (!response) {
+          throw new Error(
+            formatUppercaseFirstLetter(ERROR_MESSAGES.AUTH_INCORRECT),
+          );
+        }
+
+        throw new Error(formatUppercaseFirstLetter(response?.data));
       }
     },
     [handleSignInWithFirebase, updateStore],
