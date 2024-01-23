@@ -165,8 +165,6 @@ const UserSelectorComponent = ({
     [],
   );
 
-  console.log(options);
-
   useEffect(() => {
     const handleCloseOptions = () => setOpenOptions(false);
 
