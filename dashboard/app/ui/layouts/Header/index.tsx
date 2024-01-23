@@ -1,9 +1,7 @@
 'use client';
-
 import { memo } from 'react';
 import { useStore } from 'zustand';
 import { usePathname } from 'next/navigation';
-
 // Components
 import {
   Box,
@@ -20,38 +18,28 @@ import {
   Logo,
   SwitchTheme,
 } from '@/ui/components';
-
 // Assets
 import { Email } from '@/ui/components/Icons';
-
 // Constants
 import { AUTHENTICATION_ROLE, TITLES_HEADER } from '@/lib/constants';
-
 // Components
 import Notification from '@/ui/components/common/Notification';
-
 // Stores
 import { authStore } from '@/lib/stores';
 import { TUserDetail } from '@/lib/interfaces';
-
 const HeaderComponent = () => {
   const colorFill = useColorModeValue(
     theme.colors.gray[800],
     theme.colors.white,
   );
   const pathname = usePathname();
-
   const name = TITLES_HEADER[`${pathname?.slice(1)}`] || TITLES_HEADER.DEFAULT;
-
   const user = useStore(authStore, (state) => state.user);
-
   const username = `${user?.firstName || ''} ${user?.lastName || ''}`;
   const roles = user?.role === AUTHENTICATION_ROLE.SUPER_ADMIN;
-
   const bonusTimes = authStore(
     (state): number | undefined => state.user?.bonusTimes,
   );
-
   return (
     <Flex
       h="100%"
@@ -75,6 +63,7 @@ const HeaderComponent = () => {
         <Box display={{ base: 'block', default: 'none' }}>
           <Dropdown
             name={username}
+            role={user?.role as string}
             permission="Super Admin"
             src={user?.avatarURL}
           />
@@ -94,7 +83,6 @@ const HeaderComponent = () => {
           Let’s check your update today
         </Text>
       </Box>
-
       <Flex
         gap={43}
         mt={{ base: 3, default: 0 }}
@@ -109,13 +97,10 @@ const HeaderComponent = () => {
             justifyContent="space-between"
           >
             <SwitchTheme />
-
             <Notification colorFill={colorFill} user={user as TUserDetail} />
-
             <IconButton>
               <Email color={colorFill} />
             </IconButton>
-
             <BonusNotification
               colorFill={colorFill}
               limitOfBonus={bonusTimes}
@@ -127,12 +112,12 @@ const HeaderComponent = () => {
           >
             <Dropdown
               name={username}
+              role={user?.role as string}
               permission={roles ? AUTHENTICATION_ROLE.SUPER_ADMIN : ''}
               src={user?.avatarURL}
             />
           </Box>
         </Flex>
-
         <Box
           display={{ base: 'none', md: 'inline-flex' }}
           borderLeft="1px"
@@ -142,6 +127,7 @@ const HeaderComponent = () => {
         >
           <Dropdown
             name={username}
+            role={user?.role as string}
             permission={roles ? AUTHENTICATION_ROLE.SUPER_ADMIN : ''}
             src={user?.avatarURL}
           />
@@ -150,7 +136,5 @@ const HeaderComponent = () => {
     </Flex>
   );
 };
-
 const Header = memo(HeaderComponent);
-
 export default Header;
