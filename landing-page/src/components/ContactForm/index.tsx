@@ -6,7 +6,7 @@ export type TRegisterForm = {
   lastName: string;
   email: string;
   state: string;
-  address: string;
+  city: string;
   street: string;
   zip: string;
 };
@@ -17,9 +17,9 @@ type TContactFormProps = {
 };
 
 const ContactForm = ({ register, onSubmit }: TContactFormProps) => {
-
   // Styles CSS
-  const inputStyle: string = 'placeholder-onceAll text-elementary text-[14px] w-full border-0 rounded-none bg-desertStorm p-5 focus:outline-none';
+  const inputStyle: string =
+    'placeholder-onceAll text-elementary text-[14px] w-full border-0 rounded-none bg-desertStorm p-5 focus:outline-none';
 
   return (
     <div
@@ -69,15 +69,15 @@ const ContactForm = ({ register, onSubmit }: TContactFormProps) => {
       <div>
         <input
           className={`${inputStyle} mb-4`}
-          placeholder='Address'
-          {...register('address', { required: true, maxLength: 100 })}
+          placeholder='City'
+          {...register('city', { required: true })}
         />
       </div>
       <div className='md:!w-[50%] md:pr-[15px]'>
         <input
           className={`${inputStyle}`}
-          placeholder='Town'
-          {...register('street', { required: true, maxLength: 100 })}
+          placeholder='Street'
+          {...register('street', { required: true })}
         />
       </div>
       <div className='md:!w-[50%] md:pr-[15px]'>
