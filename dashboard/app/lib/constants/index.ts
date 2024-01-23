@@ -27,3 +27,5 @@ export * from './termAndCondition';
 export * from './notification';
 export * from './authentication';
 export * from './discount';
+export * from './metadata';
+export * from './og-properties';

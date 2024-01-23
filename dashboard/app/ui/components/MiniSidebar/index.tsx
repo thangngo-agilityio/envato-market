@@ -17,24 +17,18 @@ import {
 import { Menu } from '@/ui/components';
 
 // constants
-import {
-  IMAGES,
-  HELP_ITEM_LIST,
-  MENU_ITEM_LIST,
-  OTHER_ITEM_LIST,
-  SIDEBAR,
-} from '@/lib/constants';
+import { IMAGES, SIDEBAR, MINI_SIDEBAR_MENU } from '@/lib/constants';
 
 // Types
 import { TImage } from '@/lib/interfaces';
+import { TMenuItem } from '../common/Menu';
+import { TSidebarProps } from '@/ui/layouts/Sidebar';
 
-export type SidebarProps = {
-  onClose: () => void;
-  onOpen: () => void;
-  isOpen: boolean;
-};
-
-const MiniSidebar = ({ onClose, isOpen }: Omit<SidebarProps, 'onOpen'>) => {
+const MiniSidebar = ({
+  onClose,
+  isMini,
+  role,
+}: Omit<TSidebarProps, 'onOpen'>) => {
   const { colorMode } = useColorMode();
 
   const logos: Record<ColorMode, TImage> = {
@@ -46,7 +40,7 @@ const MiniSidebar = ({ onClose, isOpen }: Omit<SidebarProps, 'onOpen'>) => {
     <Drawer
       placement="left"
       onClose={onClose}
-      isOpen={isOpen}
+      isOpen={isMini as boolean}
       closeOnOverlayClick={false}
       trapFocus={false}
       variant="clickThrough"
@@ -113,11 +107,14 @@ const MiniSidebar = ({ onClose, isOpen }: Omit<SidebarProps, 'onOpen'>) => {
         >
           <VStack>
             <List>
-              <Menu
-                listItem={[...MENU_ITEM_LIST, ...HELP_ITEM_LIST]}
-                isMinify
-              />
-              <Menu listItem={[...OTHER_ITEM_LIST]} isMinify />
+              {MINI_SIDEBAR_MENU(role as string).map((item) => (
+                <Menu
+                  key={item.id}
+                  title={item.title}
+                  listItem={item.listItem as TMenuItem[]}
+                  isMinify
+                />
+              ))}
             </List>
           </VStack>
         </DrawerBody>

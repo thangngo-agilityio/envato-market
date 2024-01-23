@@ -88,7 +88,6 @@ const ForgotPasswordSection = (): JSX.Element => {
         rules={AUTH_SCHEMA.EMAIL}
         control={control}
         name="email"
-        defaultValue=""
         render={({ field, fieldState: { error } }) => (
           <InputField
             variant="authentication"
