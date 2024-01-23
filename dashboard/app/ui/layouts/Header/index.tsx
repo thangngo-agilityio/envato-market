@@ -75,7 +75,6 @@ const HeaderComponent = () => {
         <Box display={{ base: 'block', default: 'none' }}>
           <Dropdown
             name={username}
-            role={user?.role as string}
             permission="Super Admin"
             src={user?.avatarURL}
           />
@@ -128,7 +127,6 @@ const HeaderComponent = () => {
           >
             <Dropdown
               name={username}
-              role={user?.role as string}
               permission={roles ? AUTHENTICATION_ROLE.SUPER_ADMIN : ''}
               src={user?.avatarURL}
             />
@@ -144,7 +142,6 @@ const HeaderComponent = () => {
         >
           <Dropdown
             name={username}
-            role={user?.role as string}
             permission={roles ? AUTHENTICATION_ROLE.SUPER_ADMIN : ''}
             src={user?.avatarURL}
           />
