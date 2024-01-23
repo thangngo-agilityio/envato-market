@@ -102,7 +102,7 @@ export const SUCCESS_MESSAGES = {
     description: 'Your issues has been added',
   },
   SEND_MONEY: {
-    title: 'Add money successfully',
+    title: 'Send money successfully',
     description: 'Your money has been sent to the transfer account',
   },
   LOCK_USER_SUCCESS: {

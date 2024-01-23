@@ -118,24 +118,28 @@ const CheckPinCodeProvider = ({ children }: { children: React.ReactNode }) => {
   const messaging = typeof window !== 'undefined' ? getMessaging(app) : null;
 
   messaging &&
-    onMessage(messaging, (payload) => {
-      queryClient.invalidateQueries({
-        queryKey: [END_POINTS.MY_WALLET],
-      });
-      queryClient.invalidateQueries({
-        queryKey: [END_POINTS.TRANSACTIONS],
-      });
-      queryClient.invalidateQueries({
-        queryKey: [END_POINTS.NOTIFICATION],
-      });
+    onMessage(messaging, async (payload) => {
+      console.log('payload', payload);
 
-      toast({
-        title: payload?.notification?.title,
-        description: payload?.notification?.body,
-        status: 'success',
-        duration: SHOW_TIME,
-        isClosable: true,
-        position: 'top-right',
+      await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: [END_POINTS.MY_WALLET],
+        }),
+        queryClient.invalidateQueries({
+          queryKey: [END_POINTS.TRANSACTIONS],
+        }),
+        queryClient.invalidateQueries({
+          queryKey: [END_POINTS.NOTIFICATION],
+        }),
+      ]).finally(() => {
+        toast({
+          title: payload?.notification?.title,
+          description: payload?.notification?.body,
+          status: 'success',
+          duration: SHOW_TIME,
+          isClosable: true,
+          position: 'top-right',
+        });
       });
     });
 
