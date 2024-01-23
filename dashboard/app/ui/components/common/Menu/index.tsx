@@ -85,6 +85,7 @@ const Menu = ({
       >
         {listItem.map(
           ({ leftIcon, rightIcon, destination, menuItemContent, id }) => {
+            if (!menuItemContent) return <></>;
             const LeftIconComponent = leftIcon || Fragment;
 
             const handleClick =

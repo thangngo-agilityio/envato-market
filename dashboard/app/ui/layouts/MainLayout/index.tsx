@@ -8,13 +8,23 @@ import { SCREEN_SIZES, SIDEBAR } from '@/lib/constants';
 
 // Component
 import { Header, SideBar } from '@/ui/layouts';
+
+// Provider
 import { CheckPinCodeProvider } from '@/ui/providers';
+
+// Stores
+import { TAuthStoreData, authStore } from '@/lib/stores';
+
+// Interfaces
+import { TUserDetail } from '@/lib/interfaces';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const [isDesktop] = useMediaQuery(SCREEN_SIZES.LARGE_DESKTOP);
   const { isOpen, onOpen, onClose } = useDisclosure({
     defaultIsOpen: false,
   });
+
+  const user = authStore((state): TAuthStoreData['user'] => state.user);
 
   useEffect(() => {
     if (isDesktop) {
@@ -25,14 +35,12 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <CheckPinCodeProvider>
       <Flex w="full" h="full" bg="background.body.primary">
-        <SideBar isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
-
         <Box
           pl={{
             base: 0,
             md: SIDEBAR.MINI_SIDEBAR_WIDTH,
             lg: SIDEBAR.MINI_SIDEBAR_WIDTH,
-            '4xl': isOpen
+            '4xl': !isOpen
               ? SIDEBAR.EXPAND_SIDEBAR_WIDTH
               : isDesktop
                 ? SIDEBAR.MINI_SIDEBAR_WIDTH
@@ -45,6 +53,12 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
             transition: 'all .25s ease-in-out',
           }}
         >
+          <SideBar
+            isOpen={isOpen}
+            user={user as TUserDetail}
+            onOpen={onOpen}
+            onClose={onClose}
+          />
           <Header />
           {children}
         </Box>
