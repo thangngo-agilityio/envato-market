@@ -65,6 +65,7 @@ const EnterMoneyComponent = ({
                 name="amount"
                 onChange={handleChange}
                 autoComplete="off"
+                position="static"
               />
             );
           }}

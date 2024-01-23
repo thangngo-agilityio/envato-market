@@ -122,3 +122,7 @@ export const SUCCESS_MESSAGES = {
 export const CONFIRM_MESSAGE = {
   DELETE_NOTIFICATION: 'Are you sure delete the notification?',
 };
+
+export const COMMON_MESSAGES = {
+  EMPTY_ARRAY: 'No items found!',
+};
