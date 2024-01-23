@@ -34,8 +34,10 @@ import { app, requestForToken, validatePassword } from '@/lib/utils';
 
 // Types
 import { TUserDetail } from '@/lib/interfaces';
-import { AuthFooter } from '@/ui/layouts';
 import { getMessaging } from 'firebase/messaging';
+
+// Layouts
+import { AuthFooter } from '@/ui/layouts';
 
 type TAuthForm = Omit<TUserDetail, 'id' | 'createdAt'> & {
   confirmPassword: string;
