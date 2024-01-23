@@ -24,18 +24,20 @@ import { Controller, SubmitHandler } from 'react-hook-form';
 import { useForm, useAuth } from '@/lib/hooks';
 
 // Constants
-import { ROUTES, AUTH_SCHEMA, TITLES, ERROR_MESSAGES } from '@/lib/constants';
+import { ROUTES, AUTH_SCHEMA, ERROR_MESSAGES } from '@/lib/constants';
 
 // Components
-import { Divider, InputField } from '@/ui/components';
+import { InputField } from '@/ui/components';
 
 // Utils
 import { app, requestForToken, validatePassword } from '@/lib/utils';
 
 // Types
 import { TUserDetail } from '@/lib/interfaces';
-import { AuthFooter, AuthHeader } from '@/ui/layouts';
 import { getMessaging } from 'firebase/messaging';
+
+// Layouts
+import { AuthFooter } from '@/ui/layouts';
 
 type TAuthForm = Omit<TUserDetail, 'id' | 'createdAt'> & {
   confirmPassword: string;
@@ -197,9 +199,7 @@ const AuthFormComponent = ({
           md: 460,
         }}
         margin="auto"
-        pt={24}
         pb={16}
-        px={5}
         sx={{
           boxSizing: {
             base: 'border-box',
@@ -207,8 +207,6 @@ const AuthFormComponent = ({
           },
         }}
       >
-        <AuthHeader title={isRegister ? TITLES.SIGN_UP : TITLES.SIGN_IN} />
-        <Divider content={TITLES.AUTH_DiVIDER} />
         <VStack gap={6}>
           {isRegister && (
             <HStack
@@ -442,10 +440,16 @@ const AuthFormComponent = ({
           </Button>
         </Box>
 
-        <Text fontWeight="medium" textAlign="center">
-          {!isRegister
-            ? 'Don&apos;t have an account?'
-            : 'Already have an account?'}
+        <Flex justifyContent="center">
+          <Text
+            fontWeight="medium"
+            textAlign="center"
+            dangerouslySetInnerHTML={{
+              __html: !isRegister
+                ? 'Don&apos;t have an account?'
+                : 'Already have an account?',
+            }}
+          />
           <Text
             as={Link}
             href={!isRegister ? `/${ROUTES.REGISTER}` : `/${ROUTES.LOGIN}`}
@@ -456,7 +460,7 @@ const AuthFormComponent = ({
           >
             {!isRegister ? 'Sign Up' : 'Sign In'}
           </Text>
-        </Text>
+        </Flex>
         <AuthFooter />
       </Box>
     </>
