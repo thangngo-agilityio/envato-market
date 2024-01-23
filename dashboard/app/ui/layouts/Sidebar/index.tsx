@@ -4,7 +4,11 @@ import { memo } from 'react';
 import isEqual from 'react-fast-compare';
 import dynamic from 'next/dynamic';
 import { Image } from '@chakra-ui/react';
+
+// Constants
 import { AUTHENTICATION_ROLE, IMAGES } from '@/lib/constants';
+
+// Interfaces
 import { TMenuItem } from '@/ui/components/common/Menu';
 import { TUserDetail } from '@/lib/interfaces';
 
@@ -15,24 +19,28 @@ const MiniSidebar = dynamic(() => import('../../components/MiniSidebar'));
 export type TSidebarProps = {
   menuItem?: TMenuItem[];
   role?: string;
-  isOpen: boolean;
+  isMini?: boolean;
   user?: TUserDetail;
   onClose: () => void;
   onOpen: () => void;
 };
 
-const Sidebar = ({ isOpen, user, onClose, onOpen }: TSidebarProps) => {
+const Sidebar = ({ isMini, user, onClose, onOpen }: TSidebarProps) => {
   const { role = AUTHENTICATION_ROLE.MEMBER } = user as TUserDetail;
 
   return (
     <>
-      <ExpandSidebar
-        role={role}
-        isOpen={!isOpen}
-        onClose={onClose}
-        onOpen={onOpen}
-      />
-      <MiniSidebar role={role} isOpen={isOpen} onClose={onClose} />
+      {isMini ? (
+        <MiniSidebar role={role} isMini={isMini} onClose={onClose} />
+      ) : (
+        <ExpandSidebar
+          role={role}
+          isMini={!isMini}
+          onClose={onClose}
+          onOpen={onOpen}
+        />
+      )}
+
       <Image
         src={IMAGES.LEFT_ARROW.url}
         alt={IMAGES.LEFT_ARROW.alt}

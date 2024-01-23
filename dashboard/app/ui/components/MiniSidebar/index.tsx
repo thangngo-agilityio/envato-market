@@ -26,7 +26,7 @@ import { TSidebarProps } from '@/ui/layouts/Sidebar';
 
 const MiniSidebar = ({
   onClose,
-  isOpen,
+  isMini,
   role,
 }: Omit<TSidebarProps, 'onOpen'>) => {
   const { colorMode } = useColorMode();
@@ -40,7 +40,7 @@ const MiniSidebar = ({
     <Drawer
       placement="left"
       onClose={onClose}
-      isOpen={isOpen}
+      isOpen={isMini as boolean}
       closeOnOverlayClick={false}
       trapFocus={false}
       variant="clickThrough"

@@ -21,7 +21,7 @@ import { SIDEBAR, IMAGES, EXPAND_SIDEBAR_MENU_LIST } from '@/lib/constants';
 // Interfaces
 import { TSidebarProps } from '@/ui/layouts/Sidebar';
 
-const ExpandSidebar = ({ isOpen, role, onClose, onOpen }: TSidebarProps) => {
+const ExpandSidebar = ({ isMini, role, onClose, onOpen }: TSidebarProps) => {
   const [isMobileAndTablet] = useMediaQuery('(max-width: 1731px)');
 
   const handleCloseSideBar = useCallback(() => {
@@ -32,7 +32,7 @@ const ExpandSidebar = ({ isOpen, role, onClose, onOpen }: TSidebarProps) => {
     <Drawer
       placement="left"
       onClose={onClose}
-      isOpen={isOpen}
+      isOpen={isMini as boolean}
       trapFocus={false}
       onOverlayClick={handleCloseSideBar}
       variant={{
