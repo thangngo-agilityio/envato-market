@@ -2,10 +2,10 @@
 
 import { ReactNode, memo, useMemo } from 'react';
 import { usePathname } from 'next/navigation';
-import { Box, Divider, Flex } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 
 // Components
-import { Benefit, Logo, SwitchTheme } from '@/ui/components';
+import { Benefit, Divider, Logo, SwitchTheme } from '@/ui/components';
 import Heading from '@/ui/layouts/AuthHeader';
 
 // Layouts
@@ -18,9 +18,7 @@ type TAccountProps = {
   children?: ReactNode;
 };
 
-const AccountSection = ({
-  children,
-}: TAccountProps): JSX.Element => {
+const AccountSection = ({ children }: TAccountProps): JSX.Element => {
   const pathname = usePathname();
 
   const pathForgotPassword = pathname === `/${ROUTES.FORGOT_PASSWORD}`;
@@ -70,7 +68,7 @@ const AccountSection = ({
           }}
         >
           <Heading title={title} pathName={pathname} />
-          <Divider content={pathForgotPassword ? TITLES.AUTH_DiVIDER : ''} my={pathForgotPassword ? 10 : 0} />
+          <Divider content={!pathForgotPassword ? TITLES.AUTH_DiVIDER : ''} />
           {children}
           {pathForgotPassword && <AuthFooter />}
         </Box>

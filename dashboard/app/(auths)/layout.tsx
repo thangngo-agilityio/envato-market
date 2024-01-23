@@ -10,8 +10,8 @@ type TAuthLayoutProps = {
 };
 
 const AuthLayoutComponent = ({ children }: TAuthLayoutProps) => (
-  <AccountSection children={children} />
-)
+  <AccountSection>{children}</AccountSection>
+);
 
 const AuthLayout = memo(AuthLayoutComponent);
 
