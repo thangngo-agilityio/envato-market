@@ -40,7 +40,7 @@ const ModalComponent = ({
         {title}
         {haveCloseButton && <ModalCloseButton position="unset" size="sm" />}
       </ModalHeader>
-      <ModalBody>{body || <></>}</ModalBody>
+      {!!body && <ModalBody>{body}</ModalBody>}
     </ModalContent>
   </Modal>
 );
