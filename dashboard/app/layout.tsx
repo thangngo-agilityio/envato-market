@@ -10,10 +10,12 @@ import {
 
 // Fonts
 import { fontFamilies } from '@/ui/themes/bases';
+import MetadataMemorize from './metadata';
 
 export const metadata: Metadata = {
-  title: 'Envato Dashboard ',
-  description: 'Envato Dashboard',
+  title: 'Envato Market - Manage users and transactions on every purchase',
+  description:
+    'Envato Market will receive all transactions from furniture purchase and show users in the system.',
   icons: {
     icon: '/icons/logo-mini-light.svg',
   },
@@ -29,27 +31,7 @@ export default function RootLayout({
       lang="en"
       className={`${fontFamilies.urbanist.variable} ${fontFamilies.poppins.variable}`}
     >
-      <head>
-        <meta
-          name="description"
-          content="Envato Market will receive all transactions from furniture purchase and show users in the system."
-        />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="628" />
-        <meta
-          property="og:title"
-          content="Envato Market will receive all transactions from furniture purchase and show users in the system"
-        />
-        <meta
-          property="og:url"
-          content="https://envato-market-one.vercel.app/"
-        />
-        <meta name="theme-color" content="rgb(34, 197, 94)" />
-        <meta
-          property="og:image"
-          content=" https://envato-market-one.vercel.app/icons/signup.svgg"
-        />
-      </head>
+      <MetadataMemorize />
       <body>
         <QueryProvider>
           <ChakraProvider>
