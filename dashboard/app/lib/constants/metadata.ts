@@ -7,7 +7,7 @@ export const HOMEPAGE_METADATA = {
     'Envato Market - Big practice for users and transactions management.',
   ogUrl: process.env.NEXT_PUBLIC_API,
   themeColor: '#5cd95b',
-  ogImage: `${process.env.NEXT_PUBLIC_API}images/dashboard-page.png`,
+  ogImage: `${process.env.NEXT_PUBLIC_DOMAIN}/images/dashboard-page.png`,
 };
 
 export const SIGN_IN_PAGE = {
@@ -18,5 +18,5 @@ export const SIGN_IN_PAGE = {
   ogTitle: 'Envato Market - Sign in to explore entire the system',
   ogUrl: process.env.NEXT_PUBLIC_API,
   themeColor: '#5cd95b',
-  ogImage: `${process.env.NEXT_PUBLIC_API}icons/signup.svg`,
+  ogImage: `${process.env.NEXT_PUBLIC_DOMAIN}/icons/signup.svg`,
 };
