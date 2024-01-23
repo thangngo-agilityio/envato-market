@@ -12,7 +12,7 @@ import type { TRegisterForm } from '../ContactForm';
 import { useIndicator, useToast } from '@app/hooks';
 
 // Constants
-import { ROUTES, SUBTOTAL, SUCCESS_MESSAGE } from '@app/constants';
+import { SUBTOTAL, SUCCESS_MESSAGE } from '@app/constants';
 
 // Services
 import { checkout, deleteCart } from '@app/services';
@@ -61,7 +61,7 @@ const Checkout = ({ total, cart }: TCheckoutProps): JSX.Element => {
 
       reset(defaultForm);
 
-      window.location.replace(ROUTES.HOME);
+      // window.location.replace(ROUTES.HOME);
     } catch (error) {
       const { message } = error as Error;
 
