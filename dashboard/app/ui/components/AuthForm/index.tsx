@@ -84,8 +84,6 @@ const AuthFormComponent = ({
     },
   });
 
-  console.log('touchedFields', defaultValues);
-
   // Control show/hide password
   const { isOpen: isShowPassword, onToggle: onShowPassword } = useDisclosure();
   const { isOpen: isShowConfirmPassword, onToggle: onShowConfirmPassword } =
