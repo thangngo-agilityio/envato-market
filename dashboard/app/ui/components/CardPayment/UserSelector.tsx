@@ -140,6 +140,7 @@ const UserSelectorComponent = ({
     (searchValue: string, onChange: (val: string) => void) => {
       setSearch(searchValue);
       onChange(searchValue);
+      setOpenOptions(true);
       handleFilterOptions(searchValue);
     },
     [handleFilterOptions],
