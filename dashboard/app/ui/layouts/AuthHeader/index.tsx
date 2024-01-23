@@ -1,14 +1,16 @@
 import { memo } from 'react';
-import { ROUTES } from '@/lib/constants';
 import { Heading as HeadingChakra, Text, VStack } from '@chakra-ui/react';
+import { ROUTES } from '@/lib/constants';
 
 type THeadingProps = {
   title: string;
   pathName?: string;
 };
 
-const AuthHeaderComponent = ({ title, pathName }: THeadingProps) => (
-  pathName && (
+const AuthHeaderComponent = ({ title, pathName }: THeadingProps) => {
+  const pathLogin = pathName !== `/${ROUTES.FORGOT_PASSWORD}`;
+
+  return (
     <VStack as="header">
       <HeadingChakra
         as="h1"
@@ -19,12 +21,14 @@ const AuthHeaderComponent = ({ title, pathName }: THeadingProps) => (
       >
         {title}
       </HeadingChakra>
-      <Text fontSize="md" color="text.secondary" fontWeight="medium">
-        Send, spend and save smarter
-      </Text>
+      {pathLogin && (
+        <Text fontSize="md" color="text.secondary" fontWeight="medium">
+          Send, spend and save smarter
+        </Text>
+      )}
     </VStack>
-  )
-);
+  );
+};
 
 const Heading = memo(AuthHeaderComponent);
 
