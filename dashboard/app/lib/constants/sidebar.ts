@@ -9,9 +9,11 @@ import {
   TransactionIcon,
   UserIcon,
 } from '@/ui/components/Icons';
-import { ROUTES } from '.';
 
-export const MENU_ITEM_LIST = [
+// Constants
+import { AUTHENTICATION_ROLE, ROUTES } from '@/lib/constants';
+
+export const MENU_ITEM_LIST = (role: string) => [
   {
     id: 1,
     leftIcon: DashboardIcon,
@@ -31,12 +33,13 @@ export const MENU_ITEM_LIST = [
     destination: `/${ROUTES.MY_WALLET}`,
   },
   {
-    id: 4,
-    leftIcon: UserIcon,
-    menuItemContent: 'Users',
-    destination: `/${ROUTES.USER}`,
+    ...(role === AUTHENTICATION_ROLE.SUPER_ADMIN && {
+      id: 4,
+      leftIcon: UserIcon,
+      menuItemContent: 'Users',
+      destination: `/${ROUTES.USER}`,
+    }),
   },
-
   {
     id: 5,
     leftIcon: HistoryIcon,
@@ -74,11 +77,11 @@ export const SIDEBAR = {
   EXPAND_SIDEBAR_WIDTH: '308px',
 };
 
-export const EXPAND_SIDEBAR_MENU_LIST = [
+export const EXPAND_SIDEBAR_MENU_LIST = (role: string) => [
   {
     id: 1,
     title: 'Menu',
-    listItem: MENU_ITEM_LIST,
+    listItem: MENU_ITEM_LIST(role),
   },
   {
     id: 2,
@@ -87,6 +90,19 @@ export const EXPAND_SIDEBAR_MENU_LIST = [
   },
   {
     id: 3,
+    title: 'Others',
+    listItem: OTHER_ITEM_LIST,
+  },
+];
+
+export const MINI_SIDEBAR_MENU = (role: string) => [
+  {
+    id: 14,
+    title: 'Menu & Help',
+    listItem: [...MENU_ITEM_LIST(role), ...HELP_ITEM_LIST],
+  },
+  {
+    id: 15,
     title: 'Others',
     listItem: OTHER_ITEM_LIST,
   },

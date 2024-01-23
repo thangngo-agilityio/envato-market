@@ -13,28 +13,26 @@ import {
 
 // components
 import { Logo, Menu } from '@/ui/components';
+import { TMenuItem } from '../common/Menu';
 
 // constants
 import { SIDEBAR, IMAGES, EXPAND_SIDEBAR_MENU_LIST } from '@/lib/constants';
 
-export type SidebarProps = {
-  onClose: () => void;
-  onOpen: () => void;
-  isOpen: boolean;
-};
+// Interfaces
+import { TSidebarProps } from '@/ui/layouts/Sidebar';
 
-const ExpandSidebar = ({ onClose, isOpen }: SidebarProps) => {
+const ExpandSidebar = ({ isMini, role, onClose, onOpen }: TSidebarProps) => {
   const [isMobileAndTablet] = useMediaQuery('(max-width: 1731px)');
 
   const handleCloseSideBar = useCallback(() => {
-    isMobileAndTablet && onClose();
-  }, [isMobileAndTablet, onClose]);
+    isMobileAndTablet && onOpen();
+  }, [isMobileAndTablet, onOpen]);
 
   return (
     <Drawer
       placement="left"
       onClose={onClose}
-      isOpen={isOpen}
+      isOpen={isMini as boolean}
       trapFocus={false}
       onOverlayClick={handleCloseSideBar}
       variant={{
@@ -69,7 +67,7 @@ const ExpandSidebar = ({ onClose, isOpen }: SidebarProps) => {
             position="absolute"
             top="auto"
             right={0}
-            onClick={onClose}
+            onClick={onOpen}
             cursor="pointer"
             id="close-expand"
           />
@@ -92,11 +90,11 @@ const ExpandSidebar = ({ onClose, isOpen }: SidebarProps) => {
           }}
         >
           <VStack pr={12.5} mb={9}>
-            {EXPAND_SIDEBAR_MENU_LIST.map((item) => (
+            {EXPAND_SIDEBAR_MENU_LIST(role as string).map((item) => (
               <Menu
                 key={item.id}
                 title={item.title}
-                listItem={item.listItem}
+                listItem={item.listItem as TMenuItem[]}
                 onClickMenuItem={handleCloseSideBar}
               />
             ))}
