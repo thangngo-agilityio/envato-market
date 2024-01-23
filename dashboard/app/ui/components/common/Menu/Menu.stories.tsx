@@ -4,9 +4,6 @@ import { Box } from '@chakra-ui/react';
 // components
 import { Menu } from '@/ui/components';
 
-// Constants
-import { MENU_ITEM_LIST } from '@/lib/constants';
-
 const meta: Meta<typeof Menu> = {
   title: 'Custom Components/Menu',
   tags: ['autodocs'],
@@ -45,14 +42,13 @@ type Story = StoryObj<typeof Menu>;
 export const Epxand: Story = {
   args: {
     title: 'Expand Menu Component',
-    listItem: MENU_ITEM_LIST,
   },
 };
 
 export const Minify: Story = {
   args: {
     title: 'Minify Menu Component',
-    listItem: MENU_ITEM_LIST,
+
     isMinify: true,
   },
 };

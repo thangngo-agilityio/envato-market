@@ -26,7 +26,7 @@ export type TSidebarProps = {
 };
 
 const Sidebar = ({ isMini, user, onClose, onOpen }: TSidebarProps) => {
-  const { role = AUTHENTICATION_ROLE.MEMBER } = user as TUserDetail;
+  const { role = AUTHENTICATION_ROLE.MEMBER } = user || ({} as TUserDetail);
 
   return (
     <>

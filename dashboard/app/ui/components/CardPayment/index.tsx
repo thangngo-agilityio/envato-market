@@ -10,7 +10,9 @@ import {
   useForm,
   useGetUserDetails,
   useMoney,
+  useNotification,
   usePinCode,
+  useTransactions,
   useWallet,
 } from '@/lib/hooks';
 
@@ -59,6 +61,8 @@ const CardPaymentComponent = (): JSX.Element => {
   });
 
   const { currentWalletMoney } = useWallet(user?.id);
+  useNotification(user?.id);
+  useTransactions();
 
   const { filterDataUser } = useGetUserDetails(user?.id || '');
 
