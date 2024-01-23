@@ -1,7 +1,6 @@
 import {
   Box,
   IconButton,
-  Input,
   InputGroup,
   InputRightElement,
   List,
@@ -9,7 +8,6 @@ import {
   Text,
 } from '@chakra-ui/react';
 import {
-  ChangeEvent,
   FocusEventHandler,
   MouseEvent,
   MouseEventHandler,
@@ -29,7 +27,9 @@ import { TUserDetail } from '@/lib/interfaces';
 
 // Hooks
 import { useDebounce } from '@/lib/hooks';
-import { COMMON_MESSAGES } from '@/lib/constants';
+import { AUTH_SCHEMA, COMMON_MESSAGES } from '@/lib/constants';
+import { InputField } from '..';
+import isEqual from 'react-fast-compare';
 
 export type TUseSelectorProps = {
   control: Control<TTransfer>;
@@ -113,12 +113,13 @@ const UserList = ({
   </List>
 );
 
+const UserListMemorized = memo(UserList, isEqual);
+
 const UserSelectorComponent = ({
   control,
   listUser = [],
 }: TUseSelectorProps): JSX.Element => {
   const [isOpenOptions, setOpenOptions] = useState<boolean>(false);
-  const [search, setSearch] = useState<string>('');
   const [options, setOptions] =
     useState<TUseSelectorProps['listUser']>(undefined);
 
@@ -138,7 +139,6 @@ const UserSelectorComponent = ({
 
   const handleChangeSearch = useCallback(
     (searchValue: string, onChange: (val: string) => void) => {
-      setSearch(searchValue);
       onChange(searchValue);
       setOpenOptions(true);
       handleFilterOptions(searchValue);
@@ -146,9 +146,18 @@ const UserSelectorComponent = ({
     [handleFilterOptions],
   );
 
+  const handleToggleOpen: MouseEventHandler<HTMLButtonElement> = useCallback(
+    (e) => {
+      e.stopPropagation();
+
+      setOpenOptions((prev) => !prev);
+    },
+    [],
+  );
+
   const handleOpenOptions: FocusEventHandler<HTMLInputElement> = useCallback(
     (e) => {
-      e.preventDefault();
+      e.stopPropagation();
 
       setOpenOptions(true);
     },
@@ -160,7 +169,6 @@ const UserSelectorComponent = ({
       e.stopPropagation();
 
       onChange(email);
-      setSearch(email);
       setOpenOptions(false);
     },
     [],
@@ -195,24 +203,32 @@ const UserSelectorComponent = ({
           control={control}
           name="memberId"
           defaultValue=""
-          rules={{ required: true }}
-          render={({ field: { onChange } }) => {
-            const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
-              handleChangeSearch(e.target.value, onChange);
+          rules={AUTH_SCHEMA.EMAIL}
+          render={({ field: { onChange, ...field } }) => {
+            const handleChange = (search: string) =>
+              handleChangeSearch(search, onChange);
 
             return (
               <>
                 <InputGroup size="md" position="static">
-                  <Input
-                    fontFamily="primary"
-                    fontWeight="medium"
-                    color="text.primary"
-                    fontSize="lg"
+                  <InputField
+                    variant="authentication"
                     placeholder="Choose an account to transfer"
-                    _placeholder={{
-                      fontWeight: 'medium',
-                    }}
-                    value={search}
+                    rightIcon={
+                      <IconButton
+                        p={1}
+                        w="fit-content"
+                        h="fit-content"
+                        aria-label="Icon dropdown"
+                        bg="transparent"
+                        _hover={{
+                          bg: 'transparent',
+                        }}
+                      >
+                        <ChevronIcon />
+                      </IconButton>
+                    }
+                    {...field}
                     onChange={handleChange}
                     onFocus={handleOpenOptions}
                     onClick={(e) => e.stopPropagation()}
@@ -227,13 +243,14 @@ const UserSelectorComponent = ({
                       _hover={{
                         bg: 'transparent',
                       }}
+                      onClick={handleToggleOpen}
                     >
                       <ChevronIcon />
                     </IconButton>
                   </InputRightElement>
                 </InputGroup>
                 {isOpenOptions && (
-                  <UserList
+                  <UserListMemorized
                     listUser={options ?? listUser}
                     onSelect={handleSelectEmail}
                     onChange={onChange}
