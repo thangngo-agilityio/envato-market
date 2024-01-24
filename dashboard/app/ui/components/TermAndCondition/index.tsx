@@ -6,7 +6,7 @@ import { Box, Text } from '@chakra-ui/react';
 import { TERM_CONDITION } from '@/lib/constants';
 
 // Components
-import TermAndConditionItem from './TermAdnConditionItem';
+import TermAndConditionItem from './TermAndConditionItem';
 
 const TermAndCondition = () => (
   <Box>
