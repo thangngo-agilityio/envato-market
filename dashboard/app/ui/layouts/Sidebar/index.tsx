@@ -50,7 +50,7 @@ const Sidebar = ({ isMini, user, onClose, onOpen }: TSidebarProps) => {
         left={0}
         cursor="pointer"
         display={{ base: 'block', md: 'none', lg: 'block' }}
-        onClick={onOpen}
+        onClick={onClose}
       />
     </>
   );

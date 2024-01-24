@@ -17,7 +17,7 @@ export type TNavigationProps = {
 
 const COLOR = {
   LIGHT: {
-    PRIMARY: 'primary.500',
+    PRIMARY: 'primary.300',
     SECONDARY: 'primary.900',
   },
   DARK: {
