@@ -1,33 +1,18 @@
 'use client';
 
-import { memo, useCallback, useState } from 'react';
-import {
-  Box,
-  Heading,
-  Flex,
-  theme,
-  useColorModeValue,
-  VStack,
-  FormControl,
-  Text,
-} from '@chakra-ui/react';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Suspense, memo, useCallback, useState } from 'react';
+import { Box, Heading, Flex } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
 
 import 'react-quill/dist/quill.snow.css';
 
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
-
-// themes
-import { colors } from '@/ui/themes/bases/colors';
-
 // Constants
-import { AVATAR_POSITION, IMAGES } from '@/lib/constants';
+import { AVATAR_POSITION, IMAGES, STORE_KEY } from '@/lib/constants';
 
 // Components
-import CustomButton from '@/ui/components/common/Button';
-import Message from '@/ui/components/Message';
 import { ChatMember } from '@/ui/components';
-import { SendIconLight } from '@/ui/components/Icons';
+const ChatArea = dynamic(() => import('./ChatArea'));
+const ChatView = dynamic(() => import('./ChatView'));
 
 // Interface
 import { TChat } from '@/lib/interfaces';
@@ -40,7 +25,6 @@ import { authStore } from '@/lib/stores';
 
 // Interfaces
 import { MessageType } from '@/lib/interfaces/messages';
-import dynamic from 'next/dynamic';
 
 export type Props = {
   activeMember?: string;
@@ -50,26 +34,6 @@ export type Props = {
 };
 
 const Conversation = ({ adminName }: Props) => {
-  const {
-    control,
-    formState: {
-      errors: { root },
-    },
-    // watch,
-    handleSubmit,
-    reset,
-    clearErrors,
-  } = useForm<TChat>({
-    defaultValues: {
-      messages: '',
-    },
-    mode: 'onBlur',
-  });
-
-  const adminAvatarURL = authStore(
-    (state): string | undefined => state.user?.avatarURL,
-  );
-
   const avatarURL = authStore(
     (state): string | undefined => state.user?.avatarURL,
   );
@@ -78,65 +42,34 @@ const Conversation = ({ adminName }: Props) => {
     ({ user }): string | undefined => `${user?.firstName} ${user?.lastName}`,
   );
 
-  const defaultName = adminName || username;
-
-  const colorFill = useColorModeValue(
-    theme.colors.white,
-    colors.secondary[400],
-  );
-
-  // const messagesToShow = useMemo(
-  //   () => (filteredMessages ?? [].length > 0 ? filteredMessages : listMessages),
-  //   [filteredMessages],
-  // );
+  const defaultName = adminName ?? username;
 
   const [listMessages, setListMessages] = useState(() => {
-    const storedMessages = localStorage.getItem('chatMessages');
+    const storedMessages = localStorage.getItem(STORE_KEY.CHAT);
     return storedMessages ? JSON.parse(storedMessages) : USER_CHATS;
   });
 
-  const handleSendMessage: SubmitHandler<TChat> = useCallback(
-    (event) => {
-      const newMessageContent = event.messages;
+  const handleSendMessage = useCallback((chat: TChat) => {
+    const message: string = chat.messages.trim();
 
-      const newMessage = {
-        messages: newMessageContent,
-        uid: 'admin',
-        isSend: false,
-        content: newMessageContent,
-        avatarPosition: AVATAR_POSITION.AFTER,
-        avatar: IMAGES.CHAT_USER_AVATAR.url,
-        localeTime: MESSAGE_TIME + 5000,
-      };
+    const newMessage = {
+      messages: message,
+      uid: 'admin',
+      isSend: false,
+      content: message,
+      avatarPosition: AVATAR_POSITION.AFTER,
+      avatar: IMAGES.CHAT_USER_AVATAR.url,
+      localeTime: MESSAGE_TIME + 5000,
+    };
 
-      const updatedMessages = [...listMessages, newMessage];
-      setListMessages(updatedMessages);
+    setListMessages((prev: TChat[]) => {
+      const messages: TChat[] = [...prev, newMessage];
 
-      localStorage.setItem('chatMessages', JSON.stringify(updatedMessages));
+      localStorage.setItem(STORE_KEY.CHAT, JSON.stringify(messages));
 
-      reset();
-    },
-    [listMessages, reset],
-  );
-
-  const handleClearErrorMessage = useCallback(
-    (field: keyof TChat, onChange: (value: string) => void) =>
-      (data: string) => {
-        clearErrors(field);
-        onChange(data);
-      },
-    [clearErrors],
-  );
-
-  const handleOnKeyDown = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key === 'Enter' && !event.shiftKey) {
-        event.preventDefault();
-        handleSubmit(handleSendMessage)();
-      }
-    },
-    [handleSendMessage, handleSubmit],
-  );
+      return messages;
+    });
+  }, []);
 
   return (
     <Box w="full" borderRadius="lg">
@@ -162,76 +95,10 @@ const Conversation = ({ adminName }: Props) => {
       </Flex>
 
       <Box padding={{ base: '24px 20px', lg: '38px 35px' }}>
-        {listMessages?.map((messages: TChat): JSX.Element => {
-          const { uid } = messages;
-          const isMessageFromAdmin = uid && uid.startsWith('admin');
-
-          const avatar = isMessageFromAdmin
-            ? adminAvatarURL
-            : IMAGES.CHAT_USER_AVATAR.url;
-
-          return (
-            <Message
-              senderId={uid}
-              key={uid}
-              avatar={avatar}
-              localeTime={MESSAGE_TIME}
-            />
-          );
-        })}
-        <VStack as="form" onSubmit={handleSubmit(handleSendMessage)}>
-          <Flex direction="column" width="full">
-            <Controller
-              control={control}
-              name="messages"
-              render={({ field: { onChange, ...rest } }) => (
-                <FormControl>
-                  <Flex
-                    direction="row"
-                    alignItems="center"
-                    justify="flex-start"
-                  >
-                    <ReactQuill
-                      {...rest}
-                      onKeyDown={handleOnKeyDown}
-                      onChange={handleClearErrorMessage('messages', onChange)}
-                      modules={{
-                        toolbar: [
-                          ['bold', 'italic', 'underline'],
-                          ['image', 'code-block'],
-                        ],
-                      }}
-                      style={{
-                        width: '100%',
-                        backgroundColor: colorFill,
-                      }}
-                      theme="snow"
-                    />
-                  </Flex>
-                </FormControl>
-              )}
-            />
-
-            <Text color="red" textAlign="center" py={2} h={10}>
-              {root?.message}
-            </Text>
-
-            <CustomButton
-              w="unset"
-              px={4}
-              py={2.5}
-              leftIcon={<SendIconLight />}
-              fontSize="md"
-              fontWeight="semibold"
-              bgColor="primary.600"
-              mt={4}
-              alignSelf="flex-end"
-              type="submit"
-            >
-              Send
-            </CustomButton>
-          </Flex>
-        </VStack>
+        <Suspense>
+          <ChatView messages={listMessages} />
+          <ChatArea onSendMessage={handleSendMessage} />
+        </Suspense>
       </Box>
     </Box>
   );
