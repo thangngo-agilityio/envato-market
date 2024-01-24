@@ -112,7 +112,7 @@ const MiniSidebar = ({
                   key={item.id}
                   title={item.title}
                   listItem={item.listItem as TMenuItem[]}
-                  isExpandSidebarfy
+                  isExpandSidebar
                 />
               ))}
             </List>
