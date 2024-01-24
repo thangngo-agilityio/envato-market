@@ -40,6 +40,8 @@ const config = {
     '!<rootDir>/app/ui/providers/**',
     '!<rootDir>/coverage/**',
     '!<rootDir>/public/**',
+    '!**/.next/**',
+    '!<rootDir>/app/ui/themes/**',
     '!**/*.config.ts',
   ],
   testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
