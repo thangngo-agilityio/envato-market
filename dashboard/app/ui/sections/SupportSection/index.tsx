@@ -310,6 +310,7 @@ const SupportsSection = () => {
           <Button
             type="submit"
             bg="primary.300"
+            aria-label="btn submit-ticket"
             mt={12}
             w={200}
             isDisabled={disabled}

@@ -62,6 +62,7 @@ const CustomerIssues = ({
 
     {hasNextPage && (
       <Button
+        aria-label="btn load-more"
         bg="text.primary"
         border="1px"
         color="text.textLoadMore"
