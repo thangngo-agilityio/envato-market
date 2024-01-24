@@ -70,6 +70,7 @@ const InputComponent = (
         />
         {rightIcon && (
           <InputRightElement
+            aria-label="The eye icon"
             type="button"
             as="button"
             _hover={{
