@@ -10,17 +10,12 @@ import {
   useForm,
   useGetUserDetails,
   useMoney,
-  useNotification,
   usePinCode,
-  useTransactions,
   useWallet,
 } from '@/lib/hooks';
 
 // Components
 import { Modal, PinCode } from '@/ui/components';
-import CardBalance from './CardBalance';
-import UserSelector from './UserSelector';
-import EnterMoney from './EnterMoney';
 
 // Stores
 import { authStore } from '@/lib/stores';
@@ -33,6 +28,9 @@ import { ERROR_MESSAGES, STATUS, SUCCESS_MESSAGES } from '@/lib/constants';
 
 // Utils
 import { customToast } from '@/lib/utils';
+import CardBalance from './CardBalance';
+import UserSelector from './UserSelector';
+import EnterMoney from './EnterMoney';
 
 export type TTransfer = {
   amount: string;
@@ -61,8 +59,6 @@ const CardPaymentComponent = (): JSX.Element => {
   });
 
   const { currentWalletMoney } = useWallet(user?.id);
-  useNotification(user?.id);
-  useTransactions();
 
   const { filterDataUser } = useGetUserDetails(user?.id || '');
 
@@ -101,13 +97,14 @@ const CardPaymentComponent = (): JSX.Element => {
   });
 
   const { sendMoneyToUserWallet } = useMoney();
-  const onSubmitSendMoney: SubmitHandler<TTransfer> = useCallback(
-    (data) => {
-      const submitData: TSendMoney = { ...data, amount: Number(data.amount) };
 
-      sendMoneyToUserWallet(submitData);
-    },
-    [sendMoneyToUserWallet],
+  const getMemberId = useCallback(
+    (email: string): string =>
+      filterDataUser?.find(
+        (user) =>
+          user.email.trim().toLocaleLowerCase() === email.trim().toLowerCase(),
+      )?._id || '',
+    [filterDataUser],
   );
 
   const handleOnSubmitSendMoney = (e: FormEvent<HTMLFormElement>) => {
@@ -118,6 +115,20 @@ const CardPaymentComponent = (): JSX.Element => {
       onOpenConfirmPinCodeModal();
     }
   };
+
+  const onSubmitSendMoney: SubmitHandler<TTransfer> = useCallback(
+    (data) => {
+      const submitData: TSendMoney = {
+        ...data,
+        memberId: getMemberId(data.memberId),
+        amount: Number(data.amount),
+      };
+
+      sendMoneyToUserWallet(submitData);
+      resetSendMoneyForm();
+    },
+    [getMemberId, resetSendMoneyForm, sendMoneyToUserWallet],
+  );
 
   const onSubmitPinCode: SubmitHandler<TPinCodeForm> = useCallback(
     async (data) => {
@@ -159,6 +170,7 @@ const CardPaymentComponent = (): JSX.Element => {
 
             await handleSubmitSendMoney(onSubmitSendMoney)();
             resetSendMoneyForm();
+
             toast(
               customToast(
                 SUCCESS_MESSAGES.CONFIRM_PIN_CODE.title,

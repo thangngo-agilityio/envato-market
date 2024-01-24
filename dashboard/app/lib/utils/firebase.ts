@@ -22,8 +22,6 @@ export const requestForToken = (messaging: Messaging) =>
   getToken(messaging, { vapidKey: VAPID_KEY })
     .then((currentToken) => {
       if (currentToken) {
-        console.log('current token for client: ', currentToken);
-
         return currentToken;
         // Perform any other neccessary action with the token
       } else {
@@ -39,6 +37,6 @@ export const requestForToken = (messaging: Messaging) =>
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-export const auth = getAuth();
+export const auth = getAuth(app);
 export const storage = getStorage();
 export const db = getFirestore();
