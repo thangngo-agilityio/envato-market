@@ -1,29 +1,113 @@
 'use client';
 
-import { ChangeEvent, memo, useCallback } from 'react';
-import { Box, Image, Heading, Flex, Input, Button } from '@chakra-ui/react';
-
-// Constants
-import { AVATAR_POSITION, IMAGES } from '@/lib/constants';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { Box, Heading, Flex } from '@chakra-ui/react';
 
 // Components
 import Message from './Message';
 
-// Mocks
-import { MESSAGE_TIME, MESSAGES } from '@/lib/mocks';
+// Components
+import { InputSendMessages } from '@/ui/components';
 
-export type BoxChatProps = {
-  onSendMessage?: () => void;
-  onChange?: (value: string) => void;
+// Interface
+import { TMessages } from '@/lib/interfaces';
+
+// Stores
+import { authStore } from '@/lib/stores';
+
+// Hooks
+import { getCurrentUser } from '@/lib/hooks';
+
+// Firebase
+import {
+  doc,
+  getDoc,
+  onSnapshot,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore';
+import { db } from '@/firebase';
+
+const initialUserChat = {
+  roomChatId: '',
+  userId: '',
+  adminId: '',
+  avatarUrl: '',
+  avatarAdminUrl: '',
+  displayName: '',
 };
 
-const BoxChatComponent = ({ onSendMessage, onChange }: BoxChatProps) => {
-  const handleChangeValue = useCallback(
-    (e: ChangeEvent<HTMLInputElement>): void => onChange?.(e.target.value),
-    [onChange],
-  );
+const BoxChatComponent = () => {
+  const [messages, setMessages] = useState<TMessages[]>([]);
+  const user = authStore((state) => state.user);
+  const [userChat, setUserChat] = useState(initialUserChat);
+  const boxRef = useRef<HTMLDivElement | null>(null);
 
-  const handleSendMessage = (): void => onSendMessage?.();
+  const createChatRoom = useCallback(async () => {
+    // Get user data
+    const usersData = await getCurrentUser(user);
+
+    if (usersData) {
+      await setDoc(doc(db, 'chats', usersData.roomChatId), {
+        messages: [],
+      });
+
+      await updateDoc(doc(db, 'userChats', usersData.adminId), {
+        [usersData.roomChatId + '.userInfo']: {
+          uid: usersData.adminId,
+          displayName: usersData.displayName,
+          photoURL: usersData.avatarUrl,
+        },
+        [usersData.roomChatId + '.date']: serverTimestamp(),
+      });
+
+      await updateDoc(doc(db, 'userChats', usersData.userId), {
+        [usersData.roomChatId + '.userInfo']: {
+          uid: usersData.userId,
+          displayName: usersData.displayName,
+          photoURL: usersData.avatarUrl,
+        },
+        [usersData.roomChatId + '.date']: serverTimestamp(),
+      });
+    }
+  }, [user]);
+
+  const fetchData = async () => {
+    // Get user data
+    const usersData = await getCurrentUser(user);
+
+    // Check if usersData is undefined before accessing its properties
+    if (usersData) {
+      const res = await getDoc(doc(db, 'chats', usersData.roomChatId));
+
+      setUserChat(usersData);
+      if (res.exists()) {
+        setMessages(res.data().messages);
+      } else {
+        await createChatRoom();
+      }
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (!userChat.roomChatId) return;
+    const unSub = onSnapshot(doc(db, 'chats', userChat.roomChatId), (doc) => {
+      doc.exists() && setMessages(doc.data().messages);
+    });
+
+    if (boxRef.current) {
+      boxRef.current.scrollTop = boxRef.current.scrollHeight;
+    }
+
+    return () => {
+      unSub();
+    };
+  }, [userChat.roomChatId]);
 
   return (
     <Box w="full" bg="background.body.quaternary" borderRadius="lg">
@@ -45,103 +129,39 @@ const BoxChatComponent = ({ onSendMessage, onChange }: BoxChatProps) => {
         >
           team chat
         </Heading>
-
-        <Flex gap={5}>
-          <Image
-            src={IMAGES.USER_AVATAR.url}
-            alt={IMAGES.USER_AVATAR.alt}
-            fallbackSrc={IMAGES.USER.url}
-            w="52px"
-            h={8}
-          />
-
-          <Button
-            aria-label="btn-icon-plus"
-            bg="secondary.800"
-            w={9}
-            h={9}
-            borderRadius="50%"
-          >
-            <Image
-              src="icons/plus.svg"
-              alt={IMAGES.USER_AVATAR.alt}
-              fallbackSrc={IMAGES.USER.url}
-              w={3.5}
-              h={3.5}
-            />
-          </Button>
-        </Flex>
       </Flex>
 
-      <Box padding={{ base: '24px 20px', lg: '38px 35px' }}>
-        {MESSAGES.map((message): JSX.Element => {
-          const { isSend, isAudio, uid, content } = message;
-
-          return (
+      <Box padding={{ base: '24px 20px', lg: '45px 35px' }}>
+        <Box
+          ref={boxRef}
+          overflowX="auto"
+          overflowY="scroll"
+          css={{
+            '&::-webkit-scrollbar': {
+              width: 2,
+            },
+            '&::-webkit-scrollbar-track': {
+              width: 2,
+            },
+            '&::-webkit-scrollbar-thumb': {
+              background: 'gray',
+              borderRadius: '24px',
+            },
+          }}
+          maxHeight={361}
+          padding={5}
+        >
+          {messages.map((m) => (
             <Message
-              key={uid}
-              content={content}
-              isImage={isAudio}
-              isOwnerMessage={isSend}
-              avatarPosition={
-                isSend ? AVATAR_POSITION.AFTER : AVATAR_POSITION.BEFORE
-              }
-              avatar={IMAGES.CHAT_USER_AVATAR.url}
-              localeTime={MESSAGE_TIME}
+              content={m.text}
+              key={m.date.second}
+              senderId={m.senderId}
+              avatarAdmin={userChat.avatarAdminUrl}
+              avatarUser={userChat.avatarUrl}
             />
-          );
-        })}
-
-        <Flex justify="center" align="center">
-          <Box
-            border="1px solid"
-            borderColor="border.secondary"
-            p="0 20px"
-            mt={5}
-            borderRadius="lg"
-            w="full"
-          >
-            <Flex direction="row" alignItems="center">
-              <Image
-                src={IMAGES.ATTACH.url}
-                alt={IMAGES.ATTACH.alt}
-                w={4}
-                h={15}
-                cursor="pointer"
-              />
-
-              <Input
-                variant="authentication"
-                ml={5}
-                _dark={{
-                  border: 'none',
-                }}
-                sx={{ border: 'none', padding: 0 }}
-                placeholder="Type your message here"
-                onChange={handleChangeValue}
-              />
-
-              <Image
-                src={IMAGES.MICRO.url}
-                alt={IMAGES.MICRO.alt}
-                w={6}
-                h={6}
-                cursor="pointer"
-              />
-            </Flex>
-          </Box>
-          <Image
-            role="button"
-            mt={5}
-            ml={5}
-            src={IMAGES.SEND.url}
-            alt={IMAGES.SEND.alt}
-            w={5}
-            h={18}
-            cursor="pointer"
-            onClick={handleSendMessage}
-          />
-        </Flex>
+          ))}
+        </Box>
+        <InputSendMessages boxRef={boxRef} />
       </Box>
     </Box>
   );

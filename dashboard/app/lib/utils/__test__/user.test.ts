@@ -1,10 +1,9 @@
-import { USER_MOCK } from '@/lib/mocks';
-
-import { getDataUser } from '..';
+import { MOCK_USER_DETAIL, USER_MOCK } from '@/lib/mocks';
+import { formatUserResponse } from '..';
 
 describe('getDataUser', () => {
   it('transforms transactions correctly', () => {
-    const result = getDataUser([USER_MOCK]);
+    const result = formatUserResponse([MOCK_USER_DETAIL]);
 
     const {
       id,
@@ -39,7 +38,7 @@ describe('getDataUser', () => {
   });
 
   it('transforms transactions with empty data', () => {
-    const result = getDataUser();
+    const result = formatUserResponse();
 
     expect(result).toEqual([]);
   });

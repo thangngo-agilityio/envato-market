@@ -30,7 +30,7 @@ import { ROUTES, AUTH_SCHEMA, ERROR_MESSAGES } from '@/lib/constants';
 import { InputField } from '@/ui/components';
 
 // Utils
-import { app, requestForToken, validatePassword } from '@/lib/utils';
+import { validatePassword } from '@/lib/utils';
 
 // Types
 import { TUserDetail } from '@/lib/interfaces';
@@ -38,6 +38,9 @@ import { getMessaging } from 'firebase/messaging';
 
 // Layouts
 import { AuthFooter } from '@/ui/layouts';
+
+// firebase
+import { app, requestForToken } from '@/firebase';
 
 type TAuthForm = Omit<TUserDetail, 'id' | 'createdAt'> & {
   confirmPassword: string;
