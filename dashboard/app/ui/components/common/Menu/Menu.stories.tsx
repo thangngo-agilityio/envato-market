@@ -17,7 +17,7 @@ const meta: Meta<typeof Menu> = {
       description: 'The list item of the menu',
     },
 
-    isMinify: {
+    isExpandSidebar: {
       description: 'Determine the mode of the menu in sidebar: expand or mini',
     },
   },
@@ -49,6 +49,6 @@ export const Minify: Story = {
   args: {
     title: 'Minify Menu Component',
 
-    isMinify: true,
+    isExpandSidebar: true,
   },
 };

@@ -21,7 +21,7 @@ import { TUserDetail } from '@/lib/interfaces';
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const [isDesktop] = useMediaQuery(SCREEN_SIZES.LARGE_DESKTOP);
   const {
-    isOpen: isMini,
+    isOpen: isExpandSidebar,
     onOpen,
     onClose,
   } = useDisclosure({
@@ -44,7 +44,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
             base: 0,
             md: SIDEBAR.MINI_SIDEBAR_WIDTH,
             lg: SIDEBAR.MINI_SIDEBAR_WIDTH,
-            '4xl': !isMini
+            '4xl': isExpandSidebar
               ? SIDEBAR.EXPAND_SIDEBAR_WIDTH
               : isDesktop
                 ? SIDEBAR.MINI_SIDEBAR_WIDTH
@@ -58,7 +58,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           }}
         >
           <SideBar
-            isMini={isMini}
+            isExpandSidebar={isExpandSidebar}
             user={user as TUserDetail}
             onOpen={onOpen}
             onClose={onClose}
