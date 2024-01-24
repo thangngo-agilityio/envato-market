@@ -46,6 +46,7 @@ const AddMoneyInputField = ({
             <Input
               variant="authentication"
               type="text"
+              autoComplete="off"
               _dark={{
                 border: 'none',
               }}

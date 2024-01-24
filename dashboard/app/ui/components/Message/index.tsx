@@ -3,6 +3,7 @@ import { Avatar, Box, Flex, Spacer, Text } from '@chakra-ui/react';
 // Constants
 import { IMAGES } from '@/lib/constants';
 import { USER_ID } from '@/lib/mocks/id';
+import { memo } from 'react';
 
 interface MessageProps {
   content?: string;
@@ -74,4 +75,7 @@ const Message = ({
     )}
   </Flex>
 );
-export default Message;
+
+const MessageMemorized = memo(Message);
+
+export default MessageMemorized;
