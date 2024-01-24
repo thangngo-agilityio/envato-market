@@ -19,25 +19,29 @@ const MiniSidebar = dynamic(() => import('../../components/MiniSidebar'));
 export type TSidebarProps = {
   menuItem?: TMenuItem[];
   role?: string;
-  isMini?: boolean;
+  isExpandSidebar?: boolean;
   user?: TUserDetail;
   onClose: () => void;
   onOpen: () => void;
 };
 
-const Sidebar = ({ isMini, user, onClose, onOpen }: TSidebarProps) => {
+const Sidebar = ({ isExpandSidebar, user, onClose, onOpen }: TSidebarProps) => {
   const { role = AUTHENTICATION_ROLE.MEMBER } = user || ({} as TUserDetail);
 
   return (
     <>
-      {isMini ? (
-        <MiniSidebar role={role} isMini={isMini} onClose={onClose} />
-      ) : (
+      {isExpandSidebar ? (
         <ExpandSidebar
           role={role}
-          isMini={!isMini}
+          isExpandSidebar={isExpandSidebar}
           onClose={onClose}
           onOpen={onOpen}
+        />
+      ) : (
+        <MiniSidebar
+          role={role}
+          isExpandSidebar={!isExpandSidebar}
+          onClose={onOpen}
         />
       )}
 
@@ -50,7 +54,7 @@ const Sidebar = ({ isMini, user, onClose, onOpen }: TSidebarProps) => {
         left={0}
         cursor="pointer"
         display={{ base: 'block', md: 'none', lg: 'block' }}
-        onClick={onClose}
+        onClick={onOpen}
       />
     </>
   );

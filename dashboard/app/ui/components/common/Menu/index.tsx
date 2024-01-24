@@ -30,14 +30,14 @@ export type TMenuItem = {
 export type MenuProps = {
   title?: string;
   listItem: Array<TMenuItem>;
-  isMinify?: boolean;
+  isExpandSidebar?: boolean;
   onClickMenuItem?: () => void;
 };
 
 const Menu = ({
   title = '',
   listItem,
-  isMinify = false,
+  isExpandSidebar = false,
   onClickMenuItem,
 }: MenuProps) => {
   const router = useRouter();
@@ -53,8 +53,8 @@ const Menu = ({
   );
 
   return (
-    <VStack mb={isMinify ? 9 : 5} w="full" overscroll="full">
-      {!isMinify && (
+    <VStack mb={isExpandSidebar ? 9 : 5} w="full" overscroll="full">
+      {!isExpandSidebar && (
         <Heading
           as="h4"
           borderColor="border.primary"
@@ -77,7 +77,7 @@ const Menu = ({
         mt={2.5}
         role="listbox"
         aria-label="list-icon"
-        spacing={isMinify ? 5.5 : 2.75}
+        spacing={isExpandSidebar ? 5.5 : 2.75}
         w="full"
         sx={{
           textAlign: '-webkit-center',
@@ -95,7 +95,7 @@ const Menu = ({
 
             return (
               <ListItem key={id} aria-label="item-icon" role="list">
-                {isMinify ? (
+                {isExpandSidebar ? (
                   <Navigation destination={destination} onClick={handleClick}>
                     <LeftIconComponent />
                   </Navigation>

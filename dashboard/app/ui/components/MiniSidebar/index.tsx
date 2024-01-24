@@ -26,7 +26,7 @@ import { TSidebarProps } from '@/ui/layouts/Sidebar';
 
 const MiniSidebar = ({
   onClose,
-  isMini,
+  isExpandSidebar,
   role,
 }: Omit<TSidebarProps, 'onOpen'>) => {
   const { colorMode } = useColorMode();
@@ -40,7 +40,7 @@ const MiniSidebar = ({
     <Drawer
       placement="left"
       onClose={onClose}
-      isOpen={isMini as boolean}
+      isOpen={isExpandSidebar as boolean}
       closeOnOverlayClick={false}
       trapFocus={false}
       variant="clickThrough"
@@ -112,7 +112,7 @@ const MiniSidebar = ({
                   key={item.id}
                   title={item.title}
                   listItem={item.listItem as TMenuItem[]}
-                  isMinify
+                  isExpandSidebarfy
                 />
               ))}
             </List>
