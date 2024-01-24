@@ -77,6 +77,7 @@ const EnterMoneyComponent = ({
       aria-label="btn-send-money"
       mt={4}
       colorScheme="primary"
+      bg="primary.300"
       fontWeight="bold"
       type="submit"
       isDisabled={isDisabled}

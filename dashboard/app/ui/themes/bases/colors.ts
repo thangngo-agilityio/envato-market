@@ -6,6 +6,7 @@ export const colors = {
     600: '#16A34A',
     800: '#27DA68',
     700: '#2A313C',
+    750: '#1B1D21',
     900: '#B7FFD1',
   },
 
@@ -30,6 +31,7 @@ export const colors = {
     950: '#4A5568',
     1000: '#E5E7EB',
     1050: '#9AA2B1',
+    1100: '#718096',
   },
 
   common: {
@@ -62,10 +64,24 @@ export const colors = {
         default: '#F7FAFC',
         _dark: '#1D1E24',
       },
+      septenary: {
+        default: '#FFF',
+        _dark: '#1D1E24',
+      },
+
+      octonary: {
+        default: '#1B1D21',
+        _dark: '#FFF',
+      },
     },
     section: {
       primary: {
         default: '#F6FAFF',
+        _dark: '#1D1E24',
+      },
+
+      messageUser: {
+        default: '#EDf2f7',
         _dark: '#1D1E24',
       },
     },
@@ -148,6 +164,12 @@ export const colors = {
       default: '#E5E7EB',
       _dark: '#2A313C',
     },
+
+    septenary: {
+      default: 'gray.200',
+      _dark: 'gray.700',
+    },
+
     octonary: {
       default: 'primary.700',
       _dark: 'gray.400',
@@ -200,6 +222,7 @@ export const colors = {
       default: '#6B7280',
       _dark: '#FFF',
     },
+
     textTime: {
       default: '#4B5772',
       _dark: '#A0AEC0',
@@ -208,6 +231,32 @@ export const colors = {
       default: '#0C642F',
       _dark: '#22C55E',
     },
+
+    ternary: {
+      default: '#A0AEC0',
+      _dark: '#FAFAFA',
+    },
+
+    binary: {
+      default: '#9AA2B1',
+      _dark: '#FFF',
+    },
+
+    textTitle: {
+      default: '#2D3748',
+      _dark: '#FAFAFA',
+    },
+
+    textNote: {
+      default: '#2D3748',
+      _dark: '#FFF',
+    },
+
+    textIssues: {
+      default: '#718096',
+      _dark: 'FFF',
+    },
+
     textLoadMore: {
       default: '#FFF',
       _dark: '#1A202C',

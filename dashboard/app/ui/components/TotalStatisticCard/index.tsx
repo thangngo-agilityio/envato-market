@@ -57,7 +57,7 @@ const TotalCardComponent = ({
             h={3.5}
           />
           <Text
-            color={{ base: 'primary.500', sm: 'primary.500' }}
+            color="text.currencyColor"
             variant={{ base: 'textSm', md: 'textMd' }}
           >
             + {growth}%{' '}

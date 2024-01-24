@@ -12,7 +12,7 @@ export const Tag = defineStyleConfig({
   variants: {
     primary: {
       container: {
-        color: 'primary.500',
+        color: 'text.currencyColor',
         backgroundColor: BACKGROUND_PRIMARY,
       },
     },
