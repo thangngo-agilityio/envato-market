@@ -480,6 +480,7 @@ const UserFormComponent = () => {
                 <Button
                   type="submit"
                   aria-label="btn-save-profile"
+                  bg="primary.300"
                   px={4}
                   textTransform="capitalize"
                   form="register-form"

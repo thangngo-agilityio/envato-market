@@ -244,6 +244,7 @@ const TotalBalanceComponent = (): JSX.Element => {
             aria-label="btn-add-money"
             mt={14}
             colorScheme="primary"
+            bg="primary.300"
             fontWeight="bold"
             type="submit"
             isDisabled={!isAddMoneyValid || isAddMoneySubmitting}

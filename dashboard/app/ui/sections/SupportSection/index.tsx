@@ -307,7 +307,13 @@ const SupportsSection = () => {
               )}
             />
           </Flex>
-          <Button type="submit" mt={12} w={200} isDisabled={disabled}>
+          <Button
+            type="submit"
+            bg="primary.300"
+            mt={12}
+            w={200}
+            isDisabled={disabled}
+          >
             Submit Ticket
           </Button>
         </VStack>
