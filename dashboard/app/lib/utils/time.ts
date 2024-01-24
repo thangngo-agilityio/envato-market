@@ -56,7 +56,7 @@ export const convertDateToTime = (value: string) => {
 
   switch (true) {
     case elapsed < minutes:
-      result = Math.round(elapsed / 1000) + ' seconds ago';
+      result = 'Just now';
       break;
     case elapsed < hours:
       result = Math.round(elapsed / minutes) + ' minutes ago';
