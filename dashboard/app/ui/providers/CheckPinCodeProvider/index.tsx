@@ -7,13 +7,7 @@ import {
   STATUS,
   SUCCESS_MESSAGES,
 } from '@/lib/constants';
-import {
-  useAuth,
-  useNotification,
-  usePinCode,
-  useTransactions,
-  useWallet,
-} from '@/lib/hooks';
+import { useAuth, usePinCode } from '@/lib/hooks';
 import { TPinCodeForm } from '@/lib/interfaces';
 import { TAuthStoreData, authStore } from '@/lib/stores';
 import { customToast } from '@/lib/utils';
@@ -26,11 +20,6 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 const CheckPinCodeProvider = ({ children }: { children: React.ReactNode }) => {
   const user = authStore((state): TAuthStoreData['user'] => state.user);
-
-  //TODO: re-check later
-  useNotification(user?.id);
-  useWallet(user?.id);
-  useTransactions();
 
   const {
     isOpen: isPinCodeModalOpen,

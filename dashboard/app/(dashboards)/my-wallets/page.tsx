@@ -18,9 +18,6 @@ import { END_POINTS } from '@/lib/constants';
 // Utils
 import { prefetchStatistical } from '@/lib/utils';
 
-// Providers
-import { QueryProvider } from '@/ui/providers';
-
 // Lazy loading components
 const TransactionTable = dynamic(
   () => import('@/ui/components/TransactionTable'),
@@ -95,12 +92,6 @@ const MyWallets = async () => {
   );
 };
 
-const WrappedMyWallets = () => (
-  <QueryProvider>
-    <MyWallets />
-  </QueryProvider>
-);
-
-const MyWalletPage = memo(WrappedMyWallets);
+const MyWalletPage = memo(MyWallets);
 
 export default MyWalletPage;

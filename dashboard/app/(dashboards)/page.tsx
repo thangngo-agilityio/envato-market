@@ -22,9 +22,6 @@ import { Box, Grid, GridItem, Stack } from '@chakra-ui/react';
 // Utils
 import { prefetchStatistical } from '@/lib/utils';
 
-// Providers
-import { QueryProvider } from '@/ui/providers';
-
 // Lazy load components
 const CardPayment = dynamic(() => import('@/ui/components/CardPayment'));
 const BoxChat = dynamic(() => import('@/ui/components/BoxChat'));
@@ -114,12 +111,6 @@ const DashboardPage = async () => {
   );
 };
 
-const WrappedDashboard = () => (
-  <QueryProvider>
-    <DashboardPage />
-  </QueryProvider>
-);
-
-const Dashboard = memo(WrappedDashboard);
+const Dashboard = memo(DashboardPage);
 
 export default Dashboard;

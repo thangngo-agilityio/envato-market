@@ -59,6 +59,7 @@ const CardPaymentComponent = (): JSX.Element => {
   });
 
   const { currentWalletMoney } = useWallet(user?.id);
+  console.log(currentWalletMoney);
 
   const { filterDataUser } = useGetUserDetails(user?.id || '');
 

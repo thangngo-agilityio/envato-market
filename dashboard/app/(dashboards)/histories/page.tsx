@@ -1,6 +1,5 @@
 import { memo } from 'react';
 import { Box, Flex, Grid, GridItem } from '@chakra-ui/react';
-import isEqual from 'react-fast-compare';
 import dynamic from 'next/dynamic';
 
 // Lazy loading components
@@ -39,6 +38,6 @@ const Histories = () => (
   </Grid>
 );
 
-const HistoryPage = memo(Histories, isEqual);
+const HistoryPage = memo(Histories);
 
 export default HistoryPage;

@@ -8,7 +8,6 @@ import {
 
 import { UsersSection } from '@/ui/sections';
 import { prefetchUsers } from '@/lib/utils';
-import { QueryProvider } from '@/ui/providers';
 
 const Users = async () => {
   const queryClient = new QueryClient();
@@ -20,12 +19,6 @@ const Users = async () => {
   );
 };
 
-const WrappedUsers = () => (
-  <QueryProvider>
-    <Users />
-  </QueryProvider>
-);
-
-const UsersPage = memo(WrappedUsers);
+const UsersPage = memo(Users);
 
 export default UsersPage;
