@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 // Constants
-import { IMAGES, AVATAR_POSITION } from '@/lib/constants';
+import { IMAGES } from '@/lib/constants';
 
 // Message
 import Message from '@/ui/components/BoxChat/Message';
@@ -17,46 +17,36 @@ describe('Message component', () => {
     const { container } = render(
       <Message
         content="This is message"
-        avatar={IMAGES.CHAT_USER_AVATAR.url}
-        isImage
-        avatarPosition={AVATAR_POSITION.BEFORE}
-        isOwnerMessage
+        avatarAdmin={IMAGES.CHAT_USER_AVATAR.url}
+        avatarUser={IMAGES.CHAT_USER_AVATAR.url}
         localeTime={mockLocaleTime}
+        senderId="1"
       />,
     );
     expect(container).toMatchSnapshot();
   });
 
-  it('should render image container when isImage is true', () => {
+  it('should render text content and current time when no input localeTime and isImage parameters', () => {
     const { getByTestId } = render(
       <Message
+        senderId="1"
         content="Hello"
-        avatar={IMAGES.CHAT_USER_AVATAR.url}
-        isImage={true}
-        localeTime={mockLocaleTime}
+        avatarAdmin={IMAGES.CHAT_USER_AVATAR.url}
+        avatarUser={IMAGES.CHAT_USER_AVATAR.url}
       />,
     );
 
-    const imageContainer = getByTestId('image-container');
-    expect(imageContainer).toBeInTheDocument();
-  });
-
-  it('should render text content and current time when no input localeTime and isImage parameters', () => {
-    const { getByTestId } = render(
-      <Message content="Hello" avatar={IMAGES.CHAT_USER_AVATAR.url} />,
-    );
-
-    const textContent = getByTestId('text-content');
+    const textContent = getByTestId('image-container');
     expect(textContent).toBeInTheDocument();
   });
 
   it('should render avatar after the content when avatarPosition is "after"', () => {
     const { getByTestId } = render(
       <Message
+        senderId="1"
         content="Hello"
-        avatar={IMAGES.CHAT_USER_AVATAR.url}
-        isImage={false}
-        avatarPosition={AVATAR_POSITION.AFTER}
+        avatarAdmin={IMAGES.CHAT_USER_AVATAR.url}
+        avatarUser={IMAGES.CHAT_USER_AVATAR.url}
         localeTime={mockLocaleTime}
       />,
     );
