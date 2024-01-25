@@ -7,31 +7,19 @@ import { ChatMember, ListMessages } from '..';
 // Interface
 import { TMessages } from '@/lib/interfaces';
 
-// Stores
-import { authStore } from '@/lib/stores';
-
 // Interfaces
 import { MessageType } from '@/lib/interfaces/messages';
 
 export type Props = {
   adminUid?: string;
   filteredMessages?: MessageType[];
-  adminName?: string;
+  nameUser?: string;
   avatarUser?: string;
   messages: TMessages[];
 };
 
-const Conversation = ({ adminName, avatarUser, messages, adminUid }: Props) => {
-  const avatarURL = authStore(
-    (state): string | undefined => state.user?.avatarURL,
-  );
-
-  const username = authStore(
-    ({ user }): string | undefined => `${user?.firstName} ${user?.lastName}`,
-  );
-
-  const defaultName = adminName || username;
-  const defaultAvatar = avatarUser || avatarURL;
+const Conversation = ({ nameUser, avatarUser, messages, adminUid }: Props) => {
+  const defaultName = nameUser;
 
   return (
     <Box w="full" borderRadius="lg">
@@ -49,7 +37,7 @@ const Conversation = ({ adminName, avatarUser, messages, adminUid }: Props) => {
           textTransform="capitalize"
         >
           <ChatMember
-            avatar={defaultAvatar}
+            avatar={avatarUser}
             name={defaultName}
             statusColor="online"
           />
@@ -57,7 +45,7 @@ const Conversation = ({ adminName, avatarUser, messages, adminUid }: Props) => {
       </Flex>
 
       <ListMessages
-        avatarUser={defaultAvatar}
+        avatarUser={avatarUser}
         messages={messages}
         adminUid={adminUid}
       />

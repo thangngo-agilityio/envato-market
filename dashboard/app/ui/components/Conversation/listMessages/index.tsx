@@ -52,6 +52,7 @@ const ListMessages = ({ messages, adminUid, avatarUser }: Props) => {
             senderId={m.senderId}
             isSuperAdmin={m.senderId === user?.uid}
             avatarUser={avatarUser}
+            avatarAdmin={user?.avatarURL}
           />
         ))}
       </Box>

@@ -201,7 +201,7 @@ const ChatMemberList = () => {
       {showRoom && (
         <GridItem colSpan={isMobile ? 12 : 8}>
           <Conversation
-            adminName={nameUser}
+            nameUser={nameUser}
             avatarUser={avatar}
             messages={messages}
             adminUid={adminUid}
