@@ -28,6 +28,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { db } from '@/lib/utils';
+import { FIREBASE_CHAT, USER_CHATS_FIELD } from '@/lib/constants';
 
 const initialUserChat = {
   roomChatId: '',
@@ -49,26 +50,26 @@ const BoxChatComponent = () => {
     const usersData = await getCurrentUser(user);
 
     if (usersData) {
-      await setDoc(doc(db, 'chats', usersData.roomChatId), {
+      await setDoc(doc(db, FIREBASE_CHAT.CHATS, usersData.roomChatId), {
         messages: [],
       });
 
-      await updateDoc(doc(db, 'userChats', usersData.adminId), {
-        [usersData.roomChatId + '.userInfo']: {
+      await updateDoc(doc(db, FIREBASE_CHAT.USER_CHATS, usersData.adminId), {
+        [usersData.roomChatId + USER_CHATS_FIELD.USER_INFO]: {
           uid: usersData.adminId,
           displayName: usersData.displayName,
           photoURL: usersData.avatarUrl,
         },
-        [usersData.roomChatId + '.date']: serverTimestamp(),
+        [usersData.roomChatId + USER_CHATS_FIELD.DATE]: serverTimestamp(),
       });
 
-      await updateDoc(doc(db, 'userChats', usersData.userId), {
-        [usersData.roomChatId + '.userInfo']: {
+      await updateDoc(doc(db, FIREBASE_CHAT.USER_CHATS, usersData.userId), {
+        [usersData.roomChatId + USER_CHATS_FIELD.USER_INFO]: {
           uid: usersData.userId,
           displayName: usersData.displayName,
           photoURL: usersData.avatarUrl,
         },
-        [usersData.roomChatId + '.date']: serverTimestamp(),
+        [usersData.roomChatId + USER_CHATS_FIELD.DATE]: serverTimestamp(),
       });
     }
   }, [user]);
@@ -79,7 +80,9 @@ const BoxChatComponent = () => {
 
     // Check if usersData is undefined before accessing its properties
     if (usersData) {
-      const res = await getDoc(doc(db, 'chats', usersData.roomChatId));
+      const res = await getDoc(
+        doc(db, FIREBASE_CHAT.CHATS, usersData.roomChatId),
+      );
 
       setUserChat(usersData);
       if (res.exists()) {
@@ -96,9 +99,12 @@ const BoxChatComponent = () => {
 
   useEffect(() => {
     if (!userChat.roomChatId) return;
-    const unSub = onSnapshot(doc(db, 'chats', userChat.roomChatId), (doc) => {
-      doc.exists() && setMessages(doc.data().messages);
-    });
+    const unSub = onSnapshot(
+      doc(db, FIREBASE_CHAT.CHATS, userChat.roomChatId),
+      (doc) => {
+        doc.exists() && setMessages(doc.data().messages);
+      },
+    );
 
     if (boxRef.current) {
       boxRef.current.scrollTop = boxRef.current.scrollHeight;

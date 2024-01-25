@@ -27,23 +27,22 @@ const Message = ({
 }: MessageProps) => {
   // TODO: instead of USER_ID use real id
   // const userId = authStore((state) => state.user?.id);
-  const [isAdmin, setIsAdmin] = useState<string>('');
+  const [adminId, setAdminId] = useState<string>('');
 
   useEffect(() => {
     const fetchData = async () => {
       const usersData = await getUsers();
-      setIsAdmin(usersData?.adminId || '');
+      setAdminId(usersData?.adminId || '');
     };
 
     fetchData();
   }, []);
 
+  const isAdmin = senderId === adminId;
+
   return (
-    <Flex
-      width="100%"
-      justifyContent={senderId !== isAdmin ? 'flex-end' : 'flex-start'}
-    >
-      {senderId === isAdmin && (
+    <Flex width="100%" justifyContent={!isAdmin ? 'flex-end' : 'flex-start'}>
+      {isAdmin && (
         <Avatar
           src={avatarAdmin}
           borderColor="border.tertiary"
@@ -55,17 +54,13 @@ const Message = ({
 
       <Flex
         align="flex-end"
-        direction={senderId !== isAdmin ? 'row-reverse' : 'row'}
+        direction={!isAdmin ? 'row-reverse' : 'row'}
         mb="30px"
         alignItems="center"
       >
         <Box
           data-testid="image-container"
-          bg={
-            senderId !== isAdmin
-              ? 'primary.300'
-              : 'background.section.messageUser'
-          }
+          bg={!isAdmin ? 'primary.300' : 'background.section.messageUser'}
           p={3}
           ml={2}
           borderRadius={8}
@@ -86,7 +81,7 @@ const Message = ({
         </Text>
       </Flex>
 
-      {senderId !== isAdmin && (
+      {!isAdmin && (
         <Avatar
           src={avatarUser}
           borderColor="border.tertiary"
