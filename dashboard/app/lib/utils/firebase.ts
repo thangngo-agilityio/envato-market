@@ -13,6 +13,7 @@ import { Messaging, getToken } from 'firebase/messaging';
 import { initializeApp } from 'firebase/app';
 import { getStorage } from 'firebase/storage';
 import { getAuth } from 'firebase/auth';
+import { FIREBASE_CHAT, USER_CHATS_FIELD } from '../constants';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -61,7 +62,7 @@ export const sendMessage = async (
   displayName: string,
 ) => {
   // Update 'chats' document with the new message
-  await updateDoc(doc(db, 'chats', idRoomChat), {
+  await updateDoc(doc(db, FIREBASE_CHAT.CHATS, idRoomChat), {
     messages: arrayUnion({
       id: data.id,
       text: data.text,
@@ -70,7 +71,7 @@ export const sendMessage = async (
     }),
   });
 
-  onSnapshot(doc(db, 'userChats', adminId), (doc) => {
+  onSnapshot(doc(db, FIREBASE_CHAT.USER_CHATS, adminId), (doc) => {
     if (!doc.exists()) {
       createUserChat(
         senderId,
@@ -83,7 +84,7 @@ export const sendMessage = async (
     }
   });
 
-  await updateDoc(doc(db, 'userChats', adminId), {
+  await updateDoc(doc(db, FIREBASE_CHAT.USER_CHATS, adminId), {
     [idRoomChat]: {
       lastMessage: {
         text: data.text,
@@ -104,7 +105,7 @@ export const adminSendMessage = async (
   idRoomChat: string,
   adminId: string,
 ) => {
-  await updateDoc(doc(db, 'chats', idRoomChat), {
+  await updateDoc(doc(db, FIREBASE_CHAT.CHATS, idRoomChat), {
     messages: arrayUnion({
       id: data.id,
       text: data.text,
@@ -113,11 +114,11 @@ export const adminSendMessage = async (
     }),
   });
 
-  await updateDoc(doc(db, 'userChats', adminId), {
-    [idRoomChat + '.lastMessage']: {
+  await updateDoc(doc(db, FIREBASE_CHAT.USER_CHATS, adminId), {
+    [idRoomChat + USER_CHATS_FIELD.LAST_MESSAGE]: {
       text: data.text,
     },
-    [idRoomChat + '.date']: serverTimestamp(),
+    [idRoomChat + USER_CHATS_FIELD.DATE]: serverTimestamp(),
   });
 };
 
@@ -129,7 +130,7 @@ const createUserChat = async (
   avatarAdminUrl: string,
   displayName: string,
 ) => {
-  setDoc(doc(db, 'userChats', senderId), {
+  setDoc(doc(db, FIREBASE_CHAT.USER_CHATS, senderId), {
     [idRoomChat]: {
       lastMessage: text,
       date: serverTimestamp(),

@@ -7,4 +7,5 @@ export const FIREBASE_CHAT = {
 export const USER_CHATS_FIELD = {
   USER_INFO: '.userInfo',
   DATE: '.date',
+  LAST_MESSAGE: '.lastMessage',
 };
