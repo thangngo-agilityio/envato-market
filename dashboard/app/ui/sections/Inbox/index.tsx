@@ -184,7 +184,7 @@ const ChatMemberList = () => {
               .map((chat) => (
                 <ChatMember
                   key={chat[0]}
-                  avatar={chat[1].userInfo.avatarUrl}
+                  avatar={chat[1].userInfo?.avatarUrl}
                   name={chat[1].userInfo?.displayName}
                   onClick={() => handleMemberClick(chat[1].userInfo)}
                   icon={
@@ -195,7 +195,7 @@ const ChatMemberList = () => {
                     />
                   }
                   localeTime={timeMessage}
-                  lastMessages={chat[1]?.lastMessage.text}
+                  lastMessages={chat[1]?.lastMessage?.text}
                 />
               ))}
           </Flex>
