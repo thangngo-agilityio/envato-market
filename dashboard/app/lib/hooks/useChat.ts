@@ -11,7 +11,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { getAllUserDetailsExceptWithId } from '@/lib/services';
 
 // Constants
-import { AUTHENTICATION_ROLE } from '@/lib/constants';
+import { AUTHENTICATION_ROLE, FIREBASE_CHAT } from '@/lib/constants';
 import { db } from '@/lib/utils';
 
 // TODO: if have real id from firestore
@@ -58,7 +58,7 @@ export const getUserList = async (user: TUserInfo) => {
 
 // Get user from database
 export const getUsers = async () => {
-  const usersCollection = collection(db, 'users');
+  const usersCollection = collection(db, FIREBASE_CHAT.USERS);
   const usersSnapshot = await getDocs(usersCollection);
 
   const userList = usersSnapshot.docs.map((doc) => ({
@@ -67,7 +67,7 @@ export const getUsers = async () => {
   }));
 
   const admin = userList.find(
-    (user) => user.data.displayName === 'Super Admin',
+    (user) => user.data.displayName === AUTHENTICATION_ROLE.SUPER_ADMIN,
   );
 
   if (admin) {
@@ -83,7 +83,7 @@ export const getUsers = async () => {
 };
 
 export const getLists = async () => {
-  const usersCollection = collection(db, 'userChats');
+  const usersCollection = collection(db, FIREBASE_CHAT.USER_CHATS);
   const usersSnapshot = await getDocs(usersCollection);
 
   const chatList = usersSnapshot.docs
