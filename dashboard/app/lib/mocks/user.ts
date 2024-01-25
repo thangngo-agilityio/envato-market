@@ -280,6 +280,7 @@ export const MOCK_USER_DETAIL: TUserDetail = {
 export const MOCK_USER_DETAIL_WITHOUT_IMAGE: TUserDetail = {
   id: '1',
   _id: '1',
+  uid: '2',
   title: 'What is the issues',
   password: '123456',
   phoneNumber: '02342423',
