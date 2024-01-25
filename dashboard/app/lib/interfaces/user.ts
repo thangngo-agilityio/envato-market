@@ -62,7 +62,7 @@ export type TUserDetail = Omit<IUserBase, 'avatarURL'> & {
   description?: string;
   bonusTimes?: number;
   isBlock: boolean;
-  uid?: string;
+  uid: string;
 };
 
 export interface TPassword {

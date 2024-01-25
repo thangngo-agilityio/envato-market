@@ -32,3 +32,5 @@ export * from './SendIconLight';
 export * from './EditIcon';
 export * from './Security';
 export * from './SupportIcon';
+export * from './Send';
+export * from './Inbox';

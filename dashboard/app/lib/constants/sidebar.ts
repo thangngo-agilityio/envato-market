@@ -2,6 +2,7 @@
 import {
   DashboardIcon,
   HistoryIcon,
+  InboxIcon,
   MyWalletIcon,
   SettingIcon,
   SignOutIcon,
@@ -32,6 +33,16 @@ export const MENU_ITEM_LIST = (role: string) => [
     menuItemContent: 'My Wallets',
     destination: `/${ROUTES.MY_WALLET}`,
   },
+
+  {
+    ...(role === AUTHENTICATION_ROLE.SUPER_ADMIN && {
+      id: 4,
+      leftIcon: InboxIcon,
+      menuItemContent: 'Inbox',
+      destination: `/${ROUTES.INBOX}`,
+    }),
+  },
+
   {
     ...(role === AUTHENTICATION_ROLE.SUPER_ADMIN && {
       id: 4,

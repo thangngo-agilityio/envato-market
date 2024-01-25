@@ -1,8 +1,19 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getStorage } from 'firebase/storage';
-import { getFirestore } from 'firebase/firestore';
+import {
+  Timestamp,
+  arrayUnion,
+  doc,
+  getFirestore,
+  onSnapshot,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore';
+import { TMessages } from '../interfaces';
 import { Messaging, getToken } from 'firebase/messaging';
+import { initializeApp } from 'firebase/app';
+import { getStorage } from 'firebase/storage';
+import { getAuth } from 'firebase/auth';
+import { FIREBASE_CHAT, USER_CHATS_FIELD } from '../constants';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -22,8 +33,6 @@ export const requestForToken = (messaging: Messaging) =>
   getToken(messaging, { vapidKey: VAPID_KEY })
     .then((currentToken) => {
       if (currentToken) {
-        console.log('current token for client: ', currentToken);
-
         return currentToken;
         // Perform any other neccessary action with the token
       } else {
@@ -39,6 +48,98 @@ export const requestForToken = (messaging: Messaging) =>
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-export const auth = getAuth();
+export const auth = getAuth(app);
 export const storage = getStorage();
 export const db = getFirestore();
+
+export const sendMessage = async (
+  data: TMessages,
+  idRoomChat: string,
+  senderId: string,
+  adminId: string,
+  avatarUrl: string,
+  avatarAdminUrl: string,
+  displayName: string,
+) => {
+  // Update 'chats' document with the new message
+  await updateDoc(doc(db, FIREBASE_CHAT.CHATS, idRoomChat), {
+    messages: arrayUnion({
+      id: data.id,
+      text: data.text,
+      senderId: data.senderId,
+      date: Timestamp.now(),
+    }),
+  });
+
+  onSnapshot(doc(db, FIREBASE_CHAT.USER_CHATS, adminId), (doc) => {
+    if (!doc.exists()) {
+      createUserChat(
+        senderId,
+        idRoomChat,
+        data.text,
+        avatarUrl,
+        avatarAdminUrl,
+        displayName,
+      );
+    }
+  });
+
+  await updateDoc(doc(db, FIREBASE_CHAT.USER_CHATS, adminId), {
+    [idRoomChat]: {
+      lastMessage: {
+        text: data.text,
+      },
+      date: serverTimestamp(),
+      userInfo: {
+        uid: senderId,
+        avatarUrl,
+        avatarAdminUrl,
+        displayName,
+      },
+    },
+  });
+};
+
+export const adminSendMessage = async (
+  data: TMessages,
+  idRoomChat: string,
+  adminId: string,
+) => {
+  await updateDoc(doc(db, FIREBASE_CHAT.CHATS, idRoomChat), {
+    messages: arrayUnion({
+      id: data.id,
+      text: data.text,
+      senderId: data.senderId,
+      date: Timestamp.now(),
+    }),
+  });
+
+  await updateDoc(doc(db, FIREBASE_CHAT.USER_CHATS, adminId), {
+    [idRoomChat + USER_CHATS_FIELD.LAST_MESSAGE]: {
+      text: data.text,
+    },
+    [idRoomChat + USER_CHATS_FIELD.DATE]: serverTimestamp(),
+  });
+};
+
+const createUserChat = async (
+  senderId: string,
+  idRoomChat: string,
+  text: string,
+  avatarUrl: string,
+  avatarAdminUrl: string,
+  displayName: string,
+) => {
+  setDoc(doc(db, FIREBASE_CHAT.USER_CHATS, senderId), {
+    [idRoomChat]: {
+      lastMessage: text,
+      date: serverTimestamp(),
+      userInfo: {
+        uid: senderId,
+        avatarUrl,
+        avatarAdminUrl,
+        displayName,
+      },
+    },
+  });
+};

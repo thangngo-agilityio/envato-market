@@ -2,7 +2,6 @@
 
 import { memo, useCallback, useMemo } from 'react';
 import { Box, Td, Text, Th, useToast } from '@chakra-ui/react';
-import isEqual from 'react-fast-compare';
 
 // Components
 import {
@@ -46,9 +45,6 @@ import { TYPE } from '@/lib/constants/notification';
 
 // Types
 import { TDataSource, THeaderTable, TTransaction } from '@/lib/interfaces';
-
-// Providers
-import { QueryProvider } from '@/ui/providers';
 
 // Stores
 import { authStore } from '@/lib/stores';
@@ -342,12 +338,6 @@ const TransactionTableComponent = ({
   );
 };
 
-const WrappedTransactionTable = (props: TFilterUserProps) => (
-  <QueryProvider>
-    <TransactionTableComponent {...props} />
-  </QueryProvider>
-);
-
-const TransactionTable = memo(WrappedTransactionTable, isEqual);
+const TransactionTable = memo(TransactionTableComponent);
 
 export default TransactionTable;
