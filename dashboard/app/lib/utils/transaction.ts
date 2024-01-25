@@ -14,7 +14,7 @@ import { IMAGES, TIME_FORMAT } from '../constants';
  * @param transactions
  * @returns
  */
-export const getTransactionHomePage = (transactions: TTransaction[] = []) =>
+export const formatTransactionResponse = (transactions: TTransaction[] = []) =>
   transactions.map((transaction) => {
     const {
       _id,
@@ -51,7 +51,7 @@ export const getTransactionHomePage = (transactions: TTransaction[] = []) =>
       date: dayjs(createdAt).format(TIME_FORMAT),
       paymentStatus: formatUppercaseFirstLetter(paymentStatus),
       transactionStatus: formatUppercaseFirstLetter(transactionStatus),
-      image: IMAGES.BIG_AVATAR.url || avatar,
+      image: avatar || IMAGES.BIG_AVATAR.url,
       amount: `${currency}${formatDecimalNumber(+amount)}`,
     };
   });
