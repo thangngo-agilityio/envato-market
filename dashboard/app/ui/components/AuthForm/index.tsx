@@ -68,7 +68,6 @@ const AuthFormComponent = ({
       isSubmitting,
     },
     handleSubmit,
-    watch,
     setError,
     clearErrors,
   } = useForm<TAuthForm>({
@@ -95,20 +94,14 @@ const AuthFormComponent = ({
 
   const messaging = typeof window !== 'undefined' ? getMessaging(app) : null;
 
-  const isCheckbox: boolean = !Object.entries(watch()).every(([key, value]) => {
-    if (key === 'isRemember') return true;
-
-    return value;
-  });
-
   const isDisabledSubmitBtn: boolean = (() => {
     const getLength = (object: object): number => Object.keys(object).length;
 
     const isFillAllFields: boolean = isRegister
       ? getLength(dirtyFields) === getLength(defaultValues ?? {})
-      : getLength(dirtyFields) === getLength(defaultValues ?? {}) - 1;
+      : getLength(dirtyFields) >= 2;
 
-    return isSubmitting || (!isFillAllFields && isCheckbox);
+    return isSubmitting || !isFillAllFields;
   })();
 
   const renderPasswordIcon = useCallback(
