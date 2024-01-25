@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, memo, useCallback, useMemo } from 'react';
+import { FormEvent, memo, useCallback } from 'react';
 import { Box, Button, useToast } from '@chakra-ui/react';
 import { SubmitHandler } from 'react-hook-form';
 
@@ -12,7 +12,7 @@ import { useAuth, useForm, useMoney, usePinCode } from '@/lib/hooks';
 
 // Components
 import { AddMoneyInput } from './AddMoneyInput';
-import { Modal, PinCode } from '..';
+import { PinCodeModal } from '..';
 
 // Types
 import { TPinCodeForm } from '@/lib/interfaces';
@@ -100,9 +100,11 @@ const TotalBalanceComponent = (): JSX.Element => {
     [addMoneyToUserWallet],
   );
 
+  const hasPinCode = user?.pinCode;
+
   const handleOnSubmitAddMoney = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!user?.pinCode) {
+    if (!hasPinCode) {
       onOpenSetPinCodeModal();
     } else {
       onOpenConfirmPinCodeModal();
@@ -113,7 +115,7 @@ const TotalBalanceComponent = (): JSX.Element => {
     async (data) => {
       if (user) {
         data.userId = user.id;
-        if (!user?.pinCode) {
+        if (!hasPinCode) {
           try {
             await handleSetPinCode(data);
 
@@ -174,6 +176,7 @@ const TotalBalanceComponent = (): JSX.Element => {
       handleConfirmPinCode,
       handleSetPinCode,
       handleSubmitAddMoney,
+      hasPinCode,
       onCloseConfirmPinCodeModal,
       onCloseSetPinCodeModal,
       onSubmitAddMoney,
@@ -195,39 +198,6 @@ const TotalBalanceComponent = (): JSX.Element => {
     onCloseConfirmPinCodeModal();
     resetConfirmPinCodeForm();
   }, [onCloseConfirmPinCodeModal, resetConfirmPinCodeForm]);
-
-  const pinCodeModalBody = useMemo(() => {
-    if (!user?.pinCode)
-      return (
-        <PinCode
-          control={setPinCodeControl}
-          isDisabled={!isSetValid || isSetSubmitting}
-          onSubmit={handleSubmitSetPinCode(onSubmitPinCode)}
-          onClose={handleCloseSetPinCodeModal}
-        />
-      );
-    return (
-      <PinCode
-        control={confirmPinCodeControl}
-        isDisabled={!isConfirmValid || isConfirmSubmitting}
-        onSubmit={handleSubmitConfirmPinCode(onSubmitPinCode)}
-        onClose={handleCloseConfirmPinCodeModal}
-      />
-    );
-  }, [
-    confirmPinCodeControl,
-    handleCloseConfirmPinCodeModal,
-    handleCloseSetPinCodeModal,
-    handleSubmitConfirmPinCode,
-    handleSubmitSetPinCode,
-    isConfirmSubmitting,
-    isConfirmValid,
-    isSetSubmitting,
-    isSetValid,
-    onSubmitPinCode,
-    setPinCodeControl,
-    user?.pinCode,
-  ]);
 
   return (
     <>
@@ -255,24 +225,48 @@ const TotalBalanceComponent = (): JSX.Element => {
       </Box>
 
       {/*Set PIN code Modal */}
-      {isSetPinCodeModalOpen && (
+      {/* {isSetPinCodeModalOpen && (
         <Modal
           title="Please set the PIN code to your account"
           isOpen={isSetPinCodeModalOpen}
           onClose={handleCloseSetPinCodeModal}
           body={pinCodeModalBody}
         />
-      )}
+      )} */}
 
       {/*Confirm PIN code Modal */}
-      {isConfirmPinCodeModalOpen && (
+      {/* {isConfirmPinCodeModalOpen && (
         <Modal
           title="Please enter your PIN code"
           isOpen={isConfirmPinCodeModalOpen}
           onClose={handleCloseConfirmPinCodeModal}
           body={pinCodeModalBody}
         />
-      )}
+      )} */}
+      <PinCodeModal
+        title={
+          isSetPinCodeModalOpen
+            ? 'Please set the PIN code to your account'
+            : 'Please enter your PIN code'
+        }
+        control={hasPinCode ? confirmPinCodeControl : setPinCodeControl}
+        isOpen={isSetPinCodeModalOpen || isConfirmPinCodeModalOpen}
+        isDisabled={
+          hasPinCode
+            ? !isConfirmValid || isConfirmSubmitting
+            : !isSetValid || isSetSubmitting
+        }
+        onclose={
+          isSetPinCodeModalOpen
+            ? handleCloseSetPinCodeModal
+            : handleCloseConfirmPinCodeModal
+        }
+        onSubmit={
+          hasPinCode
+            ? handleSubmitConfirmPinCode(onSubmitPinCode)
+            : handleSubmitSetPinCode(onSubmitPinCode)
+        }
+      />
     </>
   );
 };

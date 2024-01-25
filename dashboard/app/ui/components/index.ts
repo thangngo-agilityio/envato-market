@@ -51,3 +51,4 @@ export { default as CardIssues } from './CustomerIssues/CardIssues';
 export { default as CustomerIssues } from './CustomerIssues';
 export { default as PinCode } from './common/PinCode';
 export { default as InputSendMessages } from './InputSendMessages';
+export { default as PinCodeModal } from './PinCodeModal';
