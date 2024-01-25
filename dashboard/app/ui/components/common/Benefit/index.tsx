@@ -78,7 +78,7 @@ const BenefitComponent = ({ pathName }: BenefitProps) => {
             Get a
             <Text
               as="span"
-              color="primary.500"
+              color="text.currencyColor"
               paddingInline={1}
               fontWeight="bold"
               fontSize="sm"

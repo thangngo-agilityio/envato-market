@@ -99,7 +99,7 @@ const AuthFormComponent = ({
 
     const isFillAllFields: boolean = isRegister
       ? getLength(dirtyFields) === getLength(defaultValues ?? {})
-      : getLength(dirtyFields) === getLength(defaultValues ?? {}) - 1;
+      : getLength(dirtyFields) >= 2;
 
     return isSubmitting || !isFillAllFields;
   })();
@@ -341,7 +341,7 @@ const AuthFormComponent = ({
               as={Link}
               href={`/${ROUTES.FORGOT_PASSWORD}`}
               aria-label="forgot password"
-              color="primary.500"
+              color="text.currencyColor"
               fontWeight="semibold"
               textTransform="capitalize"
               textDecoration="underline"
@@ -390,7 +390,6 @@ const AuthFormComponent = ({
                 }) => (
                   <Checkbox
                     size="md"
-                    colorScheme="green"
                     isChecked={value}
                     isDisabled={isSubmitting}
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -439,6 +438,8 @@ const AuthFormComponent = ({
           type="submit"
           role="button"
           aria-label={!isRegister ? 'Sign In' : 'Sign Up'}
+          colorScheme="primary"
+          bg="primary.300"
           textTransform="capitalize"
           form={!isRegister ? 'login-form' : 'register-form'}
           isDisabled={isDisabledSubmitBtn}
