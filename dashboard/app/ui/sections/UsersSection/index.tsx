@@ -73,7 +73,7 @@ const UsersSections = () => {
     handleChangeLimit,
     handlePageChange,
     handlePageClick,
-  } = usePagination(filterDataUser as []);
+  } = usePagination(filterDataUser as TUserDetail[]);
 
   const handleDebounceSearch = useDebounce((value: string) => {
     resetPage();
