@@ -16,7 +16,7 @@ import {
 } from '@/lib/hooks';
 import { TPinCodeForm } from '@/lib/interfaces';
 import { TAuthStoreData, authStore } from '@/lib/stores';
-import { app, customToast } from '@/lib/utils';
+import { customToast } from '@/lib/utils';
 import { Modal, PinCode } from '@/ui/components';
 import { useDisclosure, useToast } from '@chakra-ui/react';
 import { useQueryClient } from '@tanstack/react-query';
@@ -115,12 +115,10 @@ const CheckPinCodeProvider = ({ children }: { children: React.ReactNode }) => {
 
   const queryClient = useQueryClient();
 
-  const messaging = typeof window !== 'undefined' ? getMessaging(app) : null;
+  const messaging = typeof window !== 'undefined' ? getMessaging() : null;
 
   messaging &&
     onMessage(messaging, async (payload) => {
-      console.log('payload', payload);
-
       await Promise.all([
         queryClient.invalidateQueries({
           queryKey: [END_POINTS.MY_WALLET],
