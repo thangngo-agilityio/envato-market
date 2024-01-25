@@ -30,7 +30,7 @@ export type Props = {
 
 const ChatMember = ({
   avatar = IMAGES.CHAT_USER_AVATAR.url,
-  name = 'John Doe',
+  name,
   lastMessages,
   localeTime,
   icon,

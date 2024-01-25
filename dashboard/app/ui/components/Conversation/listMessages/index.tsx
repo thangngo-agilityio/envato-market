@@ -45,16 +45,20 @@ const ListMessages = ({ messages, adminUid, avatarUser }: Props) => {
         maxHeight={361}
         padding={5}
       >
-        {messages.map((m) => (
-          <MessageAdmin
-            content={m.text}
-            key={m.date.second}
-            senderId={m.senderId}
-            isSuperAdmin={m.senderId === user?.uid}
-            avatarUser={avatarUser}
-            avatarAdmin={user?.avatarURL}
-          />
-        ))}
+        {messages.map((m) => {
+          const isSuperAdmin = m.senderId === user?.uid;
+
+          return (
+            <MessageAdmin
+              content={m.text}
+              key={m.date.second}
+              senderId={m.senderId}
+              isSuperAdmin={isSuperAdmin}
+              avatarUser={avatarUser}
+              avatarAdmin={user?.avatarURL}
+            />
+          );
+        })}
       </Box>
       <Quill userUid={adminUid} />
     </Box>

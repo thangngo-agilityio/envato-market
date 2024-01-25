@@ -12,13 +12,14 @@ import { db } from './utils';
 
 // Interface
 import { TMessages } from './interfaces';
+import { FIREBASE_CHAT, USER_CHATS_FIELD } from './constants';
 
 export const adminSendMessage = async (
   data: TMessages,
   idRoomChat: string,
   adminId: string,
 ) => {
-  await updateDoc(doc(db, 'chats', idRoomChat), {
+  await updateDoc(doc(db, FIREBASE_CHAT.CHATS, idRoomChat), {
     messages: arrayUnion({
       id: data.id,
       text: data.text,
@@ -27,10 +28,10 @@ export const adminSendMessage = async (
     }),
   });
 
-  await updateDoc(doc(db, 'userChats', adminId), {
-    [idRoomChat + '.lastMessage']: {
+  await updateDoc(doc(db, FIREBASE_CHAT.USER_CHATS, adminId), {
+    [idRoomChat + USER_CHATS_FIELD.LAST_MESSAGE]: {
       text: data.text,
     },
-    [idRoomChat + '.date']: serverTimestamp(),
+    [idRoomChat + USER_CHATS_FIELD.DATE]: serverTimestamp(),
   });
 };

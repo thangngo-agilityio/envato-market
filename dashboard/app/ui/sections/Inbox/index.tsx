@@ -28,7 +28,7 @@ import { getUsers } from '@/lib/hooks';
 
 // Store
 import { authStore } from '@/lib/stores';
-import { IMAGES } from '@/lib/constants';
+import { FIREBASE_CHAT, IMAGES } from '@/lib/constants';
 
 // Interfaces
 import { TMessages } from '@/lib/interfaces';
@@ -71,7 +71,7 @@ const ChatMemberList = () => {
       const usersData = await getUsers();
 
       const combinedId = usersData?.adminId + user.uid;
-      const chatDocRef = doc(db, 'chats', combinedId);
+      const chatDocRef = doc(db, FIREBASE_CHAT.CHATS, combinedId);
       const chatDocSnap = await getDoc(chatDocRef);
 
       if (!chatDocSnap.exists()) {
@@ -95,7 +95,7 @@ const ChatMemberList = () => {
   useEffect(() => {
     const getChats = () => {
       const unsub = onSnapshot(
-        doc(db, 'userChats', `${currentUser?.uid}`),
+        doc(db, FIREBASE_CHAT.USER_CHATS, `${currentUser?.uid}`),
         (doc) => {
           setChats(doc.data() as TChats[]);
         },
@@ -111,9 +111,12 @@ const ChatMemberList = () => {
 
   useEffect(() => {
     if (!roomChatId) return;
-    const unSub = onSnapshot(doc(db, 'chats', roomChatId), (doc) => {
-      doc.exists() && setMessages(doc.data().messages);
-    });
+    const unSub = onSnapshot(
+      doc(db, FIREBASE_CHAT.CHATS, roomChatId),
+      (doc) => {
+        doc.exists() && setMessages(doc.data().messages);
+      },
+    );
 
     return () => {
       unSub();
