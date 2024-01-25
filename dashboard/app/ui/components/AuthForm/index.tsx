@@ -40,7 +40,7 @@ import { getMessaging } from 'firebase/messaging';
 import { AuthFooter } from '@/ui/layouts';
 
 // firebase
-import { app, requestForToken } from '@/firebase';
+import { app, requestForToken } from '@/lib/utils';
 
 type TAuthForm = Omit<TUserDetail, 'id' | 'createdAt'> & {
   confirmPassword: string;

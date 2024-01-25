@@ -122,6 +122,7 @@ const UserSelectorComponent = ({
   const [isOpenOptions, setOpenOptions] = useState<boolean>(false);
   const [options, setOptions] =
     useState<TUseSelectorProps['listUser']>(undefined);
+  const filter: TUseSelectorProps['listUser'] = options ?? listUser;
 
   const handleFilterOptions = useDebounce(
     (searchValue: string) => {
@@ -155,13 +156,14 @@ const UserSelectorComponent = ({
     [],
   );
 
-  const handleOpenOptions: FocusEventHandler<HTMLInputElement> = useCallback(
+  const handleFocusOrBlur: FocusEventHandler<HTMLInputElement> = useCallback(
     (e) => {
       e.stopPropagation();
 
+      handleFilterOptions(e.target.value);
       setOpenOptions(true);
     },
-    [],
+    [handleFilterOptions],
   );
 
   const handleSelectEmail = useCallback(
@@ -203,7 +205,10 @@ const UserSelectorComponent = ({
           control={control}
           name="memberId"
           defaultValue=""
-          rules={AUTH_SCHEMA.EMAIL}
+          rules={{
+            ...AUTH_SCHEMA.EMAIL,
+            validate: () => !!filter.length,
+          }}
           render={({ field: { onChange, ...field } }) => {
             const handleChange = (search: string) =>
               handleChangeSearch(search, onChange);
@@ -230,7 +235,8 @@ const UserSelectorComponent = ({
                     }
                     {...field}
                     onChange={handleChange}
-                    onFocus={handleOpenOptions}
+                    onFocus={handleFocusOrBlur}
+                    onBlur={handleFocusOrBlur}
                     onClick={(e) => e.stopPropagation()}
                   />
                   <InputRightElement>
@@ -251,7 +257,7 @@ const UserSelectorComponent = ({
                 </InputGroup>
                 {isOpenOptions && (
                   <UserListMemorized
-                    listUser={options ?? listUser}
+                    listUser={filter}
                     onSelect={handleSelectEmail}
                     onChange={onChange}
                   />

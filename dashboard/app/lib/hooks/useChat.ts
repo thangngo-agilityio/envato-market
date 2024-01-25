@@ -6,13 +6,13 @@ import { TUserInfo, useGetUserDetails } from '.';
 
 // Firebase
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '@/firebase';
 
 // Services
 import { getAllUserDetailsExceptWithId } from '@/lib/services';
 
 // Constants
 import { AUTHENTICATION_ROLE } from '@/lib/constants';
+import { db } from '@/lib/utils';
 
 // TODO: if have real id from firestore
 export const useGetRoomChat = () => {

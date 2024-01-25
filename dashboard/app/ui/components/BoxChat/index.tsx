@@ -27,7 +27,7 @@ import {
   setDoc,
   updateDoc,
 } from 'firebase/firestore';
-import { db } from '@/firebase';
+import { db } from '@/lib/utils';
 
 const initialUserChat = {
   roomChatId: '',
