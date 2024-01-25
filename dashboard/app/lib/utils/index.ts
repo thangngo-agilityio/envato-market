@@ -7,6 +7,6 @@ export * from './text';
 export * from './localStorage';
 export * from './image';
 export * from './prefetch';
-export * from './firebase';
 export * from './toast';
 export * from './getErrorMessage';
+export * from './firebase';
