@@ -1,4 +1,7 @@
+// Mocks
 import { MOCK_USER_DETAIL } from '@/lib/mocks';
+
+// Utils
 import { convertToString } from '@/lib/utils';
 
 describe('convertToString function', () => {

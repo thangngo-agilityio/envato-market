@@ -18,7 +18,7 @@ import {
 // Utils
 import {
   formatUppercaseFirstLetter,
-  getTransactionHomePage,
+  formatTransactionResponse,
 } from '@/lib/utils';
 import { customToast } from '@/lib/utils/toast';
 
@@ -316,7 +316,7 @@ const TransactionTableComponent = ({
         <Box mt={5}>
           <Table
             columns={columns as THeaderTable[]}
-            dataSource={getTransactionHomePage(filterData)}
+            dataSource={formatTransactionResponse(filterData)}
           />
         </Box>
         {!!transactions.length && (

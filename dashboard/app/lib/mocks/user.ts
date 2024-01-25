@@ -276,3 +276,22 @@ export const MOCK_USER_DETAIL: TUserDetail = {
   isBlock: false,
   uid: '1',
 };
+
+export const MOCK_USER_DETAIL_WITHOUT_IMAGE: TUserDetail = {
+  id: '1',
+  _id: '1',
+  title: 'What is the issues',
+  password: '123456',
+  phoneNumber: '02342423',
+  country: 'LD',
+  city: 'DL',
+  address: '123 TMT',
+  postalCode: '1234',
+  firstName: 'Abdur',
+  lastName: 'Rohman',
+  email: 'test@gmail.com',
+  role: 'member',
+  description: 'description',
+  createdAt: 3123123,
+  isBlock: false,
+};
