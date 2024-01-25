@@ -108,7 +108,7 @@ export const formatAmountNumber = (value: string): string => {
   ) {
     return `${newValueFormat}.${decimalValue
       .substring(0, 3)
-      .replaceAll(/[.]/, '')}`;
+      .replaceAll(/[.]/g, '')}`;
   }
 
   return decimalValue ? `${newValueFormat}${decimalValue}` : newValueFormat;
