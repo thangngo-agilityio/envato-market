@@ -2,7 +2,7 @@ import { StoryObj, Meta } from '@storybook/react';
 import { Box } from '@chakra-ui/react';
 
 // Components
-import FaqItem from '@/ui/components/FaqItem';
+import FaqItem from '@/ui/components/Setting/Faq/FaqItem';
 
 const meta: Meta<typeof FaqItem> = {
   title: 'Custom Components/FaqItem',

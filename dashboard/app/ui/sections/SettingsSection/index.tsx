@@ -38,14 +38,14 @@ const TermCondition = dynamic(() =>
 );
 
 const TermAndCondition = dynamic(() =>
-  import('@/ui/components/TermAndCondition').then((module) => ({
+  import('@/ui/components/Setting/TermAndCondition').then((module) => ({
     default: module.default,
   })),
 );
 
-const UserForm = dynamic(() => import('@/ui/components/Personal'));
-const FaqPage = dynamic(() => import('@/ui/components/Faq'));
-const SecurityPage = dynamic(() => import('@/ui/components/Security'));
+const UserForm = dynamic(() => import('@/ui/components/Setting/Personal'));
+const FaqPage = dynamic(() => import('@/ui/components/Setting/Faq'));
+const SecurityPage = dynamic(() => import('@/ui/components/Setting/Security'));
 
 const SettingsSection = () => {
   const [activeItemId, setActiveItemId] = useState<string>(
