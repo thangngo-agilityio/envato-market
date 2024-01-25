@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import {
   Text,
   Flex,
@@ -9,18 +10,34 @@ import {
   GridItem,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+
+// Firebase
+import { db } from '@/lib/utils';
+import { doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore';
 
 // Components
-import { EditIcon } from '@/ui/components/Icons';
-import { ChatMember, Conversation } from '@/ui/components';
+import {
+  ChatMember,
+  Conversation,
+  EditIcon,
+  FallbackImage,
+} from '@/ui/components';
 
-// Mocks
-import { MEMBER_CHATS, USER_CHATS } from '@/lib/mocks';
-import { MEMBER_CHAT } from '@/lib/mocks/member';
+// Hooks
+import { getUsers } from '@/lib/hooks';
+
+// Store
+import { authStore } from '@/lib/stores';
+import { FIREBASE_CHAT, IMAGES } from '@/lib/constants';
 
 // Interfaces
-import { MessageType } from '@/lib/interfaces/messages';
+import { TMessages } from '@/lib/interfaces';
+
+type TChats = {
+  userInfo: { uid: string; avatarUrl: string; displayName: string };
+  lastMessage: { text: string };
+  date: number;
+};
 
 const ChatMemberList = () => {
   const colorFill = useColorModeValue(
@@ -28,33 +45,83 @@ const ChatMemberList = () => {
     theme.colors.white,
   );
 
+  const timeMessage = new Date().toLocaleTimeString([], {
+    hour: 'numeric',
+    minute: '2-digit',
+  });
+
   const isMobile = useBreakpointValue({ base: true, lg: false });
 
-  const [activeMember, setActiveMember] = useState<string>('');
-  const [filteredMessages, setFilteredMessages] = useState<MessageType[]>([]);
-  const [initialized, setInitialized] = useState(false);
+  const [adminUid, setAdminUid] = useState<string>('');
+  const [chats, setChats] = useState<TChats[]>([]);
+  const [messages, setMessages] = useState<TMessages[]>([]);
+  const [roomChatId, setRoomChatId] = useState<string | null>(null);
+  const [showRoom, setShowRoom] = useState<boolean>(false);
+  const [nameUser, setNameUser] = useState<string>('');
+  const [avatar, setAvatar] = useState<string>('');
 
-  const handleMemberClick = (memberId: string) => {
-    setActiveMember(memberId);
-    filterMessages(memberId);
+  const currentUser = authStore((state) => state.user);
+
+  const handleMemberClick = async (user: {
+    uid: string;
+    avatarUrl: string;
+    displayName: string;
+  }) => {
+    try {
+      const usersData = await getUsers();
+
+      const combinedId = usersData?.adminId + user.uid;
+      const chatDocRef = doc(db, FIREBASE_CHAT.CHATS, combinedId);
+      const chatDocSnap = await getDoc(chatDocRef);
+
+      if (!chatDocSnap.exists()) {
+        await setDoc(chatDocRef, { messages: [] });
+      }
+
+      setRoomChatId(combinedId);
+
+      const chatSnapshot = await getDoc(chatDocRef);
+      const chatData = chatSnapshot.data();
+      setMessages(chatData?.messages || []);
+      setAdminUid(user.uid);
+      setNameUser(user.displayName);
+      setAvatar(user.avatarUrl);
+      setShowRoom(true);
+    } catch (error) {
+      console.error('Error handling member click:', error);
+    }
   };
 
-  const filterMessages = (memberId: string) => {
-    const filtered = USER_CHATS.filter(
-      (message) => message.uid === 'admin' || message.uid === memberId,
+  useEffect(() => {
+    const getChats = () => {
+      const unsub = onSnapshot(
+        doc(db, FIREBASE_CHAT.USER_CHATS, `${currentUser?.uid}`),
+        (doc) => {
+          setChats(doc.data() as TChats[]);
+        },
+      );
+
+      return () => {
+        unsub();
+      };
+    };
+
+    currentUser?.uid && getChats();
+  }, [currentUser?.uid]);
+
+  useEffect(() => {
+    if (!roomChatId) return;
+    const unSub = onSnapshot(
+      doc(db, FIREBASE_CHAT.CHATS, roomChatId),
+      (doc) => {
+        doc.exists() && setMessages(doc.data().messages);
+      },
     );
-    setFilteredMessages(filtered);
-  };
 
-  const initializeChat = () => {
-    const defaultMember = MEMBER_CHATS[1]?.uid;
-    filterMessages(defaultMember || '');
-    setInitialized(true);
-  };
-
-  if (!initialized) {
-    initializeChat();
-  }
+    return () => {
+      unSub();
+    };
+  }, [roomChatId]);
 
   return (
     <Grid
@@ -69,15 +136,16 @@ const ChatMemberList = () => {
           padding={2}
           bg="background.body.septenary"
         >
-          <Flex justify="flex-start">
-            {MEMBER_CHAT.map(({ id, avatar, statusColor }) => (
-              <ChatMember
-                key={id}
-                avatar={avatar}
-                statusColor={statusColor}
-                onClick={() => handleMemberClick(id)}
-              />
-            ))}
+          <Flex justify="flex-start" overflowX="scroll">
+            {Object.entries(chats)
+              ?.sort((a, b) => b[1].date - a[1].date)
+              .map((chat) => (
+                <ChatMember
+                  key={chat[0]}
+                  avatar={chat[1].userInfo.avatarUrl}
+                  onClick={() => handleMemberClick(chat[1].userInfo)}
+                />
+              ))}
           </Flex>
         </GridItem>
       ) : (
@@ -105,36 +173,44 @@ const ChatMemberList = () => {
                 fontWeight="semibold"
                 fontSize="3xl"
               >
-                ({MEMBER_CHAT.length})
+                ({Object.values(chats).length})
               </Text>
             </Text>
-
             <EditIcon color={colorFill} />
           </Flex>
           <Flex direction="column" gap={6} py={3.5}>
-            {MEMBER_CHAT.map(
-              ({ id, avatar, name, icon, localeTime, statusColor }) => (
+            {Object.entries(chats)
+              ?.sort((a, b) => b[1].date - a[1].date)
+              .map((chat) => (
                 <ChatMember
-                  key={id}
-                  avatar={avatar}
-                  name={name}
-                  icon={icon}
-                  localeTime={localeTime}
-                  statusColor={statusColor}
-                  onClick={() => handleMemberClick(id)}
+                  key={chat[0]}
+                  avatar={chat[1].userInfo?.avatarUrl}
+                  name={chat[1].userInfo?.displayName}
+                  onClick={() => handleMemberClick(chat[1].userInfo)}
+                  icon={
+                    <FallbackImage
+                      boxSize={4}
+                      src={IMAGES.ATTACH.url}
+                      alt={IMAGES.ATTACH.alt}
+                    />
+                  }
+                  localeTime={timeMessage}
+                  lastMessages={chat[1]?.lastMessage?.text}
                 />
-              ),
-            )}
+              ))}
           </Flex>
         </GridItem>
       )}
-      <GridItem colSpan={isMobile ? 12 : 8}>
-        <Conversation
-          activeMember={activeMember}
-          filteredMessages={filteredMessages}
-          onSendMessage={() => null}
-        />
-      </GridItem>
+      {showRoom && (
+        <GridItem colSpan={isMobile ? 12 : 8}>
+          <Conversation
+            nameUser={nameUser}
+            avatarUser={avatar}
+            messages={messages}
+            adminUid={adminUid}
+          />
+        </GridItem>
+      )}
     </Grid>
   );
 };

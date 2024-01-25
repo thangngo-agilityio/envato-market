@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 
 // Component
-import FaqItem from '@/ui/components/FaqItem';
+import FaqItem from '@/ui/components/Setting/Faq/FaqItem';
 
 // Constants
 import { FAQ_DATA } from '@/lib/constants';

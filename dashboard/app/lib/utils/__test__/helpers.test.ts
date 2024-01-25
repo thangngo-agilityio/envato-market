@@ -1,10 +1,13 @@
 import { DOTS, ERROR_MESSAGES } from '@/lib/constants';
 import {
+  formatAllowOnlyNumbers,
+  formatAmountNumber,
   formatDecimalInput,
   formatDecimalNumber,
   formatNumberButton,
   formatPagination,
   formatUppercaseFirstLetter,
+  getStatusColor,
   validatePassword,
 } from '../helpers';
 
@@ -164,5 +167,55 @@ describe('formatDecimalNumber', () => {
 
   it('handles undefined input gracefully', () => {
     expect(formatDecimalNumber(undefined)).toBe('0.00');
+  });
+});
+
+describe('formatAmountNumber', () => {
+  it('formats amount number correctly', () => {
+    expect(formatAmountNumber('1,234.56')).toBe('1,234.56');
+
+    expect(formatAmountNumber('1234')).toBe('1,234');
+
+    expect(formatAmountNumber('5678.90')).toBe('5,678.90');
+
+    expect(formatAmountNumber('12,345')).toBe('12,345');
+
+    expect(formatAmountNumber('abc')).toBe('');
+
+    expect(formatAmountNumber('NaN')).toBe('');
+
+    expect(formatAmountNumber('')).toBe('');
+
+    expect(formatAmountNumber('123.4567')).toBe('123.45');
+
+    expect(formatAmountNumber('1,234.5678')).toBe('1,234.56');
+  });
+
+  it('removes non-digit characters correctly', () => {
+    expect(formatAllowOnlyNumbers('abc123')).toBe('123');
+
+    expect(formatAllowOnlyNumbers('456')).toBe('456');
+
+    expect(formatAllowOnlyNumbers('!@#$%^&*()')).toBe('');
+
+    expect(formatAllowOnlyNumbers(' 7 8 9 ')).toBe('789');
+
+    expect(formatAllowOnlyNumbers('1a2b3c4d5e')).toBe('12345');
+
+    expect(formatAllowOnlyNumbers(undefined)).toBe('');
+
+    expect(formatAllowOnlyNumbers(null)).toBe('');
+
+    expect(formatAllowOnlyNumbers('')).toBe('');
+  });
+
+  it('returns the correct color for different statuses', () => {
+    expect(getStatusColor('online')).toBe('green.500');
+
+    expect(getStatusColor('offline')).toBe('gray.500');
+
+    expect(getStatusColor('ONLINE')).toBe('green.500');
+
+    expect(getStatusColor('unknown')).toBe('gray.500');
   });
 });
