@@ -8,9 +8,9 @@ export const Checkbox = defineStyleConfig({
       height: 5,
       bg: 'white',
       _checked: {
-        backgroundColor: 'primary.500',
+        backgroundColor: 'text.currencyColor',
         _hover: {
-          backgroundColor: 'primary.500',
+          backgroundColor: 'text.currencyColor',
         },
         border: 'none',
       },

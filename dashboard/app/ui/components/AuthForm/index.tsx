@@ -68,6 +68,7 @@ const AuthFormComponent = ({
       isSubmitting,
     },
     handleSubmit,
+    watch,
     setError,
     clearErrors,
   } = useForm<TAuthForm>({
@@ -94,6 +95,12 @@ const AuthFormComponent = ({
 
   const messaging = typeof window !== 'undefined' ? getMessaging(app) : null;
 
+  const isCheckbox: boolean = !Object.entries(watch()).every(([key, value]) => {
+    if (key === 'isRemember') return true;
+
+    return value;
+  });
+
   const isDisabledSubmitBtn: boolean = (() => {
     const getLength = (object: object): number => Object.keys(object).length;
 
@@ -101,7 +108,7 @@ const AuthFormComponent = ({
       ? getLength(dirtyFields) === getLength(defaultValues ?? {})
       : getLength(dirtyFields) === getLength(defaultValues ?? {}) - 1;
 
-    return isSubmitting || !isFillAllFields;
+    return isSubmitting || (!isFillAllFields && isCheckbox);
   })();
 
   const renderPasswordIcon = useCallback(
@@ -341,7 +348,7 @@ const AuthFormComponent = ({
               as={Link}
               href={`/${ROUTES.FORGOT_PASSWORD}`}
               aria-label="forgot password"
-              color="primary.500"
+              color="text.currencyColor"
               fontWeight="semibold"
               textTransform="capitalize"
               textDecoration="underline"
@@ -390,7 +397,6 @@ const AuthFormComponent = ({
                 }) => (
                   <Checkbox
                     size="md"
-                    colorScheme="green"
                     isChecked={value}
                     isDisabled={isSubmitting}
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -439,6 +445,8 @@ const AuthFormComponent = ({
           type="submit"
           role="button"
           aria-label={!isRegister ? 'Sign In' : 'Sign Up'}
+          colorScheme="primary"
+          bg="primary.300"
           textTransform="capitalize"
           form={!isRegister ? 'login-form' : 'register-form'}
           isDisabled={isDisabledSubmitBtn}
