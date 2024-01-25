@@ -85,7 +85,7 @@ const TransactionTableComponent = ({
     handleChangeLimit,
     handlePageChange,
     handlePageClick,
-  } = usePagination(listData as []);
+  } = usePagination(listData);
 
   const handleUpdateTransaction = useCallback(
     (updateCustomer: TTransaction) => {

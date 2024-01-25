@@ -1,5 +1,6 @@
 import { generatePlaceholder, shimmer, toBase64 } from '@/lib/utils';
 
+const RESULT = 'VGVzdCBTdHJpbmc=';
 describe('shimmer function', () => {
   it('should generate an SVG string with the specified width and height', () => {
     const width = 100;
@@ -12,30 +13,24 @@ describe('shimmer function', () => {
 });
 
 describe('toBase64 function', () => {
-  const { window } = global;
-  beforeAll(() => {
-    delete global.window;
-  });
-  afterAll(() => {
-    global.window = window;
-  });
-
   it('should convert a string to base64 encoding', () => {
     const inputString = 'Test String';
 
     const result = toBase64(inputString);
 
-    expect(result).toBe('VGVzdCBTdHJpbmc=');
+    expect(result).toBe(RESULT);
   });
 
   it('encodes string to base64 when window is undefined', () => {
-    const inputString = 'Test String';
+    Object.defineProperty(global, 'window', {
+      value: undefined,
+    });
 
-    const expectedBase64 = Buffer.from(inputString).toString('base64');
+    const inputString = 'Test String';
 
     const result = toBase64(inputString);
 
-    expect(result).toBe(expectedBase64);
+    expect(result).toBe(RESULT);
   });
 });
 

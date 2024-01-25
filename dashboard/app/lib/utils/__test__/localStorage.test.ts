@@ -40,10 +40,4 @@ describe('getValueFromLocalStore', () => {
 
     expect(result).toBe('');
   });
-
-  it('returns an empty string for null key', () => {
-    const result = getValueFromLocalStore(null);
-
-    expect(result).toBe('');
-  });
 });

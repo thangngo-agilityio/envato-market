@@ -10,7 +10,7 @@ import { formatPagination } from '@/lib/utils';
 // Constants
 import { PAGE_SIZE, PREV } from '@/lib/constants';
 
-export const usePagination = (transactions: []) => {
+export const usePagination = <T>(transactions: T[]) => {
   const [data, setData] = useState<PaginationType>({
     limit: PAGE_SIZE,
     currentPage: 1,
