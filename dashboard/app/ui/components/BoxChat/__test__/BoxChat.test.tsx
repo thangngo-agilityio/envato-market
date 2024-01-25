@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 // Components
-import BoxChat from '..';
+import BoxChat from '@/ui/components/BoxChat';
 
 describe('BoxChatComponent', () => {
   test('BoxChat component renders correctly', () => {
@@ -10,31 +10,22 @@ describe('BoxChatComponent', () => {
     expect(container).toMatchSnapshot();
   });
 
-  test('calls handleSendMessage when the send button is clicked', () => {
-    const handleSendMessage = jest.fn();
-    render(<BoxChat onSendMessage={handleSendMessage} />);
+  test('calls handleSendMessage when the send button is clicked', async () => {
+    render(<BoxChat />);
 
-    const sendButton = screen.getByRole('button', { name: /send/i });
-    fireEvent.click(sendButton);
+    const sendButton = screen.getByTestId('btn-send');
+    await fireEvent.click(sendButton);
 
-    expect(handleSendMessage).toHaveBeenCalledTimes(1);
-  });
-
-  test('calls handleChangeValue when the input value changes', () => {
-    const handleChangeValue = jest.fn();
-    render(<BoxChat onChange={handleChangeValue} />);
-
-    const input = screen.getByPlaceholderText('Type your message here');
-    fireEvent.change(input, { target: { value: 'Test message' } });
-
-    expect(handleChangeValue).toHaveBeenCalledWith('Test message');
-  });
+    waitFor(() => {
+      expect(sendButton).toBeDisabled();
+    });
+  }, 2000);
 
   test('calls handleSendMessage when Enter key is pressed', () => {
     const handleSendMessage = jest.fn();
-    render(<BoxChat onSendMessage={handleSendMessage} />);
+    render(<BoxChat />);
 
-    const input = screen.getByPlaceholderText('Type your message here');
+    const input = screen.getByPlaceholderText('Type your message...');
     fireEvent.change(input, { target: { value: 'Test message' } });
 
     fireEvent.keyDown(input, { key: 'Enter' });

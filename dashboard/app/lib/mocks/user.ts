@@ -274,4 +274,5 @@ export const MOCK_USER_DETAIL: TUserDetail = {
   description: 'description',
   createdAt: 3123123,
   isBlock: false,
+  uid: '1',
 };
