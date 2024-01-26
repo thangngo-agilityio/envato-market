@@ -6,7 +6,7 @@ export interface TChat {
 }
 
 export type TMessages = {
-  date: { nanoSeconds: number; second: number };
+  date: { nanoseconds: number; seconds: number };
   id: string;
   senderId: string;
   text: string;

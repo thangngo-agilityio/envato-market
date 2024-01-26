@@ -9,6 +9,7 @@ import { authStore } from '@/lib/stores';
 
 // Interface
 import { TMessages } from '@/lib/interfaces';
+import { convertTimeMessage } from '@/lib/utils';
 
 export type Props = {
   messages: TMessages[];
@@ -42,20 +43,21 @@ const ListMessages = ({ messages, adminUid, avatarUser }: Props) => {
             borderRadius: '24px',
           },
         }}
-        maxHeight={361}
+        maxHeight="calc(100vh - 401px)"
         padding={5}
       >
-        {messages.map((m) => {
-          const isSuperAdmin = m.senderId === user?.uid;
+        {messages.map((message) => {
+          const isSuperAdmin = message.senderId === user?.uid;
 
           return (
             <MessageAdmin
-              content={m.text}
-              key={m.date.second}
-              senderId={m.senderId}
+              content={message.text}
+              key={message.date.seconds}
+              senderId={message.senderId}
               isSuperAdmin={isSuperAdmin}
               avatarUser={avatarUser}
               avatarAdmin={user?.avatarURL}
+              localeTime={convertTimeMessage(message.date.seconds)}
             />
           );
         })}

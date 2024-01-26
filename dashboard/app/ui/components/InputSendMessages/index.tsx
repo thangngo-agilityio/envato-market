@@ -41,7 +41,7 @@ const InputSendMessages = ({ boxRef }: InputSendMessagesProps) => {
       text: '',
       id: useId(),
       senderId: '',
-      date: { nanoSeconds: 0, second: 0 },
+      date: { nanoseconds: 0, seconds: 0 },
     },
     mode: 'onBlur',
   });
