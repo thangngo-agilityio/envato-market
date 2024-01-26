@@ -133,9 +133,7 @@ export const useAuth = () => {
   const handleSignUp = useCallback(
     async (
       userInfo: Omit<TUserDetail, 'id' | 'createdAt'> & { fcmToken: string },
-    ): Promise<{
-      errors?: TSignUpErrorField;
-    }> => {
+    ): Promise<void> => {
       const { email, password, firstName, lastName, fcmToken } = userInfo;
       try {
         const { data }: AxiosResponse<TUserAxiosResponse | undefined> =
@@ -160,16 +158,12 @@ export const useAuth = () => {
           localData = { ...rest, id: _id };
         }
 
-        updateStore({ user: localData, date: getCurrentTimeSeconds() });
+        return updateStore({ user: localData, date: getCurrentTimeSeconds() });
       } catch (error) {
-        return {
-          errors: {
-            email: ERROR_MESSAGES.ACCOUNT_ALREADY_EXISTS,
-          },
-        };
-      }
+        const { response } = error as AxiosError<string>;
 
-      return {};
+        throw new Error(formatUppercaseFirstLetter(response?.data));
+      }
     },
     [updateStore],
   );

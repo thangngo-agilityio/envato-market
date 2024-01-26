@@ -6,7 +6,7 @@ import { ERROR_MESSAGES } from '@/lib/constants';
 export const uploadImage = async (image: FormData): Promise<string> => {
   try {
     const response = await axios.post(
-      `${process.env.VITE_UPLOAD_URL}?key=${process.env.VITE_UPLOAD_KEY}`,
+      `${process.env.NEXT_PUBLIC_UPLOAD_URL}?key=${process.env.NEXT_PUBLIC_UPLOAD_KEY}`,
       image,
     );
 
