@@ -6,6 +6,16 @@ import { ChakraProvider } from '@chakra-ui/react';
 // Themes
 import { configThemes } from './app/ui/themes';
 
+const routerPushMock = jest.fn();
+const useRouterMock = {
+  push: routerPushMock,
+};
+
+jest.mock('next/navigation', () => ({
+  ...jest.requireActual('next/navigation'),
+  useRouter: () => useRouterMock,
+}));
+
 const customRender = <
   Q extends jestFunc.Queries = typeof jestFunc.queries,
   Container extends Element | DocumentFragment = HTMLElement,
