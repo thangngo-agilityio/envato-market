@@ -24,7 +24,7 @@ import { Controller, SubmitHandler } from 'react-hook-form';
 import { useForm, useAuth } from '@/lib/hooks';
 
 // Constants
-import { ROUTES, AUTH_SCHEMA, ERROR_MESSAGES } from '@/lib/constants';
+import { ROUTES, AUTH_SCHEMA } from '@/lib/constants';
 
 // Components
 import { InputField } from '@/ui/components';
@@ -150,21 +150,14 @@ const AuthFormComponent = ({
       try {
         const fcmToken =
           (messaging && (await requestForToken(messaging))) || '';
-        const { errors } = await signUp({ ...fieldValues, fcmToken });
-        if (errors) {
-          return Object.entries(errors).forEach(([key, value]) =>
-            setError(key as keyof typeof data, {
-              type: 'custom',
-              message: value,
-            }),
-          );
-        }
+
+        await signUp({ ...fieldValues, fcmToken });
+
         router.push(ROUTES.ROOT);
       } catch (error) {
-        setError('root', {
-          type: 'custom',
-          message: ERROR_MESSAGES.SOMETHING_ERROR,
-        });
+        const { message } = error as Error;
+
+        setError('root', { type: 'custom', message });
       }
     },
     [messaging, router, setError, signUp],
