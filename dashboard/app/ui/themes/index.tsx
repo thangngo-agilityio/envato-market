@@ -29,6 +29,8 @@ import {
   Badge,
   Skeleton,
   Spinner,
+  Link,
+  Select,
 } from './components';
 
 export const configThemes = {
@@ -58,6 +60,8 @@ export const configThemes = {
       Badge,
       Skeleton,
       Spinner,
+      Link,
+      Menu: Select,
     },
   }),
 

@@ -11,3 +11,5 @@ export * from './Table';
 export * from './Badge';
 export * from './Skeleton';
 export * from './Spinner';
+export * from './Link';
+export * from './Select';
