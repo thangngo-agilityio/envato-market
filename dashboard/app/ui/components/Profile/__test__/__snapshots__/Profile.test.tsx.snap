@@ -14,10 +14,12 @@ exports[`UpdateProfile component Profile component renders correctly 1`] = `
       class="chakra-text css-12zxwfm"
     >
       Profile at least Size
+       
       <span
         class="chakra-text css-1999y4e"
       >
-        300x300.
+        300 x 300.
+         
       </span>
       Gift to work too.
     </p>

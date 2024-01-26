@@ -44,7 +44,7 @@ exports[`TotalCard component renders correctly 1`] = `
             src="/icons/growth.svg"
           />
           <p
-            class="chakra-text css-1by7ic4"
+            class="chakra-text css-szwmee"
           >
             + 
             3.5

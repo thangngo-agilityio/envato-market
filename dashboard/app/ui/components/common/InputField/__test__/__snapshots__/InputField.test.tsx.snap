@@ -108,6 +108,7 @@ exports[`InputField component Render correctly with right icon 1`] = `
         type="text"
       />
       <button
+        aria-label="The eye icon"
         class="chakra-input__right-element css-1uzzgp1"
         type="button"
       >

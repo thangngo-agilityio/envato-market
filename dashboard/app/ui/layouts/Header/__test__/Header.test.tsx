@@ -1,11 +1,13 @@
-import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 // component
-import Header from '../';
+import { Header } from '@/ui/layouts';
+
+// Utils
+import { renderQueryProviderTest } from '@/lib/utils/testUtils';
 
 describe('Header render', () => {
-  const renderComponent = () => render(<Header />);
+  const renderComponent = () => renderQueryProviderTest(<Header />);
 
   it('Should render match with snapshot.', () => {
     const { container } = renderComponent();

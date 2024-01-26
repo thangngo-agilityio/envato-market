@@ -3,7 +3,7 @@
 exports[`renders Benefit with content 1`] = `
 <div>
   <div
-    class="css-qkf3zz"
+    class="css-1ys2le4"
   >
     <img
       alt="This is sign up image"
@@ -38,7 +38,7 @@ exports[`renders Benefit with content 1`] = `
       >
         BankCo. help you set saving goals, earn cash back offers, Go to disclaimer for more details and get paychecks up to two days early. Get a
         <span
-          class="chakra-text css-g28uzg"
+          class="chakra-text css-1xrfaz3"
         >
           $20
         </span>

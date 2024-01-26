@@ -3,14 +3,14 @@
 exports[`Header render Should render match with snapshot. 1`] = `
 <div>
   <div
-    class="css-9o4ji"
+    class="css-2urpt7"
   >
     <div
-      class="css-1abyvqu"
+      class="css-19nz64q"
     >
       <a
         aria-label="link-to-home"
-        class="chakra-text css-1baulvz"
+        class="chakra-text css-yvk6u4"
         href="/"
       >
         <svg
@@ -41,7 +41,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
         </svg>
       </a>
       <div
-        class="css-rnl5af"
+        class="css-bbd869"
       >
         <div
           class="css-0"
@@ -50,8 +50,9 @@ exports[`Header render Should render match with snapshot. 1`] = `
             aria-controls="menu-list-:r1:"
             aria-expanded="false"
             aria-haspopup="menu"
-            class="chakra-button chakra-menu__menu-button css-14rg285"
+            class="chakra-button chakra-menu__menu-button css-1of25bg"
             id="menu-button-:r1:"
+            title=" "
             type="button"
           >
             <span
@@ -73,7 +74,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
                   />
                 </div>
                 <div
-                  class="css-1eben70"
+                  class="css-1unxso2"
                 >
                   <div
                     class="css-1f25a08"
@@ -82,7 +83,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
                       class="css-70qvj9"
                     >
                       <p
-                        class="chakra-text css-16ubuka"
+                        class="chakra-text css-9sqk9o"
                       >
                          
                       </p>
@@ -104,7 +105,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
                       </svg>
                     </div>
                     <p
-                      class="chakra-text css-1hfxp5x"
+                      class="chakra-text css-179zs4q"
                     >
                       Super Admin
                     </p>
@@ -119,7 +120,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
           >
             <div
               aria-orientation="vertical"
-              class="chakra-menu__menu-list css-1this3a"
+              class="chakra-menu__menu-list css-16j8xku"
               data-testid="TestDropdown"
               id="menu-list-:r1:"
               role="menu"
@@ -128,7 +129,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
             >
               <a
                 aria-label="menu-icon-My profile"
-                class="chakra-link chakra-menu__menuitem css-18wf392"
+                class="chakra-link chakra-menu__menuitem css-1edcb2p"
                 data-index="0"
                 href="/settings"
                 id="menu-list-:r1:-menuitem-:r2:"
@@ -166,15 +167,19 @@ exports[`Header render Should render match with snapshot. 1`] = `
                     />
                   </svg>
                   <p
-                    class="chakra-text css-1t7utft"
+                    class="chakra-text css-1c1tqaz"
                   >
                     My profile
                   </p>
                 </div>
               </a>
+              <hr
+                aria-orientation="horizontal"
+                class="chakra-divider css-1sulk9x"
+              />
               <a
-                aria-label="menu-icon-Logout"
-                class="chakra-link chakra-menu__menuitem css-18wf392"
+                aria-label="menu-item-Logout"
+                class="chakra-link chakra-menu__menuitem css-5bpww1"
                 data-index="1"
                 href="/login"
                 id="menu-list-:r1:-menuitem-:r3:"
@@ -199,27 +204,11 @@ exports[`Header render Should render match with snapshot. 1`] = `
                     />
                   </svg>
                   <p
-                    class="chakra-text css-1t7utft"
+                    class="chakra-text css-1c1tqaz"
                   >
                     Logout
                   </p>
                 </div>
-              </a>
-              <hr
-                aria-orientation="horizontal"
-                class="chakra-divider css-19ob8qo"
-              />
-              <a
-                aria-label="menu-item-undefined"
-                class="chakra-link chakra-menu__menuitem css-crchys"
-                data-index="2"
-                id="menu-list-:r1:-menuitem-:r4:"
-                role="menuitem"
-                tabindex="-1"
-              >
-                <p
-                  class="chakra-text css-0"
-                />
               </a>
             </div>
           </div>
@@ -227,27 +216,27 @@ exports[`Header render Should render match with snapshot. 1`] = `
       </div>
     </div>
     <div
-      class="css-el1cp"
+      class="css-17l5upl"
     >
       <h1
-        class="chakra-heading css-t123x1"
+        class="chakra-heading css-le43kp"
       >
         Dashboards
       </h1>
       <p
-        class="chakra-text css-19iomyj"
+        class="chakra-text css-1l8sm1v"
       >
         Let’s check your update today
       </p>
     </div>
     <div
-      class="css-egfc3c"
+      class="css-pt3889"
     >
       <div
         class="css-k008qs"
       >
         <div
-          class="css-1am4lzr"
+          class="css-1dz9t9j"
         >
           <div
             class="css-1ve4u7y"
@@ -255,19 +244,34 @@ exports[`Header render Should render match with snapshot. 1`] = `
           >
             <div
               aria-label="Send email"
-              class="chakra-button css-1l63kb4"
+              class="chakra-button css-8s8ddv"
               data-testid="icon-button"
-            />
+            >
+              <svg
+                fill="none"
+                height="24"
+                stroke="#1A202C"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18.3284 14.8687C13.249 14.8687 9.13135 10.751 9.13135 5.67163C9.13135 4.74246 9.26914 3.84548 9.5254 3C5.74897 4.14461 3 7.65276 3 11.803C3 16.8824 7.11765 21 12.197 21C16.3472 21 19.8554 18.251 21 14.4746C20.1545 14.7309 19.2575 14.8687 18.3284 14.8687Z"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </div>
           </div>
           <div
             class="css-0"
           >
             <button
-              aria-controls="menu-list-:r6:"
+              aria-controls="menu-list-:r5:"
               aria-expanded="false"
               aria-haspopup="menu"
-              class="chakra-button chakra-menu__menu-button css-1azijzu"
-              id="menu-button-:r6:"
+              class="chakra-button chakra-menu__menu-button css-1syuf9x"
+              id="menu-button-:r5:"
               type="button"
             >
               <span
@@ -279,7 +283,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
                 >
                   <div
                     aria-label="Send email"
-                    class="chakra-button css-1l63kb4"
+                    class="chakra-button css-8s8ddv"
                     data-testid="icon-button"
                   >
                     <svg
@@ -298,24 +302,24 @@ exports[`Header render Should render match with snapshot. 1`] = `
               </span>
             </button>
             <div
-              class="css-0"
+              class="css-r6z5ec"
               style="visibility: hidden; position: absolute; min-width: max-content; inset: 0 auto auto 0;"
             >
               <div
                 aria-orientation="vertical"
-                class="chakra-menu__menu-list css-1w8t2jy"
-                id="menu-list-:r6:"
+                class="chakra-menu__menu-list css-21cpnl"
+                id="menu-list-:r5:"
                 role="menu"
                 style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
                 tabindex="-1"
               >
                 <p
-                  class="chakra-text css-1bdh04"
+                  class="chakra-text css-43jxxd"
                 >
                   Notifications
                 </p>
                 <div
-                  class="css-13o6kil"
+                  class="css-xrv81f"
                 />
               </div>
             </div>
@@ -326,7 +330,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
           >
             <div
               aria-label="Send email"
-              class="chakra-button css-1l63kb4"
+              class="chakra-button css-8s8ddv"
               data-testid="icon-button"
             >
               <svg
@@ -346,11 +350,11 @@ exports[`Header render Should render match with snapshot. 1`] = `
             </div>
           </div>
           <button
-            aria-controls="menu-list-:r8:"
+            aria-controls="menu-list-:r7:"
             aria-expanded="false"
             aria-haspopup="menu"
             class="chakra-menu__menu-button"
-            id="menu-button-:r8:"
+            id="menu-button-:r7:"
           >
             <span
               class="css-xl71ch"
@@ -360,13 +364,13 @@ exports[`Header render Should render match with snapshot. 1`] = `
                 data-testid="icon-button-component"
               >
                 <p
-                  class="chakra-text css-tlt4oo"
+                  class="chakra-text css-1v3iex4"
                 >
                   5
                 </p>
                 <div
                   aria-label="Send email"
-                  class="chakra-button css-1l63kb4"
+                  class="chakra-button css-8s8ddv"
                   data-testid="icon-button"
                 >
                   <svg
@@ -388,50 +392,51 @@ exports[`Header render Should render match with snapshot. 1`] = `
             </span>
           </button>
           <div
-            class="css-0"
+            class="css-r6z5ec"
             style="visibility: hidden; position: absolute; min-width: max-content; inset: 0 auto auto 0;"
           >
             <div
               aria-orientation="vertical"
-              class="chakra-menu__menu-list css-gqxg0i"
-              id="menu-list-:r8:"
+              class="chakra-menu__menu-list css-12anmev"
+              id="menu-list-:r7:"
               role="menu"
               style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
               tabindex="-1"
             >
               <div
-                class="css-job24k"
+                class="css-z4dayy"
               >
                 <h3
-                  class="chakra-text css-owlh8f"
+                  class="chakra-text css-pgott3"
                 >
                   60
                   % Bonus
                 </h3>
                 <p
-                  class="chakra-text css-3fpd34"
+                  class="chakra-text css-1kzgd7p"
                 >
                   Create an Account and Get Bonus
                 </p>
                 <div
-                  class="css-n6nw9n"
+                  class="css-174qtmr"
                 />
               </div>
             </div>
           </div>
         </div>
         <div
-          class="css-9ntlda"
+          class="css-m6awie"
         >
           <div
             class="css-0"
           >
             <button
-              aria-controls="menu-list-:ra:"
+              aria-controls="menu-list-:r9:"
               aria-expanded="false"
               aria-haspopup="menu"
-              class="chakra-button chakra-menu__menu-button css-14rg285"
-              id="menu-button-:ra:"
+              class="chakra-button chakra-menu__menu-button css-1of25bg"
+              id="menu-button-:r9:"
+              title=" "
               type="button"
             >
               <span
@@ -453,7 +458,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
                     />
                   </div>
                   <div
-                    class="css-1eben70"
+                    class="css-1unxso2"
                   >
                     <div
                       class="css-1f25a08"
@@ -462,7 +467,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
                         class="css-70qvj9"
                       >
                         <p
-                          class="chakra-text css-16ubuka"
+                          class="chakra-text css-9sqk9o"
                         >
                            
                         </p>
@@ -484,7 +489,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
                         </svg>
                       </div>
                       <p
-                        class="chakra-text css-1hfxp5x"
+                        class="chakra-text css-179zs4q"
                       />
                     </div>
                   </div>
@@ -497,19 +502,19 @@ exports[`Header render Should render match with snapshot. 1`] = `
             >
               <div
                 aria-orientation="vertical"
-                class="chakra-menu__menu-list css-1this3a"
+                class="chakra-menu__menu-list css-16j8xku"
                 data-testid="TestDropdown"
-                id="menu-list-:ra:"
+                id="menu-list-:r9:"
                 role="menu"
                 style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
                 tabindex="-1"
               >
                 <a
                   aria-label="menu-icon-My profile"
-                  class="chakra-link chakra-menu__menuitem css-18wf392"
+                  class="chakra-link chakra-menu__menuitem css-1edcb2p"
                   data-index="0"
                   href="/settings"
-                  id="menu-list-:ra:-menuitem-:rb:"
+                  id="menu-list-:r9:-menuitem-:ra:"
                   role="menuitem"
                   tabindex="-1"
                 >
@@ -544,18 +549,22 @@ exports[`Header render Should render match with snapshot. 1`] = `
                       />
                     </svg>
                     <p
-                      class="chakra-text css-1t7utft"
+                      class="chakra-text css-1c1tqaz"
                     >
                       My profile
                     </p>
                   </div>
                 </a>
+                <hr
+                  aria-orientation="horizontal"
+                  class="chakra-divider css-1sulk9x"
+                />
                 <a
-                  aria-label="menu-icon-Logout"
-                  class="chakra-link chakra-menu__menuitem css-18wf392"
+                  aria-label="menu-item-Logout"
+                  class="chakra-link chakra-menu__menuitem css-5bpww1"
                   data-index="1"
                   href="/login"
-                  id="menu-list-:ra:-menuitem-:rc:"
+                  id="menu-list-:r9:-menuitem-:rb:"
                   role="menuitem"
                   tabindex="-1"
                 >
@@ -577,27 +586,11 @@ exports[`Header render Should render match with snapshot. 1`] = `
                       />
                     </svg>
                     <p
-                      class="chakra-text css-1t7utft"
+                      class="chakra-text css-1c1tqaz"
                     >
                       Logout
                     </p>
                   </div>
-                </a>
-                <hr
-                  aria-orientation="horizontal"
-                  class="chakra-divider css-19ob8qo"
-                />
-                <a
-                  aria-label="menu-item-undefined"
-                  class="chakra-link chakra-menu__menuitem css-crchys"
-                  data-index="2"
-                  id="menu-list-:ra:-menuitem-:rd:"
-                  role="menuitem"
-                  tabindex="-1"
-                >
-                  <p
-                    class="chakra-text css-0"
-                  />
                 </a>
               </div>
             </div>
@@ -605,17 +598,18 @@ exports[`Header render Should render match with snapshot. 1`] = `
         </div>
       </div>
       <div
-        class="css-yruaw2"
+        class="css-1f50jll"
       >
         <div
           class="css-0"
         >
           <button
-            aria-controls="menu-list-:rf:"
+            aria-controls="menu-list-:rd:"
             aria-expanded="false"
             aria-haspopup="menu"
-            class="chakra-button chakra-menu__menu-button css-14rg285"
-            id="menu-button-:rf:"
+            class="chakra-button chakra-menu__menu-button css-1of25bg"
+            id="menu-button-:rd:"
+            title=" "
             type="button"
           >
             <span
@@ -637,7 +631,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
                   />
                 </div>
                 <div
-                  class="css-1eben70"
+                  class="css-1unxso2"
                 >
                   <div
                     class="css-1f25a08"
@@ -646,7 +640,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
                       class="css-70qvj9"
                     >
                       <p
-                        class="chakra-text css-16ubuka"
+                        class="chakra-text css-9sqk9o"
                       >
                          
                       </p>
@@ -668,7 +662,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
                       </svg>
                     </div>
                     <p
-                      class="chakra-text css-1hfxp5x"
+                      class="chakra-text css-179zs4q"
                     />
                   </div>
                 </div>
@@ -681,19 +675,19 @@ exports[`Header render Should render match with snapshot. 1`] = `
           >
             <div
               aria-orientation="vertical"
-              class="chakra-menu__menu-list css-1this3a"
+              class="chakra-menu__menu-list css-16j8xku"
               data-testid="TestDropdown"
-              id="menu-list-:rf:"
+              id="menu-list-:rd:"
               role="menu"
               style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
               tabindex="-1"
             >
               <a
                 aria-label="menu-icon-My profile"
-                class="chakra-link chakra-menu__menuitem css-18wf392"
+                class="chakra-link chakra-menu__menuitem css-1edcb2p"
                 data-index="0"
                 href="/settings"
-                id="menu-list-:rf:-menuitem-:rg:"
+                id="menu-list-:rd:-menuitem-:re:"
                 role="menuitem"
                 tabindex="-1"
               >
@@ -728,18 +722,22 @@ exports[`Header render Should render match with snapshot. 1`] = `
                     />
                   </svg>
                   <p
-                    class="chakra-text css-1t7utft"
+                    class="chakra-text css-1c1tqaz"
                   >
                     My profile
                   </p>
                 </div>
               </a>
+              <hr
+                aria-orientation="horizontal"
+                class="chakra-divider css-1sulk9x"
+              />
               <a
-                aria-label="menu-icon-Logout"
-                class="chakra-link chakra-menu__menuitem css-18wf392"
+                aria-label="menu-item-Logout"
+                class="chakra-link chakra-menu__menuitem css-5bpww1"
                 data-index="1"
                 href="/login"
-                id="menu-list-:rf:-menuitem-:rh:"
+                id="menu-list-:rd:-menuitem-:rf:"
                 role="menuitem"
                 tabindex="-1"
               >
@@ -761,27 +759,11 @@ exports[`Header render Should render match with snapshot. 1`] = `
                     />
                   </svg>
                   <p
-                    class="chakra-text css-1t7utft"
+                    class="chakra-text css-1c1tqaz"
                   >
                     Logout
                   </p>
                 </div>
-              </a>
-              <hr
-                aria-orientation="horizontal"
-                class="chakra-divider css-19ob8qo"
-              />
-              <a
-                aria-label="menu-item-undefined"
-                class="chakra-link chakra-menu__menuitem css-crchys"
-                data-index="2"
-                id="menu-list-:rf:-menuitem-:ri:"
-                role="menuitem"
-                tabindex="-1"
-              >
-                <p
-                  class="chakra-text css-0"
-                />
               </a>
             </div>
           </div>
@@ -789,5 +771,9 @@ exports[`Header render Should render match with snapshot. 1`] = `
       </div>
     </div>
   </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
 </div>
 `;

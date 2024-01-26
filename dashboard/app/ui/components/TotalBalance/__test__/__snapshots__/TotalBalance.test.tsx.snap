@@ -3,75 +3,48 @@
 exports[`TotalBalance render Should render match with snapshot. 1`] = `
 <div>
   <div
-    class="css-2d117z"
+    class="css-1z03mj8"
   >
-    <div
-      class="css-1hbq5i"
-    >
-      <p
-        class="chakra-text css-1203war"
-      >
-        Total Balance
-      </p>
+    <form>
       <div
-        class="css-1cxe3un"
+        class="css-1hlzswh"
       >
         <p
-          class="chakra-text css-1iu6sor"
+          class="chakra-text css-1ki0mgu"
         >
-          $88,232.00
-        </p>
-        <p
-          class="chakra-text css-oop0n4"
-        >
-          usd
-        </p>
-      </div>
-      <div
-        class="css-hwbdeb"
-      >
-        <p
-          class="chakra-text css-1m68u8e"
-        >
-          11 April 2022
+           Enter amount 
         </p>
         <div
-          class="css-70qvj9"
+          class="css-u4p24i"
         >
-          <img
-            alt="This is the increase icon"
-            class="chakra-image css-17pjxxg"
-            src="/icons/increase.svg"
-          />
           <p
-            class="chakra-text css-gn7xew"
+            class="chakra-text css-4xj0bk"
           >
-            2.05
-            %
+            $
           </p>
+          <input
+            autocomplete="off"
+            class="chakra-input css-cr7iz"
+            name="amount"
+            placeholder="0.00"
+            type="text"
+            value=""
+          />
         </div>
       </div>
-    </div>
-    <div
-      class="css-gmuwbf"
-    >
-      <div
-        class="css-1y0sx42"
+      <button
+        aria-label="btn-add-money"
+        class="chakra-button css-d8rbc1"
+        disabled=""
+        type="submit"
       >
-        <p
-          class="chakra-text css-1pqx9f5"
-        >
-          Withdraw All Earning
-        </p>
-      </div>
-    </div>
-    <button
-      aria-label="btn-add-money"
-      class="chakra-button css-ifxyxq"
-      type="button"
-    >
-      Add Money
-    </button>
+        Add Money
+      </button>
+    </form>
   </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
 </div>
 `;

@@ -11,6 +11,7 @@ exports[`CustomerIssues render Should render match with snapshot. 1`] = `
       Recent Support
     </p>
     <button
+      aria-label="btn load-more"
       class="chakra-button css-19sn5a1"
       type="button"
     >
