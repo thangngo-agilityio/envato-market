@@ -17,12 +17,7 @@ import {
 // Assets
 import { Arrow, Avatar } from '@/ui/components';
 // Constants
-import {
-  AUTHENTICATION_ROLE,
-  IMAGES,
-  MENU_LIST,
-  MENU_LIST_ICON,
-} from '@/lib/constants';
+import { IMAGES, MENU_LIST, MENU_LIST_ICON } from '@/lib/constants';
 // Hooks
 import { useAuth } from '@/lib/hooks';
 interface DropdownProps {
@@ -106,17 +101,58 @@ const UserDropdownMenu = ({
             borderRadius="lg"
             bg="background.component.primary"
           >
-            {MENU_LIST_ICON.map(({ id, href, icon, value }) => {
+            {MENU_LIST_ICON(role).map(({ id, href, icon, value }) => {
+              const Icon = icon || Fragment;
+              return (
+                <>
+                  {!value ? (
+                    <></>
+                  ) : (
+                    <MenuItem
+                      key={id}
+                      as={Link}
+                      href={href}
+                      p={3.5}
+                      aria-label={`menu-icon-${value}`}
+                      borderRadius="lg"
+                      bg="transparent"
+                      _hover={{
+                        bg: 'background.component.tertiary',
+                        color: 'text.currencyColor',
+                        svg: { stroke: 'text.currencyColor' },
+                        path: { stroke: 'text.currencyColor' },
+                        ellipse: { stroke: 'text.currencyColor' },
+                        circle: { stroke: 'text.currencyColor' },
+                        borderColor: 'transparent',
+                        textDecoration: 'none',
+                      }}
+                      _focus={{
+                        outline: 'none',
+                      }}
+                    >
+                      <Flex>
+                        <Icon color={colorFill} />
+                        <Text ml={18} variant="text4Xl">
+                          {value}
+                        </Text>
+                      </Flex>
+                    </MenuItem>
+                  )}
+                </>
+              );
+            })}
+            <Divider my={3.5} color="gray.300" />
+            {MENU_LIST.map(({ id, value, href, icon }) => {
               const Icon = icon || Fragment;
               return (
                 <MenuItem
                   key={id}
-                  as={Link}
-                  href={href}
                   p={3.5}
-                  aria-label={`menu-icon-${value}`}
                   borderRadius="lg"
                   bg="transparent"
+                  as={Link}
+                  href={href}
+                  aria-label={`menu-item-${value}`}
                   _hover={{
                     bg: 'background.component.tertiary',
                     color: 'text.currencyColor',
@@ -128,7 +164,7 @@ const UserDropdownMenu = ({
                   _focus={{
                     outline: 'none',
                   }}
-                  {...(id === 2 && {
+                  {...(id === 1 && {
                     onClick: signOut,
                   })}
                 >
@@ -141,34 +177,6 @@ const UserDropdownMenu = ({
                 </MenuItem>
               );
             })}
-            {role === AUTHENTICATION_ROLE.MEMBER ? null : (
-              <>
-                <Divider my={3.5} color="gray.300" />
-                {MENU_LIST(role).map(({ id, value, href }) => (
-                  <MenuItem
-                    key={id}
-                    p={3.5}
-                    borderRadius="lg"
-                    bg="transparent"
-                    as={Link}
-                    href={href}
-                    aria-label={`menu-item-${value}`}
-                    _hover={{
-                      bg: 'background.component.tertiary',
-                      color: 'text.currencyColor',
-                      svg: { stroke: 'text.currencyColor' },
-                      borderColor: 'transparent',
-                      textDecoration: 'none',
-                    }}
-                    _focus={{
-                      outline: 'none',
-                    }}
-                  >
-                    <Text variant="text4Xl">{value}</Text>
-                  </MenuItem>
-                ))}
-              </>
-            )}
           </MenuList>
         </Box>
       )}
