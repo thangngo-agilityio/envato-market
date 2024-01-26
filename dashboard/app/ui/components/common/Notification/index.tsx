@@ -160,6 +160,7 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
               lineHeight="inherit"
             >
               <IconButton
+                ariaLabel="new-notification"
                 hasNewNotification={hasNewNotification}
                 quantityNotification={quantity}
               >

@@ -98,7 +98,7 @@ const HeaderComponent = () => {
           >
             <SwitchTheme />
             <Notification colorFill={colorFill} user={user as TUserDetail} />
-            <IconButton>
+            <IconButton ariaLabel="email-content">
               <Email color={colorFill} />
             </IconButton>
             <BonusNotification

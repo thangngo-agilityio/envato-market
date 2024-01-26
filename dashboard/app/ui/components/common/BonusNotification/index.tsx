@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Menu, MenuButton } from '@chakra-ui/react';
 
 // Components
-import { IconButton } from '../..';
+import { IconButton } from '@/ui/components';
 import { Gift } from '../../Icons';
 import BonusContent from './BonusContent';
 
@@ -22,6 +22,7 @@ const BonusNotification = ({
   <Menu placement="bottom-end" offset={[0, 20]}>
     <MenuButton as="button">
       <IconButton
+        ariaLabel="limit-bonus"
         hasNewNotification={!!limitOfBonus}
         quantityNotification={limitOfBonus}
       >
