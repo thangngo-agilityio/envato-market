@@ -129,7 +129,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
             >
               <a
                 aria-label="menu-icon-My profile"
-                class="chakra-link chakra-menu__menuitem css-1edcb2p"
+                class="chakra-link chakra-menu__menuitem css-1y28nxo"
                 data-index="0"
                 href="/settings"
                 id="menu-list-:r1:-menuitem-:r2:"
@@ -179,7 +179,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
               />
               <a
                 aria-label="menu-item-Logout"
-                class="chakra-link chakra-menu__menuitem css-5bpww1"
+                class="chakra-link chakra-menu__menuitem css-kkiz5x"
                 data-index="1"
                 href="/login"
                 id="menu-list-:r1:-menuitem-:r3:"
@@ -243,7 +243,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
             data-testid="icon-button-component"
           >
             <div
-              aria-label="Send email"
+              aria-label="switch-theme"
               class="chakra-button css-8s8ddv"
               data-testid="icon-button"
             >
@@ -282,7 +282,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
                   data-testid="icon-button-component"
                 >
                   <div
-                    aria-label="Send email"
+                    aria-label="new-notification"
                     class="chakra-button css-8s8ddv"
                     data-testid="icon-button"
                   >
@@ -329,7 +329,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
             data-testid="icon-button-component"
           >
             <div
-              aria-label="Send email"
+              aria-label="email-content"
               class="chakra-button css-8s8ddv"
               data-testid="icon-button"
             >
@@ -369,7 +369,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
                   5
                 </p>
                 <div
-                  aria-label="Send email"
+                  aria-label="limit-bonus"
                   class="chakra-button css-8s8ddv"
                   data-testid="icon-button"
                 >
@@ -511,7 +511,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
               >
                 <a
                   aria-label="menu-icon-My profile"
-                  class="chakra-link chakra-menu__menuitem css-1edcb2p"
+                  class="chakra-link chakra-menu__menuitem css-1y28nxo"
                   data-index="0"
                   href="/settings"
                   id="menu-list-:r9:-menuitem-:ra:"
@@ -561,7 +561,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
                 />
                 <a
                   aria-label="menu-item-Logout"
-                  class="chakra-link chakra-menu__menuitem css-5bpww1"
+                  class="chakra-link chakra-menu__menuitem css-kkiz5x"
                   data-index="1"
                   href="/login"
                   id="menu-list-:r9:-menuitem-:rb:"
@@ -684,7 +684,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
             >
               <a
                 aria-label="menu-icon-My profile"
-                class="chakra-link chakra-menu__menuitem css-1edcb2p"
+                class="chakra-link chakra-menu__menuitem css-1y28nxo"
                 data-index="0"
                 href="/settings"
                 id="menu-list-:rd:-menuitem-:re:"
@@ -734,7 +734,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
               />
               <a
                 aria-label="menu-item-Logout"
-                class="chakra-link chakra-menu__menuitem css-5bpww1"
+                class="chakra-link chakra-menu__menuitem css-kkiz5x"
                 data-index="1"
                 href="/login"
                 id="menu-list-:rd:-menuitem-:rf:"

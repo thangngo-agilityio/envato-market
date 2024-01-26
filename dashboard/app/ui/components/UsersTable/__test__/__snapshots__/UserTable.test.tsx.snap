@@ -317,7 +317,7 @@ exports[`UserTable component should renders correctly 1`] = `
             aria-controls="menu-list-:rj:"
             aria-expanded="false"
             aria-haspopup="menu"
-            class="chakra-button chakra-menu__menu-button css-11agw6e"
+            class="chakra-button chakra-menu__menu-button css-26jysu"
             id="menu-button-:rj:"
             type="button"
           >

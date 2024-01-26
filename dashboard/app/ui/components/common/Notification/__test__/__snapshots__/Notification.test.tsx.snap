@@ -26,7 +26,7 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
             3
           </p>
           <div
-            aria-label="Send email"
+            aria-label="new-notification"
             class="chakra-button css-1l63kb4"
             data-testid="icon-button"
           >

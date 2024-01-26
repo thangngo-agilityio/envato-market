@@ -4,7 +4,7 @@ exports[`Navigation test case should render correctly with the default destinati
 <div>
   <a
     aria-label="navigate-item"
-    class="chakra-link css-1yn71kc"
+    class="chakra-link css-0"
     href="/"
   >
     Mock navigation
