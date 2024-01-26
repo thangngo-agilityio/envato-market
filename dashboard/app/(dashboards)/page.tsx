@@ -100,7 +100,7 @@ const DashboardPage = async () => {
 
           <Box
             w="full"
-            mt={{ base: 6, md: 0, '2xl': 6 }}
+            mt={{ base: 6, md: 0, '3xl': 6 }}
             ml={{ lg: 6, '2xl': 0 }}
           >
             <BoxChat />
