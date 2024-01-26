@@ -20,7 +20,11 @@ const SwitchThemeComponent = () => {
     dark: <DarkTheme color={colors.common.white} />,
   };
 
-  return <IconButton onClick={toggleColorMode}>{icons[colorMode]}</IconButton>;
+  return (
+    <IconButton ariaLabel="switch-theme" onClick={toggleColorMode}>
+      {icons[colorMode]}
+    </IconButton>
+  );
 };
 
 const SwitchTheme = memo(SwitchThemeComponent);

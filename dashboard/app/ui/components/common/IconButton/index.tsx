@@ -5,6 +5,7 @@ interface IconButtonProps {
   children: JSX.Element;
   hasNewNotification?: boolean;
   quantityNotification?: number;
+  ariaLabel?: string;
   onClick?: () => void;
 }
 
@@ -12,6 +13,7 @@ const IconButtonComponent = ({
   children,
   hasNewNotification = false,
   quantityNotification = 0,
+  ariaLabel = 'Send email',
   onClick = () => {},
 }: IconButtonProps) => (
   <Box data-testid="icon-button-component" pos="relative" maxW="fit-content">
@@ -41,7 +43,7 @@ const IconButtonComponent = ({
       variant="iconPrimary"
       w="52px"
       h="52px"
-      aria-label="Send email"
+      aria-label={ariaLabel}
       icon={children}
       onClick={onClick}
     />
