@@ -36,7 +36,7 @@ import { TMessages } from '@/lib/interfaces';
 type TChats = {
   userInfo: { uid: string; avatarUrl: string; displayName: string };
   lastMessage: { text: string };
-  date: { seconds: number };
+  date: number;
 };
 
 const ChatMemberList = () => {
@@ -44,11 +44,6 @@ const ChatMemberList = () => {
     theme.colors.gray[800],
     theme.colors.white,
   );
-
-  // const timeMessage = new Date().toLocaleTimeString([], {
-  //   hour: 'numeric',
-  //   minute: '2-digit',
-  // });
 
   const isMobile = useBreakpointValue({ base: true, lg: false });
 
@@ -138,7 +133,7 @@ const ChatMemberList = () => {
         >
           <Flex justify="flex-start" overflowX="scroll">
             {Object.entries(chats)
-              ?.sort((a, b) => b[1].date?.seconds - a[1].date?.seconds)
+              ?.sort((a, b) => b[1].date - a[1].date)
               .map((chat) => (
                 <ChatMember
                   key={chat[0]}
@@ -182,7 +177,7 @@ const ChatMemberList = () => {
           </Flex>
           <Flex direction="column" gap={6} py={3.5}>
             {Object.entries(chats)
-              ?.sort((a, b) => b[1].date?.seconds - a[1].date?.seconds)
+              ?.sort((a, b) => b[1].date - a[1].date)
               .map((chat) => (
                 <ChatMember
                   key={chat[0]}
@@ -196,7 +191,7 @@ const ChatMemberList = () => {
                       alt={IMAGES.ATTACH.alt}
                     />
                   }
-                  localeTime={convertTimeMessage(chat[1].date?.seconds)}
+                  localeTime={convertTimeMessage(chat[1].date)}
                   lastMessages={chat[1]?.lastMessage?.text}
                 />
               ))}

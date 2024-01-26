@@ -87,7 +87,10 @@ const ChatMember = ({
                 {name}
               </Text>
             </Box>
-            <Text color="primary.300">{lastMessages}</Text>
+            <Text
+              color="primary.300"
+              dangerouslySetInnerHTML={{ __html: lastMessages ?? '' }}
+            />
           </Flex>
         </Flex>
 

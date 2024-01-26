@@ -43,7 +43,7 @@ const ListMessages = ({ messages, adminUid, avatarUser }: Props) => {
             borderRadius: '24px',
           },
         }}
-        maxHeight="calc(100vh - 401px)"
+        maxHeight="calc(100vh - 470px)"
         padding={5}
       >
         {messages.map((message) => {
