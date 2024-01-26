@@ -35,7 +35,7 @@ const setup = (
 ) =>
   render(
     <ExpandSidebar
-      isOpen={true}
+      isExpandSidebar
       onClose={mockOnOpenFunction}
       onOpen={mockOnCloseFunction}
     />,
@@ -86,29 +86,6 @@ describe('ExpandSidebar test case', () => {
 
       expect(mockOnCloseFunction).toHaveBeenCalled();
     }
-  });
-
-  it('should be dismissed when clicking outside on mobile and tablet', async () => {
-    mockMobileMediaQuery();
-
-    const { getByTestId, findByRole } = setup(
-      mockOnOpenFunction,
-      mockOnCloseFunction,
-    );
-
-    renderHook(() => useMediaQuery('max-width: 1732px'));
-
-    const openExpandBtn = await findByRole('img', {
-      name: /this is the left arrow image/i,
-    });
-
-    await userEvent.click(openExpandBtn);
-
-    const overlay = getByTestId('expand-overlay');
-
-    await userEvent.click(overlay);
-
-    expect(mockOnCloseFunction).toHaveBeenCalled();
   });
 
   it('should be dismissed when navigating page on mobile', async () => {

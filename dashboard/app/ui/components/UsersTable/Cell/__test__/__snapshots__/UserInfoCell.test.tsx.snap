@@ -9,7 +9,7 @@ exports[`TotalCard component renders correctly 1`] = `
       class="css-0"
     >
       <td
-        class="css-i3u192"
+        class="css-mzqydp"
       >
         <div
           class="css-1h2sv0j"
@@ -31,19 +31,8 @@ exports[`TotalCard component renders correctly 1`] = `
               class="chakra-text css-vxhtcb"
             >
               <span
-                class="chakra-text css-9feaud"
-                title="Finance managers"
-              >
-                Finance managers
-                 •
-              </span>
-              <span
                 class="chakra-text css-1rgac5r"
-              >
-                Jakarta, Indonesia
-                 • 
-                2 days ago
-              </span>
+              />
             </p>
           </div>
         </div>

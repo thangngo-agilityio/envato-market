@@ -65,54 +65,82 @@ exports[`CardPayment test cases CardPayment component renders correctly 1`] = `
         class="css-79elbk"
       >
         <div
-          class="chakra-select__wrapper css-1mrua7j"
+          class="chakra-input__group css-pbb1q5"
+          data-group="true"
         >
-          <select
-            class="chakra-select css-1r8671w"
-          >
-            <option
-              color="text.primary"
-              value="debit"
-            >
-              Debit
-            </option>
-          </select>
           <div
-            class="chakra-select__icon-wrapper css-1kp1ef3"
+            class="chakra-form-control css-0"
+            role="group"
           >
-            <svg
-              fill="none"
-              height="21"
-              style="transform: translateY(4px);"
-              viewBox="0 0 21 21"
-              width="21"
-              xmlns="http://www.w3.org/2000/svg"
+            <div
+              class="chakra-input__group css-169ufh8"
+              data-group="true"
             >
-              <path
-                d="M7.72168 5.03271L12.7217 10.0327L17.7217 5.03271"
-                stroke="#A0AEC0"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+              <input
+                class="chakra-input css-6hxpcw"
+                id="field-:r7:"
+                name="memberId"
+                placeholder="Choose an account to transfer"
+                type="text"
+                value=""
               />
-            </svg>
+              <button
+                aria-label="The eye icon"
+                class="chakra-input__right-element css-1uzzgp1"
+                type="button"
+              >
+                <button
+                  aria-label="Icon dropdown"
+                  class="chakra-button css-1gpu7bx"
+                  type="button"
+                >
+                  <svg
+                    fill="none"
+                    height="21"
+                    style="transform: translateY(4px);"
+                    viewBox="0 0 21 21"
+                    width="21"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.72168 5.03271L12.7217 10.0327L17.7217 5.03271"
+                      stroke="#A0AEC0"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </button>
+              </button>
+            </div>
+          </div>
+          <div
+            class="chakra-input__right-element css-dp9r5f"
+          >
+            <button
+              aria-label="Icon dropdown"
+              class="chakra-button css-1gpu7bx"
+              type="button"
+            >
+              <svg
+                fill="none"
+                height="21"
+                style="transform: translateY(4px);"
+                viewBox="0 0 21 21"
+                width="21"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.72168 5.03271L12.7217 10.0327L17.7217 5.03271"
+                  stroke="#A0AEC0"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </button>
           </div>
         </div>
-        <img
-          alt="This is the logo debit card"
-          data-nimg="1"
-          decoding="async"
-          height="24"
-          loading="lazy"
-          src="/icons/debit-icon.svg"
-          style="color: transparent;"
-          width="24"
-        />
-        <p
-          class="chakra-text css-1lowlkl"
-        >
-          $ 10,431
-        </p>
       </div>
       <div
         class="css-qusax6"
@@ -131,8 +159,10 @@ exports[`CardPayment test cases CardPayment component renders correctly 1`] = `
             $
           </p>
           <input
-            class="chakra-input css-17okvn5"
-            name="money"
+            autocomplete="off"
+            class="chakra-input css-xgmxbo"
+            name="amount"
+            placeholder="0.00"
             type="text"
             value=""
           />
@@ -140,7 +170,8 @@ exports[`CardPayment test cases CardPayment component renders correctly 1`] = `
       </div>
       <button
         aria-label="btn-send-money"
-        class="chakra-button css-4v6g0h"
+        class="chakra-button css-1dj84lh"
+        disabled=""
         type="submit"
       >
         Send Money

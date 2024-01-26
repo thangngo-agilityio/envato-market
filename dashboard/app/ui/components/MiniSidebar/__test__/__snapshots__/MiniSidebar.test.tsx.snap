@@ -1,8 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MiniSidebar test case should render correctly 1`] = `
-<div
-  aria-hidden="true"
-  data-aria-hidden="true"
-/>
-`;
+exports[`MiniSidebar test case should render correctly 1`] = `<div />`;

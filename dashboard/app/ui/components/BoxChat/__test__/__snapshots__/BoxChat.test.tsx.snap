@@ -13,245 +13,70 @@ exports[`BoxChatComponent BoxChat component renders correctly 1`] = `
       >
         team chat
       </h3>
-      <div
-        class="css-1j52cd2"
-      >
-        <img
-          alt="This is the user avatar"
-          class="chakra-image__placeholder css-jqgv83"
-          src="/icons/user.svg"
-        />
-        <button
-          aria-label="btn-icon-plus"
-          class="chakra-button css-18tuhly"
-          type="button"
-        >
-          <img
-            alt="This is the user avatar"
-            class="chakra-image__placeholder css-k1r8rc"
-            src="/icons/user.svg"
-          />
-        </button>
-      </div>
     </div>
     <div
-      class="css-gpjsqf"
+      class="css-93w66m"
     >
       <div
-        class="css-k008qs"
+        class="css-1vlifh4"
+      />
+      <form
+        class="chakra-stack css-tl3ftk"
       >
-        <span
-          class="chakra-avatar css-gyntuh"
-        >
-          <svg
-            aria-label=" avatar"
-            class="chakra-avatar__svg css-16ite8i"
-            role="img"
-            viewBox="0 0 128 128"
-          >
-            <path
-              d="M103,102.1388 C93.094,111.92 79.3504,118 64.1638,118 C48.8056,118 34.9294,111.768 25,101.7892 L25,95.2 C25,86.8096 31.981,80 40.6,80 L87.4,80 C96.019,80 103,86.8096 103,95.2 L103,102.1388 Z"
-              fill="currentColor"
-            />
-            <path
-              d="M63.9961647,24 C51.2938136,24 41,34.2938136 41,46.9961647 C41,59.7061864 51.2938136,70 63.9961647,70 C76.6985159,70 87,59.7061864 87,46.9961647 C87,34.2938136 76.6985159,24 63.9961647,24"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
         <div
-          class="css-1kz9q0"
+          class="css-mgpx6q"
         >
           <div
-            class="css-0"
-            data-testid="image-container"
+            class="chakra-form-control css-0"
+            role="group"
           >
-            <p
-              class="chakra-text css-rgei1j"
-              data-testid="text-content"
+            <div
+              class="css-1yae3jf"
             >
-              Hi, What can i help you with?
-            </p>
+              <div
+                class="chakra-form-control css-0"
+                role="group"
+              >
+                <div
+                  class="chakra-input__group css-169ufh8"
+                  data-group="true"
+                >
+                  <input
+                    class="chakra-input css-272te6"
+                    id="field-:r2:"
+                    name="text"
+                    placeholder="Type your message..."
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
           </div>
-          <div
-            class="css-17xejub"
-          />
           <p
-            class="chakra-text css-haer8f"
-          >
-            3:51 PM
-          </p>
-        </div>
-      </div>
-      <div
-        class="css-k008qs"
-      >
-        <span
-          class="chakra-avatar css-gyntuh"
-        >
-          <svg
-            aria-label=" avatar"
-            class="chakra-avatar__svg css-16ite8i"
-            role="img"
-            viewBox="0 0 128 128"
-          >
-            <path
-              d="M103,102.1388 C93.094,111.92 79.3504,118 64.1638,118 C48.8056,118 34.9294,111.768 25,101.7892 L25,95.2 C25,86.8096 31.981,80 40.6,80 L87.4,80 C96.019,80 103,86.8096 103,95.2 L103,102.1388 Z"
-              fill="currentColor"
-            />
-            <path
-              d="M63.9961647,24 C51.2938136,24 41,34.2938136 41,46.9961647 C41,59.7061864 51.2938136,70 63.9961647,70 C76.6985159,70 87,59.7061864 87,46.9961647 C87,34.2938136 76.6985159,24 63.9961647,24"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
-        <div
-          class="css-1kz9q0"
-        >
-          <div
-            class="css-0"
-            data-testid="image-container"
-          >
-            <img
-              alt="Message Image"
-              class="chakra-image css-5n3hi3"
-            />
-          </div>
-          <div
-            class="css-17xejub"
+            class="chakra-text css-dz8804"
           />
-          <p
-            class="chakra-text css-haer8f"
+          <button
+            class="chakra-button css-1wi3nws"
+            data-testid="btn-send"
+            disabled=""
+            type="submit"
           >
-            3:51 PM
-          </p>
-        </div>
-      </div>
-      <div
-        class="css-k008qs"
-      >
-        <div
-          class="css-53hlci"
-        >
-          <div
-            class="css-0"
-            data-testid="image-container"
-          >
-            <p
-              class="chakra-text css-rgei1j"
-              data-testid="text-content"
+            <svg
+              fill="none"
+              height="18"
+              viewBox="0 0 20 18"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              Hello, I want to know more about your product
-            </p>
-          </div>
-          <div
-            class="css-17xejub"
-          />
-          <p
-            class="chakra-text css-haer8f"
-          >
-            3:51 PM
-          </p>
+              <path
+                d="M17.3894 0H2.61094C0.339326 0 -0.844596 2.63548 0.696196 4.26234L3.78568 7.52441C4.23 7.99355 4.47673 8.60858 4.47673 9.24704V15.4553C4.47673 17.8735 7.61615 18.9233 9.13941 17.0145L19.4463 4.09894C20.7775 2.43071 19.5578 0 17.3894 0Z"
+                fill="#22C55E"
+              />
+            </svg>
+          </button>
         </div>
-        <span
-          class="chakra-avatar css-ntspms"
-          data-testid="avatar"
-        >
-          <svg
-            aria-label=" avatar"
-            class="chakra-avatar__svg css-16ite8i"
-            role="img"
-            viewBox="0 0 128 128"
-          >
-            <path
-              d="M103,102.1388 C93.094,111.92 79.3504,118 64.1638,118 C48.8056,118 34.9294,111.768 25,101.7892 L25,95.2 C25,86.8096 31.981,80 40.6,80 L87.4,80 C96.019,80 103,86.8096 103,95.2 L103,102.1388 Z"
-              fill="currentColor"
-            />
-            <path
-              d="M63.9961647,24 C51.2938136,24 41,34.2938136 41,46.9961647 C41,59.7061864 51.2938136,70 63.9961647,70 C76.6985159,70 87,59.7061864 87,46.9961647 C87,34.2938136 76.6985159,24 63.9961647,24"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
-      </div>
-      <div
-        class="css-k008qs"
-      >
-        <span
-          class="chakra-avatar css-gyntuh"
-        >
-          <svg
-            aria-label=" avatar"
-            class="chakra-avatar__svg css-16ite8i"
-            role="img"
-            viewBox="0 0 128 128"
-          >
-            <path
-              d="M103,102.1388 C93.094,111.92 79.3504,118 64.1638,118 C48.8056,118 34.9294,111.768 25,101.7892 L25,95.2 C25,86.8096 31.981,80 40.6,80 L87.4,80 C96.019,80 103,86.8096 103,95.2 L103,102.1388 Z"
-              fill="currentColor"
-            />
-            <path
-              d="M63.9961647,24 C51.2938136,24 41,34.2938136 41,46.9961647 C41,59.7061864 51.2938136,70 63.9961647,70 C76.6985159,70 87,59.7061864 87,46.9961647 C87,34.2938136 76.6985159,24 63.9961647,24"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
-        <div
-          class="css-1kz9q0"
-        >
-          <div
-            class="css-0"
-            data-testid="image-container"
-          >
-            <p
-              class="chakra-text css-rgei1j"
-              data-testid="text-content"
-            >
-              Sure, I can help you with that
-            </p>
-          </div>
-          <div
-            class="css-17xejub"
-          />
-          <p
-            class="chakra-text css-haer8f"
-          >
-            3:51 PM
-          </p>
-        </div>
-      </div>
-      <div
-        class="css-gmuwbf"
-      >
-        <div
-          class="css-dyz3ep"
-        >
-          <div
-            class="css-u4p24i"
-          >
-            <img
-              alt="Attach icon"
-              class="chakra-image css-14s0vbu"
-              src="/icons/attach.svg"
-            />
-            <input
-              class="chakra-input css-3qiee2"
-              placeholder="Type your message here"
-            />
-            <img
-              alt="Micro icon"
-              class="chakra-image css-1gw17ja"
-              src="/icons/micro.svg"
-            />
-          </div>
-        </div>
-        <img
-          alt="Send icon"
-          class="chakra-image css-1c40io7"
-          role="button"
-          src="/icons/send.svg"
-        />
-      </div>
+      </form>
     </div>
   </div>
 </div>

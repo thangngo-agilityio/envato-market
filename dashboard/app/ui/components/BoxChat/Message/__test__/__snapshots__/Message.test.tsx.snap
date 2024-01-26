@@ -3,10 +3,29 @@
 exports[`Message component renders correctly 1`] = `
 <div>
   <div
-    class="css-k008qs"
+    class="css-10zunq2"
   >
+    <div
+      class="css-e5lq4j"
+    >
+      <div
+        class="css-ccwdrb"
+        data-testid="image-container"
+      >
+        This is message
+      </div>
+      <div
+        class="css-17xejub"
+      />
+      <p
+        class="chakra-text css-haer8f"
+      >
+        3:51 PM
+      </p>
+    </div>
     <span
-      class="chakra-avatar css-gyntuh"
+      class="chakra-avatar css-ntspms"
+      data-testid="avatar"
     >
       <svg
         aria-label=" avatar"
@@ -24,27 +43,6 @@ exports[`Message component renders correctly 1`] = `
         />
       </svg>
     </span>
-    <div
-      class="css-53hlci"
-    >
-      <div
-        class="css-0"
-        data-testid="image-container"
-      >
-        <img
-          alt="Message Image"
-          class="chakra-image css-5n3hi3"
-        />
-      </div>
-      <div
-        class="css-17xejub"
-      />
-      <p
-        class="chakra-text css-haer8f"
-      >
-        3:51 PM
-      </p>
-    </div>
   </div>
 </div>
 `;

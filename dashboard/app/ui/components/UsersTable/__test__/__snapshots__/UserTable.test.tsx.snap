@@ -3,7 +3,7 @@
 exports[`UserTable component should renders correctly 1`] = `
 <div>
   <div
-    class="chakra-table__container css-12od5nk"
+    class="chakra-table__container css-zipzvv"
   >
     <table
       class="chakra-table css-0"
@@ -19,10 +19,10 @@ exports[`UserTable component should renders correctly 1`] = `
         class="css-0"
       >
         <tr
-          class="css-0"
+          class="css-4g6ai3"
         >
           <td
-            class="css-i3u192"
+            class="css-mzqydp"
           >
             <div
               class="css-1h2sv0j"
@@ -44,50 +44,49 @@ exports[`UserTable component should renders correctly 1`] = `
                   class="chakra-text css-vxhtcb"
                 >
                   <span
-                    class="chakra-text css-9feaud"
-                    title="undefined"
-                  >
-                    undefined
-                     •
-                  </span>
-                  <span
                     class="chakra-text css-1rgac5r"
-                  >
-                    Finance managers, Jakarta, Indonesia
-                     • 
-                    2 days ago
-                  </span>
+                  />
                 </p>
               </div>
             </div>
           </td>
           <td
-            class="css-dq40i2"
+            class="css-1vzozuw"
           >
-            <span
-              class="chakra-badge css-3jdwwr"
+            <p
+              class="chakra-text css-0"
             >
-              Full Time
-            </span>
+              Jan 01, 1970
+            </p>
           </td>
           <td
             class="css-dq40i2"
           >
             <span
-              class="chakra-badge css-3jdwwr"
+              class="chakra-badge css-1nho4fa"
             >
-              Senior Level
+              Unlock
             </span>
+          </td>
+          <td
+            class="css-1onobe"
+          >
+            <a
+              class="chakra-button css-1d6hsfg"
+              href="/inbox"
+            >
+              Message
+            </a>
           </td>
           <td
             class="css-1vvhs8e"
           >
             <button
-              aria-controls="menu-list-:rb:"
+              aria-controls="menu-list-:r7:"
               aria-expanded="false"
               aria-haspopup="menu"
               class="chakra-button chakra-menu__menu-button css-14rg285"
-              id="menu-button-:rb:"
+              id="menu-button-:r7:"
               type="button"
             >
               <span
@@ -117,13 +116,50 @@ exports[`UserTable component should renders correctly 1`] = `
                 </button>
               </span>
             </button>
+            <div
+              class="css-0"
+              style="visibility: hidden; position: absolute; min-width: max-content; inset: 0 auto auto 0;"
+            >
+              <div
+                aria-orientation="vertical"
+                class="chakra-menu__menu-list css-6dyv79"
+                id="menu-list-:r7:"
+                role="menu"
+                style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
+                tabindex="-1"
+              >
+                <button
+                  class="chakra-menu__menuitem css-bjyw8u"
+                  data-index="0"
+                  id="menu-list-:r7:-menuitem-:r8:"
+                  role="menuitem"
+                  tabindex="-1"
+                  type="button"
+                >
+                  <div
+                    class="css-1s0smvb"
+                  >
+                    <svg
+                      class="chakra-icon css-xdl7pd"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19.5,9.5h-.75V6.75a6.75,6.75,0,0,0-13.5,0V9.5H4.5a2,2,0,0,0-2,2V22a2,2,0,0,0,2,2h15a2,2,0,0,0,2-2V11.5A2,2,0,0,0,19.5,9.5Zm-9.5,6a2,2,0,1,1,3,1.723V19.5a1,1,0,0,1-2,0V17.223A1.994,1.994,0,0,1,10,15.5ZM7.75,6.75a4.25,4.25,0,0,1,8.5,0V9a.5.5,0,0,1-.5.5H8.25a.5.5,0,0,1-.5-.5Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            </div>
           </td>
         </tr>
         <tr
-          class="css-0"
+          class="css-4g6ai3"
         >
           <td
-            class="css-i3u192"
+            class="css-mzqydp"
           >
             <div
               class="css-1h2sv0j"
@@ -145,50 +181,49 @@ exports[`UserTable component should renders correctly 1`] = `
                   class="chakra-text css-vxhtcb"
                 >
                   <span
-                    class="chakra-text css-9feaud"
-                    title="undefined"
-                  >
-                    undefined
-                     •
-                  </span>
-                  <span
                     class="chakra-text css-1rgac5r"
-                  >
-                    Finance managers, Jakarta, Indonesia
-                     • 
-                    4 days ago
-                  </span>
+                  />
                 </p>
               </div>
             </div>
           </td>
           <td
-            class="css-dq40i2"
+            class="css-1vzozuw"
           >
-            <span
-              class="chakra-badge css-3jdwwr"
+            <p
+              class="chakra-text css-0"
             >
-              Full Time
-            </span>
+              Jan 02, 1970
+            </p>
           </td>
           <td
             class="css-dq40i2"
           >
             <span
-              class="chakra-badge css-3jdwwr"
+              class="chakra-badge css-1nho4fa"
             >
-              Senior Level
+              Unlock
             </span>
+          </td>
+          <td
+            class="css-1onobe"
+          >
+            <a
+              class="chakra-button css-1d6hsfg"
+              href="/inbox"
+            >
+              Message
+            </a>
           </td>
           <td
             class="css-1vvhs8e"
           >
             <button
-              aria-controls="menu-list-:rn:"
+              aria-controls="menu-list-:rg:"
               aria-expanded="false"
               aria-haspopup="menu"
               class="chakra-button chakra-menu__menu-button css-14rg285"
-              id="menu-button-:rn:"
+              id="menu-button-:rg:"
               type="button"
             >
               <span
@@ -218,10 +253,220 @@ exports[`UserTable component should renders correctly 1`] = `
                 </button>
               </span>
             </button>
+            <div
+              class="css-0"
+              style="visibility: hidden; position: absolute; min-width: max-content; inset: 0 auto auto 0;"
+            >
+              <div
+                aria-orientation="vertical"
+                class="chakra-menu__menu-list css-6dyv79"
+                id="menu-list-:rg:"
+                role="menu"
+                style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
+                tabindex="-1"
+              >
+                <button
+                  class="chakra-menu__menuitem css-bjyw8u"
+                  data-index="0"
+                  id="menu-list-:rg:-menuitem-:rh:"
+                  role="menuitem"
+                  tabindex="-1"
+                  type="button"
+                >
+                  <div
+                    class="css-1s0smvb"
+                  >
+                    <svg
+                      class="chakra-icon css-xdl7pd"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19.5,9.5h-.75V6.75a6.75,6.75,0,0,0-13.5,0V9.5H4.5a2,2,0,0,0-2,2V22a2,2,0,0,0,2,2h15a2,2,0,0,0,2-2V11.5A2,2,0,0,0,19.5,9.5Zm-9.5,6a2,2,0,1,1,3,1.723V19.5a1,1,0,0,1-2,0V17.223A1.994,1.994,0,0,1,10,15.5ZM7.75,6.75a4.25,4.25,0,0,1,8.5,0V9a.5.5,0,0,1-.5.5H8.25a.5.5,0,0,1-.5-.5Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            </div>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+  <div
+    class="css-164r41r"
+  >
+    <div
+      class="css-1pjv9dc"
+      data-testid="pagination"
+    >
+      <div
+        class="css-hswnv9"
+      >
+        <p
+          class="chakra-text css-10v9eea"
+        >
+          Show result:
+        </p>
+        <div
+          class="css-1eqmq6c"
+        >
+          <button
+            aria-controls="menu-list-:rj:"
+            aria-expanded="false"
+            aria-haspopup="menu"
+            class="chakra-button chakra-menu__menu-button css-26jysu"
+            id="menu-button-:rj:"
+            type="button"
+          >
+            <span
+              class="css-xl71ch"
+            >
+              <div
+                class="css-1u78b0r"
+              >
+                <p
+                  class="chakra-text css-nyal52"
+                >
+                  10
+                </p>
+                <div
+                  class="css-1x77umq"
+                >
+                  <svg
+                    fill="none"
+                    height="15"
+                    stroke="#A0AEC0"
+                    style="transform: rotate(undefined);"
+                    viewBox="0 0 18 15"
+                    width="18"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7 10L12 14L17 10"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </span>
+          </button>
+          <div
+            class="css-0"
+            style="visibility: hidden; position: absolute; inset: 0 auto auto 0;"
+          >
+            <div
+              aria-orientation="vertical"
+              class="chakra-menu__menu-list css-ta0hp9"
+              id="menu-list-:rj:"
+              role="menu"
+              style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
+              tabindex="-1"
+            >
+              <button
+                class="chakra-menu__menuitem css-1oz22gy"
+                data-index="0"
+                id="menu-list-:rj:-menuitem-:rk:"
+                role="menuitem"
+                tabindex="-1"
+                type="button"
+              >
+                <p
+                  class="chakra-text css-1198d6z"
+                >
+                  10
+                </p>
+              </button>
+              <button
+                class="chakra-menu__menuitem css-1oz22gy"
+                data-index="1"
+                id="menu-list-:rj:-menuitem-:rl:"
+                role="menuitem"
+                tabindex="-1"
+                type="button"
+              >
+                <p
+                  class="chakra-text css-1198d6z"
+                >
+                  20
+                </p>
+              </button>
+              <button
+                class="chakra-menu__menuitem css-1oz22gy"
+                data-index="2"
+                id="menu-list-:rj:-menuitem-:rm:"
+                role="menuitem"
+                tabindex="-1"
+                type="button"
+              >
+                <p
+                  class="chakra-text css-1198d6z"
+                >
+                  50
+                </p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="css-gg4vpm"
+      >
+        <button
+          aria-label="btn-prev"
+          class="chakra-button css-1681ub4"
+          data-testid="prev-button"
+          type="button"
+        >
+          <svg
+            fill="none"
+            height="24"
+            stroke="#A0AEC0"
+            style="transform: rotate(90deg);"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7 10L12 14L17 10"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+        <div
+          class="css-70qvj9"
+        />
+        <button
+          aria-label="btn-next"
+          class="chakra-button css-1681ub4"
+          data-testid="next-button"
+          type="button"
+        >
+          <svg
+            fill="none"
+            height="24"
+            stroke="#A0AEC0"
+            style="transform: rotate(-90deg);"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7 10L12 14L17 10"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 `;

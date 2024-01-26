@@ -11,6 +11,7 @@ exports[`Dropdown render Should render match with snapshot. 1`] = `
       aria-haspopup="menu"
       class="chakra-button chakra-menu__menu-button css-14rg285"
       id="menu-button-:r1:"
+      title="John Doe"
       type="button"
     >
       <span
@@ -41,7 +42,7 @@ exports[`Dropdown render Should render match with snapshot. 1`] = `
                 class="css-70qvj9"
               >
                 <p
-                  class="chakra-text css-16ubuka"
+                  class="chakra-text css-8odann"
                 >
                   John Doe
                 </p>
@@ -87,7 +88,7 @@ exports[`Dropdown render Should render match with snapshot. 1`] = `
       >
         <a
           aria-label="menu-icon-My profile"
-          class="chakra-link chakra-menu__menuitem css-18wf392"
+          class="chakra-link chakra-menu__menuitem css-11oltj1"
           data-index="0"
           href="/settings"
           id="menu-list-:r1:-menuitem-:r2:"
@@ -131,9 +132,13 @@ exports[`Dropdown render Should render match with snapshot. 1`] = `
             </p>
           </div>
         </a>
+        <hr
+          aria-orientation="horizontal"
+          class="chakra-divider css-19ob8qo"
+        />
         <a
-          aria-label="menu-icon-Logout"
-          class="chakra-link chakra-menu__menuitem css-18wf392"
+          aria-label="menu-item-Logout"
+          class="chakra-link chakra-menu__menuitem css-1yc4i0z"
           data-index="1"
           href="/login"
           id="menu-list-:r1:-menuitem-:r3:"
@@ -163,22 +168,6 @@ exports[`Dropdown render Should render match with snapshot. 1`] = `
               Logout
             </p>
           </div>
-        </a>
-        <hr
-          aria-orientation="horizontal"
-          class="chakra-divider css-19ob8qo"
-        />
-        <a
-          aria-label="menu-item-undefined"
-          class="chakra-link chakra-menu__menuitem css-crchys"
-          data-index="2"
-          id="menu-list-:r1:-menuitem-:r4:"
-          role="menuitem"
-          tabindex="-1"
-        >
-          <p
-            class="chakra-text css-0"
-          />
         </a>
       </div>
     </div>

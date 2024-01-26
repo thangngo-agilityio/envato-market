@@ -62,7 +62,7 @@ exports[`SearchBar render Should render match with snapshot. 1`] = `
         aria-controls="menu-list-:r2:"
         aria-expanded="false"
         aria-haspopup="menu"
-        class="chakra-button chakra-menu__menu-button css-lyu4i6"
+        class="chakra-button chakra-menu__menu-button css-26jysu"
         id="menu-button-:r2:"
         type="button"
       >

@@ -20,7 +20,7 @@ exports[`Efficiency component renders correctly 1`] = `
           aria-controls="menu-list-:r1:"
           aria-expanded="false"
           aria-haspopup="menu"
-          class="chakra-button chakra-menu__menu-button css-1ptp4uh"
+          class="chakra-button chakra-menu__menu-button css-26jysu"
           id="menu-button-:r1:"
           type="button"
         >

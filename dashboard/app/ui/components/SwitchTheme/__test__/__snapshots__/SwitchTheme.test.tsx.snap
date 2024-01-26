@@ -7,7 +7,7 @@ exports[`SwitchTheme component renders correctly 1`] = `
     data-testid="icon-button-component"
   >
     <div
-      aria-label="Send email"
+      aria-label="switch-theme"
       class="chakra-button css-1l63kb4"
       data-testid="icon-button"
     />

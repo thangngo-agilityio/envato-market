@@ -12,7 +12,7 @@ describe('CardPayment test cases', () => {
   const setup = () =>
     render(
       <QueryClientProvider client={queryClient}>
-        <CardPayment balance={123} />
+        <CardPayment />
       </QueryClientProvider>,
     );
 
