@@ -331,6 +331,7 @@ const AuthFormComponent = ({
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     onChange(e.target.checked)
                   }
+                  isDisabled={isSubmitting}
                   position="relative"
                 >
                   <Text fontWeight="semibold">Remember me</Text>
