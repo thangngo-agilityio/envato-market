@@ -48,7 +48,7 @@ const Quill = ({ userUid }: QuillProps) => {
       text: '',
       id: useId(),
       senderId: user?.uid,
-      date: { nanoSeconds: 0, second: 0 },
+      date: { nanoseconds: 0, seconds: 0 },
     },
     mode: 'onBlur',
   });

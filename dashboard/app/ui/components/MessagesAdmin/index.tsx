@@ -18,10 +18,7 @@ const MessageAdmin = ({
   isSuperAdmin = false,
   avatarUser = IMAGES.CHAT_USER_AVATAR.url,
   avatarAdmin = IMAGES.CHAT_USER_AVATAR.url,
-  localeTime = new Date().toLocaleTimeString([], {
-    hour: 'numeric',
-    minute: '2-digit',
-  }),
+  localeTime,
 }: MessageProps) => {
   const justifyContent = isSuperAdmin ? 'flex-end' : 'flex-start';
   const direction = isSuperAdmin ? 'row-reverse' : 'row';

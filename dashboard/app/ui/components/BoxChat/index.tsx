@@ -157,11 +157,11 @@ const BoxChatComponent = () => {
           maxHeight={361}
           padding={5}
         >
-          {messages.map((m) => (
+          {messages.map((message) => (
             <Message
-              content={m.text}
-              key={m.date.second}
-              senderId={m.senderId}
+              content={message.text}
+              key={message.date.seconds}
+              senderId={message.senderId}
               avatarAdmin={userChat.avatarAdminUrl}
               avatarUser={userChat.avatarUrl}
             />

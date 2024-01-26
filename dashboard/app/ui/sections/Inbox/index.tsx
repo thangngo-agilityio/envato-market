@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 
 // Firebase
-import { db } from '@/lib/utils';
+import { convertTimeMessage, db } from '@/lib/utils';
 import { doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore';
 
 // Components
@@ -36,7 +36,7 @@ import { TMessages } from '@/lib/interfaces';
 type TChats = {
   userInfo: { uid: string; avatarUrl: string; displayName: string };
   lastMessage: { text: string };
-  date: number;
+  date: { seconds: number };
 };
 
 const ChatMemberList = () => {
@@ -45,10 +45,10 @@ const ChatMemberList = () => {
     theme.colors.white,
   );
 
-  const timeMessage = new Date().toLocaleTimeString([], {
-    hour: 'numeric',
-    minute: '2-digit',
-  });
+  // const timeMessage = new Date().toLocaleTimeString([], {
+  //   hour: 'numeric',
+  //   minute: '2-digit',
+  // });
 
   const isMobile = useBreakpointValue({ base: true, lg: false });
 
@@ -138,11 +138,11 @@ const ChatMemberList = () => {
         >
           <Flex justify="flex-start" overflowX="scroll">
             {Object.entries(chats)
-              ?.sort((a, b) => b[1].date - a[1].date)
+              ?.sort((a, b) => b[1].date?.seconds - a[1].date?.seconds)
               .map((chat) => (
                 <ChatMember
                   key={chat[0]}
-                  avatar={chat[1].userInfo.avatarUrl}
+                  avatar={chat[1].userInfo?.avatarUrl}
                   onClick={() => handleMemberClick(chat[1].userInfo)}
                 />
               ))}
@@ -158,6 +158,8 @@ const ChatMemberList = () => {
           pb={10}
           borderRight="1px solid"
           borderColor="border.tertiary"
+          height="calc(100vh - 103px)"
+          overflowY="scroll"
         >
           <Flex justify="space-between" align="center">
             <Text
@@ -180,7 +182,7 @@ const ChatMemberList = () => {
           </Flex>
           <Flex direction="column" gap={6} py={3.5}>
             {Object.entries(chats)
-              ?.sort((a, b) => b[1].date - a[1].date)
+              ?.sort((a, b) => b[1].date?.seconds - a[1].date?.seconds)
               .map((chat) => (
                 <ChatMember
                   key={chat[0]}
@@ -194,7 +196,7 @@ const ChatMemberList = () => {
                       alt={IMAGES.ATTACH.alt}
                     />
                   }
-                  localeTime={timeMessage}
+                  localeTime={convertTimeMessage(chat[1].date?.seconds)}
                   lastMessages={chat[1]?.lastMessage?.text}
                 />
               ))}

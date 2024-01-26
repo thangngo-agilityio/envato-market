@@ -42,6 +42,9 @@ export const loginExpired = (expiredTime: number): boolean =>
 export const convertTimeStampToTime = (value: string) =>
   dayjs(value).format('H:m:s');
 
+export const convertTimeMessage = (seconds: number) =>
+  dayjs.unix(seconds).format('HH:mm A');
+
 export const convertDateToTime = (value: string) => {
   const minutes = 60 * 1000;
   const hours = minutes * 60;
