@@ -1,8 +1,10 @@
+import dynamic from 'next/dynamic';
+
 import { useCallback, useId } from 'react';
 import { VStack, Flex, Text, useColorModeValue, theme } from '@chakra-ui/react';
 import 'react-quill/dist/quill.snow.css';
 import { Controller, useForm } from 'react-hook-form';
-import ReactQuill from 'react-quill';
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 // Components
 import { SendIconLight } from '..';
