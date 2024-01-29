@@ -6,6 +6,12 @@ import { ChakraProvider } from '@chakra-ui/react';
 // Themes
 import { configThemes } from './app/ui/themes';
 
+jest.mock('next/navigation', () => ({
+  useSearchParams: jest.fn(),
+  usePathname: jest.fn(),
+  useRouter: jest.fn(),
+}));
+
 const customRender = <
   Q extends jestFunc.Queries = typeof jestFunc.queries,
   Container extends Element | DocumentFragment = HTMLElement,
