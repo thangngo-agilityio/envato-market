@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Settings render Should render match with snapshot. 1`] = `
+<div>
+  <div
+    class="css-mcjfvc"
+  >
+    <div
+      class="css-1tst7i4"
+    >
+      <div
+        class="css-1ki54i"
+      >
+        <div
+          class="css-x74eo7"
+        >
+          <div
+            class="css-1eejh74"
+          />
+          <div
+            class="css-0"
+          >
+            <h4
+              class="chakra-heading css-9itg8i"
+            >
+              Personal Informations
+            </h4>
+            <p
+              class="chakra-text css-1rwrau8"
+            >
+              Fill in your personal information
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="css-1ki54i"
+      >
+        <div
+          class="css-1kzck66"
+        >
+          <div
+            class="css-1oje7ag"
+          />
+          <div
+            class="css-0"
+          >
+            <h4
+              class="chakra-heading css-9itg8i"
+            >
+              FAQ
+            </h4>
+            <p
+              class="chakra-text css-1rwrau8"
+            >
+              Frequently asked questions
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="css-1ki54i"
+      >
+        <div
+          class="css-1kzck66"
+        >
+          <div
+            class="css-1oje7ag"
+          />
+          <div
+            class="css-0"
+          >
+            <h4
+              class="chakra-heading css-9itg8i"
+            >
+              Security
+            </h4>
+            <p
+              class="chakra-text css-1rwrau8"
+            >
+              Change your password
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="css-1ki54i"
+      >
+        <div
+          class="css-1kzck66"
+        >
+          <div
+            class="css-1oje7ag"
+          />
+          <div
+            class="css-0"
+          >
+            <h4
+              class="chakra-heading css-9itg8i"
+            >
+              Term and Conditions
+            </h4>
+            <p
+              class="chakra-text css-1rwrau8"
+            >
+              Term and Conditions of use and privacy policy
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-1d84bax"
+    />
+  </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</div>
+`;
