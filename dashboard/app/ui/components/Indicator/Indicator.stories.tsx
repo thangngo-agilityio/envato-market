@@ -15,5 +15,6 @@ type Story = StoryObj<typeof Indicator>;
 export const Default: Story = {
   args: {
     isOpen: true,
+    children: <p>Loading</p>,
   },
 };
