@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Indicator components match snapshot with open true 1`] = `
+<div>
+  Test Indicator
+  <div
+    class="css-11qua47"
+  >
+    <div
+      class="chakra-spinner css-75d0f3"
+    >
+      <span
+        class="css-8b45rq"
+      >
+        Loading...
+      </span>
+    </div>
+  </div>
+</div>
+`;
