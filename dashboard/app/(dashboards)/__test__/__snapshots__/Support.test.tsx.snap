@@ -1,0 +1,194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SupportsPageMemorize render Should render match with snapshot. 1`] = `
+<div>
+  <div
+    class="css-ebwd27"
+  >
+    <div
+      class="css-0"
+    >
+      <form
+        class="chakra-stack css-nx6amm"
+        id="register-form"
+      >
+        <div
+          class="css-at8f8g"
+        >
+          <div
+            class="chakra-form-control css-1kxonj9"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-1rh809e"
+              for="field-:r0:"
+              id="field-:r0:-label"
+            >
+              First Name
+            </label>
+            <div
+              class="chakra-input__group css-1091msq"
+              data-group="true"
+            >
+              <input
+                class="chakra-input css-101zdhd"
+                id="field-:r0:"
+                name="firstName"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            class="chakra-form-control css-1kxonj9"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-1rh809e"
+              for="field-:r1:"
+              id="field-:r1:-label"
+            >
+              Last Name
+            </label>
+            <div
+              class="chakra-input__group css-1091msq"
+              data-group="true"
+            >
+              <input
+                class="chakra-input css-1kksfju"
+                id="field-:r1:"
+                name="lastName"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="css-6w5lc"
+        >
+          <div
+            class="chakra-form-control css-1kxonj9"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-1rh809e"
+              for="field-:r2:"
+              id="field-:r2:-label"
+            >
+              Email
+            </label>
+            <div
+              class="chakra-input__group css-1091msq"
+              data-group="true"
+            >
+              <input
+                class="chakra-input css-101zdhd"
+                id="field-:r2:"
+                name="email"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            class="chakra-form-control css-1kxonj9"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-1rh809e"
+              for="field-:r3:"
+              id="field-:r3:-label"
+            >
+              Phone Number (optional)
+            </label>
+            <div
+              class="chakra-input__group css-1091msq"
+              data-group="true"
+            >
+              <input
+                class="chakra-input css-1kksfju"
+                id="field-:r3:"
+                name="phoneNumber"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <p
+          class="chakra-text css-18nurfg"
+        >
+          Support issues
+        </p>
+        <div
+          class="chakra-form-control css-1kxonj9"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-1rh809e"
+            for="field-:r4:"
+            id="field-:r4:-label"
+          >
+            Title
+          </label>
+          <div
+            class="chakra-input__group css-1091msq"
+            data-group="true"
+          >
+            <input
+              class="chakra-input css-1kksfju"
+              id="field-:r4:"
+              name="title"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="css-ipp4t7"
+        >
+          <p
+            class="chakra-text css-16g65kx"
+          >
+            Description
+          </p>
+          <div
+            class="chakra-form-control css-1kxonj9"
+            role="group"
+          >
+            <div
+              class="css-1yae3jf"
+            />
+          </div>
+        </div>
+        <button
+          aria-label="btn submit-ticket"
+          class="chakra-button css-18sb6wm"
+          disabled=""
+          type="submit"
+        >
+          Submit Ticket
+        </button>
+      </form>
+    </div>
+    <div
+      class="css-n8vry8"
+    >
+      <p
+        class="chakra-text css-9y7ik"
+      >
+        Recent Support
+      </p>
+      <div
+        class="css-1t02a7v"
+      />
+    </div>
+  </div>
+  ;
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</div>
+`;
