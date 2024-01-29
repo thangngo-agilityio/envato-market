@@ -74,6 +74,7 @@ export const sendMessage = async (
   onSnapshot(doc(db, FIREBASE_CHAT.USER_CHATS, adminId), (doc) => {
     if (!doc.exists()) {
       createUserChat(
+        adminId,
         senderId,
         idRoomChat,
         data.text,
@@ -123,6 +124,7 @@ export const adminSendMessage = async (
 };
 
 const createUserChat = async (
+  adminId: string,
   senderId: string,
   idRoomChat: string,
   text: string,
@@ -130,9 +132,11 @@ const createUserChat = async (
   avatarAdminUrl: string,
   displayName: string,
 ) => {
-  setDoc(doc(db, FIREBASE_CHAT.USER_CHATS, senderId), {
+  setDoc(doc(db, FIREBASE_CHAT.USER_CHATS, adminId), {
     [idRoomChat]: {
-      lastMessage: text,
+      lastMessage: {
+        text: text,
+      },
       date: serverTimestamp(),
       userInfo: {
         uid: senderId,

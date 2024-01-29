@@ -22,8 +22,16 @@ export type TShowEmployee = Omit<
  */
 export const formatUserResponse = (users: TUserDetail[] = []) =>
   users.map((user) => {
-    const { _id, firstName, lastName, avatarURL, createdAt, email, isBlock } =
-      user;
+    const {
+      _id,
+      firstName,
+      lastName,
+      avatarURL,
+      createdAt,
+      email,
+      isBlock,
+      uid,
+    } = user;
 
     return {
       id: _id,
@@ -32,5 +40,6 @@ export const formatUserResponse = (users: TUserDetail[] = []) =>
       email,
       createdAt: dayjs(createdAt).format(TIME_FORMAT),
       isBlock,
+      uid,
     };
   });

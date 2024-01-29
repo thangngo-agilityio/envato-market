@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { Box, Heading, Flex } from '@chakra-ui/react';
 
 // Components
@@ -19,16 +19,9 @@ import { authStore } from '@/lib/stores';
 import { getCurrentUser } from '@/lib/hooks';
 
 // Firebase
-import {
-  doc,
-  getDoc,
-  onSnapshot,
-  serverTimestamp,
-  setDoc,
-  updateDoc,
-} from 'firebase/firestore';
+import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { db } from '@/lib/utils';
-import { FIREBASE_CHAT, USER_CHATS_FIELD } from '@/lib/constants';
+import { FIREBASE_CHAT } from '@/lib/constants';
 
 const initialUserChat = {
   roomChatId: '',
@@ -45,35 +38,6 @@ const BoxChatComponent = () => {
   const [userChat, setUserChat] = useState(initialUserChat);
   const boxRef = useRef<HTMLDivElement | null>(null);
 
-  const createChatRoom = useCallback(async () => {
-    // Get user data
-    const usersData = await getCurrentUser(user);
-
-    if (usersData) {
-      await setDoc(doc(db, FIREBASE_CHAT.CHATS, usersData.roomChatId), {
-        messages: [],
-      });
-
-      await updateDoc(doc(db, FIREBASE_CHAT.USER_CHATS, usersData.adminId), {
-        [usersData.roomChatId + USER_CHATS_FIELD.USER_INFO]: {
-          uid: usersData.adminId,
-          displayName: usersData.displayName,
-          photoURL: usersData.avatarUrl,
-        },
-        [usersData.roomChatId + USER_CHATS_FIELD.DATE]: serverTimestamp(),
-      });
-
-      await updateDoc(doc(db, FIREBASE_CHAT.USER_CHATS, usersData.userId), {
-        [usersData.roomChatId + USER_CHATS_FIELD.USER_INFO]: {
-          uid: usersData.userId,
-          displayName: usersData.displayName,
-          photoURL: usersData.avatarUrl,
-        },
-        [usersData.roomChatId + USER_CHATS_FIELD.DATE]: serverTimestamp(),
-      });
-    }
-  }, [user]);
-
   const fetchData = async () => {
     // Get user data
     const usersData = await getCurrentUser(user);
@@ -85,11 +49,7 @@ const BoxChatComponent = () => {
       );
 
       setUserChat(usersData);
-      if (res.exists()) {
-        setMessages(res.data().messages);
-      } else {
-        await createChatRoom();
-      }
+      res.exists() && setMessages(res.data().messages);
     }
   };
 

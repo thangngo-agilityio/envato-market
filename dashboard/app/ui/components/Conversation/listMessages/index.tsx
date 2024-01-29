@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
 
@@ -22,8 +24,10 @@ const ListMessages = ({ messages, adminUid, avatarUser }: Props) => {
   const boxRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    boxRef.current?.lastElementChild?.scrollIntoView();
-  }, [messages]);
+    if (boxRef.current) {
+      boxRef.current.scrollTop = boxRef.current.scrollHeight;
+    }
+  });
 
   return (
     <Box padding={{ base: '24px 20px', lg: '38px 35px' }}>
