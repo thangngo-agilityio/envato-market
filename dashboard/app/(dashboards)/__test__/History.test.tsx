@@ -4,16 +4,9 @@ import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import HistoryPage from '../histories/page';
 import { renderQueryProviderTest } from '@/lib/utils/testUtils';
 
-jest.mock('next/navigation', () => ({
-  useSearchParams: jest.fn(),
-  usePathname: jest.fn(),
-  useRouter: jest.fn(),
-}));
-
 describe('HistoryPage render', () => {
-  const mockGet = jest.fn();
   (useSearchParams as jest.Mock).mockReturnValue({
-    get: mockGet,
+    get: jest.fn(),
   });
 
   (usePathname as jest.Mock).mockReturnValue(() => '');

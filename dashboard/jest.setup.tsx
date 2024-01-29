@@ -6,14 +6,10 @@ import { ChakraProvider } from '@chakra-ui/react';
 // Themes
 import { configThemes } from './app/ui/themes';
 
-const routerPushMock = jest.fn();
-const useRouterMock = {
-  push: routerPushMock,
-};
-
 jest.mock('next/navigation', () => ({
-  ...jest.requireActual('next/navigation'),
-  useRouter: () => useRouterMock,
+  useSearchParams: jest.fn(),
+  usePathname: jest.fn(),
+  useRouter: jest.fn(),
 }));
 
 const customRender = <
