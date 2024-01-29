@@ -18,6 +18,11 @@ import { TUserDetail } from '@/lib/interfaces';
 import * as services from '@/lib/services';
 
 import { UsersHttpService } from '@/lib/services';
+import {
+  RESULT_LIST_USER,
+  RESULT_LIST_USER_EXPECT,
+  USER_DETAIL_MOCK,
+} from '@/lib/mocks';
 
 const queryClient = new QueryClient();
 
@@ -116,27 +121,7 @@ describe('useUpdateUser', () => {
       services,
       'getAllUserDetailsExceptWithId',
     );
-    getAllUserDetailsExceptWithIdSpy.mockResolvedValue([
-      {
-        _id: '1',
-        title: 'What is the issues',
-        avatarURL: 'https://cdn-icons-png.flaticon.com/512/5556/5556468.png',
-        password: '123456',
-        phoneNumber: '02342423',
-        country: 'LD',
-        city: 'DL',
-        address: '123 TMT',
-        postalCode: '1234',
-        firstName: 'Abdur',
-        lastName: 'Rohman',
-        email: 'test@gmail.com',
-        role: 'member',
-        description: 'description',
-        createdAt: 3123123,
-        isBlock: false,
-        uid: '1',
-      },
-    ]);
+    getAllUserDetailsExceptWithIdSpy.mockResolvedValue(USER_DETAIL_MOCK);
 
     const { result } = renderHook(
       () => useGetUserDetails('12345', { name: '' }),
@@ -147,47 +132,11 @@ describe('useUpdateUser', () => {
   });
 
   test('Should return data when call useFetchProductDetail success', async () => {
-    jest.spyOn(services, 'getSupports').mockResolvedValue({
-      data: {
-        result: [
-          {
-            _id: '123',
-            firstName: 'John',
-            lastName: 'Does',
-            email: 'test@gmail.com',
-            phone: '01212465433',
-            title: 'Test title',
-            description: 'Test description',
-            userId: '1',
-            avatar:
-              'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/af53d53d-561f-450a-a483-70a7ceee380f/dunk-low-shoes-t9dFBx.png',
-            createdAt: '11111111111',
-            updatedAt: '22222222222',
-          },
-        ],
-        totalPage: 12,
-      },
-      pageParams: 1,
-    });
+    jest.spyOn(services, 'getSupports').mockResolvedValue(RESULT_LIST_USER);
     const { result } = renderHook(() => useGetListIssues(), { wrapper });
 
     await waitFor(() => {
-      expect(result.current.data).toEqual([
-        {
-          _id: '123',
-          avatar:
-            'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/af53d53d-561f-450a-a483-70a7ceee380f/dunk-low-shoes-t9dFBx.png',
-          createdAt: '11111111111',
-          description: 'Test description',
-          email: 'test@gmail.com',
-          firstName: 'John',
-          lastName: 'Does',
-          phone: '01212465433',
-          title: 'Test title',
-          updatedAt: '22222222222',
-          userId: '1',
-        },
-      ]);
+      expect(result.current.data).toEqual(RESULT_LIST_USER_EXPECT);
       expect(result.current.isSuccess).toEqual(true);
     });
   });

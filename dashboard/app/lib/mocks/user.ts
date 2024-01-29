@@ -296,3 +296,65 @@ export const MOCK_USER_DETAIL_WITHOUT_IMAGE: TUserDetail = {
   createdAt: 3123123,
   isBlock: false,
 };
+
+export const USER_DETAIL_MOCK = [
+  {
+    _id: '1',
+    title: 'What is the issues',
+    avatarURL: 'https://cdn-icons-png.flaticon.com/512/5556/5556468.png',
+    password: '123456',
+    phoneNumber: '02342423',
+    country: 'LD',
+    city: 'DL',
+    address: '123 TMT',
+    postalCode: '1234',
+    firstName: 'Abdur',
+    lastName: 'Rohman',
+    email: 'test@gmail.com',
+    role: 'member',
+    description: 'description',
+    createdAt: 3123123,
+    isBlock: false,
+    uid: '1',
+  },
+];
+
+export const RESULT_LIST_USER = {
+  data: {
+    result: [
+      {
+        _id: '123',
+        firstName: 'John',
+        lastName: 'Does',
+        email: 'test@gmail.com',
+        phone: '01212465433',
+        title: 'Test title',
+        description: 'Test description',
+        userId: '1',
+        avatar:
+          'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/af53d53d-561f-450a-a483-70a7ceee380f/dunk-low-shoes-t9dFBx.png',
+        createdAt: '11111111111',
+        updatedAt: '22222222222',
+      },
+    ],
+    totalPage: 12,
+  },
+  pageParams: 1,
+};
+
+export const RESULT_LIST_USER_EXPECT = [
+  {
+    _id: '123',
+    avatar:
+      'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/af53d53d-561f-450a-a483-70a7ceee380f/dunk-low-shoes-t9dFBx.png',
+    createdAt: '11111111111',
+    description: 'Test description',
+    email: 'test@gmail.com',
+    firstName: 'John',
+    lastName: 'Does',
+    phone: '01212465433',
+    title: 'Test title',
+    updatedAt: '22222222222',
+    userId: '1',
+  },
+];
