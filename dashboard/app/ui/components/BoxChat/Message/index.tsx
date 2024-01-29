@@ -1,11 +1,15 @@
-import { Avatar, Box, Flex, Spacer, Text } from '@chakra-ui/react';
+import { Box, Flex, Spacer, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 // Constants
 import { IMAGES } from '@/lib/constants';
 
 // Hooks
 import { getUsers } from '@/lib/hooks';
+
+// Utils
+import { generatePlaceholder } from '@/lib/utils';
 
 interface MessageProps {
   content?: string;
@@ -43,13 +47,20 @@ const Message = ({
   return (
     <Flex width="100%" justifyContent={!isAdmin ? 'flex-end' : 'flex-start'}>
       {isAdmin && (
-        <Avatar
-          src={avatarAdmin}
-          borderColor="border.tertiary"
-          w={9}
-          h={9}
-          mr={2}
-        />
+        <Box pos="relative" w={9} h={9}>
+          <Image
+            src={avatarAdmin}
+            alt={avatarAdmin}
+            fill
+            sizes="100vw"
+            placeholder="blur"
+            blurDataURL={generatePlaceholder(36, 36)}
+            style={{
+              borderRadius: '50%',
+              marginRight: '8px',
+            }}
+          />
+        </Box>
       )}
 
       <Flex
@@ -82,14 +93,20 @@ const Message = ({
       </Flex>
 
       {!isAdmin && (
-        <Avatar
-          src={avatarUser}
-          borderColor="border.tertiary"
-          w={9}
-          h={9}
-          ml={2}
-          data-testid="avatar"
-        />
+        <Box pos="relative" w={9} h={9}>
+          <Image
+            src={avatarUser}
+            alt={avatarUser}
+            fill
+            sizes="100vw"
+            placeholder="blur"
+            blurDataURL={generatePlaceholder(36, 36)}
+            style={{
+              borderRadius: '50%',
+              marginLeft: '8px',
+            }}
+          />
+        </Box>
       )}
     </Flex>
   );
