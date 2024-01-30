@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TermAndConditionItem component should renders correctly 1`] = `
+<div>
+  <div
+    class="css-19idom"
+  >
+    <h4
+      class="chakra-text css-1gmhtzj"
+    >
+      heading
+    </h4>
+    <p
+      class="chakra-text css-1wtnvd2"
+    >
+      content
+    </p>
+    <p
+      class="chakra-text css-b0xv85"
+    />
+  </div>
+</div>
+`;
+
+exports[`TermAndConditionItem component should renders heading and content correctly: content 1`] = `
+<p
+  class="chakra-text css-1wtnvd2"
+>
+  content
+</p>
+`;
+
+exports[`TermAndConditionItem component should renders heading and content correctly: heading 1`] = `
+<h4
+  class="chakra-text css-1gmhtzj"
+>
+  heading
+</h4>
+`;
