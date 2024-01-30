@@ -1,5 +1,3 @@
-'use client';
-
 import dynamic from 'next/dynamic';
 import { memo } from 'react';
 import {
@@ -9,7 +7,7 @@ import {
 } from '@tanstack/react-query';
 
 // Constants
-import { AUTHENTICATION_ROLE, END_POINTS } from '@/lib/constants';
+import { END_POINTS } from '@/lib/constants';
 
 // Interface
 import {
@@ -24,9 +22,6 @@ import { Box, Grid, GridItem, Stack } from '@chakra-ui/react';
 // Utils
 import { prefetchStatistical } from '@/lib/utils';
 
-// Stores
-import { authStore } from '@/lib/stores';
-
 // Lazy load components
 const CardPayment = dynamic(() => import('@/ui/components/CardPayment'));
 const BoxChat = dynamic(() => import('@/ui/components/BoxChat'));
@@ -40,8 +35,6 @@ const TransactionTable = dynamic(
 );
 
 const DashboardPage = async () => {
-  const user = authStore((state) => state.user);
-  const hasPermission = user?.role === AUTHENTICATION_ROLE.MEMBER;
   const queryClient = new QueryClient();
   // Prefetch total statistics, revenue and efficiency data
 
@@ -111,7 +104,7 @@ const DashboardPage = async () => {
             mt={{ base: 6, md: 0, '3xl': 6 }}
             ml={{ lg: 6, '2xl': 0 }}
           >
-            {hasPermission && <BoxChat />}
+            <BoxChat />
           </Box>
         </Stack>
       </GridItem>
