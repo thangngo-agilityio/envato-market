@@ -1,7 +1,8 @@
 // Sections
 import Inbox from '../inbox/page';
 
-const { render } = testLibReactUtils;
+// Utils
+import { renderQueryProviderTest } from '@/lib/utils/testUtils';
 
 const mockMobileMediaQuery = () =>
   Object.defineProperty(window, 'matchMedia', {
@@ -44,7 +45,7 @@ describe('Inbox render', () => {
 
   test('Should render match with snapshot.', () => {
     mockMobileMediaQuery();
-    const { container } = render(<Inbox />);
+    const { container } = renderQueryProviderTest(<Inbox />);
 
     expect(container).toMatchSnapshot();
   });
