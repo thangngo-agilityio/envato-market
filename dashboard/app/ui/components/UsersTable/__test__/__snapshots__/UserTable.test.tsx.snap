@@ -73,7 +73,7 @@ exports[`UserTable component should renders correctly 1`] = `
           >
             <a
               class="chakra-button css-1d6hsfg"
-              href="/inbox"
+              href="inbox?id=undefined"
             >
               Message
             </a>
@@ -210,7 +210,7 @@ exports[`UserTable component should renders correctly 1`] = `
           >
             <a
               class="chakra-button css-1d6hsfg"
-              href="/inbox"
+              href="inbox?id=undefined"
             >
               Message
             </a>

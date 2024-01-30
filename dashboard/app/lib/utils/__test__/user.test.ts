@@ -19,6 +19,7 @@ describe('formatUserResponse', () => {
         email: 'test@gmail.com',
         createdAt: 'Jan 01, 1970',
         isBlock: false,
+        uid: '1',
       },
     ]);
   });
@@ -34,6 +35,7 @@ describe('formatUserResponse', () => {
         email: 'test@gmail.com',
         createdAt: 'Jan 01, 1970',
         isBlock: false,
+        uid: '2',
       },
     ]);
   });

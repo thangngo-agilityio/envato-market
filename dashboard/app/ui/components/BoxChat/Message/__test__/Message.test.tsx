@@ -51,7 +51,7 @@ describe('Message component', () => {
       />,
     );
 
-    const avatar = getByTestId('avatar');
+    const avatar = getByTestId('image-container');
     expect(avatar).toBeInTheDocument();
     expect(avatar).toHaveStyle('margin-left: 2px;');
   });

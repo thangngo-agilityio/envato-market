@@ -58,7 +58,7 @@ const ChatMemberList = () => {
   const [avatar, setAvatar] = useState<string>('');
 
   const currentUser = authStore((state) => state.user);
-  const uidUser = searchParams.get('id') as string;
+  const uidUser = searchParams?.get('id') as string;
   const { filterDataUser } = useGetUserDetails(currentUser?.id as string);
   const userChat = filterDataUser?.find((user) => user.uid === uidUser);
 
