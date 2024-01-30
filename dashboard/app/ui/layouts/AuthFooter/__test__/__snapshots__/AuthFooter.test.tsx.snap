@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Auth footer component render Should render match with snapshot. 1`] = `
+<div>
+  <div
+    class="css-1dfptg7"
+  >
+    <p
+      class="chakra-text css-1fx08f"
+    >
+      @ 
+      2024
+       Bankco. All Rights Reserved.
+    </p>
+  </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</div>
+`;
