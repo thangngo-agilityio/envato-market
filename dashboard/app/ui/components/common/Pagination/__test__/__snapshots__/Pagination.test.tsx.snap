@@ -122,8 +122,9 @@ exports[`Pagination render Should render match with snapshot. 1`] = `
     >
       <button
         aria-label="btn-prev"
-        class="chakra-button css-1681ub4"
+        class="chakra-button css-159lhy8"
         data-testid="prev-button"
+        disabled=""
         type="button"
       >
         <svg
@@ -145,11 +146,22 @@ exports[`Pagination render Should render match with snapshot. 1`] = `
       </button>
       <div
         class="css-70qvj9"
-      />
+      >
+        <button
+          aria-label="btn-pages"
+          class="chakra-button css-179yk2q"
+          data-testid="page-1-button"
+          disabled=""
+          type="button"
+        >
+          1
+        </button>
+      </div>
       <button
         aria-label="btn-next"
-        class="chakra-button css-1681ub4"
+        class="chakra-button css-159lhy8"
         data-testid="next-button"
+        disabled=""
         type="button"
       >
         <svg

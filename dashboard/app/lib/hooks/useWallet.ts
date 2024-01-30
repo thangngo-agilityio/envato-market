@@ -7,12 +7,13 @@ import { END_POINTS } from '@/lib/constants';
 import { getUserWallet } from '@/lib/services';
 
 export const useWallet = (id: string | undefined) => {
-  const { data: currentWalletMoney } = useQuery({
+  const { data: currentWalletMoney, ...query } = useQuery({
     queryKey: [END_POINTS.MY_WALLET, id],
     queryFn: () => getUserWallet(id),
   });
 
   return {
+    ...query,
     currentWalletMoney,
   };
 };

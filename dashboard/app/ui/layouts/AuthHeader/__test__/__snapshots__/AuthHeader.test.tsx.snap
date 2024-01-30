@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Auth Header component render Should render match with snapshot. 1`] = `
+<div>
+  <header
+    class="chakra-stack css-tl3ftk"
+  >
+    <h1
+      class="chakra-heading css-3ub5ab"
+    >
+      test
+    </h1>
+    <p
+      class="chakra-text css-1cl46s8"
+    >
+      Send, spend and save smarter
+    </p>
+  </header>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</div>
+`;

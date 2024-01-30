@@ -5,10 +5,23 @@ import userEvent from '@testing-library/user-event';
 import { Pagination } from '@/ui/components';
 
 const onPageChangeMock = jest.fn();
+const onLimitChangeMock = jest.fn();
+const onClickPageMock = jest.fn();
 
 describe('Pagination render', () => {
   test('Should render match with snapshot.', () => {
-    const { container } = render(<Pagination pageSize={10} />);
+    const { container } = render(
+      <Pagination
+        pageSize={10}
+        currentPage={1}
+        isDisableNext={true}
+        isDisabledPrev={true}
+        arrOfCurrButtons={[1]}
+        onPageChange={onLimitChangeMock}
+        onLimitChange={onLimitChangeMock}
+        onClickPage={onClickPageMock}
+      />,
+    );
     expect(container).toMatchSnapshot();
   });
 
@@ -50,13 +63,28 @@ describe('Pagination render', () => {
   });
 
   it('Handle change limit', async () => {
-    const onLimitChangeMock = jest.fn();
     const { getByText } = render(
       <Pagination
         pageSize={8}
         currentPage={2}
         onPageChange={onPageChangeMock}
         onLimitChange={onLimitChangeMock}
+      />,
+    );
+
+    const selectOption = getByText('50');
+    await userEvent.click(selectOption);
+    expect(onLimitChangeMock).toHaveBeenCalled();
+  });
+
+  it('Handle on click page', async () => {
+    const { getByText } = render(
+      <Pagination
+        pageSize={8}
+        currentPage={2}
+        onPageChange={onPageChangeMock}
+        onLimitChange={onLimitChangeMock}
+        onClickPage={onClickPageMock}
       />,
     );
 
