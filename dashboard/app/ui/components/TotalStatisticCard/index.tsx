@@ -22,6 +22,7 @@ interface TotalCardComponentProps {
   total: number;
   growth: number;
   weeklyIncome: number[];
+  isLoading?: boolean;
 }
 
 const TotalCardComponent = ({
@@ -29,6 +30,7 @@ const TotalCardComponent = ({
   total,
   growth,
   weeklyIncome,
+  isLoading = false,
 }: TotalCardComponentProps) => (
   <Box p={5} bg="background.component.primary" rounded="lg">
     <Flex alignItems="center" justifyContent="space-between" mb={5}>
@@ -44,79 +46,83 @@ const TotalCardComponent = ({
         </Text>
       </HStack>
     </Flex>
-    <Flex alignItems="center" justifyContent="space-between">
-      <Box>
-        <Text variant={{ base: 'textLg', md: 'text3Xl' }}>
-          ${formatDecimalNumber(total)}
-        </Text>
-        <HStack>
-          <Image
-            src={IMAGES.GROWTH.url}
-            alt={IMAGES.GROWTH.alt}
-            w={4}
-            h={3.5}
-          />
-          <Text
-            color="text.currencyColor"
-            variant={{ base: 'textSm', md: 'textMd' }}
-          >
-            + {growth}%{' '}
-            <Text
-              as="span"
-              variant={{ base: 'textXs', md: 'textSm' }}
-              color="text.textInfo"
-            >
-              from last week
-            </Text>
+    {isLoading ? (
+      <Skeleton bg="background.component.primary" h={108} />
+    ) : (
+      <Flex alignItems="center" justifyContent="space-between">
+        <Box>
+          <Text variant={{ base: 'textLg', md: 'text3Xl' }}>
+            ${formatDecimalNumber(total)}
           </Text>
-        </HStack>
-      </Box>
-      <Box maxW="150">
-        <Chart
-          options={{
-            colors: ['#22C55E'],
-            grid: {
-              show: false,
-            },
-            xaxis: {
-              labels: {
+          <HStack>
+            <Image
+              src={IMAGES.GROWTH.url}
+              alt={IMAGES.GROWTH.alt}
+              w={4}
+              h={3.5}
+            />
+            <Text
+              color="text.currencyColor"
+              variant={{ base: 'textSm', md: 'textMd' }}
+            >
+              + {growth}%{' '}
+              <Text
+                as="span"
+                variant={{ base: 'textXs', md: 'textSm' }}
+                color="text.textInfo"
+              >
+                from last week
+              </Text>
+            </Text>
+          </HStack>
+        </Box>
+        <Box maxW="150">
+          <Chart
+            options={{
+              colors: ['#22C55E'],
+              grid: {
                 show: false,
               },
-              axisTicks: {
-                show: false,
+              xaxis: {
+                labels: {
+                  show: false,
+                },
+                axisTicks: {
+                  show: false,
+                },
               },
-            },
-            yaxis: {
-              labels: {
-                show: false,
+              yaxis: {
+                labels: {
+                  show: false,
+                },
               },
-            },
-            tooltip: {
-              enabled: false,
-            },
-            chart: {
-              toolbar: {
-                show: false,
-              },
-              zoom: {
+              tooltip: {
                 enabled: false,
               },
-            },
-            dataLabels: {
-              enabled: false,
-            },
-          }}
-          series={[
-            {
-              data: weeklyIncome,
-            },
-          ]}
-          type="area"
-          width="100%"
-          height="auto"
-        />
-      </Box>
-    </Flex>
+              chart: {
+                toolbar: {
+                  show: false,
+                },
+                zoom: {
+                  enabled: false,
+                },
+              },
+              dataLabels: {
+                enabled: false,
+              },
+            }}
+            series={[
+              {
+                data: weeklyIncome,
+              },
+            ]}
+            type="area"
+            width="100%"
+            height="auto"
+          />
+        </Box>
+      </Flex>
+    )}
   </Box>
 );
 

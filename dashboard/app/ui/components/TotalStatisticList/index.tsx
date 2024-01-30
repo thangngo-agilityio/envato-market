@@ -4,11 +4,7 @@ import { memo } from 'react';
 
 // Components
 import { Grid, GridItem } from '@chakra-ui/react';
-import {
-  Fetching,
-  TotalStatisticCard,
-  TotalStatisticListSkeleton,
-} from '@/ui/components';
+import { Fetching, TotalStatisticCard } from '@/ui/components';
 
 // Types
 import { ISpendingStatistics } from '@/lib/interfaces';
@@ -29,8 +25,6 @@ const TotalStatisticListComponent = () => {
     isError,
   } = useGetStatistic<ISpendingStatistics[]>(END_POINTS.STATISTICS);
 
-  if (isLoading) return <TotalStatisticListSkeleton />;
-
   return (
     <Fetching isError={isError} errorMessage="Total statistic data error">
       <Grid
@@ -45,6 +39,7 @@ const TotalStatisticListComponent = () => {
                 total={total}
                 growth={growth}
                 weeklyIncome={weeklyIncome}
+                isLoading={isLoading}
               />
             </GridItem>
           ),
