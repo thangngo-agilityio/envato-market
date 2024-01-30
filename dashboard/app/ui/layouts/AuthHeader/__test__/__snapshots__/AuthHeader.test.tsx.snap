@@ -90,3 +90,22 @@ exports[`Auth Header component render Should render match with snapshot. 1`] = `
   "unmount": [Function],
 }
 `;
+
+exports[`AuthHeader component render Should render match with snapshot. 1`] = `
+<div>
+  <header
+    class="chakra-stack css-tl3ftk"
+  >
+    <h1
+      class="chakra-heading css-1k0wpds"
+    >
+      Something
+    </h1>
+    <p
+      class="chakra-text css-1xbgeyr"
+    >
+      Send, spend and save smarter
+    </p>
+  </header>
+</div>
+`;

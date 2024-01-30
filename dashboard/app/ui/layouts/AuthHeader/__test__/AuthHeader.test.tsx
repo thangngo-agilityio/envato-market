@@ -8,15 +8,15 @@ const mockProps = {
   title: 'Something',
 };
 
-describe('Auth Header component render', () => {
+describe('AuthHeader component render', () => {
   it('Should render match with snapshot.', () => {
     const renderComponent = () => render(<AuthHeader {...mockProps} />);
-    const container = renderComponent();
+    const { container } = renderComponent();
 
     expect(container).toMatchSnapshot();
   });
 
-  it('Should render correctly with different pathName', () => {
+  it('renders additional text when pathName is not /forgot-password', () => {
     const { getByText } = render(
       <AuthHeader {...mockProps} pathName="/some/path" />,
     );
