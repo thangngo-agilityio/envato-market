@@ -15,17 +15,17 @@ jest.mock('next/navigation', () => ({
 jest.mock('firebase/firestore', () => ({
   getFirestore: jest.fn(),
 }));
-
 jest.mock('firebase/auth', () => ({
   getAuth: jest.fn(),
 }));
-
 jest.mock('firebase/app', () => ({
   initializeApp: jest.fn(),
 }));
-
 jest.mock('firebase/storage', () => ({
   getStorage: jest.fn(),
+}));
+jest.mock('firebase/messaging', () => ({
+  getMessaging: jest.fn(),
 }));
 
 const customRender = <

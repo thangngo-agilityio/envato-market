@@ -32,7 +32,7 @@ describe('useWallet', () => {
 
   it('should fetch wallet and apply sorting and filtering', async () => {
     const getUserWalletSpy = jest.spyOn(services, 'getUserWallet');
-    getUserWalletSpy.mockResolvedValue(WALLET_MOCK);
+    getUserWalletSpy.mockResolvedValue(WALLET_MOCK[0]);
 
     const { result } = renderHook(() => useWallet('6593beacff649fc6c4d2964b'), {
       wrapper,

@@ -1,5 +1,3 @@
-'use client';
-
 import { ReactNode, memo } from 'react';
 
 // Sections
