@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useCallback, RefObject, useId } from 'react';
 import { VStack, Flex, FormControl, Text } from '@chakra-ui/react';
 import { Controller, useForm } from 'react-hook-form';

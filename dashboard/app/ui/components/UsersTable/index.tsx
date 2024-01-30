@@ -61,7 +61,6 @@ const UsersComponent = ({
   onClickUser = () => {},
 }: TUsersProps): JSX.Element => {
   const renderHead = useCallback((): JSX.Element => <></>, []);
-
   const columns = [
     {
       key: 'info',
@@ -104,7 +103,7 @@ const UsersComponent = ({
     },
     {
       renderHead,
-      renderBody: () => (
+      renderBody: ({ uid }: TDataSource) => (
         <Td
           py={5}
           pr={{ base: 5, xl: 10 }}
@@ -115,7 +114,12 @@ const UsersComponent = ({
           textAlign="left"
           w={20}
         >
-          <Button as={Link} href={`/${ROUTES.INBOX}`} w={250} bg="primary.300">
+          <Button
+            as={Link}
+            href={`${ROUTES.INBOX}?id=${uid}`}
+            w={250}
+            bg="primary.300"
+          >
             Message
           </Button>
         </Td>
