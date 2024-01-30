@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FallbackImage component Should render correctly 1`] = `
+<div>
+  <img
+    alt="Test Image"
+    class="chakra-image css-0"
+  />
+</div>
+`;
