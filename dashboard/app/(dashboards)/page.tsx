@@ -41,6 +41,7 @@ const TransactionTable = dynamic(
 
 const DashboardPage = async () => {
   const user = authStore((state) => state.user);
+  const hasPermission = user?.role === AUTHENTICATION_ROLE.MEMBER;
   const queryClient = new QueryClient();
   // Prefetch total statistics, revenue and efficiency data
 
@@ -110,7 +111,7 @@ const DashboardPage = async () => {
             mt={{ base: 6, md: 0, '3xl': 6 }}
             ml={{ lg: 6, '2xl': 0 }}
           >
-            {user?.role === AUTHENTICATION_ROLE.MEMBER && <BoxChat />}
+            {hasPermission && <BoxChat />}
           </Box>
         </Stack>
       </GridItem>
