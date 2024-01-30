@@ -1,5 +1,7 @@
-import { Spinner } from '@chakra-ui/react';
+'use client';
 
-const Loading = () => <Spinner variant="center" />;
+import { Indicator } from '@/ui/components';
+
+const Loading = () => <Indicator isOpen={true} />;
 
 export default Loading;
