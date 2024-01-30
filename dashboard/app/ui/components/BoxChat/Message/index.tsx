@@ -29,8 +29,6 @@ const Message = ({
     minute: '2-digit',
   }),
 }: MessageProps) => {
-  // TODO: instead of USER_ID use real id
-  // const userId = authStore((state) => state.user?.id);
   const [adminId, setAdminId] = useState<string>('');
 
   useEffect(() => {
