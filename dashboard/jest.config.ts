@@ -44,6 +44,8 @@ const config = {
     '!<rootDir>/app/ui/themes/**',
     '!<rootDir>/app/**/loading.tsx',
     '!<rootDir>/app/lib/mocks/**',
+    '!<rootDir>/app/layout.tsx',
+    '!<rootDir>/app/metadata.tsx',
     '!**/*.config.ts',
   ],
   testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
