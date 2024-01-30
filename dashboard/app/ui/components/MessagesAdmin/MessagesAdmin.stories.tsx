@@ -3,9 +3,6 @@ import { StoryObj, Meta } from '@storybook/react';
 // Components
 import MessageAdmin from './index';
 
-// Constants
-import { IMAGES } from '@/lib/constants';
-
 const meta: Meta<typeof MessageAdmin> = {
   title: 'Custom Components/MessageAdmin',
   component: MessageAdmin,
@@ -15,15 +12,19 @@ const meta: Meta<typeof MessageAdmin> = {
       description: 'This is content message of supper admin or member',
     },
     avatarUser: {
-      src: IMAGES.CHAT_USER_AVATAR.url,
+      // src: IMAGES.CHAT_USER_AVATAR.url,
+      description: 'This is image of user avatar',
     },
     avatarAdmin: {
-      src: IMAGES.CHAT_USER_AVATAR.url,
+      // src: IMAGES.CHAT_USER_AVATAR.url,
+      description: 'This is image of user avatar admin',
     },
     localeTime: {
       description: 'This is locale time message',
     },
-    isSuperAdmin: {
+  },
+  parameters: {
+    controls: {
       expanded: true,
     },
   },
@@ -35,10 +36,6 @@ type Story = StoryObj<typeof MessageAdmin>;
 export const Default: Story = {
   args: {
     content: 'This is content message of supper admin or member',
-    isSuperAdmin: false,
-    avatarUser: IMAGES.CHAT_USER_AVATAR.url,
-    avatarAdmin: IMAGES.CHAT_USER_AVATAR.url,
-    localeTime: 'This is locale time message',
   },
 };
 
