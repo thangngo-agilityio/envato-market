@@ -7,3 +7,4 @@ export * from './statistic';
 export * from './chat';
 export * from './issues';
 export * from './wallet';
+export * from './supports';
