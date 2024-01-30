@@ -13,6 +13,12 @@ const meta: Meta<typeof MessageAdmin> = {
 export default meta;
 type Story = StoryObj<typeof MessageAdmin>;
 
+export const Default: Story = {
+  args: {
+    content: 'This is a message with custom avatars',
+  },
+};
+
 export const MessageAdminCard: Story = {
   args: {
     content: 'This is a message with custom avatars',
