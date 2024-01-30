@@ -43,6 +43,7 @@ const config = {
     '!**/.next/**',
     '!<rootDir>/app/ui/themes/**',
     '!<rootDir>/app/**/loading.tsx',
+    '!<rootDir>/app/lib/mocks/**',
     '!**/*.config.ts',
   ],
   testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
