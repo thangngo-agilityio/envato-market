@@ -2,7 +2,7 @@
 import { render } from '@testing-library/react';
 
 // Pages
-import FaqPage from '..';
+import FaqPage from '../Faq';
 
 describe('FaqPage', () => {
   it('renders FaqPage component correctly', () => {
