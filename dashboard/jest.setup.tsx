@@ -57,9 +57,21 @@ const customRender = <
     },
   });
 
+/**
+ * Add test handler into global
+ */
 globalThis.testLibReactUtils = {
   ...jestFunc,
   render: customRender,
 };
+
+/**
+ * The same above, but it limit handler(render, waitFor, renderHook, act, fireEvent)
+ * If you need use more handler of Testing, you can use testLibReactUtils above
+ */
+Object.assign(global, {
+  ...jestFunc,
+  render: customRender,
+});
 
 export const testing = { ...jestFunc, render: customRender };

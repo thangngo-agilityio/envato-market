@@ -98,6 +98,7 @@ const UsersComponent = ({
             isBlock ? STATUS_LABEL[Status.LOCK] : STATUS_LABEL[Status.UNLOCK]
           }
           text={isBlock ? Status.LOCK : Status.UNLOCK}
+          data-testid="status"
         />
       ),
     },

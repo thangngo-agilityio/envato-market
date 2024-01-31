@@ -81,6 +81,7 @@ const InputComponent = (
               borderColor: 'transparent',
               outline: 'none',
             }}
+            data-testid="right-icon-input"
           >
             {rightIcon}
           </InputRightElement>

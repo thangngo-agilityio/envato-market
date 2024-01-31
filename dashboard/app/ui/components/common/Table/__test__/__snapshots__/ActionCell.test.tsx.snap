@@ -22,6 +22,7 @@ exports[`CustomerNameCell Match to snapshot 1`] = `
           <button
             aria-label="This is the icon action"
             class="chakra-button css-1x5hsk6"
+            data-testid="dot-icon"
             type="button"
           >
             <svg

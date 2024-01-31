@@ -56,7 +56,7 @@ const Table = ({
 
       <Tbody>
         {!dataSource.length ? (
-          <Tr>
+          <Tr data-testid="table-row">
             <Td
               colSpan={columns?.length}
               py={6}
@@ -81,6 +81,7 @@ const Table = ({
                   cursor: 'pointer',
                 })}
                 onClick={handleClick}
+                data-testid="table-row"
               >
                 {!!columns.length &&
                   columns.map((column) =>
