@@ -1,0 +1,246 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatAreaMemoried render Should render match with snapshot. 1`] = `
+<div>
+  <form
+    class="chakra-stack css-tl3ftk"
+  >
+    <div
+      class="css-1nlrkd1"
+    >
+      <div
+        class="chakra-form-control css-1kxonj9"
+        role="group"
+      >
+        <div
+          class="css-1yae3jf"
+        >
+          <div
+            class="quill "
+            style="width: 100%; background-color: rgb(255, 255, 255);"
+          >
+            <div
+              class="ql-toolbar ql-snow"
+            >
+              <span
+                class="ql-formats"
+              >
+                <button
+                  class="ql-bold"
+                  type="button"
+                >
+                  <svg
+                    viewBox="0 0 18 18"
+                  >
+                     
+                    <path
+                      class="ql-stroke"
+                      d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z"
+                    />
+                     
+                    <path
+                      class="ql-stroke"
+                      d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z"
+                    />
+                     
+                  </svg>
+                </button>
+                <button
+                  class="ql-italic"
+                  type="button"
+                >
+                  <svg
+                    viewBox="0 0 18 18"
+                  >
+                     
+                    <line
+                      class="ql-stroke"
+                      x1="7"
+                      x2="13"
+                      y1="4"
+                      y2="4"
+                    />
+                     
+                    <line
+                      class="ql-stroke"
+                      x1="5"
+                      x2="11"
+                      y1="14"
+                      y2="14"
+                    />
+                     
+                    <line
+                      class="ql-stroke"
+                      x1="8"
+                      x2="10"
+                      y1="14"
+                      y2="4"
+                    />
+                     
+                  </svg>
+                </button>
+                <button
+                  class="ql-underline"
+                  type="button"
+                >
+                  <svg
+                    viewBox="0 0 18 18"
+                  >
+                     
+                    <path
+                      class="ql-stroke"
+                      d="M5,3V9a4.012,4.012,0,0,0,4,4H9a4.012,4.012,0,0,0,4-4V3"
+                    />
+                     
+                    <rect
+                      class="ql-fill"
+                      height="1"
+                      rx="0.5"
+                      ry="0.5"
+                      width="12"
+                      x="3"
+                      y="15"
+                    />
+                     
+                  </svg>
+                </button>
+              </span>
+              <span
+                class="ql-formats"
+              >
+                <button
+                  class="ql-image"
+                  type="button"
+                >
+                  <svg
+                    viewBox="0 0 18 18"
+                  >
+                     
+                    <rect
+                      class="ql-stroke"
+                      height="10"
+                      width="12"
+                      x="3"
+                      y="4"
+                    />
+                     
+                    <circle
+                      class="ql-fill"
+                      cx="6"
+                      cy="7"
+                      r="1"
+                    />
+                     
+                    <polyline
+                      class="ql-even ql-fill"
+                      points="5 12 5 11 7 9 8 10 11 7 13 9 13 12 5 12"
+                    />
+                     
+                  </svg>
+                </button>
+                <button
+                  class="ql-code-block"
+                  type="button"
+                >
+                  <svg
+                    viewBox="0 0 18 18"
+                  >
+                     
+                    <polyline
+                      class="ql-even ql-stroke"
+                      points="5 7 3 9 5 11"
+                    />
+                     
+                    <polyline
+                      class="ql-even ql-stroke"
+                      points="13 7 15 9 13 11"
+                    />
+                     
+                    <line
+                      class="ql-stroke"
+                      x1="10"
+                      x2="8"
+                      y1="5"
+                      y2="13"
+                    />
+                     
+                  </svg>
+                </button>
+              </span>
+            </div>
+            <div
+              class="ql-container ql-snow"
+            >
+              <div
+                class="ql-editor ql-blank"
+                contenteditable="true"
+                data-gramm="false"
+              >
+                <p>
+                  <br />
+                </p>
+              </div>
+              <div
+                class="ql-clipboard"
+                contenteditable="true"
+                tabindex="-1"
+              />
+              <div
+                class="ql-tooltip ql-hidden"
+              >
+                <a
+                  class="ql-preview"
+                  href="about:blank"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                />
+                <input
+                  data-formula="e=mc^2"
+                  data-link="https://quilljs.com"
+                  data-video="Embed URL"
+                  type="text"
+                />
+                <a
+                  class="ql-action"
+                />
+                <a
+                  class="ql-remove"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p
+        class="chakra-text css-rj1t1b"
+      />
+      <button
+        class="chakra-button css-rhj63p"
+        type="submit"
+      >
+        <span
+          class="chakra-button__icon css-1wh2kri"
+        >
+          <svg
+            fill="none"
+            height="20"
+            viewBox="0 0 20 20"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15.0586 7.09154L7.92522 3.52487C3.13355 1.12487 1.16689 3.09153 3.56689 7.8832L4.29189 9.3332C4.50022 9.7582 4.50022 10.2499 4.29189 10.6749L3.56689 12.1165C1.16689 16.9082 3.12522 18.8749 7.92522 16.4749L15.0586 12.9082C18.2586 11.3082 18.2586 8.69153 15.0586 7.09154ZM12.3669 10.6249H7.86689C7.52522 10.6249 7.24189 10.3415 7.24189 9.99987C7.24189 9.6582 7.52522 9.37487 7.86689 9.37487H12.3669C12.7086 9.37487 12.9919 9.6582 12.9919 9.99987C12.9919 10.3415 12.7086 10.6249 12.3669 10.6249Z"
+              fill="white"
+            />
+          </svg>
+        </span>
+        Send
+      </button>
+    </div>
+  </form>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</div>
+`;
