@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 
 // Components
 import { CustomerIssues } from '@/ui/components';
+import { CUSTOMER_ISSUE_MOCK } from '@/lib/mocks';
 
 const fetchNextPage = jest.fn();
 jest.mock('@/lib/hooks', () => ({
@@ -27,5 +28,12 @@ describe('CustomerIssues render', () => {
     await userEvent.click(showMoreButton);
 
     await waitFor(() => expect(fetchNextPage).toHaveBeenCalled());
+  });
+
+  it('displays "Recent Support" text', () => {
+    const { getByText } = render(
+      <CustomerIssues dataList={CUSTOMER_ISSUE_MOCK} onLoadMore={jest.fn()} />,
+    );
+    expect(getByText('Recent Support')).toBeInTheDocument();
   });
 });
