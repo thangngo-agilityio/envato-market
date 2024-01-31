@@ -7,6 +7,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { configThemes } from './app/ui/themes';
 
 jest.mock('next/navigation', () => ({
+  ...jest.requireActual('next/navigation'),
   useSearchParams: jest.fn(),
   usePathname: jest.fn(),
   useRouter: jest.fn(),
