@@ -1,9 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders Benefit with content 1`] = `
+exports[`Avatar render renders Benefit with pathName is Login 1`] = `
 <div>
   <div
-    class="css-1ys2le4"
+    class="css-z86n61"
+  >
+    <img
+      alt="This is sign in image"
+      class="chakra-image css-1egtfbj"
+      src="/icons/signin.svg"
+    />
+    <img
+      alt="This is square image"
+      class="chakra-image css-ijamrk"
+      src="/icons/square.svg"
+    />
+    <img
+      alt="This is vline image"
+      class="chakra-image css-1d05nk"
+      src="/icons/vline.svg"
+    />
+    <img
+      alt="This is dotted image"
+      class="chakra-image css-sdxca"
+      src="/icons/dotted.svg"
+    />
+    <div
+      class="css-18anm8l"
+    >
+      <h2
+        class="chakra-heading css-1qw8f9f"
+      >
+        Speady, Easy and Fast
+      </h2>
+      <p
+        class="chakra-text css-1omtyor"
+      >
+        BankCo. help you set saving goals, earn cash back offers, Go to disclaimer for more details and get paychecks up to two days early. Get a
+        <span
+          class="chakra-text css-xety8z"
+        >
+          $20
+        </span>
+        bonus when you receive qualifying direct deposits
+      </p>
+    </div>
+  </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</div>
+`;
+
+exports[`Avatar render renders Benefit with pathName is SignUp 1`] = `
+<div>
+  <div
+    class="css-z86n61"
   >
     <img
       alt="This is sign up image"
@@ -12,33 +65,33 @@ exports[`renders Benefit with content 1`] = `
     />
     <img
       alt="This is square image"
-      class="chakra-image css-nuaex1"
+      class="chakra-image css-ijamrk"
       src="/icons/square.svg"
     />
     <img
       alt="This is vline image"
-      class="chakra-image css-bvz8js"
+      class="chakra-image css-1d05nk"
       src="/icons/vline.svg"
     />
     <img
       alt="This is dotted image"
-      class="chakra-image css-12wsc5z"
+      class="chakra-image css-sdxca"
       src="/icons/dotted.svg"
     />
     <div
-      class="css-1wwt0r"
+      class="css-18anm8l"
     >
       <h2
-        class="chakra-heading css-tmruzz"
+        class="chakra-heading css-1qw8f9f"
       >
         Speady, Easy and Fast
       </h2>
       <p
-        class="chakra-text css-rm4le2"
+        class="chakra-text css-1omtyor"
       >
         BankCo. help you set saving goals, earn cash back offers, Go to disclaimer for more details and get paychecks up to two days early. Get a
         <span
-          class="chakra-text css-1xrfaz3"
+          class="chakra-text css-xety8z"
         >
           $20
         </span>
@@ -46,5 +99,9 @@ exports[`renders Benefit with content 1`] = `
       </p>
     </div>
   </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
 </div>
 `;

@@ -1,16 +1,23 @@
-import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 // component
 import { Benefit } from '@/ui/components';
-import { IMAGES } from '@/lib/constants/images';
 
-test('renders Benefit with content', () => {
-  const { container } = render(
-    <Benefit
-      image={{ url: IMAGES.SIGN_IN.url, width: 699, height: 596 }}
-      alt={IMAGES.SIGN_IN.alt}
-    />,
-  );
-  expect(container).toMatchSnapshot();
+// Constants
+import { ROUTES } from '@/lib/constants';
+
+const { render } = testLibReactUtils;
+
+describe('Avatar render', () => {
+  test('renders Benefit with pathName is Login', () => {
+    const { container } = render(<Benefit pathName={`/${ROUTES.LOGIN}`} />);
+
+    expect(container).toMatchSnapshot();
+  });
+
+  test('renders Benefit with pathName is SignUp', () => {
+    const { container } = render(<Benefit pathName={`/${ROUTES.REGISTER}`} />);
+
+    expect(container).toMatchSnapshot();
+  });
 });

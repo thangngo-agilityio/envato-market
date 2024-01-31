@@ -5,25 +5,94 @@ import '@testing-library/jest-dom';
 import UserTable from '@/ui/components/UsersTable';
 
 // Mocks
-import { USERS_MOCK } from '@/lib/mocks';
+import { MOCK_USER_DETAIL, MOCK_USER_WITH_BLOCK } from '@/lib/mocks';
 
 describe('UserTable component', () => {
   it('should renders correctly', () => {
-    const { container } = render(<UserTable users={USERS_MOCK} />);
+    const { container } = render(
+      <UserTable
+        users={[MOCK_USER_DETAIL]}
+        arrOfCurrButtons={[]}
+        isDisabledPrev={true}
+        isDisableNext={true}
+        isLoadingUser={false}
+        isUserError={false}
+        onChangeLimit={jest.fn()}
+        onPageChange={jest.fn()}
+        onPageClick={jest.fn()}
+        onClickUser={jest.fn()}
+        onLockUser={jest.fn()}
+        onUnlockUser={jest.fn()}
+      />,
+    );
 
     expect(container).toMatchSnapshot();
   });
 
   it('should renders component', () => {
-    render(<UserTable users={USERS_MOCK} />);
+    render(
+      <UserTable
+        users={[MOCK_USER_DETAIL]}
+        arrOfCurrButtons={[]}
+        isDisabledPrev={true}
+        isDisableNext={true}
+        isLoadingUser={false}
+        isUserError={false}
+        onChangeLimit={jest.fn()}
+        onPageChange={jest.fn()}
+        onPageClick={jest.fn()}
+        onClickUser={jest.fn()}
+        onLockUser={jest.fn()}
+        onUnlockUser={jest.fn()}
+      />,
+    );
 
     expect(screen.getByText('Abdur Rohman')).toBeInTheDocument();
   });
 
-  it('should renders children when onclickUser', () => {
-    const onClickUser = jest.fn();
-    render(<UserTable users={USERS_MOCK} onClickUser={onClickUser('1')} />);
+  it('renders StatusCell correctly based on isBlock = true', () => {
+    const { getByText } = render(
+      <UserTable
+        users={[MOCK_USER_WITH_BLOCK[0]]}
+        arrOfCurrButtons={[]}
+        isDisabledPrev={true}
+        isDisableNext={true}
+        isLoadingUser={false}
+        isUserError={false}
+        onChangeLimit={jest.fn()}
+        onPageChange={jest.fn()}
+        onPageClick={jest.fn()}
+        onClickUser={jest.fn()}
+        onLockUser={jest.fn()}
+        onUnlockUser={jest.fn()}
+      />,
+    );
 
-    expect(onClickUser).toHaveBeenCalled();
+    const unlockedUserStatusCell = getByText('Lock');
+
+    expect(unlockedUserStatusCell).toHaveTextContent('Lock');
+  });
+
+  it('renders StatusCell correctly based on isBlock = false', () => {
+    const { getByText } = render(
+      <UserTable
+        users={[MOCK_USER_WITH_BLOCK[1]]}
+        arrOfCurrButtons={[]}
+        isDisabledPrev={true}
+        isDisableNext={true}
+        isLoadingUser={false}
+        isUserError={false}
+        onChangeLimit={jest.fn()}
+        onPageChange={jest.fn()}
+        onPageClick={jest.fn()}
+        onClickUser={jest.fn()}
+        onLockUser={jest.fn()}
+        onUnlockUser={jest.fn()}
+      />,
+    );
+
+    const unlockedUserStatusCell = getByText('Unlock');
+
+    expect(unlockedUserStatusCell).toHaveTextContent('Unlock');
   });
 });
