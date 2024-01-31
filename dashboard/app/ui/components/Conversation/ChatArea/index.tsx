@@ -79,7 +79,6 @@ const ChatArea = ({ onSendMessage }: TChatAreaProps): JSX.Element => {
               <Flex direction="row" alignItems="center" justify="flex-start">
                 <ReactQuill
                   {...rest}
-                  data-testid="input-send-message"
                   onKeyDown={handleOnKeyDown}
                   onChange={onChange}
                   modules={{
@@ -105,6 +104,7 @@ const ChatArea = ({ onSendMessage }: TChatAreaProps): JSX.Element => {
 
         <CustomButton
           w="unset"
+          data-testid="submit-send-message"
           px={4}
           py={2.5}
           leftIcon={<SendIconLight />}

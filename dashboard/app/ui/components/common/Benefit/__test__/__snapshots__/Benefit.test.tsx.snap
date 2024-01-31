@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Avatar render renders Benefit with pathName is Login 1`] = `
+exports[`Benefit render renders Benefit with pathName is Login 1`] = `
 <div>
   <div
     class="css-z86n61"
@@ -53,7 +53,7 @@ exports[`Avatar render renders Benefit with pathName is Login 1`] = `
 </div>
 `;
 
-exports[`Avatar render renders Benefit with pathName is SignUp 1`] = `
+exports[`Benefit render renders Benefit with pathName is SignUp 1`] = `
 <div>
   <div
     class="css-z86n61"
