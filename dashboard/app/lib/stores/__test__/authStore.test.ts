@@ -1,5 +1,4 @@
 /* eslint-disable quotes */
-import { act, renderHook } from '@testing-library/react';
 import { StorageValue } from 'zustand/middleware';
 
 // Stores
@@ -15,7 +14,9 @@ import { getValueFromLocalStore } from '@/lib/utils';
 import { MOCK_USER_DATA } from '@/lib/mocks';
 
 const setup = () =>
-  renderHook<TAuthStoreData & TAuthStoreAction, unknown>(authStore);
+  testLibReactUtils.renderHook<TAuthStoreData & TAuthStoreAction, unknown>(
+    authStore,
+  );
 
 describe('Authentication store', () => {
   it("Hasn't user", () => {
@@ -29,7 +30,7 @@ describe('Authentication store', () => {
       result: { current },
     } = setup();
 
-    await act(() => {
+    await testLibReactUtils.act(async () => {
       current.updateStore(MOCK_USER_DATA as unknown as TAuthStoreData);
     });
 
@@ -47,7 +48,7 @@ describe('Authentication store', () => {
       result: { current },
     } = setup();
 
-    await act(() => {
+    await testLibReactUtils.act(async () => {
       current.updateStore(MOCK_USER_DATA as unknown as TAuthStoreData);
     });
     expect(current.user).not.toBe(null);
@@ -68,7 +69,7 @@ describe('Authentication store', () => {
         lastName: 'Pham 2',
       },
     } as unknown as TAuthStoreData;
-    await act(() => {
+    await testLibReactUtils.act(async () => {
       current.updateStore(updateUser);
     });
     const {
@@ -86,20 +87,20 @@ describe('Authentication store', () => {
       result: { current },
     } = setup();
 
-    await act(() => {
+    await testLibReactUtils.act(async () => {
       current.updateStore(MOCK_USER_DATA as unknown as TAuthStoreData);
     });
     expect(current.user).not.toBe(null);
 
     const {
-      state: { user: user },
+      state: { user },
     }: StorageValue<TAuthStoreData> = JSON.parse(
       getValueFromLocalStore(STORE_KEY.AUTH),
     );
 
     expect(user).toEqual(MOCK_USER_DATA.user);
 
-    await act(() => {
+    await testLibReactUtils.act(async () => {
       current.clearStore();
     });
 
