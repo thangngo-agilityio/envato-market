@@ -48,6 +48,7 @@ const config = {
     '!<rootDir>/app/metadata.tsx',
     '!<rootDir>/app/global-error.tsx',
     '!<rootDir>/app/not-found.tsx',
+    '!<rootDir>/app/lib/utils/firebase.ts',
     '!**/*.config.ts',
   ],
   testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
