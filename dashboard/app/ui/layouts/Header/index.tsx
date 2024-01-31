@@ -84,7 +84,7 @@ const HeaderComponent = () => {
         </Text>
       </Box>
       <Flex
-        gap={43}
+        gap={{ md: 5, '3xl': '43px' }}
         mt={{ base: 3, default: 0 }}
         alignSelf={{
           base: 'end',
