@@ -27,6 +27,7 @@ export const formatTransactionResponse = (transactions: TTransaction[] = []) =>
         email,
         role,
       },
+      type,
       amount,
       currency,
       createdAt,
@@ -53,5 +54,6 @@ export const formatTransactionResponse = (transactions: TTransaction[] = []) =>
       transactionStatus: formatUppercaseFirstLetter(transactionStatus),
       image: avatar || IMAGES.BIG_AVATAR.url,
       amount: `${currency}${formatDecimalNumber(+amount)}`,
+      type,
     };
   });
