@@ -8,7 +8,7 @@ import { ROUTES } from '@/lib/constants';
 
 const { render } = testLibReactUtils;
 
-describe('Avatar render', () => {
+describe('Benefit render', () => {
   test('renders Benefit with pathName is Login', () => {
     const { container } = render(<Benefit pathName={`/${ROUTES.LOGIN}`} />);
 
