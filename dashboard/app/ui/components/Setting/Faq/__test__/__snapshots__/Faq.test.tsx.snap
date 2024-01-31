@@ -1,0 +1,276 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FaqPage renders FaqPage component correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="css-0"
+  >
+    <div
+      class="css-1g9rvi9"
+    >
+      <svg
+        class="chakra-icon css-q5208i"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
+          fill="currentColor"
+        />
+      </svg>
+      <p
+        class="chakra-text css-xf6n75"
+      >
+        What is the most important part of a dashboard?
+      </p>
+    </div>
+    <div
+      class="chakra-collapse"
+      style="overflow: hidden; display: none; opacity: 0; height: 0px;"
+    >
+      <div
+        class="css-1l9y4tr"
+      >
+        <hr
+          aria-orientation="vertical"
+          class="chakra-divider css-wpa359"
+        />
+        <div
+          class="css-k008qs"
+        >
+          <p
+            class="chakra-text css-153g5n2"
+          >
+            In reality, the most important aspect of a great dashboard is the part that gets the least amount of attention: The underlying data. More than any other aspect, the data will make or break a dashboard.Within this definition, successful administration appears to rest on three basic skills, which we will call technical, human, and conceptual.Dashboards are business intelligence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-0"
+  >
+    <div
+      class="css-1g9rvi9"
+    >
+      <svg
+        class="chakra-icon css-q5208i"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
+          fill="currentColor"
+        />
+      </svg>
+      <p
+        class="chakra-text css-xf6n75"
+      >
+        What are the three types of dashboard?
+      </p>
+    </div>
+    <div
+      class="chakra-collapse"
+      style="overflow: hidden; display: none; opacity: 0; height: 0px;"
+    >
+      <div
+        class="css-1l9y4tr"
+      >
+        <hr
+          aria-orientation="vertical"
+          class="chakra-divider css-wpa359"
+        />
+        <div
+          class="css-k008qs"
+        >
+          <p
+            class="chakra-text css-153g5n2"
+          >
+            In reality, the most important aspect of a great dashboard is the part that gets the least amount of attention: The underlying data. More than any other aspect, the data will make or break a dashboard.Within this definition, successful administration appears to rest on three basic skills, which we will call technical, human, and conceptual.Dashboards are business intelligence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-0"
+  >
+    <div
+      class="css-1g9rvi9"
+    >
+      <svg
+        class="chakra-icon css-q5208i"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
+          fill="currentColor"
+        />
+      </svg>
+      <p
+        class="chakra-text css-xf6n75"
+      >
+        What are examples of admin?
+      </p>
+    </div>
+    <div
+      class="chakra-collapse"
+      style="overflow: hidden; display: none; opacity: 0; height: 0px;"
+    >
+      <div
+        class="css-1l9y4tr"
+      >
+        <hr
+          aria-orientation="vertical"
+          class="chakra-divider css-wpa359"
+        />
+        <div
+          class="css-k008qs"
+        >
+          <p
+            class="chakra-text css-153g5n2"
+          >
+            In reality, the most important aspect of a great dashboard is the part that gets the least amount of attention: The underlying data. More than any other aspect, the data will make or break a dashboard.Within this definition, successful administration appears to rest on three basic skills, which we will call technical, human, and conceptual.Dashboards are business intelligence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-0"
+  >
+    <div
+      class="css-1g9rvi9"
+    >
+      <svg
+        class="chakra-icon css-q5208i"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
+          fill="currentColor"
+        />
+      </svg>
+      <p
+        class="chakra-text css-xf6n75"
+      >
+        What are 5 benefits of dashboards?
+      </p>
+    </div>
+    <div
+      class="chakra-collapse"
+      style="overflow: hidden; display: none; opacity: 0; height: 0px;"
+    >
+      <div
+        class="css-1l9y4tr"
+      >
+        <hr
+          aria-orientation="vertical"
+          class="chakra-divider css-wpa359"
+        />
+        <div
+          class="css-k008qs"
+        >
+          <p
+            class="chakra-text css-153g5n2"
+          >
+            In reality, the most important aspect of a great dashboard is the part that gets the least amount of attention: The underlying data. More than any other aspect, the data will make or break a dashboard.Within this definition, successful administration appears to rest on three basic skills, which we will call technical, human, and conceptual.Dashboards are business intelligence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-0"
+  >
+    <div
+      class="css-1g9rvi9"
+    >
+      <svg
+        class="chakra-icon css-q5208i"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
+          fill="currentColor"
+        />
+      </svg>
+      <p
+        class="chakra-text css-xf6n75"
+      >
+        What makes a good dashboard?
+      </p>
+    </div>
+    <div
+      class="chakra-collapse"
+      style="overflow: hidden; display: none; opacity: 0; height: 0px;"
+    >
+      <div
+        class="css-1l9y4tr"
+      >
+        <hr
+          aria-orientation="vertical"
+          class="chakra-divider css-wpa359"
+        />
+        <div
+          class="css-k008qs"
+        >
+          <p
+            class="chakra-text css-153g5n2"
+          >
+            In reality, the most important aspect of a great dashboard is the part that gets the least amount of attention: The underlying data. More than any other aspect, the data will make or break a dashboard.Within this definition, successful administration appears to rest on three basic skills, which we will call technical, human, and conceptual.Dashboards are business intelligence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-0"
+  >
+    <div
+      class="css-1g9rvi9"
+    >
+      <svg
+        class="chakra-icon css-q5208i"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
+          fill="currentColor"
+        />
+      </svg>
+      <p
+        class="chakra-text css-xf6n75"
+      >
+        What are the 3 basic skills of administrator?
+      </p>
+    </div>
+    <div
+      class="chakra-collapse"
+      style="overflow: hidden; display: none; opacity: 0; height: 0px;"
+    >
+      <div
+        class="css-1l9y4tr"
+      >
+        <hr
+          aria-orientation="vertical"
+          class="chakra-divider css-wpa359"
+        />
+        <div
+          class="css-k008qs"
+        >
+          <p
+            class="chakra-text css-153g5n2"
+          >
+            In reality, the most important aspect of a great dashboard is the part that gets the least amount of attention: The underlying data. More than any other aspect, the data will make or break a dashboard.Within this definition, successful administration appears to rest on three basic skills, which we will call technical, human, and conceptual.Dashboards are business intelligence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

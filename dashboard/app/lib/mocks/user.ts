@@ -358,3 +358,19 @@ export const RESULT_LIST_USER_EXPECT = [
     userId: '1',
   },
 ];
+
+export const CUSTOMER_ISSUE_MOCK = [
+  {
+    _id: '1',
+    firstName: 'Abdur',
+    lastName: 'Rohman',
+    email: 'test@gmail.com',
+    phone: '02342423',
+    title: 'What is the issues',
+    description: 'description',
+    userId: '1',
+    avatar: 'https://cdn-icons-png.flaticon.com/512/5556/5556468.png',
+    createdAt: '11111111111',
+    updatedAt: '22222222222',
+  },
+];

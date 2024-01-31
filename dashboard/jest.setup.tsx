@@ -28,6 +28,10 @@ jest.mock('firebase/messaging', () => ({
   getMessaging: jest.fn(),
 }));
 
+jest.mock('firebase/messaging', () => ({
+  getMessaging: jest.fn(),
+}));
+
 const customRender = <
   Q extends jestFunc.Queries = typeof jestFunc.queries,
   Container extends Element | DocumentFragment = HTMLElement,
