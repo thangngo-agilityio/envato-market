@@ -216,6 +216,7 @@ exports[`ChatAreaMemoried render Should render match with snapshot. 1`] = `
       />
       <button
         class="chakra-button css-rhj63p"
+        data-testid="submit-send-message"
         type="submit"
       >
         <span

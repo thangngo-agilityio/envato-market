@@ -48,7 +48,7 @@ type TUsersProps = {
 const UsersComponent = ({
   users,
   data,
-  arrOfCurrButtons = [],
+  arrOfCurrButtons,
   isDisableNext,
   isDisabledPrev,
   isLoadingUser,
@@ -58,7 +58,7 @@ const UsersComponent = ({
   onPageClick,
   onLockUser,
   onUnlockUser,
-  onClickUser = () => {},
+  onClickUser,
 }: TUsersProps): JSX.Element => {
   const renderHead = useCallback((): JSX.Element => <></>, []);
   const columns = [

@@ -45,7 +45,9 @@ exports[`UserTable component should renders correctly 1`] = `
                 >
                   <span
                     class="chakra-text css-1rgac5r"
-                  />
+                  >
+                    test@gmail.com
+                  </span>
                 </p>
               </div>
             </div>
@@ -73,7 +75,7 @@ exports[`UserTable component should renders correctly 1`] = `
           >
             <a
               class="chakra-button css-1d6hsfg"
-              href="inbox?id=undefined"
+              href="inbox?id=1"
             >
               Message
             </a>
@@ -155,143 +157,6 @@ exports[`UserTable component should renders correctly 1`] = `
             </div>
           </td>
         </tr>
-        <tr
-          class="css-4g6ai3"
-        >
-          <td
-            class="css-mzqydp"
-          >
-            <div
-              class="css-1h2sv0j"
-            >
-              <img
-                alt="Image of Devon Rohman"
-                class="chakra-image css-1rqxmuh"
-                src="https://cdn-icons-png.flaticon.com/512/5556/5556468.png"
-              />
-              <div
-                class="css-1rr4qq7"
-              >
-                <h4
-                  class="chakra-text css-197ngd6"
-                >
-                  Devon Rohman
-                </h4>
-                <p
-                  class="chakra-text css-vxhtcb"
-                >
-                  <span
-                    class="chakra-text css-1rgac5r"
-                  />
-                </p>
-              </div>
-            </div>
-          </td>
-          <td
-            class="css-1vzozuw"
-          >
-            <p
-              class="chakra-text css-0"
-            >
-              Jan 02, 1970
-            </p>
-          </td>
-          <td
-            class="css-dq40i2"
-          >
-            <span
-              class="chakra-badge css-1nho4fa"
-            >
-              Unlock
-            </span>
-          </td>
-          <td
-            class="css-1onobe"
-          >
-            <a
-              class="chakra-button css-1d6hsfg"
-              href="inbox?id=undefined"
-            >
-              Message
-            </a>
-          </td>
-          <td
-            class="css-1vvhs8e"
-          >
-            <button
-              aria-controls="menu-list-:rg:"
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="chakra-button chakra-menu__menu-button css-14rg285"
-              id="menu-button-:rg:"
-              type="button"
-            >
-              <span
-                class="css-xl71ch"
-              >
-                <button
-                  aria-label="This is the icon action"
-                  class="chakra-button css-1x5hsk6"
-                  type="button"
-                >
-                  <svg
-                    aria-hidden="true"
-                    fill="none"
-                    focusable="false"
-                    height="4"
-                    width="18"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M8 2a1 1 0 1 0 2 0 1 1 0 0 0-2 0ZM1 2a1 1 0 1 0 2 0 1 1 0 0 0-2 0ZM15 2a1 1 0 1 0 2 0 1 1 0 0 0-2 0Z"
-                      stroke="#A0AEC0"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                    />
-                  </svg>
-                </button>
-              </span>
-            </button>
-            <div
-              class="css-0"
-              style="visibility: hidden; position: absolute; min-width: max-content; inset: 0 auto auto 0;"
-            >
-              <div
-                aria-orientation="vertical"
-                class="chakra-menu__menu-list css-6dyv79"
-                id="menu-list-:rg:"
-                role="menu"
-                style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
-                tabindex="-1"
-              >
-                <button
-                  class="chakra-menu__menuitem css-bjyw8u"
-                  data-index="0"
-                  id="menu-list-:rg:-menuitem-:rh:"
-                  role="menuitem"
-                  tabindex="-1"
-                  type="button"
-                >
-                  <div
-                    class="css-1s0smvb"
-                  >
-                    <svg
-                      class="chakra-icon css-xdl7pd"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M19.5,9.5h-.75V6.75a6.75,6.75,0,0,0-13.5,0V9.5H4.5a2,2,0,0,0-2,2V22a2,2,0,0,0,2,2h15a2,2,0,0,0,2-2V11.5A2,2,0,0,0,19.5,9.5Zm-9.5,6a2,2,0,1,1,3,1.723V19.5a1,1,0,0,1-2,0V17.223A1.994,1.994,0,0,1,10,15.5ZM7.75,6.75a4.25,4.25,0,0,1,8.5,0V9a.5.5,0,0,1-.5.5H8.25a.5.5,0,0,1-.5-.5Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </div>
-                </button>
-              </div>
-            </div>
-          </td>
-        </tr>
       </tbody>
     </table>
   </div>
@@ -314,11 +179,11 @@ exports[`UserTable component should renders correctly 1`] = `
           class="css-1eqmq6c"
         >
           <button
-            aria-controls="menu-list-:rj:"
+            aria-controls="menu-list-:ra:"
             aria-expanded="false"
             aria-haspopup="menu"
             class="chakra-button chakra-menu__menu-button css-26jysu"
-            id="menu-button-:rj:"
+            id="menu-button-:ra:"
             type="button"
           >
             <span
@@ -362,7 +227,7 @@ exports[`UserTable component should renders correctly 1`] = `
             <div
               aria-orientation="vertical"
               class="chakra-menu__menu-list css-ta0hp9"
-              id="menu-list-:rj:"
+              id="menu-list-:ra:"
               role="menu"
               style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
               tabindex="-1"
@@ -370,7 +235,7 @@ exports[`UserTable component should renders correctly 1`] = `
               <button
                 class="chakra-menu__menuitem css-1oz22gy"
                 data-index="0"
-                id="menu-list-:rj:-menuitem-:rk:"
+                id="menu-list-:ra:-menuitem-:rb:"
                 role="menuitem"
                 tabindex="-1"
                 type="button"
@@ -384,7 +249,7 @@ exports[`UserTable component should renders correctly 1`] = `
               <button
                 class="chakra-menu__menuitem css-1oz22gy"
                 data-index="1"
-                id="menu-list-:rj:-menuitem-:rl:"
+                id="menu-list-:ra:-menuitem-:rc:"
                 role="menuitem"
                 tabindex="-1"
                 type="button"
@@ -398,7 +263,7 @@ exports[`UserTable component should renders correctly 1`] = `
               <button
                 class="chakra-menu__menuitem css-1oz22gy"
                 data-index="2"
-                id="menu-list-:rj:-menuitem-:rm:"
+                id="menu-list-:ra:-menuitem-:rd:"
                 role="menuitem"
                 tabindex="-1"
                 type="button"
@@ -418,8 +283,9 @@ exports[`UserTable component should renders correctly 1`] = `
       >
         <button
           aria-label="btn-prev"
-          class="chakra-button css-1681ub4"
+          class="chakra-button css-159lhy8"
           data-testid="prev-button"
+          disabled=""
           type="button"
         >
           <svg
@@ -444,8 +310,9 @@ exports[`UserTable component should renders correctly 1`] = `
         />
         <button
           aria-label="btn-next"
-          class="chakra-button css-1681ub4"
+          class="chakra-button css-159lhy8"
           data-testid="next-button"
+          disabled=""
           type="button"
         >
           <svg
