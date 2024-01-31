@@ -33,6 +33,7 @@ describe('formatTransactionResponse', () => {
           email: 'devon@mail.com',
           role: undefined,
         },
+        type: 'Add money',
         email: 'devon@mail.com',
         location: '123 MD DN',
         image:
@@ -68,6 +69,7 @@ describe('formatTransactionResponse', () => {
           email: 'devon@mail.com',
           role: undefined,
         },
+        type: 'Add money',
         email: 'devon@mail.com',
         location: '123 MD DN',
         image: IMAGES.BIG_AVATAR.url,
