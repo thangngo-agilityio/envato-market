@@ -1,12 +1,20 @@
+import { waitFor } from '@testing-library/react';
+import { useSearchParams } from 'next/navigation';
+
 // Pages
 import UsersPage from '../users/page';
 
-const { render } = testLibReactUtils;
+// Utils
+import { renderQueryProviderTest } from '@/lib/utils/testUtils';
 
 describe('UsersPage render', () => {
-  test('Should render match with snapshot.', () => {
-    const { container } = render(<UsersPage />);
+  (useSearchParams as jest.Mock).mockReturnValue({
+    get: jest.fn(),
+  });
 
-    expect(container).toMatchSnapshot();
+  it('renders the UsersSection after prefetching users', async () => {
+    const { container } = renderQueryProviderTest(<UsersPage />);
+
+    await waitFor(() => expect(container).toMatchSnapshot());
   });
 });
