@@ -13,22 +13,23 @@ jest.mock('next/navigation', () => ({
 }));
 
 jest.mock('firebase/firestore', () => ({
+  ...jest.requireActual('firebase/firestore'),
   getFirestore: jest.fn(),
 }));
 jest.mock('firebase/auth', () => ({
+  ...jest.requireActual('firebase/auth'),
   getAuth: jest.fn(),
 }));
 jest.mock('firebase/app', () => ({
+  ...jest.requireActual('firebase/app'),
   initializeApp: jest.fn(),
 }));
 jest.mock('firebase/storage', () => ({
+  ...jest.requireActual('firebase/storage'),
   getStorage: jest.fn(),
 }));
 jest.mock('firebase/messaging', () => ({
-  getMessaging: jest.fn(),
-}));
-
-jest.mock('firebase/messaging', () => ({
+  ...jest.requireActual('firebase/messaging'),
   getMessaging: jest.fn(),
 }));
 
