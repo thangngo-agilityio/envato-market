@@ -46,6 +46,8 @@ const config = {
     '!<rootDir>/app/lib/mocks/**',
     '!<rootDir>/app/layout.tsx',
     '!<rootDir>/app/metadata.tsx',
+    '!<rootDir>/app/global-error.tsx',
+    '!<rootDir>/app/not-found.tsx',
     '!**/*.config.ts',
   ],
   testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],

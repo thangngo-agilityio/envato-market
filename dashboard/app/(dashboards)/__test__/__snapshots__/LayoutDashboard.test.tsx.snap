@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout Component renders children within AccountSection 1`] = `
+<div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</div>
+`;
