@@ -17,4 +17,13 @@ describe('AccountSection render', () => {
 
     expect(container).toMatchSnapshot();
   });
+
+  it('renders children correctly', () => {
+    const { getByTestId } = render(
+      <AccountSection>
+        <div data-testid="test-child" />
+      </AccountSection>,
+    );
+    expect(getByTestId('test-child')).toBeInTheDocument();
+  });
 });
