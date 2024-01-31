@@ -108,6 +108,7 @@ const ActionCellComponent = ({
                   _hover={{
                     bgColor: 'transparent',
                   }}
+                  data-testid="dot-icon"
                 >
                   <Dot />
                 </IconButton>
@@ -130,6 +131,7 @@ const ActionCellComponent = ({
                               w={5}
                               h={5}
                               onClick={handleUnLockUser}
+                              data-testid="lock-unlock-icon"
                             />
                           ) : (
                             <LockIcon
@@ -137,6 +139,7 @@ const ActionCellComponent = ({
                               w={5}
                               h={5}
                               onClick={handleLockUser}
+                              data-testid="lock-unlock-icon"
                             />
                           )}
                         </>

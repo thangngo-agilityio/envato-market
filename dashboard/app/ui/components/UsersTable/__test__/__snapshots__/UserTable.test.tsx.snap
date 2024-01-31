@@ -20,6 +20,7 @@ exports[`UserTable component should renders correctly 1`] = `
       >
         <tr
           class="css-4g6ai3"
+          data-testid="table-row"
         >
           <td
             class="css-mzqydp"
@@ -66,6 +67,7 @@ exports[`UserTable component should renders correctly 1`] = `
           >
             <span
               class="chakra-badge css-1nho4fa"
+              data-testid="status"
             >
               Unlock
             </span>
@@ -97,6 +99,7 @@ exports[`UserTable component should renders correctly 1`] = `
                 <button
                   aria-label="This is the icon action"
                   class="chakra-button css-1x5hsk6"
+                  data-testid="dot-icon"
                   type="button"
                 >
                   <svg
@@ -143,6 +146,7 @@ exports[`UserTable component should renders correctly 1`] = `
                   >
                     <svg
                       class="chakra-icon css-xdl7pd"
+                      data-testid="lock-unlock-icon"
                       focusable="false"
                       viewBox="0 0 24 24"
                     >
