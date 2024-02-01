@@ -261,6 +261,11 @@ export const colors = {
       default: '#FFF',
       _dark: '#1A202C',
     },
+
+    textInput: {
+      default: '#FAFAFA',
+      _dark: '#969BA0',
+    },
   },
 
   danger: {

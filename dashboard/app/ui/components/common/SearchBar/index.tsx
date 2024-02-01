@@ -1,14 +1,8 @@
 import { FormEventHandler, memo, useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { Box, HStack, useColorModeValue } from '@chakra-ui/react';
+import { Box, HStack } from '@chakra-ui/react';
 // import { CloseIcon } from '@chakra-ui/icons';
 import isEqual from 'react-fast-compare';
-
-// Assets
-import { Search } from '@/ui/components/Icons';
-
-// Themes
-import { colors } from '@/ui/themes/bases/colors';
 
 // Components
 import { InputField, Select, Selector } from '@/ui/components';
@@ -18,6 +12,7 @@ import { MONTHS_OPTIONS } from '@/lib/constants';
 
 // Types
 import { TOption } from '@/ui/components/common/Select';
+import { CloseIcon, Search2Icon } from '@chakra-ui/icons';
 
 export type TSearchValue = {
   search: string;
@@ -42,11 +37,6 @@ const SearchBarComponent = ({
       search: searchValue,
     },
   });
-
-  const searchIconColor: string = useColorModeValue(
-    colors.secondary[400] ?? '',
-    'common.white',
-  );
 
   const handleSelectMonth = useCallback(
     ({ value }: TOption) => onFilter && onFilter(value),
@@ -93,8 +83,8 @@ const SearchBarComponent = ({
               }}
               placeholder="Search by name, email, or other..."
               variant="secondary"
-              leftIcon={<Search color={searchIconColor} />}
-              rightIcon={value && <p onClick={handleResetValue}>Close</p>}
+              leftIcon={<Search2Icon />}
+              rightIcon={value && <CloseIcon onClick={handleResetValue} />}
               data-testid="search-transaction"
             />
           )}
