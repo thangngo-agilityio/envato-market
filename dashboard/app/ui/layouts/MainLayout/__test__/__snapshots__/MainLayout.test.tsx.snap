@@ -191,14 +191,14 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                     aria-orientation="horizontal"
                     class="chakra-divider css-1sulk9x"
                   />
-                  <a
+                  <button
                     aria-label="menu-item-Logout"
-                    class="chakra-link chakra-menu__menuitem css-kkiz5x"
+                    class="chakra-menu__menuitem css-1way4u7"
                     data-index="1"
-                    href="/login"
                     id="menu-list-:r5:-menuitem-:r7:"
                     role="menuitem"
                     tabindex="-1"
+                    type="button"
                   >
                     <div
                       class="css-k008qs"
@@ -223,7 +223,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                         Logout
                       </p>
                     </div>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -573,14 +573,14 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                       aria-orientation="horizontal"
                       class="chakra-divider css-1sulk9x"
                     />
-                    <a
+                    <button
                       aria-label="menu-item-Logout"
-                      class="chakra-link chakra-menu__menuitem css-kkiz5x"
+                      class="chakra-menu__menuitem css-1way4u7"
                       data-index="1"
-                      href="/login"
                       id="menu-list-:rd:-menuitem-:rf:"
                       role="menuitem"
                       tabindex="-1"
+                      type="button"
                     >
                       <div
                         class="css-k008qs"
@@ -605,7 +605,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                           Logout
                         </p>
                       </div>
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -746,14 +746,14 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                     aria-orientation="horizontal"
                     class="chakra-divider css-1sulk9x"
                   />
-                  <a
+                  <button
                     aria-label="menu-item-Logout"
-                    class="chakra-link chakra-menu__menuitem css-kkiz5x"
+                    class="chakra-menu__menuitem css-1way4u7"
                     data-index="1"
-                    href="/login"
                     id="menu-list-:rh:-menuitem-:rj:"
                     role="menuitem"
                     tabindex="-1"
+                    type="button"
                   >
                     <div
                       class="css-k008qs"
@@ -778,7 +778,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                         Logout
                       </p>
                     </div>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

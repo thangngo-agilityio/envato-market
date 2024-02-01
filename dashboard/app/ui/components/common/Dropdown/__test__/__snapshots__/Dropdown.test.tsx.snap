@@ -136,14 +136,14 @@ exports[`Dropdown render Should render match with snapshot. 1`] = `
           aria-orientation="horizontal"
           class="chakra-divider css-19ob8qo"
         />
-        <a
+        <button
           aria-label="menu-item-Logout"
-          class="chakra-link chakra-menu__menuitem css-1yc4i0z"
+          class="chakra-menu__menuitem css-10y1xuw"
           data-index="1"
-          href="/login"
           id="menu-list-:r1:-menuitem-:r3:"
           role="menuitem"
           tabindex="-1"
+          type="button"
         >
           <div
             class="css-k008qs"
@@ -168,7 +168,7 @@ exports[`Dropdown render Should render match with snapshot. 1`] = `
               Logout
             </p>
           </div>
-        </a>
+        </button>
       </div>
     </div>
   </div>
