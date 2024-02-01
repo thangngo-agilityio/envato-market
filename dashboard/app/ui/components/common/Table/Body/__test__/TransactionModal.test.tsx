@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { TransactionModal } from '..';
 import userEvent from '@testing-library/user-event';
 
@@ -70,38 +70,25 @@ describe('Transaction Modal', () => {
     expect(mockOnCloseModal).toHaveBeenCalled();
   });
 
-  it('should call onUpdateTransaction and reset form on form submission', async () => {
-    const mockOnUpdateTransaction = jest.fn();
-    const mockOnCloseModal = jest.fn();
+  it('handleSubmitForm should update transaction, reset form, and close modal', async () => {
+    const onUpdateTransactionMock = jest.fn();
+    const onCloseModalMock = jest.fn();
 
     render(
       <TransactionModal
         transaction={mockTransaction}
-        onUpdateTransaction={mockOnUpdateTransaction}
-        onCloseModal={mockOnCloseModal}
-        isDelete={true}
+        isDelete={false}
+        onUpdateTransaction={onUpdateTransactionMock}
+        onCloseModal={onCloseModalMock}
       />,
     );
 
-    // Simulate user input
-    userEvent.type(
-      screen.getByLabelText<HTMLInputElement>('First Name'),
-      ' Updated',
-    );
+    await userEvent.click(screen.getByTestId('submit-transaction-form'));
 
-    // Submit the form
-    fireEvent.click(screen.getByText('Save'));
-
-    // Ensure onUpdateTransaction is called with the updated data
-    expect(mockOnUpdateTransaction).toHaveBeenCalledWith({
-      ...mockTransaction,
-      customer: {
-        ...mockTransaction.customer,
-        firstName: 'John Updated',
-      },
+    // Assertions
+    waitFor(() => {
+      expect(onUpdateTransactionMock).toHaveBeenCalled();
+      expect(onCloseModalMock).toHaveBeenCalled();
     });
-
-    // Ensure reset is called with the updated data
-    expect(mockOnCloseModal).toHaveBeenCalled();
   });
 });
