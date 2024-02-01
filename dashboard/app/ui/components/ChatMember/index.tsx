@@ -35,7 +35,7 @@ const ChatMember = ({
   localeTime,
   icon,
   statusColor = '',
-  onClick = () => {},
+  onClick,
 }: Props) => {
   const colorFill = useColorModeValue(
     colors.secondary[200],

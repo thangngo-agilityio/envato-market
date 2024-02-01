@@ -20,6 +20,7 @@ exports[`HeadCell Match to snapshot 1`] = `
         <button
           aria-label="This is the icon for Title"
           class="chakra-button css-1x5hsk6"
+          data-testid="sort-icon"
           type="button"
         >
           <svg
