@@ -41,7 +41,7 @@ import { authStore } from '@/lib/stores';
 import { colors } from '@/ui/themes/bases';
 
 // Utils
-import { customToast } from '@/lib/utils';
+import { customToast, formatAllowOnlyNumbers } from '@/lib/utils';
 
 const SupportsSection = () => {
   const toast = useToast();
@@ -242,6 +242,7 @@ const SupportsSection = () => {
                   {...field}
                   isError={!!error}
                   errorMessages={error?.message}
+                  value={formatAllowOnlyNumbers(field.value)}
                 />
               )}
             />

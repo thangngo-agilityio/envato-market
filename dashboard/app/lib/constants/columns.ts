@@ -7,6 +7,7 @@ export const COLUMNS_DASHBOARD = (
   onRenderBody: ({ id, image, name }: TDataSource) => void,
   onRenderActionIcon: (data: TTransaction) => void,
   onRenderSpent: (spent: TTransaction) => void,
+  onRenderEmail: (email: TTransaction) => void,
 ) => [
   {
     title: 'Customer name',
@@ -18,6 +19,7 @@ export const COLUMNS_DASHBOARD = (
     title: 'Email',
     key: 'email',
     renderHead: onRenderHead,
+    renderBody: onRenderEmail,
   },
   {
     title: 'Location',

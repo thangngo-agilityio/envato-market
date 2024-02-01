@@ -44,11 +44,15 @@ exports[`UserTable component should renders correctly 1`] = `
                 <p
                   class="chakra-text css-vxhtcb"
                 >
-                  <span
-                    class="chakra-text css-1rgac5r"
+                  <a
+                    href="mailto:test@gmail.com"
                   >
-                    test@gmail.com
-                  </span>
+                    <span
+                      class="chakra-text css-1rgac5r"
+                    >
+                      test@gmail.com
+                    </span>
+                  </a>
                 </p>
               </div>
             </div>

@@ -4,6 +4,7 @@ import { memo, useCallback } from 'react';
 import Link from 'next/link';
 import { Button, HStack, Text, VStack, Box, useToast } from '@chakra-ui/react';
 import { Controller, SubmitHandler } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 
 // Hooks
 import { useForm } from '@/lib/hooks';
@@ -49,6 +50,8 @@ const ForgotPasswordSection = (): JSX.Element => {
     mode: 'onBlur',
   });
 
+  const router = useRouter();
+
   const toast = useToast();
   // TODO: Update later
   const handleSubmitForm: SubmitHandler<TForgotPasswordForm> = useCallback(
@@ -62,6 +65,8 @@ const ForgotPasswordSection = (): JSX.Element => {
               STATUS.SUCCESS,
             ),
           );
+
+          router.push(`mailto:${control._formValues}`);
         })
         .catch(() => {
           toast(
