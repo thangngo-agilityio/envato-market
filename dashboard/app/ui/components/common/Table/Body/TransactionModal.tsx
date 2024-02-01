@@ -92,6 +92,7 @@ const TransactionModal = ({
           mr={3}
           isDisabled={disabled}
           onClick={onDeleteTransaction}
+          data-testid="accept-del"
         >
           Delete
         </Button>
@@ -127,6 +128,7 @@ const TransactionModal = ({
               errorMessages={error?.message}
               // TODO: Will update later
               onChange={handleChangeValue('customer', onChange)}
+              data-testid="edit-field-name"
             />
           )}
         />

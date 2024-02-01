@@ -45,6 +45,7 @@ const HeadCellComponent = ({ title, onClick }: THeadCellProps): JSX.Element => (
           bgColor: 'transparent',
         }}
         onClick={onClick}
+        data-testid="sort-icon"
       >
         <Sort color={colors.secondary[300]} opacityLeft={1} />
       </IconButton>
