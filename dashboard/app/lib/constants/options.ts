@@ -123,3 +123,14 @@ export const MONTHS_OPTIONS = [
     label: 'December',
   },
 ];
+
+export const ROLES = [
+  {
+    value: 'member',
+    label: 'Member',
+  },
+  {
+    value: 'anonymous',
+    label: 'Anonymous',
+  },
+];

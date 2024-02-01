@@ -1,14 +1,10 @@
 import { FormEventHandler, memo, useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Box, HStack } from '@chakra-ui/react';
-// import { CloseIcon } from '@chakra-ui/icons';
 import isEqual from 'react-fast-compare';
 
 // Components
 import { InputField, Select, Selector } from '@/ui/components';
-
-//Mocks
-import { MONTHS_OPTIONS } from '@/lib/constants';
 
 // Types
 import { TOption } from '@/ui/components/common/Select';
@@ -20,12 +16,14 @@ export type TSearchValue = {
 
 type TSearchProps = {
   searchValue: string;
+  filterOptions: TOption[];
   onSearch: (value: string) => void;
   onFilter?: (value: string) => void;
 };
 
 const SearchBarComponent = ({
   searchValue,
+  filterOptions,
   onSearch,
   onFilter,
 }: TSearchProps): JSX.Element => {
@@ -100,7 +98,7 @@ const SearchBarComponent = ({
         }}
       >
         <Select
-          options={MONTHS_OPTIONS}
+          options={filterOptions}
           renderTitle={renderTitleSelector}
           onSelect={handleSelectMonth}
         />

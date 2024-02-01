@@ -47,7 +47,7 @@ exports[`UsersSection render Should render match with snapshot. 1`] = `
               </svg>
             </div>
             <input
-              class="chakra-input css-wvsc7f"
+              class="chakra-input css-1b9f01i"
               id="field-:r0:"
               placeholder="Search by name"
               type="text"

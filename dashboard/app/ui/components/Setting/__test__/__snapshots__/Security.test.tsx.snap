@@ -44,7 +44,7 @@ exports[`FaqPage renders FaqPage component correctly 1`] = `
           >
             <input
               aria-label="oldPassword"
-              class="chakra-input css-cvigvf"
+              class="chakra-input css-18ql1xp"
               id="field-:r3:"
               name="oldPassword"
               role="textbox"
@@ -98,7 +98,7 @@ exports[`FaqPage renders FaqPage component correctly 1`] = `
           >
             <input
               aria-label="newPassword"
-              class="chakra-input css-cvigvf"
+              class="chakra-input css-18ql1xp"
               id="field-:r5:"
               name="newPassword"
               role="textbox"

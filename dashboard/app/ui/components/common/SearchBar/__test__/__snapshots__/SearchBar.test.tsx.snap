@@ -3,11 +3,11 @@
 exports[`SearchBar render Should render match with snapshot. 1`] = `
 <div>
   <form
-    class="chakra-stack css-1cfckle"
+    class="chakra-stack css-11mukto"
     data-testid="search-bar"
   >
     <div
-      class="css-9d69w6"
+      class="css-5a22j8"
     >
       <div
         class="chakra-form-control css-0"
@@ -21,31 +21,18 @@ exports[`SearchBar render Should render match with snapshot. 1`] = `
             class="chakra-input__left-element css-1u2k0bl"
           >
             <svg
-              fill="none"
-              height="20"
-              stroke="#1D1E24"
-              viewBox="0 0 20 20"
-              width="20"
-              xmlns="http://www.w3.org/2000/svg"
+              class="chakra-icon css-onkibi"
+              focusable="false"
+              viewBox="0 0 24 24"
             >
-              <circle
-                cx="9.78639"
-                cy="9.78602"
-                r="8.23951"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
-              />
               <path
-                d="M15.5176 15.9447L18.7479 19.1667"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
+                d="M23.414,20.591l-4.645-4.645a10.256,10.256,0,1,0-2.828,2.829l4.645,4.644a2.025,2.025,0,0,0,2.828,0A2,2,0,0,0,23.414,20.591ZM10.25,3.005A7.25,7.25,0,1,1,3,10.255,7.258,7.258,0,0,1,10.25,3.005Z"
+                fill="currentColor"
               />
             </svg>
           </div>
           <input
-            class="chakra-input css-6hxpcw"
+            class="chakra-input css-10kn41x"
             data-testid="search-transaction"
             id="field-:r0:"
             placeholder="Search by name, email, or other..."
@@ -56,7 +43,7 @@ exports[`SearchBar render Should render match with snapshot. 1`] = `
       </div>
     </div>
     <div
-      class="css-cgqc68"
+      class="css-16p9qum"
     >
       <button
         aria-controls="menu-list-:r2:"
@@ -102,176 +89,7 @@ exports[`SearchBar render Should render match with snapshot. 1`] = `
           role="menu"
           style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
           tabindex="-1"
-        >
-          <button
-            class="chakra-menu__menuitem css-1oz22gy"
-            data-index="0"
-            id="menu-list-:r2:-menuitem-:r3:"
-            role="menuitem"
-            tabindex="-1"
-            type="button"
-          >
-            <p
-              class="chakra-text css-1198d6z"
-            >
-              January
-            </p>
-          </button>
-          <button
-            class="chakra-menu__menuitem css-1oz22gy"
-            data-index="1"
-            id="menu-list-:r2:-menuitem-:r4:"
-            role="menuitem"
-            tabindex="-1"
-            type="button"
-          >
-            <p
-              class="chakra-text css-1198d6z"
-            >
-              February
-            </p>
-          </button>
-          <button
-            class="chakra-menu__menuitem css-1oz22gy"
-            data-index="2"
-            id="menu-list-:r2:-menuitem-:r5:"
-            role="menuitem"
-            tabindex="-1"
-            type="button"
-          >
-            <p
-              class="chakra-text css-1198d6z"
-            >
-              March
-            </p>
-          </button>
-          <button
-            class="chakra-menu__menuitem css-1oz22gy"
-            data-index="3"
-            id="menu-list-:r2:-menuitem-:r6:"
-            role="menuitem"
-            tabindex="-1"
-            type="button"
-          >
-            <p
-              class="chakra-text css-1198d6z"
-            >
-              April
-            </p>
-          </button>
-          <button
-            class="chakra-menu__menuitem css-1oz22gy"
-            data-index="4"
-            id="menu-list-:r2:-menuitem-:r7:"
-            role="menuitem"
-            tabindex="-1"
-            type="button"
-          >
-            <p
-              class="chakra-text css-1198d6z"
-            >
-              May
-            </p>
-          </button>
-          <button
-            class="chakra-menu__menuitem css-1oz22gy"
-            data-index="5"
-            id="menu-list-:r2:-menuitem-:r8:"
-            role="menuitem"
-            tabindex="-1"
-            type="button"
-          >
-            <p
-              class="chakra-text css-1198d6z"
-            >
-              June
-            </p>
-          </button>
-          <button
-            class="chakra-menu__menuitem css-1oz22gy"
-            data-index="6"
-            id="menu-list-:r2:-menuitem-:r9:"
-            role="menuitem"
-            tabindex="-1"
-            type="button"
-          >
-            <p
-              class="chakra-text css-1198d6z"
-            >
-              July
-            </p>
-          </button>
-          <button
-            class="chakra-menu__menuitem css-1oz22gy"
-            data-index="7"
-            id="menu-list-:r2:-menuitem-:ra:"
-            role="menuitem"
-            tabindex="-1"
-            type="button"
-          >
-            <p
-              class="chakra-text css-1198d6z"
-            >
-              August
-            </p>
-          </button>
-          <button
-            class="chakra-menu__menuitem css-1oz22gy"
-            data-index="8"
-            id="menu-list-:r2:-menuitem-:rb:"
-            role="menuitem"
-            tabindex="-1"
-            type="button"
-          >
-            <p
-              class="chakra-text css-1198d6z"
-            >
-              September
-            </p>
-          </button>
-          <button
-            class="chakra-menu__menuitem css-1oz22gy"
-            data-index="9"
-            id="menu-list-:r2:-menuitem-:rc:"
-            role="menuitem"
-            tabindex="-1"
-            type="button"
-          >
-            <p
-              class="chakra-text css-1198d6z"
-            >
-              October
-            </p>
-          </button>
-          <button
-            class="chakra-menu__menuitem css-1oz22gy"
-            data-index="10"
-            id="menu-list-:r2:-menuitem-:rd:"
-            role="menuitem"
-            tabindex="-1"
-            type="button"
-          >
-            <p
-              class="chakra-text css-1198d6z"
-            >
-              November
-            </p>
-          </button>
-          <button
-            class="chakra-menu__menuitem css-1oz22gy"
-            data-index="11"
-            id="menu-list-:r2:-menuitem-:re:"
-            role="menuitem"
-            tabindex="-1"
-            type="button"
-          >
-            <p
-              class="chakra-text css-1198d6z"
-            >
-              December
-            </p>
-          </button>
-        </div>
+        />
       </div>
     </div>
   </form>

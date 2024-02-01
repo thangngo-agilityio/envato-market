@@ -24,7 +24,7 @@ exports[`AuthForm components match snapshot with login form 1`] = `
           data-group="true"
         >
           <input
-            class="chakra-input css-6hxpcw"
+            class="chakra-input css-10kn41x"
             id="field-:r2:"
             name="password"
             placeholder="Password"
@@ -163,7 +163,7 @@ exports[`AuthForm components match snapshot with register form 1`] = `
           >
             <input
               aria-label="first-name"
-              class="chakra-input css-6hxpcw"
+              class="chakra-input css-10kn41x"
               id="field-:r5:"
               name="firstName"
               placeholder="First name"
@@ -182,7 +182,7 @@ exports[`AuthForm components match snapshot with register form 1`] = `
           >
             <input
               aria-label="last-name"
-              class="chakra-input css-6hxpcw"
+              class="chakra-input css-10kn41x"
               id="field-:r6:"
               name="lastName"
               placeholder="Last name"
@@ -207,7 +207,7 @@ exports[`AuthForm components match snapshot with register form 1`] = `
           data-group="true"
         >
           <input
-            class="chakra-input css-6hxpcw"
+            class="chakra-input css-10kn41x"
             id="field-:r7:"
             name="password"
             placeholder="Password"
@@ -248,7 +248,7 @@ exports[`AuthForm components match snapshot with register form 1`] = `
           data-group="true"
         >
           <input
-            class="chakra-input css-6hxpcw"
+            class="chakra-input css-10kn41x"
             id="field-:r8:"
             name="confirmPassword"
             placeholder="Confirm password"

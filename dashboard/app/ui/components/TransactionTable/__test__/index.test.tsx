@@ -22,6 +22,8 @@ jest.mock('@/lib/hooks', () => ({
   useTransactions: jest.fn(),
 }));
 
+jest.mock('axios');
+
 const resetMock = jest.fn();
 const sortByMock = jest.fn();
 const deleteTransactionMock = jest.fn();
@@ -44,8 +46,8 @@ const setup = (isOpenHistoryModal = false) =>
 describe('Transaction table', () => {
   beforeEach(() => {
     jest.spyOn(hooks, 'usePagination').mockReturnValue({
-      filterData: TRANSACTIONS,
       resetPage: resetMock,
+      filterData: TRANSACTIONS,
       data: [1],
     } as unknown as ReturnType<typeof hooks.usePagination>);
     jest.spyOn(axios, 'get').mockResolvedValue(TRANSACTIONS);
@@ -58,6 +60,8 @@ describe('Transaction table', () => {
     });
     jest.spyOn(hooks, 'useTransactions').mockReturnValue({
       isLoading: false,
+      dataHistory: TRANSACTIONS,
+      dataTransaction: TRANSACTIONS,
       sortBy: sortByMock,
       deleteTransaction: deleteTransactionMock,
       updateTransaction: updateTransactionMock,
