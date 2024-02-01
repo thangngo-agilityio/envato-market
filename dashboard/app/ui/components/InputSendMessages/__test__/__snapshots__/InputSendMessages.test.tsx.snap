@@ -24,7 +24,7 @@ exports[`InputSendMessages  component Should render correctly 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-272te6"
+                class="chakra-input css-2e0cr2"
                 id="field-:r2:"
                 name="text"
                 placeholder="Type your message..."

@@ -77,7 +77,7 @@ exports[`CardPayment test cases CardPayment component renders correctly 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-6hxpcw"
+                class="chakra-input css-10kn41x"
                 id="field-:r7:"
                 name="memberId"
                 placeholder="Choose an account to transfer"

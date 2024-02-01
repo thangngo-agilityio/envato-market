@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import { Box, Td, Text, Th, useToast } from '@chakra-ui/react';
 
 // Components
@@ -41,6 +41,8 @@ import {
   STATUS_LABEL,
   SUCCESS_MESSAGES,
   TRANSACTION_STATUS_ENUM,
+  MONTHS_OPTIONS,
+  ROLES,
 } from '@/lib/constants';
 import { TYPE } from '@/lib/constants/notification';
 
@@ -60,6 +62,7 @@ const TransactionTableComponent = ({
   const toast = useToast();
   const userId = authStore((state) => state.user?.id);
   const { get, setSearchParam: setSearchTransaction } = useSearch();
+  const [filter, setFilter] = useState<string>('');
 
   const {
     data: transactions = [],
@@ -76,6 +79,22 @@ const TransactionTableComponent = ({
 
   const listData = isOpenHistoryModal ? dataHistory : dataTransaction;
 
+  const transactionsMemorized = useMemo(
+    () =>
+      listData.filter(({ createdAt, customer: { role } }) => {
+        if (isOpenHistoryModal) {
+          const month: string = new Date(createdAt)
+            .toLocaleString('default', { month: 'short' })
+            .toLowerCase();
+
+          return month.includes(filter.trim());
+        }
+
+        return role?.trim().includes(filter);
+      }),
+    [filter, listData, isOpenHistoryModal],
+  );
+
   const {
     data,
     filterData,
@@ -86,7 +105,7 @@ const TransactionTableComponent = ({
     handleChangeLimit,
     handlePageChange,
     handlePageClick,
-  } = usePagination(listData);
+  } = usePagination(transactionsMemorized);
 
   const handleUpdateTransaction = useCallback(
     (updateCustomer: TTransaction) => {
@@ -341,8 +360,10 @@ const TransactionTableComponent = ({
   return (
     <>
       <SearchBar
+        filterOptions={isOpenHistoryModal ? MONTHS_OPTIONS : ROLES}
         searchValue={get('name') || ''}
         onSearch={handleDebounceSearch}
+        onFilter={setFilter}
       />
       <Fetching isLoading={isLoadingTransactions} isError={isTransactionsError}>
         <Box mt={5}>

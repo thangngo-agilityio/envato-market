@@ -36,7 +36,7 @@ exports[`Personal Page test cases renders UserForm with content 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-16fpzlu"
+                class="chakra-input css-1ua7efh"
                 id="field-:r0:"
                 name="firstName"
                 type="text"
@@ -60,7 +60,7 @@ exports[`Personal Page test cases renders UserForm with content 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-16fpzlu"
+                class="chakra-input css-1ua7efh"
                 id="field-:r1:"
                 name="lastName"
                 type="text"
@@ -88,7 +88,7 @@ exports[`Personal Page test cases renders UserForm with content 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-16fpzlu"
+                class="chakra-input css-1ua7efh"
                 id="field-:r2:"
                 name="email"
                 type="text"
@@ -112,7 +112,7 @@ exports[`Personal Page test cases renders UserForm with content 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-16fpzlu"
+                class="chakra-input css-1ua7efh"
                 id="field-:r3:"
                 name="phoneNumber"
                 type="text"
@@ -145,7 +145,7 @@ exports[`Personal Page test cases renders UserForm with content 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-16fpzlu"
+                class="chakra-input css-1ua7efh"
                 id="field-:r4:"
                 name="country"
                 type="text"
@@ -169,7 +169,7 @@ exports[`Personal Page test cases renders UserForm with content 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-16fpzlu"
+                class="chakra-input css-1ua7efh"
                 id="field-:r5:"
                 name="city"
                 type="text"
@@ -197,7 +197,7 @@ exports[`Personal Page test cases renders UserForm with content 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-16fpzlu"
+                class="chakra-input css-1ua7efh"
                 id="field-:r6:"
                 name="address"
                 type="text"
@@ -221,7 +221,7 @@ exports[`Personal Page test cases renders UserForm with content 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-16fpzlu"
+                class="chakra-input css-1ua7efh"
                 id="field-:r7:"
                 name="postalCode"
                 type="text"
@@ -254,7 +254,7 @@ exports[`Personal Page test cases renders UserForm with content 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-16fpzlu"
+                class="chakra-input css-1ua7efh"
                 id="field-:r8:"
                 name="facebookURL"
                 type="text"
@@ -278,7 +278,7 @@ exports[`Personal Page test cases renders UserForm with content 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-16fpzlu"
+                class="chakra-input css-1ua7efh"
                 id="field-:r9:"
                 name="twitterURL"
                 type="text"
@@ -306,7 +306,7 @@ exports[`Personal Page test cases renders UserForm with content 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-16fpzlu"
+                class="chakra-input css-1ua7efh"
                 id="field-:ra:"
                 name="linkedinURL"
                 type="text"
@@ -330,7 +330,7 @@ exports[`Personal Page test cases renders UserForm with content 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-16fpzlu"
+                class="chakra-input css-1ua7efh"
                 id="field-:rb:"
                 name="youtubeURL"
                 type="text"
