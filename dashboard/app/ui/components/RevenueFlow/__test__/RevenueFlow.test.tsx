@@ -1,38 +1,38 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 // Components
 import { RevenueFlow } from '@/ui/components';
 
 // Mock
 import userEvent from '@testing-library/user-event';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { INITIAL_REVENUE_FLOW } from '@/lib/mocks';
 
 jest.mock('react-apexcharts', () => ({
   __esModule: true,
   default: () => <div>Mocked Chart Component</div>,
 }));
 
-const queryClient = new QueryClient();
-
-const setup = () =>
-  render(
-    <QueryClientProvider client={queryClient}>
-      <RevenueFlow />
-    </QueryClientProvider>,
-  );
+// Mock the useGetStatistic hook
+jest.mock('@/lib/hooks', () => ({
+  ...jest.requireActual('@/lib/hooks'),
+  useGetStatistic: jest.fn(() => ({
+    data: INITIAL_REVENUE_FLOW,
+    isLoading: false,
+    isError: false,
+  })),
+}));
 
 describe('RevenueFlow component', () => {
-  it('renders correctly', () => {
-    const { container } = setup();
-
+  it('matches snapshot', () => {
+    const { container } = render(<RevenueFlow />);
     expect(container).toMatchSnapshot();
   });
 
   it('handles changing the select option', async () => {
-    const { getByRole, getByText } = setup();
-    const select = getByRole('button');
+    render(<RevenueFlow />);
+    const select = screen.getByRole('button');
     await userEvent.click(select);
-    const selectOption = getByText('Jan - Jun');
+    const selectOption = screen.getByText('Jan - Jun');
     await userEvent.click(selectOption);
 
     expect(select.textContent).toBe('Jan - Jun');
