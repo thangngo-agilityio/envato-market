@@ -68,12 +68,15 @@ const SearchBarComponent = ({
       as="form"
       data-testid="search-bar"
       h={14}
-      gap={5}
+      gap={{
+        base: 'none',
+        sm: '5',
+      }}
       onSubmit={handleStopSubmitForm}
     >
       <Box
         display={{
-          base: 'none',
+          base: 'flex',
           sm: 'block',
         }}
         flex={1}
@@ -100,7 +103,7 @@ const SearchBarComponent = ({
       <Box
         h="100%"
         w={{
-          base: '100%',
+          base: '45%',
           sm: '30%',
           lg: '15%',
           xl: '12%',
