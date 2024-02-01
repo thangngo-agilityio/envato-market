@@ -1,10 +1,17 @@
-import { useCallback } from 'react';
+import { useRouter } from 'next/navigation';
+import { useCallback, useState } from 'react';
 import { AxiosError, AxiosResponse } from 'axios';
 import { shallow } from 'zustand/shallow';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 // Constants
-import { END_POINTS, ERROR_MESSAGES, IMAGES } from '@/lib/constants';
+import {
+  END_POINTS,
+  ERROR_MESSAGES,
+  IMAGES,
+  LOGOUT_TIME,
+  ROUTES,
+} from '@/lib/constants';
 
 // Services
 import { AuthenticationHttpService } from '@/lib/services';
@@ -51,6 +58,8 @@ export type TUseAuth = {
 };
 
 export const useAuth = () => {
+  const [isLogout, setIsLogout] = useState(false);
+  const router = useRouter();
   const { updateStore, clearStore } = authStore(
     (state) => ({
       updateStore: state.updateStore,
@@ -168,11 +177,28 @@ export const useAuth = () => {
     [updateStore],
   );
 
+  const handleLogout = useCallback(
+    (
+      redirectPath?: string,
+      option?: keyof Pick<typeof router, 'push' | 'replace'>,
+    ) => {
+      setIsLogout(true);
+
+      setTimeout(() => {
+        clearStore();
+        setIsLogout(false);
+        router[option ?? 'replace'](redirectPath ?? ROUTES.LOGIN);
+      }, LOGOUT_TIME);
+    },
+    [clearStore, router],
+  );
+
   return {
+    isLogoutHandling: isLogout,
     setUser: updateStore,
     signIn: handleSignIn,
     signUp: handleSignUp,
-    signOut: clearStore,
+    signOut: handleLogout,
     handleSignInWithFirebase,
   };
 };

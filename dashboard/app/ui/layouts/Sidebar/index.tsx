@@ -23,25 +23,25 @@ export type TSidebarProps = {
   user?: TUserDetail;
   onClose: () => void;
   onOpen: () => void;
+  onSignOut: () => void;
 };
 
-const Sidebar = ({ isExpandSidebar, user, onClose, onOpen }: TSidebarProps) => {
+const Sidebar = ({ isExpandSidebar, user, ...props }: TSidebarProps) => {
   const { role = AUTHENTICATION_ROLE.MEMBER } = user || ({} as TUserDetail);
 
   return (
     <>
       {isExpandSidebar ? (
         <ExpandSidebar
+          {...props}
           role={role}
           isExpandSidebar={isExpandSidebar}
-          onClose={onClose}
-          onOpen={onOpen}
         />
       ) : (
         <MiniSidebar
+          {...props}
           role={role}
           isExpandSidebar={!isExpandSidebar}
-          onClose={onOpen}
         />
       )}
 
@@ -54,7 +54,7 @@ const Sidebar = ({ isExpandSidebar, user, onClose, onOpen }: TSidebarProps) => {
         left={0}
         cursor="pointer"
         display={{ base: 'block', md: 'none', lg: 'block' }}
-        onClick={onOpen}
+        onClick={props.onOpen}
       />
     </>
   );

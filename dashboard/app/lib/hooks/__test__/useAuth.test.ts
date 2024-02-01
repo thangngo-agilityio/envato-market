@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
+import { useRouter } from 'next/navigation';
 import { AxiosResponse } from 'axios';
 
 // Hooks
@@ -8,7 +9,7 @@ import { useAuth } from '@/lib/hooks';
 import { AuthenticationHttpService } from '@/lib/services';
 
 // Constants
-import { ERROR_MESSAGES } from '@/lib/constants';
+import { ERROR_MESSAGES, LOGOUT_TIME } from '@/lib/constants';
 
 // Stores
 import { authStore } from '@/lib/stores';
@@ -38,6 +39,12 @@ const SIGN_UP_PARAM = {
 
 describe('useAuth', () => {
   beforeEach(() => {
+    (useRouter as jest.Mock).mockReturnValue({
+      replace: jest.fn(),
+    });
+  });
+
+  afterEach(() => {
     jest.resetAllMocks();
   });
 
@@ -102,35 +109,31 @@ describe('useAuth', () => {
     });
   });
 
-  it('Set profile', async () => {
+  it('Set profile', () => {
     const {
       result: {
         current: { setUser },
       },
     } = setup();
-    await act(async () => {
-      await setUser({ user: SIGN_IN_PARAM as TUserDetail });
-    });
+    act(() => setUser({ user: SIGN_IN_PARAM as TUserDetail }));
 
     expect(authStore.getState().user).toEqual(SIGN_IN_PARAM);
   });
 
-  it('SignOut', async () => {
+  jest.useFakeTimers();
+  it('SignOut', () => {
     const {
       result: {
         current: { signOut },
       },
     } = setup();
-    await act(async () => {
-      await authStore.setState({ user: SIGN_IN_PARAM as TUserDetail });
-    });
+    act(() => authStore.setState({ user: SIGN_IN_PARAM as TUserDetail }));
 
     expect(authStore.getState().user).toEqual(SIGN_IN_PARAM);
 
-    await act(async () => {
-      await signOut();
-    });
+    act(() => signOut());
 
+    jest.advanceTimersByTime(LOGOUT_TIME);
     expect(authStore.getState().user).toBe(null);
   });
 });
