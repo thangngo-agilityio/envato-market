@@ -2,7 +2,7 @@ import { defineStyleConfig } from '@chakra-ui/react';
 
 const FOCUS_COLOR = 'primary.600';
 const NO_COLOR = 'transparent';
-const COLOR_TEXT = 'secondary.450';
+const COLOR_TEXT = 'text.textInput';
 const BG_DARK_THEME = 'background.component.secondary';
 const ERROR_COLOR = 'red';
 

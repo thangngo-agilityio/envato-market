@@ -11,7 +11,7 @@ exports[`InputField component Render correctly with default props 1`] = `
       data-group="true"
     >
       <input
-        class="chakra-input css-6hxpcw"
+        class="chakra-input css-10kn41x"
         id="field-:r0:"
         name="email"
         placeholder="Email"
@@ -36,7 +36,7 @@ exports[`InputField component Render correctly with error message 1`] = `
       <input
         aria-describedby="field-:r5:-feedback"
         aria-invalid="true"
-        class="chakra-input css-6hxpcw"
+        class="chakra-input css-10kn41x"
         id="field-:r5:"
         name="email"
         placeholder="Email"
@@ -79,7 +79,7 @@ exports[`InputField component Render correctly with left icon 1`] = `
         </svg>
       </div>
       <input
-        class="chakra-input css-6hxpcw"
+        class="chakra-input css-10kn41x"
         id="field-:r3:"
         name="email"
         placeholder="Email"
@@ -101,7 +101,7 @@ exports[`InputField component Render correctly with right icon 1`] = `
       data-group="true"
     >
       <input
-        class="chakra-input css-6hxpcw"
+        class="chakra-input css-10kn41x"
         id="field-:r4:"
         name="email"
         placeholder="Email"
@@ -140,7 +140,7 @@ exports[`InputField component Render correctly with variant is authentication 1`
       data-group="true"
     >
       <input
-        class="chakra-input css-6hxpcw"
+        class="chakra-input css-10kn41x"
         id="field-:r2:"
         name="email"
         placeholder="Email"
@@ -162,7 +162,7 @@ exports[`InputField component Render correctly with variant is secondary 1`] = `
       data-group="true"
     >
       <input
-        class="chakra-input css-6hxpcw"
+        class="chakra-input css-10kn41x"
         id="field-:r1:"
         name="email"
         placeholder="Email"
