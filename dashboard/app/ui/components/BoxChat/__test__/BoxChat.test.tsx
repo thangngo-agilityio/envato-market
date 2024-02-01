@@ -4,14 +4,17 @@ import '@testing-library/jest-dom';
 // Components
 import BoxChat from '@/ui/components/BoxChat';
 
+// Mocks
+import { MOCK_USER_DETAIL } from '@/lib/mocks';
+
 describe('BoxChatComponent', () => {
   test('BoxChat component renders correctly', () => {
-    const { container } = render(<BoxChat />);
+    const { container } = render(<BoxChat user={MOCK_USER_DETAIL} />);
     expect(container).toMatchSnapshot();
   });
 
   test('calls handleSendMessage when the send button is clicked', async () => {
-    render(<BoxChat />);
+    render(<BoxChat user={MOCK_USER_DETAIL} />);
 
     const sendButton = screen.getByTestId('btn-send');
     await fireEvent.click(sendButton);
@@ -23,7 +26,7 @@ describe('BoxChatComponent', () => {
 
   test('calls handleSendMessage when Enter key is pressed', () => {
     const handleSendMessage = jest.fn();
-    render(<BoxChat />);
+    render(<BoxChat user={MOCK_USER_DETAIL} />);
 
     const input = screen.getByPlaceholderText('Type your message...');
     fireEvent.change(input, { target: { value: 'Test message' } });
