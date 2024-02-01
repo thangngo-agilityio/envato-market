@@ -1,3 +1,83 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BoxChatComponent BoxChat component renders correctly 1`] = `<div />`;
+exports[`BoxChatComponent BoxChat component renders correctly 1`] = `
+<div>
+  <div
+    class="css-1tid5r0"
+  >
+    <div
+      class="css-1mdtjo1"
+    >
+      <h3
+        class="chakra-heading css-gh62sw"
+      >
+        team chat
+      </h3>
+    </div>
+    <div
+      class="css-93w66m"
+    >
+      <div
+        class="css-1vlifh4"
+      />
+      <form
+        class="chakra-stack css-tl3ftk"
+      >
+        <div
+          class="css-mgpx6q"
+        >
+          <div
+            class="chakra-form-control css-0"
+            role="group"
+          >
+            <div
+              class="css-1yae3jf"
+            >
+              <div
+                class="chakra-form-control css-0"
+                role="group"
+              >
+                <div
+                  class="chakra-input__group css-169ufh8"
+                  data-group="true"
+                >
+                  <input
+                    class="chakra-input css-272te6"
+                    id="field-:r2:"
+                    name="text"
+                    placeholder="Type your message..."
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <p
+            class="chakra-text css-dz8804"
+          />
+          <button
+            class="chakra-button css-1wi3nws"
+            data-testid="btn-send"
+            disabled=""
+            type="submit"
+          >
+            <svg
+              fill="none"
+              height="18"
+              viewBox="0 0 20 18"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.3894 0H2.61094C0.339326 0 -0.844596 2.63548 0.696196 4.26234L3.78568 7.52441C4.23 7.99355 4.47673 8.60858 4.47673 9.24704V15.4553C4.47673 17.8735 7.61615 18.9233 9.13941 17.0145L19.4463 4.09894C20.7775 2.43071 19.5578 0 17.3894 0Z"
+                fill="#22C55E"
+              />
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

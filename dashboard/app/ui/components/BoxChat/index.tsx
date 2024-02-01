@@ -13,7 +13,7 @@ import { InputSendMessages } from '@/ui/components';
 import { TMessages } from '@/lib/interfaces';
 
 // Stores
-import { authStore } from '@/lib/stores';
+import { TUserInfo } from '@/lib/stores';
 
 // Hooks
 import { getCurrentUser } from '@/lib/hooks';
@@ -21,7 +21,8 @@ import { getCurrentUser } from '@/lib/hooks';
 // Firebase
 import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { db } from '@/lib/utils';
-import { AUTHENTICATION_ROLE, FIREBASE_CHAT } from '@/lib/constants';
+import { FIREBASE_CHAT } from '@/lib/constants';
+import { INIT_USER_DETAIL } from '@/lib/mocks';
 
 const initialUserChat = {
   roomChatId: '',
@@ -32,10 +33,13 @@ const initialUserChat = {
   displayName: '',
 };
 
-const BoxChatComponent = () => {
+interface BoxChatProps {
+  user?: TUserInfo;
+}
+
+const BoxChatComponent = ({ user = INIT_USER_DETAIL }: BoxChatProps) => {
   const [messages, setMessages] = useState<TMessages[]>([]);
-  const user = authStore((state) => state.user);
-  const hasPermission = user?.role === AUTHENTICATION_ROLE.MEMBER;
+
   const [userChat, setUserChat] = useState(initialUserChat);
   const boxRef = useRef<HTMLDivElement | null>(null);
 
@@ -77,62 +81,60 @@ const BoxChatComponent = () => {
   }, [userChat.roomChatId]);
 
   return (
-    hasPermission && (
-      <Box w="full" bg="background.body.quaternary" borderRadius="lg">
-        <Flex
-          direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-          justify="center"
-          borderBottom="1px solid"
-          borderBottomColor="border.tertiary"
-          padding="24px 26px"
+    <Box w="full" bg="background.body.quaternary" borderRadius="lg">
+      <Flex
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        justify="center"
+        borderBottom="1px solid"
+        borderBottomColor="border.tertiary"
+        padding="24px 26px"
+      >
+        <Heading
+          as="h3"
+          fontWeight="semibold"
+          color="text.primary"
+          fontSize="2xl"
+          textTransform="capitalize"
         >
-          <Heading
-            as="h3"
-            fontWeight="semibold"
-            color="text.primary"
-            fontSize="2xl"
-            textTransform="capitalize"
-          >
-            team chat
-          </Heading>
-        </Flex>
+          team chat
+        </Heading>
+      </Flex>
 
-        <Box padding={{ base: '24px 20px', lg: '45px 35px' }}>
-          <Box
-            ref={boxRef}
-            overflowX="auto"
-            overflowY="scroll"
-            css={{
-              '&::-webkit-scrollbar': {
-                width: 2,
-              },
-              '&::-webkit-scrollbar-track': {
-                width: 2,
-              },
-              '&::-webkit-scrollbar-thumb': {
-                background: 'gray',
-                borderRadius: '24px',
-              },
-            }}
-            maxHeight={361}
-            padding={5}
-          >
-            {messages.map((message) => (
-              <Message
-                content={message.text}
-                key={message.date.seconds}
-                senderId={message.senderId}
-                avatarAdmin={userChat.avatarAdminUrl}
-                avatarUser={userChat.avatarUrl}
-              />
-            ))}
-          </Box>
-          <InputSendMessages boxRef={boxRef} />
+      <Box padding={{ base: '24px 20px', lg: '45px 35px' }}>
+        <Box
+          ref={boxRef}
+          overflowX="auto"
+          overflowY="scroll"
+          css={{
+            '&::-webkit-scrollbar': {
+              width: 2,
+            },
+            '&::-webkit-scrollbar-track': {
+              width: 2,
+            },
+            '&::-webkit-scrollbar-thumb': {
+              background: 'gray',
+              borderRadius: '24px',
+            },
+          }}
+          maxHeight={361}
+          padding={5}
+        >
+          {messages.map((message) => (
+            <Message
+              content={message.text}
+              key={message.date.seconds}
+              senderId={message.senderId}
+              avatarAdmin={userChat.avatarAdminUrl}
+              avatarUser={userChat.avatarUrl}
+            />
+          ))}
         </Box>
+        <InputSendMessages boxRef={boxRef} />
       </Box>
-    )
+    </Box>
   );
 };
 

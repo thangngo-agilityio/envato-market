@@ -417,3 +417,24 @@ export const MOCK_USER_WITH_BLOCK = [
     uid: '1',
   },
 ];
+
+export const INIT_USER_DETAIL: TUserDetail = {
+  id: '',
+  _id: '',
+  title: '',
+  avatarURL: '',
+  password: '',
+  phoneNumber: '',
+  country: '',
+  city: '',
+  address: '',
+  postalCode: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  role: '',
+  description: '',
+  createdAt: 0,
+  isBlock: false,
+  uid: '',
+};
