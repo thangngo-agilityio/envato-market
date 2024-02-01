@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Box, Heading, Flex } from '@chakra-ui/react';
 
 // Components
@@ -19,7 +19,7 @@ import { authStore } from '@/lib/stores';
 import { getCurrentUser } from '@/lib/hooks';
 
 // Firebase
-import { doc, getDoc, onSnapshot } from 'firebase/firestore';
+import { doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore';
 import { db } from '@/lib/utils';
 import { AUTHENTICATION_ROLE, FIREBASE_CHAT } from '@/lib/constants';
 
@@ -40,8 +40,8 @@ const BoxChatComponent = () => {
   const boxRef = useRef<HTMLDivElement | null>(null);
 
   const fetchData = async () => {
-    // Get user data
     const usersData = await getCurrentUser(user);
+    // Get user data
 
     // Check if usersData is undefined before accessing its properties
     if (usersData) {
@@ -54,6 +54,17 @@ const BoxChatComponent = () => {
     }
   };
 
+  const createChatRoom = useCallback(async () => {
+    // Get user data
+    const usersData = await getCurrentUser(user);
+
+    if (usersData) {
+      await setDoc(doc(db, FIREBASE_CHAT.CHATS, usersData.roomChatId), {
+        messages: [],
+      });
+    }
+  }, [user]);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -62,8 +73,10 @@ const BoxChatComponent = () => {
     if (!userChat.roomChatId) return;
     const unSub = onSnapshot(
       doc(db, FIREBASE_CHAT.CHATS, userChat.roomChatId),
-      (doc) => {
-        doc.exists() && setMessages(doc.data().messages);
+      async (doc) => {
+        doc.exists()
+          ? setMessages(doc.data().messages)
+          : await createChatRoom();
       },
     );
 
@@ -74,7 +87,7 @@ const BoxChatComponent = () => {
     return () => {
       unSub();
     };
-  }, [userChat.roomChatId]);
+  }, [createChatRoom, userChat.roomChatId]);
 
   return (
     hasPermission && (
