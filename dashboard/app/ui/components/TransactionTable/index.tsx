@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { memo, useCallback, useMemo } from 'react';
 import { Box, Td, Text, Th, useToast } from '@chakra-ui/react';
 
@@ -268,7 +269,7 @@ const TransactionTableComponent = ({
           whiteSpace="break-spaces"
           color={isAddMoney ? 'text.currencyColor' : 'red.500'}
           noOfLines={1}
-          w={{ base: 100, md: 150, '3xl': 100, '7xl': 200 }}
+          w={{ base: 100, md: 150, '3xl': 200, '5xl': 110, '7xl': 200 }}
           flex={1}
         >
           {amount}
@@ -276,6 +277,35 @@ const TransactionTableComponent = ({
       </Td>
     );
   }, []);
+
+  const renderEmail = useCallback(
+    ({ customer: { email } }: TTransaction) => (
+      <Td
+        py={5}
+        pr={5}
+        pl={0}
+        fontSize="md"
+        color="text.primary"
+        fontWeight="semibold"
+        textAlign="left"
+        w={{ base: 150, md: 20 }}
+      >
+        <Text
+          as={Link}
+          href={`mailto:${email}`}
+          fontSize="md"
+          fontWeight="semibold"
+          whiteSpace="break-spaces"
+          noOfLines={1}
+          w={{ base: 100, md: 220, '3xl': 300, '5xl': 200, '7xl': 350 }}
+          flex={1}
+        >
+          {email}
+        </Text>
+      </Td>
+    ),
+    [],
+  );
 
   const columns = useMemo(() => {
     if (isOpenHistoryModal) {
@@ -294,10 +324,12 @@ const TransactionTableComponent = ({
       renderNameUser,
       renderActionIcon,
       renderSpent,
+      renderEmail,
     );
   }, [
     isOpenHistoryModal,
     renderActionIcon,
+    renderEmail,
     renderHead,
     renderNameUser,
     renderPaymentStatus,
