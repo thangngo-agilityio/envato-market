@@ -254,6 +254,7 @@ const UserFormComponent = () => {
                     isError={!!error}
                     errorMessages={error?.message}
                     onChange={handleChangeValue('email', field.onChange)}
+                    isDisabled
                   />
                 )}
               />
