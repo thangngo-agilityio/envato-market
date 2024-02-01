@@ -1,22 +1,35 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom';
-
 // Components
-import BoxChat from '@/ui/components/BoxChat';
-
-// Mocks
 import { MOCK_USER_DETAIL } from '@/lib/mocks';
+import { authStore } from '@/lib/stores';
+import BoxChat from '@/ui/components/BoxChat';
+import * as firebase from 'firebase/firestore';
+
+const docMock = jest.fn();
+const getDocMock = jest.fn();
+const onSnapshotMock = jest.fn();
+jest.mock('@/lib/hooks', () => ({
+  ...jest.requireActual('@/lib/hooks'),
+  getCurrentUser: jest.fn(),
+}));
 
 describe('BoxChatComponent', () => {
+  beforeEach(() => {
+    authStore.setState({
+      user: MOCK_USER_DETAIL,
+    });
+    jest.spyOn(firebase, 'doc').mockImplementation(docMock);
+    jest.spyOn(firebase, 'getDoc').mockImplementation(getDocMock);
+    jest.spyOn(firebase, 'onSnapshot').mockImplementation(onSnapshotMock);
+  });
   test('BoxChat component renders correctly', () => {
-    const { container } = render(<BoxChat user={MOCK_USER_DETAIL} />);
+    const { container } = render(<BoxChat />);
     expect(container).toMatchSnapshot();
   });
 
   test('calls handleSendMessage when the send button is clicked', async () => {
-    render(<BoxChat user={MOCK_USER_DETAIL} />);
+    const { getByTestId } = render(<BoxChat />);
 
-    const sendButton = screen.getByTestId('btn-send');
+    const sendButton = getByTestId('btn-send');
     await fireEvent.click(sendButton);
 
     waitFor(() => {
@@ -26,9 +39,9 @@ describe('BoxChatComponent', () => {
 
   test('calls handleSendMessage when Enter key is pressed', () => {
     const handleSendMessage = jest.fn();
-    render(<BoxChat user={MOCK_USER_DETAIL} />);
+    const { getByPlaceholderText } = render(<BoxChat />);
 
-    const input = screen.getByPlaceholderText('Type your message...');
+    const input = getByPlaceholderText('Type your message...');
     fireEvent.change(input, { target: { value: 'Test message' } });
 
     fireEvent.keyDown(input, { key: 'Enter' });

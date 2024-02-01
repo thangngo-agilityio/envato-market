@@ -3,46 +3,46 @@
 exports[`BoxChatComponent BoxChat component renders correctly 1`] = `
 <div>
   <div
-    class="css-1tid5r0"
+    class="css-1pphdyr"
   >
     <div
-      class="css-1mdtjo1"
+      class="css-z7702n"
     >
       <h3
-        class="chakra-heading css-gh62sw"
+        class="chakra-heading css-1rl4kbt"
       >
         team chat
       </h3>
     </div>
     <div
-      class="css-93w66m"
+      class="css-j9vbtn"
     >
       <div
-        class="css-1vlifh4"
+        class="css-3htvxw"
       />
       <form
         class="chakra-stack css-tl3ftk"
       >
         <div
-          class="css-mgpx6q"
+          class="css-1jif775"
         >
           <div
-            class="chakra-form-control css-0"
+            class="chakra-form-control css-1kxonj9"
             role="group"
           >
             <div
               class="css-1yae3jf"
             >
               <div
-                class="chakra-form-control css-0"
+                class="chakra-form-control css-1kxonj9"
                 role="group"
               >
                 <div
-                  class="chakra-input__group css-169ufh8"
+                  class="chakra-input__group css-1091msq"
                   data-group="true"
                 >
                   <input
-                    class="chakra-input css-272te6"
+                    class="chakra-input css-70m1g"
                     id="field-:r2:"
                     name="text"
                     placeholder="Type your message..."
@@ -54,10 +54,10 @@ exports[`BoxChatComponent BoxChat component renders correctly 1`] = `
             </div>
           </div>
           <p
-            class="chakra-text css-dz8804"
+            class="chakra-text css-rj1t1b"
           />
           <button
-            class="chakra-button css-1wi3nws"
+            class="chakra-button css-bg2fy7"
             data-testid="btn-send"
             disabled=""
             type="submit"
@@ -79,5 +79,9 @@ exports[`BoxChatComponent BoxChat component renders correctly 1`] = `
       </form>
     </div>
   </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
 </div>
 `;
