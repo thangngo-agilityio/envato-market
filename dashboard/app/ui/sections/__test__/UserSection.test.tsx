@@ -80,7 +80,7 @@ describe('UsersSection render', () => {
     const { getByPlaceholderText } = setup();
     const input = getByPlaceholderText('Search by name') as HTMLInputElement;
 
-    await act(() => {
+    await act(async () => {
       fireEvent.change(input, {
         target: {
           value: '123',

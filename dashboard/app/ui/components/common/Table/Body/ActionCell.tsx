@@ -150,6 +150,7 @@ const ActionCellComponent = ({
                               w={5}
                               h={5}
                               onClick={handleOpenConfirmModal(false)}
+                              data-testid="edit-icon"
                             />
                           )}
                           <DeleteIcon
@@ -157,6 +158,7 @@ const ActionCellComponent = ({
                             w={5}
                             h={5}
                             onClick={handleOpenConfirmModal(true)}
+                            data-testid="del-icon"
                           />
                         </>
                       )}
