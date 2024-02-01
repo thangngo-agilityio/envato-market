@@ -1,5 +1,8 @@
-import { Box, Flex, Img, Td, Text, Tooltip } from '@chakra-ui/react';
 import { memo } from 'react';
+import Link from 'next/link';
+
+// Components
+import { Box, Flex, Img, Td, Text, Tooltip } from '@chakra-ui/react';
 
 type TUserInfoProps = {
   name: string;
@@ -56,17 +59,19 @@ const UserInfoComponent = ({
             placement="bottom-start"
             label={`${email}`}
           >
-            <Text
-              as="span"
-              fontSize="sm"
-              fontWeight="medium"
-              color="secondary.350"
-              flex={1}
-              whiteSpace="break-spaces"
-              noOfLines={1}
-            >
-              {email}
-            </Text>
+            <Link href={`mailto:${email}`}>
+              <Text
+                as="span"
+                fontSize="sm"
+                fontWeight="medium"
+                color="secondary.350"
+                flex={1}
+                whiteSpace="break-spaces"
+                noOfLines={1}
+              >
+                {email}
+              </Text>
+            </Link>
           </Tooltip>
         </Text>
       </Box>
