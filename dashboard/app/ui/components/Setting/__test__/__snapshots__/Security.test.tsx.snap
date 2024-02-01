@@ -54,6 +54,7 @@ exports[`FaqPage renders FaqPage component correctly 1`] = `
             <button
               aria-label="The eye icon"
               class="chakra-input__right-element css-1stj06r"
+              data-testid="right-icon-input"
               type="button"
             >
               <svg
@@ -107,6 +108,7 @@ exports[`FaqPage renders FaqPage component correctly 1`] = `
             <button
               aria-label="The eye icon"
               class="chakra-input__right-element css-1stj06r"
+              data-testid="right-icon-input"
               type="button"
             >
               <svg

@@ -76,7 +76,7 @@ const NotificationItem = ({
           <DeleteIcon
             position="relative"
             zIndex={10}
-            data-testid="delete-icon"
+            data-testid={`delete-icon-${notification._id}`}
             onClick={(event) => onToggleModal(event, notification._id)}
           />
         </Flex>

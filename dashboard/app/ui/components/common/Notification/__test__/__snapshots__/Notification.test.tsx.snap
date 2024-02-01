@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Avatar render Should render match with snapshot. 1`] = `
+exports[`Notification component Should render match with snapshot. 1`] = `
 <div>
   <div
     class="css-0"
@@ -9,7 +9,7 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
       aria-controls="menu-list-:r1:"
       aria-expanded="false"
       aria-haspopup="menu"
-      class="chakra-button chakra-menu__menu-button css-1azijzu"
+      class="chakra-button chakra-menu__menu-button css-1syuf9x"
       id="menu-button-:r1:"
       type="button"
     >
@@ -21,13 +21,13 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
           data-testid="icon-button-component"
         >
           <p
-            class="chakra-text css-tlt4oo"
+            class="chakra-text css-1gcq9kx"
           >
             3
           </p>
           <div
             aria-label="new-notification"
-            class="chakra-button css-1l63kb4"
+            class="chakra-button css-8s8ddv"
             data-testid="icon-button"
           >
             <svg
@@ -46,31 +46,31 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
       </span>
     </button>
     <div
-      class="css-0"
+      class="css-r6z5ec"
       style="visibility: hidden; position: absolute; min-width: max-content; inset: 0 auto auto 0;"
     >
       <div
         aria-orientation="vertical"
-        class="chakra-menu__menu-list css-1w8t2jy"
+        class="chakra-menu__menu-list css-21cpnl"
         id="menu-list-:r1:"
         role="menu"
         style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
         tabindex="-1"
       >
         <p
-          class="chakra-text css-1bdh04"
+          class="chakra-text css-43jxxd"
         >
           Notifications
         </p>
         <div
-          class="css-13o6kil"
+          class="css-xrv81f"
         >
           <div
             class="css-0"
             data-testid="notification-item"
           >
             <button
-              class="chakra-menu__menuitem css-17w3qw2"
+              class="chakra-menu__menuitem css-1tfd54l"
               data-index="0"
               id="menu-list-:r1:-menuitem-:r2:"
               role="menuitem"
@@ -78,7 +78,7 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
               type="button"
             >
               <div
-                class="css-fxiqdw"
+                class="css-1nlrkd1"
               >
                 <div
                   class="css-1lekzkb"
@@ -87,37 +87,37 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
                     class="css-0"
                   >
                     <p
-                      class="chakra-text css-pkq0nw"
+                      class="chakra-text css-1u587di"
                     >
                       <span
-                        class="chakra-text css-1ymdeb"
+                        class="chakra-text css-c961l7"
                       >
                         James Eusobio
                       </span>
                       send a new payment for
                       <span
-                        class="chakra-text css-tpthxy"
+                        class="chakra-text css-1t6pjni"
                       >
                          
                         SEO
                       </span>
                        totaling
                       <span
-                        class="chakra-text css-1lt82"
+                        class="chakra-text css-1qw584x"
                       >
                         $
                         $29.00
                       </span>
                     </p>
                     <p
-                      class="chakra-text css-q6u698"
+                      class="chakra-text css-1hrvo66"
                     >
                       NaN years ago
                     </p>
                   </div>
                   <svg
                     class="chakra-icon css-o4w93"
-                    data-testid="delete-icon"
+                    data-testid="delete-icon-1"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -132,7 +132,7 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
                 </div>
                 <hr
                   aria-orientation="horizontal"
-                  class="chakra-divider css-hahno4"
+                  class="chakra-divider css-1bkc2ss"
                 />
               </div>
             </button>
@@ -142,7 +142,7 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
             data-testid="notification-item"
           >
             <button
-              class="chakra-menu__menuitem css-i0nlth"
+              class="chakra-menu__menuitem css-irp3wn"
               data-index="1"
               id="menu-list-:r1:-menuitem-:r3:"
               role="menuitem"
@@ -150,7 +150,7 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
               type="button"
             >
               <div
-                class="css-fxiqdw"
+                class="css-1nlrkd1"
               >
                 <div
                   class="css-1lekzkb"
@@ -159,37 +159,37 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
                     class="css-vdhlfv"
                   >
                     <p
-                      class="chakra-text css-pkq0nw"
+                      class="chakra-text css-1u587di"
                     >
                       <span
-                        class="chakra-text css-1ymdeb"
+                        class="chakra-text css-c961l7"
                       >
                         Devon Lane
                       </span>
                       send a new payment for
                       <span
-                        class="chakra-text css-tpthxy"
+                        class="chakra-text css-1t6pjni"
                       >
                          
                         HR
                       </span>
                        totaling
                       <span
-                        class="chakra-text css-1lt82"
+                        class="chakra-text css-1qw584x"
                       >
                         $
                         $199.00
                       </span>
                     </p>
                     <p
-                      class="chakra-text css-q6u698"
+                      class="chakra-text css-1hrvo66"
                     >
                       NaN years ago
                     </p>
                   </div>
                   <svg
                     class="chakra-icon css-o4w93"
-                    data-testid="delete-icon"
+                    data-testid="delete-icon-2"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -204,7 +204,7 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
                 </div>
                 <hr
                   aria-orientation="horizontal"
-                  class="chakra-divider css-hahno4"
+                  class="chakra-divider css-1bkc2ss"
                 />
               </div>
             </button>
@@ -214,7 +214,7 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
             data-testid="notification-item"
           >
             <button
-              class="chakra-menu__menuitem css-17w3qw2"
+              class="chakra-menu__menuitem css-1tfd54l"
               data-index="2"
               id="menu-list-:r1:-menuitem-:r4:"
               role="menuitem"
@@ -222,7 +222,7 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
               type="button"
             >
               <div
-                class="css-fxiqdw"
+                class="css-1nlrkd1"
               >
                 <div
                   class="css-1lekzkb"
@@ -231,31 +231,31 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
                     class="css-0"
                   >
                     <p
-                      class="chakra-text css-pkq0nw"
+                      class="chakra-text css-1u587di"
                     >
                       <span
-                        class="chakra-text css-1ymdeb"
+                        class="chakra-text css-c961l7"
                       >
                         Bessie Cooper
                       </span>
                       send a new payment for
                        totaling
                       <span
-                        class="chakra-text css-ft41km"
+                        class="chakra-text css-cj8yir"
                       >
                         $
                         $10.00
                       </span>
                     </p>
                     <p
-                      class="chakra-text css-q6u698"
+                      class="chakra-text css-1hrvo66"
                     >
                       NaN years ago
                     </p>
                   </div>
                   <svg
                     class="chakra-icon css-o4w93"
-                    data-testid="delete-icon"
+                    data-testid="delete-icon-3"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -270,7 +270,7 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
                 </div>
                 <hr
                   aria-orientation="horizontal"
-                  class="chakra-divider css-hahno4"
+                  class="chakra-divider css-1bkc2ss"
                 />
               </div>
             </button>
@@ -280,7 +280,7 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
             data-testid="notification-item"
           >
             <button
-              class="chakra-menu__menuitem css-i0nlth"
+              class="chakra-menu__menuitem css-irp3wn"
               data-index="3"
               id="menu-list-:r1:-menuitem-:r5:"
               role="menuitem"
@@ -288,7 +288,7 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
               type="button"
             >
               <div
-                class="css-fxiqdw"
+                class="css-1nlrkd1"
               >
                 <div
                   class="css-1lekzkb"
@@ -297,37 +297,37 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
                     class="css-vdhlfv"
                   >
                     <p
-                      class="chakra-text css-pkq0nw"
+                      class="chakra-text css-1u587di"
                     >
                       <span
-                        class="chakra-text css-1ymdeb"
+                        class="chakra-text css-c961l7"
                       >
                         Fepaciy Russell
                       </span>
                       send a new payment for
                       <span
-                        class="chakra-text css-tpthxy"
+                        class="chakra-text css-1t6pjni"
                       >
                          
                         SEO
                       </span>
                        totaling
                       <span
-                        class="chakra-text css-1lt82"
+                        class="chakra-text css-1qw584x"
                       >
                         $
                         $1.00
                       </span>
                     </p>
                     <p
-                      class="chakra-text css-q6u698"
+                      class="chakra-text css-1hrvo66"
                     >
                       NaN years ago
                     </p>
                   </div>
                   <svg
                     class="chakra-icon css-o4w93"
-                    data-testid="delete-icon"
+                    data-testid="delete-icon-4"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -342,7 +342,7 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
                 </div>
                 <hr
                   aria-orientation="horizontal"
-                  class="chakra-divider css-hahno4"
+                  class="chakra-divider css-1bkc2ss"
                 />
               </div>
             </button>
@@ -352,7 +352,7 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
             data-testid="notification-item"
           >
             <button
-              class="chakra-menu__menuitem css-i0nlth"
+              class="chakra-menu__menuitem css-irp3wn"
               data-index="4"
               id="menu-list-:r1:-menuitem-:r6:"
               role="menuitem"
@@ -360,7 +360,7 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
               type="button"
             >
               <div
-                class="css-fxiqdw"
+                class="css-1nlrkd1"
               >
                 <div
                   class="css-1lekzkb"
@@ -369,37 +369,37 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
                     class="css-vdhlfv"
                   >
                     <p
-                      class="chakra-text css-pkq0nw"
+                      class="chakra-text css-1u587di"
                     >
                       <span
-                        class="chakra-text css-1ymdeb"
+                        class="chakra-text css-c961l7"
                       >
                         Somav Russell
                       </span>
                       send a new payment for
                       <span
-                        class="chakra-text css-tpthxy"
+                        class="chakra-text css-1t6pjni"
                       >
                          
                         SEO
                       </span>
                        totaling
                       <span
-                        class="chakra-text css-1lt82"
+                        class="chakra-text css-1qw584x"
                       >
                         $
                         $2.00
                       </span>
                     </p>
                     <p
-                      class="chakra-text css-q6u698"
+                      class="chakra-text css-1hrvo66"
                     >
                       NaN years ago
                     </p>
                   </div>
                   <svg
                     class="chakra-icon css-o4w93"
-                    data-testid="delete-icon"
+                    data-testid="delete-icon-5"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -419,5 +419,9 @@ exports[`Avatar render Should render match with snapshot. 1`] = `
       </div>
     </div>
   </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
 </div>
 `;

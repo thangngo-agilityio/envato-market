@@ -88,6 +88,7 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
         },
         {
           onSuccess: () => {
+            handleTriggerToggleModal();
             toast(
               customToast(
                 SUCCESS_MESSAGES.DELETE_NOTIFICATION_SUCCESS.title,
@@ -95,7 +96,6 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
                 STATUS.SUCCESS,
               ),
             );
-            handleTriggerToggleModal();
           },
           onError: () => {
             toast(

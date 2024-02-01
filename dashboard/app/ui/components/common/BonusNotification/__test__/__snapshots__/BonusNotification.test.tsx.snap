@@ -17,7 +17,7 @@ exports[`BonusNotification test cases should render correctly 1`] = `
         data-testid="icon-button-component"
       >
         <p
-          class="chakra-text css-tlt4oo"
+          class="chakra-text css-8qjndr"
         >
           5
         </p>

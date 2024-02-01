@@ -230,7 +230,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
       </p>
     </div>
     <div
-      class="css-pt3889"
+      class="css-v9bphm"
     >
       <div
         class="css-k008qs"
@@ -364,7 +364,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
                 data-testid="icon-button-component"
               >
                 <p
-                  class="chakra-text css-1v3iex4"
+                  class="chakra-text css-1gcq9kx"
                 >
                   5
                 </p>
