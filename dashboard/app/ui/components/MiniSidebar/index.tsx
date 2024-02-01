@@ -25,9 +25,10 @@ import { TMenuItem } from '../common/Menu';
 import { TSidebarProps } from '@/ui/layouts/Sidebar';
 
 const MiniSidebar = ({
-  onClose,
-  isExpandSidebar,
   role,
+  isExpandSidebar,
+  onClose,
+  onSignOut,
 }: Omit<TSidebarProps, 'onOpen'>) => {
   const { colorMode } = useColorMode();
 
@@ -113,6 +114,7 @@ const MiniSidebar = ({
                   title={item.title}
                   listItem={item.listItem as TMenuItem[]}
                   isExpandSidebar
+                  onSignOut={onSignOut}
                 />
               ))}
             </List>

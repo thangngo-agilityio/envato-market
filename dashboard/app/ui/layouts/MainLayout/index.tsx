@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Box, Flex, useDisclosure, useMediaQuery } from '@chakra-ui/react';
 
 // Constants
@@ -17,6 +17,8 @@ import { TAuthStoreData, authStore } from '@/lib/stores';
 
 // Interfaces
 import { TUserDetail } from '@/lib/interfaces';
+import { useAuth } from '@/lib/hooks';
+import { Indicator } from '@/ui/components';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const [isDesktop] = useMediaQuery(SCREEN_SIZES.LARGE_DESKTOP);
@@ -29,6 +31,9 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   });
 
   const user = authStore((state): TAuthStoreData['user'] => state.user);
+  const { isLogoutHandling, signOut } = useAuth();
+
+  const handleSignOut = useCallback(() => signOut(), [signOut]);
 
   useEffect(() => {
     if (isDesktop) {
@@ -38,35 +43,38 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <CheckPinCodeProvider>
-      <Flex w="full" h="full" bg="background.body.primary">
-        <Box
-          pl={{
-            base: 0,
-            md: SIDEBAR.MINI_SIDEBAR_WIDTH,
-            lg: SIDEBAR.MINI_SIDEBAR_WIDTH,
-            '4xl': isExpandSidebar
-              ? SIDEBAR.EXPAND_SIDEBAR_WIDTH
-              : isDesktop
-                ? SIDEBAR.MINI_SIDEBAR_WIDTH
-                : 0,
-          }}
-          w="full"
-          minH="100vh"
-          h="full"
-          sx={{
-            transition: 'all .25s ease-in-out',
-          }}
-        >
-          <SideBar
-            isExpandSidebar={isExpandSidebar}
-            user={user as TUserDetail}
-            onOpen={onOpen}
-            onClose={onClose}
-          />
-          <Header />
-          {children}
-        </Box>
-      </Flex>
+      <Indicator isOpen={isLogoutHandling}>
+        <Flex w="full" h="full" bg="background.body.primary">
+          <Box
+            pl={{
+              base: 0,
+              md: SIDEBAR.MINI_SIDEBAR_WIDTH,
+              lg: SIDEBAR.MINI_SIDEBAR_WIDTH,
+              '4xl': isExpandSidebar
+                ? SIDEBAR.EXPAND_SIDEBAR_WIDTH
+                : isDesktop
+                  ? SIDEBAR.MINI_SIDEBAR_WIDTH
+                  : 0,
+            }}
+            w="full"
+            minH="100vh"
+            h="full"
+            sx={{
+              transition: 'all .25s ease-in-out',
+            }}
+          >
+            <SideBar
+              isExpandSidebar={isExpandSidebar}
+              user={user as TUserDetail}
+              onOpen={onOpen}
+              onClose={onClose}
+              onSignOut={handleSignOut}
+            />
+            <Header />
+            {children}
+          </Box>
+        </Flex>
+      </Indicator>
     </CheckPinCodeProvider>
   );
 };

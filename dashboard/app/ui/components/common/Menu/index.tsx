@@ -7,7 +7,6 @@ import {
   ReactNode,
   useCallback,
 } from 'react';
-import { useRouter } from 'next/navigation';
 import { Flex, Heading, List, ListItem, Text, VStack } from '@chakra-ui/react';
 
 // Components
@@ -15,9 +14,6 @@ import { Navigation } from '@/ui/components';
 
 // Constants
 import { ROUTES } from '@/lib/constants';
-
-// Hooks
-import { useAuth } from '@/lib/hooks';
 
 export type TMenuItem = {
   id: number;
@@ -32,24 +28,22 @@ export type MenuProps = {
   listItem: Array<TMenuItem>;
   isExpandSidebar?: boolean;
   onClickMenuItem?: () => void;
+  onSignOut?: () => void;
 };
 
 const Menu = ({
   title = '',
   listItem,
   isExpandSidebar = false,
+  onSignOut,
   onClickMenuItem,
 }: MenuProps) => {
-  const router = useRouter();
-  const { signOut } = useAuth();
-
   const handleSignOut = useCallback(
     (e: MouseEvent<HTMLAnchorElement>) => {
       e.preventDefault();
-      signOut();
-      router.push(ROUTES.LOGIN);
+      onSignOut && onSignOut();
     },
-    [router, signOut],
+    [onSignOut],
   );
 
   return (

@@ -21,7 +21,12 @@ import { SIDEBAR, IMAGES, EXPAND_SIDEBAR_MENU_LIST } from '@/lib/constants';
 // Interfaces
 import { TSidebarProps } from '@/ui/layouts/Sidebar';
 
-const ExpandSidebar = ({ isExpandSidebar, role, onClose }: TSidebarProps) => {
+const ExpandSidebar = ({
+  isExpandSidebar,
+  role,
+  onClose,
+  onSignOut,
+}: TSidebarProps) => {
   const [isMobileAndTablet] = useMediaQuery('(max-width: 1731px)');
 
   const handleCloseSideBar = useCallback(() => {
@@ -96,6 +101,7 @@ const ExpandSidebar = ({ isExpandSidebar, role, onClose }: TSidebarProps) => {
                 title={item.title}
                 listItem={item.listItem as TMenuItem[]}
                 onClickMenuItem={handleCloseSideBar}
+                onSignOut={onSignOut}
               />
             ))}
           </VStack>
