@@ -62,13 +62,14 @@ const MyWallets = async () => {
             gap={6}
             direction={{ base: 'column', xl: 'row' }}
             boxSizing="border-box"
+            w="100%"
           >
-            <Box flex={2}>
+            <Box w="65%">
               <HydrationBoundary state={dehydrate(queryClient)}>
                 <OverallBalance />
               </HydrationBoundary>
             </Box>
-            <Box flex={1}>
+            <Box w="35%">
               <HydrationBoundary state={dehydrate(queryClient)}>
                 <Efficiency />
               </HydrationBoundary>
