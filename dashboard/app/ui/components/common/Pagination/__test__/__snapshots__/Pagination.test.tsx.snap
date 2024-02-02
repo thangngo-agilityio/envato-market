@@ -21,7 +21,7 @@ exports[`Pagination render Should render match with snapshot. 1`] = `
           aria-controls="menu-list-:r1:"
           aria-expanded="false"
           aria-haspopup="menu"
-          class="chakra-button chakra-menu__menu-button css-26jysu"
+          class="chakra-button chakra-menu__menu-button css-cde5mu"
           id="menu-button-:r1:"
           type="button"
         >
@@ -29,7 +29,7 @@ exports[`Pagination render Should render match with snapshot. 1`] = `
             class="css-xl71ch"
           >
             <div
-              class="css-1u78b0r"
+              class="css-1l4w6pd"
             >
               <p
                 class="chakra-text css-nyal52"
