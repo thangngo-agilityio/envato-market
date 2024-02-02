@@ -11,9 +11,9 @@ const nextConfig = {
     ],
     formats: ['image/webp'],
   },
-  compiler: {
-    removeConsole: true,
-  },
+  // compiler: {
+  //   removeConsole: !true,
+  // },
 };
 
 module.exports = nextConfig;
