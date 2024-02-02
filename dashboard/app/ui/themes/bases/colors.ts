@@ -174,6 +174,16 @@ export const colors = {
       default: 'primary.700',
       _dark: 'gray.400',
     },
+
+    nonary: {
+      default: 'gray.300',
+      _dark: 'secondary.450',
+    },
+
+    denary: {
+      default: 'secondary.150',
+      _dark: '#23262B',
+    },
   },
 
   text: {
