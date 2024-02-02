@@ -7,6 +7,11 @@ import { IMAGES } from '@/lib/constants';
 // Message
 import Message from '@/ui/components/BoxChat/Message';
 
+jest.mock('@/lib/hooks', () => ({
+  ...jest.requireActual('@/lib/hooks'),
+  getUsers: jest.fn(),
+}));
+
 describe('Message component', () => {
   const mockLocaleTime = new Date(1702543868252).toLocaleTimeString([], {
     hour: 'numeric',

@@ -145,6 +145,9 @@ devDependencies:
   jest-environment-jsdom:
     specifier: ^29.7.0
     version: 29.7.0
+  jest-next-dynamic:
+    specifier: ^1.0.1
+    version: 1.0.1
   lint-staged:
     specifier: ^15.2.0
     version: 15.2.0
@@ -10706,6 +10709,10 @@ packages:
       '@jest/types': 29.6.3
       '@types/node': 20.10.6
       jest-util: 29.7.0
+    dev: true
+
+  /jest-next-dynamic@1.0.1:
+    resolution: {integrity: sha512-peo9yRvUn8u6PZro9AzzjxpgUc+1NZhZMan+1xzk7Bz1vA0d5IC2Iw8E7bkC2cwl9AG3XxTaqPVAXbC3aMbVkw==}
     dev: true
 
   /jest-pnp-resolver@1.2.3(jest-resolve@29.7.0):

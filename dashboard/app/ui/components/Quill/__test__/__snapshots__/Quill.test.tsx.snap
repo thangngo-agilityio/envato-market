@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ChatAreaMemoried render Should render match with snapshot. 1`] = `
+exports[`Quill component renders correctly 1`] = `
 <div>
   <form
     class="chakra-stack css-tl3ftk"
@@ -9,11 +9,10 @@ exports[`ChatAreaMemoried render Should render match with snapshot. 1`] = `
       class="css-1nlrkd1"
     >
       <div
-        class="chakra-form-control css-1kxonj9"
-        role="group"
+        class="css-u4p24i"
       >
         <div
-          class="css-1yae3jf"
+          class="css-14ethi5"
         >
           <div
             class="quill "
@@ -215,8 +214,8 @@ exports[`ChatAreaMemoried render Should render match with snapshot. 1`] = `
         class="chakra-text css-rj1t1b"
       />
       <button
-        class="chakra-button css-rhj63p"
-        data-testid="submit-send-message"
+        class="chakra-button css-qcuulc"
+        disabled=""
         type="submit"
       >
         <span
