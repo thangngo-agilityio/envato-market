@@ -15,13 +15,13 @@ exports[`Pagination render Should render match with snapshot. 1`] = `
         Show result:
       </p>
       <div
-        class="css-1eqmq6c"
+        class="css-18gn0nf"
       >
         <button
           aria-controls="menu-list-:r1:"
           aria-expanded="false"
           aria-haspopup="menu"
-          class="chakra-button chakra-menu__menu-button css-cde5mu"
+          class="chakra-button chakra-menu__menu-button css-a9jpru"
           id="menu-button-:r1:"
           type="button"
         >

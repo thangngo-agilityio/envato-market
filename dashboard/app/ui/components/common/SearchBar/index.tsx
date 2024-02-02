@@ -57,9 +57,10 @@ const SearchBarComponent = ({
       data-testid="search-bar"
       h={14}
       gap={{
-        base: 'none',
+        base: '2',
         sm: '5',
       }}
+      alignItems="stretch"
       onSubmit={handleStopSubmitForm}
     >
       <Box
@@ -68,6 +69,7 @@ const SearchBarComponent = ({
           sm: 'block',
         }}
         flex={1}
+        mb={{ base: 2 }}
       >
         <Controller
           control={control}
@@ -91,11 +93,15 @@ const SearchBarComponent = ({
       <Box
         h="100%"
         w={{
-          base: '45%',
+          base: '35%',
           sm: '30%',
           lg: '15%',
           xl: '12%',
         }}
+        borderWidth="1px"
+        borderRadius="lg"
+        backgroundColor="border.denary"
+        borderColor="border.nonary"
       >
         <Select
           options={filterOptions}

@@ -66,7 +66,13 @@ const PaginationComponent = ({
         <Text w={100} fontSize="sm" fontWeight="semibold" color="text.primary">
           Show result:
         </Text>
-        <Box w={70}>
+        <Box
+          w={70}
+          borderRadius="lg"
+          borderWidth="1px"
+          backgroundColor="border.denary"
+          borderColor="border.nonary"
+        >
           <Select
             options={PAGINATION}
             renderTitle={renderTitle}

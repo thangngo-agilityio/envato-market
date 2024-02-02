@@ -98,13 +98,12 @@ const OverallBalanceComponent = () => {
       <Box bg="background.component.primary" rounded="lg">
         <Box>
           <Flex
-            py={4}
-            px={{ base: 4, md: 5 }}
+            p={4}
             borderBottom="1px"
             borderColor="border.primary"
             justifyContent="space-between"
           >
-            <Box p={3}>
+            <Box px={{ base: 0, '3xl': 4 }}>
               <Text variant="textSm">Overall Balance</Text>
               <Flex align="center" gap={2}>
                 <Heading variant="heading2Xl" as="h3">
@@ -126,7 +125,7 @@ const OverallBalanceComponent = () => {
                 </Flex>
               ))}
             </Flex>
-            <Box w={125} h="21px">
+            <Box h="21px" pr={{ base: 0, '3xl': 4 }}>
               <Select
                 options={REVENUE_FLOW_OPTIONS}
                 variant="no-border"
