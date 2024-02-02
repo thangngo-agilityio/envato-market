@@ -228,6 +228,7 @@ const TransactionModal = ({
         <Button
           type="submit"
           form="update-transaction-form"
+          data-testid="submit-transaction-form"
           w={44}
           bg="green.600"
           mr={3}

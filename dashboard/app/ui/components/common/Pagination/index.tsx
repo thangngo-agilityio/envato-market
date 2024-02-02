@@ -42,7 +42,7 @@ const PaginationComponent = ({
 
   const renderTitle = useCallback(
     () => (
-      <Flex w={20}>
+      <Flex justifyContent="center">
         <Text fontSize={{ lg: 'sm' }}>{pageSize}</Text>
         <Box mt={-1} ml={2}>
           <Arrow color={colorFill} width={18} height={15} />
@@ -68,7 +68,6 @@ const PaginationComponent = ({
         </Text>
         <Box w={70}>
           <Select
-            variant="secondary"
             options={PAGINATION}
             renderTitle={renderTitle}
             onSelect={onLimitChange}

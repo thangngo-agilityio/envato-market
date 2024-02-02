@@ -50,6 +50,7 @@ const config = {
     '!<rootDir>/app/not-found.tsx',
     '!<rootDir>/app/lib/utils/firebase.ts',
     '!**/*.config.ts',
+    '!<rootDir>/app/lib/services/httpClient.ts',
   ],
   testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
 };

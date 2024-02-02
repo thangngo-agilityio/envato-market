@@ -14,6 +14,7 @@ import {
   StatusCell,
   Fetching,
   ActionCell,
+  Indicator,
 } from '@/ui/components';
 
 // Utils
@@ -70,14 +71,14 @@ const TransactionTableComponent = ({
     dataTransaction,
     isLoading: isLoadingTransactions,
     isError: isTransactionsError,
+    isDeleteTransaction,
+    isUpdateTransaction,
     sortBy,
     updateTransaction,
     deleteTransaction,
   } = useTransactions({
     name: searchParams.get('name') || '',
   });
-
-  console.log(searchParams.get('name'));
 
   const listData = isOpenHistoryModal ? dataHistory : dataTransaction;
 
@@ -360,7 +361,7 @@ const TransactionTableComponent = ({
   ]);
 
   return (
-    <>
+    <Indicator isOpen={isUpdateTransaction || isDeleteTransaction}>
       <SearchBar
         filterOptions={isOpenHistoryModal ? MONTHS_OPTIONS : ROLES}
         searchValue={searchParams.get('name') || ''}
@@ -389,7 +390,7 @@ const TransactionTableComponent = ({
           </Box>
         )}
       </Fetching>
-    </>
+    </Indicator>
   );
 };
 
