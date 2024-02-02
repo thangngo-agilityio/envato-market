@@ -68,7 +68,12 @@ export const Input = defineStyleConfig({
         _placeholder: {
           fontWeight: 'bold',
         },
+        backgroundColor: 'border.denary',
+        borderColor: 'gray.300',
         color: COLOR_TEXT,
+        _dark: {
+          borderColor: 'secondary.450',
+        },
       },
     },
 
