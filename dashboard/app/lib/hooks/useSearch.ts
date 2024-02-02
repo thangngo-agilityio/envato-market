@@ -1,16 +1,19 @@
-import { useCallback, useMemo, useState } from 'react';
-import { ReadonlyURLSearchParams } from 'next/navigation';
+import { useCallback } from 'react';
+import {
+  ReadonlyURLSearchParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from 'next/navigation';
 
 export type TUseSearchParams = ReadonlyURLSearchParams & {
   setSearchParam: (key: string, value: string) => void;
 };
 
 export const useSearch = () => {
-  const [_, setTrigger] = useState<boolean>(false);
-  const searchParams = useMemo(
-    () => new URLSearchParams(window.location.search),
-    [],
-  );
+  const pathName: string = usePathname();
+  const router: ReturnType<typeof useRouter> = useRouter();
+  const searchParams: ReadonlyURLSearchParams = useSearchParams();
 
   /**
    * Handle set search param on url
@@ -44,31 +47,14 @@ export const useSearch = () => {
         newSearchParams += `${key}=${value}`;
       }
 
-      const searchValue = `${
-        value && newSearchParams.length - 1
-          ? newSearchParams
-          : window.location.pathname
-      }`;
-
-      window.history.pushState(null, '', searchValue);
-      if (value) {
-        searchParams.set(key, searchValue);
-
-        return;
-      }
-
-      searchParams.delete(key);
-      /**
-       * The hook simulation is re-rendered
-       */
-      setTrigger((prev) => !prev);
+      router.push(`${pathName}${newSearchParams}`);
     },
 
-    [searchParams],
+    [pathName, router, searchParams],
   );
 
   return {
-    searchParams,
+    ...searchParams,
     setSearchParam,
-  };
+  } as TUseSearchParams;
 };
