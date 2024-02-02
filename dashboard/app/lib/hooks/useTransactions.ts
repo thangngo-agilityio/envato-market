@@ -106,10 +106,14 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
         }: TTransaction,
       ) => {
         const valueForField: Record<TSortField, number> = {
-          name: handleSort(type, prevCustomerName, nextCustomerName),
-          email: handleSort(type, prevEmail, nextEmail),
-          location: handleSort(type, prevState, nextState),
-          spent: handleSort(type, prevAmount, nextAmount),
+          name: handleSort(
+            type,
+            prevCustomerName ?? '',
+            nextCustomerName ?? '',
+          ),
+          email: handleSort(type, prevEmail ?? '', nextEmail ?? ''),
+          location: handleSort(type, prevState ?? '', nextState ?? ''),
+          spent: handleSort(type, prevAmount ?? '', nextAmount ?? ''),
         };
 
         return valueForField[field] ?? 0;

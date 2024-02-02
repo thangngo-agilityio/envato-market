@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Transaction Modal match to snapshot 1`] = `
+<div>
+  <div
+    class="css-0"
+  >
+    <p
+      class="chakra-text css-1ezsviu"
+    >
+      Are you sure delete the transaction with id:
+      <span
+        class="chakra-text css-16ximt"
+      >
+        123
+      </span>
+      ?
+    </p>
+    <div
+      class="css-ofbpde"
+    >
+      <button
+        class="chakra-button css-nz6i3s"
+        data-testid="accept-del"
+        type="button"
+      >
+        Delete
+      </button>
+      <button
+        class="chakra-button css-vxb15r"
+        type="button"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+`;

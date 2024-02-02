@@ -72,7 +72,7 @@ export const getUsers = async () => {
 
   if (admin) {
     const isAdmin = admin.data.uid;
-    const isMember = userList[8].id;
+    const isMember = userList[8]?.id;
     return {
       roomChatId: isAdmin + isMember,
       userId: isMember,
