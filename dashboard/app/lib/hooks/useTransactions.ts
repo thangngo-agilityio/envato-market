@@ -171,42 +171,46 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
     [sortType],
   );
 
-  const { mutate: updateTransaction } = useMutation({
-    mutationFn: async (
-      transaction: Partial<
-        TTransaction & TCustomer & TAddress & { transactionId: string }
-      >,
-    ) =>
-      await transactionHttpService.put<TTransaction>(
-        END_POINTS.EDIT_TRANSACTION,
-        transaction,
-      ),
-    onSettled: () => {
-      queryClient.invalidateQueries({
-        queryKey: [END_POINTS.TRANSACTIONS],
-      });
-    },
-  });
+  const { mutate: updateTransaction, isPending: isUpdateTransaction } =
+    useMutation({
+      mutationFn: async (
+        transaction: Partial<
+          TTransaction & TCustomer & TAddress & { transactionId: string }
+        >,
+      ) =>
+        await transactionHttpService.put<TTransaction>(
+          END_POINTS.EDIT_TRANSACTION,
+          transaction,
+        ),
+      onSettled: () => {
+        queryClient.invalidateQueries({
+          queryKey: [END_POINTS.TRANSACTIONS],
+        });
+      },
+    });
 
-  const { mutate: deleteTransaction } = useMutation({
-    mutationFn: async (
-      transaction: Partial<
-        TTransaction & TCustomer & TAddress & { transactionId: string }
-      >,
-    ) =>
-      await transactionHttpService.put<TTransaction>(
-        END_POINTS.DELETE_TRANSACTION,
-        transaction,
-      ),
-    onSettled: () => {
-      queryClient.invalidateQueries({
-        queryKey: [END_POINTS.TRANSACTIONS],
-      });
-    },
-  });
+  const { mutate: deleteTransaction, isPending: isDeleteTransaction } =
+    useMutation({
+      mutationFn: async (
+        transaction: Partial<
+          TTransaction & TCustomer & TAddress & { transactionId: string }
+        >,
+      ) =>
+        await transactionHttpService.put<TTransaction>(
+          END_POINTS.DELETE_TRANSACTION,
+          transaction,
+        ),
+      onSettled: () => {
+        queryClient.invalidateQueries({
+          queryKey: [END_POINTS.TRANSACTIONS],
+        });
+      },
+    });
 
   return {
     ...query,
+    isDeleteTransaction,
+    isUpdateTransaction,
     data: transactions,
     dataTransaction,
     dataHistory,
