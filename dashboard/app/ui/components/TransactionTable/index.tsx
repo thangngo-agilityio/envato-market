@@ -61,7 +61,7 @@ const TransactionTableComponent = ({
 }: TFilterUserProps) => {
   const toast = useToast();
   const userId = authStore((state) => state.user?.id);
-  const { get, setSearchParam: setSearchTransaction } = useSearch();
+  const { searchParams, setSearchParam: setSearchTransaction } = useSearch();
   const [filter, setFilter] = useState<string>('');
 
   const {
@@ -74,8 +74,10 @@ const TransactionTableComponent = ({
     updateTransaction,
     deleteTransaction,
   } = useTransactions({
-    name: get('name') || '',
+    name: searchParams.get('name') || '',
   });
+
+  console.log(searchParams.get('name'));
 
   const listData = isOpenHistoryModal ? dataHistory : dataTransaction;
 
@@ -361,7 +363,7 @@ const TransactionTableComponent = ({
     <>
       <SearchBar
         filterOptions={isOpenHistoryModal ? MONTHS_OPTIONS : ROLES}
-        searchValue={get('name') || ''}
+        searchValue={searchParams.get('name') || ''}
         onSearch={handleDebounceSearch}
         onFilter={setFilter}
       />

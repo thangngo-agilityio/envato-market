@@ -42,7 +42,7 @@ exports[`BoxChatComponent BoxChat component renders correctly 1`] = `
                   data-group="true"
                 >
                   <input
-                    class="chakra-input css-2e0cr2"
+                    class="chakra-input css-70m1g"
                     id="field-:r2:"
                     name="text"
                     placeholder="Type your message..."
