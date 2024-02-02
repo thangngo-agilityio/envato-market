@@ -1,10 +1,52 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 // Component
 import AuthForm from '@/ui/components/AuthForm';
 import userEvent from '@testing-library/user-event';
+import { ROUTES } from '@/lib/constants';
+import { useAuth } from '@/lib/hooks';
+
+const mockSignIn = jest.fn();
+const mockSignUp = jest.fn();
+const mockRouter = { push: jest.fn() };
+const mockSetError = jest.fn();
+
+jest.mock('@/lib/hooks', () => ({
+  ...jest.requireActual('@/lib/hooks'),
+  useAuth: jest.fn(),
+}));
+
+jest.mock('next/navigation', () => ({
+  ...jest.requireActual('next/navigation'),
+  useRouter: () => mockRouter,
+}));
+
+const userSignIn = {
+  email: 'test@example.com',
+  password: '1@Dzxcvb',
+  fcmToken: '',
+};
+
+const userSignUp = {
+  firstName: 'John',
+  lastName: 'Doe',
+  email: 'test@example.com',
+  password: '1@Dzxcvb',
+  fcmToken: '',
+};
 
 describe('AuthForm components', () => {
+  beforeAll(() => {
+    (useAuth as jest.Mock).mockReturnValue({
+      signIn: mockSignIn,
+      signUp: mockSignUp,
+    });
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('match snapshot with login form', () => {
     const { container } = render(<AuthForm />);
 
@@ -29,54 +71,62 @@ describe('AuthForm components', () => {
     expect(screen.getByLabelText('Sign Up')).toBeInTheDocument();
   });
 
-  it('submits login form and calls signIn function', async () => {
-    // Mock the signIn function
-    const mockClick = jest.fn();
-
+  it('successful login', async () => {
     render(<AuthForm />);
 
-    userEvent.type(
+    await userEvent.type(
       screen.getByPlaceholderText('Username or email'),
       'test@example.com',
     );
-    userEvent.type(screen.getByPlaceholderText('Password'), 'password123');
+    await userEvent.type(screen.getByPlaceholderText('Password'), '1@Dzxcvb');
 
-    fireEvent.click = mockClick;
+    await userEvent.click(screen.getByRole('button', { name: 'Sign In' }));
 
-    fireEvent.click(screen.getByRole('button', { name: 'Sign In' }));
+    await waitFor(() => {
+      expect(mockSignIn).toHaveBeenCalledWith(
+        {
+          ...userSignIn,
+        },
+        false,
+      );
 
-    expect(mockClick).toHaveBeenCalledWith(
-      screen.getByRole('button', { name: 'Sign In' }),
-    );
+      expect(mockRouter.push).toHaveBeenCalledWith(ROUTES.ROOT);
+
+      expect(mockSetError).not.toHaveBeenCalled();
+    });
   });
 
-  it('submits login form and calls signUp function', async () => {
-    const mockClick = jest.fn();
-
+  it('successful register', async () => {
     render(<AuthForm isRegister />);
 
-    userEvent.type(screen.getByPlaceholderText('First name'), 'John');
-    userEvent.type(screen.getByPlaceholderText('Last name'), 'Doe');
-    userEvent.type(
+    await userEvent.type(screen.getByPlaceholderText('First name'), 'John');
+
+    await userEvent.type(screen.getByPlaceholderText('Last name'), 'Doe');
+
+    await userEvent.type(
       screen.getByPlaceholderText('Username or email'),
       'test@example.com',
     );
-    userEvent.type(screen.getByPlaceholderText('Password'), '1@Dzxcvb');
-    userEvent.type(
+
+    await userEvent.type(screen.getByPlaceholderText('Password'), '1@Dzxcvb');
+
+    await userEvent.type(
       screen.getByPlaceholderText('Confirm password'),
-      '1@Dzxcvbb',
+      '1@Dzxcvb',
     );
-    const checkbox = screen.getByText(/Privacy Policy/i);
 
-    fireEvent.click(checkbox);
-
-    fireEvent.click = mockClick;
-
-    // Submit the form
-    fireEvent.click(screen.getByRole('button', { name: 'Sign Up' }));
-
-    expect(mockClick).toHaveBeenCalledWith(
-      screen.getByRole('button', { name: 'Sign Up' }),
+    await userEvent.click(
+      screen.getByText(/By creating an account, you're agreeing to our /i),
     );
+
+    await userEvent.click(screen.getByRole('button', { name: 'Sign Up' }));
+
+    await waitFor(() => {
+      expect(mockSignUp).toHaveBeenCalledWith(userSignUp);
+
+      expect(mockRouter.push).toHaveBeenCalledWith(ROUTES.ROOT);
+
+      expect(mockSetError).not.toHaveBeenCalled();
+    });
   });
 });
