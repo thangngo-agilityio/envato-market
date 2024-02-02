@@ -184,13 +184,13 @@ exports[`UserTable component should renders correctly 1`] = `
           Show result:
         </p>
         <div
-          class="css-1eqmq6c"
+          class="css-18gn0nf"
         >
           <button
             aria-controls="menu-list-:ra:"
             aria-expanded="false"
             aria-haspopup="menu"
-            class="chakra-button chakra-menu__menu-button css-cde5mu"
+            class="chakra-button chakra-menu__menu-button css-a9jpru"
             id="menu-button-:ra:"
             type="button"
           >

@@ -44,11 +44,9 @@ const SelectComponent = ({
         as={Button}
         h="100%"
         w="100%"
-        borderWidth="1px"
-        backgroundColor="border.denary"
-        borderColor="border.nonary"
         textAlign="left"
         borderRadius="lg"
+        px={0}
         variant={variant}
         size={size}
       >

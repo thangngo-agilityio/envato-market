@@ -98,11 +98,10 @@ const EfficiencyComponent = () => {
           <Heading variant="heading2Xl" as="h3">
             Efficiency
           </Heading>
-          <Box w={102} h={21}>
+          <Box h={21}>
             <Select
               options={EFFICIENCY_OPTIONS}
               size="sm"
-              variant="no-background"
               renderTitle={renderTitle}
               onSelect={handleChangeSelectEfficiency}
               data-testid="select-efficiency"

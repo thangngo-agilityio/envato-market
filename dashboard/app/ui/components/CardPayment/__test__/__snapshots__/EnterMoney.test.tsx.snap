@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardPayment test cases CardPayment component renders correctly 1`] = `
+<div>
+  <div
+    class="css-1hlzswh"
+  >
+    <p
+      class="chakra-text css-1ki0mgu"
+    >
+       Enter amount 
+    </p>
+    <div
+      class="css-u4p24i"
+    >
+      <p
+        class="chakra-text css-4xj0bk"
+      >
+        $
+      </p>
+      <input
+        autocomplete="off"
+        class="chakra-input css-cz5fpu"
+        name="amount"
+        placeholder="0.00"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+  <button
+    aria-label="btn-send-money"
+    class="chakra-button css-1mu22hy"
+    type="submit"
+  >
+    Send Money
+  </button>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</div>
+`;

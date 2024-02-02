@@ -3,11 +3,11 @@
 exports[`SearchBar render Should render match with snapshot. 1`] = `
 <div>
   <form
-    class="chakra-stack css-11mukto"
+    class="chakra-stack css-psovwv"
     data-testid="search-bar"
   >
     <div
-      class="css-5a22j8"
+      class="css-dcf2gz"
     >
       <div
         class="chakra-form-control css-0"
@@ -43,13 +43,13 @@ exports[`SearchBar render Should render match with snapshot. 1`] = `
       </div>
     </div>
     <div
-      class="css-16p9qum"
+      class="css-1mtqfsh"
     >
       <button
         aria-controls="menu-list-:r2:"
         aria-expanded="false"
         aria-haspopup="menu"
-        class="chakra-button chakra-menu__menu-button css-cde5mu"
+        class="chakra-button chakra-menu__menu-button css-a9jpru"
         id="menu-button-:r2:"
         type="button"
       >
