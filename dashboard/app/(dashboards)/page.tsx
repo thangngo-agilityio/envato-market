@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic';
-import { memo } from 'react';
 import {
   HydrationBoundary,
   QueryClient,
@@ -34,7 +33,7 @@ const TransactionTable = dynamic(
   () => import('@/ui/components/TransactionTable'),
 );
 
-const DashboardPage = async () => {
+const Dashboard = async () => {
   const queryClient = new QueryClient();
   // Prefetch total statistics, revenue and efficiency data
 
@@ -111,7 +110,5 @@ const DashboardPage = async () => {
     </Grid>
   );
 };
-
-const Dashboard = memo(DashboardPage);
 
 export default Dashboard;

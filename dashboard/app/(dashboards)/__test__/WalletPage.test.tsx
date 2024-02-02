@@ -1,12 +1,20 @@
-// Pages
-import MyWalletPage from '../my-wallets/page';
+import { QueryProvider } from '@/ui/providers';
 
-const { render } = testLibReactUtils;
+import { useSearchParams } from 'next/navigation';
+import MyWallets from '../my-wallets/page';
 
-describe('MyWalletPage render', () => {
-  test('Should render match with snapshot.', () => {
-    const { container } = render(<MyWalletPage />);
+describe('Dashboard render', () => {
+  beforeAll(async () => {
+    (useSearchParams as jest.Mock).mockReturnValue({
+      get: jest.fn(),
+      forEach: jest.fn(),
+    });
+  });
 
-    expect(container).toMatchSnapshot();
+  test('Should render match with snapshot.', async () => {
+    const { container } = render(await MyWallets(), { wrapper: QueryProvider });
+    await waitFor(() => {
+      expect(container).toMatchSnapshot();
+    });
   });
 });

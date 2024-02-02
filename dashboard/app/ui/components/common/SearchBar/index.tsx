@@ -42,8 +42,8 @@ const SearchBarComponent = ({
   );
 
   const handleResetValue = useCallback(() => {
-    resetField('search');
     onSearch('');
+    resetField('search');
   }, [onSearch]);
 
   const handleStopSubmitForm: FormEventHandler<HTMLDivElement> = useCallback(

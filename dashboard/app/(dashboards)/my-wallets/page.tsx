@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import dynamic from 'next/dynamic';
 import {
   HydrationBoundary,
@@ -92,6 +91,4 @@ const MyWallets = async () => {
   );
 };
 
-const MyWalletPage = memo(MyWallets);
-
-export default MyWalletPage;
+export default MyWallets;

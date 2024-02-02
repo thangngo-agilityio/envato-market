@@ -28,8 +28,9 @@ const MiniSidebar = ({
   role,
   isExpandSidebar,
   onClose,
+  onOpen,
   onSignOut,
-}: Omit<TSidebarProps, 'onOpen'>) => {
+}: TSidebarProps) => {
   const { colorMode } = useColorMode();
 
   const logos: Record<ColorMode, TImage> = {
@@ -81,7 +82,7 @@ const MiniSidebar = ({
             top="auto"
             transform="rotate(180deg)"
             right={-4}
-            onClick={onClose}
+            onClick={onOpen}
             display={{
               base: 'none',
               lg: 'block',

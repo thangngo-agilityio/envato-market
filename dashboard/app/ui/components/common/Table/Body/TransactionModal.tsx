@@ -24,9 +24,9 @@ interface TransactionProps {
 const TransactionModal = ({
   isDelete = false,
   transaction,
-  onDeleteTransaction = () => {},
-  onUpdateTransaction = () => {},
-  onCloseModal = () => {},
+  onDeleteTransaction,
+  onUpdateTransaction,
+  onCloseModal,
 }: TransactionProps) => {
   const {
     control,
@@ -69,9 +69,9 @@ const TransactionModal = ({
 
   const handleSubmitForm = useCallback(
     (updateData: TTransaction) => {
-      onUpdateTransaction(updateData);
+      onUpdateTransaction && onUpdateTransaction(updateData);
       reset(updateData);
-      onCloseModal();
+      onCloseModal && onCloseModal();
     },
     [onUpdateTransaction],
   );

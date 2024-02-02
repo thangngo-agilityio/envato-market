@@ -38,10 +38,10 @@ const ActionCellComponent = ({
   transaction,
   isOpenModal = false,
   isOpenUserAction = false,
-  onLockUser = () => {},
-  onUnlockUser = () => {},
-  onDeleteTransaction = () => {},
-  onUpdateTransaction = () => {},
+  onLockUser,
+  onUnlockUser,
+  onDeleteTransaction,
+  onUpdateTransaction,
 }: ActionCallProps) => {
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState<boolean>(false);
   const [isDelete, setIsDelete] = useState<boolean>(false);
@@ -62,16 +62,16 @@ const ActionCellComponent = ({
 
   const handleDeleteTransaction = useCallback(() => {
     handleToggleModal();
-    onDeleteTransaction(transaction as TTransaction);
+    onDeleteTransaction && onDeleteTransaction(transaction as TTransaction);
   }, [handleToggleModal, onDeleteTransaction, transaction]);
 
   const handleLockUser = useCallback(
-    () => onLockUser(user),
+    () => onLockUser && onLockUser(user),
     [onLockUser, user],
   );
 
   const handleUnLockUser = useCallback(
-    () => onUnlockUser(user),
+    () => onUnlockUser && onUnlockUser(user),
     [onUnlockUser, user],
   );
 

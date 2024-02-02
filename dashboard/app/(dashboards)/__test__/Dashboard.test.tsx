@@ -1,12 +1,19 @@
-// Pages
+import { QueryProvider } from '@/ui/providers';
 import Dashboard from '../page';
-
-const { render } = testLibReactUtils;
+import { useSearchParams } from 'next/navigation';
 
 describe('Dashboard render', () => {
-  test('Should render match with snapshot.', () => {
-    const { container } = render(<Dashboard />);
+  beforeAll(async () => {
+    (useSearchParams as jest.Mock).mockReturnValue({
+      get: jest.fn(),
+      forEach: jest.fn(),
+    });
+  });
 
-    expect(container).toMatchSnapshot();
+  test('Should render match with snapshot.', async () => {
+    const { container } = render(await Dashboard(), { wrapper: QueryProvider });
+    await waitFor(() => {
+      expect(container).toMatchSnapshot();
+    });
   });
 });

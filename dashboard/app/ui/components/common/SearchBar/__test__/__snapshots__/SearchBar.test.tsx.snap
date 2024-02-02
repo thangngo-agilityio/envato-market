@@ -89,7 +89,36 @@ exports[`SearchBar render Should render match with snapshot. 1`] = `
           role="menu"
           style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
           tabindex="-1"
-        />
+        >
+          <button
+            class="chakra-menu__menuitem css-1oz22gy"
+            data-index="0"
+            id="menu-list-:r2:-menuitem-:r3:"
+            role="menuitem"
+            tabindex="-1"
+            type="button"
+          >
+            <p
+              class="chakra-text css-1198d6z"
+            >
+              Member
+            </p>
+          </button>
+          <button
+            class="chakra-menu__menuitem css-1oz22gy"
+            data-index="1"
+            id="menu-list-:r2:-menuitem-:r4:"
+            role="menuitem"
+            tabindex="-1"
+            type="button"
+          >
+            <p
+              class="chakra-text css-1198d6z"
+            >
+              Anonymous
+            </p>
+          </button>
+        </div>
       </div>
     </div>
   </form>

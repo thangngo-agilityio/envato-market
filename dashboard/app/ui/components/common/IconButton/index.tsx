@@ -14,7 +14,7 @@ const IconButtonComponent = ({
   hasNewNotification = false,
   quantityNotification = 0,
   ariaLabel = 'Send email',
-  onClick = () => {},
+  onClick,
 }: IconButtonProps) => (
   <Box data-testid="icon-button-component" pos="relative" maxW="fit-content">
     {hasNewNotification && (
