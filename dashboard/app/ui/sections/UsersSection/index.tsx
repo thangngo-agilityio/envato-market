@@ -45,11 +45,11 @@ const UsersSections = () => {
   const toast = useToast();
   const user = authStore((state) => state.user);
 
-  const { searchParams, setSearchParam: setSearchUser } = useSearch();
+  const { get, setSearchParam: setSearchUser } = useSearch();
 
   const { control, resetField } = useForm<TSearchValue>({
     defaultValues: {
-      search: searchParams.get('name') || '',
+      search: get('name') || '',
     },
   });
 
@@ -60,7 +60,7 @@ const UsersSections = () => {
     isSendRequestUser,
     managementUser,
   } = useGetUserDetails(user?.id || '', {
-    name: searchParams.get('name') || '',
+    name: get('name') || '',
   });
 
   const {
