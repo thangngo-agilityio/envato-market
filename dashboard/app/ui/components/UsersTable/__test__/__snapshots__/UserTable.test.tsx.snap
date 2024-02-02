@@ -190,7 +190,7 @@ exports[`UserTable component should renders correctly 1`] = `
             aria-controls="menu-list-:ra:"
             aria-expanded="false"
             aria-haspopup="menu"
-            class="chakra-button chakra-menu__menu-button css-26jysu"
+            class="chakra-button chakra-menu__menu-button css-cde5mu"
             id="menu-button-:ra:"
             type="button"
           >
@@ -198,7 +198,7 @@ exports[`UserTable component should renders correctly 1`] = `
               class="css-xl71ch"
             >
               <div
-                class="css-1u78b0r"
+                class="css-1l4w6pd"
               >
                 <p
                   class="chakra-text css-nyal52"

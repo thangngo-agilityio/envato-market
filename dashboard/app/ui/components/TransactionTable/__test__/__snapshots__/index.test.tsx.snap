@@ -32,7 +32,7 @@ exports[`Transaction table Match with snapshot with default prop 1`] = `
             </svg>
           </div>
           <input
-            class="chakra-input css-2arazr"
+            class="chakra-input css-lba6mr"
             data-testid="search-transaction"
             id="field-:r0:"
             placeholder="Search by name, email, or other..."
@@ -49,7 +49,7 @@ exports[`Transaction table Match with snapshot with default prop 1`] = `
         aria-controls="menu-list-:r2:"
         aria-expanded="false"
         aria-haspopup="menu"
-        class="chakra-button chakra-menu__menu-button css-1q548km"
+        class="chakra-button chakra-menu__menu-button css-ay6pr6"
         id="menu-button-:r2:"
         type="button"
       >
@@ -857,7 +857,7 @@ exports[`Transaction table Match with snapshot with isOpenHistoryModal = true 1`
             </svg>
           </div>
           <input
-            class="chakra-input css-2arazr"
+            class="chakra-input css-lba6mr"
             data-testid="search-transaction"
             id="field-:rq:"
             placeholder="Search by name, email, or other..."
@@ -874,7 +874,7 @@ exports[`Transaction table Match with snapshot with isOpenHistoryModal = true 1`
         aria-controls="menu-list-:rs:"
         aria-expanded="false"
         aria-haspopup="menu"
-        class="chakra-button chakra-menu__menu-button css-1q548km"
+        class="chakra-button chakra-menu__menu-button css-ay6pr6"
         id="menu-button-:rs:"
         type="button"
       >
