@@ -89,6 +89,7 @@ exports[`Personal Page test cases renders UserForm with content 1`] = `
             >
               <input
                 class="chakra-input css-1ua7efh"
+                disabled=""
                 id="field-:r2:"
                 name="email"
                 type="text"

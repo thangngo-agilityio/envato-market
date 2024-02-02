@@ -16,6 +16,19 @@ jest.mock('next/navigation', () => ({
 jest.mock('firebase/firestore', () => ({
   ...jest.requireActual('firebase/firestore'),
   getFirestore: jest.fn(),
+  collection: jest.fn(),
+  getDocs: jest.fn(() => Promise.resolve({
+    docs: [
+      {
+        id: '1',
+        data: () => ({ displayName: 'User One', uid: 'uid1' }),
+      },
+      {
+        id: '2',
+        data: () => ({ displayName: 'SUPER_ADMIN', uid: 'uidAdmin' }),
+      },
+    ],
+  })),
 }));
 
 jest.mock('firebase/auth', () => ({
