@@ -437,6 +437,7 @@ const AuthFormComponent = ({
           textTransform="capitalize"
           form={!isRegister ? 'login-form' : 'register-form'}
           isDisabled={isDisabledSubmitBtn}
+          isLoading={isSubmitting}
         >
           {!isRegister ? 'Sign In' : 'Sign Up'}
         </Button>
