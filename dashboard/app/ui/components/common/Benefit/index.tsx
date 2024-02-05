@@ -1,13 +1,17 @@
 'use client';
 
+import Image from 'next/image';
 import { memo, useMemo } from 'react';
-import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 
 // Constants
 import { IMAGES, ROUTES } from '@/lib/constants';
 
 // Interfaces
 import { TImageDetails } from '@/lib/interfaces';
+
+// Utils
+import { generatePlaceholder } from '@/lib/utils';
 
 interface BenefitProps {
   pathName?: string;
@@ -35,28 +39,57 @@ const BenefitComponent = ({ pathName }: BenefitProps) => {
         width="50%"
         backgroundColor="background.section.primary"
       >
-        <Image src={url} alt={alt} w={width} height={height} />
         <Image
+          src={url}
+          alt={alt}
+          width={width}
+          height={height}
+          placeholder='blur'
+          blurDataURL={generatePlaceholder(width, height)}
+        />
+        <Box
           position="absolute"
           top={10}
           left={8}
-          src={IMAGES.SQUARE.url}
-          alt={IMAGES.SQUARE.alt}
-        />
-        <Image
+          w={115}
+          h={115}
+        >
+          <Image
+            src={IMAGES.SQUARE.url}
+            alt={IMAGES.SQUARE.alt}
+            fill
+            placeholder='blur'
+            blurDataURL={generatePlaceholder(115, 115)}
+          />
+        </Box>
+        <Box
           position="absolute"
           top={14}
           right={12}
-          src={IMAGES.VLINE.url}
-          alt={IMAGES.VLINE.alt}
-        />
-        <Image
-          position="absolute"
+          w={27}
+          h={143}
+        >
+          <Image
+            src={IMAGES.VLINE.url}
+            alt={IMAGES.VLINE.alt}
+            fill
+            placeholder='blur'
+            blurDataURL={generatePlaceholder(27, 143)}
+          />
+        </Box>
+        <Box position="absolute"
           bottom={1}
           left={8}
-          src={IMAGES.DOTTED.url}
-          alt={IMAGES.DOTTED.alt}
-        />
+          w={81}
+          h={81}>
+          <Image
+            src={IMAGES.DOTTED.url}
+            alt={IMAGES.DOTTED.alt}
+            fill
+            placeholder='blur'
+            blurDataURL={generatePlaceholder(81, 81)}
+          />
+        </Box>
         <Box
           fontFamily="primary"
           textAlign="center"
