@@ -70,9 +70,9 @@ const UsersComponent = ({
         index: number,
       ): JSX.Element => (
         <UserInfoCell
-          name={name as string}
-          imageURL={image as string}
-          email={email as string}
+          name={`${name}`}
+          imageURL={`${image}`}
+          email={`${email}`}
           loading={index <= 8 ? 'eager' : 'lazy'}
         />
       ),
