@@ -106,24 +106,50 @@ exports[`AccountSection render Should render match with snapshot. 1`] = `
     >
       <img
         alt="This is sign up image"
-        class="chakra-image css-6gb11t"
+        data-nimg="1"
+        decoding="async"
+        height="480"
+        loading="lazy"
         src="/icons/signup.svg"
+        style="color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+        width="699"
       />
-      <img
-        alt="This is square image"
-        class="chakra-image css-ijamrk"
-        src="/icons/square.svg"
-      />
-      <img
-        alt="This is vline image"
-        class="chakra-image css-1d05nk"
-        src="/icons/vline.svg"
-      />
-      <img
-        alt="This is dotted image"
-        class="chakra-image css-sdxca"
-        src="/icons/dotted.svg"
-      />
+      <div
+        class="css-1saybp7"
+      >
+        <img
+          alt="This is square image"
+          data-nimg="fill"
+          decoding="async"
+          loading="lazy"
+          src="/icons/square.svg"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+        />
+      </div>
+      <div
+        class="css-1uw9kux"
+      >
+        <img
+          alt="This is vline image"
+          data-nimg="fill"
+          decoding="async"
+          loading="lazy"
+          src="/icons/vline.svg"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+        />
+      </div>
+      <div
+        class="css-he7guj"
+      >
+        <img
+          alt="This is dotted image"
+          data-nimg="fill"
+          decoding="async"
+          loading="lazy"
+          src="/icons/dotted.svg"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+        />
+      </div>
       <div
         class="css-18anm8l"
       >

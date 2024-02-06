@@ -48,10 +48,12 @@ const Metadata = () => {
             property="og:image:height"
             content={SIGN_IN_PAGE.ogImageHeight}
           />
+          <meta property="og:image:alt" content={SIGN_IN_PAGE.ogImageAlt} />
           <meta property="og:title" content={SIGN_IN_PAGE.ogTitle} />
           <meta property="og:url" content={SIGN_IN_PAGE.ogUrl} />
           <meta name="theme-color" content={SIGN_IN_PAGE.themeColor} />
           <meta property="og:image" content={SIGN_IN_PAGE.ogImage} />
+          <meta property="fb:app_id" content={SIGN_IN_PAGE.ogFbAppId} />
         </>
       )}
       <link rel="shortcut icon" href={'/logos/favicon.ico'} />

@@ -28,11 +28,20 @@ exports[`UserTable component should renders correctly 1`] = `
             <div
               class="css-1h2sv0j"
             >
-              <img
-                alt="Image of Abdur Rohman"
-                class="chakra-image css-1rqxmuh"
-                src="https://cdn-icons-png.flaticon.com/512/5556/5556468.png"
-              />
+              <div
+                class="css-1agldb"
+              >
+                <img
+                  alt="Image of Abdur Rohman"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="eager"
+                  sizes="100vw"
+                  src="/_next/image?url=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F5556%2F5556468.png&w=3840&q=60"
+                  srcset="/_next/image?url=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F5556%2F5556468.png&w=640&q=60 640w, /_next/image?url=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F5556%2F5556468.png&w=750&q=60 750w, /_next/image?url=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F5556%2F5556468.png&w=828&q=60 828w, /_next/image?url=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F5556%2F5556468.png&w=1080&q=60 1080w, /_next/image?url=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F5556%2F5556468.png&w=1200&q=60 1200w, /_next/image?url=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F5556%2F5556468.png&w=1920&q=60 1920w, /_next/image?url=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F5556%2F5556468.png&w=2048&q=60 2048w, /_next/image?url=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F5556%2F5556468.png&w=3840&q=60 3840w"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; object-fit: cover; color: transparent; background-color: transparent; border-radius: 8px; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+                />
+              </div>
               <div
                 class="css-1rr4qq7"
               >
