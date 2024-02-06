@@ -64,12 +64,12 @@ const MyWallets = async () => {
             boxSizing="border-box"
             w="100%"
           >
-            <Box w="65%">
+            <Box w="100%">
               <HydrationBoundary state={dehydrate(queryClient)}>
                 <OverallBalance />
               </HydrationBoundary>
             </Box>
-            <Box w="35%">
+            <Box w={{ '7xl': '35%' }}>
               <HydrationBoundary state={dehydrate(queryClient)}>
                 <Efficiency />
               </HydrationBoundary>

@@ -7,7 +7,7 @@ import { Grid, GridItem } from '@chakra-ui/react';
 import { OPTION_SETTING } from '@/lib/constants';
 
 // Components
-import { ItemSideBarSetting } from '@/ui/components';
+import { Indicator, ItemSideBarSetting } from '@/ui/components';
 
 // HOCs
 import dynamic from 'next/dynamic';
@@ -37,15 +37,22 @@ const TermCondition = dynamic(() =>
   })),
 );
 
-const TermAndCondition = dynamic(() =>
-  import('@/ui/components/Setting/TermAndCondition').then((module) => ({
-    default: module.default,
-  })),
+const TermAndCondition = dynamic(
+  () => import('@/ui/components/Setting/TermAndCondition'),
+  {
+    loading: () => <Indicator isOpen={true} />,
+  },
 );
 
-const UserForm = dynamic(() => import('@/ui/components/Setting/Personal'));
-const FaqPage = dynamic(() => import('@/ui/components/Setting/Faq'));
-const SecurityPage = dynamic(() => import('@/ui/components/Setting/Security'));
+const UserForm = dynamic(() => import('@/ui/components/Setting/Personal'), {
+  loading: () => <Indicator isOpen={true} />,
+});
+const FaqPage = dynamic(() => import('@/ui/components/Setting/Faq'), {
+  loading: () => <Indicator isOpen={true} />,
+});
+const SecurityPage = dynamic(() => import('@/ui/components/Setting/Security'), {
+  loading: () => <Indicator isOpen={true} />,
+});
 
 const SettingsSection = () => {
   const [activeItemId, setActiveItemId] = useState<string>(

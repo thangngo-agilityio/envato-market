@@ -111,7 +111,21 @@ exports[`Settings render Should render match with snapshot. 1`] = `
     </div>
     <div
       class="css-1d84bax"
-    />
+    >
+      <div
+        class="css-9x0zl5"
+      >
+        <div
+          class="chakra-spinner css-1x3wzxw"
+        >
+          <span
+            class="css-8b45rq"
+          >
+            Loading...
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
   <span
     hidden=""
