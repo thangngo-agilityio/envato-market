@@ -42,6 +42,8 @@ const EnterMoneyComponent = ({
             ) => {
               const value: string = event.target.value;
 
+              if (isNaN(+value.replaceAll(',', ''))) return;
+
               // Remove non-numeric characters and leading zeros
               const sanitizedValue = formatAmountNumber(value);
 
