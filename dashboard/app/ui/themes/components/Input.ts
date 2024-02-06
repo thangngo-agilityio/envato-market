@@ -77,10 +77,16 @@ export const Input = defineStyleConfig({
       },
     },
 
+    tertiary: {
+      field: {
+        color: COLOR_TEXT,
+      },
+    },
+
     authentication: {
       field: {
         borderColor: 'gray.200',
-        color: 'secondary.450',
+        color: 'text.textForm',
         backgroundColor: NO_COLOR,
         fontSize: 'md',
         _dark: {

@@ -15,7 +15,7 @@ const Indicator = ({
     {isOpen && (
       <Center
         position="fixed"
-        zIndex={10000}
+        zIndex={999999999}
         inset={0}
         bg="black"
         opacity={0.7}

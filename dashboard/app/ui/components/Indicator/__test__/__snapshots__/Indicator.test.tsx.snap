@@ -4,7 +4,7 @@ exports[`Indicator components match snapshot with open true 1`] = `
 <div>
   Test Indicator
   <div
-    class="css-11qua47"
+    class="css-q6zik0"
   >
     <div
       class="chakra-spinner css-75d0f3"
