@@ -34,7 +34,7 @@ const ItemSideBarSetting = ({
         onClick={handleToggle}
         columnGap={4}
         bg={isActive ? color : 'transparent'}
-        color={isActive ? 'white' : ''}
+        {...(isActive && { color: 'white' })}
         px={4}
         py={6}
         borderRadius="lg"
