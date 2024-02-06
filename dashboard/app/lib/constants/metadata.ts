@@ -19,6 +19,6 @@ export const SIGN_IN_PAGE = {
   ogTitle: 'Envato Market - Sign in to explore entire the system',
   ogUrl: process.env.NEXT_PUBLIC_DOMAIN,
   themeColor: '#5cd95b',
-  ogImage: `${process.env.NEXT_PUBLIC_DOMAIN}/icons/signup.svg`,
+  ogImage: `${process.env.NEXT_PUBLIC_DOMAIN}/images/signup.png`,
   ogFbAppId: '917188466397099',
 };
