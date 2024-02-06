@@ -15,8 +15,10 @@ export const SIGN_IN_PAGE = {
     'Envato Market will receive all transactions from furniture purchase and show users in the system.',
   ogImageWidth: '1200',
   ogImageHeight: '628',
+  ogImageAlt: 'This is sign in image',
   ogTitle: 'Envato Market - Sign in to explore entire the system',
   ogUrl: process.env.NEXT_PUBLIC_DOMAIN,
   themeColor: '#5cd95b',
   ogImage: `${process.env.NEXT_PUBLIC_DOMAIN}/icons/signup.svg`,
+  ogFbAppId: '917188466397099',
 };
