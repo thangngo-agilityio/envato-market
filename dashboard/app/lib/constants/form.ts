@@ -106,6 +106,6 @@ export const AUTH_SCHEMA = {
 
   TRANSFER_AMOUNT: {
     required: true,
-    validate: (value: string) => value.length > 0 && value[0] !== '',
+    validate: (value: string) => !!value.length && !isNaN(+value),
   },
 };

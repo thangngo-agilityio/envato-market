@@ -57,7 +57,7 @@ const SupportsSection = () => {
     fetchNextPage,
   } = useGetListIssues();
 
-  const { mutate: createIssues, status } = useCreateIssues();
+  const { mutate: createIssues, status, isPending } = useCreateIssues();
 
   const {
     control,
@@ -315,6 +315,7 @@ const SupportsSection = () => {
             mt={12}
             w={200}
             isDisabled={disabled}
+            isLoading={isPending}
           >
             Submit Ticket
           </Button>
