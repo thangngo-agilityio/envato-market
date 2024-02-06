@@ -135,7 +135,13 @@ const RevenueFlowComponent = () => {
               </Flex>
             ))}
           </Flex>
-          <Box w={100} h="21px">
+          <Box
+            w={120}
+            h="37px"
+            bgColor="background.body.primary"
+            pl={5}
+            borderRadius={8}
+          >
             <Select
               options={REVENUE_FLOW_OPTIONS}
               size="sm"
