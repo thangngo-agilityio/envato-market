@@ -274,7 +274,7 @@ export const colors = {
 
     textInput: {
       default: '#FAFAFA',
-      _dark: '#969BA0',
+      _dark: '#FFF',
     },
   },
 
