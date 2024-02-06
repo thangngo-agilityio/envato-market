@@ -94,6 +94,7 @@ const InputSendMessages = ({ boxRef }: InputSendMessagesProps) => {
               <Flex direction="row" alignItems="center" justify="flex-start">
                 <InputField
                   placeholder="Type your message..."
+                  variant='tertiary'
                   _placeholder={{
                     color: 'secondary.450',
                   }}
