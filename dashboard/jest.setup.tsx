@@ -17,18 +17,60 @@ jest.mock('firebase/firestore', () => ({
   ...jest.requireActual('firebase/firestore'),
   getFirestore: jest.fn(),
   collection: jest.fn(),
-  getDocs: jest.fn(() => Promise.resolve({
-    docs: [
-      {
-        id: '1',
-        data: () => ({ displayName: 'User One', uid: 'uid1' }),
-      },
-      {
-        id: '2',
-        data: () => ({ displayName: 'SUPER_ADMIN', uid: 'uidAdmin' }),
-      },
-    ],
-  })),
+  getDocs: jest.fn(() =>
+    Promise.resolve({
+      docs: [
+        {
+          id: '1',
+          data: () => ({ displayName: 'User One', uid: 'uid1' }),
+        },
+        {
+          id: '2',
+          data: () => ({ displayName: 'SUPER_ADMIN', uid: 'uidAdmin' }),
+        },
+      ],
+    }),
+  ),
+  getDoc: jest.fn(() =>
+    Promise.resolve({
+      exists: () => true,
+
+      data: () => ({
+        messages: [
+          {
+            id: ':r1f:',
+            date: {
+              seconds: 1707099591,
+              nanoseconds: 620000000,
+            },
+            senderId: 'lBNWnoNBQGZ260KgnF9NxQCPlqf1',
+            text: 'Hi',
+          },
+        ],
+      }),
+    }),
+  ),
+  onSnapshot: jest.fn(),
+  setDoc: jest.fn(),
+  doc: jest.fn(() =>
+    Promise.resolve({
+      exists: () => true,
+
+      data: () => ({
+        messages: [
+          {
+            id: ':r1f:',
+            date: {
+              seconds: 1707099591,
+              nanoseconds: 620000000,
+            },
+            senderId: 'lBNWnoNBQGZ260KgnF9NxQCPlqf1',
+            text: 'Hi',
+          },
+        ],
+      }),
+    }),
+  ),
 }));
 
 jest.mock('firebase/auth', () => ({
