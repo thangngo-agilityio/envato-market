@@ -91,24 +91,50 @@ exports[`AuthLayout Component renders children within AccountSection 1`] = `
     >
       <img
         alt="This is sign up image"
-        class="chakra-image css-6gb11t"
+        data-nimg="1"
+        decoding="async"
+        height="480"
+        loading="lazy"
         src="/icons/signup.svg"
+        style="color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+        width="699"
       />
-      <img
-        alt="This is square image"
-        class="chakra-image css-nuaex1"
-        src="/icons/square.svg"
-      />
-      <img
-        alt="This is vline image"
-        class="chakra-image css-bvz8js"
-        src="/icons/vline.svg"
-      />
-      <img
-        alt="This is dotted image"
-        class="chakra-image css-12wsc5z"
-        src="/icons/dotted.svg"
-      />
+      <div
+        class="css-hnaa1w"
+      >
+        <img
+          alt="This is square image"
+          data-nimg="fill"
+          decoding="async"
+          loading="lazy"
+          src="/icons/square.svg"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+        />
+      </div>
+      <div
+        class="css-1hyxmp8"
+      >
+        <img
+          alt="This is vline image"
+          data-nimg="fill"
+          decoding="async"
+          loading="lazy"
+          src="/icons/vline.svg"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+        />
+      </div>
+      <div
+        class="css-u08skz"
+      >
+        <img
+          alt="This is dotted image"
+          data-nimg="fill"
+          decoding="async"
+          loading="lazy"
+          src="/icons/dotted.svg"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+        />
+      </div>
       <div
         class="css-1wwt0r"
       >
