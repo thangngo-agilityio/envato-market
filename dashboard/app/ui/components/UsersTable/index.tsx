@@ -65,11 +65,15 @@ const UsersComponent = ({
     {
       key: 'info',
       renderHead: renderHead,
-      renderBody: ({ name, image, email }: TDataSource): JSX.Element => (
+      renderBody: (
+        { name, email, image }: TDataSource,
+        index: number,
+      ): JSX.Element => (
         <UserInfoCell
           name={name as string}
           imageURL={image as string}
           email={email as string}
+          loading={index <= 8 ? 'eager' : 'lazy'}
         />
       ),
     },
