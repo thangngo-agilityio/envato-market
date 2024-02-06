@@ -74,6 +74,7 @@ const CustomerIssues = ({
           color: 'text.primary',
         }}
         isDisabled={isDisabled}
+        isLoading={isDisabled}
         onClick={onLoadMore}
       >
         Load More
