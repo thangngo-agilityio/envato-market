@@ -11,12 +11,11 @@ exports[`Menu component renders Logo with content 1`] = `
     <ul
       aria-label="list-icon"
       class="css-jl853e"
-      role="listbox"
+      role="list"
     >
       <li
         aria-label="item-icon"
         class="css-0"
-        role="list"
       >
         <a
           aria-label="navigate-item"
@@ -78,7 +77,6 @@ exports[`Menu component renders Logo with content 1`] = `
       <li
         aria-label="item-icon"
         class="css-0"
-        role="list"
       >
         <a
           aria-label="navigate-item"

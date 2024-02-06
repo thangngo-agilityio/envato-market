@@ -13,7 +13,7 @@ import {
   Text,
   useToast,
 } from '@chakra-ui/react';
-import { Bell, IconButton, Modal } from '@/ui/components';
+import { Bell, IconButton, Modal, Indicator } from '@/ui/components';
 
 // Utils
 import { customToast } from '@/lib/utils/toast';
@@ -41,6 +41,43 @@ interface NotificationProps {
   user: TUserDetail;
 }
 
+type TModalContentProps = {
+  isDeleteNotification: boolean;
+  onDelete: () => void;
+  onCancel: () => void;
+};
+
+const ModalContent = ({
+  isDeleteNotification,
+  onDelete,
+  onCancel,
+}: TModalContentProps): JSX.Element => (
+  <Box>
+    <Text fontSize="lg">{CONFIRM_MESSAGE.DELETE_NOTIFICATION}</Text>
+    <Flex my={4} justifyContent="center">
+      <Button
+        w={44}
+        bg="green.600"
+        mr={3}
+        isDisabled={isDeleteNotification}
+        onClick={onDelete}
+      >
+        Delete
+      </Button>
+      <Button
+        w={44}
+        bg="orange.300"
+        _hover={{ bg: 'orange.400' }}
+        onClick={onCancel}
+      >
+        Cancel
+      </Button>
+    </Flex>
+  </Box>
+);
+
+const ModalContentMemorized = memo(ModalContent);
+
 const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
   const toast = useToast();
 
@@ -66,21 +103,19 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
     updateNotification,
   } = useNotification(user?.id);
 
-  const handleTriggerToggleModal = () => handleToggleModal();
-
   const handleUpdateNotification = useCallback(
-    (updateData: TNotification) => {
+    (updateData: TNotification) =>
       updateNotification({
         userId: user?.id,
         notificationId: updateData._id,
         isMarkAsRead: true,
-      });
-    },
-    [updateNotification],
+      }),
+    [updateNotification, user?.id],
   );
 
   const handleDeleteNotification = useCallback(
     (id?: string) => {
+      handleToggleModal();
       deleteNotification(
         {
           userId: user?.id,
@@ -88,7 +123,7 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
         },
         {
           onSuccess: () => {
-            handleTriggerToggleModal();
+            handleToggleModal();
             toast(
               customToast(
                 SUCCESS_MESSAGES.DELETE_NOTIFICATION_SUCCESS.title,
@@ -97,52 +132,25 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
               ),
             );
           },
-          onError: () => {
+          onError: () =>
             toast(
               customToast(
                 ERROR_MESSAGES.DELETE_NOTIFICATION.title,
                 ERROR_MESSAGES.DELETE_NOTIFICATION.description,
                 STATUS.ERROR,
               ),
-            );
-          },
+            ),
         },
       );
     },
-    [deleteNotification, handleTriggerToggleModal],
+    [deleteNotification, handleToggleModal, toast, user?.id],
   );
 
-  const handleDeleteData = () => {
+  const handleDeleteData = () =>
     handleDeleteNotification(currentNotificationId);
-  };
-
-  const modalContent = (): JSX.Element => (
-    <Box>
-      <Text fontSize="lg">{CONFIRM_MESSAGE.DELETE_NOTIFICATION}</Text>
-      <Flex my={4} justifyContent="center">
-        <Button
-          w={44}
-          bg="green.600"
-          mr={3}
-          isDisabled={isDeleteNotification}
-          onClick={handleDeleteData}
-        >
-          Delete
-        </Button>
-        <Button
-          w={44}
-          bg="orange.300"
-          _hover={{ bg: 'orange.400' }}
-          onClick={handleTriggerToggleModal}
-        >
-          Cancel
-        </Button>
-      </Flex>
-    </Box>
-  );
 
   return (
-    <>
+    <Indicator isOpen={isDeleteNotification}>
       <Menu placement="auto" closeOnSelect={false}>
         {({ isOpen }) => (
           <Box>
@@ -223,19 +231,19 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
           title="Delete Notification"
           isOpen={isOpenConfirmModal}
           haveCloseButton
-          body={modalContent()}
-          onClose={handleTriggerToggleModal}
+          body={
+            <ModalContentMemorized
+              isDeleteNotification={isDeleteNotification}
+              onDelete={handleDeleteData}
+              onCancel={handleToggleModal}
+            />
+          }
+          onClose={handleToggleModal}
         />
       )}
-    </>
+    </Indicator>
   );
 };
-
-// const WrappedNotification = (props: NotificationProps) => (
-//   <QueryProvider>
-//     <NotificationComponent {...props} />
-//   </QueryProvider>
-// );
 
 const Notification = memo(NotificationComponent);
 export default Notification;
