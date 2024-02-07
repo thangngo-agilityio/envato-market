@@ -34,6 +34,7 @@ const CardIssues = ({ data }: CardIssueProps) => {
         src={avatar}
         alt={IMAGES.AVATAR_SIGN_UP.alt}
         rounded="full"
+        objectFit="cover"
         w={43}
         h={43}
       />
