@@ -3,6 +3,9 @@ import { Box } from '@chakra-ui/react';
 
 // Component
 import FilterUser from '@/ui/components/TransactionTable';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 const meta: Meta<typeof FilterUser> = {
   title: 'Custom Components/FilterUser',
@@ -10,14 +13,16 @@ const meta: Meta<typeof FilterUser> = {
   component: FilterUser,
   decorators: [
     (Story) => (
-      <Box
-        bgColor="background.component.primary"
-        borderRadius={8}
-        px={6}
-        py={5}
-      >
-        <Story />
-      </Box>
+      <QueryClientProvider client={queryClient}>
+        <Box
+          bgColor="background.component.primary"
+          borderRadius={8}
+          px={6}
+          py={5}
+        >
+          <Story />
+        </Box>
+      </QueryClientProvider>
     ),
   ],
   parameters: {
