@@ -3,16 +3,14 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
+    remotePatterns: [{
+      protocol: 'https',
+      hostname: '**',
+    }, ],
     formats: ['image/webp'],
   },
   compiler: {
-    removeConsole: true,
+    // removeConsole: true,
   },
 };
 
