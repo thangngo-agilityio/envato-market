@@ -59,7 +59,7 @@ const SelectComponent = ({
       </MenuButton>
       <MenuList
         p={0}
-        minW={0}
+        minW={101}
         boxShadow="lg"
         borderRight="lg"
         border="none"
