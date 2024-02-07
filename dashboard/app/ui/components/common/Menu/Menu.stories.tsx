@@ -3,6 +3,7 @@ import { Box } from '@chakra-ui/react';
 
 // components
 import { Menu } from '@/ui/components';
+import { HELP_ITEM_LIST, OTHER_ITEM_LIST } from '@/lib/constants';
 
 const meta: Meta<typeof Menu> = {
   title: 'Custom Components/Menu',
@@ -41,6 +42,7 @@ type Story = StoryObj<typeof Menu>;
 
 export const Epxand: Story = {
   args: {
+    listItem: OTHER_ITEM_LIST,
     title: 'Expand Menu Component',
   },
 };
@@ -48,7 +50,7 @@ export const Epxand: Story = {
 export const Minify: Story = {
   args: {
     title: 'Minify Menu Component',
-
+    listItem: HELP_ITEM_LIST,
     isExpandSidebar: true,
   },
 };
