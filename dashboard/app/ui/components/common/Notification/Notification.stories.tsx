@@ -1,8 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Components
 import { Box } from '@chakra-ui/react';
 import Notification from '.';
+
+const queryClient = new QueryClient();
 
 const meta: Meta<typeof Notification> = {
   title: 'Custom Components/Notification',
@@ -10,9 +13,11 @@ const meta: Meta<typeof Notification> = {
   component: Notification,
   decorators: [
     (Story) => (
-      <Box h="40vh" bg="background.component.primary">
-        <Story />
-      </Box>
+      <QueryClientProvider client={queryClient}>
+        <Box h="40vh" bg="background.component.primary">
+          <Story />
+        </Box>
+      </QueryClientProvider>
     ),
   ],
 };

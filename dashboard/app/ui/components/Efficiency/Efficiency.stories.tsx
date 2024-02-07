@@ -1,6 +1,9 @@
 import { StoryObj, Meta } from '@storybook/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import Efficiency from '@/ui/components/Efficiency';
+
+const queryClient = new QueryClient();
 
 const meta: Meta<typeof Efficiency> = {
   title: 'Custom Components/Efficiency',
@@ -30,6 +33,13 @@ const meta: Meta<typeof Efficiency> = {
       expanded: true,
     },
   },
+  decorators: [
+    (Story) => (
+      <QueryClientProvider client={queryClient}>
+        <Story />
+      </QueryClientProvider>
+    ),
+  ],
 };
 
 export default meta;

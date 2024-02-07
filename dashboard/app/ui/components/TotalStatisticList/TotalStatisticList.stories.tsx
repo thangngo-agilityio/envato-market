@@ -1,10 +1,13 @@
 import { StoryObj, Meta } from '@storybook/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Components
 import { TotalStatisticList } from '@/ui/components';
 
 // Mocks
 import { SPENDING_STATISTICS_MOCK } from '@/lib/mocks';
+
+const queryClient = new QueryClient();
 
 const meta: Meta<typeof TotalStatisticList> = {
   title: 'Custom Components/TotalStatisticList',
@@ -20,6 +23,13 @@ const meta: Meta<typeof TotalStatisticList> = {
       expanded: true,
     },
   },
+  decorators: [
+    (Story) => (
+      <QueryClientProvider client={queryClient}>
+        <Story />
+      </QueryClientProvider>
+    ),
+  ],
 };
 
 export default meta;
