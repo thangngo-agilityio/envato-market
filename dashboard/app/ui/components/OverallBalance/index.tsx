@@ -102,6 +102,7 @@ const OverallBalanceComponent = () => {
             borderBottom="1px"
             borderColor="border.primary"
             justifyContent="space-between"
+            alignItems="center"
           >
             <Box px={{ base: 0, '3xl': 4 }}>
               <Text variant="textSm">Overall Balance</Text>
@@ -125,7 +126,14 @@ const OverallBalanceComponent = () => {
                 </Flex>
               ))}
             </Flex>
-            <Box h="21px" pr={{ base: 0, '3xl': 4 }}>
+            <Box
+              w={120}
+              h="37px"
+              bgColor="background.body.primary"
+              pl={5}
+              borderRadius={8}
+              pr={{ base: 0, '3xl': 4 }}
+            >
               <Select
                 options={REVENUE_FLOW_OPTIONS}
                 variant="no-border"
