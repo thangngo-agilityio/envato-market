@@ -55,9 +55,11 @@ const SupportsSection = () => {
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage,
+    isFetching,
   } = useGetListIssues();
 
   const { mutate: createIssues, status, isPending } = useCreateIssues();
+  console.log('fetch', isFetching);
 
   const {
     control,
@@ -322,6 +324,7 @@ const SupportsSection = () => {
         </VStack>
       </Box>
       <CustomerIssues
+        isFetching={isFetching}
         isDisabled={isFetchingNextPage}
         dataList={listIssue}
         onLoadMore={fetchNextPage}
