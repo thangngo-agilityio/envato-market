@@ -202,7 +202,7 @@ const UserFormComponent = () => {
                   fieldState: { error },
                 }) => (
                   <InputField
-                    variant="authentication"
+                    variant="tertiary"
                     bg="background.body.primary"
                     label="First Name"
                     {...field}
@@ -218,7 +218,7 @@ const UserFormComponent = () => {
                 name="lastName"
                 render={({ field, fieldState: { error } }) => (
                   <InputField
-                    variant="authentication"
+                    variant="tertiary"
                     bg="background.body.primary"
                     label="Last Name"
                     {...field}
@@ -247,7 +247,7 @@ const UserFormComponent = () => {
                 name="email"
                 render={({ field, fieldState: { error } }) => (
                   <InputField
-                    variant="authentication"
+                    variant="tertiary"
                     bg="background.body.primary"
                     label="Email"
                     {...field}
@@ -265,7 +265,7 @@ const UserFormComponent = () => {
                 name="phoneNumber"
                 render={({ field, fieldState: { error } }) => (
                   <InputField
-                    variant="authentication"
+                    variant="tertiary"
                     bg="background.body.primary"
                     label="Phone Number (optional)"
                     {...field}
@@ -299,7 +299,7 @@ const UserFormComponent = () => {
                 name="country"
                 render={({ field, fieldState: { error } }) => (
                   <InputField
-                    variant="authentication"
+                    variant="tertiary"
                     bg="background.body.primary"
                     label="Country and Region (optional)"
                     {...field}
@@ -315,7 +315,7 @@ const UserFormComponent = () => {
                 name="city"
                 render={({ field, fieldState: { error } }) => (
                   <InputField
-                    variant="authentication"
+                    variant="tertiary"
                     bg="background.body.primary"
                     label="City (optional)"
                     {...field}
@@ -343,7 +343,7 @@ const UserFormComponent = () => {
                 name="address"
                 render={({ field, fieldState: { error } }) => (
                   <InputField
-                    variant="authentication"
+                    variant="tertiary"
                     bg="background.body.primary"
                     label="Address (optional)"
                     {...field}
@@ -363,7 +363,7 @@ const UserFormComponent = () => {
                   fieldState: { error },
                 }) => (
                   <InputField
-                    variant="authentication"
+                    variant="tertiary"
                     bg="background.body.primary"
                     label="Postal Code (optional)"
                     {...field}
@@ -397,7 +397,7 @@ const UserFormComponent = () => {
                 name="facebookURL"
                 render={({ field, fieldState: { error } }) => (
                   <InputField
-                    variant="authentication"
+                    variant="tertiary"
                     bg="background.body.primary"
                     label="Facebook (optional)"
                     {...field}
@@ -414,7 +414,7 @@ const UserFormComponent = () => {
                 name="twitterURL"
                 render={({ field, fieldState: { error } }) => (
                   <InputField
-                    variant="authentication"
+                    variant="tertiary"
                     bg="background.body.primary"
                     label="Twitter (optional)"
                     {...field}
@@ -443,7 +443,7 @@ const UserFormComponent = () => {
                 name="linkedinURL"
                 render={({ field, fieldState: { error } }) => (
                   <InputField
-                    variant="authentication"
+                    variant="tertiary"
                     bg="background.body.primary"
                     label="Linkedin (optional)"
                     {...field}
@@ -460,7 +460,7 @@ const UserFormComponent = () => {
                 name="youtubeURL"
                 render={({ field, fieldState: { error } }) => (
                   <InputField
-                    variant="authentication"
+                    variant="tertiary"
                     bg="background.body.primary"
                     label="Youtube (optional)"
                     {...field}
