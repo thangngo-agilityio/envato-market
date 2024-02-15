@@ -10,7 +10,7 @@ const AuthFooterComponent = () => (
       fontSize="sm"
       variant="textSm"
       textAlign="center"
-      _dark={{ color: 'secondary.700' }}
+      color='border.divider'
     >
       @ {getCurrentYear()} Bankco. All Rights Reserved.
     </Text>
