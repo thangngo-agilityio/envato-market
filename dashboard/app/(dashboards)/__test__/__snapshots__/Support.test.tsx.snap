@@ -181,6 +181,19 @@ exports[`SupportsPageMemorize render Should render match with snapshot. 1`] = `
         Recent Support
       </p>
       <div
+        class="css-1l4w6pd"
+      >
+        <div
+          class="chakra-spinner css-nkpswe"
+        >
+          <span
+            class="css-8b45rq"
+          >
+            Loading...
+          </span>
+        </div>
+      </div>
+      <div
         class="css-1t02a7v"
       />
     </div>

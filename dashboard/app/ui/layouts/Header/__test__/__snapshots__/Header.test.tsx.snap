@@ -6,7 +6,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
     class="css-2urpt7"
   >
     <div
-      class="css-19nz64q"
+      class="css-framgh"
     >
       <a
         aria-label="link-to-home"
@@ -40,6 +40,11 @@ exports[`Header render Should render match with snapshot. 1`] = `
           />
         </svg>
       </a>
+      <p
+        class="chakra-text css-adnfu2"
+      >
+        Let’s check your update today
+      </p>
       <div
         class="css-bbd869"
       >

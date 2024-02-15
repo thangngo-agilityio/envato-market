@@ -26,7 +26,7 @@ exports[`Select Match snapshot 1`] = `
   >
     <div
       aria-orientation="vertical"
-      class="chakra-menu__menu-list css-ta0hp9"
+      class="chakra-menu__menu-list css-149xq91"
       id="menu-list-:r1:"
       role="menu"
       style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
