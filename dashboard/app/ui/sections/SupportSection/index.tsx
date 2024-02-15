@@ -59,7 +59,6 @@ const SupportsSection = () => {
   } = useGetListIssues();
 
   const { mutate: createIssues, status, isPending } = useCreateIssues();
-  console.log('fetch', isFetching);
 
   const {
     control,
