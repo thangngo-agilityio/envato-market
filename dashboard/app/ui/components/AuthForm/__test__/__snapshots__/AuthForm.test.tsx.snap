@@ -130,7 +130,7 @@ exports[`AuthForm components match snapshot with login form 1`] = `
       class="css-178yklu"
     >
       <p
-        class="chakra-text css-e9tuiy"
+        class="chakra-text css-88a2rn"
       >
         @ 
         2024
@@ -359,7 +359,7 @@ exports[`AuthForm components match snapshot with register form 1`] = `
       class="css-178yklu"
     >
       <p
-        class="chakra-text css-e9tuiy"
+        class="chakra-text css-88a2rn"
       >
         @ 
         2024

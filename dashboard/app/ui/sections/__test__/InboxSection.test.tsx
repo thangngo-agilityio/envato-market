@@ -1,10 +1,10 @@
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from 'next/navigation';
 
 // Utils
-import { renderQueryProviderTest } from "@/lib/utils/testUtils";
+import { renderQueryProviderTest } from '@/lib/utils/testUtils';
 
 // Sections
-import ChatMemberList from "../Inbox";
+import ChatMemberList from '../Inbox';
 
 const mockMobileMediaQuery = () =>
   Object.defineProperty(window, 'matchMedia', {

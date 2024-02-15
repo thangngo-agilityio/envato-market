@@ -184,6 +184,11 @@ export const colors = {
       default: 'secondary.150',
       _dark: '#23262B',
     },
+
+    divider: {
+      default: 'secondary.450',
+      _dark: '#AEB2C1',
+    },
   },
 
   text: {
