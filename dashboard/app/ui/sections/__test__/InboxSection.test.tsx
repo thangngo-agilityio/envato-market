@@ -21,15 +21,15 @@ const mockMobileMediaQuery = () =>
     })),
   });
 
-beforeEach(() => {
-  // Setup router and searchParams mocks
-  (useRouter as jest.Mock).mockImplementation(() => ({
-    push: jest.fn(),
-  }));
-  (useSearchParams as jest.Mock).mockImplementation(() => new URLSearchParams());
-});
-
 describe('ChatMemberList render', () => {
+  beforeEach(() => {
+    // Setup router and searchParams mocks
+    (useRouter as jest.Mock).mockImplementation(() => ({
+      push: jest.fn(),
+    }));
+    (useSearchParams as jest.Mock).mockImplementation(() => new URLSearchParams());
+  });
+
   test('Should render match with snapshot.', () => {
     mockMobileMediaQuery();
 
