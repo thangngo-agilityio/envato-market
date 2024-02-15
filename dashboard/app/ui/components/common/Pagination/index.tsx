@@ -123,7 +123,9 @@ const PaginationComponent = ({
                     ? 'background.body.quinary'
                     : 'transparent'
                 }
-                color={currentPage === item ? 'text.quaternary' : 'gray.400'}
+                color={
+                  currentPage === item ? 'text.quaternary' : 'secondary.250'
+                }
                 {...(isDots && { cursor: 'not-allowed' })}
                 _hover={hoverStyle}
                 _disabled={disableStyle}
