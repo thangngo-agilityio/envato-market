@@ -7,13 +7,7 @@ describe('TotalCard component', () => {
     const { container } = render(
       <Table>
         <Tr>
-          <UserInfoCell
-            name="test"
-            imageURL="url"
-            role="Finance managers"
-            address="Jakarta, Indonesia"
-            time="2 days ago"
-          />
+          <UserInfoCell name="test" imageURL="url" email="test@gmail.com" />
         </Tr>
       </Table>,
     );

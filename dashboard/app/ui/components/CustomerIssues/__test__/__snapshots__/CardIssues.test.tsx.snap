@@ -7,7 +7,7 @@ exports[`CardIssues render Should render match with snapshot. 1`] = `
   >
     <img
       alt="This is avatar sign up"
-      class="chakra-image css-xerxct"
+      class="chakra-image css-nqtx3l"
       src="/images/avatar-sign-up.webp"
     />
     <div
