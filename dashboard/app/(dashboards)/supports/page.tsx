@@ -6,7 +6,7 @@ import { SupportsSection } from '@/ui/sections';
 
 const SupportsPage = () => (
   <QueryProvider>
-    <SupportsSection />;
+    <SupportsSection />
   </QueryProvider>
 );
 
