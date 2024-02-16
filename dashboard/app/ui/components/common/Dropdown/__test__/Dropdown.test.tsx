@@ -3,6 +3,7 @@ import '@testing-library/jest-dom';
 
 // component
 import { Dropdown } from '@/ui/components';
+import { AUTHENTICATION_ROLE } from '@/lib/constants';
 
 const renderComponent = ({
   name,
@@ -10,7 +11,14 @@ const renderComponent = ({
 }: {
   name?: string;
   permission?: string;
-}) => render(<Dropdown name={name} permission={permission} />);
+}) =>
+  render(
+    <Dropdown
+      name={name}
+      permission={permission}
+      role={AUTHENTICATION_ROLE.MEMBER}
+    />,
+  );
 
 describe('Dropdown render', () => {
   it('Should render match with snapshot.', async () => {
