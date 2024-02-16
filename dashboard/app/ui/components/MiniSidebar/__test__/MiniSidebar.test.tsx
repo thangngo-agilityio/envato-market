@@ -43,8 +43,8 @@ describe('MiniSidebar test case', () => {
       <MiniSidebar
         isExpandSidebar
         onClose={mockFunction}
-        onOpen={jest.fn()}
-        onSignOut={jest.fn()}
+        onOpen={mockFunction}
+        onSignOut={mockFunction}
       />,
     );
 
