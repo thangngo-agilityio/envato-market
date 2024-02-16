@@ -219,7 +219,7 @@ export const colors = {
     },
     senary: {
       default: '#4A5568',
-      _dark: '#747681',
+      _dark: '#AEB2C1',
     },
     septenary: {
       default: '#1A202C',
