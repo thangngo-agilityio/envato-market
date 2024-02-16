@@ -281,6 +281,10 @@ export const colors = {
       default: '#FAFAFA',
       _dark: '#FFF',
     },
+    textDarkCheckbox: {
+      default: '#0C642F',
+      _dark: '#FAFAFA',
+    },
   },
 
   danger: {
