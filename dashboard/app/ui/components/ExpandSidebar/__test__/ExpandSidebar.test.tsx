@@ -38,6 +38,7 @@ const setup = (
       isExpandSidebar
       onClose={mockOnOpenFunction}
       onOpen={mockOnCloseFunction}
+      onSignOut={jest.fn()}
     />,
   );
 
