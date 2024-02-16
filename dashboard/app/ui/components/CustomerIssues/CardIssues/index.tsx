@@ -57,6 +57,7 @@ const CardIssues = ({ data }: CardIssueProps) => {
           {title}
         </Text>
         <Text
+          className="description"
           color="text.textIssues"
           fontSize="sm"
           dangerouslySetInnerHTML={{ __html: description ?? '' }}
