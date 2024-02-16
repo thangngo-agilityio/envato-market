@@ -37,10 +37,15 @@ describe('MiniSidebar test case', () => {
   });
 
   it('should render correctly', () => {
-    const mockFucntion = jest.fn();
+    const mockFunction = jest.fn();
 
     const { container } = render(
-      <MiniSidebar isOpen={true} onClose={mockFucntion} />,
+      <MiniSidebar
+        isExpandSidebar
+        onClose={mockFunction}
+        onOpen={jest.fn()}
+        onSignOut={jest.fn()}
+      />,
     );
 
     expect(container).toMatchSnapshot();
