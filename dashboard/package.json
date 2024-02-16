@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev && pnpm run minify",
-    "build": "next build && pnpm run minify && pnpm start",
+    "build": "next build && pnpm run minify",
     "start": "next start",
     "lint": "next lint && eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepare": "cd .. && husky install dashboard/.husky",
