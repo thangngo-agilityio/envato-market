@@ -399,11 +399,11 @@ const AuthFormComponent = ({
                   >
                     <Text color="text.secondary" fontSize="md" flex={1}>
                       By creating an account, you&apos;re agreeing to our {''}
-                      <ChakraLink href="#" color="primary.500" cursor="pointer">
+                      <ChakraLink href="#" color="text.textDarkCheckbox" cursor="pointer">
                         Privacy Policy
                       </ChakraLink>
                       , and {''}
-                      <ChakraLink href="#" color="primary.500" cursor="pointer">
+                      <ChakraLink href="#" color="text.textDarkCheckbox" cursor="pointer">
                         Electronics Communication Policy.
                       </ChakraLink>
                     </Text>
