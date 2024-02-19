@@ -56,14 +56,16 @@ const HeaderComponent = () => {
     >
       <Flex
         display={{ base: 'inline-flex', md: 'none' }}
-        flexDirection="column"
+        alignItems="baseline"
         justifyContent="space-between"
         w="full"
       >
-        <Logo />
-        <Text fontSize="sm" color="text.secondary" fontWeight="medium" ml={2}>
-          Let’s check your update today
-        </Text>
+        <Box>
+          <Logo />
+          <Text fontSize="sm" color="text.secondary" fontWeight="medium" ml={2}>
+            Let’s check your update today
+          </Text>
+        </Box>
         <Box display={{ base: 'block', default: 'none' }}>
           <Dropdown
             name={username}
