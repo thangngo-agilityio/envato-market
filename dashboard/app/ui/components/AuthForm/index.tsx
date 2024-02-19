@@ -331,9 +331,15 @@ const AuthFormComponent = ({
                 </Checkbox>
               )}
             />
-            <Text
+            <Button
               as={Link}
+              isDisabled={isSubmitting}
               href={`/${ROUTES.FORGOT_PASSWORD}`}
+              _hover={{
+                bg: 'transparent',
+              }}
+              bg="transparent"
+              w="fit-content"
               aria-label="forgot password"
               color="text.currencyColor"
               fontWeight="semibold"
@@ -341,7 +347,7 @@ const AuthFormComponent = ({
               textDecoration="underline"
             >
               forgot password?
-            </Text>
+            </Button>
           </HStack>
         )}
 
@@ -453,16 +459,23 @@ const AuthFormComponent = ({
               : 'Already have an account?',
           }}
         />
-        <Text
+        <Button
           as={Link}
+          isDisabled={isSubmitting}
           href={!isRegister ? `/${ROUTES.REGISTER}` : `/${ROUTES.LOGIN}`}
           aria-label={!isRegister ? 'sign up' : 'sign in'}
+          w="fit-content"
+          py={0}
+          _hover={{
+            bg: 'transparent',
+          }}
+          bg="transparent"
           fontWeight="semibold"
           textDecoration="underline"
           ml={2}
         >
           {!isRegister ? 'Sign Up' : 'Sign In'}
-        </Text>
+        </Button>
       </Flex>
       <AuthFooter />
     </Box>
