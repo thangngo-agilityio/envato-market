@@ -130,8 +130,8 @@ const TransactionTableComponent = ({
           onSuccess: () => {
             toast(
               customToast(
-                SUCCESS_MESSAGES.UPDATE_SUCCESS.title,
-                SUCCESS_MESSAGES.DELETE_SUCCESS.description,
+                SUCCESS_MESSAGES.UPDATE_TRANSACTION_SUCCESS.title,
+                SUCCESS_MESSAGES.UPDATE_TRANSACTION_SUCCESS.description,
                 STATUS.SUCCESS,
               ),
             );

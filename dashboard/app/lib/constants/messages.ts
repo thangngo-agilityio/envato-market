@@ -89,6 +89,10 @@ export const SUCCESS_MESSAGES = {
     title: 'Delete success',
     description: 'Transactions has been delete successfully',
   },
+  UPDATE_TRANSACTION_SUCCESS: {
+    title: 'Update success',
+    description: 'Your transaction has been updated successfully',
+  },
   DELETE_NOTIFICATION_SUCCESS: {
     title: 'Delete success',
     description: 'Notification has been delete successfully',

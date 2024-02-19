@@ -305,14 +305,14 @@ exports[`AuthForm components match snapshot with register form 1`] = `
             >
               By creating an account, you're agreeing to our 
               <a
-                class="chakra-link css-1n7x0t4"
+                class="chakra-link css-htaipz"
                 href="#"
               >
                 Privacy Policy
               </a>
               , and 
               <a
-                class="chakra-link css-1n7x0t4"
+                class="chakra-link css-htaipz"
                 href="#"
               >
                 Electronics Communication Policy.

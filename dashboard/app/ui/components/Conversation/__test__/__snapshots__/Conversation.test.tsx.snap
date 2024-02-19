@@ -97,7 +97,7 @@ exports[`ChatMember component Should render match with snapshot. 1`] = `
             <p
               class="chakra-text css-t1z24v"
             >
-              08:00 AM
+              07:00 AM
             </p>
           </div>
         </div>

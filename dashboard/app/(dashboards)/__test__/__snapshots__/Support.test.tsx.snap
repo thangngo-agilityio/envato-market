@@ -198,7 +198,6 @@ exports[`SupportsPageMemorize render Should render match with snapshot. 1`] = `
       </div>
     </div>
   </div>
-  ;
   <span
     hidden=""
     id="__chakra_env"
