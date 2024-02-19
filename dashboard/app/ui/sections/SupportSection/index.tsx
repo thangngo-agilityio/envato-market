@@ -182,7 +182,7 @@ const SupportsSection = () => {
               name="firstName"
               render={({ field, fieldState: { error } }) => (
                 <InputField
-                  variant="authentication"
+                  variant="tertiary"
                   bg="background.body.primary"
                   label="First Name"
                   minW={285}
@@ -201,7 +201,7 @@ const SupportsSection = () => {
               name="lastName"
               render={({ field, fieldState: { error } }) => (
                 <InputField
-                  variant="authentication"
+                  variant="tertiary"
                   bg="background.body.primary"
                   label="Last Name"
                   w="full"
@@ -220,7 +220,7 @@ const SupportsSection = () => {
               name="email"
               render={({ field, fieldState: { error } }) => (
                 <InputField
-                  variant="authentication"
+                  variant="tertiary"
                   bg="background.body.primary"
                   label="Email"
                   w="full"
@@ -240,7 +240,7 @@ const SupportsSection = () => {
               name="phoneNumber"
               render={({ field, fieldState: { error } }) => (
                 <InputField
-                  variant="authentication"
+                  variant="tertiary"
                   bg="background.body.primary"
                   label="Phone Number (optional)"
                   w="full"
@@ -267,7 +267,7 @@ const SupportsSection = () => {
             name="title"
             render={({ field, field: { onChange }, fieldState: { error } }) => (
               <InputField
-                variant="authentication"
+                variant="tertiary"
                 bg="background.body.primary"
                 label="Title"
                 w="full"
