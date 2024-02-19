@@ -52,6 +52,6 @@ export { default as CustomerIssues } from './CustomerIssues';
 export { default as PinCode } from './common/PinCode';
 export { default as Quill } from './Quill';
 export { default as MessageAdmin } from './MessagesAdmin';
-export { default as ListMessages } from './Conversation/listMessages';
+export { default as ListMessages } from './Conversation/ListMessage';
 export { default as InputSendMessages } from './InputSendMessages';
 export { default as PinCodeModal } from './PinCodeModal';
