@@ -40,7 +40,7 @@ type Story = StoryObj<typeof Message>;
 export const Default: Story = {
   args: {
     content: 'This is message',
-    avatarAdmin: IMAGES.USER_AVATAR.url,
-    avatarUser: IMAGES.USER_AVATAR.url,
+    avatarAdmin: IMAGES.AVATAR_SIGN_UP.url,
+    avatarUser: IMAGES.AVATAR_SIGN_UP.url,
   },
 };
