@@ -1,8 +1,10 @@
-import { Avatar, Box, Flex, Spacer, Text } from '@chakra-ui/react';
+import { Box, Flex, Spacer, Text } from '@chakra-ui/react';
 import { memo } from 'react';
 
 // Constants
 import { IMAGES } from '@/lib/constants';
+import Image from 'next/image';
+import { generatePlaceholder } from '@/lib/utils';
 
 interface MessageProps {
   content?: string;
@@ -34,14 +36,20 @@ const MessageAdmin = ({
       mb="25px"
     >
       {!isSuperAdmin && (
-        <Avatar
-          src={avatarUser}
-          border="1px solid"
-          borderColor="border.tertiary"
-          w={9}
-          h={9}
-          mr={2}
-        />
+        <Box pos="relative" w={9} h={9}>
+          <Image
+            src={avatarUser}
+            alt={avatarUser}
+            fill
+            sizes="100vw"
+            placeholder="blur"
+            blurDataURL={generatePlaceholder(36, 36)}
+            style={{
+              borderRadius: '50%',
+              marginRight: '8px',
+            }}
+          />
+        </Box>
       )}
 
       <Flex align="flex-end" direction={direction} alignItems="center">
@@ -69,15 +77,20 @@ const MessageAdmin = ({
       </Flex>
 
       {isSuperAdmin && (
-        <Avatar
-          src={avatarAdmin}
-          border="1px solid"
-          borderColor="border.tertiary"
-          w={9}
-          h={9}
-          ml={2}
-          data-testid="avatar"
-        />
+        <Box pos="relative" w={9} h={9}>
+          <Image
+            src={avatarAdmin}
+            alt={avatarAdmin}
+            fill
+            sizes="100vw"
+            placeholder="blur"
+            blurDataURL={generatePlaceholder(36, 36)}
+            style={{
+              borderRadius: '50%',
+              marginRight: '8px',
+            }}
+          />
+        </Box>
       )}
     </Flex>
   );

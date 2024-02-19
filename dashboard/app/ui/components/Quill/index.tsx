@@ -137,7 +137,8 @@ const Quill = ({ userUid }: QuillProps) => {
           {root?.message}
         </Text>
         <CustomButton
-          w="unset"
+          w="100px"
+          h="40px"
           px={4}
           ml={4}
           py={2.5}
