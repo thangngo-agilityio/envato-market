@@ -373,12 +373,12 @@ exports[`Personal Page test cases renders UserForm with content 1`] = `
             update profile
           </h4>
           <p
-            class="chakra-text css-12zxwfm"
+            class="chakra-text css-620zjc"
           >
             Profile at least Size
              
             <span
-              class="chakra-text css-1999y4e"
+              class="chakra-text css-1hqvne2"
             >
               300 x 300.
                

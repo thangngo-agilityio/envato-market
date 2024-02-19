@@ -33,7 +33,7 @@ exports[`CardIssues render Should render match with snapshot. 1`] = `
         When is the Sketch version available for download?
       </p>
       <p
-        class="chakra-text css-qnadlj"
+        class="chakra-text description css-qnadlj"
       >
         Love this so much! What tools do you use to create your 3d illustrations ?
       </p>
