@@ -14,10 +14,11 @@ const AuthHeaderComponent = ({ title, pathName }: THeadingProps) => {
     <VStack as="header">
       <HeadingChakra
         as="h1"
-        fontSize={{ base: '3xl', md: '4xl' }}
+        fontSize={{ base: '2xl', md: '4xl' }}
         fontFamily="secondary"
         fontWeight="semibold"
         textAlign="center"
+        px={2}
       >
         {title}
       </HeadingChakra>
