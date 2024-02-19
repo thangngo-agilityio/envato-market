@@ -11,12 +11,16 @@ import { useAuth, usePinCode } from '@/lib/hooks';
 import { TPinCodeForm } from '@/lib/interfaces';
 import { TAuthStoreData, authStore } from '@/lib/stores';
 import { customToast } from '@/lib/utils';
-import { Modal, PinCode } from '@/ui/components';
+// import { Modal, PinCode } from '@/ui/components';
 import { useDisclosure, useToast } from '@chakra-ui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { getMessaging, onMessage } from 'firebase/messaging';
+import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useMemo } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+
+const Modal = dynamic(() => import('@/ui/components/common/Modal'));
+const PinCode = dynamic(() => import('@/ui/components/common/PinCode'));
 
 const CheckPinCodeProvider = ({ children }: { children: React.ReactNode }) => {
   const user = authStore((state): TAuthStoreData['user'] => state.user);
