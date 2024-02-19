@@ -1,4 +1,4 @@
-import ListMessages from '../listMessages';
+import ListMessages from '../ListMessage';
 
 const { render } = testLibReactUtils;
 

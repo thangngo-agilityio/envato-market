@@ -6,7 +6,7 @@ exports[`AuthHeader component render Should render match with snapshot. 1`] = `
     class="chakra-stack css-tl3ftk"
   >
     <h1
-      class="chakra-heading css-1k0wpds"
+      class="chakra-heading css-13zsi6e"
     >
       Something
     </h1>

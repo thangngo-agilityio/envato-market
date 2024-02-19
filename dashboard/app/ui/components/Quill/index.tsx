@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 
-import { useCallback, useId } from 'react';
+import { useCallback, useEffect, useId } from 'react';
 import { VStack, Flex, Text, useColorModeValue, theme } from '@chakra-ui/react';
 import 'react-quill/dist/quill.snow.css';
 import { Controller, useForm } from 'react-hook-form';
@@ -103,6 +103,11 @@ const Quill = ({ userUid }: QuillProps) => {
     [handleSubmit, handleSend, reset],
   );
 
+  useEffect(() => {
+    const tooltip = document.querySelector('.ql-tooltip');
+    tooltip?.remove();
+  });
+
   return (
     <VStack as="form" onSubmit={handleSubmit(handleSend)}>
       <Flex direction="column" width="full">
@@ -137,7 +142,8 @@ const Quill = ({ userUid }: QuillProps) => {
           {root?.message}
         </Text>
         <CustomButton
-          w="unset"
+          w="100px"
+          h="40px"
           px={4}
           ml={4}
           py={2.5}

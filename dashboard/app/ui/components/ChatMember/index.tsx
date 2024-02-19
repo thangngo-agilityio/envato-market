@@ -13,10 +13,11 @@ import {
 import { colors } from '@/ui/themes/bases/colors';
 
 // Utils
-import { getStatusColor } from '@/lib/utils';
+import { generatePlaceholder, getStatusColor } from '@/lib/utils';
 
 // Constants
 import { IMAGES } from '@/lib/constants';
+import Image from 'next/image';
 
 export type Props = {
   avatar?: string;
@@ -52,10 +53,37 @@ const ChatMember = ({
       borderRadius="lg"
     >
       <Flex justify="space-between" p={3.5}>
-        <Flex gap={3} borderRadius="50%" border="1px solid">
-          <Avatar src={avatar} borderRadius="50%">
-            <AvatarBadge boxSize={4} bg={getStatusColor(statusColor)} top={7} />
-          </Avatar>
+        <Flex
+          gap={3}
+          borderRadius="50%"
+          border="1px solid"
+          w="48px"
+          h="48px"
+          position="relative"
+        >
+          <Image
+            src={avatar || IMAGES.CHAT_USER_AVATAR.url}
+            alt={avatar}
+            width={48}
+            height={48}
+            placeholder="blur"
+            blurDataURL={generatePlaceholder(48, 48)}
+            style={{
+              borderRadius: '50%',
+            }}
+          />
+
+          <Box
+            w="15px"
+            h="15px"
+            bg={getStatusColor(statusColor)}
+            top={8}
+            left={9}
+            position="absolute"
+            borderRadius="50%"
+            border="3px solid"
+            borderColor="common.white"
+          />
         </Flex>
 
         <Flex direction="column" alignItems="center">

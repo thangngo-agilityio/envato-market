@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { Controller, useForm } from 'react-hook-form';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
@@ -146,6 +146,11 @@ const SupportsSection = () => {
     [createIssues, reset],
   );
 
+  useEffect(() => {
+    const tooltip = document.querySelector('.ql-tooltip');
+    tooltip?.remove();
+  });
+
   return (
     <Flex
       flexDirection={{ base: 'column', xl: 'row' }}
@@ -177,7 +182,7 @@ const SupportsSection = () => {
               name="firstName"
               render={({ field, fieldState: { error } }) => (
                 <InputField
-                  variant="authentication"
+                  variant="tertiary"
                   bg="background.body.primary"
                   label="First Name"
                   minW={285}
@@ -196,7 +201,7 @@ const SupportsSection = () => {
               name="lastName"
               render={({ field, fieldState: { error } }) => (
                 <InputField
-                  variant="authentication"
+                  variant="tertiary"
                   bg="background.body.primary"
                   label="Last Name"
                   w="full"
@@ -215,7 +220,7 @@ const SupportsSection = () => {
               name="email"
               render={({ field, fieldState: { error } }) => (
                 <InputField
-                  variant="authentication"
+                  variant="tertiary"
                   bg="background.body.primary"
                   label="Email"
                   w="full"
@@ -235,7 +240,7 @@ const SupportsSection = () => {
               name="phoneNumber"
               render={({ field, fieldState: { error } }) => (
                 <InputField
-                  variant="authentication"
+                  variant="tertiary"
                   bg="background.body.primary"
                   label="Phone Number (optional)"
                   w="full"
@@ -262,7 +267,7 @@ const SupportsSection = () => {
             name="title"
             render={({ field, field: { onChange }, fieldState: { error } }) => (
               <InputField
-                variant="authentication"
+                variant="tertiary"
                 bg="background.body.primary"
                 label="Title"
                 w="full"
