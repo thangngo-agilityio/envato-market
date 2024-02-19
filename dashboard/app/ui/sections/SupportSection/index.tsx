@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { Controller, useForm } from 'react-hook-form';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
@@ -145,6 +145,11 @@ const SupportsSection = () => {
     },
     [createIssues, reset],
   );
+
+  useEffect(() => {
+    const tooltip = document.querySelector('.ql-tooltip');
+    tooltip?.remove();
+  });
 
   return (
     <Flex
