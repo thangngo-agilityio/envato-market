@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev && pnpm run minify",
-    "build": "next build && pnpm run minify && pnpm start",
+    "build": "next build && pnpm run minify",
     "start": "next start",
     "lint": "next lint && eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepare": "cd .. && husky install dashboard/.husky",
@@ -13,7 +13,8 @@
     "build-storybook": "storybook build",
     "test-coverage": "jest --coverage",
     "test": "jest",
-    "minify": "terser .next/**/*.js -o .next/**/*.js"
+    "minify": "terser .next/**/*.js -o .next/**/*.js",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
@@ -21,6 +22,8 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@firebase/auth": "^1.5.1",
+    "@milahu/patch-package": "^6.4.14",
     "@tanstack/react-query": "^5.17.0",
     "axios": "^1.6.3",
     "firebase": "^10.7.1",
