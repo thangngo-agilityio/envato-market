@@ -2,7 +2,12 @@ import { render, screen, waitFor } from '@testing-library/react';
 import InputSendMessages from '..';
 import { RefObject } from 'react';
 import userEvent from '@testing-library/user-event';
-import { MOCK_USER_DETAIL_WITHOUT_IMAGE } from '@/lib/mocks';
+
+// Mocks
+import {
+  MOCK_ROOM_CHAT_USER,
+  MOCK_USER_DETAIL_WITHOUT_IMAGE,
+} from '@/lib/mocks';
 
 const getCurrentUserMock = jest.fn();
 const sendMessageMock = jest.fn();
@@ -22,15 +27,6 @@ jest.mock('@/lib/stores', () => ({
   ...jest.requireActual('@/lib/stores'),
   authStore: () => authStoreMock,
 }));
-
-const userData = {
-  userId: '123',
-  roomChatId: 'room123',
-  adminId: 'admin123',
-  avatarUrl: 'avatar-url',
-  avatarAdminUrl: 'admin-avatar-url',
-  displayName: 'John Doe',
-};
 
 const boxRef = {
   current: { scrollTop: 0, scrollHeight: 100 },
@@ -55,7 +51,7 @@ describe('InputSendMessages  component', () => {
   });
 
   it('sends a message on button click', async () => {
-    getCurrentUserMock.mockReturnValue(userData);
+    getCurrentUserMock.mockReturnValue(MOCK_ROOM_CHAT_USER);
     authStoreMock.mockReturnValue({
       user: MOCK_USER_DETAIL_WITHOUT_IMAGE,
     });

@@ -1,10 +1,17 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 // Component
 import AuthForm from '@/ui/components/AuthForm';
-import userEvent from '@testing-library/user-event';
+
+// Constants
 import { ROUTES } from '@/lib/constants';
+
+// Hooks
 import { useAuth } from '@/lib/hooks';
+
+// Mocks
+import { USER_SIGN_UP, USER_SIGN_IN } from '@/lib/mocks';
 
 const mockSignIn = jest.fn();
 const mockSignUp = jest.fn();
@@ -20,20 +27,6 @@ jest.mock('next/navigation', () => ({
   ...jest.requireActual('next/navigation'),
   useRouter: () => mockRouter,
 }));
-
-const userSignIn = {
-  email: 'test@example.com',
-  password: '1@Dzxcvb',
-  fcmToken: '',
-};
-
-const userSignUp = {
-  firstName: 'John',
-  lastName: 'Doe',
-  email: 'test@example.com',
-  password: '1@Dzxcvb',
-  fcmToken: '',
-};
 
 describe('AuthForm components', () => {
   beforeAll(() => {
@@ -85,7 +78,7 @@ describe('AuthForm components', () => {
     await waitFor(() => {
       expect(mockSignIn).toHaveBeenCalledWith(
         {
-          ...userSignIn,
+          ...USER_SIGN_IN,
         },
         false,
       );
@@ -122,7 +115,7 @@ describe('AuthForm components', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Sign Up' }));
 
     await waitFor(() => {
-      expect(mockSignUp).toHaveBeenCalledWith(userSignUp);
+      expect(mockSignUp).toHaveBeenCalledWith(USER_SIGN_UP);
 
       expect(mockRouter.push).toHaveBeenCalledWith(ROUTES.ROOT);
 
