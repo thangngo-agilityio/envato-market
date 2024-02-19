@@ -219,7 +219,7 @@ export const colors = {
     },
     senary: {
       default: '#4A5568',
-      _dark: '#747681',
+      _dark: '#AEB2C1',
     },
     septenary: {
       default: '#1A202C',
@@ -280,6 +280,10 @@ export const colors = {
     textInput: {
       default: '#FAFAFA',
       _dark: '#FFF',
+    },
+    textDarkCheckbox: {
+      default: '#0C642F',
+      _dark: '#FAFAFA',
     },
   },
 

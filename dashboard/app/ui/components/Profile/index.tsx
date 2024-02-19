@@ -88,9 +88,9 @@ const UpdateProfile = ({ control, onUploadError }: TUpdateProfileProps) => {
         update profile
       </Heading>
 
-      <Text color="secondary.250" mb={4}>
+      <Text color="text.quinary" mb={4}>
         Profile at least Size{' '}
-        <Text as="span" color="text.septenary">
+        <Text as="span" color="text.senary">
           300 x 300.{' '}
         </Text>
         Gift to work too.
