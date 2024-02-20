@@ -1,18 +1,6 @@
+// Mocks
+import { CONVERSATION_PROPS } from '@/lib/mocks';
 import { Conversation } from '../..';
-
-const CONVERSATION_PROPS = {
-  messages: [
-    {
-      date: {
-        nanoseconds: 1,
-        seconds: 11,
-      },
-      id: '1',
-      senderId: '2',
-      text: 'Hello',
-    },
-  ],
-};
 
 const mockMobileMediaQuery = () =>
   Object.defineProperty(window, 'matchMedia', {

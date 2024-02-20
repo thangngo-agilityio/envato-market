@@ -438,3 +438,40 @@ export const INIT_USER_DETAIL: TUserDetail = {
   isBlock: false,
   uid: '',
 };
+
+export const USER_SIGN_IN = {
+  email: 'test@example.com',
+  password: '1@Dzxcvb',
+  fcmToken: '',
+};
+
+export const USER_SIGN_UP = {
+  firstName: 'John',
+  lastName: 'Doe',
+  email: 'test@example.com',
+  password: '1@Dzxcvb',
+  fcmToken: '',
+};
+
+export const USER_DATA = {
+  userId: '123',
+  adminId: 'admin123',
+  avatarUrl: 'avatar-url',
+  avatarAdminUrl: 'admin-avatar-url',
+  displayName: 'John Doe',
+};
+
+export const MOCK_FILTER_DATA_USER = [
+  { _id: '1', email: 'userone@example.com' },
+  { _id: '2', email: 'usertwo@example.com' },
+  { _id: '3', email: 'userthree@example.com' },
+];
+
+export const MOCK_ROOM_CHAT_USER = {
+  userId: '123',
+  roomChatId: 'room123',
+  adminId: 'admin123',
+  avatarUrl: 'avatar-url',
+  avatarAdminUrl: 'admin-avatar-url',
+  displayName: 'John Doe',
+};
