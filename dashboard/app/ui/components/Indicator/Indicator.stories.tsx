@@ -16,6 +16,6 @@ type Story = StoryObj<typeof Indicator>;
 export const Default: Story = {
   args: {
     isOpen: true,
-    children: <Box py={16}>Loading</Box>,
+    children: <Box py={16} />,
   },
 };

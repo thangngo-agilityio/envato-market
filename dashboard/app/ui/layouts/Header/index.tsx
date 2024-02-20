@@ -2,6 +2,7 @@
 import { memo } from 'react';
 import { useStore } from 'zustand';
 import { usePathname } from 'next/navigation';
+
 // Components
 import {
   Box,
@@ -18,12 +19,16 @@ import {
   Logo,
   SwitchTheme,
 } from '@/ui/components';
+
 // Assets
 import { Email } from '@/ui/components/Icons';
+
 // Constants
 import { AUTHENTICATION_ROLE, TITLES_HEADER } from '@/lib/constants';
+
 // Components
 import Notification from '@/ui/components/common/Notification';
+
 // Stores
 import { authStore } from '@/lib/stores';
 import { TUserDetail } from '@/lib/interfaces';
@@ -54,7 +59,12 @@ const HeaderComponent = () => {
         default: 'row',
       }}
     >
-      <Flex alignItems="baseline" justifyContent="space-between" w="full">
+      <Flex
+        display={{ base: 'inline-flex', md: 'none' }}
+        alignItems="center"
+        justifyContent="space-between"
+        w="full"
+      >
         <Box>
           <Box display={{ base: 'inline', md: 'none' }}>
             <Logo />
@@ -121,7 +131,7 @@ const HeaderComponent = () => {
         <Box
           display={{ base: 'none', md: 'inline-flex' }}
           borderLeft="1px"
-          pl={43}
+          pl={{ md: 2, '3xl': 43 }}
           borderColor="border.primary"
           height="min-content"
         >
