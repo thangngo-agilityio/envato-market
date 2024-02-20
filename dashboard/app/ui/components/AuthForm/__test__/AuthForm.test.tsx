@@ -245,4 +245,40 @@ describe('AuthForm components', () => {
       );
     }
   });
+
+  it('Should render message when Email already exists', async () => {
+    try {
+      render(<AuthForm isRegister />);
+
+      await userEvent.type(screen.getByPlaceholderText('First name'), 'John');
+
+      await userEvent.type(screen.getByPlaceholderText('Last name'), 'Doe');
+
+      await userEvent.type(
+        screen.getByPlaceholderText('Username or email'),
+        'test@example.com',
+      );
+
+      await userEvent.type(screen.getByPlaceholderText('Password'), '1@Dzxcvb');
+
+      await userEvent.type(
+        screen.getByPlaceholderText('Confirm password'),
+        '1@Dzxcvb',
+      );
+
+      await userEvent.click(
+        screen.getByText(/By creating an account, you're agreeing to our /i),
+      );
+
+      await userEvent.click(screen.getByRole('button', { name: 'Sign Up' }));
+    } catch (error) {
+      await waitFor(() => {
+        expect(mockRouter.push).toHaveBeenCalledWith(ROUTES.REGISTER);
+
+        expect(screen.getAllByLabelText).toEqual('Email already exists');
+
+        expect(mockSetError).toHaveBeenCalled();
+      });
+    }
+  });
 });
