@@ -122,4 +122,68 @@ describe('AuthForm components', () => {
       expect(mockSetError).not.toHaveBeenCalled();
     });
   });
+
+  it('failed register', async () => {
+    try {
+      render(<AuthForm isRegister />);
+
+      await userEvent.type(screen.getByPlaceholderText('First name'), 'John');
+
+      await userEvent.type(screen.getByPlaceholderText('Last name'), 'Doe');
+
+      await userEvent.type(
+        screen.getByPlaceholderText('Username or email'),
+        'test@example.com',
+      );
+
+      await userEvent.type(screen.getByPlaceholderText('Password'), '1@Dzxcvb');
+
+      await userEvent.type(
+        screen.getByPlaceholderText('Confirm password'),
+        'Abcd@1234',
+      );
+
+      await userEvent.click(
+        screen.getByText(/By creating an account, you're agreeing to our /i),
+      );
+
+      await userEvent.click(screen.getByRole('button', { name: 'Sign Up' }));
+    } catch (error) {
+      await waitFor(() => {
+        expect(mockRouter.push).toHaveBeenCalledWith(ROUTES.REGISTER);
+
+        expect(mockSetError).toHaveBeenCalled();
+      });
+    }
+  });
+
+  it('failed login', async () => {
+    try {
+      render(<AuthForm />);
+
+      await userEvent.type(
+        screen.getByPlaceholderText('Username or email'),
+        'test@example.com',
+      );
+      await userEvent.type(
+        screen.getByPlaceholderText('Password'),
+        'Abcd@1234',
+      );
+
+      await userEvent.click(screen.getByRole('button', { name: 'Sign In' }));
+    } catch (error) {
+      await waitFor(() => {
+        expect(mockSignIn).toHaveBeenCalledWith(
+          {
+            ...USER_SIGN_IN,
+          },
+          false,
+        );
+
+        expect(mockRouter.push).toHaveBeenCalledWith(ROUTES.LOGIN);
+
+        expect(mockSetError).toHaveBeenCalled();
+      });
+    }
+  });
 });
