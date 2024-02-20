@@ -13,7 +13,7 @@
     "build-storybook": "storybook build",
     "test-coverage": "jest --coverage",
     "test": "jest",
-    "minify": "terser .next/**/*.js -o .next/**/*.js",
+    "minify": "terser .next/**/*.js -o .next/**/*.js  --compress --mangle --format",
     "postinstall": "patch-package"
   },
   "dependencies": {
