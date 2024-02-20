@@ -268,7 +268,7 @@ export const colors = {
     },
 
     textIssues: {
-      default: '#718096',
+      default: '#51586C',
       _dark: 'FFF',
     },
 
