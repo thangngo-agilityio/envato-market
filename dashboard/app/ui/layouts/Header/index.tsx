@@ -66,8 +66,21 @@ const HeaderComponent = () => {
         w="full"
       >
         <Box>
-          <Logo />
-          <Text fontSize="sm" color="text.secondary" fontWeight="medium" ml={2}>
+          <Box display={{ base: 'inline', md: 'none' }}>
+            <Logo />
+          </Box>
+          <Heading
+            display={{ base: 'none', md: 'inline' }}
+            minW={185}
+            as="h1"
+            fontSize="3xl"
+            fontFamily="primary"
+            fontWeight="bold"
+            color="text.primary"
+          >
+            {name}
+          </Heading>
+          <Text fontSize="sm" color="text.secondary" fontWeight="medium">
             Let’s check your update today
           </Text>
         </Box>
@@ -80,20 +93,6 @@ const HeaderComponent = () => {
           />
         </Box>
       </Flex>
-      <Box display={{ base: 'none', md: 'inline' }} minW={185}>
-        <Heading
-          as="h1"
-          fontSize="3xl"
-          fontFamily="primary"
-          fontWeight="bold"
-          color="text.primary"
-        >
-          {name}
-        </Heading>
-        <Text fontSize="sm" color="text.secondary" fontWeight="medium">
-          Let’s check your update today
-        </Text>
-      </Box>
       <Flex
         gap={{ md: 5, '3xl': '43px' }}
         mt={{ base: 3, default: 0 }}
