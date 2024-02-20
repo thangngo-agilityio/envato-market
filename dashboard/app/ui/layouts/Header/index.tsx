@@ -59,12 +59,7 @@ const HeaderComponent = () => {
         default: 'row',
       }}
     >
-      <Flex
-        display={{ base: 'inline-flex', md: 'none' }}
-        alignItems="center"
-        justifyContent="space-between"
-        w="full"
-      >
+      <Flex alignItems="center" justifyContent="space-between" w="full">
         <Box>
           <Box display={{ base: 'inline', md: 'none' }}>
             <Logo />
