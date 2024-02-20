@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev && pnpm run minify",
-    "build": "next build && pnpm run minify",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint && eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepare": "cd .. && husky install dashboard/.husky",
@@ -13,7 +13,7 @@
     "build-storybook": "storybook build",
     "test-coverage": "jest --coverage",
     "test": "jest",
-    "minify": "terser .next/**/*.js -o .next/**/*.js",
+    "minify": "terser .next/**/*.js -o .next/**/*.js  --compress --mangle --format",
     "postinstall": "patch-package"
   },
   "dependencies": {
