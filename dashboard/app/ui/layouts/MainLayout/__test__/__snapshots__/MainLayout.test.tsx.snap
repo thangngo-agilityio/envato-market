@@ -17,7 +17,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
         class="css-2urpt7"
       >
         <div
-          class="css-112n3t8"
+          class="css-mnjfdo"
         >
           <div
             class="css-0"
@@ -594,7 +594,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
             </div>
           </div>
           <div
-            class="css-1f50jll"
+            class="css-bbnr2e"
           >
             <div
               class="css-0"

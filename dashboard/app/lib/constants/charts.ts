@@ -18,3 +18,8 @@ export const MONTHS = [
 ];
 
 export const REVENUE_FLOW_STATUS = ['Pending', 'Signed', 'Lost'];
+
+export const enum OVERALL_BALANCE_MONTH {
+  JAN_JUN = 'Jan,Jun',
+  JULY_DEC = 'July,Dec',
+}
