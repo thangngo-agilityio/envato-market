@@ -99,7 +99,7 @@ const AuthFormComponent = ({
 
     const isFillAllFields: boolean = isRegister
       ? getLength(dirtyFields) === getLength(defaultValues ?? {})
-      : getLength(dirtyFields) >= 2;
+      : !!(dirtyFields.email && dirtyFields.password);
 
     return isSubmitting || !isFillAllFields;
   })();
@@ -406,7 +406,12 @@ const AuthFormComponent = ({
                       },
                     })}
                   >
-                    <Text color="text.secondary" fontSize="xs" flex={1} px={4}>
+                    <Text
+                      color="text.secondary"
+                      fontSize={{ base: 'xs', md: 'md' }}
+                      flex={1}
+                      px={4}
+                    >
                       By creating an account, you&apos;re agreeing to our {''}
                       <ChakraLink
                         href="#"
@@ -472,6 +477,7 @@ const AuthFormComponent = ({
           _hover={{
             bg: 'transparent',
           }}
+          color="text.primary"
           bg="transparent"
           fontWeight="semibold"
           textDecoration="underline"

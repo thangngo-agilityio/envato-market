@@ -120,7 +120,7 @@ exports[`AuthForm components match snapshot with login form 1`] = `
       </p>
       <a
         aria-label="sign up"
-        class="chakra-button css-8d5o1l"
+        class="chakra-button css-nl7ued"
         href="/register"
       >
         Sign Up
@@ -301,7 +301,7 @@ exports[`AuthForm components match snapshot with register form 1`] = `
             class="chakra-checkbox__label css-1oeb2oe"
           >
             <p
-              class="chakra-text css-sg8nl4"
+              class="chakra-text css-1dl3xyd"
             >
               By creating an account, you're agreeing to our 
               <a
@@ -349,7 +349,7 @@ exports[`AuthForm components match snapshot with register form 1`] = `
       </p>
       <a
         aria-label="sign in"
-        class="chakra-button css-8d5o1l"
+        class="chakra-button css-nl7ued"
         href="/login"
       >
         Sign In
