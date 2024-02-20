@@ -5,7 +5,7 @@ import { Controller, useForm } from 'react-hook-form';
 
 // Components
 import { Box, Button, Flex, Text, VStack } from '@chakra-ui/react';
-import InputField from '../../InputField';
+import InputField from '@/ui/components/common/InputField';
 
 // Interfaces
 import { TCustomer, TTransaction } from '@/lib/interfaces';

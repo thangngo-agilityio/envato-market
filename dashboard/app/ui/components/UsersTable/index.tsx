@@ -24,7 +24,7 @@ import {
   Status,
   TUserDetail,
 } from '@/lib/interfaces';
-import { TOption } from '../common/Select';
+import { TOption } from '@/ui/components/common/Select';
 
 // Utils
 import { formatUserResponse } from '@/lib/utils';

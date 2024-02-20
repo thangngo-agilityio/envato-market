@@ -8,7 +8,7 @@ const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 // Components
 import { SendIconLight } from '..';
-import CustomButton from '../common/Button';
+import CustomButton from '@/ui/components/common/Button';
 
 // Interfaces
 import { TMessages } from '@/lib/interfaces';
