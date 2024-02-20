@@ -26,6 +26,7 @@ import { Arrow } from '@/ui/components/Icons';
 import {
   END_POINTS,
   OVERALL_BALANCE_COLORS,
+  OVERALL_BALANCE_MONTH,
   REVENUE_FLOW_OPTIONS,
   REVENUE_FLOW_STATUS,
 } from '@/lib/constants';
@@ -67,8 +68,8 @@ const OverallBalanceComponent = () => {
   const dataSelected = useMemo(() => {
     const temp: TOverallData = [...data];
     const result: Record<string, TOverallData> = {
-      'Jan,Jun': temp.slice(0, -6),
-      'July,Dec': temp.slice(-6),
+      [OVERALL_BALANCE_MONTH.JAN_JUN]: temp.slice(0, -6),
+      [OVERALL_BALANCE_MONTH.JULY_DEC]: temp.slice(-6),
     };
     return result[option] || data;
   }, [data, option]);
