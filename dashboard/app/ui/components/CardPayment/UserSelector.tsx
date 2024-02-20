@@ -19,7 +19,7 @@ import {
 import { Control, Controller } from 'react-hook-form';
 
 // Icons
-import { ChevronIcon } from '../Icons';
+import { ChevronIcon } from '@/ui/components/Icons';
 
 // Types
 import { TTransfer } from '.';

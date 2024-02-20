@@ -13,8 +13,8 @@ import { TMenuItem } from '@/ui/components/common/Menu';
 import { TUserDetail } from '@/lib/interfaces';
 
 // components
-const ExpandSidebar = dynamic(() => import('../../components/ExpandSidebar'));
-const MiniSidebar = dynamic(() => import('../../components/MiniSidebar'));
+const ExpandSidebar = dynamic(() => import('@/ui/components/ExpandSidebar'));
+const MiniSidebar = dynamic(() => import('@/ui/components/MiniSidebar'));
 
 export type TSidebarProps = {
   menuItem?: TMenuItem[];

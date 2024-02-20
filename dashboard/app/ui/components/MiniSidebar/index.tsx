@@ -21,7 +21,7 @@ import { IMAGES, SIDEBAR, MINI_SIDEBAR_MENU } from '@/lib/constants';
 
 // Types
 import { TImage } from '@/lib/interfaces';
-import { TMenuItem } from '../common/Menu';
+import { TMenuItem } from '@/ui/components/common/Menu';
 import { TSidebarProps } from '@/ui/layouts/Sidebar';
 
 const MiniSidebar = ({

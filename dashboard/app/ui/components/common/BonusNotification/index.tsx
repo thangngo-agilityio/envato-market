@@ -3,7 +3,7 @@ import { Menu, MenuButton } from '@chakra-ui/react';
 
 // Components
 import { IconButton } from '@/ui/components';
-import { Gift } from '../../Icons';
+import { Gift } from '@/ui/components/Icons/';
 import BonusContent from './BonusContent';
 
 // Constants

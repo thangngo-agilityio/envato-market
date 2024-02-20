@@ -13,7 +13,7 @@ import {
 
 // components
 import { Logo, Menu } from '@/ui/components';
-import { TMenuItem } from '../common/Menu';
+import { TMenuItem } from '@/ui/components/common/Menu';
 
 // constants
 import { SIDEBAR, IMAGES, EXPAND_SIDEBAR_MENU_LIST } from '@/lib/constants';

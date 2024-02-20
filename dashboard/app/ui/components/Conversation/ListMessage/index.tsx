@@ -4,7 +4,7 @@ import { useRef, useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
 
 // Components
-import { MessageAdmin, Quill } from '../..';
+import { MessageAdmin, Quill } from '@/ui/components';
 
 // store
 import { authStore } from '@/lib/stores';
