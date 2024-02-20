@@ -31,7 +31,7 @@ exports[`SupportsPageMemorize render Should render match with snapshot. 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-1252xay"
+                class="chakra-input css-1js16q1"
                 id="field-:r0:"
                 name="firstName"
                 type="text"
@@ -55,7 +55,7 @@ exports[`SupportsPageMemorize render Should render match with snapshot. 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-1vv42n8"
+                class="chakra-input css-vyd2b0"
                 id="field-:r1:"
                 name="lastName"
                 type="text"
@@ -83,7 +83,7 @@ exports[`SupportsPageMemorize render Should render match with snapshot. 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-1252xay"
+                class="chakra-input css-1js16q1"
                 id="field-:r2:"
                 name="email"
                 type="text"
@@ -107,7 +107,7 @@ exports[`SupportsPageMemorize render Should render match with snapshot. 1`] = `
               data-group="true"
             >
               <input
-                class="chakra-input css-1vv42n8"
+                class="chakra-input css-vyd2b0"
                 id="field-:r3:"
                 name="phoneNumber"
                 type="text"
@@ -137,7 +137,7 @@ exports[`SupportsPageMemorize render Should render match with snapshot. 1`] = `
             data-group="true"
           >
             <input
-              class="chakra-input css-1vv42n8"
+              class="chakra-input css-vyd2b0"
               id="field-:r4:"
               name="title"
               type="text"

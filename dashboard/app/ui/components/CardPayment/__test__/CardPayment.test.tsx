@@ -6,13 +6,10 @@ import userEvent from '@testing-library/user-event';
 // Components
 import CardPayment from '@/ui/components/CardPayment';
 
-const queryClient = new QueryClient();
+// Mocks
+import { MOCK_FILTER_DATA_USER } from '@/lib/mocks';
 
-const mockFilterDataUser = [
-  { _id: '1', email: 'userone@example.com' },
-  { _id: '2', email: 'usertwo@example.com' },
-  { _id: '3', email: 'userthree@example.com' },
-];
+const queryClient = new QueryClient();
 
 describe('CardPayment test cases', () => {
   const setup = () =>
@@ -56,7 +53,7 @@ describe('CardPayment test cases', () => {
     const expectedId = '2';
 
     const getMemberId = (email: string) =>
-      mockFilterDataUser.find(
+      MOCK_FILTER_DATA_USER.find(
         (user) =>
           user.email.trim().toLowerCase() === email.trim().toLowerCase(),
       )?._id || '';
@@ -71,7 +68,7 @@ describe('CardPayment test cases', () => {
     const expectedId = '';
 
     const getMemberId = (email: string) =>
-      mockFilterDataUser.find(
+      MOCK_FILTER_DATA_USER.find(
         (user) =>
           user.email.trim().toLowerCase() === email.trim().toLowerCase(),
       )?._id || '';

@@ -61,7 +61,7 @@ exports[`AuthLayout Component renders children within AccountSection 1`] = `
           class="chakra-stack css-tl3ftk"
         >
           <h1
-            class="chakra-heading css-1k0wpds"
+            class="chakra-heading css-13zsi6e"
           >
             Sign up for an account
           </h1>

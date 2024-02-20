@@ -62,3 +62,17 @@ export const MEMBER_CHATS = [
   { uid: 'admin', name: 'Admin' },
   { uid: 'user1', name: 'User 1' },
 ];
+
+export const CONVERSATION_PROPS = {
+  messages: [
+    {
+      date: {
+        nanoseconds: 1,
+        seconds: 11,
+      },
+      id: '1',
+      senderId: '2',
+      text: 'Hello',
+    },
+  ],
+};
