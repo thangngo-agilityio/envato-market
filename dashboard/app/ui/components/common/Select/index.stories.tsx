@@ -43,24 +43,3 @@ export const Primary: Story = {
     options: SOCIAL_PLATFORM_OPTIONS,
   },
 };
-
-export const Secondary: Story = {
-  args: {
-    options: SOCIAL_PLATFORM_OPTIONS,
-    variant: 'secondary',
-  },
-};
-
-export const NoBorder: Story = {
-  args: {
-    options: SOCIAL_PLATFORM_OPTIONS,
-    variant: 'no-border',
-  },
-};
-
-export const NoBackground: Story = {
-  args: {
-    options: SOCIAL_PLATFORM_OPTIONS,
-    variant: 'no-background',
-  },
-};

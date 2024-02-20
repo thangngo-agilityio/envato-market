@@ -345,6 +345,9 @@ const AuthFormComponent = ({
               fontWeight="semibold"
               textTransform="capitalize"
               textDecoration="underline"
+              onClick={(e) => {
+                if (isSubmitting) return e.preventDefault();
+              }}
             >
               forgot password?
             </Button>
