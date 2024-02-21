@@ -9,12 +9,6 @@ exports[`AuthForm components match snapshot with login form 1`] = `
     <div
       class="chakra-stack css-ylms7g"
     >
-      <input
-        class="chakra-input css-0"
-        name="username"
-        placeholder="Username or email"
-        value=""
-      />
       <div
         class="chakra-form-control css-0"
         role="group"
@@ -26,6 +20,23 @@ exports[`AuthForm components match snapshot with login form 1`] = `
           <input
             class="chakra-input css-10kn41x"
             id="field-:r2:"
+            placeholder="Email"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="chakra-form-control css-0"
+        role="group"
+      >
+        <div
+          class="chakra-input__group css-169ufh8"
+          data-group="true"
+        >
+          <input
+            class="chakra-input css-10kn41x"
+            id="field-:r3:"
             name="password"
             placeholder="Password"
             type="password"
@@ -164,7 +175,7 @@ exports[`AuthForm components match snapshot with register form 1`] = `
             <input
               aria-label="first-name"
               class="chakra-input css-10kn41x"
-              id="field-:r5:"
+              id="field-:r6:"
               name="firstName"
               placeholder="First name"
               type="text"
@@ -183,7 +194,7 @@ exports[`AuthForm components match snapshot with register form 1`] = `
             <input
               aria-label="last-name"
               class="chakra-input css-10kn41x"
-              id="field-:r6:"
+              id="field-:r7:"
               name="lastName"
               placeholder="Last name"
               type="text"
@@ -192,12 +203,6 @@ exports[`AuthForm components match snapshot with register form 1`] = `
           </div>
         </div>
       </div>
-      <input
-        class="chakra-input css-0"
-        name="username"
-        placeholder="Username or email"
-        value=""
-      />
       <div
         class="chakra-form-control css-0"
         role="group"
@@ -208,7 +213,24 @@ exports[`AuthForm components match snapshot with register form 1`] = `
         >
           <input
             class="chakra-input css-10kn41x"
-            id="field-:r7:"
+            id="field-:r8:"
+            placeholder="Email"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="chakra-form-control css-0"
+        role="group"
+      >
+        <div
+          class="chakra-input__group css-169ufh8"
+          data-group="true"
+        >
+          <input
+            class="chakra-input css-10kn41x"
+            id="field-:r9:"
             name="password"
             placeholder="Password"
             type="password"
@@ -249,7 +271,7 @@ exports[`AuthForm components match snapshot with register form 1`] = `
         >
           <input
             class="chakra-input css-10kn41x"
-            id="field-:r8:"
+            id="field-:ra:"
             name="confirmPassword"
             placeholder="Confirm password"
             type="password"
