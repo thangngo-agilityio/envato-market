@@ -262,18 +262,26 @@ const AuthFormComponent = ({
           rules={AUTH_SCHEMA.EMAIL}
           control={control}
           name="email"
-          render={({ field: { value, onChange }, fieldState: { error } }) => (
-            <InputField
-              variant="authentication"
-              placeholder="Email"
-              isError={!!error?.message}
-              errorMessages={error?.message}
-              isDisabled={isSubmitting}
-              value={value.trim()}
-              onChange={onChange}
-              onBlur={handleClearRootError}
-            />
-          )}
+          render={({ field: { value, onChange }, fieldState: { error } }) => {
+            const handleChange = (valueInput: string) => {
+              const sanitizedValue = valueInput.trim();
+
+              onChange(sanitizedValue);
+            };
+
+            return (
+              <InputField
+                variant="authentication"
+                placeholder="Email"
+                isError={!!error?.message}
+                errorMessages={error?.message}
+                isDisabled={isSubmitting}
+                value={value}
+                onChange={handleChange}
+                onBlur={handleClearRootError}
+              />
+            );
+          }}
         />
 
         <Controller
