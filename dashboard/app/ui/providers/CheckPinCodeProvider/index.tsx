@@ -16,20 +16,17 @@ import { useDisclosure, useToast } from '@chakra-ui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { getMessaging, onMessage } from 'firebase/messaging';
 import dynamic from 'next/dynamic';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 const Modal = dynamic(() => import('@/ui/components/common/Modal'));
 const PinCode = dynamic(() => import('@/ui/components/common/PinCode'));
 
-const CheckPinCodeProvider = ({ children }: { children: React.ReactNode }) => {
+const CheckPinCodeProvider = () => {
   const user = authStore((state): TAuthStoreData['user'] => state.user);
 
-  const {
-    isOpen: isPinCodeModalOpen,
-    onClose: onClosePinCodeModal,
-    onOpen: onOpenPinCodeModal,
-  } = useDisclosure();
+  const { isOpen: isPinCodeModalOpen, onClose: onClosePinCodeModal } =
+    useDisclosure({ isOpen: true });
 
   const {
     control,
@@ -80,13 +77,6 @@ const CheckPinCodeProvider = ({ children }: { children: React.ReactNode }) => {
     [handleSetPinCode, onClosePinCodeModal, setUser, toast, user],
   );
 
-  useEffect(() => {
-    if (!user?.pinCode) {
-      onOpenPinCodeModal();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const pinCodeModalBody = useMemo(
     () => (
       <PinCode
@@ -135,17 +125,14 @@ const CheckPinCodeProvider = ({ children }: { children: React.ReactNode }) => {
     });
 
   return (
-    <>
-      {children}
-      {isPinCodeModalOpen && (
-        <Modal
-          title="Please set the PIN code to your account"
-          isOpen={isPinCodeModalOpen}
-          onClose={onClosePinCodeModal}
-          body={pinCodeModalBody}
-        />
-      )}
-    </>
+    isPinCodeModalOpen && (
+      <Modal
+        title="Please set the PIN code to your account"
+        isOpen={isPinCodeModalOpen}
+        onClose={onClosePinCodeModal}
+        body={pinCodeModalBody}
+      />
+    )
   );
 };
 

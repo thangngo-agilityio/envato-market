@@ -7,7 +7,7 @@ import { CloseIcon } from '@chakra-ui/icons';
 
 // Components
 import { Box, Flex, useToast } from '@chakra-ui/react';
-import { Indicator, InputField } from '@/ui/components';
+import { Fetching, Indicator, InputField } from '@/ui/components';
 
 // Hooks
 import {
@@ -189,20 +189,24 @@ const UsersSections = () => {
               )}
             />
           </Flex>
-          <UsersTable
-            users={filterData}
-            data={data}
-            isUserError={isUserError}
-            isLoadingUser={isLoadingUser}
-            isDisableNext={isDisableNext}
-            arrOfCurrButtons={arrOfCurrButtons}
-            isDisabledPrev={isDisabledPrev}
-            onChangeLimit={handleChangeLimit}
-            onPageChange={handlePageChange}
-            onPageClick={handlePageClick}
-            onLockUser={handleLockUser}
-            onUnlockUser={handleUnlockUser}
-          />
+          <Fetching
+            quality={15}
+            isLoading={isLoadingUser}
+            isError={isUserError}
+          >
+            <UsersTable
+              users={filterData}
+              data={data}
+              isDisableNext={isDisableNext}
+              arrOfCurrButtons={arrOfCurrButtons}
+              isDisabledPrev={isDisabledPrev}
+              onChangeLimit={handleChangeLimit}
+              onPageChange={handlePageChange}
+              onPageClick={handlePageClick}
+              onLockUser={handleLockUser}
+              onUnlockUser={handleUnlockUser}
+            />
+          </Fetching>
         </Box>
       </Flex>
     </Indicator>
