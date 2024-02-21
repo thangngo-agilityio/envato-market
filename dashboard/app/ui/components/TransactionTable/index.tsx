@@ -368,7 +368,11 @@ const TransactionTableComponent = ({
         onSearch={handleDebounceSearch}
         onFilter={setFilter}
       />
-      <Fetching isLoading={isLoadingTransactions} isError={isTransactionsError}>
+      <Fetching
+        quality={15}
+        isLoading={isLoadingTransactions}
+        isError={isTransactionsError}
+      >
         <Box mt={5}>
           <Table
             columns={columns as THeaderTable[]}

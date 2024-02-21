@@ -14,8 +14,6 @@ import {
   Box,
   Link as ChakraLink,
   Flex,
-  FormErrorMessage,
-  Input,
 } from '@chakra-ui/react';
 
 import { Controller, SubmitHandler } from 'react-hook-form';
@@ -99,7 +97,7 @@ const AuthFormComponent = ({
 
     const isFillAllFields: boolean = isRegister
       ? getLength(dirtyFields) === getLength(defaultValues ?? {})
-      : getLength(dirtyFields) >= 2;
+      : !!(dirtyFields.email && dirtyFields.password);
 
     return isSubmitting || !isFillAllFields;
   })();
@@ -264,31 +262,18 @@ const AuthFormComponent = ({
           rules={AUTH_SCHEMA.EMAIL}
           control={control}
           name="email"
-          render={({ field: { value, onChange }, fieldState: { error } }) => {
-            const handleChange = (event: { target: { value: string } }) => {
-              const value: string = event.target.value;
-              const sanitizedValue = value.trim();
-
-              onChange(sanitizedValue);
-            };
-
-            return (
-              <>
-                <Input
-                  variant="authentication"
-                  placeholder="Username or email"
-                  isDisabled={isSubmitting}
-                  value={value}
-                  name="username"
-                  onChange={handleChange}
-                  onBlur={handleClearRootError}
-                />
-                {!!error?.message && (
-                  <FormErrorMessage>{error?.message}</FormErrorMessage>
-                )}
-              </>
-            );
-          }}
+          render={({ field: { value, onChange }, fieldState: { error } }) => (
+            <InputField
+              variant="authentication"
+              placeholder="Email"
+              isError={!!error?.message}
+              errorMessages={error?.message}
+              isDisabled={isSubmitting}
+              value={value.trim()}
+              onChange={onChange}
+              onBlur={handleClearRootError}
+            />
+          )}
         />
 
         <Controller
@@ -406,7 +391,12 @@ const AuthFormComponent = ({
                       },
                     })}
                   >
-                    <Text color="text.secondary" fontSize="xs" flex={1} px={4}>
+                    <Text
+                      color="text.secondary"
+                      fontSize={{ base: 'xs', md: 'md' }}
+                      flex={1}
+                      px={4}
+                    >
                       By creating an account, you&apos;re agreeing to our {''}
                       <ChakraLink
                         href="#"
@@ -472,6 +462,7 @@ const AuthFormComponent = ({
           _hover={{
             bg: 'transparent',
           }}
+          color="text.primary"
           bg="transparent"
           fontWeight="semibold"
           textDecoration="underline"

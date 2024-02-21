@@ -33,12 +33,14 @@ const WalletSection = () => {
   useEffect(() => {
     isDesktop && setShouldRender(true);
 
-    window.addEventListener('scroll', () => {
+    document.addEventListener('scroll', () => {
       isDesktop || window.scrollY
         ? setShouldRender(true)
         : setShouldRender(false);
     });
   }, [isDesktop]);
+
+  console.log(shouldRender);
 
   return (
     <Grid
