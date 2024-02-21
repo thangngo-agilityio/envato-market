@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 // Components
 import { Box, Grid, GridItem, Stack, useMediaQuery } from '@chakra-ui/react';
-import { TotalStatisticListSkeleton } from '@/ui/components';
+import { Fetching, TotalStatisticListSkeleton } from '@/ui/components';
 
 // Lazy load components
 const CardPayment = lazy(() => import('@/ui/components/CardPayment'));
@@ -51,10 +51,18 @@ const DashBoardSection = () => {
           gap={6}
         >
           <GridItem colSpan={{ base: 3, xl: 2 }}>
-            {showBelow && <RevenueFlow />}
+            {showBelow ? (
+              <RevenueFlow />
+            ) : (
+              <Fetching size="md" variant="secondary" isLoading />
+            )}
           </GridItem>
           <GridItem display={{ base: 'none', xl: 'block' }}>
-            <Efficiency />
+            {showBelow ? (
+              <Efficiency />
+            ) : (
+              <Fetching size="md" variant="secondary" isLoading />
+            )}
           </GridItem>
         </Grid>
 
@@ -67,7 +75,7 @@ const DashBoardSection = () => {
           py={5}
         >
           {' '}
-          {showBelow && <TransactionTable />}
+          {showBelow ? <TransactionTable /> : <Fetching isLoading />}
         </Box>
       </GridItem>
       <GridItem mt={{ base: 6, '5xl': 0 }} ml={{ '5xl': 12 }}>
@@ -75,14 +83,24 @@ const DashBoardSection = () => {
           direction={{ base: 'column', lg: 'row', '2xl': 'column' }}
           spacing={{ base: 6, lg: 0 }}
         >
-          <Box w="full">{showBelow && <CardPayment />}</Box>
+          <Box w="full">
+            {showBelow ? (
+              <CardPayment />
+            ) : (
+              <Fetching size="md" variant="secondary" isLoading />
+            )}
+          </Box>
 
           <Box
             w="full"
             mt={{ base: 6, md: 0, '3xl': 6 }}
             ml={{ lg: 6, '2xl': 0 }}
           >
-            {showBelow && <BoxChat />}
+            {showBelow ? (
+              <BoxChat />
+            ) : (
+              <Fetching size="md" variant="secondary" isLoading />
+            )}
           </Box>
         </Stack>
       </GridItem>
