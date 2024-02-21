@@ -3,8 +3,6 @@ import {
   Box,
   Flex,
   Text,
-  Avatar,
-  AvatarBadge,
   useColorModeValue,
   useBreakpointValue,
 } from '@chakra-ui/react';
@@ -99,17 +97,40 @@ const ChatMember = ({
       onClick={onClick}
       borderRadius="lg"
     >
-      <Flex justify="space-between" p={3.5}>
+      <Flex justify="space-between" p={3.5} alignItems="flex-start">
         <Flex gap={3}>
-          <Avatar
-            src={avatar}
+          <Flex
             borderRadius="50%"
-            border="1px solid"
-            borderColor="border.tertiary"
+            minW="47px"
+            h="47px"
+            position="relative"
+            mr={4}
           >
-            <AvatarBadge boxSize={4} bg={getStatusColor(statusColor)} top={7} />
-          </Avatar>
-          <Flex flexDirection="column">
+            <Image
+              src={avatar || IMAGES.CHAT_USER_AVATAR.url}
+              alt={avatar}
+              width={47}
+              height={47}
+              placeholder="blur"
+              blurDataURL={generatePlaceholder(47, 47)}
+              style={{
+                borderRadius: '50%',
+              }}
+            />
+
+            <Box
+              w="15px"
+              h="15px"
+              bg={getStatusColor(statusColor)}
+              top="32px"
+              left="35px"
+              position="absolute"
+              borderRadius="50%"
+              border="3px solid"
+              borderColor="common.white"
+            />
+          </Flex>
+          <Flex flexDirection="column" alignItems="flex-start">
             <Box mr={6}>
               <Text fontSize="24px" fontWeight="bold">
                 {name}
