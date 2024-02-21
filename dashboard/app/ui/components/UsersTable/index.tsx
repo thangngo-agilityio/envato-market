@@ -9,7 +9,6 @@ import {
   UserInfoCell,
   ActionCell,
   Pagination,
-  Fetching,
   StatusCell,
 } from '@/ui/components';
 
@@ -35,8 +34,6 @@ type TUsersProps = {
   arrOfCurrButtons?: (string | number)[];
   isDisabledPrev?: boolean;
   isDisableNext?: boolean;
-  isLoadingUser?: boolean;
-  isUserError?: boolean;
   onChangeLimit: (limit: TOption) => void;
   onPageChange: (direction: string) => void;
   onPageClick: (value: number) => void;
@@ -51,8 +48,7 @@ const UsersComponent = ({
   arrOfCurrButtons,
   isDisableNext,
   isDisabledPrev,
-  isLoadingUser,
-  isUserError,
+
   onChangeLimit,
   onPageChange,
   onPageClick,
@@ -147,7 +143,7 @@ const UsersComponent = ({
   ];
 
   return (
-    <Fetching isLoading={isLoadingUser} isError={isUserError}>
+    <>
       <Table
         variant="secondary"
         columns={columns as THeaderTable[]}
@@ -168,7 +164,7 @@ const UsersComponent = ({
           />
         </Box>
       )}
-    </Fetching>
+    </>
   );
 };
 
