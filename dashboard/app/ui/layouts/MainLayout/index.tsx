@@ -42,7 +42,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   }, [isDesktop, onOpen]);
 
   return (
-    <CheckPinCodeProvider>
+    <>
       <Indicator isOpen={isLogoutHandling}>
         <Flex w="full" h="full" bg="background.body.primary">
           <Box
@@ -75,7 +75,8 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           </Box>
         </Flex>
       </Indicator>
-    </CheckPinCodeProvider>
+      {!user?.pinCode && <CheckPinCodeProvider />}
+    </>
   );
 };
 
