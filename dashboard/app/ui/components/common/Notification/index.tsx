@@ -205,22 +205,23 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
                   },
                 }}
               >
-                {data?.map((item: TNotification, index) => {
-                  const isLastItem = index === data.length - 1;
-                  const isAddMoney = item.type === TYPE.ADD_MONEY;
+                {isOpen &&
+                  data?.map((item: TNotification, index) => {
+                    const isLastItem = index === data.length - 1;
+                    const isAddMoney = item.type === TYPE.ADD_MONEY;
 
-                  return (
-                    <Box key={item._id} data-testid="notification-item">
-                      <NotificationItem
-                        notification={item}
-                        isAddMoney={isAddMoney}
-                        isLastItem={isLastItem}
-                        onToggleModal={handleToggleModal}
-                        onUpdateNotification={handleUpdateNotification}
-                      />
-                    </Box>
-                  );
-                })}
+                    return (
+                      <Box key={item._id} data-testid="notification-item">
+                        <NotificationItem
+                          notification={item}
+                          isAddMoney={isAddMoney}
+                          isLastItem={isLastItem}
+                          onToggleModal={handleToggleModal}
+                          onUpdateNotification={handleUpdateNotification}
+                        />
+                      </Box>
+                    );
+                  })}
               </Flex>
             </MenuList>
           </Box>
