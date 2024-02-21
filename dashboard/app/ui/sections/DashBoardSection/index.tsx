@@ -51,7 +51,7 @@ const DashBoardSection = () => {
           gap={6}
         >
           <GridItem colSpan={{ base: 3, xl: 2 }}>
-            <RevenueFlow />
+            {showBelow && <RevenueFlow />}
           </GridItem>
           <GridItem display={{ base: 'none', xl: 'block' }}>
             <Efficiency />
