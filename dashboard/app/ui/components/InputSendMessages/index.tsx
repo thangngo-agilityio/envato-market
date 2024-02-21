@@ -77,7 +77,6 @@ const InputSendMessages = ({ boxRef }: InputSendMessagesProps) => {
         if (boxRef && boxRef.current) {
           boxRef.current.scrollTop = boxRef.current.scrollHeight;
         }
-
         reset();
       }
     },
