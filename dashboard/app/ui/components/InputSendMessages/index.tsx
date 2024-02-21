@@ -53,12 +53,15 @@ const InputSendMessages = ({ boxRef }: InputSendMessagesProps) => {
       const usersData = await getCurrentUser(user);
 
       if (usersData) {
-        const senderUserId = usersData.userId as string;
-        const roomChatId = usersData.roomChatId;
-        const receiverId = usersData.adminId;
-        const avatarUrl = usersData.avatarUrl as string;
-        const avatarAdminUrl = usersData.avatarAdminUrl;
-        const displayName = usersData.displayName;
+        const {
+          userId: senderUserId,
+          roomChatId,
+          adminId: receiverId,
+          avatarUrl,
+          avatarAdminUrl,
+          displayName,
+        } = usersData;
+
         data.senderId = senderUserId;
 
         await sendMessage(
@@ -74,7 +77,6 @@ const InputSendMessages = ({ boxRef }: InputSendMessagesProps) => {
         if (boxRef && boxRef.current) {
           boxRef.current.scrollTop = boxRef.current.scrollHeight;
         }
-
         reset();
       }
     },
