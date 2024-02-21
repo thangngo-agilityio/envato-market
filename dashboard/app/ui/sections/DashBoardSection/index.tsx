@@ -6,13 +6,16 @@ import { useEffect, useState } from 'react';
 
 // Components
 import { Box, Grid, GridItem, Stack, useMediaQuery } from '@chakra-ui/react';
-import { SCREEN_SIZES } from '@/lib/constants';
+import { TotalStatisticListSkeleton } from '@/ui/components';
 
 // Lazy load components
 const CardPayment = lazy(() => import('@/ui/components/CardPayment'));
 const BoxChat = lazy(() => import('@/ui/components/BoxChat'));
 const TotalStatisticList = lazy(
   () => import('@/ui/components/TotalStatisticList'),
+  {
+    loading: () => <TotalStatisticListSkeleton />,
+  },
 );
 const RevenueFlow = lazy(() => import('@/ui/components/RevenueFlow'));
 const Efficiency = lazy(() => import('@/ui/components/Efficiency'));
@@ -22,14 +25,14 @@ export const dynamic = 'force-dynamic';
 
 const DashBoardSection = () => {
   const [showBelow, setShowBelow] = useState<boolean>(false);
-  const [isDesktop] = useMediaQuery(SCREEN_SIZES.LARGE_DESKTOP);
+  const [isNotMobile] = useMediaQuery('(min-width: 768px)');
 
   useEffect(() => {
-    isDesktop && setShowBelow(true);
+    isNotMobile && setShowBelow(true);
     window.addEventListener('scroll', () => {
-      isDesktop || window.scrollY ? setShowBelow(true) : setShowBelow(false);
+      isNotMobile || window.scrollY ? setShowBelow(true) : setShowBelow(false);
     });
-  }, [isDesktop]);
+  }, [isNotMobile]);
 
   return (
     <Grid
@@ -48,7 +51,7 @@ const DashBoardSection = () => {
           gap={6}
         >
           <GridItem colSpan={{ base: 3, xl: 2 }}>
-            {showBelow && <RevenueFlow />}
+            <RevenueFlow />
           </GridItem>
           <GridItem display={{ base: 'none', xl: 'block' }}>
             <Efficiency />
