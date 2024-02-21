@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import {
   HydrationBoundary,
   QueryClient,
@@ -16,7 +17,10 @@ import {
 
 // Utils
 import { prefetchStatistical } from '@/lib/utils';
-import { DashBoardSection } from '@/ui/sections';
+
+const DashBoardSection = dynamic(
+  () => import('@/ui/sections/DashBoardSection'),
+);
 
 const Dashboard = async () => {
   const queryClient = new QueryClient();

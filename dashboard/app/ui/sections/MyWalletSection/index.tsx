@@ -1,11 +1,10 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { InView } from 'react-intersection-observer';
 
 //Components
-import { Box, Flex, useMediaQuery } from '@chakra-ui/react';
-
-import { useEffect, useState } from 'react';
+import { Box, Flex } from '@chakra-ui/react';
 
 // Lazy loading components
 const TransactionTable = dynamic(
@@ -14,20 +13,10 @@ const TransactionTable = dynamic(
 const Efficiency = dynamic(() => import('@/ui/components/Efficiency'));
 const OverallBalance = dynamic(() => import('@/ui/components/OverallBalance'));
 
-const MyWalletsSection = () => {
-  const [showBelow, setShowBelow] = useState<boolean>(false);
-  const [isNotMobile] = useMediaQuery('(min-width: 768px)');
-
-  useEffect(() => {
-    isNotMobile && setShowBelow(true);
-    window.addEventListener('scroll', () => {
-      isNotMobile || window.scrollY ? setShowBelow(true) : setShowBelow(false);
-    });
-  }, [isNotMobile]);
-
-  return (
-    showBelow && (
-      <Flex direction="column" gap={6}>
+const MyWalletsSection = () => (
+  <InView>
+    {({ inView, ref }) => (
+      <Flex direction="column" gap={6} ref={ref}>
         <Flex
           flex={1}
           gap={6}
@@ -36,10 +25,10 @@ const MyWalletsSection = () => {
           w="100%"
         >
           <Box w={{ '3xl': '65%' }} flex={2}>
-            <OverallBalance />
+            {inView && <OverallBalance />}
           </Box>
           <Box w={{ '3xl': '35%' }} flex={1}>
-            <Efficiency />
+            {inView && <Efficiency />}
           </Box>
         </Flex>
         <Box>
@@ -50,12 +39,12 @@ const MyWalletsSection = () => {
             px={6}
             py={5}
           >
-            <TransactionTable />
+            {inView && <TransactionTable />}
           </Box>
         </Box>
       </Flex>
-    )
-  );
-};
+    )}
+  </InView>
+);
 
 export default MyWalletsSection;

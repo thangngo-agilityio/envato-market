@@ -2,11 +2,11 @@
 
 import lazy from 'next/dynamic';
 
-import { useEffect, useState } from 'react';
+import { InView } from 'react-intersection-observer';
 
 // Components
-import { Box, Grid, GridItem, Stack, useMediaQuery } from '@chakra-ui/react';
-import { Fetching, TotalStatisticListSkeleton } from '@/ui/components';
+import { Box, Grid, GridItem, Stack } from '@chakra-ui/react';
+import { TotalStatisticListSkeleton } from '@/ui/components';
 
 // Lazy load components
 const CardPayment = lazy(() => import('@/ui/components/CardPayment'));
@@ -23,89 +23,82 @@ const TransactionTable = lazy(() => import('@/ui/components/TransactionTable'));
 
 export const dynamic = 'force-dynamic';
 
-const DashBoardSection = () => {
-  const [showBelow, setShowBelow] = useState<boolean>(false);
-  const [isNotMobile] = useMediaQuery('(min-width: 768px)');
+const DashBoardSection = () => (
+  <Grid
+    display={{ sm: 'block', md: 'grid' }}
+    bg="background.body.primary"
+    p={{ base: 6, xl: 12 }}
+    templateColumns={{ base: 'repeat(1, 1fr)', '5xl': 'repeat(4, 1fr)' }}
+    gap={0}
+  >
+    <GridItem colSpan={3}>
+      <TotalStatisticList />
 
-  useEffect(() => {
-    isNotMobile && setShowBelow(true);
-    window.addEventListener('scroll', () => {
-      isNotMobile || window.scrollY ? setShowBelow(true) : setShowBelow(false);
-    });
-  }, [isNotMobile]);
+      <Grid
+        templateColumns={{ base: 'repeat(1, 1fr)', lg: 'repeat(3, 1fr)' }}
+        mt={6}
+        gap={6}
+      >
+        <InView>
+          {({ inView, ref }) => (
+            <GridItem colSpan={{ base: 3, xl: 2 }} ref={ref}>
+              {inView && <RevenueFlow />}
+            </GridItem>
+          )}
+        </InView>
 
-  return (
-    <Grid
-      display={{ sm: 'block', md: 'grid' }}
-      bg="background.body.primary"
-      p={{ base: 6, xl: 12 }}
-      templateColumns={{ base: 'repeat(1, 1fr)', '5xl': 'repeat(4, 1fr)' }}
-      gap={0}
-    >
-      <GridItem colSpan={3}>
-        <TotalStatisticList />
+        <InView>
+          {({ inView, ref }) => (
+            <GridItem ref={ref} display={{ base: 'none', xl: 'block' }}>
+              {inView && <Efficiency />}
+            </GridItem>
+          )}
+        </InView>
+      </Grid>
 
-        <Grid
-          templateColumns={{ base: 'repeat(1, 1fr)', lg: 'repeat(3, 1fr)' }}
-          mt={6}
-          gap={6}
-        >
-          <GridItem colSpan={{ base: 3, xl: 2 }}>
-            {showBelow ? (
-              <RevenueFlow />
-            ) : (
-              <Fetching size="md" variant="secondary" isLoading />
-            )}
-          </GridItem>
-          <GridItem display={{ base: 'none', xl: 'block' }}>
-            {showBelow ? (
-              <Efficiency />
-            ) : (
-              <Fetching size="md" variant="secondary" isLoading />
-            )}
-          </GridItem>
-        </Grid>
-
-        <Box
-          mt={6}
-          as="section"
-          bgColor="background.component.primary"
-          borderRadius={8}
-          px={6}
-          py={5}
-        >
-          {' '}
-          {showBelow ? <TransactionTable /> : <Fetching isLoading />}
-        </Box>
-      </GridItem>
-      <GridItem mt={{ base: 6, '5xl': 0 }} ml={{ '5xl': 12 }}>
-        <Stack
-          direction={{ base: 'column', lg: 'row', '2xl': 'column' }}
-          spacing={{ base: 6, lg: 0 }}
-        >
-          <Box w="full">
-            {showBelow ? (
-              <CardPayment />
-            ) : (
-              <Fetching size="md" variant="secondary" isLoading />
-            )}
-          </Box>
-
+      <InView>
+        {({ inView, ref }) => (
           <Box
-            w="full"
-            mt={{ base: 6, md: 0, '3xl': 6 }}
-            ml={{ lg: 6, '2xl': 0 }}
+            ref={ref}
+            mt={6}
+            as="section"
+            bgColor="background.component.primary"
+            borderRadius={8}
+            px={6}
+            py={5}
           >
-            {showBelow ? (
-              <BoxChat />
-            ) : (
-              <Fetching size="md" variant="secondary" isLoading />
-            )}
+            {' '}
+            {inView && <TransactionTable />}
           </Box>
-        </Stack>
-      </GridItem>
-    </Grid>
-  );
-};
+        )}
+      </InView>
+    </GridItem>
+
+    <InView>
+      {({ inView, ref }) => (
+        <GridItem mt={{ base: 6, '5xl': 0 }} ml={{ '5xl': 12 }} ref={ref}>
+          {inView && (
+            <Stack
+              direction={{ base: 'column', lg: 'row', '2xl': 'column' }}
+              spacing={{ base: 6, lg: 0 }}
+            >
+              <Box w="full">
+                <CardPayment />
+              </Box>
+
+              <Box
+                w="full"
+                mt={{ base: 6, md: 0, '3xl': 6 }}
+                ml={{ lg: 6, '2xl': 0 }}
+              >
+                <BoxChat />
+              </Box>
+            </Stack>
+          )}
+        </GridItem>
+      )}
+    </InView>
+  </Grid>
+);
 
 export default DashBoardSection;
