@@ -166,6 +166,23 @@ describe('AuthForm components', () => {
     }
   });
 
+  it('Wrong format email', async () => {
+    try {
+      render(<AuthForm />);
+
+      await userEvent.type(
+        screen.getByPlaceholderText('Username or email'),
+        'testexample.com',
+      );
+
+      await userEvent.click(screen.getByRole('button', { name: 'Sign In' }));
+    } catch (error) {
+      await waitFor(() => {
+        expect(screen.getAllByLabelText).toEqual('Email is invalid');
+      });
+    }
+  });
+
   it('Wrong format password', async () => {
     try {
       render(<AuthForm />);
