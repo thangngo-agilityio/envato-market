@@ -97,7 +97,7 @@ const HeaderComponent = () => {
         }}
       >
         <Flex>
-          <Flex
+          <Flex aria-hidden="false" aria-modal="true"
             minW={{ base: 325, sm: 280, md: 310 }}
             justifyContent="space-between"
           >
