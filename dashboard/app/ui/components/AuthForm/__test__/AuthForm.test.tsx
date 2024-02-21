@@ -72,7 +72,7 @@ describe('AuthForm components', () => {
     await userEvent.type(screen.getByPlaceholderText('Last name'), 'Doe');
 
     await userEvent.type(
-      screen.getByPlaceholderText('Username or email'),
+      screen.getByPlaceholderText('Email'),
       'test@example.com',
     );
 
@@ -107,7 +107,7 @@ describe('AuthForm components', () => {
       await userEvent.type(screen.getByPlaceholderText('Last name'), 'Doe');
 
       await userEvent.type(
-        screen.getByPlaceholderText('Username or email'),
+        screen.getByPlaceholderText('Email'),
         'test@example.com',
       );
 
@@ -137,7 +137,7 @@ describe('AuthForm components', () => {
       render(<AuthForm />);
 
       await userEvent.type(
-        screen.getByPlaceholderText('Username or email'),
+        screen.getByPlaceholderText('Email'),
         'test@example.com',
       );
       await userEvent.type(
@@ -171,7 +171,7 @@ describe('AuthForm components', () => {
       render(<AuthForm />);
 
       await userEvent.type(
-        screen.getByPlaceholderText('Username or email'),
+        screen.getByPlaceholderText('Email'),
         'testexample.com',
       );
 
@@ -188,7 +188,7 @@ describe('AuthForm components', () => {
       render(<AuthForm />);
 
       await userEvent.type(
-        screen.getByPlaceholderText('Username or email'),
+        screen.getByPlaceholderText('Email'),
         'test@example.com',
       );
       await userEvent.type(screen.getByPlaceholderText('Password'), '111111');
@@ -207,10 +207,7 @@ describe('AuthForm components', () => {
     try {
       render(<AuthForm />);
 
-      await userEvent.type(
-        screen.getByPlaceholderText('Username or email'),
-        '',
-      );
+      await userEvent.type(screen.getByPlaceholderText('Email'), '');
       await userEvent.type(screen.getByPlaceholderText('Password'), '111111');
     } catch (error) {
       await waitFor(() => {
@@ -226,7 +223,7 @@ describe('AuthForm components', () => {
       render(<AuthForm />);
 
       await userEvent.type(
-        screen.getByPlaceholderText('Username or email'),
+        screen.getByPlaceholderText('Email'),
         'test@example.com',
       );
       await userEvent.type(screen.getByPlaceholderText('Password'), '');
@@ -272,7 +269,7 @@ describe('AuthForm components', () => {
       await userEvent.type(screen.getByPlaceholderText('Last name'), 'Doe');
 
       await userEvent.type(
-        screen.getByPlaceholderText('Username or email'),
+        screen.getByPlaceholderText('Email'),
         'test@example.com',
       );
 
