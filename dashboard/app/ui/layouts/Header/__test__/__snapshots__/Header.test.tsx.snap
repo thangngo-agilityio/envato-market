@@ -265,6 +265,7 @@ exports[`Header render Should render match with snapshot. 1`] = `
               aria-expanded="false"
               aria-haspopup="menu"
               class="chakra-button chakra-menu__menu-button css-1syuf9x"
+              data-testid="click-menu-button"
               id="menu-button-:r5:"
               type="button"
             >
