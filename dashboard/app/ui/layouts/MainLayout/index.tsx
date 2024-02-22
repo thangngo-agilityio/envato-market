@@ -52,9 +52,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
               lg: SIDEBAR.MINI_SIDEBAR_WIDTH,
               '4xl': isExpandSidebar
                 ? SIDEBAR.EXPAND_SIDEBAR_WIDTH
-                : isDesktop
-                  ? SIDEBAR.MINI_SIDEBAR_WIDTH
-                  : 0,
+                : SIDEBAR.MINI_SIDEBAR_WIDTH,
             }}
             w="full"
             minH="100vh"
