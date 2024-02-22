@@ -228,6 +228,8 @@ exports[`Header render Should render match with snapshot. 1`] = `
         class="css-k008qs"
       >
         <div
+          aria-hidden="false"
+          aria-modal="true"
           class="css-1dz9t9j"
         >
           <div

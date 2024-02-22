@@ -14,5 +14,6 @@ export const TITLES_HEADER = {
   [ROUTES.HISTORY]: 'Histories',
   [ROUTES.SETTING]: 'Settings',
   [ROUTES.SUPPORT]: 'Supports',
+  [ROUTES.INBOX]: 'Inbox',
   DEFAULT: 'Dashboards',
 };
