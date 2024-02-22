@@ -55,7 +55,11 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
                 : isDesktop
                   ? SIDEBAR.MINI_SIDEBAR_WIDTH
                   : 0,
-
+            }}
+            w="full"
+            minH="100vh"
+            h="full"
+            sx={{
               transition: 'all .25s ease-in-out',
             }}
           >
