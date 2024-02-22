@@ -52,9 +52,13 @@ describe('Notification component', () => {
   });
 
   test('handleUpdateNotification should be called when a notification item is clicked', async () => {
-    const { getByText } = render(
+    const { getByText, getByTestId } = render(
       <Notification colorFill="white" user={MOCK_USER_DETAIL} />,
     );
+
+    const clickOpenMenu = getByTestId('click-menu-button');
+
+    await userEvent.click(clickOpenMenu);
 
     const elementUpdate = getByText(NOTIFICATION_LIST[0].sender);
 
@@ -71,9 +75,13 @@ describe('Notification component', () => {
 
   test('handle delete notification success', async () => {
     jest.spyOn(axios, 'delete').mockResolvedValue({});
-    const { getByRole } = render(
+    const { getByRole, getByTestId } = render(
       <Notification colorFill="white" user={MOCK_USER_DETAIL} />,
     );
+
+    const clickOpenMenu = getByTestId('click-menu-button');
+
+    await userEvent.click(clickOpenMenu);
 
     const deleteIcon = testLibReactUtils.screen.getByTestId(
       `delete-icon-${NOTIFICATION_LIST[2]._id}`,
@@ -106,6 +114,11 @@ describe('Notification component', () => {
     testLibReactUtils.render(
       <Notification colorFill="white" user={MOCK_USER_DETAIL} />,
     );
+
+    const clickOpenMenu =
+      testLibReactUtils.screen.getByTestId('click-menu-button');
+
+    await userEvent.click(clickOpenMenu);
 
     const deleteIcon = testLibReactUtils.screen.getByTestId(
       `delete-icon-${NOTIFICATION_LIST[1]._id}`,

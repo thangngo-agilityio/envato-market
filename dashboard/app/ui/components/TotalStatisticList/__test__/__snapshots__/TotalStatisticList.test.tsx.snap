@@ -22,7 +22,7 @@ exports[`TotalList component renders correctly 1`] = `
               class="chakra-image css-1ee2qsp"
               src="/icons/total-earn.svg"
             />
-            <p
+            <h2
               class="chakra-text css-10ircq3"
             />
           </div>

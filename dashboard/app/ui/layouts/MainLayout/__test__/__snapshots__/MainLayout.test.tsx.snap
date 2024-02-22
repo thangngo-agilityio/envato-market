@@ -64,7 +64,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
               Dashboards
             </h1>
             <p
-              class="chakra-text css-1l8sm1v"
+              class="chakra-text css-1l1aq7x"
             >
               Let’s check your update today
             </p>
@@ -90,6 +90,18 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                   <div
                     class="css-70qvj9"
                   >
+                    <div
+                      class="css-1t7qp8j"
+                    >
+                      <img
+                        alt=""
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="/icons/user.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; object-fit: cover; color: transparent; border-radius: 12px; border-width: 1px; padding-top: 2px; cursor: pointer; border-color: #e2e8f0; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+                      />
+                    </div>
                     <div
                       class="css-1unxso2"
                     >
@@ -276,6 +288,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                   aria-expanded="false"
                   aria-haspopup="menu"
                   class="chakra-button chakra-menu__menu-button css-1syuf9x"
+                  data-testid="click-menu-button"
                   id="menu-button-:r6:"
                   type="button"
                 >
@@ -451,6 +464,18 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                       class="css-70qvj9"
                     >
                       <div
+                        class="css-1t7qp8j"
+                      >
+                        <img
+                          alt=""
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="/icons/user.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; object-fit: cover; color: transparent; border-radius: 12px; border-width: 1px; padding-top: 2px; cursor: pointer; border-color: #e2e8f0; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+                        />
+                      </div>
+                      <div
                         class="css-1unxso2"
                       >
                         <div
@@ -611,6 +636,18 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                   <div
                     class="css-70qvj9"
                   >
+                    <div
+                      class="css-1t7qp8j"
+                    >
+                      <img
+                        alt=""
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="/icons/user.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; object-fit: cover; color: transparent; border-radius: 12px; border-width: 1px; padding-top: 2px; cursor: pointer; border-color: #e2e8f0; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+                      />
+                    </div>
                     <div
                       class="css-1unxso2"
                     >
