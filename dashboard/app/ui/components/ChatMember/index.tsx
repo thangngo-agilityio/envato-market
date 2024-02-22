@@ -132,7 +132,7 @@ const ChatMember = ({
           </Flex>
           <Flex flexDirection="column" alignItems="flex-start">
             <Box mr={6}>
-              <Text fontSize="24px" fontWeight="bold">
+              <Text fontSize="18px" fontWeight="bold">
                 {name}
               </Text>
             </Box>
