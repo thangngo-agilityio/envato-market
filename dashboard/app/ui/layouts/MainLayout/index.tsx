@@ -7,9 +7,7 @@ import { Box, Flex, useDisclosure, useMediaQuery } from '@chakra-ui/react';
 import { SCREEN_SIZES, SIDEBAR } from '@/lib/constants';
 
 // Component
-// import { Header, SideBar } from '@/ui/layouts';
-const Header = dynamic(() => import('@/ui/layouts/Header'));
-const SideBar = dynamic(() => import('@/ui/layouts/Sidebar'));
+import { Header, SideBar } from '@/ui/layouts';
 
 // Provider
 import { CheckPinCodeProvider } from '@/ui/providers';
@@ -21,7 +19,6 @@ import { TAuthStoreData, authStore } from '@/lib/stores';
 import { TUserDetail } from '@/lib/interfaces';
 import { useAuth } from '@/lib/hooks';
 import { Indicator } from '@/ui/components';
-import dynamic from 'next/dynamic';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const [isDesktop] = useMediaQuery(SCREEN_SIZES.LARGE_DESKTOP);

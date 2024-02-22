@@ -6,13 +6,11 @@ import { InView } from 'react-intersection-observer';
 
 // Components
 import { Box, Grid, GridItem, Stack } from '@chakra-ui/react';
+import { TotalStatisticList } from '@/ui/components';
 
 // Lazy load components
 const CardPayment = lazy(() => import('@/ui/components/CardPayment'));
 const BoxChat = lazy(() => import('@/ui/components/BoxChat'));
-const TotalStatisticList = lazy(
-  () => import('@/ui/components/TotalStatisticList'),
-);
 const RevenueFlow = lazy(() => import('@/ui/components/RevenueFlow'));
 const Efficiency = lazy(() => import('@/ui/components/Efficiency'));
 const TransactionTable = lazy(() => import('@/ui/components/TransactionTable'));
@@ -30,27 +28,24 @@ const DashBoardSection = () => (
     <GridItem colSpan={3}>
       <TotalStatisticList />
 
-      <Grid
-        templateColumns={{ base: 'repeat(1, 1fr)', lg: 'repeat(3, 1fr)' }}
-        mt={6}
-        gap={6}
-      >
-        <InView>
-          {({ inView, ref }) => (
-            <GridItem colSpan={{ base: 3, xl: 2 }} ref={ref}>
+      <InView>
+        {({ inView, ref }) => (
+          <Grid
+            templateColumns={{ base: 'repeat(1, 1fr)', lg: 'repeat(3, 1fr)' }}
+            mt={6}
+            gap={6}
+            ref={ref}
+          >
+            <GridItem colSpan={{ base: 3, xl: 2 }}>
               {inView && <RevenueFlow />}
             </GridItem>
-          )}
-        </InView>
 
-        <InView>
-          {({ inView, ref }) => (
             <GridItem ref={ref} display={{ base: 'none', xl: 'block' }}>
               {inView && <Efficiency />}
             </GridItem>
-          )}
-        </InView>
-      </Grid>
+          </Grid>
+        )}
+      </InView>
 
       <InView>
         {({ inView, ref }) => (
