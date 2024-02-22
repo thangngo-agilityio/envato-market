@@ -1,10 +1,10 @@
 'use client';
 
-import { useCallback } from 'react';
-import { Box, Flex, useDisclosure } from '@chakra-ui/react';
+import { useCallback, useEffect } from 'react';
+import { Box, Flex, useDisclosure, useMediaQuery } from '@chakra-ui/react';
 
 // Constants
-import { SIDEBAR } from '@/lib/constants';
+import { SCREEN_SIZES, SIDEBAR } from '@/lib/constants';
 
 // Component
 import { Header, SideBar } from '@/ui/layouts';
@@ -21,18 +21,25 @@ import { useAuth } from '@/lib/hooks';
 import { Indicator } from '@/ui/components';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
+  const [isDesktop] = useMediaQuery(SCREEN_SIZES.LARGE_DESKTOP);
   const {
     isOpen: isExpandSidebar,
     onOpen,
     onClose,
   } = useDisclosure({
-    defaultIsOpen: window?.innerWidth > 1731,
+    defaultIsOpen: false,
   });
 
   const user = authStore((state): TAuthStoreData['user'] => state.user);
   const { isLogoutHandling, signOut } = useAuth();
 
   const handleSignOut = useCallback(() => signOut(), [signOut]);
+
+  useEffect(() => {
+    if (isDesktop) {
+      onOpen();
+    }
+  }, [isDesktop, onOpen]);
 
   return (
     <>
@@ -45,12 +52,10 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
               lg: SIDEBAR.MINI_SIDEBAR_WIDTH,
               '4xl': isExpandSidebar
                 ? SIDEBAR.EXPAND_SIDEBAR_WIDTH
-                : SIDEBAR.MINI_SIDEBAR_WIDTH,
-            }}
-            w="full"
-            minH="100vh"
-            h="full"
-            sx={{
+                : isDesktop
+                  ? SIDEBAR.MINI_SIDEBAR_WIDTH
+                  : 0,
+
               transition: 'all .25s ease-in-out',
             }}
           >

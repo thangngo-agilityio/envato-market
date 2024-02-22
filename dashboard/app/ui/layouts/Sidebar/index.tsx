@@ -2,6 +2,7 @@
 
 import { memo } from 'react';
 import isEqual from 'react-fast-compare';
+import dynamic from 'next/dynamic';
 import { Image } from '@chakra-ui/react';
 
 // Constants
@@ -10,9 +11,10 @@ import { AUTHENTICATION_ROLE, IMAGES } from '@/lib/constants';
 // Interfaces
 import { TMenuItem } from '@/ui/components/common/Menu';
 import { TUserDetail } from '@/lib/interfaces';
-import { ExpandSidebar, MiniSidebar } from '@/ui/components';
 
 // components
+const ExpandSidebar = dynamic(() => import('@/ui/components/ExpandSidebar'));
+const MiniSidebar = dynamic(() => import('@/ui/components/MiniSidebar'));
 
 export type TSidebarProps = {
   menuItem?: TMenuItem[];
