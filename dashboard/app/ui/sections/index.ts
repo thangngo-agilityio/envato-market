@@ -5,3 +5,5 @@ export { default as ForgotPasswordSection } from './ForgotPassword';
 export { default as AccountSection } from './AccountSection';
 export { default as DashBoardSection } from './DashBoardSection';
 export { default as MyWalletSection } from './MyWalletSection';
+export { default as TransactionSection } from './TransactionSection';
+export { default as HistorySection } from './HistorySection';
