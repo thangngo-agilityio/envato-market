@@ -475,6 +475,9 @@ const AuthFormComponent = ({
           fontWeight="semibold"
           textDecoration="underline"
           ml={2}
+          onClick={(e) => {
+            if (isSubmitting) return e.preventDefault();
+          }}
         >
           {!isRegister ? 'Sign Up' : 'Sign In'}
         </Button>
