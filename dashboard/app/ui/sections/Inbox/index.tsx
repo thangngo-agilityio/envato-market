@@ -227,14 +227,14 @@ const ChatMemberList = () => {
               as="h3"
               color="text.primary"
               fontWeight="semibold"
-              fontSize="3xl"
+              fontSize="20px"
             >
               Messages
               <Text
                 as="span"
                 color="text.primary"
                 fontWeight="semibold"
-                fontSize="3xl"
+                fontSize="20px"
               >
                 ({chats ? Object.values(chats).length : 0})
               </Text>
