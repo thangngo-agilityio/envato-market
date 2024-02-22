@@ -12,7 +12,7 @@ export type TNavigationProps = {
 const Navigation = ({
   children,
   destination = '/',
-  onClick = () => {},
+  onClick,
 }: TNavigationProps) => {
   const pathname = usePathname();
 
