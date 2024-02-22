@@ -76,11 +76,11 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
               class="css-0"
             >
               <button
-                aria-controls="menu-list-:r5:"
+                aria-controls="menu-list-:r2:"
                 aria-expanded="false"
                 aria-haspopup="menu"
                 class="chakra-button chakra-menu__menu-button css-1of25bg"
-                id="menu-button-:r5:"
+                id="menu-button-:r2:"
                 title=" "
                 type="button"
               >
@@ -139,7 +139,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                   aria-orientation="vertical"
                   class="chakra-menu__menu-list css-16j8xku"
                   data-testid="TestDropdown"
-                  id="menu-list-:r5:"
+                  id="menu-list-:r2:"
                   role="menu"
                   style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
                   tabindex="-1"
@@ -149,7 +149,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                     class="chakra-link chakra-menu__menuitem css-1y28nxo"
                     data-index="0"
                     href="/settings"
-                    id="menu-list-:r5:-menuitem-:r6:"
+                    id="menu-list-:r2:-menuitem-:r3:"
                     role="menuitem"
                     tabindex="-1"
                   >
@@ -198,7 +198,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                     aria-label="menu-item-Logout"
                     class="chakra-menu__menuitem css-1way4u7"
                     data-index="1"
-                    id="menu-list-:r5:-menuitem-:r7:"
+                    id="menu-list-:r2:-menuitem-:r4:"
                     role="menuitem"
                     tabindex="-1"
                     type="button"
@@ -239,6 +239,8 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
             class="css-k008qs"
           >
             <div
+              aria-hidden="false"
+              aria-modal="true"
               class="css-1dz9t9j"
             >
               <div
@@ -270,11 +272,11 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                 class="css-0"
               >
                 <button
-                  aria-controls="menu-list-:r9:"
+                  aria-controls="menu-list-:r6:"
                   aria-expanded="false"
                   aria-haspopup="menu"
                   class="chakra-button chakra-menu__menu-button css-1syuf9x"
-                  id="menu-button-:r9:"
+                  id="menu-button-:r6:"
                   type="button"
                 >
                   <span
@@ -311,7 +313,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                   <div
                     aria-orientation="vertical"
                     class="chakra-menu__menu-list css-21cpnl"
-                    id="menu-list-:r9:"
+                    id="menu-list-:r6:"
                     role="menu"
                     style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
                     tabindex="-1"
@@ -353,11 +355,11 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                 </div>
               </div>
               <button
-                aria-controls="menu-list-:rb:"
+                aria-controls="menu-list-:r8:"
                 aria-expanded="false"
                 aria-haspopup="menu"
                 class="chakra-menu__menu-button"
-                id="menu-button-:rb:"
+                id="menu-button-:r8:"
               >
                 <span
                   class="css-xl71ch"
@@ -401,7 +403,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                 <div
                   aria-orientation="vertical"
                   class="chakra-menu__menu-list css-12anmev"
-                  id="menu-list-:rb:"
+                  id="menu-list-:r8:"
                   role="menu"
                   style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
                   tabindex="-1"
@@ -434,11 +436,11 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                 class="css-0"
               >
                 <button
-                  aria-controls="menu-list-:rd:"
+                  aria-controls="menu-list-:ra:"
                   aria-expanded="false"
                   aria-haspopup="menu"
                   class="chakra-button chakra-menu__menu-button css-1of25bg"
-                  id="menu-button-:rd:"
+                  id="menu-button-:ra:"
                   title=" "
                   type="button"
                 >
@@ -495,7 +497,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                     aria-orientation="vertical"
                     class="chakra-menu__menu-list css-16j8xku"
                     data-testid="TestDropdown"
-                    id="menu-list-:rd:"
+                    id="menu-list-:ra:"
                     role="menu"
                     style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
                     tabindex="-1"
@@ -505,7 +507,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                       class="chakra-link chakra-menu__menuitem css-1y28nxo"
                       data-index="0"
                       href="/settings"
-                      id="menu-list-:rd:-menuitem-:re:"
+                      id="menu-list-:ra:-menuitem-:rb:"
                       role="menuitem"
                       tabindex="-1"
                     >
@@ -554,7 +556,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                       aria-label="menu-item-Logout"
                       class="chakra-menu__menuitem css-1way4u7"
                       data-index="1"
-                      id="menu-list-:rd:-menuitem-:rf:"
+                      id="menu-list-:ra:-menuitem-:rc:"
                       role="menuitem"
                       tabindex="-1"
                       type="button"
@@ -595,11 +597,11 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
               class="css-0"
             >
               <button
-                aria-controls="menu-list-:rh:"
+                aria-controls="menu-list-:re:"
                 aria-expanded="false"
                 aria-haspopup="menu"
                 class="chakra-button chakra-menu__menu-button css-1of25bg"
-                id="menu-button-:rh:"
+                id="menu-button-:re:"
                 title=" "
                 type="button"
               >
@@ -656,7 +658,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                   aria-orientation="vertical"
                   class="chakra-menu__menu-list css-16j8xku"
                   data-testid="TestDropdown"
-                  id="menu-list-:rh:"
+                  id="menu-list-:re:"
                   role="menu"
                   style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
                   tabindex="-1"
@@ -666,7 +668,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                     class="chakra-link chakra-menu__menuitem css-1y28nxo"
                     data-index="0"
                     href="/settings"
-                    id="menu-list-:rh:-menuitem-:ri:"
+                    id="menu-list-:re:-menuitem-:rf:"
                     role="menuitem"
                     tabindex="-1"
                   >
@@ -715,7 +717,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                     aria-label="menu-item-Logout"
                     class="chakra-menu__menuitem css-1way4u7"
                     data-index="1"
-                    id="menu-list-:rh:-menuitem-:rj:"
+                    id="menu-list-:re:-menuitem-:rg:"
                     role="menuitem"
                     tabindex="-1"
                     type="button"
