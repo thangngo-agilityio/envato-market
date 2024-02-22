@@ -61,7 +61,7 @@ const UserInfoComponent = ({
           <Text
             as={Link}
             href={`mailto:${email}`}
-            fontSize="13px"
+            fontSize="xs"
             fontWeight="medium"
             color="secondary.350"
             flex={1}

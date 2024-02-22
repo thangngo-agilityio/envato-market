@@ -76,9 +76,10 @@ const HeaderComponent = () => {
             {name}
           </Heading>
           <Text
-            fontSize={{ base: 'xs', md: 'sm' }}
+            fontSize="sm"
             color="text.secondary"
             fontWeight="medium"
+            display={{ base: 'none', md: 'block' }}
           >
             Let’s check your update today
           </Text>
@@ -102,8 +103,6 @@ const HeaderComponent = () => {
       >
         <Flex>
           <Flex
-            aria-hidden="false"
-            aria-modal="true"
             minW={{ base: 325, sm: 280, md: 310 }}
             justifyContent="space-between"
           >

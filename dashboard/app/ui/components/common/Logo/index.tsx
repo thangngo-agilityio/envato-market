@@ -1,6 +1,6 @@
 'use client';
 
-import { useColorModeValue, theme } from '@chakra-ui/react';
+import { Text, useColorModeValue, theme } from '@chakra-ui/react';
 import Link from 'next/link';
 
 // Assets
@@ -13,9 +13,9 @@ const Logo = () => {
   );
 
   return (
-    <Link as="h1" aria-label="link-to-home" href="/">
+    <Text as={Link} aria-label="link-to-home" href="/" display="inline-block">
       <LogoIcon colorFill={colorFill} />
-    </Link>
+    </Text>
   );
 };
 
