@@ -102,7 +102,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                           <p
                             class="chakra-text css-9sqk9o"
                           >
-
+                             
                           </p>
                           <svg
                             fill="none"
@@ -463,7 +463,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                             <p
                               class="chakra-text css-9sqk9o"
                             >
-
+                               
                             </p>
                             <svg
                               fill="none"
@@ -624,7 +624,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                           <p
                             class="chakra-text css-9sqk9o"
                           >
-
+                             
                           </p>
                           <svg
                             fill="none"
