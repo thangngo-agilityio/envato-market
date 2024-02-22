@@ -75,7 +75,11 @@ const HeaderComponent = () => {
           >
             {name}
           </Heading>
-          <Text fontSize="sm" color="text.secondary" fontWeight="medium">
+          <Text
+            fontSize={{ base: '13px', md: 'sm' }}
+            color="text.secondary"
+            fontWeight="medium"
+          >
             Let’s check your update today
           </Text>
         </Box>

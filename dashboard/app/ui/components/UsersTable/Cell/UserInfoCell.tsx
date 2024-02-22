@@ -31,15 +31,15 @@ const UserInfoComponent = ({
     minW={{ base: 470, xl: 270 }}
   >
     <Flex alignItems="center" gap="10px">
-      <Box w={16} h={16} pos="relative" borderRadius={8} overflow="hidden">
+      <Box w="50px" h="50px" pos="relative" borderRadius={8} overflow="hidden">
         <Image
           src={`${imageURL}`}
           alt={`Image of ${name}`}
           fill
           sizes="100vw"
-          blurDataURL={generatePlaceholder(16, 16)}
+          blurDataURL={generatePlaceholder(50, 50)}
           placeholder="blur"
-          quality={60}
+          quality={75}
           objectFit="cover"
           {...imageProps}
         />
@@ -48,7 +48,7 @@ const UserInfoComponent = ({
         <Tooltip minW="max-content" placement="bottom-start" label={name}>
           <Text
             as="h4"
-            fontSize="lg"
+            fontSize="md"
             fontWeight="bold"
             whiteSpace="break-spaces"
             maxW={300}
@@ -57,33 +57,20 @@ const UserInfoComponent = ({
             {name}
           </Text>
         </Tooltip>
-        <Text
-          fontSize="md"
-          color="text.textInfo"
-          fontWeight="semibold"
-          lineHeight={8}
-          display="flex"
-        >
-          <Tooltip
-            minW="max-content"
-            placement="bottom-start"
-            label={`${email}`}
+        <Tooltip minW="max-content" placement="bottom-start" label={`${email}`}>
+          <Text
+            as={Link}
+            href={`mailto:${email}`}
+            fontSize="13px"
+            fontWeight="medium"
+            color="secondary.350"
+            flex={1}
+            whiteSpace="break-spaces"
+            noOfLines={1}
           >
-            <Link href={`mailto:${email}`}>
-              <Text
-                as="span"
-                fontSize="sm"
-                fontWeight="medium"
-                color="secondary.350"
-                flex={1}
-                whiteSpace="break-spaces"
-                noOfLines={1}
-              >
-                {email}
-              </Text>
-            </Link>
-          </Tooltip>
-        </Text>
+            {email}
+          </Text>
+        </Tooltip>
       </Box>
     </Flex>
   </Td>
