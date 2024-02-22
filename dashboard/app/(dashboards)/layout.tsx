@@ -2,7 +2,9 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 
 // Components
-const MainLayout = dynamic(() => import('@/ui/layouts/MainLayout'));
+const MainLayout = dynamic(() => import('@/ui/layouts/MainLayout'), {
+  ssr: false,
+});
 
 const Layout = ({ children }: { children: React.ReactNode }) => (
   <>
