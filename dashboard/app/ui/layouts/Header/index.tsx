@@ -76,7 +76,7 @@ const HeaderComponent = () => {
             {name}
           </Heading>
           <Text
-            fontSize={{ base: '13px', md: 'sm' }}
+            fontSize={{ base: 'xs', md: 'sm' }}
             color="text.secondary"
             fontWeight="medium"
           >
@@ -101,7 +101,9 @@ const HeaderComponent = () => {
         }}
       >
         <Flex>
-          <Flex aria-hidden="false" aria-modal="true"
+          <Flex
+            aria-hidden="false"
+            aria-modal="true"
             minW={{ base: 325, sm: 280, md: 310 }}
             justifyContent="space-between"
           >
