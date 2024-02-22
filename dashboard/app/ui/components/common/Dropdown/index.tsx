@@ -1,5 +1,5 @@
 'use client';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import { Fragment, memo } from 'react';
 import {
   Box,
@@ -16,11 +16,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 // Assets
-import { Arrow, Indicator } from '@/ui/components';
-
-const Avatar = dynamic(() => import('@/ui/components/common/Avatar'), {
-  ssr: false,
-});
+import { Arrow, Avatar, Indicator } from '@/ui/components';
 
 // Constants
 import { IMAGES, MENU_LIST, MENU_LIST_ICON } from '@/lib/constants';

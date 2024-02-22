@@ -41,7 +41,11 @@ const TotalCardComponent = ({
           src={IMAGES.TOTAL_EARN.url}
           alt={IMAGES.TOTAL_EARN.alt}
         />
-        <Text variant="textLg" fontWeight="semibold">
+        <Text
+          variant={{ base: 'textMd', md: 'textLg' }}
+          as="h2"
+          fontWeight="semibold"
+        >
           {title}
         </Text>
       </HStack>

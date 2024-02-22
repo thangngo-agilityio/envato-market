@@ -15,7 +15,11 @@ interface AvatarProps {
 }
 
 const AvatarComponent = ({ src = '', alt = '' }: AvatarProps) => (
-  <Box pos="relative" w="52px" h="52px">
+  <Box
+    pos="relative"
+    w={{ base: '40px', sm: '50px' }}
+    h={{ base: '40px', sm: '50px' }}
+  >
     <Image
       src={src}
       alt={alt}
@@ -31,7 +35,6 @@ const AvatarComponent = ({ src = '', alt = '' }: AvatarProps) => (
         objectFit: 'cover',
         borderColor: colors.secondary[850],
       }}
-      priority
     />
   </Box>
 );
