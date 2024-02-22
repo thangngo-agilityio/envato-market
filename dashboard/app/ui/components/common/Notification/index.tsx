@@ -164,6 +164,7 @@ const NotificationComponent = ({ colorFill, user }: NotificationProps) => {
               _active={{
                 bg: 'none',
               }}
+              data-testid="click-menu-button"
               isActive={isOpen}
               lineHeight="inherit"
             >

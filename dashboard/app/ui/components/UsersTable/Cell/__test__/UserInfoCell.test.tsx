@@ -7,7 +7,11 @@ describe('TotalCard component', () => {
     const { container } = render(
       <Table>
         <Tr>
-          <UserInfoCell name="test" imageURL="url" email="test@gmail.com" />
+          <UserInfoCell
+            name="test"
+            imageURL="https://cdn-icons-png.flaticon.com/512/5556/5556468.png"
+            email="test@gmail.com"
+          />
         </Tr>
       </Table>,
     );

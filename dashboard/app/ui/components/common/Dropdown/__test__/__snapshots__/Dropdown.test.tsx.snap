@@ -21,18 +21,6 @@ exports[`Dropdown render Should render match with snapshot. 1`] = `
           class="css-70qvj9"
         >
           <div
-            class="css-1xrprra"
-          >
-            <img
-              alt=""
-              data-nimg="fill"
-              decoding="async"
-              fetchpriority="high"
-              src="/icons/user.svg"
-              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; object-fit: cover; color: transparent; border-radius: 12px; border-width: 1px; padding-top: 2px; cursor: pointer; border-color: #e2e8f0; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
-            />
-          </div>
-          <div
             class="css-1eben70"
           >
             <div
