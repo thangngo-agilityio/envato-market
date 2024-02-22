@@ -38,6 +38,7 @@ const DashBoardSection = () => (
             mt={6}
             gap={6}
             ref={ref}
+            minH={250}
           >
             <GridItem colSpan={{ base: 3, xl: 2 }}>
               {inView && <RevenueFlow />}
@@ -60,6 +61,7 @@ const DashBoardSection = () => (
             borderRadius={8}
             px={6}
             py={5}
+            minH={500}
           >
             {' '}
             {inView && <TransactionTable />}
@@ -70,7 +72,12 @@ const DashBoardSection = () => (
 
     <InView>
       {({ inView, ref }) => (
-        <GridItem mt={{ base: 6, '5xl': 0 }} ml={{ '5xl': 12 }} ref={ref}>
+        <GridItem
+          mt={{ base: 6, '5xl': 0 }}
+          ml={{ '5xl': 12 }}
+          ref={ref}
+          minH={500}
+        >
           {inView && (
             <Stack
               direction={{ base: 'column', lg: 'row', '2xl': 'column' }}
