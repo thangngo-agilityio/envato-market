@@ -6,16 +6,12 @@ import { InView } from 'react-intersection-observer';
 
 // Components
 import { Box, Grid, GridItem, Stack } from '@chakra-ui/react';
-import { TotalStatisticListSkeleton } from '@/ui/components';
 
 // Lazy load components
 const CardPayment = lazy(() => import('@/ui/components/CardPayment'));
 const BoxChat = lazy(() => import('@/ui/components/BoxChat'));
 const TotalStatisticList = lazy(
   () => import('@/ui/components/TotalStatisticList'),
-  {
-    loading: () => <TotalStatisticListSkeleton />,
-  },
 );
 const RevenueFlow = lazy(() => import('@/ui/components/RevenueFlow'));
 const Efficiency = lazy(() => import('@/ui/components/Efficiency'));
