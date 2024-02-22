@@ -49,7 +49,9 @@ describe('useSearch', () => {
       result.current.setSearchParam('b', '3');
     });
 
-    expect(mockPush).toHaveBeenCalledWith('/test?a=1&b=3');
+    expect(mockPush).toHaveBeenCalledWith('/test?a=1&b=3', {
+      scroll: false,
+    });
   });
 
   it('adds a new search param if it does not exist', () => {
@@ -66,7 +68,9 @@ describe('useSearch', () => {
       result.current.setSearchParam('b', '2');
     });
 
-    expect(mockPush).toHaveBeenCalledWith('/test?a=1&b=2');
+    expect(mockPush).toHaveBeenCalledWith('/test?a=1&b=2', {
+      scroll: false,
+    });
   });
 
   it('does not update or add a param if value is empty', () => {

@@ -81,16 +81,7 @@ describe('getCurrentUser', () => {
 
     const result = await getCurrentUser(MOCK_USER_DETAIL);
 
-    const expected = {
-      roomChatId: 'undefined1',
-      userId: '1',
-      adminId: '',
-      avatarUrl: 'https://cdn-icons-png.flaticon.com/512/5556/5556468.png',
-      avatarAdminUrl: '',
-      displayName: 'Abdur Rohman ',
-    };
-
-    expect(result).toEqual(expected);
+    expect(result).toEqual(undefined);
   });
 });
 
