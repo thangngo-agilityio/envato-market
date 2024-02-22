@@ -15,11 +15,7 @@ interface AvatarProps {
 }
 
 const AvatarComponent = ({ src = '', alt = '' }: AvatarProps) => (
-  <Box
-    pos="relative"
-    w={{ base: '40px', sm: '50px' }}
-    h={{ base: '40px', sm: '50px' }}
-  >
+  <Box pos="relative" w="50px" h="50px">
     <Image
       src={src}
       alt={alt}
