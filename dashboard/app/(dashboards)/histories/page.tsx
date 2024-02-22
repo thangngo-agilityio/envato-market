@@ -1,5 +1,7 @@
 import { memo } from 'react';
-import { HistorySection } from '@/ui/sections';
+import dynamic from 'next/dynamic';
+
+const HistorySection = dynamic(() => import('@/ui/sections/HistorySection'));
 
 const Histories = () => <HistorySection />;
 
