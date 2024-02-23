@@ -9,6 +9,31 @@ import { SearchBar } from '@/ui/components';
 import { colors } from '@/ui/themes/bases/colors';
 import { ROLES } from '@/lib/constants';
 
+type MyColorType = {
+  [key in
+    | 100
+    | 150
+    | 200
+    | 250
+    | 300
+    | 350
+    | 400
+    | 450
+    | 500
+    | 550
+    | 600
+    | 650
+    | 700
+    | 750
+    | 800
+    | 850
+    | 900
+    | 950
+    | 1000
+    | 1050
+    | 1100]: string;
+};
+
 const onSearchMock = jest.fn();
 const onFilterMock = jest.fn();
 
@@ -37,9 +62,8 @@ describe('SearchBar render', () => {
 
   it('Call onFilter when select ', async () => {
     jest.replaceProperty(colors, 'secondary', {
-      400: null,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any);
+      400: '',
+    } as MyColorType);
 
     const { getByText } = setup();
     const filterOption = getByText('Member');
