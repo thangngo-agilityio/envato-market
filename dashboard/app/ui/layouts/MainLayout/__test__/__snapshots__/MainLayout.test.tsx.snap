@@ -91,7 +91,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                     class="css-70qvj9"
                   >
                     <div
-                      class="css-1t7qp8j"
+                      class="css-1g70lyf"
                     >
                       <img
                         alt=""
@@ -464,7 +464,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                       class="css-70qvj9"
                     >
                       <div
-                        class="css-1t7qp8j"
+                        class="css-1g70lyf"
                       >
                         <img
                           alt=""
@@ -637,7 +637,7 @@ exports[`MainLayout render Should render match with snapshot. 1`] = `
                     class="css-70qvj9"
                   >
                     <div
-                      class="css-1t7qp8j"
+                      class="css-1g70lyf"
                     >
                       <img
                         alt=""
