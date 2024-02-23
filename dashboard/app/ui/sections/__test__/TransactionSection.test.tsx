@@ -1,14 +1,10 @@
 import { useRouter, useSearchParams } from 'next/navigation';
-import dynamic from 'next/dynamic';
 
 // Utils
 import { renderQueryProviderTest } from '@/lib/utils/testUtils';
 
 // Sections
-const TransactionSection = dynamic(
-  () => import('..').then((mod) => mod.TransactionSection),
-  { ssr: false },
-);
+import { TransactionSection } from '..';
 
 jest.mock('react-intersection-observer');
 
@@ -27,9 +23,8 @@ const mockMobileMediaQuery = () =>
     })),
   });
 
-describe('ChatMemberList render', () => {
+describe('TransactionSection render', () => {
   beforeEach(() => {
-    // Setup router and searchParams mocks
     (useRouter as jest.Mock).mockImplementation(() => ({
       push: jest.fn(),
     }));
