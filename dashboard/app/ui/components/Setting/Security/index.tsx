@@ -37,11 +37,11 @@ import { authStore } from '@/lib/stores';
 import { TPassword } from '@/lib/interfaces';
 
 // Utils
-import { customToast, validatePassword } from '@/lib/utils';
+import { customToast } from '@/lib/utils';
 import { QueryProvider } from '@/ui/providers';
 
 const SecurityPage = () => {
-  const { mutate: updatePassword } = useUpdatePassword();
+  const { mutate: updatePassword, isPending } = useUpdatePassword();
   const user = authStore((state) => state.user);
 
   const toast = useToast();
@@ -125,7 +125,7 @@ const SecurityPage = () => {
 
   const [isSubmit] = useState<boolean>(false);
   const isDisabledSubmitBtn: boolean =
-    isSubmit || !Object.values(watch()).every((value) => value);
+    isSubmit || !Object.values(watch()).every((value) => value) || isPending;
 
   return (
     <Flex w="full" gap={6} direction="row" alignItems="center">
@@ -155,7 +155,7 @@ const SecurityPage = () => {
           </Text>
         </Box>
         <Controller
-          rules={AUTH_SCHEMA.PASSWORD}
+          rules={AUTH_SCHEMA.OLD_PASSWORD}
           control={control}
           name="oldPassword"
           render={({ field: { onChange, ...rest }, fieldState: { error } }) => {
@@ -180,7 +180,7 @@ const SecurityPage = () => {
                   {...rest}
                   isError={!!message}
                   errorMessages={message}
-                  isDisabled={isSubmit}
+                  isDisabled={isPending}
                   onChange={handleClearErrorMessage('oldPassword', onChange)}
                   aria-label="oldPassword"
                   role="textbox"
@@ -192,7 +192,7 @@ const SecurityPage = () => {
 
         <Controller
           control={control}
-          rules={{ validate: validatePassword }}
+          rules={AUTH_SCHEMA.NEW_PASSWORD}
           name="newPassword"
           render={({ field: { onChange, ...rest }, fieldState: { error } }) => (
             <FormControl>
@@ -211,13 +211,25 @@ const SecurityPage = () => {
                   onShowNewPassWord,
                 )}
                 {...rest}
-                isError={!!error}
-                errorMessages={error?.message}
-                isDisabled={isSubmit}
+                isDisabled={isPending}
                 onChange={handleClearErrorMessage('newPassword', onChange)}
                 role="textbox"
                 aria-label="newPassword"
               />
+              <Text color="text.ternary" fontSize="xs">
+                Minimum 8 characters
+              </Text>
+
+              {!!error && (
+                <Text
+                  fontSize="sm"
+                  color="danger.300"
+                  fontWeight="normal"
+                  pos="absolute"
+                >
+                  {error?.message}
+                </Text>
+              )}
             </FormControl>
           )}
         />

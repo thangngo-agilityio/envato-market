@@ -288,6 +288,7 @@ export const colors = {
   },
 
   danger: {
+    300: '#E53E3E',
     400: '#FF4747',
     500: '#9B1717',
   },

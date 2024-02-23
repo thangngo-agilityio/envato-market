@@ -54,7 +54,6 @@ export const Input = defineStyleConfig({
           fontWeight: 'bold',
         },
         _light: {
-          color: COLOR_TEXT,
           backgroundColor: 'secondary.150',
           borderColor: NO_COLOR,
           _focus: {

@@ -105,4 +105,21 @@ export const AUTH_SCHEMA = {
     required: true,
     validate: (value: string) => !!value.length && !isNaN(+value),
   },
+  OLD_PASSWORD: {
+    required: ERROR_MESSAGES.FIELD_REQUIRED('Old password'),
+  },
+  NEW_PASSWORD: {
+    required: ERROR_MESSAGES.FIELD_REQUIRED('New password'),
+    validate: (value: string) => {
+      if (!REGEX.LENGTH_IS_EIGHT.test(value)) {
+        return ERROR_MESSAGES.PASS_WORD_SHORT;
+      }
+
+      if (!REGEX.PASSWORD.test(value)) {
+        return ERROR_MESSAGES.PASS_WORD_WEAK;
+      }
+
+      return true;
+    },
+  },
 };
