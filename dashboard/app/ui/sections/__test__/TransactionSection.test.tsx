@@ -1,3 +1,4 @@
+import preloadAll from 'jest-next-dynamic';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 // Utils
@@ -24,7 +25,8 @@ const mockMobileMediaQuery = () =>
   });
 
 describe('TransactionSection render', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
+    await preloadAll();
     (useRouter as jest.Mock).mockImplementation(() => ({
       push: jest.fn(),
     }));
