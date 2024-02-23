@@ -50,7 +50,7 @@ const BoxChatComponent = () => {
       );
 
       setUserChat(usersData);
-      res.exists() && setMessages(res.data().messages);
+      res.exists() ? setMessages(res.data().messages) : await createChatRoom();
     }
   };
 
@@ -74,9 +74,7 @@ const BoxChatComponent = () => {
     const unSub = onSnapshot(
       doc(db, FIREBASE_CHAT.CHATS, userChat.roomChatId),
       async (doc) => {
-        doc.exists()
-          ? setMessages(doc.data().messages)
-          : await createChatRoom();
+        doc.exists() && setMessages(doc.data().messages);
       },
     );
 

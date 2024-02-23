@@ -15,6 +15,8 @@ import {
 import { convertTimeMessage, db } from '@/lib/utils';
 import {
   DocumentData,
+  DocumentReference,
+  DocumentSnapshot,
   doc,
   getDoc,
   onSnapshot,
@@ -45,22 +47,45 @@ const ChatMemberList = () => {
     theme.colors.gray[800],
     theme.colors.white,
   );
-
   const isMobile = useBreakpointValue({ base: true, lg: false });
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [adminUid, setAdminUid] = useState<string>('');
   const [chats, setChats] = useState<DocumentData | undefined>({});
   const [messages, setMessages] = useState<TMessages[]>([]);
-  const [roomChatId, setRoomChatId] = useState<string | null>(null);
-  const [showRoom, setShowRoom] = useState<boolean>(false);
-  const [nameUser, setNameUser] = useState<string>('');
-  const [avatar, setAvatar] = useState<string>('');
+  const [userInfo, setUserInfo] = useState({
+    roomChatId: '',
+    nameUser: '',
+    adminUid: '',
+    avatar: '',
+    openRoom: false,
+  });
 
-  const currentUser = authStore((state) => state.user);
+  const { user } = authStore((state) => state);
   const uidUser = searchParams?.get('id') as string;
-  const { filterDataUser } = useGetUserDetails(currentUser?.id as string);
+  const { filterDataUser } = useGetUserDetails(user?.id as string);
   const userChat = filterDataUser?.find((user) => user.uid === uidUser);
+
+  const handleGetMessage = async (
+    chatDocSnap: DocumentSnapshot<DocumentData, DocumentData>,
+    chatDocRef: DocumentReference<DocumentData, DocumentData>,
+    chatData: DocumentData | undefined,
+    combinedId: string,
+    nameUser: string,
+    adminUid: string,
+    avatar: string,
+  ) => {
+    !chatDocSnap.exists()
+      ? await setDoc(chatDocRef, { messages: [] })
+      : setMessages(chatData?.messages);
+
+    setUserInfo({
+      roomChatId: combinedId,
+      nameUser: nameUser,
+      adminUid: adminUid,
+      avatar: avatar,
+      openRoom: true,
+    });
+  };
 
   const handleMemberClick = async (user: {
     uid: string;
@@ -69,25 +94,23 @@ const ChatMemberList = () => {
   }) => {
     const id = user?.uid;
     router.push(`/inbox?id=${id}`);
+
     try {
       const usersData = await getUsers();
       const combinedId = usersData?.adminId + user.uid;
       const chatDocRef = doc(db, FIREBASE_CHAT.CHATS, combinedId);
       const chatDocSnap = await getDoc(chatDocRef);
+      const chatData = chatDocSnap.data();
 
-      if (!chatDocSnap.exists()) {
-        await setDoc(chatDocRef, { messages: [] });
-      }
-
-      setRoomChatId(combinedId);
-
-      const chatSnapshot = await getDoc(chatDocRef);
-      const chatData = chatSnapshot.data();
-      setMessages(chatData?.messages || []);
-      setAdminUid(user.uid);
-      setNameUser(user.displayName);
-      setAvatar(user.avatarUrl);
-      setShowRoom(true);
+      await handleGetMessage(
+        chatDocSnap,
+        chatDocRef,
+        chatData,
+        combinedId,
+        user.displayName,
+        user.uid,
+        user.avatarUrl,
+      );
     } catch (error) {
       console.error('Error handling member click:', error);
     }
@@ -97,11 +120,7 @@ const ChatMemberList = () => {
   useEffect(() => {
     const getChats = async () => {
       try {
-        const chatDocRef = doc(
-          db,
-          FIREBASE_CHAT.USER_CHATS,
-          `${currentUser?.uid}`,
-        );
+        const chatDocRef = doc(db, FIREBASE_CHAT.USER_CHATS, `${user?.uid}`);
         const unsub = onSnapshot(chatDocRef, (doc) => {
           setChats(doc.data());
         });
@@ -114,8 +133,8 @@ const ChatMemberList = () => {
       }
     };
 
-    currentUser?.uid && getChats();
-  }, [currentUser?.uid]);
+    user?.uid && getChats();
+  }, [user?.uid]);
 
   const dataChats = useMemo(
     () => chats && Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date),
@@ -126,45 +145,30 @@ const ChatMemberList = () => {
   useEffect(() => {
     const getRoomChat = async () => {
       if (uidUser) {
-        const roomChatId = currentUser?.uid + uidUser;
-
+        const roomChatId = user?.uid + uidUser;
         const userInfo = chats && chats[roomChatId]?.userInfo;
-
         const chatDocRef = doc(db, FIREBASE_CHAT.CHATS, roomChatId);
         const chatDocSnap = await getDoc(chatDocRef);
+        const chatData = chatDocSnap.data();
 
-        if (!chatDocSnap.exists()) {
-          await setDoc(chatDocRef, { messages: [] });
-        }
-
-        const unSub = onSnapshot(
-          doc(db, FIREBASE_CHAT.CHATS, roomChatId),
-          (doc) => {
-            doc.exists() && setMessages(doc.data().messages);
-          },
-        );
-        setAdminUid(uidUser);
-        setRoomChatId(roomChatId);
-        setNameUser(
+        await handleGetMessage(
+          chatDocSnap,
+          chatDocRef,
+          chatData,
+          roomChatId,
           userInfo
             ? userInfo.displayName
             : `${userChat?.firstName} ${userChat?.lastName}`,
-        );
-        setAvatar(
+          uidUser,
           userInfo ? userInfo?.avatarUrl : (userChat?.avatarURL as string),
         );
-        setShowRoom(true);
-
-        return () => {
-          unSub();
-        };
       }
     };
 
-    currentUser?.uid && getRoomChat();
+    user?.uid && getRoomChat();
   }, [
     chats,
-    currentUser?.uid,
+    user?.uid,
     uidUser,
     userChat?.avatarURL,
     userChat?.firstName,
@@ -172,9 +176,9 @@ const ChatMemberList = () => {
   ]);
 
   useEffect(() => {
-    if (!roomChatId) return;
+    if (!userInfo.roomChatId) return;
     const unSub = onSnapshot(
-      doc(db, FIREBASE_CHAT.CHATS, roomChatId),
+      doc(db, FIREBASE_CHAT.CHATS, userInfo.roomChatId),
       (doc) => {
         doc.exists() && setMessages(doc.data().messages);
       },
@@ -183,7 +187,7 @@ const ChatMemberList = () => {
     return () => {
       unSub();
     };
-  }, [roomChatId]);
+  }, [userInfo.roomChatId]);
 
   return (
     <Grid
@@ -263,13 +267,13 @@ const ChatMemberList = () => {
           </Flex>
         </GridItem>
       )}
-      {showRoom && (
+      {userInfo.openRoom && (
         <GridItem colSpan={isMobile ? 12 : 8}>
           <Conversation
-            nameUser={nameUser}
-            avatarUser={avatar}
+            nameUser={userInfo.nameUser}
+            avatarUser={userInfo.avatar}
             messages={messages}
-            adminUid={adminUid}
+            adminUid={userInfo.adminUid}
           />
         </GridItem>
       )}

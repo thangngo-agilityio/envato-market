@@ -6,7 +6,7 @@ exports[`UserTable component should renders correctly 1`] = `
     class="chakra-table__container css-zipzvv"
   >
     <table
-      class="chakra-table css-0"
+      class="chakra-table css-i6bazn"
     >
       <thead
         class="css-0"
