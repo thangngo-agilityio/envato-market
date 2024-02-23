@@ -30,7 +30,12 @@ const Table = ({
   onClickTableRow,
   ...props
 }: TTableProps): JSX.Element => (
-  <TableContainer>
+  <TableContainer
+    overflowX={{
+      base: 'scroll',
+      '2xl': 'hidden',
+    }}
+  >
     <TableChakra {...props}>
       <Thead>
         <Tr>
