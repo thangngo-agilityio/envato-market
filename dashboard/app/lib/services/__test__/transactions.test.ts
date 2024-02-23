@@ -25,8 +25,7 @@ describe('Transactions service', () => {
 
       await getTransactions();
     } catch (error) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const err = (error as unknown as { data: any }).data;
+      const err = (error as unknown as { data: unknown }).data;
 
       expect(err).toEqual({
         isError: true,
