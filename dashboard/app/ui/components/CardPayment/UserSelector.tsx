@@ -49,7 +49,7 @@ type TUserListProps = Required<Omit<TUseSelectorProps, 'control'>> & {
 };
 
 const UserList = ({
-  listUser,
+  listUser = [],
   onSelect,
   onChange,
 }: TUserListProps): JSX.Element => (
@@ -82,30 +82,29 @@ const UserList = ({
     }}
     rounded="md"
   >
-    {listUser.length ? (
-      listUser.map((user) => (
-        <ListItem
-          key={user._id}
-          value={user._id}
-          p={5}
-          color="text.primary"
-          cursor="pointer"
-          _hover={{
-            _dark: {
-              bg: 'common.white',
-              color: 'secondary.400',
-            },
-            _light: {
-              color: 'common.white',
-              bg: 'secondary.400',
-            },
-          }}
-          onClick={onSelect(user.email, onChange)}
-        >
-          {user.email}
-        </ListItem>
-      ))
-    ) : (
+    {listUser.map((user) => (
+      <ListItem
+        key={user._id}
+        value={user._id}
+        p={5}
+        color="text.primary"
+        cursor="pointer"
+        _hover={{
+          _dark: {
+            bg: 'common.white',
+            color: 'secondary.400',
+          },
+          _light: {
+            color: 'common.white',
+            bg: 'secondary.400',
+          },
+        }}
+        onClick={onSelect(user.email, onChange)}
+      >
+        {user.email}
+      </ListItem>
+    ))}
+    {!listUser.length && (
       <Text textAlign="center" py={5} fontSize="lg">
         {COMMON_MESSAGES.EMPTY_ARRAY}
       </Text>

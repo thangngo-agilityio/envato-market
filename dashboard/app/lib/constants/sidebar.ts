@@ -118,7 +118,3 @@ export const MINI_SIDEBAR_MENU = (role: string) => [
     listItem: OTHER_ITEM_LIST,
   },
 ];
-
-export const SCREEN_SIZES = {
-  LARGE_DESKTOP: '(min-width: 1732px)',
-};
