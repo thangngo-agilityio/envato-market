@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DashBoardSection render Should render match with snapshot. 1`] = `
+<div>
+  <div
+    class="css-14tf0fk"
+  >
+    <div
+      class="css-rklm6r"
+    >
+      <div
+        class="css-drd224"
+      >
+        <div
+          class="css-0"
+        >
+          <div
+            class="css-1enh6ms"
+          >
+            <div
+              class="css-2k2qf4"
+            >
+              <div
+                class="chakra-stack css-ddke4u"
+              >
+                <img
+                  alt="Total earn icon"
+                  class="chakra-image css-ey5hrf"
+                  src="/icons/total-earn.svg"
+                />
+                <h2
+                  class="chakra-text css-8nf7ox"
+                />
+              </div>
+            </div>
+            <div
+              class="chakra-skeleton css-l9u3de"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</div>
+`;
