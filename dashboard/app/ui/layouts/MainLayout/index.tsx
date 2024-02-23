@@ -4,7 +4,7 @@ import { useCallback, useEffect } from 'react';
 import { Box, Flex, useDisclosure, useMediaQuery } from '@chakra-ui/react';
 
 // Constants
-import { SCREEN_SIZES, SIDEBAR } from '@/lib/constants';
+import { SIDEBAR } from '@/lib/constants';
 
 // Component
 import { Header, SideBar } from '@/ui/layouts';
@@ -19,9 +19,12 @@ import { TAuthStoreData, authStore } from '@/lib/stores';
 import { TUserDetail } from '@/lib/interfaces';
 import { useAuth } from '@/lib/hooks';
 import { Indicator } from '@/ui/components';
+import { breakpoints } from '@/ui/themes/bases';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
-  const [isDesktop] = useMediaQuery(SCREEN_SIZES.LARGE_DESKTOP);
+  const [isDesktop] = useMediaQuery(
+    `(min-width: ${breakpoints ? breakpoints['4xl'] : ''})`,
+  );
   const {
     isOpen: isExpandSidebar,
     onOpen,
