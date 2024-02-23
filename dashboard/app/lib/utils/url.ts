@@ -18,8 +18,7 @@ export const getSearchParam = (objSearchParam: object): string => {
  * @returns value after handle (e.g { name: value })
  */
 export const cleanUpSearchParam = (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  searchParam: Record<string, any>,
+  searchParam: Record<string, string>,
 ): Record<string, string> => {
   const searchParamAfterClean: Record<string, string> = {};
 

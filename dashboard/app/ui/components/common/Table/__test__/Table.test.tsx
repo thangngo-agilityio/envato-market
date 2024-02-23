@@ -8,6 +8,7 @@ import { USERS } from '@/lib/mocks';
 
 // Constants
 import { ERROR_MESSAGES } from '@/lib/constants';
+import { TDataSource } from '@/lib/interfaces';
 
 const COLUMNS = [
   {
@@ -33,8 +34,7 @@ const COLUMNS = [
   },
 ];
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const setup = (data: any[]) =>
+const setup = (data: TDataSource[]) =>
   render(<Table columns={COLUMNS} dataSource={data} />);
 
 describe('Table', () => {
