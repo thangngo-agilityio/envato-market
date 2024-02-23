@@ -145,6 +145,7 @@ const UsersComponent = ({
   return (
     <>
       <Table
+        overflow="hidden"
         variant="secondary"
         columns={columns as THeaderTable[]}
         dataSource={formatUserResponse(users)}
