@@ -192,6 +192,7 @@ const SupportsSection = () => {
                   {...field}
                   isError={!!error}
                   errorMessages={error?.message}
+                  isDisabled={isPending}
                 />
               )}
             />
@@ -209,6 +210,7 @@ const SupportsSection = () => {
                   {...field}
                   isError={!!error}
                   errorMessages={error?.message}
+                  isDisabled={isPending}
                 />
               )}
             />
@@ -230,6 +232,7 @@ const SupportsSection = () => {
                   {...field}
                   isError={!!error}
                   errorMessages={error?.message}
+                  isDisabled={isPending}
                 />
               )}
             />
@@ -249,6 +252,7 @@ const SupportsSection = () => {
                   isError={!!error}
                   errorMessages={error?.message}
                   value={formatAllowOnlyNumbers(field.value)}
+                  isDisabled={isPending}
                 />
               )}
             />
@@ -276,6 +280,7 @@ const SupportsSection = () => {
                 isError={!!error}
                 errorMessages={error?.message}
                 onChange={handleChangeValue('title', onChange)}
+                isDisabled={isPending}
               />
             )}
           />
@@ -308,6 +313,7 @@ const SupportsSection = () => {
                         height: 300,
                       }}
                       theme="snow"
+                      readOnly={isPending}
                     />
                   </Flex>
                 </FormControl>
