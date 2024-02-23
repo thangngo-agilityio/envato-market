@@ -78,7 +78,7 @@ const ActionCellComponent = ({
   return (
     <>
       <Td
-        px={0}
+        px={5}
         fontSize="md"
         color="text.primary"
         fontWeight="semibold"
