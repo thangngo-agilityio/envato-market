@@ -66,28 +66,28 @@ export const AUTH_SCHEMA = {
 
   FACEBOOK: {
     pattern: {
-      value: REGEX.FACEBOOK,
+      value: REGEX.URL,
       message: ERROR_MESSAGES.FACEBOOK_INVALID,
     },
   },
 
   TWITTER: {
     pattern: {
-      value: REGEX.TWITTER,
+      value: REGEX.URL,
       message: ERROR_MESSAGES.TWITTER_INVALID,
     },
   },
 
   LINKEDIN: {
     pattern: {
-      value: REGEX.LINKEDIN,
+      value: REGEX.URL,
       message: ERROR_MESSAGES.LINKEDIN_INVALID,
     },
   },
 
   YOUTUBE: {
     pattern: {
-      value: REGEX.YOUTUBE,
+      value: REGEX.URL,
       message: ERROR_MESSAGES.YOUTUBE_INVALID,
     },
   },
