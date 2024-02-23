@@ -3,10 +3,10 @@
 exports[`Security Page test cases renders Security with content 1`] = `
 <div>
   <div
-    class="css-oydar9"
+    class="css-1xqnw6p"
   >
     <form
-      class="chakra-stack css-pda7gr"
+      class="chakra-stack css-1yihtdo"
       id="register-form"
     >
       <div
@@ -28,7 +28,7 @@ exports[`Security Page test cases renders Security with content 1`] = `
         role="group"
       >
         <label
-          class="chakra-form__label css-gfp2i2"
+          class="chakra-form__label css-m4y04z"
           for="field-:r2:"
           id="field-:r2:-label"
         >
@@ -82,7 +82,7 @@ exports[`Security Page test cases renders Security with content 1`] = `
         role="group"
       >
         <label
-          class="chakra-form__label css-gfp2i2"
+          class="chakra-form__label css-m4y04z"
           for="field-:r4:"
           id="field-:r4:-label"
         >
@@ -154,7 +154,7 @@ exports[`Security Page test cases renders Security with content 1`] = `
     </form>
     <img
       alt="This is password image"
-      class="chakra-image css-1i2f86y"
+      class="chakra-image css-oew05n"
       src="images/reset-password.svg"
     />
   </div>

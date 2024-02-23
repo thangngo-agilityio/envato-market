@@ -3,10 +3,10 @@
 exports[`UserTable component should renders correctly 1`] = `
 <div>
   <div
-    class="chakra-table__container css-zipzvv"
+    class="chakra-table__container css-1hp7xtq"
   >
     <table
-      class="chakra-table css-0"
+      class="chakra-table css-i6bazn"
     >
       <thead
         class="css-0"
@@ -90,7 +90,7 @@ exports[`UserTable component should renders correctly 1`] = `
             </a>
           </td>
           <td
-            class="css-1vvhs8e"
+            class="css-lepxbj"
           >
             <button
               aria-controls="menu-list-:r7:"

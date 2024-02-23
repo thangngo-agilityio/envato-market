@@ -126,7 +126,7 @@ exports[`Transaction table Match with snapshot with default prop 1`] = `
     class="css-17qnj1m"
   >
     <div
-      class="chakra-table__container css-zipzvv"
+      class="chakra-table__container css-1nce0n3"
     >
       <table
         class="chakra-table css-5605sr"
@@ -417,7 +417,7 @@ exports[`Transaction table Match with snapshot with default prop 1`] = `
               />
             </td>
             <td
-              class="css-1ij5blp"
+              class="css-kgr5cp"
             >
               <button
                 aria-controls="menu-list-:ra:"
@@ -585,7 +585,7 @@ exports[`Transaction table Match with snapshot with default prop 1`] = `
               />
             </td>
             <td
-              class="css-1ij5blp"
+              class="css-kgr5cp"
             >
               <button
                 aria-controls="menu-list-:rh:"
@@ -733,7 +733,7 @@ exports[`Transaction table Match with snapshot with default prop 1`] = `
               />
             </td>
             <td
-              class="css-1ij5blp"
+              class="css-kgr5cp"
             >
               <button
                 aria-controls="menu-list-:ro:"
@@ -1091,7 +1091,7 @@ exports[`Transaction table Match with snapshot with isOpenHistoryModal = true 1`
     class="css-17qnj1m"
   >
     <div
-      class="chakra-table__container css-zipzvv"
+      class="chakra-table__container css-1nce0n3"
     >
       <table
         class="chakra-table css-5605sr"
@@ -1388,7 +1388,7 @@ exports[`Transaction table Match with snapshot with isOpenHistoryModal = true 1`
               </span>
             </td>
             <td
-              class="css-1ij5blp"
+              class="css-kgr5cp"
             >
               <button
                 aria-controls="menu-list-:r1i:"
@@ -1496,7 +1496,7 @@ exports[`Transaction table Match with snapshot with isOpenHistoryModal = true 1`
               </span>
             </td>
             <td
-              class="css-1ij5blp"
+              class="css-kgr5cp"
             >
               <button
                 aria-controls="menu-list-:r1s:"
@@ -1604,7 +1604,7 @@ exports[`Transaction table Match with snapshot with isOpenHistoryModal = true 1`
               </span>
             </td>
             <td
-              class="css-1ij5blp"
+              class="css-kgr5cp"
             >
               <button
                 aria-controls="menu-list-:r26:"

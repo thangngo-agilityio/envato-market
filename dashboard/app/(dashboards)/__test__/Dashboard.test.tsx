@@ -1,6 +1,9 @@
 import { QueryProvider } from '@/ui/providers';
 import Dashboard from '../page';
 import { useSearchParams } from 'next/navigation';
+import '@testing-library/jest-dom';
+
+jest.mock('react-intersection-observer');
 
 describe('Dashboard render', () => {
   beforeAll(async () => {
