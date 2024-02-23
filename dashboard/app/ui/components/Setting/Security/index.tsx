@@ -128,7 +128,7 @@ const SecurityPage = () => {
     isSubmit || !Object.values(watch()).every((value) => value);
 
   return (
-    <Flex w="full" gap={6} direction="row">
+    <Flex w="full" gap={6} direction="row" alignItems="center">
       <VStack
         mt={6}
         as="form"
@@ -137,6 +137,7 @@ const SecurityPage = () => {
         id="register-form"
         w="full"
         alignItems="flex-start"
+        flex={3}
       >
         <Box alignContent="start">
           <Heading
@@ -163,7 +164,7 @@ const SecurityPage = () => {
             return (
               <FormControl>
                 <FormLabel
-                  color="secondary.700"
+                  color="text.ternary"
                   fontWeight="medium"
                   fontSize="sm"
                   mb={3}
@@ -172,7 +173,6 @@ const SecurityPage = () => {
                 </FormLabel>
                 <InputField
                   type={isShowOldPassword ? 'text' : 'password'}
-                  variant="authentication"
                   rightIcon={renderPasswordIcon(
                     isShowOldPassword,
                     onShowOldPassWord,
@@ -197,7 +197,7 @@ const SecurityPage = () => {
           render={({ field: { onChange, ...rest }, fieldState: { error } }) => (
             <FormControl>
               <FormLabel
-                color="secondary.700"
+                color="text.ternary"
                 fontWeight="medium"
                 fontSize="sm"
                 mb={3}
@@ -206,7 +206,6 @@ const SecurityPage = () => {
               </FormLabel>
               <InputField
                 type={isShowNewPassword ? 'text' : 'password'}
-                variant="authentication"
                 rightIcon={renderPasswordIcon(
                   isShowNewPassword,
                   onShowNewPassWord,
@@ -247,8 +246,9 @@ const SecurityPage = () => {
         alt={IMAGES.PASSWORD.alt}
         objectFit="contain"
         w={265}
-        h={455}
+        h={265}
         display={{ base: 'none', xl: 'block' }}
+        flex={4}
       />
     </Flex>
   );
