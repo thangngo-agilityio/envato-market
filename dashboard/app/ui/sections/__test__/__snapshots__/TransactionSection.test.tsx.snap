@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TransactionSection render Should render match with snapshot. 1`] = `
+<div>
+  <div
+    class="css-1qfa3yr"
+  >
+    <div
+      class="css-rklm6r"
+    >
+      <section
+        class="css-1gg9e9z"
+      />
+    </div>
+  </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</div>
+`;

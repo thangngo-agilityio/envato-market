@@ -1,24 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CardPayment test cases CardPayment component renders correctly 1`] = `
+exports[`CardPayment CardPayment component renders correctly 1`] = `
 <div>
   <div
     class="css-gmuwbf"
   >
     <div
-      class="css-140b0vm"
+      class="css-159ui0o"
     >
       <div
-        class="css-1loy0ln"
+        class="css-1foj61n"
       >
         <p
-          class="chakra-text css-mskrhv"
+          class="chakra-text css-rxozpz"
         >
           Balance
         </p>
         <button
           aria-label="eye"
-          class="chakra-button css-he8p55"
+          class="chakra-button css-c713z0"
           data-testid="btn-eye"
           type="button"
         >
@@ -40,15 +40,11 @@ exports[`CardPayment test cases CardPayment component renders correctly 1`] = `
         </button>
       </div>
       <p
-        class="chakra-text css-llqfbq"
+        class="chakra-text css-1was8s"
       >
         $0.00
       </p>
     </div>
   </div>
-  <span
-    hidden=""
-    id="__chakra_env"
-  />
 </div>
 `;
