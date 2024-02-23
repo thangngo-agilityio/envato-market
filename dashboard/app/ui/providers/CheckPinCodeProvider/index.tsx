@@ -1,5 +1,13 @@
 'use client';
 
+import dynamic from 'next/dynamic';
+import { useCallback, useMemo } from 'react';
+import { useDisclosure, useToast } from '@chakra-ui/react';
+import { getMessaging, onMessage } from 'firebase/messaging';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useQueryClient } from '@tanstack/react-query';
+
+//Constants
 import {
   END_POINTS,
   ERROR_MESSAGES,
@@ -7,17 +15,18 @@ import {
   STATUS,
   SUCCESS_MESSAGES,
 } from '@/lib/constants';
+
+// Hooks
 import { useAuth, usePinCode } from '@/lib/hooks';
+
+// Types
 import { TPinCodeForm } from '@/lib/interfaces';
+
+// Stores
 import { TAuthStoreData, authStore } from '@/lib/stores';
-import { customToast } from '@/lib/utils';
-// import { Modal, PinCode } from '@/ui/components';
-import { useDisclosure, useToast } from '@chakra-ui/react';
-import { useQueryClient } from '@tanstack/react-query';
-import { getMessaging, onMessage } from 'firebase/messaging';
-import dynamic from 'next/dynamic';
-import { useCallback, useMemo } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+
+// Utils
+import { customToast, isWindowDefined } from '@/lib/utils';
 
 const Modal = dynamic(() => import('@/ui/components/common/Modal'));
 const PinCode = dynamic(() => import('@/ui/components/common/PinCode'));
@@ -98,7 +107,7 @@ const CheckPinCodeProvider = () => {
 
   const queryClient = useQueryClient();
 
-  const messaging = typeof window !== 'undefined' ? getMessaging() : null;
+  const messaging = isWindowDefined() ? getMessaging() : null;
 
   messaging &&
     onMessage(messaging, async (payload) => {
