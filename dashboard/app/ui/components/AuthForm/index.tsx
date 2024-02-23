@@ -28,7 +28,7 @@ import { ROUTES, AUTH_SCHEMA } from '@/lib/constants';
 import { InputField } from '@/ui/components';
 
 // Utils
-import { validatePassword } from '@/lib/utils';
+import { isWindowDefined, validatePassword } from '@/lib/utils';
 
 // Types
 import { TUserDetail } from '@/lib/interfaces';
@@ -90,7 +90,7 @@ const AuthFormComponent = ({
   const { isOpen: isShowConfirmPassword, onToggle: onShowConfirmPassword } =
     useDisclosure();
 
-  const messaging = typeof window !== 'undefined' ? getMessaging(app) : null;
+  const messaging = isWindowDefined() ? getMessaging(app) : null;
 
   const isDisabledSubmitBtn: boolean = (() => {
     const getLength = (object: object): number => Object.keys(object).length;

@@ -158,3 +158,5 @@ export const getStatusColor = (status: string): string => {
       return 'gray.500';
   }
 };
+
+export const isWindowDefined = () => typeof window !== 'undefined';
