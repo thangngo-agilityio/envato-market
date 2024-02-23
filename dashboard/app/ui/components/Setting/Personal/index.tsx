@@ -31,6 +31,7 @@ import {
   STATUS_SUBMIT,
   SUCCESS_MESSAGES,
   AUTH_SCHEMA,
+  STATUS,
 } from '@/lib/constants';
 
 // Components
@@ -40,7 +41,7 @@ import { Indicator, InputField, UpdateProfile } from '@/ui/components';
 import { authStore } from '@/lib/stores';
 
 // Utils
-import { formatAllowOnlyNumbers } from '@/lib/utils';
+import { customToast, formatAllowOnlyNumbers } from '@/lib/utils';
 
 // Providers
 import { QueryProvider } from '@/ui/providers';
@@ -88,25 +89,24 @@ const UserFormComponent = () => {
           const updatedUser: TUserDetail = response.data;
           setUser({ user: updatedUser });
 
-          toast({
-            title: SUCCESS_MESSAGES.UPDATE_SUCCESS.title,
-            description: SUCCESS_MESSAGES.UPDATE_SUCCESS.description,
-            status: 'success',
-            duration: SHOW_TIME,
-            isClosable: true,
-            position: 'top-right',
-          });
+          toast(
+            customToast(
+              SUCCESS_MESSAGES.UPDATE_SUCCESS.title,
+              SUCCESS_MESSAGES.UPDATE_SUCCESS.description,
+              STATUS.SUCCESS,
+            ),
+          );
+
           reset(updatedInfo);
         },
         onError: () => {
-          toast({
-            title: ERROR_MESSAGES.UPDATE_FAIL.title,
-            description: ERROR_MESSAGES.UPDATE_FAIL.description,
-            status: 'error',
-            duration: SHOW_TIME,
-            isClosable: true,
-            position: 'top-right',
-          });
+          toast(
+            customToast(
+              ERROR_MESSAGES.UPDATE_FAIL.title,
+              ERROR_MESSAGES.UPDATE_FAIL.description,
+              STATUS.ERROR,
+            ),
+          );
         },
       });
     },
@@ -480,6 +480,7 @@ const UserFormComponent = () => {
               <Flex direction="row-reverse">
                 <Button
                   type="submit"
+                  data-testid="click-button-update-profile"
                   aria-label="btn-save-profile"
                   bg="primary.300"
                   px={4}
