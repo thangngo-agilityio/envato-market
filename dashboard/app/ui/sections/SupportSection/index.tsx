@@ -318,6 +318,7 @@ const SupportsSection = () => {
             type="submit"
             bg="primary.300"
             aria-label="btn submit-ticket"
+            data-testid="btn-create-issues"
             mt={12}
             w={200}
             isDisabled={disabled}
