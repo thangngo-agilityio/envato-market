@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { useCallback, useMemo, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
@@ -5,10 +6,16 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getTransactions, transactionHttpService } from '@/lib/services';
 
 // Constants
-import { END_POINTS, TRANSACTION_STATUS_ENUM } from '@/lib/constants';
+import {
+  END_POINTS,
+  TIME_FORMAT,
+  TRANSACTION_STATUS_ENUM,
+} from '@/lib/constants';
 
 // Types
 import { IDataList, TAddress, TCustomer, TTransaction } from '@/lib/interfaces';
+
+// Stores
 import { authStore } from '../stores';
 
 export type TSearchTransaction = {
@@ -17,7 +24,13 @@ export type TSearchTransaction = {
 };
 
 type TSortType = 'desc' | 'asc';
-export type TSortField = 'name' | 'email' | 'location' | 'spent';
+export type TSortField =
+  | 'name'
+  | 'email'
+  | 'location'
+  | 'spent'
+  | 'role'
+  | 'date';
 type TSort = {
   field: TSortField | '';
   type: TSortType;
@@ -68,19 +81,22 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
       prevValue: string,
       nextValue: string,
     ): number => {
-      const convertPreValue: string = prevValue.toString();
-      const convertNextValue: string = nextValue.toString();
+      const convertPreValue: string = prevValue.toString().trim().toLowerCase();
+      const convertNextValue: string = nextValue
+        .toString()
+        .trim()
+        .toLowerCase();
 
       if (type === 'asc') {
-        if (convertPreValue.trim() > convertNextValue.trim()) return 1;
+        if (convertPreValue > convertNextValue) return 1;
 
-        if (convertPreValue.trim() < convertNextValue.trim()) return -1;
+        if (convertPreValue < convertNextValue) return -1;
       }
 
       if (type === 'desc') {
-        if (convertPreValue.trim() > convertNextValue.trim()) return -1;
+        if (convertPreValue > convertNextValue) return -1;
 
-        if (convertPreValue.trim() < convertNextValue.trim()) return 1;
+        if (convertPreValue < convertNextValue) return 1;
       }
 
       return 0;
@@ -92,16 +108,20 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
           customer: {
             firstName: prevCustomerName,
             email: prevEmail,
+            role: prevRole,
             address: { state: prevState },
           },
+          createdAt: prevCreatedAt,
           amount: prevAmount,
         }: TTransaction,
         {
           customer: {
             firstName: nextCustomerName,
             email: nextEmail,
+            role: nextRole,
             address: { state: nextState },
           },
+          createdAt: nextCreatedAt,
           amount: nextAmount,
         }: TTransaction,
       ) => {
@@ -114,6 +134,12 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
           email: handleSort(type, prevEmail ?? '', nextEmail ?? ''),
           location: handleSort(type, prevState ?? '', nextState ?? ''),
           spent: handleSort(type, prevAmount ?? '', nextAmount ?? ''),
+          role: handleSort(type, prevRole ?? '', nextRole ?? ''),
+          date: handleSort(
+            type,
+            dayjs(prevCreatedAt).format(TIME_FORMAT) ?? '',
+            dayjs(nextCreatedAt).format(TIME_FORMAT) ?? '',
+          ),
         };
 
         return valueForField[field] ?? 0;
