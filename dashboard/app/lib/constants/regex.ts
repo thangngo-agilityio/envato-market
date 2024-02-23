@@ -6,17 +6,9 @@ export const REGEX = {
   PASSWORD:
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,}$/,
   IMG: /\.(png|jpg|webp)$/,
-  FACEBOOK:
-    /(?:http:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/,
-
-  TWITTER: /http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9_]+)/,
-  LINKEDIN:
-    /^(http(s)?:\/\/)?([\w]+\.)?linkedin\.com\/(pub|in|profile)\/([-a-zA-Z0-9]+)\/*/gm,
-
-  YOUTUBE:
-    /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|live\/|v\/)?)([\w\-]+)(\S+)?$/,
   ZIP_CODE: /^\d{5}$/,
   AMOUNT_PATTERN: /^[0-9]*$/,
   DECIMAL_PATTERN: /^\d*(\.\d{0,2})?$/,
   FORMAT_MONEY: /(\d)(?=(\d{3})+(?!\d))/,
+  URL: /^(https?|ftp):\/\/(-\.)?([^\s/?\.#-]+\.?)+([^\s]*)$/i,
 };
