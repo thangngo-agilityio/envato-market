@@ -14,21 +14,6 @@ jest.mock('next/navigation', () => ({
   useRouter: () => useRouterMock,
 }));
 
-const mockMobileMediaQuery = () =>
-  Object.defineProperty(window, 'matchMedia', {
-    writable: true,
-    value: jest.fn().mockImplementation(() => ({
-      matches: true,
-      media: '480px',
-      onchange: null,
-      addListener: jest.fn(),
-      removeListener: jest.fn(),
-      addEventListener: jest.fn(),
-      removeEventListener: jest.fn(),
-      dispatchEvent: jest.fn(),
-    })),
-  });
-
 const setup = (
   mockOnOpenFunction: () => void,
   mockOnCloseFunction: () => void,
@@ -76,8 +61,6 @@ describe('ExpandSidebar test case', () => {
   });
 
   it('should invoke close function when clicking close icon', async () => {
-    mockMobileMediaQuery();
-
     const { container } = setup(mockOnOpenFunction, mockOnCloseFunction);
 
     const closeIcon = container.querySelector('#close-expand');
@@ -90,8 +73,6 @@ describe('ExpandSidebar test case', () => {
   });
 
   it('should be dismissed when navigating page on mobile', async () => {
-    mockMobileMediaQuery();
-
     const { getByText } = setup(mockOnOpenFunction, mockOnCloseFunction);
 
     renderHook(() => useMediaQuery('max-width: 1732px'));

@@ -41,7 +41,7 @@ exports[`TransactionSection render Should render match with snapshot. 1`] = `
                   </svg>
                 </div>
                 <input
-                  class="chakra-input css-lba6mr"
+                  class="chakra-input css-1ybypo"
                   data-testid="search-transaction"
                   id="field-:r0:"
                   placeholder="Search by name, email, or other..."

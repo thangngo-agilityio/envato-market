@@ -9,21 +9,6 @@ import { TransactionSection } from '..';
 
 jest.mock('react-intersection-observer');
 
-const mockMobileMediaQuery = () =>
-  Object.defineProperty(window, 'matchMedia', {
-    writable: true,
-    value: jest.fn().mockImplementation(() => ({
-      matches: true,
-      media: '480px',
-      onchange: null,
-      addListener: jest.fn(),
-      removeListener: jest.fn(),
-      addEventListener: jest.fn(),
-      removeEventListener: jest.fn(),
-      dispatchEvent: jest.fn(),
-    })),
-  });
-
 describe('TransactionSection render', () => {
   beforeEach(async () => {
     await preloadAll();
@@ -40,8 +25,6 @@ describe('TransactionSection render', () => {
   });
 
   test('Should render match with snapshot.', () => {
-    mockMobileMediaQuery();
-
     const { container } = renderQueryProviderTest(<TransactionSection />);
 
     expect(container).toMatchSnapshot();

@@ -32,7 +32,7 @@ exports[`Transaction table Match with snapshot with default prop 1`] = `
             </svg>
           </div>
           <input
-            class="chakra-input css-lba6mr"
+            class="chakra-input css-1ybypo"
             data-testid="search-transaction"
             id="field-:r0:"
             placeholder="Search by name, email, or other..."
@@ -857,7 +857,7 @@ exports[`Transaction table Match with snapshot with isOpenHistoryModal = true 1`
             </svg>
           </div>
           <input
-            class="chakra-input css-lba6mr"
+            class="chakra-input css-1ybypo"
             data-testid="search-transaction"
             id="field-:rq:"
             placeholder="Search by name, email, or other..."

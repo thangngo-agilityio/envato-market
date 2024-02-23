@@ -4,21 +4,6 @@ import Inbox from '../inbox/page';
 // Utils
 import { renderQueryProviderTest } from '@/lib/utils/testUtils';
 
-const mockMobileMediaQuery = () =>
-  Object.defineProperty(window, 'matchMedia', {
-    writable: true,
-    value: jest.fn().mockImplementation(() => ({
-      matches: true,
-      media: '480px',
-      onchange: null,
-      addListener: jest.fn(),
-      removeListener: jest.fn(),
-      addEventListener: jest.fn(),
-      removeEventListener: jest.fn(),
-      dispatchEvent: jest.fn(),
-    })),
-  });
-
 describe('Inbox render', () => {
   beforeEach(() => {
     Object.defineProperty(window, 'matchMedia', {
@@ -44,7 +29,6 @@ describe('Inbox render', () => {
   });
 
   test('Should render match with snapshot.', () => {
-    mockMobileMediaQuery();
     const { container } = renderQueryProviderTest(<Inbox />);
 
     expect(container).toMatchSnapshot();
