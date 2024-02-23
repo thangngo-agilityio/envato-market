@@ -199,6 +199,9 @@ describe('AuthForm components', () => {
         expect(screen.getAllByLabelText).toEqual(
           'Password contains uppercase, lowercase and special characters',
         );
+        expect(screen.getAllByLabelText).toEqual(
+          'Password must be more than 8 characters',
+        );
       });
     }
   });
@@ -230,6 +233,26 @@ describe('AuthForm components', () => {
     } catch (error) {
       await waitFor(() => {
         expect(screen.getByRole('button', { name: 'Sign In' })).toHaveAttribute(
+          'disabled',
+        );
+      });
+    }
+  });
+
+  it('Haven`t entered confirm password yet', async () => {
+    try {
+      render(<AuthForm isRegister />);
+
+      await userEvent.type(
+        screen.getByPlaceholderText('Email'),
+        'test@example.com',
+      );
+      await userEvent.type(screen.getByPlaceholderText('Password'), '12345');
+
+      await userEvent.type(screen.getByPlaceholderText('Confirm password'), '');
+    } catch (error) {
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: 'Sign Up' })).toHaveAttribute(
           'disabled',
         );
       });
@@ -292,6 +315,40 @@ describe('AuthForm components', () => {
         expect(screen.getAllByLabelText).toEqual('Email already exists');
 
         expect(mockSetError).toHaveBeenCalled();
+      });
+    }
+  });
+
+  it('Password does not match', async () => {
+    try {
+      render(<AuthForm isRegister />);
+
+      await userEvent.type(screen.getByPlaceholderText('First name'), 'John');
+
+      await userEvent.type(screen.getByPlaceholderText('Last name'), 'Doe');
+
+      await userEvent.type(
+        screen.getByPlaceholderText('Email'),
+        'test@example.com',
+      );
+
+      await userEvent.type(screen.getByPlaceholderText('Password'), '1@Dzxcvb');
+
+      await userEvent.type(
+        screen.getByPlaceholderText('Confirm password'),
+        'Abcd@1234',
+      );
+
+      await userEvent.click(
+        screen.getByText(/By creating an account, you're agreeing to our /i),
+      );
+
+      await userEvent.click(screen.getByRole('button', { name: 'Sign Up' }));
+    } catch (error) {
+      await waitFor(() => {
+        expect(mockRouter.push).toHaveBeenCalledWith(ROUTES.REGISTER);
+
+        expect(screen.getAllByLabelText).toEqual('Password does not match');
       });
     }
   });
