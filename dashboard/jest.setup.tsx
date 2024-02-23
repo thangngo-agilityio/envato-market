@@ -93,6 +93,20 @@ jest.mock('firebase/messaging', () => ({
   getMessaging: jest.fn(),
 }));
 
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: jest.fn().mockImplementation(() => ({
+    matches: true,
+    media: '480px',
+    onchange: null,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
+
 const customRender = <
   Q extends jestFunc.Queries = typeof jestFunc.queries,
   Container extends Element | DocumentFragment = HTMLElement,
