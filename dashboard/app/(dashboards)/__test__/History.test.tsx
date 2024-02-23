@@ -4,6 +4,8 @@ import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import HistoryPage from '../histories/page';
 import { renderQueryProviderTest } from '@/lib/utils/testUtils';
 
+jest.mock('react-intersection-observer');
+
 describe('HistoryPage render', () => {
   (useSearchParams as jest.Mock).mockReturnValue({
     get: jest.fn(),

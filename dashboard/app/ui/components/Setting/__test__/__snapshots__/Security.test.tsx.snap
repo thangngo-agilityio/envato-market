@@ -3,10 +3,10 @@
 exports[`FaqPage renders FaqPage component correctly 1`] = `
 <DocumentFragment>
   <div
-    class="css-1yrr8du"
+    class="css-2u6dg0"
   >
     <form
-      class="chakra-stack css-1pp2szn"
+      class="chakra-stack css-otx4ua"
       id="register-form"
     >
       <div
@@ -28,7 +28,7 @@ exports[`FaqPage renders FaqPage component correctly 1`] = `
         role="group"
       >
         <label
-          class="chakra-form__label css-1dzwvj0"
+          class="chakra-form__label css-5rqtjg"
           for="field-:r2:"
           id="field-:r2:-label"
         >
@@ -44,7 +44,7 @@ exports[`FaqPage renders FaqPage component correctly 1`] = `
           >
             <input
               aria-label="oldPassword"
-              class="chakra-input css-18ql1xp"
+              class="chakra-input css-1km5o5a"
               id="field-:r3:"
               name="oldPassword"
               role="textbox"
@@ -82,7 +82,7 @@ exports[`FaqPage renders FaqPage component correctly 1`] = `
         role="group"
       >
         <label
-          class="chakra-form__label css-1dzwvj0"
+          class="chakra-form__label css-5rqtjg"
           for="field-:r4:"
           id="field-:r4:-label"
         >
@@ -98,7 +98,7 @@ exports[`FaqPage renders FaqPage component correctly 1`] = `
           >
             <input
               aria-label="newPassword"
-              class="chakra-input css-18ql1xp"
+              class="chakra-input css-1km5o5a"
               id="field-:r5:"
               name="newPassword"
               role="textbox"
@@ -154,7 +154,7 @@ exports[`FaqPage renders FaqPage component correctly 1`] = `
     </form>
     <img
       alt="This is password image"
-      class="chakra-image css-zvqcyp"
+      class="chakra-image css-1623zui"
       src="images/reset-password.svg"
     />
   </div>

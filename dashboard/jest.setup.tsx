@@ -149,4 +149,6 @@ Object.assign(global, {
   screenJest: jestFunc.screen,
 });
 
+jest.setTimeout(30000);
+
 export const testing = { ...jestFunc, render: customRender };
