@@ -3,18 +3,11 @@
 import dynamic from 'next/dynamic';
 import { useCallback, useMemo } from 'react';
 import { useDisclosure, useToast } from '@chakra-ui/react';
-import { getMessaging, onMessage } from 'firebase/messaging';
+
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useQueryClient } from '@tanstack/react-query';
 
 //Constants
-import {
-  END_POINTS,
-  ERROR_MESSAGES,
-  SHOW_TIME,
-  STATUS,
-  SUCCESS_MESSAGES,
-} from '@/lib/constants';
+import { ERROR_MESSAGES, STATUS, SUCCESS_MESSAGES } from '@/lib/constants';
 
 // Hooks
 import { useAuth, usePinCode } from '@/lib/hooks';
@@ -26,7 +19,7 @@ import { TPinCodeForm } from '@/lib/interfaces';
 import { TAuthStoreData, authStore } from '@/lib/stores';
 
 // Utils
-import { customToast, isWindowDefined } from '@/lib/utils';
+import { customToast } from '@/lib/utils';
 
 const Modal = dynamic(() => import('@/ui/components/common/Modal'));
 const PinCode = dynamic(() => import('@/ui/components/common/PinCode'));
@@ -104,34 +97,6 @@ const CheckPinCodeProvider = () => {
       onSubmitPinCode,
     ],
   );
-
-  const queryClient = useQueryClient();
-
-  const messaging = isWindowDefined() ? getMessaging() : null;
-
-  messaging &&
-    onMessage(messaging, async (payload) => {
-      await Promise.all([
-        queryClient.invalidateQueries({
-          queryKey: [END_POINTS.MY_WALLET],
-        }),
-        queryClient.invalidateQueries({
-          queryKey: [END_POINTS.TRANSACTIONS],
-        }),
-        queryClient.invalidateQueries({
-          queryKey: [END_POINTS.NOTIFICATION],
-        }),
-      ]).finally(() => {
-        toast({
-          title: payload?.notification?.title,
-          description: payload?.notification?.body,
-          status: 'success',
-          duration: SHOW_TIME,
-          isClosable: true,
-          position: 'top-right',
-        });
-      });
-    });
 
   return (
     isPinCodeModalOpen && (

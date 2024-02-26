@@ -1,10 +1,16 @@
 'use client';
 
 import { useCallback, useEffect } from 'react';
-import { Box, Flex, useDisclosure, useMediaQuery } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  useDisclosure,
+  useMediaQuery,
+  useToast,
+} from '@chakra-ui/react';
 
 // Constants
-import { SIDEBAR } from '@/lib/constants';
+import { END_POINTS, SHOW_TIME, SIDEBAR } from '@/lib/constants';
 
 // Component
 import { Header, SideBar } from '@/ui/layouts';
@@ -20,6 +26,9 @@ import { TUserDetail } from '@/lib/interfaces';
 import { useAuth } from '@/lib/hooks';
 import { Indicator } from '@/ui/components';
 import { breakpoints } from '@/ui/themes/bases';
+import { useQueryClient } from '@tanstack/react-query';
+import { isWindowDefined } from '@/lib/utils';
+import { getMessaging, onMessage } from 'firebase/messaging';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const [isDesktop] = useMediaQuery(
@@ -43,6 +52,36 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       onOpen();
     }
   }, [isDesktop, onOpen]);
+
+  const toast = useToast();
+
+  const queryClient = useQueryClient();
+
+  const messaging = isWindowDefined() ? getMessaging() : null;
+
+  messaging &&
+    onMessage(messaging, async (payload) => {
+      await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: [END_POINTS.MY_WALLET],
+        }),
+        queryClient.invalidateQueries({
+          queryKey: [END_POINTS.TRANSACTIONS],
+        }),
+        queryClient.invalidateQueries({
+          queryKey: [END_POINTS.NOTIFICATION],
+        }),
+      ]).finally(() => {
+        toast({
+          title: payload?.notification?.title,
+          description: payload?.notification?.body,
+          status: 'success',
+          duration: SHOW_TIME,
+          isClosable: true,
+          position: 'top-right',
+        });
+      });
+    });
 
   return (
     <>
