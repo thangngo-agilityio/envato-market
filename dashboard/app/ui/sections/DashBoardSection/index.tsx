@@ -18,8 +18,6 @@ const RevenueFlow = lazy(() => import('@/ui/components/RevenueFlow'));
 const Efficiency = lazy(() => import('@/ui/components/Efficiency'));
 const TransactionTable = lazy(() => import('@/ui/components/TransactionTable'));
 
-export const dynamic = 'force-dynamic';
-
 const DashBoardSection = () => (
   <Grid
     display={{ sm: 'block', md: 'grid' }}

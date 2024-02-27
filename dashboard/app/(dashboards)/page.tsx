@@ -16,12 +16,12 @@ import {
 
 // Utils
 import { prefetchStatistical } from '@/lib/utils';
-import dynamic from 'next/dynamic';
+import lazy from 'next/dynamic';
 // import { DashBoardSection } from '@/ui/sections';
 
-const DashBoardSection = dynamic(
-  () => import('@/ui/sections/DashBoardSection'),
-);
+const DashBoardSection = lazy(() => import('@/ui/sections/DashBoardSection'));
+
+export const dynamic = 'force-dynamic';
 
 const Dashboard = async () => {
   const queryClient = new QueryClient();
