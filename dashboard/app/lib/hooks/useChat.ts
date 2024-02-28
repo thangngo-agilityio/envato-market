@@ -1,17 +1,22 @@
+import { Dispatch, MutableRefObject, SetStateAction, useEffect } from 'react';
+
 // Stores
 import { authStore } from '@/lib/stores';
 
 // Interface
 import { TUserInfo, useGetUserDetails } from '.';
+import { TMessages } from '@/lib/interfaces';
 
 // Firebase
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, doc, getDocs, onSnapshot } from 'firebase/firestore';
 
 // Services
 import { getAllUserDetailsExceptWithId } from '@/lib/services';
 
 // Constants
 import { AUTHENTICATION_ROLE, FIREBASE_CHAT } from '@/lib/constants';
+
+// Utils
 import { db } from '@/lib/utils';
 
 // TODO: if have real id from firestore
@@ -96,4 +101,29 @@ export const getLists = async () => {
   return {
     chatList,
   };
+};
+
+export const useSubscribeToChat = (
+  roomId: string,
+  setMessages: Dispatch<SetStateAction<TMessages[]>>,
+  boxRef?: MutableRefObject<HTMLDivElement | null>,
+) => {
+  useEffect(() => {
+    if (!roomId) return;
+
+    const unSub = onSnapshot(
+      doc(db, FIREBASE_CHAT.CHATS, roomId),
+      async (doc) => {
+        doc.exists() && setMessages(doc.data().messages);
+      },
+    );
+
+    if (boxRef?.current) {
+      boxRef.current.scrollTop = boxRef.current.scrollHeight;
+    }
+
+    return () => {
+      unSub();
+    };
+  }, [setMessages, roomId, boxRef]);
 };

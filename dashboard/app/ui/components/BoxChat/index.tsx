@@ -16,11 +16,11 @@ import { TMessages } from '@/lib/interfaces';
 import { authStore } from '@/lib/stores';
 
 // Hooks
-import { getCurrentUser } from '@/lib/hooks';
+import { getCurrentUser, useSubscribeToChat } from '@/lib/hooks';
 
 // Firebase
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db, subscribeToChat } from '@/lib/utils';
+import { db } from '@/lib/utils';
 import { AUTHENTICATION_ROLE, FIREBASE_CHAT } from '@/lib/constants';
 
 const initialUserChat = {
@@ -69,15 +69,7 @@ const BoxChatComponent = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (!userChat.roomChatId) return;
-
-    if (boxRef.current) {
-      boxRef.current.scrollTop = boxRef.current.scrollHeight;
-    }
-
-    subscribeToChat(userChat.roomChatId, setMessages);
-  }, [userChat.roomChatId]);
+  useSubscribeToChat(userChat.roomChatId, setMessages, boxRef);
 
   return (
     hasPermission && (

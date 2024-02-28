@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 
 // Firebase
-import { convertTimeMessage, db, subscribeToChat } from '@/lib/utils';
+import { convertTimeMessage, db } from '@/lib/utils';
 import {
   DocumentData,
   DocumentReference,
@@ -32,7 +32,7 @@ import {
 } from '@/ui/components';
 
 // Hooks
-import { getUsers, useGetUserDetails } from '@/lib/hooks';
+import { getUsers, useGetUserDetails, useSubscribeToChat } from '@/lib/hooks';
 
 // Store
 import { authStore } from '@/lib/stores';
@@ -175,11 +175,7 @@ const ChatMemberList = () => {
     userChat?.lastName,
   ]);
 
-  useEffect(() => {
-    if (!userInfo.roomChatId) return;
-
-    subscribeToChat(userInfo.roomChatId, setMessages);
-  }, [userInfo.roomChatId]);
+  useSubscribeToChat(userInfo.roomChatId, setMessages);
 
   return (
     <Grid
