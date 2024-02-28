@@ -43,26 +43,22 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
     async (productId: string, quantity: number): Promise<void> => {
       onToggle();
 
-      try {
-        await updateQuantity(productId, quantity);
-        setCart((prev: IProductInCart[]) =>
-          prev.map((product) => {
-            if (product.id === productId && quantity > 0)
-              return {
-                ...product,
-                quantity,
-              };
+      await updateQuantity(productId, quantity, {
+        onSuccess: () =>
+          setCart((prev: IProductInCart[]) =>
+            prev.map((product) => {
+              if (product.id === productId && quantity > 0)
+                return {
+                  ...product,
+                  quantity,
+                };
 
-            return product;
-          }),
-        );
-      } catch (error) {
-        const { message } = error as Error;
-
-        showToast({ message, type: 'error' });
-      } finally {
-        onToggle();
-      }
+              return product;
+            }),
+          ),
+        onError: (message: string) => showToast({ message, type: 'error' }),
+        onSettled: onToggle,
+      });
     },
     [onToggle, showToast],
   );
@@ -70,20 +66,16 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
   const handleRemoveProductItem = useCallback(
     async (id: string) => {
       onToggle();
-
-      try {
-        await deleteCart(id);
-        setCart((prev: IProductInCart[]) =>
-          prev.filter((product) => product.id !== id),
-        );
-        showToast({ message: SUCCESS_MESSAGE.REMOVE_CART });
-      } catch (error) {
-        const { message } = error as Error;
-
-        showToast({ message, type: 'error' });
-      } finally {
-        onToggle();
-      }
+      await deleteCart(id, {
+        onSuccess: () => {
+          setCart((prev: IProductInCart[]) =>
+            prev.filter((product) => product.id !== id),
+          );
+          showToast({ message: SUCCESS_MESSAGE.REMOVE_CART });
+        },
+        onError: (message: string) => showToast({ message, type: 'error' }),
+        onSettled: onToggle,
+      });
     },
     [onToggle, showToast],
   );

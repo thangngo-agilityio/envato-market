@@ -4,7 +4,7 @@ import { useCallback, useMemo, type FormEventHandler, useState } from 'react';
 import { Button, Toast, InputNumber, Indicator } from '..';
 
 // Services
-import { addToCart, getCartOnClient, updateQuantity } from '@app/services';
+import { addToCart } from '@app/services';
 
 // Constants
 import { SUCCESS_MESSAGE } from '@app/constants';
@@ -14,7 +14,6 @@ import { useIndicator, useToast } from '@app/hooks';
 
 // Utils
 import { formatDecimalNumber } from '@app/utils';
-import type { IProductInCart } from '@app/interfaces';
 
 type TProductInfoProps = {
   id: string;
@@ -54,38 +53,25 @@ const ProductInfo = ({
 
   const handleAddToCart = useCallback(async () => {
     onOpen();
-
-    console.log(id);
-
-    try {
-      const productInCart: IProductInCart[] = await getCartOnClient();
-      const alreadyExist: IProductInCart | undefined = productInCart.find(
-        (item) => item.productId === id,
-      );
-
-      if (alreadyExist) {
-        await updateQuantity(alreadyExist.id, quantity + alreadyExist.quantity);
-      } else {
-        const payload: Omit<IProductInCart, 'id'> = {
-          productId: id,
-          currency,
-          amount,
-          name,
-          quantity,
-          imageURL,
-        };
-
-        await addToCart(payload);
-      }
-
-      showToast({ message: SUCCESS_MESSAGE.ADD_TO_CART, type: 'success' });
-    } catch (error) {
-      const { message } = error as Error;
-
-      showToast({ message, type: 'error' });
-    } finally {
-      onClose();
-    }
+    await addToCart(
+      id,
+      {
+        imageURL,
+        currency,
+        amount,
+        name,
+        quantity,
+      },
+      {
+        onSuccess: () => {
+          showToast({ message: SUCCESS_MESSAGE.ADD_TO_CART, type: 'success' });
+        },
+        onError: (message: string) => {
+          showToast({ message, type: 'error' });
+        },
+        onSettled: onClose,
+      },
+    );
   }, [
     amount,
     currency,
@@ -108,11 +94,6 @@ const ProductInfo = ({
 
   const handleChangeQuantityByStep = useCallback(
     (step: 1 | -1) => () => setQuantity((prev) => prev + step),
-    [],
-  );
-
-  const handleChangeQuantity = useCallback(
-    (value: number) => setQuantity(value),
     [],
   );
 
@@ -149,7 +130,7 @@ const ProductInfo = ({
             value={quantity}
             onIncrease={handleChangeQuantityByStep(1)}
             onDecrease={handleChangeQuantityByStep(-1)}
-            onChange={handleChangeQuantity}
+            onChange={setQuantity}
             className='w-[113px]'
           />
 
