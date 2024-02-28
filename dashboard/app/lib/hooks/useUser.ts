@@ -143,16 +143,11 @@ export const useManagementUser = () => {
     >) => await userHttpRequest.put<TUserDetail>(urlEndpoint, user),
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: [END_POINTS.LOCK],
-      });
-      queryClient.invalidateQueries({
         queryKey: [END_POINTS.USERS],
-      });
-      queryClient.invalidateQueries({
-        queryKey: [END_POINTS.SIGN_IN],
       });
     },
   });
+
   return {
     ...query,
     isSendRequestUser,
