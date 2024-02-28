@@ -20,7 +20,7 @@ import type { IProductInCart } from '@app/interfaces';
 import { deleteCart, updateQuantity } from '@app/services';
 
 // Hooks
-import { useIndicator, useToast } from '@app/hooks';
+import { useDebounce, useIndicator, useToast } from '@app/hooks';
 
 type TCartProps = {
   data: IProductInCart[];
@@ -41,28 +41,38 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
     [cart],
   );
 
-  const handleChangeQuantity = useCallback(
-    async (productId: string, quantity: number): Promise<void> => {
+  const debounceChangeQuantity = useDebounce(
+    (productId: string, quantity: string) => {
+      if (parseInt(quantity) <= 0) {
+        return handleRemoveProductItem(productId);
+      }
+
       onToggle();
 
-      await updateQuantity(productId, quantity, {
-        onSuccess: () =>
-          setCart((prev: IProductInCart[]) =>
-            prev.map((product) => {
-              if (product.id === productId && quantity > 0)
-                return {
-                  ...product,
-                  quantity,
-                };
-
-              return product;
-            }),
-          ),
+      updateQuantity(productId, parseInt(quantity), {
         onError: (message: string) => showToast({ message, type: 'error' }),
         onSettled: onToggle,
       });
     },
     [onToggle, showToast],
+  );
+
+  const handleChangeQuantity = useCallback(
+    async (productId: string, quantity: number): Promise<void> => {
+      setCart((prev: IProductInCart[]) =>
+        prev.map((product) => {
+          if (product.id === productId)
+            return {
+              ...product,
+              quantity,
+            };
+
+          return product;
+        }),
+      );
+      debounceChangeQuantity(productId, `${quantity}`);
+    },
+    [debounceChangeQuantity],
   );
 
   const handleRemoveProductItem = useCallback(
