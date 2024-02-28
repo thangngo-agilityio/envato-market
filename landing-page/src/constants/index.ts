@@ -5,3 +5,4 @@ export * from './regex';
 export * from './store';
 export * from './number';
 export * from './navbar';
+export * from './theme';

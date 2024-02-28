@@ -1,22 +1,22 @@
 // Themes
 import { type TTheme } from '@app/themes/components';
 
-export const getStyles = (objStyle?: TTheme): string => {
-  const DARK_KEY = '_dark';
-  const LIGHT_KEY = '_light';
-  const lightPrefix: string = 'light:';
-  const darkPrefix: string = 'dark:';
+// Constants
+import { DARK_KEY, DARK_PREFIX, LIGHT_KEY, LIGHT_PREFIX } from '@app/constants';
 
+export const getStyles = (objStyle?: TTheme): string => {
   const baseStyle: string = Object.entries(objStyle ?? {})
     .map(([styleKey, styleValue]) => {
       const convertStyle = (prefix: string): string =>
         `${prefix}${Object.values(styleValue).join(` ${prefix}`)}`;
 
       if (typeof styleValue === 'object') {
-        if (styleKey === LIGHT_KEY) return convertStyle(lightPrefix);
+        const styleByMode = {
+          [LIGHT_KEY]: convertStyle(LIGHT_PREFIX),
+          [DARK_KEY]: convertStyle(DARK_PREFIX),
+        };
 
-        if (styleKey === DARK_KEY) return convertStyle(darkPrefix);
-        return '';
+        return styleByMode[styleKey as keyof typeof styleByMode] ?? '';
       }
 
       return styleValue;
