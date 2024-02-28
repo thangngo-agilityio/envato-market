@@ -1,3 +1,5 @@
+import { navigate } from 'astro:transitions/client';
+
 import { useCallback, useMemo, useState } from 'react';
 
 // Components
@@ -80,11 +82,7 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
     [onToggle, showToast],
   );
 
-  const handleCheckout = useCallback(() => {
-    if (window) {
-      window.location.assign(ROUTES.CHECKOUT);
-    }
-  }, []);
+  const handleCheckout = useCallback(() => navigate(ROUTES.CHECKOUT), []);
 
   const isDisableSubmit: boolean = !cart.length;
   const subtotal: number = isDisableSubmit ? 0 : SUBTOTAL;

@@ -1,3 +1,4 @@
+import { navigate } from 'astro:transitions/client';
 import { useForm } from 'react-hook-form';
 import { useCallback, useState } from 'react';
 
@@ -54,7 +55,9 @@ const Checkout = ({ total }: TCheckoutProps): JSX.Element => {
         });
         setCurrentTotal(0);
         reset(defaultForm);
-        window.location.replace(ROUTES.HOME);
+        navigate(ROUTES.HOME, {
+          history: 'replace',
+        });
       },
       onError: (message: string) =>
         showToast({
