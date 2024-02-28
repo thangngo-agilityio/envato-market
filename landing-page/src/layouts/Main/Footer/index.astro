@@ -9,6 +9,9 @@ import NavbarOnDesktop from './Navbar/NavbarOnDesktop.astro';
 // Images
 import logo from '@app/assets/images/logo.webp';
 
+// Constants
+import { NAVBAR } from '@app/constants';
+
 const currentYear = new Date().getFullYear();
 ---
 
@@ -24,6 +27,6 @@ const currentYear = new Date().getFullYear();
       </p>
     </section>
     <NavbarOnDesktop />
-    <NavbarOnSmallDevices client:visible />
+    <NavbarOnSmallDevices client:visible options={NAVBAR} />
   </Container>
 </footer>

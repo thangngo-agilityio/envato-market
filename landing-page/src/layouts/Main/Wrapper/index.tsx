@@ -8,7 +8,7 @@ import { Button } from '@app/components';
 import { ArrowTop } from '@app/components/icons';
 
 // Mocks
-import { NAVBAR } from '@app/mocks';
+import { NAVBAR } from '@app/constants';
 
 type TWrapperProps = {
   children?: ReactNode;
