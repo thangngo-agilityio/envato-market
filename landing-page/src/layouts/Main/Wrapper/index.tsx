@@ -23,6 +23,14 @@ const Wrapper = ({ children, pathName }: TWrapperProps): JSX.Element => {
     [],
   );
 
+  const handleGotoTop = useCallback(
+    () =>
+      window.scrollTo({
+        top: 0,
+      }),
+    [],
+  );
+
   useEffect(() => {
     const handleScroll = () => {
       const gotoTopBtn: HTMLButtonElement | null =
@@ -59,10 +67,13 @@ const Wrapper = ({ children, pathName }: TWrapperProps): JSX.Element => {
         <div className='pt-[70px] md:pt-0 h-full'>{children}</div>
       </div>
 
-      <Button className='go-to-top hidden fixed z-40 bottom-10 right-10 !w-fit !h-fit !p-0 !pb-0 shadow-md'>
-        <a href='#top' className='!p-3 block'>
+      <Button
+        className='go-to-top hidden fixed z-40 bottom-10 right-10 !w-fit !h-fit !p-0 !pb-0 shadow-md'
+        onClick={handleGotoTop}
+      >
+        <span className='!p-3 block'>
           <ArrowTop width={16} height={16} fill='#fff' />
-        </a>
+        </span>
       </Button>
     </section>
   );
