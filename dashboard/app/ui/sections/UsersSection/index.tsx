@@ -13,6 +13,7 @@ import { Fetching, Indicator, InputField } from '@/ui/components';
 import {
   useDebounce,
   useGetUserDetails,
+  useManagementUser,
   usePagination,
   useSearch,
 } from '@/lib/hooks';
@@ -57,11 +58,11 @@ const UsersSections = () => {
     filterDataUser,
     isLoading: isLoadingUser,
     isError: isUserError,
-    isSendRequestUser,
-    managementUser,
   } = useGetUserDetails(user?.id || '', {
     name: get('name') || '',
   });
+
+  const { isSendRequestUser, managementUser } = useManagementUser();
 
   const {
     data,
