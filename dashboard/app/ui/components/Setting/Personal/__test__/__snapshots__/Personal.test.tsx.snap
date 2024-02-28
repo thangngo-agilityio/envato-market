@@ -418,7 +418,7 @@ exports[`Personal Page test cases renders UserForm with content 1`] = `
                 </label>
                 <input
                   accept="image/*"
-                  class="chakra-input css-tje6em"
+                  class="chakra-input css-ykt8bm"
                   data-testid="upload-image"
                   id="file"
                   type="file"

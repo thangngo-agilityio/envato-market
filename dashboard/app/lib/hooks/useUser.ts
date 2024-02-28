@@ -102,8 +102,6 @@ export const useGetUserDetails = (
   id: string,
   queryParam?: TSearchTransaction,
 ) => {
-  const queryClient = useQueryClient();
-
   const { name: searchName }: TSearchTransaction = Object.assign(
     {
       name: '',
@@ -123,7 +121,20 @@ export const useGetUserDetails = (
     isNameMatchWith(`${firstName} ${lastName}`),
   );
 
-  const { mutate: managementUser, isPending: isSendRequestUser } = useMutation({
+  return {
+    ...query,
+    filterDataUser,
+  };
+};
+
+export const useManagementUser = () => {
+  const queryClient = useQueryClient();
+
+  const {
+    mutate: managementUser,
+    isPending: isSendRequestUser,
+    ...query
+  } = useMutation({
     mutationFn: async ({
       urlEndpoint = '',
       ...user
@@ -135,17 +146,15 @@ export const useGetUserDetails = (
         queryKey: [END_POINTS.LOCK],
       });
       queryClient.invalidateQueries({
-        queryKey: [END_POINTS.USERS, searchName],
+        queryKey: [END_POINTS.USERS],
       });
       queryClient.invalidateQueries({
         queryKey: [END_POINTS.SIGN_IN],
       });
     },
   });
-
   return {
     ...query,
-    filterDataUser,
     isSendRequestUser,
     managementUser,
   };
