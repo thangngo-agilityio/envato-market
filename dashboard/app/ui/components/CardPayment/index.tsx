@@ -27,10 +27,12 @@ import { TPinCodeForm, TSendMoney } from '@/lib/interfaces';
 import { ERROR_MESSAGES, STATUS, SUCCESS_MESSAGES } from '@/lib/constants';
 
 // Utils
-import { customToast } from '@/lib/utils';
+import { customToast, getErrorMessageFromAxiosError } from '@/lib/utils';
 import CardBalance from './CardBalance';
 import UserSelector from './UserSelector';
 import EnterMoney from './EnterMoney';
+import { AxiosError } from 'axios';
+import { TMoneyResponse } from '@/lib/services';
 
 export type TTransfer = {
   amount: string;
@@ -109,6 +111,42 @@ const CardPaymentComponent = (): JSX.Element => {
 
   const hasPinCode = user?.pinCode;
 
+  const handleTransferMoneySuccess = (defaultSuccess: {
+    title: string;
+    description: string;
+  }) => {
+    toast(
+      customToast(
+        defaultSuccess.title,
+        defaultSuccess.description,
+        STATUS.SUCCESS,
+      ),
+    );
+    if (user?.bonusTimes) {
+      setUser({
+        user: {
+          ...user,
+          bonusTimes: --user.bonusTimes,
+        },
+      });
+    }
+  };
+
+  const handleTransferMoneyError = (
+    error: Error,
+    defaultError: {
+      title: string;
+      description: string;
+    },
+  ) => {
+    const responseErrorMessage = getErrorMessageFromAxiosError(
+      error as AxiosError<TMoneyResponse>,
+      defaultError.description,
+    );
+
+    toast(customToast(defaultError.title, responseErrorMessage, STATUS.ERROR));
+  };
+
   const handleOnSubmitSendMoney = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!hasPinCode) {
@@ -126,7 +164,12 @@ const CardPaymentComponent = (): JSX.Element => {
         amount: Number(data.amount),
       };
 
-      sendMoneyToUserWallet(submitData);
+      sendMoneyToUserWallet(submitData, {
+        onSuccess: () =>
+          handleTransferMoneySuccess(SUCCESS_MESSAGES.SEND_MONEY),
+        onError: (error) =>
+          handleTransferMoneyError(error, ERROR_MESSAGES.ADD_MONEY),
+      });
       resetSendMoneyForm();
     },
     [getMemberId, resetSendMoneyForm, sendMoneyToUserWallet],

@@ -3,6 +3,7 @@
 import { FormEvent, memo, useCallback } from 'react';
 import { Box, Button, useToast } from '@chakra-ui/react';
 import { SubmitHandler } from 'react-hook-form';
+import { AxiosError } from 'axios';
 
 // Stores
 import { TAuthStoreData, authStore } from '@/lib/stores';
@@ -17,6 +18,12 @@ import { PinCodeModal } from '..';
 // Types
 import { TPinCodeForm } from '@/lib/interfaces';
 
+// utils
+import { customToast, getErrorMessageFromAxiosError } from '@/lib/utils';
+
+// Services
+import { TMoneyResponse } from '@/lib/services';
+
 // Constants
 import {
   DEFAULT_DISCOUNT_PERCENTAGE,
@@ -24,7 +31,6 @@ import {
   STATUS,
   SUCCESS_MESSAGES,
 } from '@/lib/constants';
-import { customToast } from '@/lib/utils';
 
 export type TAddMoneyForm = {
   userId: string;
@@ -84,6 +90,42 @@ const TotalBalanceComponent = (): JSX.Element => {
 
   const bonusTimes = authStore((state): number => state.user?.bonusTimes ?? 0);
 
+  const handleTransferMoneySuccess = (defaultSuccess: {
+    title: string;
+    description: string;
+  }) => {
+    toast(
+      customToast(
+        defaultSuccess.title,
+        defaultSuccess.description,
+        STATUS.SUCCESS,
+      ),
+    );
+    if (user?.bonusTimes) {
+      setUser({
+        user: {
+          ...user,
+          bonusTimes: --user.bonusTimes,
+        },
+      });
+    }
+  };
+
+  const handleTransferMoneyError = (
+    error: Error,
+    defaultError: {
+      title: string;
+      description: string;
+    },
+  ) => {
+    const responseErrorMessage = getErrorMessageFromAxiosError(
+      error as AxiosError<TMoneyResponse>,
+      defaultError.description,
+    );
+
+    toast(customToast(defaultError.title, responseErrorMessage, STATUS.ERROR));
+  };
+
   const onSubmitAddMoney: SubmitHandler<TAddMoneyForm> = useCallback(
     (data) => {
       const addMoneyAmount: number = Number(data.amount);
@@ -95,7 +137,11 @@ const TotalBalanceComponent = (): JSX.Element => {
           (bonusTimes ? addMoneyAmount * DEFAULT_DISCOUNT_PERCENTAGE : 0),
       };
 
-      addMoneyToUserWallet(dataToSubmit);
+      addMoneyToUserWallet(dataToSubmit, {
+        onSuccess: () => handleTransferMoneySuccess(SUCCESS_MESSAGES.ADD_MONEY),
+        onError: (error) =>
+          handleTransferMoneyError(error, ERROR_MESSAGES.ADD_MONEY),
+      });
     },
     [addMoneyToUserWallet],
   );
