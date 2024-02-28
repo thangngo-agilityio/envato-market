@@ -7,6 +7,9 @@ import SideBarAllDevices from '../SideBar';
 import { Button } from '@app/components';
 import { ArrowTop } from '@app/components/icons';
 
+// Mocks
+import { NAVBAR } from '@app/mocks';
+
 type TWrapperProps = {
   children?: ReactNode;
   pathName: string;
@@ -28,6 +31,7 @@ const Wrapper = ({ children, pathName }: TWrapperProps): JSX.Element => {
       if (gotoTopBtn) {
         if (window.scrollY >= 600) {
           gotoTopBtn.classList.replace('hidden', 'block');
+
           return;
         }
 
@@ -45,6 +49,7 @@ const Wrapper = ({ children, pathName }: TWrapperProps): JSX.Element => {
   return (
     <section className='flex' id='top'>
       <SideBarAllDevices
+        options={NAVBAR}
         pathName={pathName}
         isOpen={isOpenSidebar}
         onToggle={handleToggleSidebar}
