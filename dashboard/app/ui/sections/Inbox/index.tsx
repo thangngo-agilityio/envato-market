@@ -32,7 +32,7 @@ import {
 } from '@/ui/components';
 
 // Hooks
-import { getUsers, useGetUserDetails } from '@/lib/hooks';
+import { getUsers, useGetUserDetails, useSubscribeToChat } from '@/lib/hooks';
 
 // Store
 import { authStore } from '@/lib/stores';
@@ -175,19 +175,7 @@ const ChatMemberList = () => {
     userChat?.lastName,
   ]);
 
-  useEffect(() => {
-    if (!userInfo.roomChatId) return;
-    const unSub = onSnapshot(
-      doc(db, FIREBASE_CHAT.CHATS, userInfo.roomChatId),
-      (doc) => {
-        doc.exists() && setMessages(doc.data().messages);
-      },
-    );
-
-    return () => {
-      unSub();
-    };
-  }, [userInfo.roomChatId]);
+  useSubscribeToChat(userInfo.roomChatId, setMessages);
 
   return (
     <Grid
