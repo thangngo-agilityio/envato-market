@@ -87,7 +87,7 @@ const ChatMemberList = () => {
     });
   };
 
-  const handleMemberClick = async (user: {
+  const handleMemberSelect = async (user: {
     uid: string;
     avatarUrl: string;
     displayName: string;
@@ -116,9 +116,8 @@ const ChatMemberList = () => {
     }
   };
 
-  // Effect 1: Fetch chats when currentUser.uid changes
   useEffect(() => {
-    const getChats = async () => {
+    const getListLastMessages = async () => {
       try {
         const chatDocRef = doc(db, FIREBASE_CHAT.USER_CHATS, `${user?.uid}`);
         const unsub = onSnapshot(chatDocRef, (doc) => {
@@ -133,7 +132,7 @@ const ChatMemberList = () => {
       }
     };
 
-    user?.uid && getChats();
+    user?.uid && getListLastMessages();
   }, [user?.uid]);
 
   const dataChats = useMemo(
@@ -141,7 +140,6 @@ const ChatMemberList = () => {
     [chats],
   );
 
-  // Effect 2: Fetch messages when uidUser changes
   useEffect(() => {
     const getRoomChat = async () => {
       if (uidUser) {
@@ -208,7 +206,7 @@ const ChatMemberList = () => {
                 <ChatMember
                   key={chat[0]}
                   avatar={chat[1].userInfo?.avatarUrl}
-                  onClick={() => handleMemberClick(chat[1].userInfo)}
+                  onClick={() => handleMemberSelect(chat[1].userInfo)}
                 />
               ))}
           </Flex>
@@ -252,7 +250,7 @@ const ChatMemberList = () => {
                   key={chat[0]}
                   avatar={chat[1].userInfo?.avatarUrl}
                   name={chat[1].userInfo?.displayName}
-                  onClick={() => handleMemberClick(chat[1].userInfo)}
+                  onClick={() => handleMemberSelect(chat[1].userInfo)}
                   icon={
                     <FallbackImage
                       boxSize={4}
