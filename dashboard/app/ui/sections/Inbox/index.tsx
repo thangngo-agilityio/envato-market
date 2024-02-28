@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 
 // Firebase
-import { convertTimeMessage, db } from '@/lib/utils';
+import { convertTimeMessage, db, subscribeToChat } from '@/lib/utils';
 import {
   DocumentData,
   DocumentReference,
@@ -177,16 +177,8 @@ const ChatMemberList = () => {
 
   useEffect(() => {
     if (!userInfo.roomChatId) return;
-    const unSub = onSnapshot(
-      doc(db, FIREBASE_CHAT.CHATS, userInfo.roomChatId),
-      (doc) => {
-        doc.exists() && setMessages(doc.data().messages);
-      },
-    );
 
-    return () => {
-      unSub();
-    };
+    subscribeToChat(userInfo.roomChatId, setMessages);
   }, [userInfo.roomChatId]);
 
   return (

@@ -14,6 +14,7 @@ import { initializeApp } from 'firebase/app';
 import { getStorage } from 'firebase/storage';
 import { getAuth } from 'firebase/auth';
 import { FIREBASE_CHAT, USER_CHATS_FIELD } from '../constants';
+import { Dispatch, SetStateAction } from 'react';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -146,4 +147,20 @@ const createUserChat = async (
       },
     },
   });
+};
+
+export const subscribeToChat = (
+  roomId: string,
+  setMessages: Dispatch<SetStateAction<TMessages[]>>,
+) => {
+  const unsubscribe = onSnapshot(
+    doc(db, FIREBASE_CHAT.CHATS, roomId),
+    async (doc) => {
+      doc.exists() && setMessages(doc.data().messages);
+    },
+  );
+
+  return () => {
+    unsubscribe();
+  };
 };
