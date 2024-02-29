@@ -53,26 +53,26 @@ const ForgotPasswordSection = (): JSX.Element => {
   // TODO: Update later
   const handleSubmitForm: SubmitHandler<TForgotPasswordForm> = useCallback(
     async (data) => {
-      sendPasswordResetEmail(auth, data.email)
-        .then(() => {
-          toast(
-            customToast(
-              SUCCESS_MESSAGES.FORGOT_PASSWORD.title,
-              SUCCESS_MESSAGES.FORGOT_PASSWORD.description,
-              STATUS.SUCCESS,
-            ),
-          );
-        })
-        .catch(() => {
-          toast(
-            customToast(
-              ERROR_MESSAGES.FORGOT_PASSWORD.title,
-              ERROR_MESSAGES.FORGOT_PASSWORD.description,
-              STATUS.ERROR,
-            ),
-          );
-        })
-        .finally(() => reset());
+      try {
+        await sendPasswordResetEmail(auth, data.email);
+        toast(
+          customToast(
+            SUCCESS_MESSAGES.FORGOT_PASSWORD.title,
+            SUCCESS_MESSAGES.FORGOT_PASSWORD.description,
+            STATUS.SUCCESS,
+          ),
+        );
+      } catch {
+        toast(
+          customToast(
+            ERROR_MESSAGES.FORGOT_PASSWORD.title,
+            ERROR_MESSAGES.FORGOT_PASSWORD.description,
+            STATUS.ERROR,
+          ),
+        );
+      } finally {
+        reset();
+      }
     },
     [reset, toast],
   );

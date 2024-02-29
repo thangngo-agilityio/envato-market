@@ -29,22 +29,22 @@ initializeApp(firebaseConfig);
 
 const VAPID_KEY = process.env.NEXT_PUBLIC_FIREBASE_VAPID;
 
-export const requestForToken = (messaging: Messaging) =>
-  getToken(messaging, { vapidKey: VAPID_KEY })
-    .then((currentToken) => {
-      if (currentToken) {
-        return currentToken;
-        // Perform any other neccessary action with the token
-      } else {
-        // Show permission request UI
-        console.log(
-          'No registration token available. Request permission to generate one.',
-        );
-      }
-    })
-    .catch((err) => {
-      console.log('An error occurred while retrieving token. ', err);
-    });
+export const requestForToken = (messaging: Messaging) => {
+  try {
+    const currentToken = getToken(messaging, { vapidKey: VAPID_KEY });
+    if (currentToken) {
+      return currentToken;
+      // Perform any other neccessary action with the token
+    } else {
+      // Show permission request UI
+      console.log(
+        'No registration token available. Request permission to generate one.',
+      );
+    }
+  } catch (err) {
+    console.log('An error occurred while retrieving token. ', err);
+  }
+};
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
