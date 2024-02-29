@@ -32,16 +32,9 @@ const InputNumber = (
 ): JSX.Element => {
   const handleChangeInput: ChangeEventHandler<HTMLInputElement> = useCallback(
     (e) => {
-      const value = e.target.value;
+      const value: number = parseInt(e.target.value);
 
-      if (parseInt(value) <= 1) {
-        e.target.defaultValue = `${1}`;
-        e.target.value = `${1}`;
-
-        return;
-      }
-
-      if (onChange) return onChange(parseInt(e.target.value));
+      if (onChange) return onChange(isNaN(value) ? 0 : value);
     },
     [onChange],
   );
@@ -52,10 +45,10 @@ const InputNumber = (
         <ArrowIcon onClick={onIncrease} />
       </span>
       <input
-        min='1'
+        min='0'
         max='300'
         step='1'
-        value='1'
+        // value='1'
         className={`block w-full text-center bg-desertStorm py-2 ${className}`}
         aria-label='number'
         {...props}

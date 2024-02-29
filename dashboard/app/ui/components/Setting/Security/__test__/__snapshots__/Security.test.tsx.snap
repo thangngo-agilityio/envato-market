@@ -130,6 +130,11 @@ exports[`Security Page test cases renders Security with content 1`] = `
             </button>
           </div>
         </div>
+        <p
+          class="chakra-text css-e3wek8"
+        >
+          Minimum 8 characters
+        </p>
       </div>
       <div
         class="css-cqb6q2"

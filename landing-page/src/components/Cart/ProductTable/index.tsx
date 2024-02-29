@@ -42,18 +42,10 @@ const ProductTable = ({
       <tbody>
         {products.length ? (
           products.map(({ id, name, imageURL, amount, currency, quantity }) => {
-            const handleChange = (value: number) => {
-              onChangeQuantity(id, value);
-            };
-            const handleInCrease = () => {
-              onChangeQuantity(id, quantity + 1);
-            };
-            const handleDecrease = () => {
-              onChangeQuantity(id, quantity - 1);
-            };
-            const handleRemoveProduct = () => {
-              onRemoveProduct(id);
-            };
+            const handleChange = (value: number) => onChangeQuantity(id, value);
+            const handleInCrease = () => onChangeQuantity(id, quantity + 1);
+            const handleDecrease = () => onChangeQuantity(id, quantity - 1);
+            const handleRemoveProduct = () => onRemoveProduct(id);
 
             return (
               <tr
@@ -83,7 +75,7 @@ const ProductTable = ({
                   <div className='flex gap-2 sm:gap-3 items-center'>
                     <div className=''>
                       <InputNumber
-                        value={quantity}
+                        value={parseInt(`${quantity}`)}
                         onChange={handleChange}
                         onIncrease={handleInCrease}
                         onDecrease={handleDecrease}

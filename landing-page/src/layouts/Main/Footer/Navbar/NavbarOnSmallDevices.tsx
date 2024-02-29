@@ -4,10 +4,14 @@ import { useState, useCallback } from 'react';
 import { Button } from '@app/components';
 import { HamburgerMenuIcon } from '@app/components/icons';
 
-// Mocks
-import { NAVBAR } from '@app/mocks';
+// Types
+import type { TSidebarOption } from '../../SideBar';
 
-const NavbarOnSmallDevices = (): JSX.Element => {
+const NavbarOnSmallDevices = ({
+  options,
+}: {
+  options: TSidebarOption[];
+}): JSX.Element => {
   const [isOpen, onToggle] = useState<boolean>(false);
   const [isFirstToggle, onFirstToggle] = useState<boolean>(false);
 
@@ -34,7 +38,7 @@ const NavbarOnSmallDevices = (): JSX.Element => {
         className={`absolute bottom-7 bg-primary pr-10 mt-4 h-0 ${firstStyle} ${closeAnimate} ${openAnimate}`}
       >
         <ul>
-          {NAVBAR.map(
+          {options.map(
             ({ id, href, text }): JSX.Element => (
               <li key={id} className='py-2.5'>
                 <a

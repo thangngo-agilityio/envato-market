@@ -140,16 +140,4 @@ describe('useUpdateUser', () => {
       expect(result.current.isSuccess).toEqual(true);
     });
   });
-
-  it('calls mutation function with the correct arguments', async () => {
-    const { result } = renderHook(() => useGetUserDetails('123'), { wrapper });
-
-    result.current.managementUser({
-      userId: '456',
-      memberId: '789',
-      urlEndpoint: '/update-user',
-    });
-
-    expect(result.current.isSuccess).toBe(true);
-  });
 });

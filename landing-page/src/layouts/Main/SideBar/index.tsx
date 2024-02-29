@@ -1,17 +1,23 @@
+import { useEffect, type MouseEventHandler, useCallback } from 'react';
+import { navigate } from 'astro:transitions/client';
+
 // Components
 import Button from '@app/components/Button/index.tsx';
 import CloseSideBar from '@app/components/icons/CloseSideBar/index.tsx';
 
-// Mocks
-import { NAVBAR } from '@app/mocks';
-
 // Constant
 import { ROUTES } from '@app/constants';
-import { useEffect, type MouseEventHandler, useCallback } from 'react';
+
+export type TSidebarOption = {
+  id: number;
+  href: string;
+  text: string;
+};
 
 type TSidebarProps = {
-  pathName: string;
   isOpen?: boolean;
+  pathName: string;
+  options: TSidebarOption[];
   onToggle?: () => void;
 };
 
@@ -24,6 +30,7 @@ const hoverAfterStyle: string =
 const SideBarAllDevices = ({
   isOpen = false,
   pathName,
+  options,
   onToggle,
 }: TSidebarProps): JSX.Element => {
   const handleStopEvent: MouseEventHandler<HTMLHeadElement> = useCallback(
@@ -73,7 +80,7 @@ const SideBarAllDevices = ({
       </h1>
       <nav>
         <ul>
-          {NAVBAR.map(
+          {options.map(
             ({ id, href, text }): JSX.Element => (
               <li key={id}>
                 <a
@@ -81,6 +88,10 @@ const SideBarAllDevices = ({
                   className={`${
                     href === pathName ? '!text-[#956A04]' : ''
                   } text-secondary font-semibold hover:text-sun uppercase text-sm leading-[53px] py-5 relative ${hoverAfterStyle}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate(href);
+                  }}
                 >
                   {text}
                 </a>

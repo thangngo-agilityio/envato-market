@@ -1,3 +1,4 @@
+import { navigate } from 'astro:transitions/client';
 import { useForm } from 'react-hook-form';
 import { useCallback, useState } from 'react';
 
@@ -15,7 +16,7 @@ import { useIndicator, useToast } from '@app/hooks';
 import { ROUTES, SUBTOTAL, SUCCESS_MESSAGE } from '@app/constants';
 
 // Services
-import { checkout, deleteCart } from '@app/services';
+import { checkout } from '@app/services';
 
 // Types
 import type { IProductInCart } from '@app/interfaces';
@@ -35,7 +36,7 @@ const defaultForm: TRegisterForm = {
   zip: '',
 };
 
-const Checkout = ({ total, cart }: TCheckoutProps): JSX.Element => {
+const Checkout = ({ total }: TCheckoutProps): JSX.Element => {
   const { isOpen, onToggle } = useIndicator();
   const [currentTotal, setCurrentTotal] = useState<number>(total);
   const { toast, resetToast, pauseToast, showToast } = useToast();
@@ -47,32 +48,25 @@ const Checkout = ({ total, cart }: TCheckoutProps): JSX.Element => {
   const handleCheckout = useCallback(async () => {
     onToggle();
 
-    try {
-      await Promise.all([
-        checkout(watch(), total),
-        cart.map(({ id }) => deleteCart(id)),
-      ]);
-
-      showToast({
-        message: SUCCESS_MESSAGE.CHECKOUT,
-      });
-
-      setCurrentTotal(0);
-
-      reset(defaultForm);
-
-      window.location.replace(ROUTES.HOME);
-    } catch (error) {
-      const { message } = error as Error;
-
-      showToast({
-        message,
-        type: 'error',
-      });
-    } finally {
-      onToggle();
-    }
-  }, [onToggle, watch, total, cart, showToast, reset]);
+    checkout(watch(), {
+      onSuccess: () => {
+        showToast({
+          message: SUCCESS_MESSAGE.CHECKOUT,
+        });
+        setCurrentTotal(0);
+        reset(defaultForm);
+        navigate(ROUTES.HOME, {
+          history: 'replace',
+        });
+      },
+      onError: (message: string) =>
+        showToast({
+          message,
+          type: 'error',
+        }),
+      onSettled: onToggle,
+    });
+  }, [onToggle, watch, showToast, reset]);
 
   const isDisable: boolean = !Object.values(watch()).every((value) => value);
 

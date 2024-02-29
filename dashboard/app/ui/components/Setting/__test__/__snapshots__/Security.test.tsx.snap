@@ -44,7 +44,7 @@ exports[`FaqPage renders FaqPage component correctly 1`] = `
           >
             <input
               aria-label="oldPassword"
-              class="chakra-input css-1km5o5a"
+              class="chakra-input css-y1ysar"
               id="field-:r3:"
               name="oldPassword"
               role="textbox"
@@ -98,7 +98,7 @@ exports[`FaqPage renders FaqPage component correctly 1`] = `
           >
             <input
               aria-label="newPassword"
-              class="chakra-input css-1km5o5a"
+              class="chakra-input css-y1ysar"
               id="field-:r5:"
               name="newPassword"
               role="textbox"
@@ -130,6 +130,11 @@ exports[`FaqPage renders FaqPage component correctly 1`] = `
             </button>
           </div>
         </div>
+        <p
+          class="chakra-text css-1iathfz"
+        >
+          Minimum 8 characters
+        </p>
       </div>
       <div
         class="css-szawqj"

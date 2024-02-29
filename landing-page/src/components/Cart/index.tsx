@@ -1,3 +1,5 @@
+import { navigate } from 'astro:transitions/client';
+
 import { useCallback, useMemo, useState } from 'react';
 
 // Components
@@ -18,7 +20,7 @@ import type { IProductInCart } from '@app/interfaces';
 import { deleteCart, updateQuantity } from '@app/services';
 
 // Hooks
-import { useIndicator, useToast } from '@app/hooks';
+import { useDebounce, useIndicator, useToast } from '@app/hooks';
 
 type TCartProps = {
   data: IProductInCart[];
@@ -39,60 +41,58 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
     [cart],
   );
 
-  const handleChangeQuantity = useCallback(
-    async (productId: string, quantity: number): Promise<void> => {
+  const debounceChangeQuantity = useDebounce(
+    (productId: string, quantity: string) => {
+      if (parseInt(quantity) <= 0) {
+        return handleRemoveProductItem(productId);
+      }
+
       onToggle();
 
-      try {
-        await updateQuantity(productId, quantity);
-        setCart((prev: IProductInCart[]) =>
-          prev.map((product) => {
-            if (product.id === productId && quantity > 0)
-              return {
-                ...product,
-                quantity,
-              };
-
-            return product;
-          }),
-        );
-      } catch (error) {
-        const { message } = error as Error;
-
-        showToast({ message, type: 'error' });
-      } finally {
-        onToggle();
-      }
+      updateQuantity(productId, parseInt(quantity), {
+        onError: (message: string) => showToast({ message, type: 'error' }),
+        onSettled: onToggle,
+      });
     },
     [onToggle, showToast],
+  );
+
+  const handleChangeQuantity = useCallback(
+    async (productId: string, quantity: number): Promise<void> => {
+      setCart((prev: IProductInCart[]) =>
+        prev.map((product) => {
+          if (product.id === productId)
+            return {
+              ...product,
+              quantity,
+            };
+
+          return product;
+        }),
+      );
+      debounceChangeQuantity(productId, `${quantity}`);
+    },
+    [debounceChangeQuantity],
   );
 
   const handleRemoveProductItem = useCallback(
     async (id: string) => {
       onToggle();
-
-      try {
-        await deleteCart(id);
-        setCart((prev: IProductInCart[]) =>
-          prev.filter((product) => product.id !== id),
-        );
-        showToast({ message: SUCCESS_MESSAGE.REMOVE_CART });
-      } catch (error) {
-        const { message } = error as Error;
-
-        showToast({ message, type: 'error' });
-      } finally {
-        onToggle();
-      }
+      await deleteCart(id, {
+        onSuccess: () => {
+          setCart((prev: IProductInCart[]) =>
+            prev.filter((product) => product.id !== id),
+          );
+          showToast({ message: SUCCESS_MESSAGE.REMOVE_CART });
+        },
+        onError: (message: string) => showToast({ message, type: 'error' }),
+        onSettled: onToggle,
+      });
     },
     [onToggle, showToast],
   );
 
-  const handleCheckout = useCallback(() => {
-    if (window) {
-      window.location.assign(ROUTES.CHECKOUT);
-    }
-  }, []);
+  const handleCheckout = useCallback(() => navigate(ROUTES.CHECKOUT), []);
 
   const isDisableSubmit: boolean = !cart.length;
   const subtotal: number = isDisableSubmit ? 0 : SUBTOTAL;
