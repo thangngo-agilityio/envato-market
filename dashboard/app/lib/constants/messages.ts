@@ -70,6 +70,14 @@ export const ERROR_MESSAGES = {
     title: 'Recover password failed',
     description: 'An error has occurred when checking your email address',
   },
+  LAST_MESSAGES_FAIL: {
+    title: 'Get last messages failed',
+    description: 'An error occurred while getting last messages',
+  },
+  SELECT_MEMBER_CHAT: {
+    title: 'Select member chat failed',
+    description: 'An error occurred while selecting member chat',
+  },
 };
 
 export const SUCCESS_MESSAGES = {
