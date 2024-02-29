@@ -11,6 +11,7 @@ const config: StorybookConfig = {
     '@storybook/addon-interactions',
     '@chakra-ui/storybook-addon',
     'storybook-addon-next-router',
+    '@storybook/preview-api'
   ],
 
   framework: '@storybook/nextjs',

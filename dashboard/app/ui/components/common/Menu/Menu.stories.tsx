@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Box } from '@chakra-ui/react';
+import { useArgs } from '@storybook/preview-api';
 
 // components
 import { Menu } from '@/ui/components';
@@ -40,7 +41,7 @@ export default meta;
 
 type Story = StoryObj<typeof Menu>;
 
-export const Epxand: Story = {
+export const Expand: Story = {
   args: {
     listItem: OTHER_ITEM_LIST,
     title: 'Expand Menu Component',
@@ -52,5 +53,19 @@ export const Minify: Story = {
     title: 'Minify Menu Component',
     listItem: HELP_ITEM_LIST,
     isExpandSidebar: true,
+  },
+  render: function Render(props) {
+    const [{ isExpandSidebar }, updateArgs] = useArgs();
+    const handleClickItem = () => updateArgs({ isOpen: !isExpandSidebar });
+
+    return (
+      <Box w={isExpandSidebar ? 5 : 400}>
+        <Menu
+          {...props}
+          isExpandSidebar={isExpandSidebar}
+          onClickMenuItem={handleClickItem}
+        />
+      </Box>
+    );
   },
 };

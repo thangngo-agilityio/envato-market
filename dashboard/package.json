@@ -51,6 +51,7 @@
     "@storybook/addon-onboarding": "1.0.10",
     "@storybook/blocks": "7.6.7",
     "@storybook/nextjs": "7.6.7",
+    "@storybook/preview-api": "^7.6.17",
     "@storybook/react": "7.6.7",
     "@storybook/test": "7.6.7",
     "@testing-library/jest-dom": "^6.1.6",
