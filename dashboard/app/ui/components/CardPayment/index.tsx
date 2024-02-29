@@ -3,6 +3,7 @@
 import { FormEvent, memo, useCallback } from 'react';
 import { Box, Heading, useDisclosure, useToast } from '@chakra-ui/react';
 import { SubmitHandler } from 'react-hook-form';
+import { AxiosError } from 'axios';
 
 // Hooks
 import {
@@ -16,6 +17,9 @@ import {
 
 // Components
 import { PinCodeModal } from '@/ui/components';
+import CardBalance from './CardBalance';
+import UserSelector from './UserSelector';
+import EnterMoney from './EnterMoney';
 
 // Stores
 import { authStore } from '@/lib/stores';
@@ -27,10 +31,10 @@ import { TPinCodeForm, TSendMoney } from '@/lib/interfaces';
 import { ERROR_MESSAGES, STATUS, SUCCESS_MESSAGES } from '@/lib/constants';
 
 // Utils
-import { customToast } from '@/lib/utils';
-import CardBalance from './CardBalance';
-import UserSelector from './UserSelector';
-import EnterMoney from './EnterMoney';
+import { customToast, getErrorMessageFromAxiosError } from '@/lib/utils';
+
+// services
+import { TMoneyResponse } from '@/lib/services';
 
 export type TTransfer = {
   amount: string;
@@ -109,6 +113,36 @@ const CardPaymentComponent = (): JSX.Element => {
 
   const hasPinCode = user?.pinCode;
 
+  const handleTransferMoneySuccess = (success: {
+    title: string;
+    description: string;
+  }) => {
+    toast(customToast(success.title, success.description, STATUS.SUCCESS));
+    if (user?.bonusTimes) {
+      setUser({
+        user: {
+          ...user,
+          bonusTimes: --user.bonusTimes,
+        },
+      });
+    }
+  };
+
+  const handleTransferMoneyError = (
+    error: Error,
+    defaultError: {
+      title: string;
+      description: string;
+    },
+  ) => {
+    const responseErrorMessage = getErrorMessageFromAxiosError(
+      error as AxiosError<TMoneyResponse>,
+      defaultError.description,
+    );
+
+    toast(customToast(defaultError.title, responseErrorMessage, STATUS.ERROR));
+  };
+
   const handleOnSubmitSendMoney = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!hasPinCode) {
@@ -126,7 +160,12 @@ const CardPaymentComponent = (): JSX.Element => {
         amount: Number(data.amount),
       };
 
-      sendMoneyToUserWallet(submitData);
+      sendMoneyToUserWallet(submitData, {
+        onSuccess: () =>
+          handleTransferMoneySuccess(SUCCESS_MESSAGES.SEND_MONEY),
+        onError: (error) =>
+          handleTransferMoneyError(error, ERROR_MESSAGES.ADD_MONEY),
+      });
       resetSendMoneyForm();
     },
     [getMemberId, resetSendMoneyForm, sendMoneyToUserWallet],
