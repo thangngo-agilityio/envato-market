@@ -6,7 +6,7 @@ import { AxiosResponse } from 'axios';
 import { useAuth } from '@/lib/hooks';
 
 // Services
-import { AuthenticationHttpService } from '@/lib/services';
+import { MainHttpService } from '@/lib/services';
 
 // Constants
 import { ERROR_MESSAGES, LOGOUT_TIME } from '@/lib/constants';
@@ -50,7 +50,7 @@ describe('useAuth', () => {
 
   it('SignIn fail', async () => {
     try {
-      jest.spyOn(AuthenticationHttpService, 'post').mockResolvedValue({
+      jest.spyOn(MainHttpService, 'post').mockResolvedValue({
         data: undefined,
       } as AxiosResponse);
       const {
@@ -90,7 +90,7 @@ describe('useAuth', () => {
   // });
 
   it('SignUp success', async () => {
-    jest.spyOn(AuthenticationHttpService, 'post').mockResolvedValue({
+    jest.spyOn(MainHttpService, 'post').mockResolvedValue({
       data: SIGN_IN_PARAM,
     } as AxiosResponse);
 
