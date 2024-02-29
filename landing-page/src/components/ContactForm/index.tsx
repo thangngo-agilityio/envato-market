@@ -1,5 +1,9 @@
 import type { FormEvent } from 'react';
-import { type UseFormRegister } from 'react-hook-form';
+import { Controller, type Control } from 'react-hook-form';
+
+// Components
+import { Input, Select } from '..';
+import { CHECKOUT_ADDRESS } from '@app/constants';
 
 export type TRegisterForm = {
   firstName: string;
@@ -12,11 +16,11 @@ export type TRegisterForm = {
 };
 
 type TContactFormProps = {
-  register: UseFormRegister<TRegisterForm>;
+  control: Control<TRegisterForm>;
   onSubmit?: () => void;
 };
 
-const ContactForm = ({ register, onSubmit }: TContactFormProps) => {
+const ContactForm = ({ control, onSubmit }: TContactFormProps) => {
   // Styles CSS
   const inputStyle: string =
     'placeholder-onceAll text-elementary text-[14px] w-full border-0 rounded-none bg-desertStorm p-5 focus:outline-none';
@@ -31,64 +35,98 @@ const ContactForm = ({ register, onSubmit }: TContactFormProps) => {
       }}
     >
       <div className='md:!w-[50%] md:pr-[15px]'>
-        <input
-          className={`${inputStyle}`}
-          placeholder='First Name'
-          {...register('firstName', { required: true, maxLength: 80 })}
+        <Controller
+          control={control}
+          name='firstName'
+          render={({ field }) => (
+            <Input
+              className={`${inputStyle}`}
+              placeholder='First Name'
+              {...field}
+            />
+          )}
         />
       </div>
       <div className='md:!w-[50%] md:pl-[15px]'>
-        <input
-          className={`${inputStyle}`}
-          placeholder='Last Name'
-          {...register('lastName', { required: true, maxLength: 100 })}
+        <Controller
+          control={control}
+          rules={{ required: true, maxLength: 100 }}
+          name='lastName'
+          render={({ field }) => (
+            <Input
+              className={`${inputStyle}`}
+              placeholder='Last Name'
+              {...field}
+            />
+          )}
         />
       </div>
       <div>
-        <input
-          className={`${inputStyle}`}
-          placeholder='Email'
-          {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
+        <Controller
+          control={control}
+          rules={{ required: true, pattern: /^\S+@\S+$/i }}
+          name='email'
+          render={({ field }) => (
+            <Input className={`${inputStyle}`} placeholder='Email' {...field} />
+          )}
         />
       </div>
       <div>
-        <select
-          aria-label='Select'
-          className={`${inputStyle}`}
-          {...register('state', { required: true })}
-        >
-          <option value=''>Choose...</option>
-          <option value='United States'>United States</option>
-          <option value='Germany'>Germany</option>
-          <option value='France'>France</option>
-          <option value='India'>India</option>
-          <option value='Australia'>Australia</option>
-          <option value='Brazil'>Brazil</option>
-        </select>
+        <Controller
+          control={control}
+          rules={{ required: true }}
+          name='state'
+          render={({ field }) => (
+            <Select
+              options={CHECKOUT_ADDRESS}
+              className={`${inputStyle}`}
+              {...field}
+            />
+          )}
+        />
       </div>
       <div>
-        <input
-          className={`${inputStyle} mb-4`}
-          placeholder='City'
-          {...register('city', { required: true })}
+        <Controller
+          control={control}
+          rules={{ required: true }}
+          name='city'
+          render={({ field }) => (
+            <Input
+              className={`${inputStyle} mb-4`}
+              placeholder='City'
+              {...field}
+            />
+          )}
         />
       </div>
       <div className='md:!w-[50%] md:pr-[15px]'>
-        <input
-          className={`${inputStyle}`}
-          placeholder='Street'
-          {...register('street', { required: true })}
+        <Controller
+          control={control}
+          rules={{ required: true }}
+          name='street'
+          render={({ field }) => (
+            <Input
+              className={`${inputStyle}`}
+              placeholder='Street'
+              {...field}
+            />
+          )}
         />
       </div>
       <div className='md:!w-[50%] md:pr-[15px]'>
-        <input
-          className={`${inputStyle}`}
-          placeholder='Zip Code'
-          {...register('zip', { required: true, maxLength: 100 })}
+        <Controller
+          control={control}
+          rules={{ required: true, maxLength: 100 }}
+          name='zip'
+          render={({ field }) => (
+            <Input
+              className={`${inputStyle}`}
+              placeholder='Zip Code'
+              {...field}
+            />
+          )}
         />
       </div>
-
-      {/* <button type='submit'></button> */}
     </div>
   );
 };

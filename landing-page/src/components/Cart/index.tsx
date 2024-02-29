@@ -64,7 +64,7 @@ const Cart = ({ data }: TCartProps): JSX.Element => {
           if (product.id === productId)
             return {
               ...product,
-              quantity,
+              quantity: quantity <= 0 ? 0 : quantity,
             };
 
           return product;
