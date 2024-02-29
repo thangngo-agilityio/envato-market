@@ -109,8 +109,10 @@ export const useGetUserDetails = (
     queryParam,
   );
 
+  console.log(queryParam);
+
   const { data: listUserDetail, ...query } = useQuery({
-    queryKey: [END_POINTS.USERS, searchName],
+    queryKey: [END_POINTS.USERS, queryParam?.name],
     queryFn: () => getAllUserDetailsExceptWithId(id, ''),
   });
 
@@ -127,7 +129,7 @@ export const useGetUserDetails = (
   };
 };
 
-export const useManagementUser = () => {
+export const useManagementUser = (querySearch = '') => {
   const queryClient = useQueryClient();
 
   const {
@@ -141,10 +143,18 @@ export const useManagementUser = () => {
     }: Partial<
       TUserDetail & { memberId: string; userId: string; urlEndpoint: string }
     >) => await userHttpRequest.put<TUserDetail>(urlEndpoint, user),
-    onSettled: () => {
-      queryClient.invalidateQueries({
-        queryKey: [END_POINTS.USERS],
-      });
+    onSuccess: (_, variables) => {
+      queryClient.setQueryData(
+        [END_POINTS.USERS, querySearch],
+        (oldData: TUserDetail[]) => {
+          const dataUpdated = oldData.map((item) =>
+            item._id === variables.memberId
+              ? { ...item, isBlock: !item.isBlock }
+              : item,
+          );
+          return dataUpdated;
+        },
+      );
     },
   });
 

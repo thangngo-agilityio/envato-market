@@ -212,10 +212,33 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
           END_POINTS.EDIT_TRANSACTION,
           transaction,
         ),
-      onSettled: () => {
-        queryClient.invalidateQueries({
-          queryKey: [END_POINTS.TRANSACTIONS],
-        });
+      onSuccess: (_, variables) => {
+        queryClient.setQueryData(
+          [END_POINTS.TRANSACTIONS, searchName, searchMonth],
+          (oldData: TTransaction[]) => {
+            const dataUpdated = oldData.map((item) =>
+              item._id === variables.transactionId
+                ? {
+                    ...item,
+                    customer: {
+                      ...item.customer,
+                      firstName: variables.firstName,
+                      lastName: variables.lastName,
+                      address: {
+                        state: variables.state,
+                        street: variables.street,
+                        city: variables.city,
+                        zip: variables.zip,
+                      },
+                    },
+                  }
+                : item,
+            );
+            console.log('dataUpdated', oldData);
+
+            return dataUpdated;
+          },
+        );
       },
     });
 
@@ -230,10 +253,21 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
           END_POINTS.DELETE_TRANSACTION,
           transaction,
         ),
-      onSettled: () => {
-        queryClient.invalidateQueries({
-          queryKey: [END_POINTS.TRANSACTIONS],
-        });
+      onSuccess: (_, variables) => {
+        queryClient.setQueryData(
+          [END_POINTS.TRANSACTIONS, searchName, searchMonth],
+          (oldData: TTransaction[]) => {
+            const dataUpdated = oldData.map((item) =>
+              item._id === variables.transactionId
+                ? {
+                    ...item,
+                    transactionStatus: TRANSACTION_STATUS_ENUM.ARCHIVED,
+                  }
+                : item,
+            );
+            return dataUpdated;
+          },
+        );
       },
     });
 
