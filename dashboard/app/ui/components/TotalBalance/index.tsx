@@ -90,7 +90,7 @@ const TotalBalanceComponent = (): JSX.Element => {
 
   const bonusTimes = authStore((state): number => state.user?.bonusTimes ?? 0);
 
-  const handleTransferMoneySuccess = (defaultSuccess: {
+  const handleToastSuccess = (defaultSuccess: {
     title: string;
     description: string;
   }) => {
@@ -111,7 +111,7 @@ const TotalBalanceComponent = (): JSX.Element => {
     }
   };
 
-  const handleTransferMoneyError = (
+  const handleToastError = (
     error: Error,
     defaultError: {
       title: string;
@@ -138,9 +138,8 @@ const TotalBalanceComponent = (): JSX.Element => {
       };
 
       addMoneyToUserWallet(dataToSubmit, {
-        onSuccess: () => handleTransferMoneySuccess(SUCCESS_MESSAGES.ADD_MONEY),
-        onError: (error) =>
-          handleTransferMoneyError(error, ERROR_MESSAGES.ADD_MONEY),
+        onSuccess: () => handleToastSuccess(SUCCESS_MESSAGES.ADD_MONEY),
+        onError: (error) => handleToastError(error, ERROR_MESSAGES.ADD_MONEY),
       });
     },
     [addMoneyToUserWallet],

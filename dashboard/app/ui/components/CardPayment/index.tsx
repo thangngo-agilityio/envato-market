@@ -3,6 +3,7 @@
 import { FormEvent, memo, useCallback } from 'react';
 import { Box, Heading, useDisclosure, useToast } from '@chakra-ui/react';
 import { SubmitHandler } from 'react-hook-form';
+import { AxiosError } from 'axios';
 
 // Hooks
 import {
@@ -16,6 +17,9 @@ import {
 
 // Components
 import { PinCodeModal } from '@/ui/components';
+import CardBalance from './CardBalance';
+import UserSelector from './UserSelector';
+import EnterMoney from './EnterMoney';
 
 // Stores
 import { authStore } from '@/lib/stores';
@@ -28,10 +32,8 @@ import { ERROR_MESSAGES, STATUS, SUCCESS_MESSAGES } from '@/lib/constants';
 
 // Utils
 import { customToast, getErrorMessageFromAxiosError } from '@/lib/utils';
-import CardBalance from './CardBalance';
-import UserSelector from './UserSelector';
-import EnterMoney from './EnterMoney';
-import { AxiosError } from 'axios';
+
+// services
 import { TMoneyResponse } from '@/lib/services';
 
 export type TTransfer = {
@@ -111,7 +113,7 @@ const CardPaymentComponent = (): JSX.Element => {
 
   const hasPinCode = user?.pinCode;
 
-  const handleTransferMoneySuccess = (defaultSuccess: {
+  const handleToastSuccess = (defaultSuccess: {
     title: string;
     description: string;
   }) => {
@@ -132,7 +134,7 @@ const CardPaymentComponent = (): JSX.Element => {
     }
   };
 
-  const handleTransferMoneyError = (
+  const handleToastError = (
     error: Error,
     defaultError: {
       title: string;
@@ -165,10 +167,8 @@ const CardPaymentComponent = (): JSX.Element => {
       };
 
       sendMoneyToUserWallet(submitData, {
-        onSuccess: () =>
-          handleTransferMoneySuccess(SUCCESS_MESSAGES.SEND_MONEY),
-        onError: (error) =>
-          handleTransferMoneyError(error, ERROR_MESSAGES.ADD_MONEY),
+        onSuccess: () => handleToastSuccess(SUCCESS_MESSAGES.SEND_MONEY),
+        onError: (error) => handleToastError(error, ERROR_MESSAGES.ADD_MONEY),
       });
       resetSendMoneyForm();
     },
