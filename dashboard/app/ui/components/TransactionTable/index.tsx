@@ -272,7 +272,7 @@ const TransactionTableComponent = ({
   );
 
   const renderSpent = useCallback(({ amount, type }: TTransaction) => {
-    const isAddMoney = type === TYPE.ADD_MONEY;
+    const isSendMoney = type === TYPE.SEND_MONEY;
 
     return (
       <Td
@@ -289,7 +289,7 @@ const TransactionTableComponent = ({
           fontSize="md"
           fontWeight="semibold"
           whiteSpace="break-spaces"
-          color={isAddMoney ? 'text.currencyColor' : 'red.600'}
+          color={isSendMoney ? 'red.600' : 'text.currencyColor'}
           noOfLines={1}
           w={{ base: 100, md: 150, '3xl': 200, '5xl': 110, '7xl': 200 }}
           flex={1}
