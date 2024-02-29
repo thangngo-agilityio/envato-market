@@ -14,7 +14,7 @@ import {
 } from '@/lib/constants';
 
 // Services
-import { AuthenticationHttpService } from '@/lib/services';
+import { MainHttpService } from '@/lib/services';
 
 // Types
 import { TUserDetail } from '@/lib/interfaces/user';
@@ -102,7 +102,7 @@ export const useAuth = () => {
         const { uid } = await handleSignInWithFirebase(email, password);
 
         const { data }: AxiosResponse<TUserAxiosResponse | undefined> =
-          await AuthenticationHttpService.post<TUserAxiosResponse | undefined>(
+          await MainHttpService.post<TUserAxiosResponse | undefined>(
             `${END_POINTS.SIGN_IN}`,
             {
               email,
@@ -146,7 +146,7 @@ export const useAuth = () => {
       const { email, password, firstName, lastName, fcmToken } = userInfo;
       try {
         const { data }: AxiosResponse<TUserAxiosResponse | undefined> =
-          await AuthenticationHttpService.post<TUserAxiosResponse | undefined>(
+          await MainHttpService.post<TUserAxiosResponse | undefined>(
             `${END_POINTS.SIGN_UP}`,
             {
               ...userInfo,

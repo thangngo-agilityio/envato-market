@@ -11,7 +11,7 @@ import { TSearchTransaction } from '.';
 
 // Services
 import {
-  UsersHttpService,
+  MainHttpService,
   getAllUserDetailsExceptWithId,
   getSupports,
   userHttpRequest,
@@ -23,7 +23,7 @@ import { END_POINTS } from '@/lib/constants';
 export const useUpdateUser = () => {
   const { error, ...rest } = useMutation({
     mutationFn: async (user: TUserDetail) =>
-      await UsersHttpService.put<TUserDetail>(END_POINTS.USERS, user),
+      await MainHttpService.put<TUserDetail>(END_POINTS.USERS, user),
   });
 
   return {
@@ -37,7 +37,7 @@ export const useUpdatePassword = () => {
     mutationFn: async (passwordData: TPassword) => {
       const { oldPassword, newPassword, memberId } = passwordData;
 
-      await UsersHttpService.put<TPassword>(`${END_POINTS.UPDATE_PASSWORD}`, {
+      await MainHttpService.put<TPassword>(`${END_POINTS.UPDATE_PASSWORD}`, {
         oldPassword,
         newPassword,
         memberId,
@@ -82,7 +82,7 @@ export const useCreateIssues = () => {
         }
       >,
     ) =>
-      await UsersHttpService.post<TUserDetail>(
+      await MainHttpService.post<TUserDetail>(
         `${END_POINTS.SUPPORT}`,
         supportList,
         {},

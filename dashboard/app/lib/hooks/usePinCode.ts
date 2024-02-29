@@ -6,7 +6,7 @@ import { useDisclosure } from '@chakra-ui/react';
 import { TPinCodeForm } from '@/lib/interfaces';
 
 // Services
-import { AuthenticationHttpService } from '@/lib/services';
+import { MainHttpService } from '@/lib/services';
 
 // Constants
 import { END_POINTS } from '@/lib/constants';
@@ -17,7 +17,7 @@ export type ResponsePinCode = {
 export const usePinCode = () => {
   const handleSetPinCode = useCallback(async (data: TPinCodeForm) => {
     try {
-      return await AuthenticationHttpService.post<ResponsePinCode>(
+      return await MainHttpService.post<ResponsePinCode>(
         `${END_POINTS.CREATE_PIN}`,
         {
           pinCode: data.pinCode,
@@ -34,7 +34,7 @@ export const usePinCode = () => {
 
   const handleConfirmPinCode = useCallback(async (data: TPinCodeForm) => {
     try {
-      return await AuthenticationHttpService.post<ResponsePinCode>(
+      return await MainHttpService.post<ResponsePinCode>(
         `${END_POINTS.CONFIRM_PIN}`,
         {
           pinCode: data.pinCode,

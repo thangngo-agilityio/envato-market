@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 
 // Constants
-import { BASE_API, STATISTICAL_API } from '@/lib/constants';
+import { STATISTICAL_API } from '@/lib/constants';
 
 class HttpService {
   private readonly baseApi: string;
@@ -41,10 +41,4 @@ class HttpService {
   }
 }
 
-export const UsersHttpService = new HttpService(STATISTICAL_API);
-
-export const BaseHttpService = new HttpService(BASE_API);
-
-export const StatisticalHttpService = new HttpService(STATISTICAL_API);
-
-export const AuthenticationHttpService = new HttpService(STATISTICAL_API);
+export const MainHttpService = new HttpService(STATISTICAL_API);
