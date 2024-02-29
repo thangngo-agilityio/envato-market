@@ -113,17 +113,11 @@ const CardPaymentComponent = (): JSX.Element => {
 
   const hasPinCode = user?.pinCode;
 
-  const handleToastSuccess = (defaultSuccess: {
+  const handleTransferMoneySuccess = (success: {
     title: string;
     description: string;
   }) => {
-    toast(
-      customToast(
-        defaultSuccess.title,
-        defaultSuccess.description,
-        STATUS.SUCCESS,
-      ),
-    );
+    toast(customToast(success.title, success.description, STATUS.SUCCESS));
     if (user?.bonusTimes) {
       setUser({
         user: {
@@ -134,7 +128,7 @@ const CardPaymentComponent = (): JSX.Element => {
     }
   };
 
-  const handleToastError = (
+  const handleTransferMoneyError = (
     error: Error,
     defaultError: {
       title: string;
@@ -167,8 +161,10 @@ const CardPaymentComponent = (): JSX.Element => {
       };
 
       sendMoneyToUserWallet(submitData, {
-        onSuccess: () => handleToastSuccess(SUCCESS_MESSAGES.SEND_MONEY),
-        onError: (error) => handleToastError(error, ERROR_MESSAGES.ADD_MONEY),
+        onSuccess: () =>
+          handleTransferMoneySuccess(SUCCESS_MESSAGES.SEND_MONEY),
+        onError: (error) =>
+          handleTransferMoneyError(error, ERROR_MESSAGES.ADD_MONEY),
       });
       resetSendMoneyForm();
     },
