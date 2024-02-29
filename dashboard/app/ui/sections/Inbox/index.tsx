@@ -9,10 +9,11 @@ import {
   Grid,
   GridItem,
   useBreakpointValue,
+  useToast,
 } from '@chakra-ui/react';
 
 // Firebase
-import { convertTimeMessage, db } from '@/lib/utils';
+import { convertTimeMessage, customToast, db } from '@/lib/utils';
 import {
   DocumentData,
   DocumentReference,
@@ -36,7 +37,7 @@ import { getUsers, useGetUserDetails } from '@/lib/hooks';
 
 // Store
 import { authStore } from '@/lib/stores';
-import { FIREBASE_CHAT, IMAGES } from '@/lib/constants';
+import { ERROR_MESSAGES, FIREBASE_CHAT, IMAGES, STATUS } from '@/lib/constants';
 
 // Interfaces
 import { TMessages } from '@/lib/interfaces';
@@ -64,6 +65,7 @@ const ChatMemberList = () => {
   const uidUser = searchParams?.get('id') as string;
   const { filterDataUser } = useGetUserDetails(user?.id as string);
   const userChat = filterDataUser?.find((user) => user.uid === uidUser);
+  const toast = useToast();
 
   const handleGetMessage = async (
     chatDocSnap: DocumentSnapshot<DocumentData, DocumentData>,
@@ -87,7 +89,7 @@ const ChatMemberList = () => {
     });
   };
 
-  const handleMemberSelect = async (user: {
+  const handleSelectMember = async (user: {
     uid: string;
     avatarUrl: string;
     displayName: string;
@@ -112,12 +114,18 @@ const ChatMemberList = () => {
         user.avatarUrl,
       );
     } catch (error) {
-      console.error('Error handling member click:', error);
+      toast(
+        customToast(
+          ERROR_MESSAGES.SELECT_MEMBER_CHAT.title,
+          ERROR_MESSAGES.SELECT_MEMBER_CHAT.description,
+          STATUS.ERROR,
+        ),
+      );
     }
   };
 
   useEffect(() => {
-    const getListLastMessages = async () => {
+    const getLastMessagesByUserId = async () => {
       try {
         const chatDocRef = doc(db, FIREBASE_CHAT.USER_CHATS, `${user?.uid}`);
         const unsub = onSnapshot(chatDocRef, (doc) => {
@@ -128,12 +136,18 @@ const ChatMemberList = () => {
           unsub();
         };
       } catch (error) {
-        console.error('Error fetching chats:', error);
+        toast(
+          customToast(
+            ERROR_MESSAGES.LAST_MESSAGES_FAIL.title,
+            ERROR_MESSAGES.LAST_MESSAGES_FAIL.description,
+            STATUS.ERROR,
+          ),
+        );
       }
     };
 
-    user?.uid && getListLastMessages();
-  }, [user?.uid]);
+    user?.uid && getLastMessagesByUserId();
+  }, [toast, user?.uid]);
 
   const dataChats = useMemo(
     () => chats && Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date),
@@ -206,7 +220,7 @@ const ChatMemberList = () => {
                 <ChatMember
                   key={chat[0]}
                   avatar={chat[1].userInfo?.avatarUrl}
-                  onClick={() => handleMemberSelect(chat[1].userInfo)}
+                  onClick={() => handleSelectMember(chat[1].userInfo)}
                 />
               ))}
           </Flex>
@@ -250,7 +264,7 @@ const ChatMemberList = () => {
                   key={chat[0]}
                   avatar={chat[1].userInfo?.avatarUrl}
                   name={chat[1].userInfo?.displayName}
-                  onClick={() => handleMemberSelect(chat[1].userInfo)}
+                  onClick={() => handleSelectMember(chat[1].userInfo)}
                   icon={
                     <FallbackImage
                       boxSize={4}
