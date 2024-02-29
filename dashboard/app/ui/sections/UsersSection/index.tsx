@@ -62,7 +62,9 @@ const UsersSections = () => {
     name: get('name') || '',
   });
 
-  const { isSendRequestUser, managementUser } = useManagementUser();
+  const { isSendRequestUser, managementUser } = useManagementUser(
+    get('name') || '',
+  );
 
   const {
     data,

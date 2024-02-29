@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 
 // Services
-import { getStatistical, StatisticalHttpService } from '@/lib/services';
+import { getStatistical, MainHttpService } from '@/lib/services';
 
 // Mocks
 import { STATISTICAL } from '@/lib/mocks';
@@ -14,7 +14,7 @@ type TError = {
 describe('Statistics service', () => {
   it('Get statistics (resolve)', async () => {
     jest
-      .spyOn(StatisticalHttpService, 'get')
+      .spyOn(MainHttpService, 'get')
       .mockResolvedValue({ data: STATISTICAL } as AxiosResponse);
 
     const statistical = await getStatistical(END_POINTS.STATISTICS);
@@ -24,7 +24,7 @@ describe('Statistics service', () => {
 
   it('Get statistics (reject)', async () => {
     try {
-      jest.spyOn(StatisticalHttpService, 'get').mockRejectedValue({
+      jest.spyOn(MainHttpService, 'get').mockRejectedValue({
         isError: true,
       });
 

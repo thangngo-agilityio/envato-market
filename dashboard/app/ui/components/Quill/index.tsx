@@ -20,14 +20,15 @@ import { authStore } from '@/lib/stores';
 import { colors } from '@/ui/themes/bases';
 
 // Hooks
-import { getUserList } from '@/lib/hooks';
 import { sendMessage } from '@/lib/utils';
 
 interface QuillProps {
   userUid: string | undefined;
+  avatarUser: string;
+  nameUser: string;
 }
 
-const Quill = ({ userUid }: QuillProps) => {
+const Quill = ({ userUid, avatarUser, nameUser }: QuillProps) => {
   const currentUser = authStore((state) => state.user);
 
   // TODO: get from list users
@@ -62,8 +63,6 @@ const Quill = ({ userUid }: QuillProps) => {
 
   const handleSend = useCallback(
     async (data: TMessages) => {
-      const usersData = await getUserList(currentUser);
-      const userChat = usersData.find((item) => item.uid === userUid);
       const filterMessage = data.text.replace(/<\/?[^>]+(>|$)/g, '');
 
       const dataMessage: TMessages = {
@@ -71,24 +70,22 @@ const Quill = ({ userUid }: QuillProps) => {
         text: filterMessage,
       };
 
-      if (usersData) {
-        const idRoomChat = `${currentUser?.uid}${userChat?.uid}`;
-        const adminId = currentUser?.uid as string;
+      const idRoomChat = `${currentUser?.uid}${userUid}`;
+      const adminId = currentUser?.uid as string;
 
-        await sendMessage(
-          dataMessage,
-          idRoomChat,
-          userUid || '',
-          adminId,
-          userChat?.avatarURL || '',
-          currentUser?.avatarURL || '',
-          `${userChat?.firstName} ${userChat?.lastName}`,
-        );
+      await sendMessage(
+        dataMessage,
+        idRoomChat,
+        userUid || '',
+        adminId,
+        avatarUser,
+        currentUser?.avatarURL || '',
+        nameUser,
+      );
 
-        reset();
-      }
+      reset();
     },
-    [reset, currentUser, userUid],
+    [currentUser, userUid, avatarUser, nameUser, reset],
   );
 
   const handleOnKeyDown = useCallback(

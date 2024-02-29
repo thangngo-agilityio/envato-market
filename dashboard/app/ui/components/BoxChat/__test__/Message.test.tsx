@@ -7,11 +7,6 @@ import { IMAGES } from '@/lib/constants';
 // Message
 import Message from '@/ui/components/BoxChat/Message';
 
-jest.mock('@/lib/hooks', () => ({
-  ...jest.requireActual('@/lib/hooks'),
-  getUsers: jest.fn(),
-}));
-
 describe('Message component', () => {
   const mockLocaleTime = new Date(1702543868252).toLocaleTimeString([], {
     hour: 'numeric',
@@ -26,6 +21,7 @@ describe('Message component', () => {
         avatarUser={IMAGES.CHAT_USER_AVATAR.url}
         localeTime={mockLocaleTime}
         senderId="1"
+        superAdminId="1"
       />,
     );
     expect(container).toMatchSnapshot();
@@ -35,6 +31,7 @@ describe('Message component', () => {
     const { getByTestId } = render(
       <Message
         senderId="1"
+        superAdminId="1"
         content="Hello"
         avatarAdmin={IMAGES.CHAT_USER_AVATAR.url}
         avatarUser={IMAGES.CHAT_USER_AVATAR.url}
@@ -49,6 +46,7 @@ describe('Message component', () => {
     const { getByTestId } = render(
       <Message
         senderId="1"
+        superAdminId="1"
         content="Hello"
         avatarAdmin={IMAGES.CHAT_USER_AVATAR.url}
         avatarUser={IMAGES.CHAT_USER_AVATAR.url}

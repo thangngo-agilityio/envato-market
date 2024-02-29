@@ -5,9 +5,6 @@ import Image from 'next/image';
 // Constants
 import { IMAGES } from '@/lib/constants';
 
-// Hooks
-import { getUsers } from '@/lib/hooks';
-
 // Utils
 import { generatePlaceholder } from '@/lib/utils';
 
@@ -17,6 +14,7 @@ interface MessageProps {
   avatarAdmin?: string;
   localeTime?: string;
   senderId: string;
+  superAdminId: string;
 }
 
 const Message = ({
@@ -28,13 +26,13 @@ const Message = ({
     hour: 'numeric',
     minute: '2-digit',
   }),
+  superAdminId,
 }: MessageProps) => {
   const [adminId, setAdminId] = useState<string>('');
 
   useEffect(() => {
     const fetchData = async () => {
-      const usersData = await getUsers();
-      setAdminId(usersData?.adminId || '');
+      setAdminId(superAdminId || '');
     };
 
     fetchData();

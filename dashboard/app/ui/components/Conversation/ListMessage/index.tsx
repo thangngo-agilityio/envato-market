@@ -16,10 +16,11 @@ import { convertTimeMessage } from '@/lib/utils';
 export type Props = {
   messages: TMessages[];
   adminUid?: string;
-  avatarUser?: string;
+  avatarUser: string;
+  nameUser: string;
 };
 
-const ListMessages = ({ messages, adminUid, avatarUser }: Props) => {
+const ListMessages = ({ messages, adminUid, avatarUser, nameUser }: Props) => {
   const user = authStore((state) => state.user);
   const boxRef = useRef<HTMLDivElement | null>(null);
 
@@ -66,7 +67,7 @@ const ListMessages = ({ messages, adminUid, avatarUser }: Props) => {
           );
         })}
       </Box>
-      <Quill userUid={adminUid} />
+      <Quill userUid={adminUid} nameUser={nameUser} avatarUser={avatarUser} />
     </Box>
   );
 };

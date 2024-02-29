@@ -41,7 +41,7 @@ const Checkout = ({ total }: TCheckoutProps): JSX.Element => {
   const [currentTotal, setCurrentTotal] = useState<number>(total);
   const { toast, resetToast, pauseToast, showToast } = useToast();
 
-  const { register, watch, reset } = useForm<TRegisterForm>({
+  const { control, watch, reset } = useForm<TRegisterForm>({
     defaultValues: defaultForm,
   });
 
@@ -83,7 +83,7 @@ const Checkout = ({ total }: TCheckoutProps): JSX.Element => {
         }}
       >
         <div className='col-span-12 nearLg:col-span-8 h-[500px]'>
-          <ContactForm register={register} />
+          <ContactForm control={control} />
         </div>
         <div className='mt-[50px] nearLg:mt-0 col-span-12 nearLg:col-span-4'>
           <CardTotal

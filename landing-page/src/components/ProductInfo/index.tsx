@@ -93,7 +93,8 @@ const ProductInfo = ({
   );
 
   const handleChangeQuantityByStep = useCallback(
-    (step: 1 | -1) => () => setQuantity((prev) => prev + step),
+    (step: 1 | -1) => () =>
+      setQuantity((prev) => (prev + step <= 0 ? 0 : prev + step)),
     [],
   );
 
