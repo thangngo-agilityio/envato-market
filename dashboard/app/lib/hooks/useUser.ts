@@ -109,8 +109,6 @@ export const useGetUserDetails = (
     queryParam,
   );
 
-  console.log(queryParam);
-
   const { data: listUserDetail, ...query } = useQuery({
     queryKey: [END_POINTS.USERS, queryParam?.name],
     queryFn: () => getAllUserDetailsExceptWithId(id, ''),

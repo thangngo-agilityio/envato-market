@@ -234,8 +234,6 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
                   }
                 : item,
             );
-            console.log('dataUpdated', oldData);
-
             return dataUpdated;
           },
         );
