@@ -33,7 +33,7 @@ import {
 } from '@/ui/components';
 
 // Hooks
-import { getUsers, useGetUserDetails, useSubscribeToChat } from '@/lib/hooks';
+import { useGetUserDetails, useSubscribeToChat } from '@/lib/hooks';
 
 // Store
 import { authStore } from '@/lib/stores';
@@ -61,9 +61,9 @@ const ChatMemberList = () => {
     openRoom: false,
   });
 
-  const { user } = authStore((state) => state);
+  const { user: superAdmin } = authStore((state) => state);
   const uidUser = searchParams?.get('id') as string;
-  const { filterDataUser } = useGetUserDetails(user?.id as string);
+  const { filterDataUser } = useGetUserDetails(superAdmin?.id as string);
   const userChat = filterDataUser?.find((user) => user.uid === uidUser);
   const toast = useToast();
 
@@ -98,8 +98,7 @@ const ChatMemberList = () => {
     router.push(`/inbox?id=${id}`);
 
     try {
-      const usersData = await getUsers();
-      const combinedId = usersData?.adminId + user.uid;
+      const combinedId = superAdmin?.uid + user.uid;
       const chatDocRef = doc(db, FIREBASE_CHAT.CHATS, combinedId);
       const chatDocSnap = await getDoc(chatDocRef);
       const chatData = chatDocSnap.data();
@@ -127,7 +126,11 @@ const ChatMemberList = () => {
   useEffect(() => {
     const getLastMessagesByUserId = async () => {
       try {
-        const chatDocRef = doc(db, FIREBASE_CHAT.USER_CHATS, `${user?.uid}`);
+        const chatDocRef = doc(
+          db,
+          FIREBASE_CHAT.USER_CHATS,
+          `${superAdmin?.uid}`,
+        );
         const unsub = onSnapshot(chatDocRef, (doc) => {
           setChats(doc.data());
         });
@@ -146,8 +149,8 @@ const ChatMemberList = () => {
       }
     };
 
-    user?.uid && getLastMessagesByUserId();
-  }, [toast, user?.uid]);
+    superAdmin?.uid && getLastMessagesByUserId();
+  }, [toast, superAdmin?.uid]);
 
   const dataChats = useMemo(
     () => chats && Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date),
@@ -157,7 +160,7 @@ const ChatMemberList = () => {
   useEffect(() => {
     const getRoomChat = async () => {
       if (uidUser) {
-        const roomChatId = user?.uid + uidUser;
+        const roomChatId = superAdmin?.uid + uidUser;
         const userInfo = chats && chats[roomChatId]?.userInfo;
         const chatDocRef = doc(db, FIREBASE_CHAT.CHATS, roomChatId);
         const chatDocSnap = await getDoc(chatDocRef);
@@ -177,14 +180,14 @@ const ChatMemberList = () => {
       }
     };
 
-    user?.uid && getRoomChat();
+    superAdmin?.uid && getRoomChat();
   }, [
     chats,
-    user?.uid,
     uidUser,
-    userChat?.avatarURL,
+    superAdmin?.uid,
     userChat?.firstName,
     userChat?.lastName,
+    userChat?.avatarURL,
   ]);
 
   useSubscribeToChat(userInfo.roomChatId, setMessages);

@@ -9,13 +9,7 @@ import { getAllUserDetailsExceptWithId } from '@/lib/services';
 import { AUTHENTICATION_ROLE } from '@/lib/constants';
 
 // Hooks
-import {
-  getCurrentUser,
-  getLists,
-  getUserList,
-  getUsers,
-  useGetRoomChat,
-} from '@/lib/hooks';
+import { getCurrentUser, getLists, useGetRoomChat } from '@/lib/hooks';
 
 // Mocks
 import { MOCK_USER_DETAIL } from '@/lib/mocks';
@@ -65,38 +59,24 @@ describe('getCurrentUser', () => {
     const result = await getCurrentUser(MOCK_USER_DETAIL);
 
     const expected = {
-      roomChatId: 'uidAdmin4561',
+      roomChatId: 'GmCJFXqXubfAPdKs56C4Sq7DisY21',
       userId: '1',
-      adminId: 'uidAdmin456',
+      adminId: 'GmCJFXqXubfAPdKs56C4Sq7DisY2',
       avatarUrl: 'https://cdn-icons-png.flaticon.com/512/5556/5556468.png',
-      avatarAdminUrl: 'http://example.com/adminAvatar.jpg',
+      avatarAdminUrl: 'https://i.ibb.co/s60bn5S/avatar-sign-up.webp',
       displayName: 'Abdur Rohman ',
     };
 
     expect(result).toEqual(expected);
   });
 
-  it('returns null or appropriate value when no admin is found', async () => {
+  //TODO: skip case because waiting for API
+  it.skip('returns null or appropriate value when no user is found', async () => {
     (getAllUserDetailsExceptWithId as jest.Mock).mockResolvedValue([]);
 
     const result = await getCurrentUser(MOCK_USER_DETAIL);
 
     expect(result).toEqual(undefined);
-  });
-});
-
-describe('getUserList', () => {
-  it('fetches and returns user list excluding the specified user', async () => {
-    const mockUsers = [
-      { id: '1', name: 'Alice' },
-      { id: '2', name: 'Bob' },
-    ];
-
-    (getAllUserDetailsExceptWithId as jest.Mock).mockResolvedValue(mockUsers);
-
-    const userList = await getUserList(MOCK_USER_DETAIL);
-
-    expect(userList).toEqual(mockUsers);
   });
 });
 
@@ -115,61 +95,6 @@ describe('getLists', () => {
 
     const expected = {
       chatList: ['Chat 1', 'Chat 2'],
-    };
-
-    expect(result).toEqual(expected);
-  });
-});
-
-describe('getUsers', () => {
-  it('returns user details with admin when admin is found', async () => {
-    const mockAdmin = {
-      id: 'admin123',
-      data: () => ({
-        displayName: AUTHENTICATION_ROLE.SUPER_ADMIN,
-        uid: 'adminUid',
-      }),
-    };
-
-    const mockUsersSnapshot = {
-      docs: [
-        { id: 'user1', data: () => ({ displayName: 'User 1', uid: 'uid1' }) },
-        { id: 'user2', data: () => ({ displayName: 'User 2', uid: 'uid2' }) },
-        mockAdmin,
-      ],
-    };
-
-    (getDocs as jest.Mock).mockResolvedValue(mockUsersSnapshot);
-
-    const result = await getUsers();
-
-    const expected = {
-      roomChatId: 'adminUidundefined',
-      userId: undefined,
-      adminId: 'adminUid',
-      listUserDetail: [
-        {
-          id: 'user1',
-          data: {
-            displayName: 'User 1',
-            uid: 'uid1',
-          },
-        },
-        {
-          id: 'user2',
-          data: {
-            displayName: 'User 2',
-            uid: 'uid2',
-          },
-        },
-        {
-          id: 'admin123',
-          data: {
-            displayName: 'Super Admin',
-            uid: 'adminUid',
-          },
-        },
-      ],
     };
 
     expect(result).toEqual(expected);

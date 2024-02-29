@@ -121,6 +121,7 @@ const BoxChatComponent = () => {
                 senderId={message.senderId}
                 avatarAdmin={userChat.avatarAdminUrl}
                 avatarUser={userChat.avatarUrl}
+                superAdminId={userChat.adminId}
               />
             ))}
           </Box>

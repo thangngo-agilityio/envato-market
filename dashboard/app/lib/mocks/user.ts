@@ -475,3 +475,25 @@ export const MOCK_ROOM_CHAT_USER = {
   avatarAdminUrl: 'admin-avatar-url',
   displayName: 'John Doe',
 };
+
+// TODO: mock data super admin will change when there is an API for integration
+export const MOCK_SUPER_ADMIN = {
+  address: '31MD',
+  avatarURL: 'https://i.ibb.co/s60bn5S/avatar-sign-up.webp',
+  city: 'San Diago',
+  country: 'American',
+  createdAt: '2024-01-15T03:16:50.237Z',
+  email: 'superadmin@test.com',
+  firstName: 'Super',
+  isBlock: false,
+  lastName: 'Admin',
+  linkedin: '',
+  password: 'Abcd@1234',
+  phoneNumber: '',
+  pinCode: '1234',
+  postalCode: '12345',
+  role: 'Super Admin',
+  twitter: '',
+  uid: 'GmCJFXqXubfAPdKs56C4Sq7DisY2',
+  updatedAt: '2024-02-29T02:47:39.538Z',
+};
