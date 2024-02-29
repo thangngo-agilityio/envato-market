@@ -39,8 +39,12 @@ export const useNotification = (userId?: string) => {
           data: payload,
         });
       },
-      onSettled: () => {
-        queryClient.invalidateQueries({ queryKey: [END_POINTS.NOTIFICATION] });
+      onSuccess: (_, variables) => {
+        queryClient.setQueryData(
+          [END_POINTS.NOTIFICATION],
+          (oldData: TNotification[]) =>
+            oldData.filter((item) => item._id !== variables.notificationId),
+        );
       },
     });
 
@@ -54,10 +58,18 @@ export const useNotification = (userId?: string) => {
         END_POINTS.NOTIFICATION,
         transaction,
       ),
-    onSettled: () => {
-      queryClient.invalidateQueries({
-        queryKey: [END_POINTS.NOTIFICATION],
-      });
+    onSuccess: (_, variables) => {
+      queryClient.setQueryData(
+        [END_POINTS.NOTIFICATION],
+        (oldData: TNotification[]) => {
+          const dataUpdated = oldData.map((item) =>
+            item._id === variables.notificationId
+              ? { ...item, isMarkAsRead: true }
+              : item,
+          );
+          return dataUpdated;
+        },
+      );
     },
   });
 

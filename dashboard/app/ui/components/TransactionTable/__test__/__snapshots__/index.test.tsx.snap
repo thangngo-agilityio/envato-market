@@ -404,7 +404,7 @@ exports[`Transaction table Match with snapshot with default prop 1`] = `
               class="css-5x3kvh"
             >
               <p
-                class="chakra-text css-1t8wz2k"
+                class="chakra-text css-1mlmrnl"
               >
                 $101.00
               </p>
@@ -572,7 +572,7 @@ exports[`Transaction table Match with snapshot with default prop 1`] = `
               class="css-5x3kvh"
             >
               <p
-                class="chakra-text css-1t8wz2k"
+                class="chakra-text css-1mlmrnl"
               >
                 $101.00
               </p>
@@ -720,7 +720,7 @@ exports[`Transaction table Match with snapshot with default prop 1`] = `
               class="css-5x3kvh"
             >
               <p
-                class="chakra-text css-1t8wz2k"
+                class="chakra-text css-1mlmrnl"
               >
                 $101.00
               </p>
@@ -1364,7 +1364,7 @@ exports[`Transaction table Match with snapshot with isOpenHistoryModal = true 1`
               class="css-5x3kvh"
             >
               <p
-                class="chakra-text css-1t8wz2k"
+                class="chakra-text css-1mlmrnl"
               >
                 $101.00
               </p>
@@ -1472,7 +1472,7 @@ exports[`Transaction table Match with snapshot with isOpenHistoryModal = true 1`
               class="css-5x3kvh"
             >
               <p
-                class="chakra-text css-1t8wz2k"
+                class="chakra-text css-1mlmrnl"
               >
                 $101.00
               </p>
@@ -1580,7 +1580,7 @@ exports[`Transaction table Match with snapshot with isOpenHistoryModal = true 1`
               class="css-5x3kvh"
             >
               <p
-                class="chakra-text css-1t8wz2k"
+                class="chakra-text css-1mlmrnl"
               >
                 $101.00
               </p>
