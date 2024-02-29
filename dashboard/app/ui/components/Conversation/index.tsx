@@ -13,8 +13,8 @@ import { MessageType } from '@/lib/interfaces/messages';
 export type Props = {
   adminUid?: string;
   filteredMessages?: MessageType[];
-  nameUser?: string;
-  avatarUser?: string;
+  nameUser: string;
+  avatarUser: string;
   messages: TMessages[];
 };
 
@@ -48,6 +48,7 @@ const Conversation = ({ nameUser, avatarUser, messages, adminUid }: Props) => {
         avatarUser={avatarUser}
         messages={messages}
         adminUid={adminUid}
+        nameUser={nameUser}
       />
     </Box>
   );
