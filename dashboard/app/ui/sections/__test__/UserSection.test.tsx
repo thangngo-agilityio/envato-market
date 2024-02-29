@@ -21,6 +21,7 @@ jest.mock('@/lib/hooks', () => ({
   ...jest.requireActual('@/lib/hooks'),
   usePagination: jest.fn(),
   useGetUserDetails: jest.fn(),
+  useManagementUser: jest.fn(),
 }));
 
 const TABLE_ROW = 'table-row';
@@ -44,10 +45,14 @@ const setup = () => {
     data: [1],
     resetPage: resetMock,
   } as unknown as ReturnType<typeof hooks.usePagination>);
+
   jest.spyOn(hooks, 'useGetUserDetails').mockReturnValue({
     isLoadingUser: false,
-    managementUser: managementUserMock,
   } as unknown as ReturnType<typeof hooks.useGetUserDetails>);
+
+  jest.spyOn(hooks, 'useManagementUser').mockReturnValue({
+    managementUser: managementUserMock,
+  } as unknown as ReturnType<typeof hooks.useManagementUser>);
 
   return render(<UsersSection />, {
     wrapper: QueryProvider,
