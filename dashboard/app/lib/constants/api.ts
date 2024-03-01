@@ -27,6 +27,7 @@ export const END_POINTS = {
   SUPPORT: '/supports',
   LOCK: '/lock',
   UNLOCK: '/unlock',
+  ADMIN: '/admin',
 };
 
 export const SEARCH_PARAM = {

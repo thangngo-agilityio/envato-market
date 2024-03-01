@@ -15,7 +15,7 @@ import { TMessages } from '@/lib/interfaces';
 import { sendMessage } from '@/lib/utils';
 
 // Hooks
-import { getCurrentUser } from '@/lib/hooks';
+import { getInfoRoomChat } from '@/lib/hooks';
 
 // Stores
 import { authStore } from '@/lib/stores';
@@ -50,7 +50,7 @@ const InputSendMessages = ({ boxRef }: InputSendMessagesProps) => {
 
   const handleSend = useCallback(
     async (data: TMessages) => {
-      const usersData = await getCurrentUser(user);
+      const usersData = await getInfoRoomChat(user);
 
       if (usersData) {
         const {
