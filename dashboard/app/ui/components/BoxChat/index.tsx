@@ -16,7 +16,7 @@ import { TMessages } from '@/lib/interfaces';
 import { authStore } from '@/lib/stores';
 
 // Hooks
-import { getCurrentUser, useSubscribeToChat } from '@/lib/hooks';
+import { getInfoRoomChat, useSubscribeToChat } from '@/lib/hooks';
 
 // Firebase
 import { doc, getDoc, setDoc } from 'firebase/firestore';
@@ -40,7 +40,7 @@ const BoxChatComponent = () => {
   const boxRef = useRef<HTMLDivElement | null>(null);
 
   const fetchData = async () => {
-    const usersData = await getCurrentUser(user);
+    const usersData = await getInfoRoomChat(user);
     // Get user data
 
     // Check if usersData is undefined before accessing its properties
@@ -56,7 +56,7 @@ const BoxChatComponent = () => {
 
   const createChatRoom = useCallback(async () => {
     // Get user data
-    const usersData = await getCurrentUser(user);
+    const usersData = await getInfoRoomChat(user);
 
     if (usersData) {
       await setDoc(doc(db, FIREBASE_CHAT.CHATS, usersData.roomChatId), {

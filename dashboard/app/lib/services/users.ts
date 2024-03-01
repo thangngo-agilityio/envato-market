@@ -33,3 +33,22 @@ export const getAllUserDetailsExceptWithId = async (
 
   return responseListUserDetails;
 };
+
+export const getAdminDetailsWithId = async (
+  userId = '',
+  config?: IAxiosConfig,
+): Promise<
+  Omit<TUserDetail, 'id'> & {
+    _id: string;
+  }
+> => {
+  const responseAdminDetails = (
+    await userHttpRequest.get<
+      Omit<TUserDetail, 'id'> & {
+        _id: string;
+      }
+    >(`${END_POINTS.ADMIN}/${userId}`, config)
+  ).data;
+
+  return responseAdminDetails;
+};

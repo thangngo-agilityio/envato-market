@@ -16,6 +16,7 @@ import { AUTHENTICATION_ROLE, FIREBASE_CHAT } from '@/lib/constants';
 // Utils
 import { db } from '@/lib/utils';
 import { MOCK_SUPER_ADMIN } from '../mocks';
+import { getAdminDetailsWithId } from '../services';
 
 // TODO: if have real id from firestore
 export const useGetRoomChat = () => {
@@ -32,14 +33,14 @@ export const useGetRoomChat = () => {
 };
 
 // Author: Loc Vo
-export const getCurrentUser = async (user: TUserInfo) => {
-  const adminUid = MOCK_SUPER_ADMIN.uid;
+export const getInfoRoomChat = async (user: TUserInfo) => {
+  const admin = await getAdminDetailsWithId(user?.id);
   const userUid = user?.uid;
 
   return {
-    roomChatId: `${adminUid}${userUid}`,
+    roomChatId: `${admin.uid}${userUid}`,
     userId: userUid || '',
-    adminId: adminUid || '',
+    adminId: admin.uid || '',
     avatarUrl: user?.avatarURL || '',
     avatarAdminUrl: MOCK_SUPER_ADMIN?.avatarURL || '',
     displayName: `${user?.firstName} ${user?.lastName} `,

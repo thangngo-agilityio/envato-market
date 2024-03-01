@@ -9,13 +9,13 @@ import {
   MOCK_USER_DETAIL_WITHOUT_IMAGE,
 } from '@/lib/mocks';
 
-const getCurrentUserMock = jest.fn();
+const getInfoRoomChatMock = jest.fn();
 const sendMessageMock = jest.fn();
 const authStoreMock = jest.fn();
 
 jest.mock('@/lib/hooks', () => ({
   ...jest.requireActual('@/lib/hooks'),
-  getCurrentUser: () => getCurrentUserMock,
+  getInfoRoomChat: () => getInfoRoomChatMock,
 }));
 
 jest.mock('@/lib/utils', () => ({
@@ -51,7 +51,7 @@ describe('InputSendMessages  component', () => {
   });
 
   it('sends a message on button click', async () => {
-    getCurrentUserMock.mockReturnValue(MOCK_ROOM_CHAT_USER);
+    getInfoRoomChatMock.mockReturnValue(MOCK_ROOM_CHAT_USER);
     authStoreMock.mockReturnValue({
       user: MOCK_USER_DETAIL_WITHOUT_IMAGE,
     });
