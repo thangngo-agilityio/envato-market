@@ -72,9 +72,6 @@ const Menu = ({
         aria-label="list-icon"
         spacing={isExpandSidebar ? 5.5 : 2.75}
         w="full"
-        sx={{
-          textAlign: '-webkit-center',
-        }}
       >
         {listItem.map(
           ({ leftIcon, rightIcon, destination, menuItemContent, id }) => {

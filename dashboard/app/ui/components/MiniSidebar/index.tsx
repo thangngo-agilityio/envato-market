@@ -108,7 +108,11 @@ const MiniSidebar = ({
           justifyContent="center"
         >
           <VStack>
-            <Box>
+            <Box
+              sx={{
+                textAlign: '-webkit-center',
+              }}
+            >
               {MINI_SIDEBAR_MENU(role as string).map((item) => (
                 <Menu
                   key={item.id}
