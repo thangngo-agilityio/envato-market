@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 // Utils
 import {
   convertDateToTime,
+  convertTimeMessage,
   convertTimeStampToTime,
   formatDate,
   getCurrentTimeSeconds,
@@ -110,6 +111,14 @@ describe('formatDate ', () => {
     const result = convertTimeStampToTime(timestamp);
 
     expect(result).toBe(dayjs(timestamp).format('H:m:s'));
+  });
+
+  it('should convert timestamp to time in HH:mm A format', () => {
+    const timestamp = 1709190601;
+
+    const result = convertTimeMessage(timestamp);
+
+    expect(result).toBe(dayjs.unix(timestamp).format('HH:mm A'));
   });
 
   it('should return "Just now" for recent date', () => {

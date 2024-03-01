@@ -29,9 +29,9 @@ initializeApp(firebaseConfig);
 
 const VAPID_KEY = process.env.NEXT_PUBLIC_FIREBASE_VAPID;
 
-export const requestForToken = (messaging: Messaging) => {
+export const requestForToken = async (messaging: Messaging) => {
   try {
-    const currentToken = getToken(messaging, { vapidKey: VAPID_KEY });
+    const currentToken = await getToken(messaging, { vapidKey: VAPID_KEY });
     if (currentToken) {
       return currentToken;
       // Perform any other neccessary action with the token
