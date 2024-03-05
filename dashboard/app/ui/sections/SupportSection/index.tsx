@@ -1,9 +1,11 @@
 'use client';
 
-import { memo, useCallback, useEffect, useMemo } from 'react';
-import dynamic from 'next/dynamic';
+import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
+// import dynamic from 'next/dynamic';
 import { Controller, useForm } from 'react-hook-form';
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+import Quill from 'quill';
+import 'quill/dist/quill.snow.css';
+// const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 // Components
 import {
@@ -45,10 +47,10 @@ import { customToast, formatAllowOnlyNumbers } from '@/lib/utils';
 
 const SupportsSection = () => {
   const toast = useToast();
-
   const user = authStore((state) => state.user);
   const { id, email, firstName, lastName, phoneNumber, title, description } =
     (user as TUserDetail) || {};
+  const userRef = useRef(user);
 
   const {
     data: listIssue,
@@ -147,9 +149,43 @@ const SupportsSection = () => {
   );
 
   useEffect(() => {
-    const tooltip = document.querySelector('.ql-tooltip');
-    tooltip?.remove();
-  });
+    userRef.current = user;
+  }, [user]);
+
+  const handleMutation = useCallback((mutationsList: { type: string }[]) => {
+    mutationsList.forEach((mutation: { type: string }) => {
+      if (mutation.type === 'childList') {
+        const tooltip = document.querySelector('.ql-tooltip');
+        tooltip?.remove();
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const observer = new MutationObserver(handleMutation);
+    observer.observe(document.body, {
+      subtree: true,
+      childList: true,
+    });
+    return () => observer.disconnect();
+  }, [handleMutation]);
+
+  useEffect(() => {
+    const quill = new Quill('#editor', {
+      theme: 'snow',
+      modules: {
+        toolbar: [
+          ['bold', 'italic', 'underline'],
+          ['image', 'code-block'],
+        ],
+      },
+      readOnly: isPending,
+    });
+
+    console.log(quill);
+
+    // quill.on('text-change', () =>)
+  }, []);
 
   return (
     <Flex
@@ -293,12 +329,19 @@ const SupportsSection = () => {
               name="description"
               render={({ field: { onChange, ...rest } }) => (
                 <FormControl>
-                  <Flex
-                    direction="row"
-                    alignItems="center"
-                    justify="flex-start"
-                  >
-                    <ReactQuill
+                  <Flex direction="column">
+                    <Flex
+                      direction="column"
+                      {...rest}
+                      onChange={handleChangeValue('description', onChange)}
+                      id="editor"
+                      style={{
+                        width: '100%',
+                        backgroundColor: colorFill,
+                        height: 300,
+                      }}
+                    />
+                    {/* <ReactQuill
                       {...rest}
                       onChange={handleChangeValue('description', onChange)}
                       modules={{
@@ -314,7 +357,7 @@ const SupportsSection = () => {
                       }}
                       theme="snow"
                       readOnly={isPending}
-                    />
+                    /> */}
                   </Flex>
                 </FormControl>
               )}
