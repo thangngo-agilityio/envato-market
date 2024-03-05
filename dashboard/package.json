@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev && pnpm run minify",
-    "build": "next build && pnpm minify",
+    "dev": "next dev && pnpm run minify && pnpm run minify-css",
+    "build": "next build && pnpm minify && pnpm run minify-css",
     "start": "next start",
     "lint": "next lint && eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepare": "cd .. && husky install dashboard/.husky",
@@ -14,7 +14,8 @@
     "test-coverage": "jest --coverage",
     "test": "jest",
     "minify": "terser .next/**/*.js -o .next/**/*.js  --compress --mangle --format",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "minify-css": "cleancss -o .next/static/css/**/*.css .next/static/css/**/*.css"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
@@ -61,6 +62,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "clean-css-cli": "^5.6.3",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "eslint-plugin-react": "^7.33.2",
