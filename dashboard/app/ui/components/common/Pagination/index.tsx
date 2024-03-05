@@ -82,6 +82,8 @@ const PaginationComponent = ({
       </Flex>
       <Flex justifyContent="space-between">
         <Button
+          width={30}
+          height={30}
           data-testid="prev-button"
           aria-label="btn-prev"
           variant="iconSecondary"
@@ -143,6 +145,8 @@ const PaginationComponent = ({
           cursor={isDisableNext ? 'not-allowed' : ''}
           isDisabled={isDisableNext}
           onClick={handleNextPage}
+          width={30}
+          height={30}
         >
           <Arrow color={colorFill} rotate="-90deg" />
         </Button>
