@@ -87,7 +87,7 @@ const MessageAdmin = ({
             blurDataURL={generatePlaceholder(36, 36)}
             style={{
               borderRadius: '50%',
-              marginRight: '8px',
+              marginLeft: '8px',
             }}
           />
         </Box>
