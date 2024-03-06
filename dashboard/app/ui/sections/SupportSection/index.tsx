@@ -1,18 +1,15 @@
 'use client';
 
 import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
-// import dynamic from 'next/dynamic';
 import { Controller, useForm } from 'react-hook-form';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
-// const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 // Components
 import {
   Box,
   Button,
   Flex,
-  FormControl,
   Text,
   theme,
   useColorModeValue,
@@ -69,6 +66,7 @@ const SupportsSection = () => {
     handleSubmit,
     reset,
     watch,
+    setValue,
   } = useForm<TUserDetail>({
     defaultValues: {
       id: id,
@@ -182,10 +180,17 @@ const SupportsSection = () => {
       readOnly: isPending,
     });
 
-    console.log(quill);
+    quill.on('text-change', (delta, oldDelta) => {
+      const oldText = (oldDelta.ops[0].insert as string)?.replace(
+        /(\r\n|\n|\r)/gm,
+        '',
+      );
+      const newText = delta.ops[1].insert as string;
+      const reversed = oldText.concat(newText);
 
-    // quill.on('text-change', () =>)
-  }, []);
+      setValue('description', reversed);
+    });
+  }, [setValue, isPending]);
 
   return (
     <Flex
@@ -324,44 +329,17 @@ const SupportsSection = () => {
             <Text fontWeight="semibold" mb={2}>
               Description
             </Text>
-            <Controller
-              control={control}
-              name="description"
-              render={({ field: { onChange, ...rest } }) => (
-                <FormControl>
-                  <Flex direction="column">
-                    <Flex
-                      direction="column"
-                      {...rest}
-                      onChange={handleChangeValue('description', onChange)}
-                      id="editor"
-                      style={{
-                        width: '100%',
-                        backgroundColor: colorFill,
-                        height: 300,
-                      }}
-                    />
-                    {/* <ReactQuill
-                      {...rest}
-                      onChange={handleChangeValue('description', onChange)}
-                      modules={{
-                        toolbar: [
-                          ['bold', 'italic', 'underline'],
-                          ['image', 'code-block'],
-                        ],
-                      }}
-                      style={{
-                        width: '100%',
-                        backgroundColor: colorFill,
-                        height: 300,
-                      }}
-                      theme="snow"
-                      readOnly={isPending}
-                    /> */}
-                  </Flex>
-                </FormControl>
-              )}
-            />
+            <Flex direction="column">
+              <Flex
+                direction="column"
+                id="editor"
+                style={{
+                  width: '100%',
+                  backgroundColor: colorFill,
+                  height: 300,
+                }}
+              />
+            </Flex>
           </Flex>
           <Button
             type="submit"

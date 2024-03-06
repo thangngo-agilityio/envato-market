@@ -15,3 +15,11 @@
     object-fit: cover;
   }
 }
+
+.ql-toolbar:first-child {
+  display: none !important;
+}
+
+.ql-editor>p:first-child {
+  display: none !important;
+}
