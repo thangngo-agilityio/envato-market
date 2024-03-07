@@ -1,9 +1,9 @@
 'use client';
 
-import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
+import { memo, useCallback, useMemo } from 'react';
+import dynamic from 'next/dynamic';
 import { Controller, useForm } from 'react-hook-form';
-import Quill from 'quill';
-import 'quill/dist/quill.snow.css';
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 // Components
 import {
@@ -12,6 +12,7 @@ import {
   Flex,
   Text,
   theme,
+  FormControl,
   useColorModeValue,
   useToast,
   VStack,
@@ -47,8 +48,6 @@ const SupportsSection = () => {
   const user = authStore((state) => state.user);
   const { id, email, firstName, lastName, phoneNumber, title, description } =
     (user as TUserDetail) || {};
-  const userRef = useRef(user);
-  const isMounted = useRef(false);
 
   const {
     data: listIssue,
@@ -67,7 +66,6 @@ const SupportsSection = () => {
     handleSubmit,
     reset,
     watch,
-    setValue,
   } = useForm<TUserDetail>({
     defaultValues: {
       id: id,
@@ -146,56 +144,6 @@ const SupportsSection = () => {
     },
     [createIssues, reset],
   );
-
-  useEffect(() => {
-    userRef.current = user;
-  }, [user]);
-
-  const handleMutation = useCallback((mutationsList: { type: string }[]) => {
-    mutationsList.forEach((mutation: { type: string }) => {
-      if (mutation.type === 'childList') {
-        const tooltip = document.querySelector('.ql-tooltip');
-        tooltip?.remove();
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    const observer = new MutationObserver(handleMutation);
-    observer.observe(document.body, {
-      subtree: true,
-      childList: true,
-    });
-    return () => observer.disconnect();
-  }, [handleMutation]);
-
-  useEffect(() => {
-    if (!isMounted.current) {
-      const quill = new Quill('#editor', {
-        theme: 'snow',
-        modules: {
-          toolbar: [
-            ['bold', 'italic', 'underline'],
-            ['image', 'code-block'],
-          ],
-        },
-        readOnly: isPending,
-      });
-      isMounted.current = true;
-
-      quill.on('text-change', (delta, oldDelta) => {
-        const oldText = (oldDelta.ops[0].insert as string)?.replace(
-          /(\r\n|\n|\r)/gm,
-          '',
-        );
-        const newText = delta.ops[1]?.insert as string;
-        console.log(newText);
-        const reversed = oldText.concat(newText);
-
-        setValue('description', reversed);
-      });
-    }
-  }, [setValue, isPending]);
 
   return (
     <Flex
@@ -334,17 +282,37 @@ const SupportsSection = () => {
             <Text fontWeight="semibold" mb={2}>
               Description
             </Text>
-            <Flex direction="column">
-              <Flex
-                direction="column"
-                id="editor"
-                style={{
-                  width: '100%',
-                  backgroundColor: colorFill,
-                  height: 300,
-                }}
-              />
-            </Flex>
+            <Controller
+              control={control}
+              name="description"
+              render={({ field: { onChange, ...rest } }) => (
+                <FormControl>
+                  <Flex
+                    direction="row"
+                    alignItems="center"
+                    justify="flex-start"
+                  >
+                    <ReactQuill
+                      {...rest}
+                      onChange={handleChangeValue('description', onChange)}
+                      modules={{
+                        toolbar: [
+                          ['bold', 'italic', 'underline'],
+                          ['image', 'code-block'],
+                        ],
+                      }}
+                      style={{
+                        width: '100%',
+                        backgroundColor: colorFill,
+                        height: 300,
+                      }}
+                      theme="snow"
+                      readOnly={isPending}
+                    />
+                  </Flex>
+                </FormControl>
+              )}
+            />
           </Flex>
           <Button
             type="submit"
