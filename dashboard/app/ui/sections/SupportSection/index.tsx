@@ -48,6 +48,7 @@ const SupportsSection = () => {
   const { id, email, firstName, lastName, phoneNumber, title, description } =
     (user as TUserDetail) || {};
   const userRef = useRef(user);
+  const isMounted = useRef(false);
 
   const {
     data: listIssue,
@@ -169,27 +170,31 @@ const SupportsSection = () => {
   }, [handleMutation]);
 
   useEffect(() => {
-    const quill = new Quill('#editor', {
-      theme: 'snow',
-      modules: {
-        toolbar: [
-          ['bold', 'italic', 'underline'],
-          ['image', 'code-block'],
-        ],
-      },
-      readOnly: isPending,
-    });
+    if (!isMounted.current) {
+      const quill = new Quill('#editor', {
+        theme: 'snow',
+        modules: {
+          toolbar: [
+            ['bold', 'italic', 'underline'],
+            ['image', 'code-block'],
+          ],
+        },
+        readOnly: isPending,
+      });
+      isMounted.current = true;
 
-    quill.on('text-change', (delta, oldDelta) => {
-      const oldText = (oldDelta.ops[0].insert as string)?.replace(
-        /(\r\n|\n|\r)/gm,
-        '',
-      );
-      const newText = delta.ops[1].insert as string;
-      const reversed = oldText.concat(newText);
+      quill.on('text-change', (delta, oldDelta) => {
+        const oldText = (oldDelta.ops[0].insert as string)?.replace(
+          /(\r\n|\n|\r)/gm,
+          '',
+        );
+        const newText = delta.ops[1]?.insert as string;
+        console.log(newText);
+        const reversed = oldText.concat(newText);
 
-      setValue('description', reversed);
-    });
+        setValue('description', reversed);
+      });
+    }
   }, [setValue, isPending]);
 
   return (
