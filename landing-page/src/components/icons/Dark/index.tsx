@@ -1,13 +1,18 @@
-import { type SVGProps } from 'react';
-export const DarkTheme = (props: SVGProps<SVGSVGElement>): JSX.Element => (
+type TDarkIconProps = {
+  className?: string;
+  id?: string;
+};
+
+export const DarkIcon = ({ className='',id='' }: TDarkIconProps): JSX.Element => (
   <svg
+    id={id}
+    className={className}
     stroke="#000000"
     width="24"
     height="24"
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    {...props}
   >
     <circle cx="12" cy="12" r="5" strokeWidth="1.5"></circle>
     <path d="M12 2V4" strokeWidth="1.5" strokeLinecap="round"></path>
@@ -34,3 +39,5 @@ export const DarkTheme = (props: SVGProps<SVGSVGElement>): JSX.Element => (
     ></path>
   </svg>
 );
+
+export default DarkIcon;
