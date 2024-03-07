@@ -4,6 +4,7 @@ import { navigate } from 'astro:transitions/client';
 // Components
 import Button from '@app/components/Button/index.tsx';
 import CloseSideBar from '@app/components/icons/CloseSideBar/index.tsx';
+import SwitchTheme from '@app/components/SwitchTheme/index.tsx';
 
 // Constant
 import { ROUTES } from '@app/constants';
@@ -79,6 +80,7 @@ const SideBarAllDevices = ({
         </a>
       </h1>
       <nav>
+        <SwitchTheme />
         <ul>
           {options.map(
             ({ id, href, text }): JSX.Element => (
