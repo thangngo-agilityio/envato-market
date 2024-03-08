@@ -4,7 +4,7 @@ import { memo, useCallback, useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 // Components
-import { Box, Button, Flex, Text, VStack } from '@chakra-ui/react';
+import { Button, Flex, VStack } from '@chakra-ui/react';
 import InputField from '@/ui/components/common/InputField';
 
 // Interfaces
@@ -14,7 +14,6 @@ import { TProduct } from '@/lib/interfaces';
 import { AUTH_SCHEMA, STATUS_SUBMIT } from '@/lib/constants';
 
 interface ProductProps {
-  isDelete?: boolean;
   product?: TProduct;
   onDeleteProduct?: () => void;
   onCreateProduct?: (productData: Omit<TProduct, 'id'>) => void;
@@ -22,10 +21,8 @@ interface ProductProps {
   onCloseModal?: () => void;
 }
 
-const ProductModal = ({
-  isDelete = false,
+const ProductForm = ({
   product,
-  onDeleteProduct,
   onCreateProduct,
   onUpdateProduct,
   onCloseModal,
@@ -49,11 +46,8 @@ const ProductModal = ({
   });
 
   const disabled = useMemo(
-    () =>
-      isDelete
-        ? status === STATUS_SUBMIT.PENDING
-        : !isDirty || status === STATUS_SUBMIT.PENDING,
-    [isDirty, isDelete],
+    () => !isDirty || status === STATUS_SUBMIT.PENDING,
+    [isDirty],
   );
 
   const handleChangeValue = useCallback(
@@ -82,37 +76,7 @@ const ProductModal = ({
     [onCloseModal, onCreateProduct, onUpdateProduct, reset],
   );
 
-  return isDelete ? (
-    <Box>
-      <Text fontSize="lg">
-        Are you sure delete the product with id:
-        <Text as="span" pl={1} color="red.500" fontWeight="bold">
-          {product?.id}
-        </Text>
-        ?
-      </Text>
-      <Flex my={4} justifyContent="center">
-        <Button
-          w={44}
-          bg="green.600"
-          mr={3}
-          isDisabled={disabled}
-          onClick={onDeleteProduct}
-          data-testid="accept-del"
-        >
-          Delete
-        </Button>
-        <Button
-          w={44}
-          bg="orange.300"
-          _hover={{ bg: 'orange.400' }}
-          onClick={onCloseModal}
-        >
-          Cancel
-        </Button>
-      </Flex>
-    </Box>
-  ) : (
+  return (
     <VStack
       as="form"
       id="update-product-form"
@@ -232,5 +196,5 @@ const ProductModal = ({
   );
 };
 
-const ProductModalMemorized = memo(ProductModal);
-export default ProductModalMemorized;
+const ProductFormMemorized = memo(ProductForm);
+export default ProductFormMemorized;

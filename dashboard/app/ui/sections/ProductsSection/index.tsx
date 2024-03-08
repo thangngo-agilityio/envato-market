@@ -1,15 +1,13 @@
 'use client';
 
 import { Button, Modal } from '@/ui/components';
-import { ProductModal } from '@/ui/components/common/Table/Body';
+import { ProductForm } from '@/ui/components/common/Table/Body';
 import { useState } from 'react';
 
 const ProductsSection = () => {
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
 
-  const handleToggleModal = () => {
-    setIsOpenConfirmModal((prev) => !prev);
-  };
+  const handleToggleModal = () => setIsOpenConfirmModal((prev) => !prev);
 
   return (
     <>
@@ -31,7 +29,7 @@ const ProductsSection = () => {
           isOpen={isOpenConfirmModal}
           onClose={handleToggleModal}
           title="Add User"
-          body={<ProductModal onCloseModal={handleToggleModal} />}
+          body={<ProductForm onCloseModal={handleToggleModal} />}
           haveCloseButton
         />
       )}

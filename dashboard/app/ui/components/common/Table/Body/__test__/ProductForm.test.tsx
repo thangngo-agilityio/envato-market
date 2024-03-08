@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { ProductModal } from '..';
+import { ProductForm } from '..';
 import userEvent from '@testing-library/user-event';
 
 describe('Product Modal', () => {
@@ -12,47 +12,15 @@ describe('Product Modal', () => {
   };
 
   it('match to snapshot', () => {
-    const { container } = render(
-      <ProductModal isDelete product={mockProduct} />,
-    );
+    const { container } = render(<ProductForm product={mockProduct} />);
 
     expect(container).toMatchSnapshot();
-  });
-
-  it('should render delete confirmation correctly', async () => {
-    render(<ProductModal isDelete product={mockProduct} />);
-
-    // Ensure delete confirmation message is rendered
-    expect(
-      screen.getByText(/Are you sure delete the product with id/i),
-    ).toBeInTheDocument();
-  });
-
-  it('should call onDeleteProduct on delete button click', async () => {
-    const mockOnDeleteProduct = jest.fn();
-    render(
-      <ProductModal
-        isDelete
-        product={mockProduct}
-        onDeleteProduct={mockOnDeleteProduct}
-      />,
-    );
-
-    // Click the delete button
-    fireEvent.click(screen.getByText('Delete'));
-
-    // Ensure onDeleteProduct is called
-    expect(mockOnDeleteProduct).toHaveBeenCalled();
   });
 
   it('should call onCloseModal on cancel button click', async () => {
     const mockOnCloseModal = jest.fn();
     render(
-      <ProductModal
-        isDelete
-        product={mockProduct}
-        onCloseModal={mockOnCloseModal}
-      />,
+      <ProductForm product={mockProduct} onCloseModal={mockOnCloseModal} />,
     );
 
     // Click the cancel button
@@ -69,9 +37,8 @@ describe('Product Modal', () => {
     const onCloseModalMock = jest.fn();
 
     render(
-      <ProductModal
+      <ProductForm
         product={mockProduct}
-        isDelete={false}
         onUpdateProduct={onUpdateProductMock}
         onCloseModal={onCloseModalMock}
       />,
