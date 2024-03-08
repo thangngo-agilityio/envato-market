@@ -13,6 +13,8 @@ export const STATUS_LABEL = {
   [Status.ARCHIVED]: 'quaternary',
   [Status.LOCK]: 'quaternary',
   [Status.UNLOCK]: 'primary',
+  [Status.SOLD]: 'primary',
+  [Status.IN_STOCK]: 'quaternary',
 };
 
 export const STATUS_SUBMIT = {

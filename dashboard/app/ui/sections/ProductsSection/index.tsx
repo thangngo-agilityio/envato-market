@@ -10,9 +10,7 @@ import dynamic from 'next/dynamic';
 import { Box, Flex, Grid, GridItem } from '@chakra-ui/react';
 
 // lazy loading components
-// const TransactionTable = dynamic(
-//   () => import('@/ui/components/TransactionTable'),
-// );
+const ProductsTable = dynamic(() => import('@/ui/components/ProductsTable'));
 const CardPayment = dynamic(() => import('@/ui/components/CardPayment'));
 const BoxChat = dynamic(() => import('@/ui/components/BoxChat'));
 
@@ -38,7 +36,7 @@ const ProductsSection = () => {
           px={6}
           py={5}
         >
-          {/* <TransactionTable /> */}
+          <ProductsTable />
         </Box>
       </GridItem>
       <InView>

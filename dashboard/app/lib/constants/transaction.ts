@@ -11,3 +11,8 @@ export enum TRANSACTION_STATUS_ENUM {
   CANCELED = 'cancelled',
   ARCHIVED = 'archived',
 }
+
+export enum PRODUCT_STATUS_ENUM {
+  SOLD = 'sold',
+  IN_STOCK = 'inStock',
+}

@@ -1,4 +1,3 @@
-import { ProductsSection } from '@/ui/sections';
 import { memo } from 'react';
 import dynamic from 'next/dynamic';
 

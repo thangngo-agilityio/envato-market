@@ -2,6 +2,7 @@ export * from './useForm';
 export * from './useAuth';
 export * from './useStatistical';
 export * from './useTransactions';
+export * from './useProducts';
 export * from './useDebounce';
 export * from './useSearch';
 export * from './usePagination';
