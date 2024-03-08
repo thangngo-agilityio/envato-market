@@ -3,11 +3,11 @@ type TDarkIconProps = {
   id?: string;
 };
 
-export const DarkIcon = ({ className='',id='' }: TDarkIconProps): JSX.Element => (
+export const DarkIcon = ({ className = '', id = '' }: TDarkIconProps): JSX.Element => (
   <svg
     id={id}
-    className={`${ className } hidden`}
-    stroke="#FFFFFF"
+    className={`${className} hidden`}
+    stroke="#FFF"
     width="24"
     height="24"
     viewBox="0 0 24 24"

@@ -3,11 +3,11 @@ type TLightIconProps = {
   id?: string;
 };
 
-export const LightIcon = ({ className='',id='' }:TLightIconProps) => (
+export const LightIcon = ({ className = '', id = '' }: TLightIconProps) => (
   <svg
     id={id}
-    className={`${ className } hidden`}
-    stroke="#000000"
+    className={`${className} hidden`}
+    stroke="#000"
     width="24"
     height="24"
     viewBox="0 0 24 24"

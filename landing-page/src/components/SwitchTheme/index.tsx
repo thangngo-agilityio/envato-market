@@ -10,13 +10,12 @@ type TSwitchThemeProps = {
 }
 const SwitchTheme = (
   { className='', children='', id=''}: TSwitchThemeProps
-): JSX.Element => {
-  return (
+): JSX.Element => (
     <button id={id} className={className} aria-label="switch-theme">
       {children}
       <DarkIcon id="light-icon"/>
       <LightIcon id="dark-icon"/>
     </button>
   );
-};
+
 export default SwitchTheme;
