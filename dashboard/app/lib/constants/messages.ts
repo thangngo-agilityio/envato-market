@@ -21,7 +21,7 @@ export const ERROR_MESSAGES = {
   LINKEDIN_INVALID: 'Linkedin link is invalid',
   YOUTUBE_INVALID: 'Youtube link is invalid',
   ZIP_CODE_INVALID: 'Zip code must contain 5 numbers',
-  PRICE_INVALID: 'Price is invalid',
+  AMOUNT_INVALID: 'Amount is invalid',
   QUANTITY_INVALID: 'Quantity is invalid',
   SET_PIN_CODE: {
     title: 'Set PIN code failed',
@@ -80,6 +80,10 @@ export const ERROR_MESSAGES = {
     title: 'Select member chat failed',
     description: 'An error occurred while selecting member chat',
   },
+  CREATE_PRODUCT_FAIL: {
+    title: 'Create failed',
+    description: 'Your product has not been updated successfully',
+  },
 };
 
 export const SUCCESS_MESSAGES = {
@@ -130,6 +134,10 @@ export const SUCCESS_MESSAGES = {
   FORGOT_PASSWORD: {
     title: 'Recover password successfully',
     description: 'Check your email inbox to recover your password',
+  },
+  CREATE_PRODUCT_SUCCESS: {
+    title: 'Update success',
+    description: 'Your product has been updated successfully',
   },
 };
 

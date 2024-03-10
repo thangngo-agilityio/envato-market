@@ -28,6 +28,7 @@ export const END_POINTS = {
   LOCK: '/lock',
   UNLOCK: '/unlock',
   ADMIN: '/admin',
+  PRODUCTS: '/products',
 };
 
 export const SEARCH_PARAM = {

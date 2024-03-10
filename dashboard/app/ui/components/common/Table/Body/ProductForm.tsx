@@ -11,7 +11,9 @@ import InputField from '@/ui/components/common/InputField';
 import { TProduct } from '@/lib/interfaces';
 
 // Constants
-import { AUTH_SCHEMA, STATUS_SUBMIT } from '@/lib/constants';
+import { AUTH_SCHEMA, CURRENCY_PRODUCT, STATUS_SUBMIT } from '@/lib/constants';
+import { authStore } from '@/lib/stores';
+import { parseFormattedNumber } from '@/lib/utils';
 
 interface ProductProps {
   product?: TProduct;
@@ -35,15 +37,17 @@ const ProductForm = ({
     reset,
   } = useForm<TProduct>({
     defaultValues: {
-      id: product?.id,
+      _id: product?._id,
       name: product?.name,
       imageURLs: product?.imageURLs,
-      price: product?.price,
+      currency: product?.currency || CURRENCY_PRODUCT,
+      amount: product?.amount,
       stock: product?.stock,
       description: product?.description,
       createdAt: product?.createdAt,
     },
   });
+  const userId = authStore((state) => state.user?.id);
 
   const disabled = useMemo(
     () => !isDirty || status === STATUS_SUBMIT.PENDING,
@@ -60,20 +64,21 @@ const ProductForm = ({
   );
 
   const handleSubmitForm = useCallback(
-    (dataInfo: TProduct) => {
+    (data: TProduct) => {
       const requestData = {
-        ...dataInfo,
-        stock: Number(dataInfo.stock),
-        price: Number(dataInfo.price),
+        ...data,
+        stock: Number(data.stock),
+        amount: parseFormattedNumber(data.amount),
+        userId,
       };
 
-      dataInfo.id
+      data._id
         ? onUpdateProduct && onUpdateProduct(requestData)
         : onCreateProduct && onCreateProduct(requestData);
       reset(requestData);
       onCloseModal && onCloseModal();
     },
-    [onCloseModal, onCreateProduct, onUpdateProduct, reset],
+    [onCloseModal, onCreateProduct, onUpdateProduct, reset, userId],
   );
 
   return (
@@ -103,18 +108,17 @@ const ProductForm = ({
         />
         <Controller
           control={control}
-          rules={AUTH_SCHEMA.PRICE}
-          name="price"
+          rules={AUTH_SCHEMA.AMOUNT}
+          name="amount"
           render={({ field, fieldState: { error } }) => (
             <InputField
-              typeInput="number"
               variant="authentication"
               bg="background.body.primary"
               label="Price"
               {...field}
               isError={!!error}
               errorMessages={error?.message}
-              onChange={handleChangeValue('price', field.onChange)}
+              onChange={handleChangeValue('amount', field.onChange)}
             />
           )}
         />
@@ -154,6 +158,24 @@ const ProductForm = ({
           )}
         />
       </Flex>
+
+      <Controller
+        control={control}
+        name="currency"
+        render={({ field, fieldState: { error } }) => (
+          <InputField
+            variant="authentication"
+            bg="background.body.primary"
+            label="Currency"
+            {...field}
+            isError={!!error}
+            errorMessages={error?.message}
+            onChange={handleChangeValue('imageURLs', field.onChange)}
+            isDisabled
+            defaultValue={CURRENCY_PRODUCT}
+          />
+        )}
+      />
 
       <Controller
         control={control}

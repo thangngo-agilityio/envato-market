@@ -12,3 +12,4 @@ export * from './useNotification';
 export * from './useWallet';
 export * from './useMoney';
 export * from './useChat';
+export * from './useProducts';

@@ -1,13 +1,51 @@
 'use client';
 
-import { Button, Modal } from '@/ui/components';
+import { ERROR_MESSAGES, STATUS, SUCCESS_MESSAGES } from '@/lib/constants';
+import { useProducts } from '@/lib/hooks';
+import { TProduct } from '@/lib/interfaces';
+import { customToast } from '@/lib/utils';
+import { Button, Indicator, Modal } from '@/ui/components';
 import { ProductForm } from '@/ui/components/common/Table/Body';
-import { useState } from 'react';
+import { useToast } from '@chakra-ui/react';
+import { useCallback, useState } from 'react';
 
 const ProductsSection = () => {
+  const toast = useToast();
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
+  const { createProduct, isCreateProduct } = useProducts();
 
   const handleToggleModal = () => setIsOpenConfirmModal((prev) => !prev);
+
+  const handleCreateProduct = useCallback(
+    (product: Omit<TProduct, 'id'>) => {
+      createProduct(
+        {
+          ...product,
+        },
+        {
+          onSuccess: () => {
+            toast(
+              customToast(
+                SUCCESS_MESSAGES.CREATE_PRODUCT_SUCCESS.title,
+                SUCCESS_MESSAGES.CREATE_PRODUCT_SUCCESS.description,
+                STATUS.SUCCESS,
+              ),
+            );
+          },
+          onError: () => {
+            toast(
+              customToast(
+                ERROR_MESSAGES.UPDATE_TRANSACTION_FAIL.title,
+                ERROR_MESSAGES.UPDATE_TRANSACTION_FAIL.description,
+                STATUS.ERROR,
+              ),
+            );
+          },
+        },
+      );
+    },
+    [createProduct, toast],
+  );
 
   return (
     <>
@@ -25,13 +63,20 @@ const ProductsSection = () => {
       </Button>
 
       {isOpenConfirmModal && (
-        <Modal
-          isOpen={isOpenConfirmModal}
-          onClose={handleToggleModal}
-          title="Add User"
-          body={<ProductForm onCloseModal={handleToggleModal} />}
-          haveCloseButton
-        />
+        <Indicator isOpen={isCreateProduct}>
+          <Modal
+            isOpen={isOpenConfirmModal}
+            onClose={handleToggleModal}
+            title="Add User"
+            body={
+              <ProductForm
+                onCloseModal={handleToggleModal}
+                onCreateProduct={handleCreateProduct}
+              />
+            }
+            haveCloseButton
+          />
+        </Indicator>
       )}
     </>
   );
