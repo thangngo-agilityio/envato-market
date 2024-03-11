@@ -35,6 +35,6 @@ export const formatProductResponse = (products: TProduct[] = []) =>
       imageURLs: imageURLs || IMAGES.BIG_AVATAR.url,
       amount: `${currency}${formatDecimalNumber(+amount)}`,
       stock: `${stock}`,
-      status: stock > 0 ? Status.IN_STOCK : Status.SOLD,
+      productStatus: stock > 0 ? Status.IN_STOCK : Status.SOLD,
     };
   });

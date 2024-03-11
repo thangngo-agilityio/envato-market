@@ -113,7 +113,7 @@ export const COLUMNS_PRODUCTS = (
   },
   {
     title: 'Status',
-    key: 'status',
+    key: 'productStatus',
     renderHead: onRenderHead,
     renderBody: onRenderStatus,
   },

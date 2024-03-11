@@ -1,3 +1,5 @@
+import { PRODUCT_STATUS_ENUM } from '../constants';
+
 export type TProduct = {
   _id: string;
   name: string;
@@ -7,4 +9,5 @@ export type TProduct = {
   currency: string;
   createdAt: string;
   imageURLs: string;
+  productStatus: PRODUCT_STATUS_ENUM;
 };
