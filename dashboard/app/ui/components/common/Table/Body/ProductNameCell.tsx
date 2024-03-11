@@ -13,7 +13,7 @@ const ProductNameCellComponent = ({ name }: TDataSource): JSX.Element => (
     color="text.primary"
     fontWeight="semibold"
     textAlign="left"
-    w={{ base: 350, xl: 220, '3xl': 300, '4xl': 200, '6xl': 350 }}
+    w={{ base: 350, xl: 220, '3xl': 300, '4xl': 200, '6xl': 250 }}
   >
     <Flex
       alignItems="center"

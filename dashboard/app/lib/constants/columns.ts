@@ -124,6 +124,11 @@ export const COLUMNS_PRODUCTS = (
     renderBody: onRenderQuantity,
   },
   {
+    title: 'Date',
+    key: 'date',
+    renderHead: onRenderHead,
+  },
+  {
     title: '',
     key: 'action',
     renderBody: onRenderActionIcon,
