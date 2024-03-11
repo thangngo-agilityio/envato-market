@@ -1,8 +1,13 @@
 'use client';
 
-import { Button, Modal } from '@/ui/components';
+import { ERROR_MESSAGES, STATUS, SUCCESS_MESSAGES } from '@/lib/constants';
+import { useProducts } from '@/lib/hooks';
+import { TProductRequest } from '@/lib/interfaces';
+import { customToast } from '@/lib/utils';
+import { Button, Indicator, Modal } from '@/ui/components';
 import { ProductForm } from '@/ui/components/common/Table/Body';
-import { useState } from 'react';
+import { useToast } from '@chakra-ui/react';
+import { useCallback, useState } from 'react';
 
 import { InView } from 'react-intersection-observer';
 
@@ -15,9 +20,42 @@ const CardPayment = dynamic(() => import('@/ui/components/CardPayment'));
 const BoxChat = dynamic(() => import('@/ui/components/BoxChat'));
 
 const ProductsSection = () => {
+  const toast = useToast();
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
+  const { createProduct, isCreateProduct } = useProducts();
 
   const handleToggleModal = () => setIsOpenConfirmModal((prev) => !prev);
+
+  const handleCreateProduct = useCallback(
+    (product: Omit<TProductRequest, 'id'>) => {
+      createProduct(
+        {
+          ...product,
+        },
+        {
+          onSuccess: () => {
+            toast(
+              customToast(
+                SUCCESS_MESSAGES.CREATE_PRODUCT_SUCCESS.title,
+                SUCCESS_MESSAGES.CREATE_PRODUCT_SUCCESS.description,
+                STATUS.SUCCESS,
+              ),
+            );
+          },
+          onError: () => {
+            toast(
+              customToast(
+                ERROR_MESSAGES.UPDATE_TRANSACTION_FAIL.title,
+                ERROR_MESSAGES.UPDATE_TRANSACTION_FAIL.description,
+                STATUS.ERROR,
+              ),
+            );
+          },
+        },
+      );
+    },
+    [createProduct, toast],
+  );
 
   return (
     <Grid
@@ -36,6 +74,20 @@ const ProductsSection = () => {
           px={6}
           py={5}
         >
+          <Button
+            w={200}
+            type="button"
+            role="button"
+            aria-label="Add User"
+            colorScheme="primary"
+            marginBottom="10px"
+            bg="primary.300"
+            textTransform="capitalize"
+            onClick={handleToggleModal}
+          >
+            Add User
+          </Button>
+
           <ProductsTable />
         </Box>
       </GridItem>
@@ -53,27 +105,21 @@ const ProductsSection = () => {
         )}
       </InView>
 
-      <Button
-        w={200}
-        type="button"
-        role="button"
-        aria-label="Add User"
-        colorScheme="primary"
-        bg="primary.300"
-        textTransform="capitalize"
-        onClick={handleToggleModal}
-      >
-        Add User
-      </Button>
-
       {isOpenConfirmModal && (
-        <Modal
-          isOpen={isOpenConfirmModal}
-          onClose={handleToggleModal}
-          title="Add User"
-          body={<ProductForm onCloseModal={handleToggleModal} />}
-          haveCloseButton
-        />
+        <Indicator isOpen={isCreateProduct}>
+          <Modal
+            isOpen={isOpenConfirmModal}
+            onClose={handleToggleModal}
+            title="Add User"
+            body={
+              <ProductForm
+                onCloseModal={handleToggleModal}
+                onCreateProduct={handleCreateProduct}
+              />
+            }
+            haveCloseButton
+          />
+        </Indicator>
       )}
     </Grid>
   );
