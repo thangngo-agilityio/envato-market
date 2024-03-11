@@ -68,91 +68,14 @@ const ProductsTableComponent = ({
     handlePageClick,
   } = usePagination(products);
 
-  // const handleUpdateTransaction = useCallback(
-  //   (updateCustomer: TTransaction) => {
-  //     const {
-  //       customer: { firstName, lastName, address },
-  //     } = updateCustomer;
-  //     updateTransaction(
-  //       {
-  //         transactionId: updateCustomer._id,
-  //         userId: userId,
-  //         firstName: firstName,
-  //         lastName: lastName,
-  //         state: address.state,
-  //         street: address.street,
-  //         city: address.city,
-  //         zip: address.zip,
-  //       },
-  //       {
-  //         onSuccess: () => {
-  //           toast(
-  //             customToast(
-  //               SUCCESS_MESSAGES.UPDATE_TRANSACTION_SUCCESS.title,
-  //               SUCCESS_MESSAGES.UPDATE_TRANSACTION_SUCCESS.description,
-  //               STATUS.SUCCESS,
-  //             ),
-  //           );
-  //         },
-  //         onError: () => {
-  //           toast(
-  //             customToast(
-  //               ERROR_MESSAGES.UPDATE_TRANSACTION_FAIL.title,
-  //               ERROR_MESSAGES.UPDATE_TRANSACTION_FAIL.description,
-  //               STATUS.ERROR,
-  //             ),
-  //           );
-  //         },
-  //       },
-  //     );
-  //   },
-  //   [updateTransaction],
-  // );
-
-  // const handleDeleteTransaction = useCallback(
-  //   (updateData: Partial<TTransaction & { id: string }>) => {
-  //     deleteTransaction(
-  //       {
-  //         transactionId: updateData.id,
-  //         userId: userId,
-  //         transactionStatus: TRANSACTION_STATUS.ARCHIVED,
-  //       },
-  //       {
-  //         onSuccess: () => {
-  //           toast(
-  //             customToast(
-  //               SUCCESS_MESSAGES.DELETE_SUCCESS.title,
-  //               SUCCESS_MESSAGES.DELETE_SUCCESS.description,
-  //               STATUS.SUCCESS,
-  //             ),
-  //           );
-  //         },
-  //         onError: () => {
-  //           toast(
-  //             customToast(
-  //               ERROR_MESSAGES.DELETE_FAIL.title,
-  //               ERROR_MESSAGES.DELETE_FAIL.description,
-  //               STATUS.ERROR,
-  //             ),
-  //           );
-  //         },
-  //       },
-  //     );
-  //   },
-  //   [deleteTransaction],
-  // );
-
-  // Update search params when end time debounce
-
   const handleDebounceSearch = useDebounce((value: string) => {
     resetPage();
     setSearchTransaction('name', value);
   }, []);
 
   const renderHead = useCallback((title: string): JSX.Element => {
-    const handleClick = () => {
-      console.log('sort');
-    };
+    // TODO: handle click sort
+    const handleClick = () => {};
 
     if (!title) return <Th w={50} maxW={50} />;
 

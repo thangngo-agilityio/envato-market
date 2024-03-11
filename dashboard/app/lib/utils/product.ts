@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 
 // Types
-import { Status, TProduct } from '@/lib/interfaces';
+import { StatusProduct, TProduct } from '@/lib/interfaces';
 
 // Utils
 import { formatDecimalNumber, formatUppercaseFirstLetter } from '.';
@@ -35,6 +35,6 @@ export const formatProductResponse = (products: TProduct[] = []) =>
       imageURLs: imageURLs || IMAGES.BIG_AVATAR.url,
       amount: `${currency}${formatDecimalNumber(+amount)}`,
       stock: `${stock}`,
-      productStatus: stock > 0 ? Status.IN_STOCK : Status.SOLD,
+      productStatus: stock > 0 ? StatusProduct.IN_STOCK : StatusProduct.SOLD,
     };
   });

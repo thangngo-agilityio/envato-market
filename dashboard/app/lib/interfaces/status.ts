@@ -11,8 +11,11 @@ export enum Status {
   ARCHIVED = 'Archived',
   LOCK = 'Lock',
   UNLOCK = 'Unlock',
+}
+
+export enum StatusProduct {
   SOLD = 'Sold',
-  IN_STOCK = 'In stock',
+  IN_STOCK = 'In-stock',
 }
 
 export enum RevenueFlowStatus {
