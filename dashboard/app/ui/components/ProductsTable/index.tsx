@@ -98,12 +98,14 @@ const ProductsTableComponent = ({
         color="text.primary"
         fontWeight="semibold"
         textAlign="left"
-        w={{ base: 350, xl: 220, '3xl': 300, '4xl': 200, '6xl': 350 }}
+        w={{ base: 350, xl: 220, '3xl': 300, '4xl': 200, '6xl': 250 }}
       >
         <Flex
           alignItems="center"
           gap="10px"
           w={{ base: 240, '3xl': 200, '5xl': 240 }}
+          borderRadius="15px"
+          paddingLeft="20px"
         >
           <Box pos="relative" w={100} h={100}>
             <Image
@@ -115,6 +117,7 @@ const ProductsTableComponent = ({
               blurDataURL={generatePlaceholder(40, 40)}
               style={{
                 objectFit: 'cover',
+                borderRadius: '15px',
               }}
             />
           </Box>
@@ -141,7 +144,7 @@ const ProductsTableComponent = ({
           fontWeight="semibold"
           whiteSpace="break-spaces"
           noOfLines={1}
-          w={{ base: 100, md: 220, '3xl': 300, '5xl': 200, '7xl': 350 }}
+          w={{ base: 100, md: 220, '3xl': 300, '5xl': 200, '7xl': 250 }}
           flex={1}
         >
           {amount}
@@ -168,7 +171,7 @@ const ProductsTableComponent = ({
           fontWeight="semibold"
           whiteSpace="break-spaces"
           noOfLines={1}
-          w={{ base: 100, md: 220, '3xl': 300, '5xl': 200, '7xl': 350 }}
+          w={{ base: 100, md: 220, '3xl': 300, '5xl': 200, '7xl': 200 }}
           flex={1}
         >
           {stock}
