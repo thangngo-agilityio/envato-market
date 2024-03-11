@@ -1,6 +1,7 @@
 'use client';
 
 // import Link from 'next/link';
+import Image from 'next/image';
 import { memo, useCallback, useMemo } from 'react';
 import { Box, Flex, Td, Text, Th } from '@chakra-ui/react';
 
@@ -10,16 +11,11 @@ import {
   Pagination,
   HeadCell,
   SearchBar,
-  // StatusCell,
   Fetching,
   ActionCell,
   StatusCell,
   ProductNameCell,
-  // Indicator,
 } from '@/ui/components';
-
-// Utils
-// import { customToast } from '@/lib/utils/toast';
 
 // Hooks
 import {
@@ -29,6 +25,10 @@ import {
   useSearch,
 } from '@/lib/hooks';
 
+// Utils
+import { formatProductResponse } from '@/lib/utils/product';
+import { generatePlaceholder } from '@/lib/utils';
+
 // Constants
 import {
   MONTHS_OPTIONS,
@@ -36,16 +36,9 @@ import {
   COLUMNS_PRODUCTS,
   STATUS_LABEL,
 } from '@/lib/constants';
-// import { TYPE } from '@/lib/constants/notification';
 
 // Types
 import { TDataSource, THeaderTable, TProduct } from '@/lib/interfaces';
-import { formatProductResponse } from '@/lib/utils/product';
-import Image from 'next/image';
-import { generatePlaceholder } from '@/lib/utils';
-
-// Stores
-// import { authStore } from '@/lib/stores';
 
 interface TFilterUserProps {
   isOpenHistoryModal?: boolean;
@@ -122,7 +115,7 @@ const ProductsTableComponent = ({
   //       {
   //         transactionId: updateData.id,
   //         userId: userId,
-  //         transactionStatus: TRANSACTION_STATUS_ENUM.ARCHIVED,
+  //         transactionStatus: TRANSACTION_STATUS.ARCHIVED,
   //       },
   //       {
   //         onSuccess: () => {

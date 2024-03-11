@@ -1,4 +1,4 @@
-import { PRODUCT_STATUS_ENUM } from '../constants';
+import { PRODUCT_STATUS } from '../constants';
 
 export type TProduct = {
   _id: string;
@@ -9,5 +9,5 @@ export type TProduct = {
   currency: string;
   createdAt: string;
   imageURLs: string;
-  productStatus: PRODUCT_STATUS_ENUM;
+  productStatus: PRODUCT_STATUS;
 };

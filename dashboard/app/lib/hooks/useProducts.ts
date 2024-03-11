@@ -1,8 +1,14 @@
+// Lib
 import { useQuery } from '@tanstack/react-query';
 
-import { END_POINTS } from '@/lib/constants';
-import { getProducts } from '@/lib/services';
+// Store
 import { authStore } from '../stores';
+
+// Constants
+import { END_POINTS } from '@/lib/constants';
+
+// Services
+import { getProducts } from '@/lib/services';
 
 export type TSearchProduct = {
   name: string;

@@ -1,9 +1,9 @@
-export enum PAYMENT_STATUS_ENUM {
+export enum PAYMENT_STATUS {
   PAID = 'paid',
   UN_PAID = 'unpaid',
 }
 
-export enum TRANSACTION_STATUS_ENUM {
+export enum TRANSACTION_STATUS {
   COMPLETED = 'completed',
   PROCESSING = 'processing',
   PENDING = 'pending',
@@ -12,7 +12,7 @@ export enum TRANSACTION_STATUS_ENUM {
   ARCHIVED = 'archived',
 }
 
-export enum PRODUCT_STATUS_ENUM {
+export enum PRODUCT_STATUS {
   SOLD = 'sold',
   IN_STOCK = 'inStock',
 }
