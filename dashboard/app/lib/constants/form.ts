@@ -141,8 +141,6 @@ export const AUTH_SCHEMA = {
   QUANTITY: {
     required: ERROR_MESSAGES.FIELD_REQUIRED('Quantity'),
     validate: (value: number) => {
-      console.log(Number(value));
-
       if (Number(value) < 0) {
         return ERROR_MESSAGES.QUANTITY_INVALID;
       }

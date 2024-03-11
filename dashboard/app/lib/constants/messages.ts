@@ -15,6 +15,7 @@ export const ERROR_MESSAGES = {
     description: 'Your profile has not been updated successfully',
   },
   UPLOAD_IMAGE: 'Wrong image format. Only "jpg", "png" and "webp" are allowed',
+  UPLOAD_IMAGE_ITEM: 'Can only upload a maximum of 5 images',
   UPLOAD_IMAGE_SIZE: 'Image size should be less than 5MB',
   FACEBOOK_INVALID: 'Facebook link is invalid',
   TWITTER_INVALID: 'Twitter link is invalid',

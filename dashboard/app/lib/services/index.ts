@@ -8,4 +8,4 @@ export * from './wallet';
 export * from './money';
 export * from './users';
 export * from './image';
-export * from './product';
+export * from './products';

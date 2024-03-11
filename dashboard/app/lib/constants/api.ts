@@ -8,6 +8,7 @@ export const END_POINTS = {
   AUTHEN_USERS: '/authenUsers',
   USERS: '/users',
   TRANSACTIONS: '/transactions',
+  PRODUCTS: '/products',
   STATISTICS: '/statistics',
   REVENUE: '/revenue',
   EFFICIENCY: '/efficiency',
@@ -28,7 +29,6 @@ export const END_POINTS = {
   LOCK: '/lock',
   UNLOCK: '/unlock',
   ADMIN: '/admin',
-  PRODUCTS: '/products',
 };
 
 export const SEARCH_PARAM = {

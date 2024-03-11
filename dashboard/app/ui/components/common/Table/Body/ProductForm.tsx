@@ -4,22 +4,28 @@ import { memo, useCallback, useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 // Components
-import { Button, Flex, VStack } from '@chakra-ui/react';
+import { Button, Flex, VStack, useToast } from '@chakra-ui/react';
 import InputField from '@/ui/components/common/InputField';
 
 // Interfaces
-import { TProduct } from '@/lib/interfaces';
+import { TProductRequest } from '@/lib/interfaces';
 
 // Constants
-import { AUTH_SCHEMA, CURRENCY_PRODUCT, STATUS_SUBMIT } from '@/lib/constants';
+import {
+  AUTH_SCHEMA,
+  CURRENCY_PRODUCT,
+  SHOW_TIME,
+  STATUS_SUBMIT,
+} from '@/lib/constants';
 import { authStore } from '@/lib/stores';
 import { parseFormattedNumber } from '@/lib/utils';
+import { UploadProducts } from '@/ui/components';
 
 interface ProductProps {
-  product?: TProduct;
+  product?: TProductRequest;
   onDeleteProduct?: () => void;
-  onCreateProduct?: (productData: Omit<TProduct, 'id'>) => void;
-  onUpdateProduct?: (productData: TProduct) => void;
+  onCreateProduct?: (productData: Omit<TProductRequest, 'id'>) => void;
+  onUpdateProduct?: (productData: TProductRequest) => void;
   onCloseModal?: () => void;
 }
 
@@ -29,13 +35,14 @@ const ProductForm = ({
   onUpdateProduct,
   onCloseModal,
 }: ProductProps) => {
+  const toast = useToast();
   const {
     control,
     formState: { isDirty },
     clearErrors,
     handleSubmit,
     reset,
-  } = useForm<TProduct>({
+  } = useForm<TProductRequest>({
     defaultValues: {
       _id: product?._id,
       name: product?.name,
@@ -55,7 +62,7 @@ const ProductForm = ({
   );
 
   const handleChangeValue = useCallback(
-    <T,>(field: keyof TProduct, changeHandler: (value: T) => void) =>
+    <T,>(field: keyof TProductRequest, changeHandler: (value: T) => void) =>
       (data: T) => {
         clearErrors(field);
         changeHandler(data);
@@ -64,14 +71,13 @@ const ProductForm = ({
   );
 
   const handleSubmitForm = useCallback(
-    (data: TProduct) => {
+    (data: TProductRequest) => {
       const requestData = {
         ...data,
-        stock: Number(data.stock),
+        stock: parseFormattedNumber(data.stock),
         amount: parseFormattedNumber(data.amount),
         userId,
       };
-
       data._id
         ? onUpdateProduct && onUpdateProduct(requestData)
         : onCreateProduct && onCreateProduct(requestData);
@@ -79,6 +85,18 @@ const ProductForm = ({
       onCloseModal && onCloseModal();
     },
     [onCloseModal, onCreateProduct, onUpdateProduct, reset, userId],
+  );
+
+  const handleShowErrorWhenUploadImage = useCallback(
+    (message: string) => {
+      toast({
+        description: message,
+        status: 'error',
+        duration: SHOW_TIME,
+        position: 'top-right',
+      });
+    },
+    [toast],
   );
 
   return (
@@ -130,7 +148,6 @@ const ProductForm = ({
           name="stock"
           render={({ field, field: { onChange }, fieldState: { error } }) => (
             <InputField
-              typeInput="number"
               variant="authentication"
               bg="background.body.primary"
               label="Quantity"
@@ -170,7 +187,7 @@ const ProductForm = ({
             {...field}
             isError={!!error}
             errorMessages={error?.message}
-            onChange={handleChangeValue('imageURLs', field.onChange)}
+            onChange={handleChangeValue('currency', field.onChange)}
             isDisabled
             defaultValue={CURRENCY_PRODUCT}
           />
@@ -181,18 +198,15 @@ const ProductForm = ({
         control={control}
         rules={AUTH_SCHEMA.GALLERY_THUMBNAIL}
         name="imageURLs"
-        render={({ field, fieldState: { error } }) => (
-          <InputField
-            variant="authentication"
-            bg="background.body.primary"
+        render={({ field }) => (
+          <UploadProducts
             label="Gallery Thumbnail"
-            {...field}
-            isError={!!error}
-            errorMessages={error?.message}
-            onChange={handleChangeValue('imageURLs', field.onChange)}
+            onUploadError={handleShowErrorWhenUploadImage}
+            onChange={field.onChange}
           />
         )}
       />
+
       <Flex my={4}>
         <Button
           type="submit"
