@@ -83,7 +83,7 @@ export const ERROR_MESSAGES = {
   },
   CREATE_PRODUCT_FAIL: {
     title: 'Create failed',
-    description: 'Your product has not been updated successfully',
+    description: 'Your product has not been created successfully',
   },
 };
 

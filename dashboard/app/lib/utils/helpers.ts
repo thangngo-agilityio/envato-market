@@ -119,7 +119,10 @@ export const parseFormattedNumber = (value: number): number => {
     return 0;
   }
 
-  const cleanValue = (value as unknown as string).replace(/[^\d.-]/g, '');
+  const cleanValue = (value as unknown as string).replace(
+    REGEX.FORMAT_NUMBER,
+    '',
+  );
 
   const parsedNumber = parseFloat(cleanValue);
 

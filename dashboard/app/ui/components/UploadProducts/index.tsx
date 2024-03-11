@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from 'react';
+// Libs
+import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import {
   Box,
@@ -9,8 +10,12 @@ import {
   Image,
   Flex,
 } from '@chakra-ui/react';
-import { ERROR_MESSAGES, IMAGES, REGEX } from '@/lib/constants';
-import { uploadImage } from '@/lib/services';
+
+// Constants
+import { IMAGES } from '@/lib/constants';
+
+// Services
+import { useImageUploader } from '@/lib/hooks';
 
 export type TUploadImageProductsProps = {
   label: string;
@@ -24,47 +29,11 @@ const UploadProducts = ({
   onUploadError,
 }: TUploadImageProductsProps) => {
   const [previewURL, setPreviewURL] = useState<string[]>([]);
-
-  const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      const imagesPreview: React.SetStateAction<string[]> = [];
-      const imagesUpload: string[] = [];
-
-      if (acceptedFiles.length > 5) {
-        return onUploadError(ERROR_MESSAGES.UPLOAD_IMAGE_ITEM);
-      }
-
-      acceptedFiles.map(async (file) => {
-        if (!file) {
-          return;
-        }
-
-        // Check type of image
-        if (!REGEX.IMG.test(file.name)) {
-          return onUploadError(ERROR_MESSAGES.UPLOAD_IMAGE);
-        }
-
-        // Uploading file
-        try {
-          onChange([]);
-          const previewImage: string = URL.createObjectURL(file);
-          const formData = new FormData();
-
-          formData.append('image', file);
-          imagesPreview.push(previewImage);
-
-          const result = await uploadImage(formData);
-          imagesUpload.push(result);
-        } catch (error) {
-          onUploadError(ERROR_MESSAGES.UPDATE_FAIL.title);
-        }
-        setPreviewURL(imagesPreview);
-      });
-
-      onChange(imagesUpload);
-    },
-    [onChange, onUploadError],
-  );
+  const { onDrop } = useImageUploader({
+    onChange,
+    onUploadError,
+    setPreviewURL,
+  });
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -123,11 +92,8 @@ const UploadProducts = ({
           {...getInputProps()}
           size={undefined as ResponsiveValue<string> | undefined}
         />
-        {isDragActive ? (
-          <Text>Drop the files here ...</Text>
-        ) : (
-          <Text>Drag drop some files here, or click to select files</Text>
-        )}
+
+        <Text>Drag drop some files here, or click to select files</Text>
       </Box>
     </Flex>
   );
