@@ -1,13 +1,17 @@
 import dayjs from 'dayjs';
 
 // Types
-import { StatusProduct, TProduct } from '@/lib/interfaces';
+import { TProduct } from '@/lib/interfaces';
 
 // Utils
-import { formatDecimalNumber, formatUppercaseFirstLetter } from '.';
+import {
+  formatAllowOnlyNumbers,
+  formatDecimalNumber,
+  formatUppercaseFirstLetter,
+} from '.';
 
 // Constants
-import { IMAGES, TIME_FORMAT } from '../constants';
+import { IMAGES, PRODUCT_STATUS, TIME_FORMAT } from '../constants';
 
 /**
  * Convert data show for home page
@@ -34,7 +38,7 @@ export const formatProductResponse = (products: TProduct[] = []) =>
       date: dayjs(createdAt).format(TIME_FORMAT),
       imageURLs: imageURLs || IMAGES.BIG_AVATAR.url,
       amount: `${currency}${formatDecimalNumber(+amount)}`,
-      stock: `${stock}`,
-      productStatus: stock > 0 ? StatusProduct.IN_STOCK : StatusProduct.SOLD,
+      stock: `${formatAllowOnlyNumbers(stock.toString())}`,
+      productStatus: stock > 0 ? PRODUCT_STATUS.IN_STOCK : PRODUCT_STATUS.SOLD,
     };
   });

@@ -13,6 +13,6 @@ export enum TRANSACTION_STATUS {
 }
 
 export enum PRODUCT_STATUS {
-  SOLD = 'sold',
-  IN_STOCK = 'inStock',
+  SOLD = 'Sold',
+  IN_STOCK = 'In-stock',
 }

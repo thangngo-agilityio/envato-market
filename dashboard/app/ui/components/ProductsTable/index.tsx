@@ -26,8 +26,7 @@ import {
 } from '@/lib/hooks';
 
 // Utils
-import { formatProductResponse } from '@/lib/utils/product';
-import { generatePlaceholder } from '@/lib/utils';
+import { generatePlaceholder, formatProductResponse } from '@/lib/utils';
 
 // Constants
 import {
