@@ -6,6 +6,7 @@ import { Controller, useForm } from 'react-hook-form';
 // Components
 import { Button, Flex, VStack, useToast } from '@chakra-ui/react';
 import InputField from '@/ui/components/common/InputField';
+import { UploadProducts } from '@/ui/components';
 
 // Interfaces
 import { TProductRequest } from '@/lib/interfaces';
@@ -17,9 +18,12 @@ import {
   SHOW_TIME,
   STATUS_SUBMIT,
 } from '@/lib/constants';
+
+// Stores
 import { authStore } from '@/lib/stores';
+
+// Utils
 import { parseFormattedNumber } from '@/lib/utils';
-import { UploadProducts } from '@/ui/components';
 
 interface ProductProps {
   product?: TProductRequest;

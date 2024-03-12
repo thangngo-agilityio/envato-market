@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 // Constants
-import { ERROR_MESSAGES, MAX_ITEM_IMAGES, REGEX } from '@/lib/constants';
+import { ERROR_MESSAGES, LIMIT_PRODUCT_IMAGES, REGEX } from '@/lib/constants';
 
 // Services
 import { uploadImage } from '@/lib/services';
@@ -22,7 +22,7 @@ export const useImageUploader = ({
       const imagesPreview: React.SetStateAction<string[]> = [];
       const imagesUpload: string[] = [];
 
-      if (acceptedFiles.length > MAX_ITEM_IMAGES) {
+      if (acceptedFiles.length > LIMIT_PRODUCT_IMAGES) {
         return onUploadError(ERROR_MESSAGES.UPLOAD_IMAGE_ITEM);
       }
 
