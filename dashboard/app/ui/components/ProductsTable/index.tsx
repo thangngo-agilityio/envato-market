@@ -48,8 +48,15 @@ import {
 } from '@/lib/constants';
 
 // Types
-import { TProductRequest } from '@/lib/interfaces';
-import { TDataSource, THeaderTable, TProduct } from '@/lib/interfaces';
+import {
+  TProductRequest,
+  TDataSource,
+  THeaderTable,
+  TProduct,
+} from '@/lib/interfaces';
+
+// Stores
+import { authStore } from '@/lib/stores';
 
 interface TFilterUserProps {
   isOpenHistoryModal?: boolean;
@@ -59,7 +66,7 @@ const ProductsTableComponent = ({
   isOpenHistoryModal = false,
 }: TFilterUserProps) => {
   const toast = useToast();
-  // const userId = authStore((state) => state.user?.id);
+  const userId = authStore((state) => state.user?.id);
   const { get, setSearchParam: setSearchTransaction } = useSearch();
   // const [filter, setFilter] = useState<string>('');
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
@@ -82,7 +89,7 @@ const ProductsTableComponent = ({
     handlePageClick,
   } = usePagination(products);
 
-  const { createProduct, isCreateProduct } = useProducts();
+  const { createProduct, isCreateProduct, deleteProduct } = useProducts();
 
   const handleDebounceSearch = useDebounce((value: string) => {
     resetPage();
@@ -90,7 +97,7 @@ const ProductsTableComponent = ({
   }, []);
 
   const handleCreateProduct = useCallback(
-    (product: Omit<TProductRequest, 'id'>) => {
+    (product: Omit<TProductRequest, '_id'>) => {
       createProduct(
         {
           ...product,
@@ -120,6 +127,38 @@ const ProductsTableComponent = ({
     [createProduct, toast],
   );
 
+  const handleDeleteProduct = useCallback(
+    (data: Partial<TProduct & { userId: string; productId: string }>) => {
+      deleteProduct(
+        {
+          productId: data._id,
+          userId: userId,
+        },
+        {
+          onSuccess: () => {
+            toast(
+              customToast(
+                SUCCESS_MESSAGES.DELETE_SUCCESS.title,
+                SUCCESS_MESSAGES.DELETE_SUCCESS.description,
+                STATUS.SUCCESS,
+              ),
+            );
+          },
+          onError: () => {
+            toast(
+              customToast(
+                ERROR_MESSAGES.DELETE_FAIL.title,
+                ERROR_MESSAGES.DELETE_FAIL.description,
+                STATUS.ERROR,
+              ),
+            );
+          },
+        },
+      );
+    },
+    [deleteProduct, toast, userId],
+  );
+
   const renderHead = useCallback((title: string): JSX.Element => {
     // TODO: handle click sort
     const handleClick = () => {};
@@ -130,8 +169,8 @@ const ProductsTableComponent = ({
   }, []);
 
   const renderNameUser = useCallback(
-    ({ id, name }: TDataSource): JSX.Element => (
-      <ProductNameCell id={id} key={id} name={name} />
+    ({ id, _id, name }: TDataSource): JSX.Element => (
+      <ProductNameCell _id={_id} key={id} name={name} />
     ),
     [],
   );
@@ -244,9 +283,10 @@ const ProductsTableComponent = ({
   const renderActionIcon = useCallback(
     (data: TProduct) => (
       <ActionCell
+        product={data}
         key={`${data._id}-action`}
         isOpenModal={true}
-        onDeleteTransaction={() => console.log()}
+        onDeleteProduct={handleDeleteProduct}
         onUpdateTransaction={() => console.log()}
       />
     ),

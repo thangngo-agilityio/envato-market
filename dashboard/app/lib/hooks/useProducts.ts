@@ -49,9 +49,28 @@ export const useProducts = (queryParam?: TSearchProduct) => {
     },
   });
 
+  const { mutate: deleteProduct, isPending: isDeleteProduct } = useMutation({
+    mutationFn: async (
+      payload: Partial<TProductRequest & { userId: string; productId: string }>,
+    ) => {
+      await productsHttpService.delete(END_POINTS.PRODUCTS, {
+        data: payload,
+      });
+    },
+    onSuccess: (_, variables) => {
+      queryClient.setQueryData(
+        [END_POINTS.PRODUCTS, searchName],
+        (oldData: TProduct[]) =>
+          oldData.filter((item) => item._id !== variables.productId),
+      );
+    },
+  });
+
   return {
     products,
     isCreateProduct,
+    isDeleteProduct,
     createProduct,
+    deleteProduct,
   };
 };

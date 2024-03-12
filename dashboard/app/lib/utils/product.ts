@@ -32,7 +32,7 @@ export const formatProductResponse = (products: TProduct[] = []) =>
     } = product;
 
     return {
-      id: _id,
+      _id: _id,
       name: formatUppercaseFirstLetter(name),
       description: formatUppercaseFirstLetter(description),
       date: dayjs(createdAt).format(TIME_FORMAT),
