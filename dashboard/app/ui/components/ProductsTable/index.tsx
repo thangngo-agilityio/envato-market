@@ -233,12 +233,12 @@ const ProductsTableComponent = ({
         color="text.primary"
         fontWeight="semibold"
         textAlign="left"
-        w={{ base: 350, xl: 220, '3xl': 300, '4xl': 200, '6xl': 250 }}
+        minW={180}
       >
         <Flex
           alignItems="center"
           gap="10px"
-          w={{ base: 240, '3xl': 200, '5xl': 240 }}
+          minW={180}
           borderRadius="15px"
           paddingLeft="20px"
         >
@@ -251,7 +251,7 @@ const ProductsTableComponent = ({
               placeholder="blur"
               blurDataURL={generatePlaceholder(40, 40)}
               style={{
-                objectFit: 'cover',
+                objectFit: 'contain',
                 borderRadius: '15px',
               }}
             />
@@ -273,13 +273,14 @@ const ProductsTableComponent = ({
         fontWeight="semibold"
         textAlign="left"
         w={{ base: 150, md: 20 }}
+        minW={150}
       >
         <Text
           fontSize="md"
           fontWeight="semibold"
           whiteSpace="break-spaces"
           noOfLines={1}
-          w={{ base: 100, md: 220, '3xl': 300, '5xl': 200, '7xl': 250 }}
+          minW={150}
           flex={1}
         >
           {amount}
@@ -299,14 +300,14 @@ const ProductsTableComponent = ({
         color="text.primary"
         fontWeight="semibold"
         textAlign="left"
-        w={{ base: 150, md: 20 }}
+        minW={120}
       >
         <Text
           fontSize="md"
           fontWeight="semibold"
           whiteSpace="break-spaces"
           noOfLines={1}
-          w={{ base: 100, md: 220, '3xl': 300, '5xl': 200, '7xl': 200 }}
+          minW={120}
           flex={1}
         >
           {stock}
@@ -365,15 +366,15 @@ const ProductsTableComponent = ({
 
   return (
     <Indicator isOpen={isCreateProduct || isDeleteProduct || isUpdateProduct}>
-      <Flex>
+      <Flex flexDirection={{ base: 'column', md: 'row' }}>
         <SearchBar
           filterOptions={isOpenHistoryModal ? MONTHS_OPTIONS : ROLES}
-          searchValue={get('name') || ''}
+          searchValue={get('name')?.toLowerCase() || ''}
           onSearch={handleDebounceSearch}
           // onFilter={setFilter}
         />
         <Button
-          w={200}
+          w={{ base: 'none', md: 200 }}
           type="button"
           role="button"
           aria-label="Add User"
@@ -381,7 +382,7 @@ const ProductsTableComponent = ({
           bg="primary.300"
           textTransform="capitalize"
           onClick={handleToggleModal}
-          marginLeft="20px"
+          marginLeft={{ base: 'initial', md: '20px' }}
         >
           Add Product
         </Button>
