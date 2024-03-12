@@ -53,6 +53,7 @@ import {
   TDataSource,
   THeaderTable,
   TProduct,
+  TProductResponse,
 } from '@/lib/interfaces';
 
 // Stores
@@ -73,7 +74,17 @@ const ProductsTableComponent = ({
 
   const handleToggleModal = () => setIsOpenConfirmModal((prev) => !prev);
 
-  const { products } = useProducts({
+  const {
+    products,
+    isLoading: isLoadingProducts,
+    isError: isProductsError,
+    createProduct,
+    deleteProduct,
+    updateProduct,
+    isCreateProduct,
+    isDeleteProduct,
+    isUpdateProduct,
+  } = useProducts({
     name: get('name') || '',
   });
 
@@ -88,8 +99,6 @@ const ProductsTableComponent = ({
     handlePageChange,
     handlePageClick,
   } = usePagination(products);
-
-  const { createProduct, isCreateProduct, deleteProduct } = useProducts();
 
   const handleDebounceSearch = useDebounce((value: string) => {
     resetPage();
@@ -157,6 +166,45 @@ const ProductsTableComponent = ({
       );
     },
     [deleteProduct, toast, userId],
+  );
+
+  const handleUpdateProduct = useCallback(
+    (data: TProductRequest) => {
+      updateProduct(
+        {
+          productId: data._id,
+          userId: userId,
+          name: data?.name,
+          imageURLs: data?.imageURLs,
+          currency: data?.currency,
+          amount: data?.amount,
+          stock: data?.stock,
+          description: data?.description,
+          createdAt: data?.createdAt,
+        },
+        {
+          onSuccess: () => {
+            toast(
+              customToast(
+                SUCCESS_MESSAGES.UPDATE_TRANSACTION_SUCCESS.title,
+                SUCCESS_MESSAGES.UPDATE_TRANSACTION_SUCCESS.description,
+                STATUS.SUCCESS,
+              ),
+            );
+          },
+          onError: () => {
+            toast(
+              customToast(
+                ERROR_MESSAGES.UPDATE_TRANSACTION_FAIL.title,
+                ERROR_MESSAGES.UPDATE_TRANSACTION_FAIL.description,
+                STATUS.ERROR,
+              ),
+            );
+          },
+        },
+      );
+    },
+    [toast, updateProduct, userId],
   );
 
   const renderHead = useCallback((title: string): JSX.Element => {
@@ -281,16 +329,16 @@ const ProductsTableComponent = ({
   );
 
   const renderActionIcon = useCallback(
-    (data: TProduct) => (
+    (data: TProductResponse) => (
       <ActionCell
         product={data}
         key={`${data._id}-action`}
         isOpenModal={true}
         onDeleteProduct={handleDeleteProduct}
-        onUpdateTransaction={() => console.log()}
+        onUpdateProduct={handleUpdateProduct}
       />
     ),
-    [handleDeleteProduct],
+    [handleDeleteProduct, handleUpdateProduct],
   );
 
   const columns = useMemo(
@@ -316,7 +364,7 @@ const ProductsTableComponent = ({
   );
 
   return (
-    <>
+    <Indicator isOpen={isCreateProduct || isDeleteProduct || isUpdateProduct}>
       <Flex>
         <SearchBar
           filterOptions={isOpenHistoryModal ? MONTHS_OPTIONS : ROLES}
@@ -340,8 +388,8 @@ const ProductsTableComponent = ({
       </Flex>
       <Fetching
         quality={15}
-        // isLoading={isLoadingTransactions}
-        // isError={isTransactionsError}
+        isLoading={isLoadingProducts}
+        isError={isProductsError}
       >
         <Box mt={5}>
           <Table
@@ -366,22 +414,20 @@ const ProductsTableComponent = ({
       </Fetching>
 
       {isOpenConfirmModal && (
-        <Indicator isOpen={isCreateProduct}>
-          <Modal
-            isOpen={isOpenConfirmModal}
-            onClose={handleToggleModal}
-            title="Add User"
-            body={
-              <ProductForm
-                onCloseModal={handleToggleModal}
-                onCreateProduct={handleCreateProduct}
-              />
-            }
-            haveCloseButton
-          />
-        </Indicator>
+        <Modal
+          isOpen={isOpenConfirmModal}
+          onClose={handleToggleModal}
+          title="Add User"
+          body={
+            <ProductForm
+              onCloseModal={handleToggleModal}
+              onCreateProduct={handleCreateProduct}
+            />
+          }
+          haveCloseButton
+        />
       )}
-    </>
+    </Indicator>
   );
 };
 
