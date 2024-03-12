@@ -1,21 +1,20 @@
+// Libs
+import React, { useContext } from 'react';
 // Components
 import DarkIcon from '@app/components/icons/Dark/index.tsx';
 import LightIcon from '@app/components/icons/Light/index.tsx';
 
-type TSwitchThemeProps = {
-  id?: string;
-  className?: string;
-  children?: string;
+// Themes 
+import { ThemeContext } from '@app/components/SwitchTheme/themContext';
 
-}
-const SwitchTheme = (
-  { className='', children='', id=''}: TSwitchThemeProps
-): JSX.Element => (
-    <button id={id} className={className} aria-label="switch-theme">
-      {children}
-      <DarkIcon id="light-icon"/>
-      <LightIcon id="dark-icon"/>
-    </button>
+const SwitchTheme = () => {
+  const { theme, setTheme } = useContext(ThemeContext);
+  return (
+    <div>
+      {
+        theme === 'light' ? (<button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}><DarkIcon /></button>) : (<button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}><LightIcon /></button>)
+      }
+    </div>
   );
-
+};
 export default SwitchTheme;
