@@ -73,7 +73,12 @@ const ProductsTableComponent = ({
 
   const handleToggleModal = () => setIsOpenConfirmModal((prev) => !prev);
 
-  const { products } = useProducts({
+  const {
+    data: products = [],
+    createProduct,
+    isCreateProduct,
+    deleteProduct,
+  } = useProducts({
     name: get('name') || '',
   });
 
@@ -88,8 +93,6 @@ const ProductsTableComponent = ({
     handlePageChange,
     handlePageClick,
   } = usePagination(products);
-
-  const { createProduct, isCreateProduct, deleteProduct } = useProducts();
 
   const handleDebounceSearch = useDebounce((value: string) => {
     resetPage();
@@ -203,7 +206,7 @@ const ProductsTableComponent = ({
               placeholder="blur"
               blurDataURL={generatePlaceholder(40, 40)}
               style={{
-                objectFit: 'cover',
+                objectFit: 'contain',
                 borderRadius: '15px',
               }}
             />
