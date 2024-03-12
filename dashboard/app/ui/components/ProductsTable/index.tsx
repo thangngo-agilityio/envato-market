@@ -28,6 +28,7 @@ import {
   useProducts,
   useSearch,
 } from '@/lib/hooks';
+import { TSortField } from '@/lib/hooks/useProducts';
 
 // Utils
 import {
@@ -38,13 +39,12 @@ import {
 
 // Constants
 import {
-  MONTHS_OPTIONS,
-  ROLES,
   COLUMNS_PRODUCTS,
   STATUS_LABEL,
   SUCCESS_MESSAGES,
   STATUS,
   ERROR_MESSAGES,
+  FILTER_PRODUCT,
 } from '@/lib/constants';
 
 // Types
@@ -58,13 +58,7 @@ import {
 // Stores
 import { authStore } from '@/lib/stores';
 
-interface TFilterUserProps {
-  isOpenHistoryModal?: boolean;
-}
-
-const ProductsTableComponent = ({
-  isOpenHistoryModal = false,
-}: TFilterUserProps) => {
+const ProductsTableComponent = () => {
   const toast = useToast();
   const userId = authStore((state) => state.user?.id);
   const { get, setSearchParam: setSearchTransaction } = useSearch();
@@ -78,6 +72,7 @@ const ProductsTableComponent = ({
     isCreateProduct,
     createProduct,
     deleteProduct,
+    sortBy,
     isLoading: isLoadingProducts,
     isError: isProductsError,
   } = useProducts({
@@ -164,14 +159,18 @@ const ProductsTableComponent = ({
     [deleteProduct, toast, userId],
   );
 
-  const renderHead = useCallback((title: string): JSX.Element => {
-    // TODO: handle click sort
-    const handleClick = () => {};
+  const renderHead = useCallback(
+    (title: string, key: string): JSX.Element => {
+      const handleClick = () => {
+        sortBy && sortBy(key as TSortField);
+      };
 
-    if (!title) return <Th w={50} maxW={50} />;
+      if (!title) return <Th w={50} maxW={50} />;
 
-    return <HeadCell key={title} title={title} onClick={handleClick} />;
-  }, []);
+      return <HeadCell key={title} title={title} onClick={handleClick} />;
+    },
+    [sortBy],
+  );
 
   const renderNameUser = useCallback(
     ({ id, _id, name }: TDataSource): JSX.Element => (
@@ -325,7 +324,7 @@ const ProductsTableComponent = ({
     <>
       <Flex flexDirection={{ base: 'column', md: 'row' }}>
         <SearchBar
-          filterOptions={isOpenHistoryModal ? MONTHS_OPTIONS : ROLES}
+          filterOptions={FILTER_PRODUCT}
           searchValue={get('name')?.toLowerCase() || ''}
           onSearch={handleDebounceSearch}
           // onFilter={setFilter}

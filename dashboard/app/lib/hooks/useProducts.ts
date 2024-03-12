@@ -20,7 +20,7 @@ export type TSearchProduct = {
 };
 
 type TSortType = 'desc' | 'asc';
-export type TSortField = 'name' | 'spent' | 'date';
+export type TSortField = 'name' | 'price' | 'date' | 'quantity';
 type TSort = {
   field: TSortField | '';
   type: TSortType;
@@ -95,16 +95,23 @@ export const useProducts = (queryParam?: TSearchProduct) => {
           name: prevProductName,
           createdAt: prevCreatedAt,
           amount: prevAmount,
+          stock: prevQuantity,
         }: TProduct,
         {
           name: nextProductName,
           createdAt: nextCreatedAt,
           amount: nextAmount,
+          stock: nextQuantity,
         }: TProduct,
       ) => {
         const valueForField: Record<TSortField, number> = {
           name: handleSort(type, prevProductName ?? '', nextProductName ?? ''),
-          spent: handleSort(type, prevAmount ?? '', nextAmount ?? ''),
+          price: handleSort(type, prevAmount ?? '', nextAmount ?? ''),
+          quantity: handleSort(
+            type,
+            prevQuantity.toString() ?? '',
+            nextQuantity.toString() ?? '',
+          ),
           date: handleSort(
             type,
             dayjs(prevCreatedAt).format(TIME_FORMAT) ?? '',
