@@ -75,9 +75,11 @@ const ProductsTableComponent = ({
 
   const {
     data: products = [],
-    createProduct,
     isCreateProduct,
+    createProduct,
     deleteProduct,
+    isLoading: isLoadingProducts,
+    isError: isProductsError,
   } = useProducts({
     name: get('name') || '',
   });
@@ -324,7 +326,7 @@ const ProductsTableComponent = ({
       <Flex flexDirection={{ base: 'column', md: 'row' }}>
         <SearchBar
           filterOptions={isOpenHistoryModal ? MONTHS_OPTIONS : ROLES}
-          searchValue={get('name') || ''}
+          searchValue={get('name')?.toLowerCase() || ''}
           onSearch={handleDebounceSearch}
           // onFilter={setFilter}
         />
@@ -344,8 +346,8 @@ const ProductsTableComponent = ({
       </Flex>
       <Fetching
         quality={15}
-        // isLoading={isLoadingTransactions}
-        // isError={isTransactionsError}
+        isLoading={isLoadingProducts}
+        isError={isProductsError}
       >
         <Box mt={5}>
           <Table

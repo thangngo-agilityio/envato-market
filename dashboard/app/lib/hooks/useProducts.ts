@@ -56,7 +56,7 @@ export const useProducts = (queryParam?: TSearchProduct) => {
     queryFn: ({ signal }) => getProducts('', { signal }, user?.id),
   });
 
-  //  sort products
+  // sort products
   const transactionsAfterSort: TProduct[] = useMemo(() => {
     const tempTransactions: TProduct[] = [...data];
     const { field, type } = sortValue;
@@ -125,7 +125,7 @@ export const useProducts = (queryParam?: TSearchProduct) => {
    */
   const products: TProduct[] = useMemo((): TProduct[] => {
     const isNameMatchWith = (target: string): boolean =>
-      (target || '').trim().includes(searchName);
+      (target || '').trim().toLowerCase().includes(searchName);
 
     return transactionsAfterSort.filter(({ name }: TProduct) => {
       const isMatchWithName: boolean = isNameMatchWith(name);
