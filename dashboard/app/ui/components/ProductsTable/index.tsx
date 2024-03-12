@@ -17,8 +17,8 @@ import {
   ProductNameCell,
   Modal,
   Button,
-  Indicator,
   ProductForm,
+  Indicator,
 } from '@/ui/components';
 
 // Hooks
@@ -48,12 +48,8 @@ import {
 } from '@/lib/constants';
 
 // Types
-import {
-  TDataSource,
-  THeaderTable,
-  TProduct,
-  TProductRequest,
-} from '@/lib/interfaces';
+import { TProductRequest } from '@/lib/interfaces';
+import { TDataSource, THeaderTable, TProduct } from '@/lib/interfaces';
 
 interface TFilterUserProps {
   isOpenHistoryModal?: boolean;
