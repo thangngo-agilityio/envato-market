@@ -11,3 +11,15 @@ export type TProduct = {
   imageURLs: string;
   productStatus: PRODUCT_STATUS;
 };
+
+export interface TProductRequest {
+  _id: string;
+  name: string;
+  price: number;
+  amount: number;
+  stock: number;
+  description?: string;
+  currency?: string;
+  createdAt?: string;
+  imageURLs: string[];
+}
