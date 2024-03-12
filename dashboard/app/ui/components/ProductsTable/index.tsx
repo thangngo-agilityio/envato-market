@@ -290,7 +290,7 @@ const ProductsTableComponent = ({
         onUpdateTransaction={() => console.log()}
       />
     ),
-    [],
+    [handleDeleteProduct],
   );
 
   const columns = useMemo(

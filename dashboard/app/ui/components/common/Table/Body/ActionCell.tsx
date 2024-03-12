@@ -213,7 +213,7 @@ const ActionCellComponent = ({
           title="Delete Product"
           body={
             <ConfirmDeleteModal
-              product={product}
+              productName={product.name}
               onDeleteProduct={handleDeleteProduct}
               onCloseModal={handleToggleModal}
             />

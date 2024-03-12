@@ -5,25 +5,22 @@ import { memo } from 'react';
 // Components
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 
-// Interfaces
-import { TProduct } from '@/lib/interfaces';
-
 interface ProductProps {
-  product: TProduct;
+  productName: string;
   onDeleteProduct?: () => void;
   onCloseModal?: () => void;
 }
 
 const ConfirmDeleteModal = ({
-  product,
+  productName,
   onDeleteProduct,
   onCloseModal,
 }: ProductProps) => (
   <Box>
-    <Text fontSize="lg">
+    <Text fontSize="md">
       Are you sure delete the product:
       <Text as="span" pl={1} color="red.500" fontWeight="bold">
-        {product?.name}
+        {productName}
       </Text>
       ?
     </Text>
