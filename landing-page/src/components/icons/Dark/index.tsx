@@ -6,7 +6,7 @@ type TDarkIconProps = {
 export const DarkIcon = ({ className = '', id = '' }: TDarkIconProps): JSX.Element => (
   <svg
     id={id}
-    className={`${className} hidden`}
+    className={className}
     stroke="#FFF"
     width="24"
     height="24"

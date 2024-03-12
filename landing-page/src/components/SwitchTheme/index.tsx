@@ -5,7 +5,7 @@ import DarkIcon from '@app/components/icons/Dark/index.tsx';
 import LightIcon from '@app/components/icons/Light/index.tsx';
 
 // Themes 
-import { ThemeContext } from '@app/components/SwitchTheme/themContext';
+import { ThemeContext } from '@app/context/ThemContext';
 
 const SwitchTheme = () => {
   const { theme, setTheme } = useContext(ThemeContext);
