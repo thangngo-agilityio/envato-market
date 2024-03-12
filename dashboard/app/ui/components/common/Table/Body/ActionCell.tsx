@@ -13,7 +13,7 @@ import {
   Td,
 } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon, LockIcon, UnlockIcon } from '@chakra-ui/icons';
-import { Dot, Modal } from '@/ui/components';
+import { Dot, Modal, ProductForm } from '@/ui/components';
 
 const TransactionModal = dynamic(
   () => import('@/ui/components/common/Table/Body/TransactionModal'),
@@ -24,16 +24,23 @@ const ConfirmDeleteModal = dynamic(
 );
 
 // Interfaces
-import { TProduct, TTransaction, TUserDetail } from '@/lib/interfaces';
+import {
+  TProduct,
+  TProductRequest,
+  TProductResponse,
+  TTransaction,
+  TUserDetail,
+} from '@/lib/interfaces';
 
 interface ActionCallProps {
   user?: TUserDetail;
   transaction?: TTransaction;
-  product?: TProduct;
+  product?: TProductResponse;
   isOpenModal?: boolean;
   isOpenUserAction?: boolean;
   onDeleteTransaction?: (transactionData: TTransaction) => void;
   onUpdateTransaction?: (transactionData: TTransaction) => void;
+  onUpdateProduct?: (productData: TProductRequest) => void;
   onDeleteProduct?: (
     productData: Partial<TProduct & { userId: string; productId: string }>,
   ) => void;
@@ -51,6 +58,7 @@ const ActionCellComponent = ({
   onUnlockUser,
   onDeleteTransaction,
   onDeleteProduct,
+  onUpdateProduct,
   onUpdateTransaction,
 }: ActionCallProps) => {
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState<boolean>(false);
@@ -206,7 +214,7 @@ const ActionCellComponent = ({
         />
       )}
 
-      {isOpenConfirmModal && product && (
+      {isOpenConfirmModal && isDelete && product && (
         <Modal
           isOpen={isOpenConfirmModal}
           onClose={handleToggleModal}
@@ -215,6 +223,22 @@ const ActionCellComponent = ({
             <ConfirmDeleteModal
               productName={product.name}
               onDeleteProduct={handleDeleteProduct}
+              onCloseModal={handleToggleModal}
+            />
+          }
+          haveCloseButton
+        />
+      )}
+
+      {isOpenConfirmModal && !isDelete && product && (
+        <Modal
+          isOpen={isOpenConfirmModal}
+          onClose={handleToggleModal}
+          title="Update Product"
+          body={
+            <ProductForm
+              data={product}
+              onUpdateProduct={onUpdateProduct}
               onCloseModal={handleToggleModal}
             />
           }
