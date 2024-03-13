@@ -379,7 +379,7 @@ const ProductsTableComponent = () => {
 
   return (
     <Indicator isOpen={isCreateProduct || isDeleteProduct || isUpdateProduct}>
-      <Flex flexDirection={{ base: 'column', md: 'row' }}>
+      <Flex flexDirection={{ base: 'column', lg: 'row' }}>
         <SearchBar
           filterOptions={FILTER_PRODUCT}
           searchValue={get('name')?.toLowerCase() || ''}
@@ -387,7 +387,7 @@ const ProductsTableComponent = () => {
           onFilter={setFilter}
         />
         <Button
-          w={{ base: 'none', md: 200 }}
+          w={{ base: 'none', lg: 200 }}
           type="button"
           role="button"
           aria-label="Add User"
@@ -395,7 +395,7 @@ const ProductsTableComponent = () => {
           bg="primary.300"
           textTransform="capitalize"
           onClick={handleToggleModal}
-          marginLeft={{ base: 'initial', md: '20px' }}
+          marginLeft={{ base: 'initial', lg: '20px' }}
         >
           Add Product
         </Button>
