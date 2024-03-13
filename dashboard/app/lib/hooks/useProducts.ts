@@ -7,25 +7,25 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { authStore } from '@/lib/stores';
 
 // Constants
-import { END_POINTS, TIME_FORMAT } from '@/lib/constants';
+import { END_POINTS, PRODUCT_STATUS, TIME_FORMAT } from '@/lib/constants';
 
 // Services
 import { getProducts, productsHttpService } from '@/lib/services';
 
 // Interface
-import { TProduct, TProductRequest } from '@/lib/interfaces';
+import { TProduct, TProductRequest, TProductResponse } from '@/lib/interfaces';
 
 export type TSearchProduct = {
   name: string;
 };
 
 type TSortType = 'desc' | 'asc';
-export type TSortField = 'name' | 'price' | 'date' | 'quantity';
+export type TProductSortField = 'name' | 'spent' | 'date';
 type TSort = {
-  field: TSortField | '';
+  field: TProductSortField | '';
   type: TSortType;
 };
-export type TSortHandler = (field: TSortField) => void;
+export type TSortProductHandler = (field: TProductSortField) => void;
 
 export const useProducts = (queryParam?: TSearchProduct) => {
   const queryClient = useQueryClient();
@@ -95,22 +95,19 @@ export const useProducts = (queryParam?: TSearchProduct) => {
           name: prevProductName,
           createdAt: prevCreatedAt,
           amount: prevAmount,
-          stock: prevQuantity,
         }: TProduct,
         {
           name: nextProductName,
           createdAt: nextCreatedAt,
           amount: nextAmount,
-          stock: nextQuantity,
         }: TProduct,
       ) => {
-        const valueForField: Record<TSortField, number> = {
+        const valueForField: Record<TProductSortField, number> = {
           name: handleSort(type, prevProductName ?? '', nextProductName ?? ''),
-          price: handleSort(type, prevAmount ?? '', nextAmount ?? ''),
-          quantity: handleSort(
+          spent: handleSort(
             type,
-            prevQuantity.toString() ?? '',
-            nextQuantity.toString() ?? '',
+            String(prevAmount) ?? '',
+            String(nextAmount) ?? '',
           ),
           date: handleSort(
             type,
@@ -141,8 +138,8 @@ export const useProducts = (queryParam?: TSearchProduct) => {
     });
   }, [transactionsAfterSort, searchName]);
 
-  const sortBy: TSortHandler = useCallback(
-    (field: TSortField) => {
+  const sortBy: TSortProductHandler = useCallback(
+    (field: TProductSortField) => {
       setSortValue((prev) => ({
         field: field,
         type: sortType[prev.type],
@@ -184,13 +181,50 @@ export const useProducts = (queryParam?: TSearchProduct) => {
     },
   });
 
+  const { mutate: updateProduct, isPending: isUpdateProduct } = useMutation({
+    mutationFn: async (
+      product: Partial<TProductRequest & { userId: string; productId: string }>,
+    ) =>
+      await productsHttpService.put<TProductRequest>(
+        END_POINTS.PRODUCTS,
+        product,
+      ),
+    onSuccess: (_, variables) => {
+      queryClient.setQueryData(
+        [END_POINTS.PRODUCTS, searchName],
+        (oldData: TProductResponse[]) => {
+          const dataUpdated = oldData.map((item) =>
+            item._id === variables.productId
+              ? {
+                  ...item,
+                  name: variables.name,
+                  imageURLs: variables.imageURLs,
+                  stock: variables.stock,
+                  productStatus:
+                    Number(variables.stock) > 0
+                      ? PRODUCT_STATUS.IN_STOCK
+                      : PRODUCT_STATUS.SOLD,
+                  amount: variables.amount,
+                  product: { ...variables },
+                }
+              : item,
+          );
+          return dataUpdated;
+        },
+      );
+    },
+  });
+
   return {
     ...query,
+    products,
     data: products,
     isCreateProduct,
     isDeleteProduct,
+    isUpdateProduct,
     createProduct,
     deleteProduct,
+    updateProduct,
     sortBy,
   };
 };

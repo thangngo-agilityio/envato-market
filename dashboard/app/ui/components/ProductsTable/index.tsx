@@ -28,7 +28,6 @@ import {
   useProducts,
   useSearch,
 } from '@/lib/hooks';
-import { TSortField } from '@/lib/hooks/useProducts';
 
 // Utils
 import {
@@ -53,6 +52,7 @@ import {
   TDataSource,
   THeaderTable,
   TProduct,
+  TProductResponse,
 } from '@/lib/interfaces';
 
 // Stores
@@ -68,13 +68,15 @@ const ProductsTableComponent = () => {
   const handleToggleModal = () => setIsOpenConfirmModal((prev) => !prev);
 
   const {
-    data: products = [],
-    isCreateProduct,
-    createProduct,
-    deleteProduct,
-    sortBy,
+    products,
     isLoading: isLoadingProducts,
     isError: isProductsError,
+    createProduct,
+    deleteProduct,
+    updateProduct,
+    isCreateProduct,
+    isDeleteProduct,
+    isUpdateProduct,
   } = useProducts({
     name: get('name') || '',
   });
@@ -159,18 +161,53 @@ const ProductsTableComponent = () => {
     [deleteProduct, toast, userId],
   );
 
-  const renderHead = useCallback(
-    (title: string, key: string): JSX.Element => {
-      const handleClick = () => {
-        sortBy && sortBy(key as TSortField);
-      };
-
-      if (!title) return <Th w={50} maxW={50} />;
-
-      return <HeadCell key={title} title={title} onClick={handleClick} />;
+  const handleUpdateProduct = useCallback(
+    (data: TProductRequest) => {
+      updateProduct(
+        {
+          productId: data._id,
+          userId: userId,
+          name: data?.name,
+          imageURLs: data?.imageURLs,
+          currency: data?.currency,
+          amount: data?.amount,
+          stock: data?.stock,
+          description: data?.description,
+          createdAt: data?.createdAt,
+        },
+        {
+          onSuccess: () => {
+            toast(
+              customToast(
+                SUCCESS_MESSAGES.UPDATE_TRANSACTION_SUCCESS.title,
+                SUCCESS_MESSAGES.UPDATE_TRANSACTION_SUCCESS.description,
+                STATUS.SUCCESS,
+              ),
+            );
+          },
+          onError: () => {
+            toast(
+              customToast(
+                ERROR_MESSAGES.UPDATE_TRANSACTION_FAIL.title,
+                ERROR_MESSAGES.UPDATE_TRANSACTION_FAIL.description,
+                STATUS.ERROR,
+              ),
+            );
+          },
+        },
+      );
     },
-    [sortBy],
+    [toast, updateProduct, userId],
   );
+
+  const renderHead = useCallback((title: string): JSX.Element => {
+    // TODO: handle click sort
+    const handleClick = () => {};
+
+    if (!title) return <Th w={50} maxW={50} />;
+
+    return <HeadCell key={title} title={title} onClick={handleClick} />;
+  }, []);
 
   const renderNameUser = useCallback(
     ({ id, _id, name }: TDataSource): JSX.Element => (
@@ -286,16 +323,16 @@ const ProductsTableComponent = () => {
   );
 
   const renderActionIcon = useCallback(
-    (data: TProduct) => (
+    (data: TProductResponse) => (
       <ActionCell
         product={data}
         key={`${data._id}-action`}
         isOpenModal={true}
         onDeleteProduct={handleDeleteProduct}
-        onUpdateTransaction={() => console.log()}
+        onUpdateProduct={handleUpdateProduct}
       />
     ),
-    [handleDeleteProduct],
+    [handleDeleteProduct, handleUpdateProduct],
   );
 
   const columns = useMemo(
@@ -321,7 +358,7 @@ const ProductsTableComponent = () => {
   );
 
   return (
-    <>
+    <Indicator isOpen={isCreateProduct || isDeleteProduct || isUpdateProduct}>
       <Flex flexDirection={{ base: 'column', md: 'row' }}>
         <SearchBar
           filterOptions={FILTER_PRODUCT}
@@ -371,22 +408,20 @@ const ProductsTableComponent = () => {
       </Fetching>
 
       {isOpenConfirmModal && (
-        <Indicator isOpen={isCreateProduct}>
-          <Modal
-            isOpen={isOpenConfirmModal}
-            onClose={handleToggleModal}
-            title="Add User"
-            body={
-              <ProductForm
-                onCloseModal={handleToggleModal}
-                onCreateProduct={handleCreateProduct}
-              />
-            }
-            haveCloseButton
-          />
-        </Indicator>
+        <Modal
+          isOpen={isOpenConfirmModal}
+          onClose={handleToggleModal}
+          title="Add User"
+          body={
+            <ProductForm
+              onCloseModal={handleToggleModal}
+              onCreateProduct={handleCreateProduct}
+            />
+          }
+          haveCloseButton
+        />
       )}
-    </>
+    </Indicator>
   );
 };
 
