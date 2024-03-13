@@ -1,5 +1,5 @@
 // libs
-import {useContext} from 'react';
+import {useCallback, useContext, useState} from 'react';
 
 // Context
 import ThemeContext from '@app/context/ThemeContext/ThemContext';
@@ -7,20 +7,22 @@ import ThemeContext from '@app/context/ThemeContext/ThemContext';
 // Components
 import DarkIcon from '@app/components/icons/Dark/index.tsx';
 import LightIcon from '@app/components/icons/Light/index.tsx';
+import Button from '../Button';
 
 const SwitchTheme = () => {
-  const { currentTheme, changeCurrentTheme } = useContext(ThemeContext);
+  const [ currentTheme, changeCurrentTheme ] = useState('light');
+
+  console.log('currentTheme', currentTheme);
+  const handleChange = useCallback(() => {
+  console.log('currentTheme', currentTheme);
+
+    changeCurrentTheme(currentTheme === 'light' ? 'dark' : 'light');
+  }, [currentTheme]);
   return (
     <>
-      {
-       currentTheme === 'light' ? (<button onClick={() => changeCurrentTheme(currentTheme === 'light' ? 'dark' : 'light')}>
-        <LightIcon />
-      </button>) :
-      (<button onClick={() => changeCurrentTheme(currentTheme === 'light' ? 'dark' : 'light')}>
-        <DarkIcon />
-      </button>)
-      }
-     
+      <Button onClick={handleChange} style={{ background: 'red'}}>
+        {currentTheme === 'light' ? <DarkIcon /> : <LightIcon />}
+      </Button>
     </>
   );
 };

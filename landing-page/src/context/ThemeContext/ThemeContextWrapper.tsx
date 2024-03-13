@@ -6,7 +6,7 @@ type Props = {
 }
 
 const ThemeContextWrapper = ({ children }: Props) => {
-  const persistedTheme: string | null = localStorage.getItem('theme');
+  const persistedTheme: string | null = typeof window !== 'undefined' ? localStorage.getItem('theme') : null;
   const [theme, setTheme] = useState(persistedTheme || 'light');
 
   const changeCurrentTheme = (newTheme: 'light' | 'dark') => {
