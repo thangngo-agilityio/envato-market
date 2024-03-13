@@ -83,7 +83,6 @@ const ProductsTableComponent = () => {
   } = useProducts({
     name: get('name') || '',
   });
-  console.log(products);
 
   const productsMemorized = useMemo(
     () =>
@@ -431,7 +430,7 @@ const ProductsTableComponent = () => {
         <Modal
           isOpen={isOpenConfirmModal}
           onClose={handleToggleModal}
-          title="Add User"
+          title="Add Product"
           body={
             <ProductForm
               onCloseModal={handleToggleModal}
