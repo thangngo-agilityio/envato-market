@@ -13,6 +13,8 @@ export type TProduct = {
 };
 
 export interface TProductRequest {
+  currentPage: number | undefined;
+  limit: number | undefined;
   _id: string;
   name: string;
   amount: number;

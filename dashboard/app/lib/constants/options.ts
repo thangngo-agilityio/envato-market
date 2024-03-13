@@ -137,11 +137,11 @@ export const ROLES = [
 
 export const FILTER_PRODUCT = [
   {
-    value: 'name',
-    label: 'Name',
+    value: 'Sold',
+    label: 'Sold',
   },
   {
-    value: 'date',
-    label: 'Date',
+    value: 'In-stock',
+    label: 'In stock',
   },
 ];
