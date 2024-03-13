@@ -44,6 +44,7 @@ import {
   STATUS,
   ERROR_MESSAGES,
   FILTER_PRODUCT,
+  PRODUCT_STATUS,
 } from '@/lib/constants';
 
 // Types
@@ -62,7 +63,7 @@ const ProductsTableComponent = () => {
   const toast = useToast();
   const userId = authStore((state) => state.user?.id);
   const { get, setSearchParam: setSearchTransaction } = useSearch();
-  // const [filter, setFilter] = useState<string>('');
+  const [filter, setFilter] = useState<string>('');
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
 
   const handleToggleModal = () => setIsOpenConfirmModal((prev) => !prev);
@@ -80,6 +81,19 @@ const ProductsTableComponent = () => {
   } = useProducts({
     name: get('name') || '',
   });
+  console.log(products);
+
+  const productsMemorized = useMemo(
+    () =>
+      products.filter(({ stock }) => {
+        if (stock > 0) {
+          return PRODUCT_STATUS.IN_STOCK.includes(filter.trim());
+        } else {
+          return PRODUCT_STATUS.SOLD.includes(filter.trim());
+        }
+      }),
+    [filter, products],
+  );
 
   const {
     data,
@@ -91,7 +105,7 @@ const ProductsTableComponent = () => {
     handleChangeLimit,
     handlePageChange,
     handlePageClick,
-  } = usePagination(products);
+  } = usePagination(productsMemorized);
 
   const handleDebounceSearch = useDebounce((value: string) => {
     resetPage();
@@ -364,7 +378,7 @@ const ProductsTableComponent = () => {
           filterOptions={FILTER_PRODUCT}
           searchValue={get('name')?.toLowerCase() || ''}
           onSearch={handleDebounceSearch}
-          // onFilter={setFilter}
+          onFilter={setFilter}
         />
         <Button
           w={{ base: 'none', md: 200 }}
