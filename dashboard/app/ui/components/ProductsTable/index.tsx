@@ -28,6 +28,7 @@ import {
   useProducts,
   useSearch,
 } from '@/lib/hooks';
+import { TProductSortField } from '@/lib/hooks/useProducts';
 
 // Utils
 import {
@@ -72,6 +73,7 @@ const ProductsTableComponent = () => {
     products,
     isLoading: isLoadingProducts,
     isError: isProductsError,
+    sortBy,
     createProduct,
     deleteProduct,
     updateProduct,
@@ -214,14 +216,18 @@ const ProductsTableComponent = () => {
     [toast, updateProduct, userId],
   );
 
-  const renderHead = useCallback((title: string): JSX.Element => {
-    // TODO: handle click sort
-    const handleClick = () => {};
+  const renderHead = useCallback(
+    (title: string, key: string): JSX.Element => {
+      const handleClick = () => {
+        sortBy && sortBy(key as TProductSortField);
+      };
 
-    if (!title) return <Th w={50} maxW={50} />;
+      if (!title) return <Th w={50} maxW={50} />;
 
-    return <HeadCell key={title} title={title} onClick={handleClick} />;
-  }, []);
+      return <HeadCell key={title} title={title} onClick={handleClick} />;
+    },
+    [toast, updateProduct, userId],
+  );
 
   const renderNameUser = useCallback(
     ({ id, _id, name }: TDataSource): JSX.Element => (
