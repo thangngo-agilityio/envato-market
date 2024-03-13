@@ -4,17 +4,17 @@ import GlobalLayout from '@app/layouts/Global/index.astro';
 import Subscribe from '@app/components/Subscribe/index.tsx';
 import Wrapper from './Wrapper';
 import Footer from './Footer/index.astro';
-import { ThemeProvider } from '@app/context/ThemContext';
+import ThemeContextWrapper from '@app/context/ThemeContext/ThemeContextWrapper.tsx';
 
 const currentPathName: string = Astro.url.pathname;
 ---
 
 <GlobalLayout>
-  <ThemeProvider>
+  <ThemeContextWrapper>
     <Wrapper client:visible pathName={currentPathName}>
       <slot />
     </Wrapper>
     <Subscribe client:visible />
     <Footer />
-  </ThemeProvider>
+  </ThemeContextWrapper>
 </GlobalLayout>
