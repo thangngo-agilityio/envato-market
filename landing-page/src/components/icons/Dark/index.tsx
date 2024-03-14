@@ -7,7 +7,7 @@ export const DarkIcon = ({ className = '', id = '' }: TDarkIconProps): JSX.Eleme
   <svg
     id={id}
     className={className}
-    stroke="#FFF"
+    stroke="#000"
     width="24"
     height="24"
     viewBox="0 0 24 24"

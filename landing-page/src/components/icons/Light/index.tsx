@@ -7,7 +7,7 @@ export const LightIcon = ({ className = '', id = '' }: TLightIconProps) => (
   <svg
     id={id}
     className={className}
-    stroke="#000"
+    stroke="#FFF"
     width="24"
     height="24"
     viewBox="0 0 24 24"

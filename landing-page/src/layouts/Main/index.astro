@@ -9,11 +9,9 @@ const currentPathName: string = Astro.url.pathname;
 ---
 
 <GlobalLayout>
-  <!-- <ThemeContextWrapper> -->
   <Wrapper client:visible pathName={currentPathName}>
     <slot />
   </Wrapper>
   <Subscribe client:visible />
   <Footer />
-  <!-- </ThemeContextWrapper> -->
 </GlobalLayout>
