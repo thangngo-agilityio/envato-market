@@ -1,4 +1,4 @@
-import { createContext, useState, type ReactNode, useEffect } from 'react';
+import { createContext, useState, type ReactNode, useEffect, useCallback } from 'react';
 
 interface ThemeContextType {
   theme: string;
@@ -19,10 +19,10 @@ const ThemeProvider = ({ children }: AppProps) => {
 
   const [theme, setTheme] = useState<string>(currentTheme || 'dark');
 
-  const changeCurrentTheme = (newTheme: string) => {
+  const changeCurrentTheme = useCallback((newTheme: string) => {
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
-  };
+}, [setTheme]);
 
   useEffect(() => {
     if (theme === 'light') document.body.classList.remove('dark');
