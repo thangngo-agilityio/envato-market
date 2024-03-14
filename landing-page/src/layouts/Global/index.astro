@@ -1,6 +1,5 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
-import ThemeContextWrapper from '../../context/ThemeContext/ThemeContextWrapper.tsx';
 // Constants
 import { PAGE_TITLES } from '@app/constants';
 
@@ -51,11 +50,7 @@ const { title = PAGE_TITLES.HOME } = Astro.props;
       }
     </style>
   </head>
-  <ThemeContextWrapper>
-    <body class='dark:bg-bgDarkTheme dark:text-white'>
-      <slot />
-    </body>
-  </ThemeContextWrapper>
-
-
+  <body class='dark:bg-bgDarkTheme dark:text-white'>
+    <slot />
+  </body>
 </html>
