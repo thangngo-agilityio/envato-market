@@ -100,6 +100,7 @@ const UploadProductsComponent = ({
         <Input
           {...getInputProps()}
           size={undefined as ResponsiveValue<string> | undefined}
+          data-testid="field-image"
         />
 
         <Text>Drag drop some files here, or click to select files</Text>
