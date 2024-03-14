@@ -52,8 +52,9 @@ const UploadProductsComponent = ({
         <Flex mt="20px" flexDirection="column" alignItems="center" gap={3}>
           <Flex
             alignItems="center"
+            justify="center"
             gap={3}
-            w={{ base: 320, md: 480 }}
+            w={{ base: 320, md: 474 }}
             flexWrap="wrap"
           >
             {previewURL
