@@ -87,7 +87,7 @@ const ProductForm = ({
       const requestData = {
         ...data,
         stock: parseFormattedNumber(data.stock),
-        amount: data.amount,
+        amount: parseFormattedNumber(data.amount),
         userId,
       };
 
