@@ -1,5 +1,8 @@
+// Libs
 import { createContext, useState, type ReactNode, useEffect, useCallback } from 'react';
 
+// Constant
+import { THEMES } from './../../../dashboard/app/lib/constants/themes';
 interface ThemeContextType {
   theme: string;
   setTheme: (theme: string) => void;
@@ -10,14 +13,14 @@ interface AppProps {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: 'dark',
+  theme: THEMES.DARK,
 } as ThemeContextType);
 
 const ThemeProvider = ({ children }: AppProps) => {
   const currentTheme =
     typeof window !== 'undefined' ? localStorage.getItem('theme') : null;
 
-  const [theme, setTheme] = useState<string>(currentTheme || 'dark');
+  const [theme, setTheme] = useState<string>(currentTheme || THEMES.DARK);
 
   const changeCurrentTheme = useCallback((newTheme: string) => {
     setTheme(newTheme);
@@ -25,8 +28,8 @@ const ThemeProvider = ({ children }: AppProps) => {
 }, [setTheme]);
 
   useEffect(() => {
-    if (theme === 'light') document.body.classList.remove('dark');
-    else document.body.classList.add('dark');
+    if (theme === THEMES.LIGHT) document.body.classList.remove(THEMES.DARK);
+    else document.body.classList.add(THEMES.DARK);
   }, [theme]);
 
   return (

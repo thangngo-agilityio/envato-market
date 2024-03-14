@@ -1,5 +1,5 @@
 // libs
-import { useContext, useMemo } from 'react';
+import { useContext, useMemo, useCallback } from 'react';
 
 // Components
 import DarkIcon from '@app/components/icons/Dark/index.tsx';
@@ -12,17 +12,12 @@ const SwitchTheme = () => {
 
   // Assigning variable to determine if the theme is dark or light
   const isDarkTheme = theme === 'dark';
-  const isLightTheme = theme === 'light';
 
   // UseMemo is used to prevent unnecessary re-renders
-  const icon = useMemo(() => {
-    return isLightTheme ? <DarkIcon /> : <LightIcon />;
-  }, [theme]);
+  const icon = useMemo(() => !isDarkTheme ? <DarkIcon /> : <LightIcon />, [isDarkTheme]);
 
   // Handle theme change when clicked 
-  const handleChange = () => {
-    setTheme(isDarkTheme ? 'light' : 'dark');
-  };
+  const handleChange = useCallback(() => setTheme(isDarkTheme ? 'light' : 'dark'), [setTheme, isDarkTheme]);
 
   return (
       <Button className="!p-0 bg-transparent" onClick={handleChange} aria-label="Switch Theme">
