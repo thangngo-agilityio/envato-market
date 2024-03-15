@@ -32,7 +32,11 @@ import {
 import { authStore } from '@/lib/stores';
 
 // Utils
-import { formatAmountNumber, parseFormattedNumber } from '@/lib/utils';
+import {
+  formatAmountNumber,
+  formatDecimalNumber,
+  parseFormattedNumber,
+} from '@/lib/utils';
 
 interface ProductProps {
   data?: TProductResponse;
@@ -172,7 +176,7 @@ const ProductForm = ({
                     placeholder="0.00"
                     color="text.primary"
                     fontSize="1xl"
-                    value={formatAmountNumber(value.toString())}
+                    value={formatDecimalNumber(value)}
                     name="amount"
                     onChange={handleChange}
                     autoComplete="off"
