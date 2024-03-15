@@ -287,6 +287,7 @@ const ProductForm = ({
               images={data?.product.imageURLs}
               onUploadError={handleShowErrorWhenUploadImage}
               onChange={field.onChange}
+              isError={!!error}
             />
             {!!error && <FormErrorMessage>{error?.message}</FormErrorMessage>}
           </FormControl>
