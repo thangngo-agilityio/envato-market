@@ -36,7 +36,7 @@ const HeadCellComponent = ({ title, onClick }: THeadCellProps): JSX.Element => (
       >
         {title}
       </Text>
-      {title != 'Gallery Thumbnail' ? (
+      {title != 'Gallery Thumbnail' && (
         <IconButton
           aria-label={`This is the icon for ${title}`}
           w={7}
@@ -50,8 +50,6 @@ const HeadCellComponent = ({ title, onClick }: THeadCellProps): JSX.Element => (
         >
           <Sort color={colors.secondary[300]} opacityLeft={1} />
         </IconButton>
-      ) : (
-        ''
       )}
     </Flex>
   </Th>
