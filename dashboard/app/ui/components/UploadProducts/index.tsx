@@ -92,7 +92,7 @@ const UploadProductsComponent = ({
       </FormLabel>
       <Box
         {...getRootProps()}
-        border="2px"
+        border="1px"
         borderColor={isError ? 'primary.200' : 'primary.600'}
         borderRadius="md"
         p={4}
