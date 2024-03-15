@@ -384,6 +384,7 @@ const ProductsTableComponent = () => {
     <Indicator isOpen={isCreateProduct || isDeleteProduct || isUpdateProduct}>
       <Flex flexDirection={{ base: 'column', lg: 'row' }}>
         <SearchBar
+          placeholder="Search by name"
           filterOptions={FILTER_PRODUCT}
           searchValue={get('name')?.toLowerCase() || ''}
           onSearch={handleDebounceSearch}
