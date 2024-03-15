@@ -1,4 +1,5 @@
-import { useEffect, type MouseEventHandler, useCallback } from 'react';
+// Libs
+import { useEffect, type MouseEventHandler, useCallback, useContext } from 'react';
 import { navigate } from 'astro:transitions/client';
 
 // Components
@@ -8,6 +9,7 @@ import SwitchTheme from '@app/components/SwitchTheme';
 
 // Constant
 import { ROUTES } from '@app/constants';
+import { THEMES } from '../../../../../dashboard/app/lib/constants/themes';
 
 export type TSidebarOption = {
   id: number;
@@ -97,16 +99,14 @@ const SideBarAllDevices = ({
               <li key={id}>
                 <a
                   href={href}
-                  className={`${
-                    href === pathName ? '!text-[#956A04]' : ''
-                  } text-secondary font-semibold hover:text-sun uppercase text-sm leading-[53px] py-5 relative dark:text-white ${hoverAfterStyle}`}
+                  className={`text-secondary font-semibold hover:text-sun uppercase text-sm leading-[53px] py-5 relative ${href === pathName ? '!text-[#956A04] dark:!text-white' : 'dark:text-white'} ${hoverAfterStyle}`}
                   onClick={(e) => {
                     e.preventDefault();
                     navigate(href);
                   }}
                 >
                   {text}
-                </a>
+                </a>  
               </li>
             ),
           )}
