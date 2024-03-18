@@ -5,8 +5,7 @@ import { useContext, useMemo, useCallback } from 'react';
 import { THEMES } from '../../../../dashboard/app/lib/constants/themes';
 
 // Components
-import SunIcon from '@app/components/icons/Sun';
-import MoonIcon from '@app/components/icons/Moon';
+import { SunIcon, MoonIcon } from '@app/components/icons';
 import Button from '@app/components/Button/index';
 import { ThemeContext } from '@app/context/ThemeContext';
 
