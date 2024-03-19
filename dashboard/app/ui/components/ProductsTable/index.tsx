@@ -246,7 +246,7 @@ const ProductsTableComponent = () => {
         color="text.primary"
         fontWeight="semibold"
         textAlign="left"
-        minW={180}
+        w={{ base: 150, md: 20 }}
       >
         <Flex
           alignItems="center"
