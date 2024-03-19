@@ -9,8 +9,10 @@ import {
   FormLabel,
   Image,
   Flex,
-  Spinner,
 } from '@chakra-ui/react';
+
+// Components
+import { Loading } from '..';
 
 // Constants
 import { IMAGES } from '@/lib/constants';
@@ -55,11 +57,7 @@ const UploadProductsComponent = ({
       >
         {label}
         <Flex mt="20px" flexDirection="column" alignItems="center" gap={3}>
-          {isFileDialogActive && (
-            <Flex justifyContent="center">
-              <Spinner />
-            </Flex>
-          )}
+          {isFileDialogActive && <Loading />}
           <Flex
             alignItems="center"
             justify="center"
