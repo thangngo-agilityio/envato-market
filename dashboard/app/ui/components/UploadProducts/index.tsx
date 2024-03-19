@@ -16,6 +16,7 @@ import { IMAGES } from '@/lib/constants';
 
 // Services
 import { useImageUploader } from '@/lib/hooks';
+import { Indicator } from '..';
 
 export type TUploadImageProductsProps = {
   label: string;
@@ -39,7 +40,9 @@ const UploadProductsComponent = ({
     setPreviewURL,
   });
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isFileDialogActive } = useDropzone({
+    onDrop,
+  });
 
   return (
     <Flex w="100%" flexDirection="column">
@@ -52,42 +55,44 @@ const UploadProductsComponent = ({
       >
         {label}
         <Flex mt="20px" flexDirection="column" alignItems="center" gap={3}>
-          <Flex
-            alignItems="center"
-            justify="center"
-            gap={3}
-            w={{ base: 320, md: 474 }}
-            flexWrap="wrap"
-          >
-            {previewURL
-              .slice(0, 3)
-              ?.map((v) => (
-                <Image
-                  key={v}
-                  w={{ base: 320, md: 150 }}
-                  h={{ base: 320, md: 150 }}
-                  src={v || IMAGES.SIGN_UP.url}
-                  alt={IMAGES.AVATAR_SIGN_UP.alt}
-                  fallbackSrc={IMAGES.SIGN_UP.url}
-                  borderRadius={20}
-                  objectFit="contain"
-                />
-              ))}
-          </Flex>
-          <Flex alignItems="center" gap={3}>
-            {previewURL
-              .slice(3, 5)
-              ?.map((v) => (
-                <Image
-                  key={v}
-                  w={{ base: 100, md: 150 }}
-                  h={{ base: 100, md: 150 }}
-                  src={v || IMAGES.SIGN_UP.url}
-                  alt={IMAGES.AVATAR_SIGN_UP.alt}
-                  fallbackSrc={IMAGES.SIGN_UP.url}
-                />
-              ))}
-          </Flex>
+          <Indicator isOpen={isFileDialogActive}>
+            <Flex
+              alignItems="center"
+              justify="center"
+              gap={3}
+              w={{ base: 320, md: 474 }}
+              flexWrap="wrap"
+            >
+              {previewURL
+                .slice(0, 3)
+                ?.map((v) => (
+                  <Image
+                    key={v}
+                    w={{ base: 320, md: 150 }}
+                    h={{ base: 320, md: 150 }}
+                    src={v || IMAGES.SIGN_UP.url}
+                    alt={IMAGES.AVATAR_SIGN_UP.alt}
+                    fallbackSrc={IMAGES.SIGN_UP.url}
+                    borderRadius={20}
+                    objectFit="contain"
+                  />
+                ))}
+            </Flex>
+            <Flex alignItems="center" gap={3}>
+              {previewURL
+                .slice(3, 5)
+                ?.map((v) => (
+                  <Image
+                    key={v}
+                    w={{ base: 100, md: 150 }}
+                    h={{ base: 100, md: 150 }}
+                    src={v || IMAGES.SIGN_UP.url}
+                    alt={IMAGES.AVATAR_SIGN_UP.alt}
+                    fallbackSrc={IMAGES.SIGN_UP.url}
+                  />
+                ))}
+            </Flex>
+          </Indicator>
         </Flex>
       </FormLabel>
       <Box
