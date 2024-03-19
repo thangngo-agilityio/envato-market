@@ -396,7 +396,7 @@ const ProductsTableComponent = () => {
           role="button"
           aria-label="Add User"
           colorScheme="primary"
-          bg="primary.300"
+          bg="primary.500"
           textTransform="capitalize"
           onClick={handleToggleModal}
           marginLeft={{ base: 'initial', lg: '20px' }}
