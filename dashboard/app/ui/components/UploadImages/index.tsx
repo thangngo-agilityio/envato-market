@@ -20,7 +20,7 @@ import { IMAGES } from '@/lib/constants';
 // Services
 import { useImageUploader } from '@/lib/hooks';
 
-export type TUploadImageProductsProps = {
+export type TUploadImageImagesProps = {
   label: string;
   isError?: boolean;
   images?: string[];
@@ -28,13 +28,13 @@ export type TUploadImageProductsProps = {
   onChange: (value: string[]) => void;
 };
 
-const UploadProductsComponent = ({
+const UploadImagesComponent = ({
   label,
   images = [],
   isError = false,
   onChange,
   onUploadError,
-}: TUploadImageProductsProps) => {
+}: TUploadImageImagesProps) => {
   const [previewURL, setPreviewURL] = useState<string[]>(images);
   const { onDrop } = useImageUploader({
     onChange,
@@ -119,6 +119,6 @@ const UploadProductsComponent = ({
   );
 };
 
-const UploadProducts = memo(UploadProductsComponent);
+const UploadImages = memo(UploadImagesComponent);
 
-export default UploadProducts;
+export default UploadImages;
