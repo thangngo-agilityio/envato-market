@@ -11,6 +11,9 @@ import {
   Flex,
 } from '@chakra-ui/react';
 
+// Components
+import { Loading } from '..';
+
 // Constants
 import { IMAGES } from '@/lib/constants';
 
@@ -39,7 +42,9 @@ const UploadProductsComponent = ({
     setPreviewURL,
   });
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isFileDialogActive } = useDropzone({
+    onDrop,
+  });
 
   return (
     <Flex w="100%" flexDirection="column">
@@ -52,6 +57,7 @@ const UploadProductsComponent = ({
       >
         {label}
         <Flex mt="20px" flexDirection="column" alignItems="center" gap={3}>
+          {isFileDialogActive && <Loading />}
           <Flex
             alignItems="center"
             justify="center"
