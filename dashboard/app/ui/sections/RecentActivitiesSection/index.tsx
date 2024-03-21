@@ -30,8 +30,11 @@ const RecentActivities = () => (
       {({ inView, ref }) => (
         <GridItem mt={{ base: 6, '2xl': 0 }} ref={ref}>
           <Flex direction={{ base: 'column', lg: 'row', xl: 'column' }} gap={6}>
-            {inView && <CardPayment />}
-            {inView && <BoxChat />}
+            {inView && (
+              <>
+                <CardPayment /> <BoxChat />
+              </>
+            )}
           </Flex>
         </GridItem>
       )}
