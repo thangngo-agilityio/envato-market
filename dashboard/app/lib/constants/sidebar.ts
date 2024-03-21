@@ -68,8 +68,8 @@ export const MENU_ITEM_LIST = (role: string) => [
   {
     id: 7,
     leftIcon: RecentActivityIcon,
-    menuItemContent: 'Recent Activity',
-    destination: `/${ROUTES.RECENT_ACTIVITY}`,
+    menuItemContent: 'Recent Activities',
+    destination: `/${ROUTES.RECENT_ACTIVITIES}`,
   },
 ];
 
