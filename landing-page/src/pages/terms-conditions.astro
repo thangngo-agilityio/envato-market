@@ -1,0 +1,24 @@
+---
+import { MainLayout } from '@app/layouts';
+// import * as Terms from './content/terms-conditions.md';
+
+// Components
+import Heading from '@app/components/Heading/index.astro';
+
+export interface Props {
+  frontmatter: {
+    title: string;
+  };
+}
+
+const { frontmatter } = Astro.props;
+---
+
+<MainLayout>
+  <main>
+    <section>
+      <Heading>{frontmatter.title}</Heading>
+      <slot />
+    </section>
+  </main>
+</MainLayout>
