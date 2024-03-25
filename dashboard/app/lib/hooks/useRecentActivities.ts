@@ -28,8 +28,6 @@ export const useRecentActivities = (queryParam?: TSearchAction) => {
     queryFn: ({ signal }) => getRecentActivities('', { signal }, user?.id),
   });
 
-  console.log('data', recentActivities);
-
   return {
     ...query,
     recentActivities,

@@ -23,12 +23,12 @@ import { TDataSource, THeaderTable, TRecentActivities } from '@/lib/interfaces';
 
 // hooks
 import { usePagination, useRecentActivities } from '@/lib/hooks';
+
+// Utils
 import { formatRecentActivitiesResponse } from '@/lib/utils';
 
 const RecentActivitiesTableComponent = () => {
   const { recentActivities } = useRecentActivities();
-
-  console.log('recentActivities', recentActivities);
 
   const {
     data,
