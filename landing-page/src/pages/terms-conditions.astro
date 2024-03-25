@@ -15,10 +15,9 @@ const { frontmatter } = Astro.props;
 ---
 
 <MainLayout>
-  <main>
-    <section>
-      <Heading>{frontmatter.title}</Heading>
-      <slot />
-    </section>
-  </main>
+  <section class='grid grid-12 text-center'>
+    <Heading>Terms & Conditions</Heading>
+    <p class='text-justify'></p>
+    <slot />
+  </section>
 </MainLayout>
