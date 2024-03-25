@@ -4,19 +4,21 @@ import axios, { AxiosInstance } from 'axios';
 import { END_POINTS } from '@/lib/constants';
 
 // Types
-import { IAxiosConfig, TProduct } from '@/lib/interfaces';
+import { IAxiosConfig, TRecentActivities } from '@/lib/interfaces';
 
 export const recentActivitiesHttpService: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_ACTIVITIES,
+  baseURL: process.env.NEXT_PUBLIC_API,
 });
 
 export const getRecentActivities = async (
   searchParam?: string,
   config?: IAxiosConfig,
-): Promise<TProduct[]> =>
+  userId?: string,
+  page = 1,
+): Promise<TRecentActivities[]> =>
   (
     await recentActivitiesHttpService.get(
-      `${END_POINTS.RECENT_ACTIVITIES}/${searchParam || ''}`,
+      `${END_POINTS.RECENT_ACTIVITIES}/${userId}/${page}${searchParam || ''}`,
       config,
     )
   ).data.result;
