@@ -1,6 +1,6 @@
 export type TRecentActivities = {
   _id: string;
-  name: string;
+  actionName: string;
   email: string;
   createdAt: string;
 };
