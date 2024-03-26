@@ -1,13 +1,15 @@
+import { useCallback, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import dayjs from 'dayjs';
 
 // Constants
 import { END_POINTS, TIME_FORMAT } from '@/lib/constants';
 
 // Services
 import { getRecentActivities } from '@/lib/services';
-import { TRecentActivities } from '../interfaces';
-import { useCallback, useMemo, useState } from 'react';
-import dayjs from 'dayjs';
+
+// Interface
+import { TRecentActivities } from '@/lib/interfaces';
 
 export type TAction = {
   name: string;

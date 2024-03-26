@@ -33,6 +33,8 @@ import {
   formatRecentActivitiesResponse,
   formatUppercaseFirstLetter,
 } from '@/lib/utils';
+
+// Store
 import { authStore } from '@/lib/stores';
 
 const RecentActivitiesTableComponent = () => {
