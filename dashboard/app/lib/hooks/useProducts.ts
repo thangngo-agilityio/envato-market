@@ -10,10 +10,19 @@ import { authStore } from '@/lib/stores';
 import { END_POINTS, PRODUCT_STATUS, TIME_FORMAT } from '@/lib/constants';
 
 // Services
-import { getProducts, productsHttpService } from '@/lib/services';
+import {
+  getProducts,
+  productsHttpService,
+  recentActivitiesHttpService,
+} from '@/lib/services';
 
 // Interface
-import { TProduct, TProductRequest, TProductResponse } from '@/lib/interfaces';
+import {
+  TProduct,
+  TProductRequest,
+  TProductResponse,
+  TRecentActivities,
+} from '@/lib/interfaces';
 
 export type TSearchProduct = {
   name: string;
@@ -55,8 +64,6 @@ export const useProducts = (queryParam?: TSearchProduct) => {
     queryKey: [END_POINTS.PRODUCTS, searchName],
     queryFn: ({ signal }) => getProducts('', { signal }, user?.id),
   });
-
-  console.log('dataProduct', data);
 
   // sort products
   const productsAfterSort: TProduct[] = useMemo(() => {
@@ -164,6 +171,16 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         product,
       ),
     onSuccess: (dataResponse) => {
+      productsHttpService.interceptors.request.use((request) => {
+        recentActivitiesHttpService.post<TRecentActivities>(
+          END_POINTS.RECENT_ACTIVITIES,
+          {
+            userId: user?.id,
+            actionName: 'Create product',
+          },
+        );
+        return request;
+      });
       queryClient.invalidateQueries({
         queryKey: [END_POINTS.PRODUCTS],
       });
@@ -185,6 +202,16 @@ export const useProducts = (queryParam?: TSearchProduct) => {
       });
     },
     onSuccess: (_, variables) => {
+      productsHttpService.interceptors.request.use((request) => {
+        recentActivitiesHttpService.post<TRecentActivities>(
+          END_POINTS.RECENT_ACTIVITIES,
+          {
+            userId: user?.id,
+            actionName: 'Delete product',
+          },
+        );
+        return request;
+      });
       queryClient.setQueryData(
         [END_POINTS.PRODUCTS, searchName],
         (oldData: TProduct[]) =>
@@ -202,6 +229,16 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         product,
       ),
     onSuccess: (_, variables) => {
+      productsHttpService.interceptors.request.use((request) => {
+        recentActivitiesHttpService.post<TRecentActivities>(
+          END_POINTS.RECENT_ACTIVITIES,
+          {
+            userId: user?.id,
+            actionName: 'Update product',
+          },
+        );
+        return request;
+      });
       queryClient.setQueryData(
         [END_POINTS.PRODUCTS, searchName],
         (oldData: TProductResponse[]) => {
