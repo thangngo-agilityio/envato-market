@@ -1,0 +1,23 @@
+h3,
+h4 {
+  text-align: center;
+}
+
+.style-ol > ol {
+  list-style-type: decimal;
+  margin-bottom: 30px;
+}
+
+.style-ol > ol li,
+p {
+  margin-top: 10px;
+}
+
+a {
+  text-decoration: underline;
+  font-weight: bold;
+}
+a:hover {
+  color: #2550aa;
+  text-decoration: none;
+}

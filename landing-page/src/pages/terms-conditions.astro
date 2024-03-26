@@ -1,9 +1,11 @@
 ---
 import { MainLayout } from '@app/layouts';
-// import * as Terms from './content/terms-conditions.md';
 
 // Components
 import Heading from '@app/components/Heading/index.astro';
+
+// Style
+import '@app/styles/markdown.css';
 
 export interface Props {
   frontmatter: {
@@ -12,12 +14,17 @@ export interface Props {
 }
 
 const { frontmatter } = Astro.props;
+
+const styleListol = `!list-decimal`;
 ---
 
 <MainLayout>
-  <section class='grid grid-12 text-center'>
-    <Heading>Terms & Conditions</Heading>
-    <p class='text-justify'></p>
-    <slot />
+  <section class='grid grid-12 px-6'>
+    <Heading className='text-center mt-20 mb-[65px] lg:mt-[50px] '
+      >{frontmatter.title}</Heading
+    >
+    <div class='style-ol text-sm'>
+      <slot />
+    </div>
   </section>
 </MainLayout>
