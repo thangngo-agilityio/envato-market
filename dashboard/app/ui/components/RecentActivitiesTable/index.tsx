@@ -32,7 +32,7 @@ import {
 // Utils
 import {
   formatRecentActivitiesResponse,
-  // formatUppercaseFirstLetter,
+  formatUppercaseFirstLetter,
 } from '@/lib/utils';
 
 // Store
@@ -113,7 +113,9 @@ const RecentActivitiesTableComponent = () => {
               flex={1}
               w={{ base: 200, xl: 220, '3xl': 200, '6xl': 250 }}
             >
-              {name as string}
+              {formatUppercaseFirstLetter(
+                `${user?.firstName} ${user?.lastName} ${name}`,
+              )}
             </Text>
           </Tooltip>
         </Flex>
