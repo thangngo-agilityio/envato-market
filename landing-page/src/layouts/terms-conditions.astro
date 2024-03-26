@@ -19,12 +19,15 @@ const styleListol = `!list-decimal`;
 ---
 
 <MainLayout>
-  <section class='grid grid-12 px-6'>
-    <Heading className='text-center mt-20 mb-[65px] lg:mt-[50px] '
-      >{frontmatter.title}</Heading
-    >
-    <div class='style-ol text-sm'>
-      <slot />
+  <section>
+    <div class='grid grid-12 px-6 mx-auto max-w-[1200px]'>
+      <Heading
+        className='text-center mt-20 mb-[65px] lg:mt-[50px] dark:text-white'
+        >{frontmatter.title}</Heading
+      >
+      <div class='style-ol text-sm md:text-base'>
+        <slot />
+      </div>
     </div>
   </section>
 </MainLayout>
