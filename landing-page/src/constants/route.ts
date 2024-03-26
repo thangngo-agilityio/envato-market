@@ -3,7 +3,7 @@ export const ROUTES = {
   PRODUCTS: '/products',
   CART: '/cart',
   CHECKOUT: '/checkout',
-  TERMS_CONDITIONS: 'content/terms-conditions',
+  TERMS_CONDITIONS: '/terms-conditions',
 };
 
 export const ENDPOINTS = {
