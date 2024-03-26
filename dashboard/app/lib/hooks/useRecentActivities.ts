@@ -11,6 +11,9 @@ import { getRecentActivities } from '@/lib/services';
 // Interface
 import { TRecentActivities } from '@/lib/interfaces';
 
+// Utils
+import { handleSort } from '@/lib/utils';
+
 export type TAction = {
   name: string;
   userId?: string;
@@ -57,32 +60,6 @@ export const useRecentActivities = ({ queryParam, userId }: TAction) => {
     const { field, type } = sortValue;
 
     if (!field) return data;
-
-    const handleSort = (
-      type: TSortType,
-      prevValue: string,
-      nextValue: string,
-    ): number => {
-      const convertPreValue: string = prevValue.toString().trim().toLowerCase();
-      const convertNextValue: string = nextValue
-        .toString()
-        .trim()
-        .toLowerCase();
-
-      if (type === 'asc') {
-        if (convertPreValue > convertNextValue) return 1;
-
-        if (convertPreValue < convertNextValue) return -1;
-      }
-
-      if (type === 'desc') {
-        if (convertPreValue > convertNextValue) return -1;
-
-        if (convertPreValue < convertNextValue) return 1;
-      }
-
-      return 0;
-    };
 
     tempProducts.sort(
       (
