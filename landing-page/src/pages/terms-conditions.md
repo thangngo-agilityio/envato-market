@@ -1,5 +1,5 @@
 ---
-layout: ../layouts/terms-conditions.astro
+layout: ../layouts/Contents/terms-conditions.astro
 title: Terms & Conditions
 ---
 
