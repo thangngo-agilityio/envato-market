@@ -1,17 +1,17 @@
-type TSortType = 'asc' | 'desc';
+import { SortType } from '../interfaces';
 
 const compareValues = (
   prevValue: string,
   nextValue: string,
-  sortOrder: TSortType,
+  sortOrder: SortType,
 ): number => {
   const convertPrevValue: string = prevValue.toString().trim().toLowerCase();
   const convertNextValue: string = nextValue.toString().trim().toLowerCase();
 
-  if (sortOrder === 'asc') {
+  if (sortOrder === SortType.ASC) {
     if (convertPrevValue > convertNextValue) return 1;
     if (convertPrevValue < convertNextValue) return -1;
-  } else if (sortOrder === 'desc') {
+  } else if (sortOrder === SortType.DESC) {
     if (convertPrevValue > convertNextValue) return -1;
     if (convertPrevValue < convertNextValue) return 1;
   }
@@ -20,7 +20,7 @@ const compareValues = (
 };
 
 export const handleSort = (
-  type: TSortType,
+  type: SortType,
   prevValue: string,
   nextValue: string,
 ): number => compareValues(prevValue, nextValue, type);

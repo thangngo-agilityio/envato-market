@@ -9,7 +9,7 @@ import { END_POINTS, TIME_FORMAT } from '@/lib/constants';
 import { getRecentActivities } from '@/lib/services';
 
 // Interface
-import { TRecentActivities } from '@/lib/interfaces';
+import { SortType, TRecentActivities } from '@/lib/interfaces';
 
 // Utils
 import { handleSort } from '@/lib/utils';
@@ -20,26 +20,25 @@ export type TAction = {
   queryParam?: string;
 };
 
-type TSortType = 'desc' | 'asc';
 export type TActivitiesSortField = 'actionName' | 'email' | 'date';
 type TSort = {
   field: TActivitiesSortField | '';
-  type: TSortType;
+  type: SortType;
 };
 export type TActivitiesSortHandler = (field: TActivitiesSortField) => void;
 
 export const useRecentActivities = ({ queryParam, userId }: TAction) => {
-  const sortType: Record<TSortType, TSortType> = useMemo(
+  const sortType: Record<SortType, SortType> = useMemo(
     () => ({
-      desc: 'asc',
-      asc: 'desc',
+      desc: SortType.ASC,
+      asc: SortType.DESC,
     }),
     [],
   );
 
   const [sortValue, setSortValue] = useState<TSort>({
     field: '',
-    type: 'asc',
+    type: SortType.ASC,
   });
 
   const { name: searchName }: TAction = Object.assign(
@@ -103,11 +102,9 @@ export const useRecentActivities = ({ queryParam, userId }: TAction) => {
     const isNameMatchWith = (target: string): boolean =>
       (target || '').trim().toLowerCase().includes(searchName);
 
-    return activitiesAfterSort.filter(({ actionName }: TRecentActivities) => {
-      const isMatchWithName: boolean = isNameMatchWith(actionName);
-
-      return isMatchWithName;
-    });
+    return activitiesAfterSort.filter(({ actionName }: TRecentActivities) =>
+      isNameMatchWith(actionName),
+    );
   }, [activitiesAfterSort, searchName]);
 
   const sortBy: TActivitiesSortHandler = useCallback(
