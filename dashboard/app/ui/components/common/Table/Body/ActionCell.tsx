@@ -37,6 +37,7 @@ interface ActionCallProps {
   user?: TUserDetail;
   transaction?: TTransaction;
   product?: TProductResponse;
+  itemName?: string;
   activities?: TRecentActivities;
   titleDelete?: string;
   isOpenModal?: boolean;
@@ -57,10 +58,11 @@ interface ActionCallProps {
 }
 
 const ActionCellComponent = ({
-  titleDelete,
   user,
-  transaction,
   product,
+  itemName,
+  transaction,
+  titleDelete,
   activities,
   isOpenModal = false,
   isOpenUserAction = false,
@@ -243,7 +245,7 @@ const ActionCellComponent = ({
           title={titleDelete}
           body={
             <ConfirmDeleteModal
-              productName={product ? product?.name : activities?.actionName}
+              itemName={itemName}
               onDeleteProduct={
                 product ? handleDeleteProduct : handleDeleteActivities
               }

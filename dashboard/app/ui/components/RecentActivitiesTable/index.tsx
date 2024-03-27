@@ -176,6 +176,7 @@ const RecentActivitiesTableComponent = () => {
         key={`${data._id}-action`}
         isOpenModal={true}
         titleDelete="Delete Activity"
+        itemName={data.actionName}
         onDeleteActivity={handleDeleteActivities}
       />
     ),

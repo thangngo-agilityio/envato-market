@@ -6,13 +6,13 @@ import { memo } from 'react';
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 
 interface ProductProps {
-  productName?: string;
+  itemName?: string;
   onDeleteProduct?: () => void;
   onCloseModal?: () => void;
 }
 
 const ConfirmDeleteModal = ({
-  productName,
+  itemName,
   onDeleteProduct,
   onCloseModal,
 }: ProductProps) => (
@@ -20,7 +20,7 @@ const ConfirmDeleteModal = ({
     <Text fontSize="md" w={{ base: 364 }} noOfLines={2}>
       Are you sure delete
       <Text as="span" pl={1} color="red.500" fontWeight="bold" maxW={120}>
-        {productName}
+        {itemName}
       </Text>
       ?
     </Text>
