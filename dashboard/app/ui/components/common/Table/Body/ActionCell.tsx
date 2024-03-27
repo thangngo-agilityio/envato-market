@@ -38,6 +38,7 @@ interface ActionCallProps {
   transaction?: TTransaction;
   product?: TProductResponse;
   activities?: TRecentActivities;
+  titleDelete?: string;
   isOpenModal?: boolean;
   isOpenUserAction?: boolean;
   onDeleteTransaction?: (transactionData: TTransaction) => void;
@@ -46,7 +47,7 @@ interface ActionCallProps {
   onDeleteProduct?: (
     productData: Partial<TProduct & { userId: string; productId: string }>,
   ) => void;
-  onDeleteActivities?: (
+  onDeleteActivity?: (
     activitiesData: Partial<
       TRecentActivities & { userId: string; activitiesId: string }
     >,
@@ -56,6 +57,7 @@ interface ActionCallProps {
 }
 
 const ActionCellComponent = ({
+  titleDelete,
   user,
   transaction,
   product,
@@ -65,7 +67,7 @@ const ActionCellComponent = ({
   onLockUser,
   onUnlockUser,
   onDeleteTransaction,
-  onDeleteActivities,
+  onDeleteActivity,
   onDeleteProduct,
   onUpdateProduct,
   onUpdateTransaction,
@@ -103,13 +105,13 @@ const ActionCellComponent = ({
 
   const handleDeleteActivities = useCallback(() => {
     handleToggleModal();
-    onDeleteActivities &&
-      onDeleteActivities(
+    onDeleteActivity &&
+      onDeleteActivity(
         activities as Partial<
           TRecentActivities & { userId: string; activitiesId: string }
         >,
       );
-  }, [handleToggleModal, onDeleteActivities, activities]);
+  }, [handleToggleModal, onDeleteActivity, activities]);
 
   const handleLockUser = useCallback(
     () => onLockUser && onLockUser(user),
@@ -238,10 +240,9 @@ const ActionCellComponent = ({
         <Modal
           isOpen={isOpenConfirmModal}
           onClose={handleToggleModal}
-          title={product ? 'Delete Product' : 'Delete activities'}
+          title={titleDelete}
           body={
             <ConfirmDeleteModal
-              optionName={product ? 'product' : 'activities'}
               productName={product ? product?.name : activities?.actionName}
               onDeleteProduct={
                 product ? handleDeleteProduct : handleDeleteActivities

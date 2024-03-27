@@ -56,8 +56,8 @@ const RecentActivitiesTableComponent = () => {
     isLoading: isLoadingActivities,
     isError: isActivitiesError,
     sortBy,
-    deleteActivities,
-    isDeleteActivities,
+    deleteActivity,
+    isDeleteActiviy,
   } = useRecentActivities({
     actionName: get('actionName') || '',
     userId: userId,
@@ -86,7 +86,7 @@ const RecentActivitiesTableComponent = () => {
         TRecentActivities & { userId: string; activitiesId: string }
       >,
     ) => {
-      deleteActivities(
+      deleteActivity(
         {
           activitiesId: data._id,
           userId: userId,
@@ -113,7 +113,7 @@ const RecentActivitiesTableComponent = () => {
         },
       );
     },
-    [deleteActivities, toast, userId],
+    [deleteActivity, toast, userId],
   );
 
   const renderHead = useCallback(
@@ -175,7 +175,8 @@ const RecentActivitiesTableComponent = () => {
         activities={data}
         key={`${data._id}-action`}
         isOpenModal={true}
-        onDeleteActivities={handleDeleteActivities}
+        titleDelete="Delete Activity"
+        onDeleteActivity={handleDeleteActivities}
       />
     ),
     [handleDeleteActivities],
@@ -222,7 +223,7 @@ const RecentActivitiesTableComponent = () => {
   );
 
   return (
-    <Indicator isOpen={isDeleteActivities}>
+    <Indicator isOpen={isDeleteActiviy}>
       <Flex flexDirection={{ base: 'column', lg: 'row' }}>
         <SearchBar
           placeholder="Search by name or email"

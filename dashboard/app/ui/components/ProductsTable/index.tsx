@@ -351,6 +351,7 @@ const ProductsTableComponent = () => {
         product={data}
         key={`${data._id}-action`}
         isOpenModal={true}
+        titleDelete="Delete Product"
         onDeleteProduct={handleDeleteProduct}
         onUpdateProduct={handleUpdateProduct}
       />

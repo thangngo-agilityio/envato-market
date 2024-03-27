@@ -6,7 +6,6 @@ import { memo } from 'react';
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 
 interface ProductProps {
-  optionName: string;
   productName?: string;
   onDeleteProduct?: () => void;
   onCloseModal?: () => void;
@@ -14,15 +13,14 @@ interface ProductProps {
 
 const ConfirmDeleteModal = ({
   productName,
-  optionName,
   onDeleteProduct,
   onCloseModal,
 }: ProductProps) => (
   <Box>
     <Text fontSize="md" w={{ base: 364 }} noOfLines={2}>
-      Are you sure delete the {optionName}:
+      Are you sure delete
       <Text as="span" pl={1} color="red.500" fontWeight="bold" maxW={120}>
-        {productName}
+        {productName}:
       </Text>
       ?
     </Text>

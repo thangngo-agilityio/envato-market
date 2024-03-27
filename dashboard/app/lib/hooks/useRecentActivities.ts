@@ -54,7 +54,7 @@ export const useRecentActivities = ({ actionName, userId }: TAction) => {
     queryFn: ({ signal }) => getRecentActivities('', { signal }, userId),
   });
 
-  // sort activities
+  // sort activitiesSorted
   const activitiesAfterSort: TRecentActivities[] = useMemo(() => {
     const tempActivities: TRecentActivities[] = [...data];
     const { field, type } = sortValue;
@@ -118,32 +118,31 @@ export const useRecentActivities = ({ actionName, userId }: TAction) => {
     [sortType],
   );
 
-  const { mutate: deleteActivities, isPending: isDeleteActivities } =
-    useMutation({
-      mutationFn: async (
-        payload: Partial<
-          TActivitiesRequest & { userId: string; activitiesId: string }
-        >,
-      ) => {
-        await recentActivitiesHttpService.delete(END_POINTS.RECENT_ACTIVITIES, {
-          data: payload,
-        });
-      },
-      onSuccess: (_, variables) => {
-        queryClient.setQueryData(
-          [END_POINTS.RECENT_ACTIVITIES, actionName],
-          (oldData: TRecentActivities[]) =>
-            oldData.filter((item) => item._id !== variables.activitiesId),
-        );
-      },
-    });
+  const { mutate: deleteActivity, isPending: isDeleteActiviy } = useMutation({
+    mutationFn: async (
+      payload: Partial<
+        TActivitiesRequest & { userId: string; activitiesId: string }
+      >,
+    ) => {
+      await recentActivitiesHttpService.delete(END_POINTS.RECENT_ACTIVITIES, {
+        data: payload,
+      });
+    },
+    onSuccess: (_, variables) => {
+      queryClient.setQueryData(
+        [END_POINTS.RECENT_ACTIVITIES, actionName],
+        (oldData: TRecentActivities[]) =>
+          oldData.filter((item) => item._id !== variables.activitiesId),
+      );
+    },
+  });
 
   return {
     ...query,
     activities,
     data: activities,
-    isDeleteActivities,
+    isDeleteActiviy,
     sortBy,
-    deleteActivities,
+    deleteActivity,
   };
 };

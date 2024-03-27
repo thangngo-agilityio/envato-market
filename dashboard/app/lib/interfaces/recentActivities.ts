@@ -6,10 +6,10 @@ export type TRecentActivities = {
 };
 
 export interface TActivitiesRequest {
-  currentPage: number | undefined;
-  limit: number | undefined;
   _id: string;
   actionName: string;
   email: string;
   createdAt?: string;
+  currentPage?: number;
+  limit?: number;
 }
