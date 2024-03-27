@@ -10,10 +10,19 @@ import { authStore } from '@/lib/stores';
 import { END_POINTS, PRODUCT_STATUS, TIME_FORMAT } from '@/lib/constants';
 
 // Services
-import { getProducts, productsHttpService } from '@/lib/services';
+import {
+  getProducts,
+  productsHttpService,
+  recentActivitiesHttpService,
+} from '@/lib/services';
 
 // Interface
-import { TProduct, TProductRequest, TProductResponse } from '@/lib/interfaces';
+import {
+  TActivitiesRequest,
+  TProduct,
+  TProductRequest,
+  TProductResponse,
+} from '@/lib/interfaces';
 
 export type TSearchProduct = {
   name: string;
@@ -162,6 +171,16 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         product,
       ),
     onSuccess: (dataResponse) => {
+      productsHttpService.interceptors.request.use(async (request) => {
+        await recentActivitiesHttpService.post<TActivitiesRequest>(
+          END_POINTS.RECENT_ACTIVITIES,
+          {
+            userId: user?.id,
+            actionName: 'Create product',
+          },
+        );
+        return request;
+      });
       queryClient.invalidateQueries({
         queryKey: [END_POINTS.PRODUCTS],
       });
