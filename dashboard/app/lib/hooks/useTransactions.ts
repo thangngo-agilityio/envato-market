@@ -3,13 +3,24 @@ import { useCallback, useMemo, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 // Services
-import { getTransactions, transactionHttpService } from '@/lib/services';
+import {
+  getTransactions,
+  recentActivitiesHttpService,
+  transactionHttpService,
+} from '@/lib/services';
 
 // Constants
 import { END_POINTS, TIME_FORMAT, TRANSACTION_STATUS } from '@/lib/constants';
 
 // Types
-import { IDataList, TAddress, TCustomer, TTransaction } from '@/lib/interfaces';
+import {
+  EActivity,
+  IDataList,
+  TActivitiesRequest,
+  TAddress,
+  TCustomer,
+  TTransaction,
+} from '@/lib/interfaces';
 
 // Stores
 import { authStore } from '../stores';
@@ -209,6 +220,16 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
           transaction,
         ),
       onSuccess: (_, variables) => {
+        transactionHttpService.interceptors.request.use(async (request) => {
+          await recentActivitiesHttpService.post<TActivitiesRequest>(
+            END_POINTS.RECENT_ACTIVITIES,
+            {
+              userId: user?.id,
+              actionName: EActivity.UPDATE_TRANSACTION,
+            },
+          );
+          return request;
+        });
         queryClient.setQueryData(
           [END_POINTS.TRANSACTIONS, searchName, searchMonth],
           (oldData: TTransaction[]) => {
@@ -248,6 +269,16 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
           transaction,
         ),
       onSuccess: (_, variables) => {
+        transactionHttpService.interceptors.request.use(async (request) => {
+          await recentActivitiesHttpService.post<TActivitiesRequest>(
+            END_POINTS.RECENT_ACTIVITIES,
+            {
+              userId: user?.id,
+              actionName: EActivity.DELETE_TRANSACTION,
+            },
+          );
+          return request;
+        });
         queryClient.setQueryData(
           [END_POINTS.TRANSACTIONS, searchName, searchMonth],
           (oldData: TTransaction[]) => {

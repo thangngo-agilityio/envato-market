@@ -1,15 +1,27 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 // Services
-import { addMoneyToUser, sendMoneyToUser } from '@/lib/services';
+import {
+  addMoneyToUser,
+  moneyHttpRequest,
+  recentActivitiesHttpService,
+  sendMoneyToUser,
+} from '@/lib/services';
 
 // Types
-import { TAddMoney, TSendMoney } from '@/lib/interfaces';
+import {
+  EActivity,
+  TActivitiesRequest,
+  TAddMoney,
+  TSendMoney,
+} from '@/lib/interfaces';
 
 // Constants
 import { END_POINTS } from '@/lib/constants';
+import { authStore } from '../stores';
 
 export const useMoney = () => {
+  const { user } = authStore();
   const queryClient = useQueryClient();
 
   const { mutate: addMoneyToUserWallet } = useMutation({
@@ -25,6 +37,18 @@ export const useMoney = () => {
         queryKey: [END_POINTS.NOTIFICATION],
       });
     },
+    onSuccess: () => {
+      moneyHttpRequest.interceptors.request.use(async (request) => {
+        await recentActivitiesHttpService.post<TActivitiesRequest>(
+          END_POINTS.RECENT_ACTIVITIES,
+          {
+            userId: user?.id,
+            actionName: EActivity.ADD_MONEY,
+          },
+        );
+        return request;
+      });
+    },
   });
 
   const { mutate: sendMoneyToUserWallet } = useMutation({
@@ -38,6 +62,18 @@ export const useMoney = () => {
       });
       queryClient.invalidateQueries({
         queryKey: [END_POINTS.NOTIFICATION],
+      });
+    },
+    onSuccess: () => {
+      moneyHttpRequest.interceptors.request.use(async (request) => {
+        await recentActivitiesHttpService.post<TActivitiesRequest>(
+          END_POINTS.RECENT_ACTIVITIES,
+          {
+            userId: user?.id,
+            actionName: EActivity.SEND_MONEY,
+          },
+        );
+        return request;
       });
     },
   });
