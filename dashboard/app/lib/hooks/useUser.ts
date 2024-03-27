@@ -6,7 +6,13 @@ import {
 } from '@tanstack/react-query';
 
 // Interfaces
-import { IIssues, TPassword, TUserDetail } from '@/lib/interfaces';
+import {
+  EActivity,
+  IIssues,
+  TActivitiesRequest,
+  TPassword,
+  TUserDetail,
+} from '@/lib/interfaces';
 import { TSearchTransaction } from '.';
 
 // Services
@@ -14,11 +20,16 @@ import {
   MainHttpService,
   getAllUserDetailsExceptWithId,
   getSupports,
+  recentActivitiesHttpService,
+  supportHttpService,
   userHttpRequest,
 } from '@/lib/services';
 
 // Constants
 import { END_POINTS } from '@/lib/constants';
+
+// store
+import { authStore } from '../stores';
 
 export const useUpdateUser = () => {
   const { error, ...rest } = useMutation({
@@ -72,6 +83,7 @@ export const useGetListIssues = () => {
 };
 
 export const useCreateIssues = () => {
+  const { user } = authStore();
   const queryClient = useQueryClient();
   const { error, ...rest } = useMutation({
     mutationFn: async (
@@ -88,6 +100,16 @@ export const useCreateIssues = () => {
         {},
       ),
     onSettled: () => {
+      supportHttpService.interceptors.request.use(async (request) => {
+        await recentActivitiesHttpService.post<TActivitiesRequest>(
+          END_POINTS.RECENT_ACTIVITIES,
+          {
+            userId: user?.id,
+            actionName: EActivity.CREATE_ISSUES,
+          },
+        );
+        return request;
+      });
       queryClient.invalidateQueries({ queryKey: [END_POINTS.SUPPORT] });
     },
   });

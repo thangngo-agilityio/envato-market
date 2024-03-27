@@ -1,7 +1,11 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 // Constants
 import { STATISTICAL_API } from '@/lib/constants';
+
+export const statisticalHttpService: AxiosInstance = axios.create({
+  baseURL: STATISTICAL_API,
+});
 
 class HttpService {
   private readonly baseApi: string;

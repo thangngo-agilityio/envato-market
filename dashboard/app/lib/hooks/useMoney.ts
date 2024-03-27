@@ -27,17 +27,6 @@ export const useMoney = () => {
   const { mutate: addMoneyToUserWallet } = useMutation({
     mutationFn: (userData: TAddMoney) => addMoneyToUser(userData),
     onSettled: () => {
-      queryClient.invalidateQueries({
-        queryKey: [END_POINTS.MY_WALLET],
-      });
-      queryClient.invalidateQueries({
-        queryKey: [END_POINTS.TRANSACTIONS],
-      });
-      queryClient.invalidateQueries({
-        queryKey: [END_POINTS.NOTIFICATION],
-      });
-    },
-    onSuccess: () => {
       moneyHttpRequest.interceptors.request.use(async (request) => {
         await recentActivitiesHttpService.post<TActivitiesRequest>(
           END_POINTS.RECENT_ACTIVITIES,
@@ -48,12 +37,6 @@ export const useMoney = () => {
         );
         return request;
       });
-    },
-  });
-
-  const { mutate: sendMoneyToUserWallet } = useMutation({
-    mutationFn: (userData: TSendMoney) => sendMoneyToUser(userData),
-    onSettled: () => {
       queryClient.invalidateQueries({
         queryKey: [END_POINTS.MY_WALLET],
       });
@@ -64,7 +47,11 @@ export const useMoney = () => {
         queryKey: [END_POINTS.NOTIFICATION],
       });
     },
-    onSuccess: () => {
+  });
+
+  const { mutate: sendMoneyToUserWallet } = useMutation({
+    mutationFn: (userData: TSendMoney) => sendMoneyToUser(userData),
+    onSettled: () => {
       moneyHttpRequest.interceptors.request.use(async (request) => {
         await recentActivitiesHttpService.post<TActivitiesRequest>(
           END_POINTS.RECENT_ACTIVITIES,
@@ -74,6 +61,15 @@ export const useMoney = () => {
           },
         );
         return request;
+      });
+      queryClient.invalidateQueries({
+        queryKey: [END_POINTS.MY_WALLET],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [END_POINTS.TRANSACTIONS],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [END_POINTS.NOTIFICATION],
       });
     },
   });
