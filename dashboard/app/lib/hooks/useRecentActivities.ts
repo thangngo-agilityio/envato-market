@@ -91,8 +91,8 @@ export const useRecentActivities = ({ actionName, userId }: TAction) => {
    * TODO: Will be removed in the future and will use queryKey for re-fetching
    */
   const activities: TRecentActivities[] = useMemo((): TRecentActivities[] => {
-    const isNameMatchWith = (target: string): boolean =>
-      (target || '').trim().toLowerCase().includes(actionName);
+    const isNameMatchWith = (target = ''): boolean =>
+      target.trim().toLowerCase().includes(actionName);
 
     return activitiesAfterSort.filter(({ actionName }: TRecentActivities) =>
       isNameMatchWith(actionName),
