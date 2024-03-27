@@ -1,6 +1,14 @@
+:root {
+  --dataBg: #f9f9f9;
+  --linkTag: #2550aa;
+}
 h3,
 h4 {
   text-align: center;
+}
+
+.data-processing {
+  background-color: var(--dataBg);
 }
 
 .style-ol > ol {
@@ -17,9 +25,14 @@ a {
   text-decoration: underline;
   font-weight: bold;
 }
+
 a:hover {
-  color: #2550aa;
+  color: var(--linkTag);
   text-decoration: none;
+}
+
+table {
+  margin-top: 40px;
 }
 
 @media (min-width: 768px) {
