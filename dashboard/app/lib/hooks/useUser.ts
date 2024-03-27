@@ -21,6 +21,7 @@ import {
   getAllUserDetailsExceptWithId,
   getSupports,
   recentActivitiesHttpService,
+  statisticalHttpService,
   supportHttpService,
   userHttpRequest,
 } from '@/lib/services';
@@ -32,9 +33,24 @@ import { END_POINTS } from '@/lib/constants';
 import { authStore } from '../stores';
 
 export const useUpdateUser = () => {
+  const { user } = authStore();
+
   const { error, ...rest } = useMutation({
     mutationFn: async (user: TUserDetail) =>
-      await MainHttpService.put<TUserDetail>(END_POINTS.USERS, user),
+      await statisticalHttpService.put<TUserDetail>(END_POINTS.USERS, user),
+    onSettled: () => {
+      statisticalHttpService.interceptors.request.use(async (request) => {
+        await recentActivitiesHttpService.post<TActivitiesRequest>(
+          END_POINTS.RECENT_ACTIVITIES,
+          {
+            userId: user?.id,
+            actionName: EActivity.CREATE_ISSUES,
+          },
+        );
+
+        return request;
+      });
+    },
   });
 
   return {
