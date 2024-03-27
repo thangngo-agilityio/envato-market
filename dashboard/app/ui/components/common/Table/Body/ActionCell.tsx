@@ -46,6 +46,11 @@ interface ActionCallProps {
   onDeleteProduct?: (
     productData: Partial<TProduct & { userId: string; productId: string }>,
   ) => void;
+  onDeleteActivities?: (
+    activitiesData: Partial<
+      TRecentActivities & { userId: string; activitiesId: string }
+    >,
+  ) => void;
   onLockUser?: (userData?: TUserDetail) => void;
   onUnlockUser?: (userData?: TUserDetail) => void;
 }
@@ -60,6 +65,7 @@ const ActionCellComponent = ({
   onLockUser,
   onUnlockUser,
   onDeleteTransaction,
+  onDeleteActivities,
   onDeleteProduct,
   onUpdateProduct,
   onUpdateTransaction,
@@ -68,6 +74,7 @@ const ActionCellComponent = ({
   const [isDelete, setIsDelete] = useState<boolean>(false);
 
   const customerId = transaction?.customer.customerId || activities?._id;
+  const optionDelete = product || activities;
 
   const handleOpenConfirmModal = useCallback(
     (isDeleteModal: boolean) => () => {
@@ -93,6 +100,16 @@ const ActionCellComponent = ({
         product as Partial<TProduct & { userId: string; productId: string }>,
       );
   }, [handleToggleModal, onDeleteProduct, product]);
+
+  const handleDeleteActivities = useCallback(() => {
+    handleToggleModal();
+    onDeleteActivities &&
+      onDeleteActivities(
+        activities as Partial<
+          TRecentActivities & { userId: string; activitiesId: string }
+        >,
+      );
+  }, [handleToggleModal, onDeleteActivities, activities]);
 
   const handleLockUser = useCallback(
     () => onLockUser && onLockUser(user),
@@ -217,15 +234,18 @@ const ActionCellComponent = ({
         />
       )}
 
-      {isOpenConfirmModal && isDelete && product && (
+      {isOpenConfirmModal && isDelete && optionDelete && (
         <Modal
           isOpen={isOpenConfirmModal}
           onClose={handleToggleModal}
-          title="Delete Product"
+          title={product ? 'Delete Product' : 'Delete activities'}
           body={
             <ConfirmDeleteModal
-              productName={product.name}
-              onDeleteProduct={handleDeleteProduct}
+              optionName={product ? 'product' : 'activities'}
+              productName={product ? product?.name : activities?.actionName}
+              onDeleteProduct={
+                product ? handleDeleteProduct : handleDeleteActivities
+              }
               onCloseModal={handleToggleModal}
             />
           }
