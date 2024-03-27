@@ -18,6 +18,7 @@ import {
 
 // Interface
 import {
+  EActivity,
   TActivitiesRequest,
   TProduct,
   TProductRequest,
@@ -176,7 +177,7 @@ export const useProducts = (queryParam?: TSearchProduct) => {
           END_POINTS.RECENT_ACTIVITIES,
           {
             userId: user?.id,
-            actionName: 'Create product',
+            actionName: EActivity.CREATE_PRODUCT,
           },
         );
         return request;
@@ -202,6 +203,16 @@ export const useProducts = (queryParam?: TSearchProduct) => {
       });
     },
     onSuccess: (_, variables) => {
+      productsHttpService.interceptors.request.use(async (request) => {
+        await recentActivitiesHttpService.post<TActivitiesRequest>(
+          END_POINTS.RECENT_ACTIVITIES,
+          {
+            userId: user?.id,
+            actionName: EActivity.DELETE_PRODUCT,
+          },
+        );
+        return request;
+      });
       queryClient.setQueryData(
         [END_POINTS.PRODUCTS, searchName],
         (oldData: TProduct[]) =>
@@ -219,6 +230,16 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         product,
       ),
     onSuccess: (_, variables) => {
+      productsHttpService.interceptors.request.use(async (request) => {
+        await recentActivitiesHttpService.post<TActivitiesRequest>(
+          END_POINTS.RECENT_ACTIVITIES,
+          {
+            userId: user?.id,
+            actionName: EActivity.UPDATE_PRODUCT,
+          },
+        );
+        return request;
+      });
       queryClient.setQueryData(
         [END_POINTS.PRODUCTS, searchName],
         (oldData: TProductResponse[]) => {
