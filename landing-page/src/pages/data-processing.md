@@ -16,7 +16,7 @@ title: Data Processing Agreement
 
 #### **Duration of the Processing Agreement**
 
-The Processing Agreement shall be effective from the date of conclusion until the date of its termination. The procedure for amendments to this Agreement shall be in accordance with the procedure for amendments to the Terms of Use.
+- The Processing Agreement shall be effective from the date of conclusion until the date of its termination. The procedure for amendments to this Agreement shall be in accordance with the procedure for amendments to the Terms of Use.
 
 ### **§ 3** 
 
@@ -120,7 +120,24 @@ Appendix 2: List of subcontractors from third countries
 Appendix 1 to the Agreement - List of subcontractors
 
 
-|       |  |      |
-| :---        |    :----:   |          ---: |
-| Header      | Title       | Here's this   |
-| Paragraph   | Text        | And more      |
+|              |      |         |
+| :---        |:---   | :---    |
+| Name of entity      | Address       | Scope of cooperation (purpose of entrusting the processing of personal data)   |
+| Amazon Web Sites Inc   | Data Centres in Dublin and Frankfurt        | Data hosting      |
+| Hostersi Sp. z o.o.   | ul. Jankowicka 7, 44-200 Rybnik, Poland        | Technical and administrative support to ensure consistency and continuity of access to personal data      |
+| The Rocket Science Group LLC   | Suite 5000, Atlanta, GA 30308 USA        | Sending of e-mails (only after use of the auto-responder function regarding their sending)      |
+
+<br/>
+Appendix 2 to the Agreement - List of subcontractors from third countries 
+<br/>
+<br/>
+
+
+|              |      |         |         |
+| :---        |:---   | :---    | :---    
+| Name of entity      | Address       | Country   | Applied safeguards
+| Amazon Web Sites Inc   | 410 Terry Avenue North, Seattle, WA 98109-5210, USA        | USA      | Standard contractual clauses approved by the European Commission
+| The Rocket Science Group LLC   | Suite 5000, Atlanta, GA 30308 USA        | USA     | Standard contractual clauses approved by the European Commission
+<br/>
+<br/>
+The Data Processing Agreement is available for download in a PDF form here.

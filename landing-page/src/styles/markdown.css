@@ -1,6 +1,7 @@
 :root {
   --dataBg: #f9f9f9;
   --linkTag: #2550aa;
+  --border: #ebebeb;
 }
 h3,
 h4 {
@@ -21,9 +22,12 @@ p {
   margin-top: 10px;
 }
 
-a {
+.style-ol ol > li a {
   text-decoration: underline;
   font-weight: bold;
+}
+.style-ol ul {
+  margin: 20px 0 30px;
 }
 
 a:hover {
@@ -32,7 +36,25 @@ a:hover {
 }
 
 table {
-  margin-top: 40px;
+  margin: 40px 0;
+  overflow-y: auto;
+  width: 375px;
+  display: block;
+  overflow-x: auto;
+}
+
+table > tbody tr {
+  border-bottom: 1px solid var(--border);
+}
+
+table > tbody > tr > td {
+  padding: 25px 50px 25px 0;
+}
+
+@media (min-width: 500px) {
+  table {
+    width: 100%;
+  }
 }
 
 @media (min-width: 768px) {
