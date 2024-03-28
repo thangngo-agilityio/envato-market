@@ -24,6 +24,7 @@ import { formatUppercaseFirstLetter, getCurrentTimeSeconds } from '@/lib/utils';
 
 // Stores
 import { authStore } from '@/lib/stores';
+// import { EActivity, TActivitiesRequest } from '../interfaces';
 
 type TSignUpErrorField = Partial<
   Record<keyof Omit<TUserDetail, 'id' | 'createdAt'>, string>
@@ -59,6 +60,7 @@ export type TUseAuth = {
 
 export const useAuth = () => {
   const [isLogout, setIsLogout] = useState(false);
+  // const { user } = authStore();
   const router = useRouter();
   const { updateStore, clearStore } = authStore(
     (state) => ({
@@ -118,6 +120,24 @@ export const useAuth = () => {
           const { _id, ...rest } = data;
           localData = { ...rest, id: _id };
         }
+
+        // MainHttpService.axiosClient.interceptors.request.use(async (request) => {
+        //   const { data } = request;
+        //   console.log('data', data);
+        //   const isTrackLog = data ? true : false;
+
+        //   if (isTrackLog) {
+        //     await recentActivitiesHttpService.post<TActivitiesRequest>(
+        //       END_POINTS.RECENT_ACTIVITIES,
+        //       {
+        //         userId: user?.id,
+        //         actionName: EActivity.SIGN_IN,
+        //       },
+        //     );
+        //   }
+
+        //   return request;
+        // });
 
         return updateStore({
           user: localData,

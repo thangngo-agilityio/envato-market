@@ -246,22 +246,26 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         product,
       ),
     onSuccess: (_, variables) => {
-      productsHttpService.interceptors.request.use(async (request) => {
-        const { data } = request;
-        const isTrackLog = data ? true : false;
+      try {
+        productsHttpService.interceptors.request.use(async (request) => {
+          const { data } = request;
+          console.log('data', data);
+          const isTrackLog = data ? true : false;
 
-        if (isTrackLog) {
-          await recentActivitiesHttpService.post<TActivitiesRequest>(
-            END_POINTS.RECENT_ACTIVITIES,
-            {
-              userId: user?.id,
-              actionName: EActivity.UPDATE_PRODUCT,
-            },
-          );
-        }
-
-        return request;
-      });
+          if (isTrackLog && user) {
+            await recentActivitiesHttpService.post<TActivitiesRequest>(
+              END_POINTS.RECENT_ACTIVITIES,
+              {
+                userId: user.id,
+                actionName: EActivity.UPDATE_PRODUCT,
+              },
+            );
+          }
+          return request;
+        });
+      } catch (error) {
+        console.error('Error while fetching data:', error);
+      }
       queryClient.setQueryData(
         [END_POINTS.PRODUCTS, searchName],
         (oldData: TProductResponse[]) => {

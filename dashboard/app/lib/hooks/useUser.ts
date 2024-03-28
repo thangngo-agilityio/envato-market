@@ -6,7 +6,13 @@ import {
 } from '@tanstack/react-query';
 
 // Interfaces
-import { IIssues, TPassword, TUserDetail } from '@/lib/interfaces';
+import {
+  EActivity,
+  IIssues,
+  TActivitiesRequest,
+  TPassword,
+  TUserDetail,
+} from '@/lib/interfaces';
 import { TSearchTransaction } from '.';
 
 // Services
@@ -14,11 +20,13 @@ import {
   MainHttpService,
   getAllUserDetailsExceptWithId,
   getSupports,
+  recentActivitiesHttpService,
   userHttpRequest,
 } from '@/lib/services';
 
 // Constants
 import { END_POINTS } from '@/lib/constants';
+import { authStore } from '../stores';
 
 // store
 
@@ -75,6 +83,7 @@ export const useGetListIssues = () => {
 
 export const useCreateIssues = () => {
   const queryClient = useQueryClient();
+  const { user } = authStore();
   const { error, ...rest } = useMutation({
     mutationFn: async (
       supportList: Partial<
@@ -90,6 +99,25 @@ export const useCreateIssues = () => {
         {},
       ),
     onSettled: async () => {
+      try {
+        const { data } = await MainHttpService.axiosClient.get(
+          END_POINTS.SUPPORT,
+        ); // Assuming correct endpoint
+        console.log('data', data);
+        const isTrackLog = data ? true : false;
+
+        if (isTrackLog && user) {
+          await recentActivitiesHttpService.post<TActivitiesRequest>(
+            END_POINTS.RECENT_ACTIVITIES,
+            {
+              userId: user.id,
+              actionName: EActivity.SAVE_PROFILE,
+            },
+          );
+        }
+      } catch (error) {
+        console.error('Error while fetching data:', error);
+      }
       queryClient.invalidateQueries({ queryKey: [END_POINTS.SUPPORT] });
     },
   });
