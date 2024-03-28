@@ -172,16 +172,26 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         product,
       ),
     onSuccess: (dataResponse) => {
-      productsHttpService.interceptors.request.use(async (request) => {
-        await recentActivitiesHttpService.post<TActivitiesRequest>(
-          END_POINTS.RECENT_ACTIVITIES,
-          {
-            userId: user?.id,
-            actionName: EActivity.CREATE_PRODUCT,
-          },
-        );
-        return request;
-      });
+      try {
+        productsHttpService.interceptors.request.use(async (request) => {
+          const { data } = request;
+          const isTrackLog = data ? true : false;
+
+          if (isTrackLog) {
+            await recentActivitiesHttpService.post<TActivitiesRequest>(
+              END_POINTS.RECENT_ACTIVITIES,
+              {
+                userId: user?.id,
+                actionName: EActivity.CREATE_PRODUCT,
+              },
+            );
+          }
+
+          return request;
+        });
+      } catch (error) {
+        console.error('Error while fetching data:', error);
+      }
       queryClient.invalidateQueries({
         queryKey: [END_POINTS.PRODUCTS],
       });
@@ -204,13 +214,19 @@ export const useProducts = (queryParam?: TSearchProduct) => {
     },
     onSuccess: (_, variables) => {
       productsHttpService.interceptors.request.use(async (request) => {
-        await recentActivitiesHttpService.post<TActivitiesRequest>(
-          END_POINTS.RECENT_ACTIVITIES,
-          {
-            userId: user?.id,
-            actionName: EActivity.DELETE_PRODUCT,
-          },
-        );
+        const { data } = request;
+        const isTrackLog = data ? true : false;
+
+        if (isTrackLog) {
+          await recentActivitiesHttpService.post<TActivitiesRequest>(
+            END_POINTS.RECENT_ACTIVITIES,
+            {
+              userId: user?.id,
+              actionName: EActivity.DELETE_PRODUCT,
+            },
+          );
+        }
+
         return request;
       });
       queryClient.setQueryData(
@@ -231,13 +247,19 @@ export const useProducts = (queryParam?: TSearchProduct) => {
       ),
     onSuccess: (_, variables) => {
       productsHttpService.interceptors.request.use(async (request) => {
-        await recentActivitiesHttpService.post<TActivitiesRequest>(
-          END_POINTS.RECENT_ACTIVITIES,
-          {
-            userId: user?.id,
-            actionName: EActivity.UPDATE_PRODUCT,
-          },
-        );
+        const { data } = request;
+        const isTrackLog = data ? true : false;
+
+        if (isTrackLog) {
+          await recentActivitiesHttpService.post<TActivitiesRequest>(
+            END_POINTS.RECENT_ACTIVITIES,
+            {
+              userId: user?.id,
+              actionName: EActivity.UPDATE_PRODUCT,
+            },
+          );
+        }
+
         return request;
       });
       queryClient.setQueryData(

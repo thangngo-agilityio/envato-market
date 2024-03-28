@@ -1,11 +1,7 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 // Constants
 import { STATISTICAL_API } from '@/lib/constants';
-
-export const statisticalHttpService: AxiosInstance = axios.create({
-  baseURL: STATISTICAL_API,
-});
 
 class HttpService {
   private readonly baseApi: string;
@@ -14,7 +10,7 @@ class HttpService {
     this.baseApi = baseUrl;
   }
 
-  private axiosClient = axios.create({
+  public axiosClient = axios.create({
     headers: {
       accept: 'application/json',
     },

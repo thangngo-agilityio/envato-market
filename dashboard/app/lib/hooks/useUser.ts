@@ -6,13 +6,7 @@ import {
 } from '@tanstack/react-query';
 
 // Interfaces
-import {
-  EActivity,
-  IIssues,
-  TActivitiesRequest,
-  TPassword,
-  TUserDetail,
-} from '@/lib/interfaces';
+import { IIssues, TPassword, TUserDetail } from '@/lib/interfaces';
 import { TSearchTransaction } from '.';
 
 // Services
@@ -20,9 +14,6 @@ import {
   MainHttpService,
   getAllUserDetailsExceptWithId,
   getSupports,
-  recentActivitiesHttpService,
-  statisticalHttpService,
-  supportHttpService,
   userHttpRequest,
 } from '@/lib/services';
 
@@ -30,27 +21,11 @@ import {
 import { END_POINTS } from '@/lib/constants';
 
 // store
-import { authStore } from '../stores';
 
 export const useUpdateUser = () => {
-  const { user } = authStore();
-
   const { error, ...rest } = useMutation({
     mutationFn: async (user: TUserDetail) =>
-      await statisticalHttpService.put<TUserDetail>(END_POINTS.USERS, user),
-    onSettled: () => {
-      statisticalHttpService.interceptors.request.use(async (request) => {
-        await recentActivitiesHttpService.post<TActivitiesRequest>(
-          END_POINTS.RECENT_ACTIVITIES,
-          {
-            userId: user?.id,
-            actionName: EActivity.CREATE_ISSUES,
-          },
-        );
-
-        return request;
-      });
-    },
+      await MainHttpService.put<TUserDetail>(END_POINTS.USERS, user),
   });
 
   return {
@@ -99,7 +74,6 @@ export const useGetListIssues = () => {
 };
 
 export const useCreateIssues = () => {
-  const { user } = authStore();
   const queryClient = useQueryClient();
   const { error, ...rest } = useMutation({
     mutationFn: async (
@@ -115,17 +89,7 @@ export const useCreateIssues = () => {
         supportList,
         {},
       ),
-    onSettled: () => {
-      supportHttpService.interceptors.request.use(async (request) => {
-        await recentActivitiesHttpService.post<TActivitiesRequest>(
-          END_POINTS.RECENT_ACTIVITIES,
-          {
-            userId: user?.id,
-            actionName: EActivity.CREATE_ISSUES,
-          },
-        );
-        return request;
-      });
+    onSettled: async () => {
       queryClient.invalidateQueries({ queryKey: [END_POINTS.SUPPORT] });
     },
   });

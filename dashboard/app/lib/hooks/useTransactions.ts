@@ -221,13 +221,18 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
         ),
       onSuccess: (_, variables) => {
         transactionHttpService.interceptors.request.use(async (request) => {
-          await recentActivitiesHttpService.post<TActivitiesRequest>(
-            END_POINTS.RECENT_ACTIVITIES,
-            {
-              userId: user?.id,
-              actionName: EActivity.UPDATE_TRANSACTION,
-            },
-          );
+          const { data } = request;
+          const isTrackLog = data ? true : false;
+
+          if (isTrackLog) {
+            await recentActivitiesHttpService.post<TActivitiesRequest>(
+              END_POINTS.RECENT_ACTIVITIES,
+              {
+                userId: user?.id,
+                actionName: EActivity.UPDATE_TRANSACTION,
+              },
+            );
+          }
           return request;
         });
         queryClient.setQueryData(
@@ -270,13 +275,18 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
         ),
       onSuccess: (_, variables) => {
         transactionHttpService.interceptors.request.use(async (request) => {
-          await recentActivitiesHttpService.post<TActivitiesRequest>(
-            END_POINTS.RECENT_ACTIVITIES,
-            {
-              userId: user?.id,
-              actionName: EActivity.DELETE_TRANSACTION,
-            },
-          );
+          const { data } = request;
+          const isTrackLog = data ? true : false;
+
+          if (isTrackLog) {
+            await recentActivitiesHttpService.post<TActivitiesRequest>(
+              END_POINTS.RECENT_ACTIVITIES,
+              {
+                userId: user?.id,
+                actionName: EActivity.DELETE_TRANSACTION,
+              },
+            );
+          }
           return request;
         });
         queryClient.setQueryData(

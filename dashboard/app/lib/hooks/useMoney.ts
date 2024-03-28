@@ -28,13 +28,18 @@ export const useMoney = () => {
     mutationFn: (userData: TAddMoney) => addMoneyToUser(userData),
     onSettled: () => {
       moneyHttpRequest.interceptors.request.use(async (request) => {
-        await recentActivitiesHttpService.post<TActivitiesRequest>(
-          END_POINTS.RECENT_ACTIVITIES,
-          {
-            userId: user?.id,
-            actionName: EActivity.ADD_MONEY,
-          },
-        );
+        const { data } = request;
+        const isTrackLog = data ? true : false;
+
+        if (isTrackLog) {
+          await recentActivitiesHttpService.post<TActivitiesRequest>(
+            END_POINTS.RECENT_ACTIVITIES,
+            {
+              userId: user?.id,
+              actionName: EActivity.ADD_MONEY,
+            },
+          );
+        }
         return request;
       });
       queryClient.invalidateQueries({
@@ -53,13 +58,17 @@ export const useMoney = () => {
     mutationFn: (userData: TSendMoney) => sendMoneyToUser(userData),
     onSettled: () => {
       moneyHttpRequest.interceptors.request.use(async (request) => {
-        await recentActivitiesHttpService.post<TActivitiesRequest>(
-          END_POINTS.RECENT_ACTIVITIES,
-          {
-            userId: user?.id,
-            actionName: EActivity.SEND_MONEY,
-          },
-        );
+        const { data } = request;
+        const isTrackLog = data ? true : false;
+        if (isTrackLog) {
+          await recentActivitiesHttpService.post<TActivitiesRequest>(
+            END_POINTS.RECENT_ACTIVITIES,
+            {
+              userId: user?.id,
+              actionName: EActivity.SEND_MONEY,
+            },
+          );
+        }
         return request;
       });
       queryClient.invalidateQueries({
