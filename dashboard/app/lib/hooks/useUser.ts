@@ -31,9 +31,30 @@ import { authStore } from '../stores';
 // store
 
 export const useUpdateUser = () => {
+  const { user } = authStore();
   const { error, ...rest } = useMutation({
     mutationFn: async (user: TUserDetail) =>
       await MainHttpService.put<TUserDetail>(END_POINTS.USERS, user),
+    onSuccess: async () => {
+      try {
+        const { data } = await MainHttpService.axiosClient.get(
+          END_POINTS.USERS,
+        );
+        const isTrackLog = data ? true : false;
+
+        if (isTrackLog && user) {
+          await recentActivitiesHttpService.post<TActivitiesRequest>(
+            END_POINTS.RECENT_ACTIVITIES,
+            {
+              userId: user.id,
+              actionName: EActivity.SAVE_PROFILE,
+            },
+          );
+        }
+      } catch (error) {
+        console.error('Error while fetching data:', error);
+      }
+    },
   });
 
   return {
@@ -43,6 +64,7 @@ export const useUpdateUser = () => {
 };
 
 export const useUpdatePassword = () => {
+  const { user } = authStore();
   const { error, ...rest } = useMutation({
     mutationFn: async (passwordData: TPassword) => {
       const { oldPassword, newPassword, memberId } = passwordData;
@@ -52,6 +74,30 @@ export const useUpdatePassword = () => {
         newPassword,
         memberId,
       });
+    },
+    onSuccess: () => {
+      try {
+        MainHttpService.axiosClient.interceptors.request.use(
+          async (request) => {
+            const { data } = request;
+            const isTrackLog = data ? true : false;
+
+            if (isTrackLog) {
+              await recentActivitiesHttpService.post<TActivitiesRequest>(
+                END_POINTS.RECENT_ACTIVITIES,
+                {
+                  userId: user?.id,
+                  actionName: EActivity.SAVE_PASSWORD,
+                },
+              );
+            }
+
+            return request;
+          },
+        );
+      } catch (error) {
+        console.error('Error while fetching data:', error);
+      }
     },
   });
 
@@ -102,7 +148,7 @@ export const useCreateIssues = () => {
       try {
         const { data } = await MainHttpService.axiosClient.get(
           END_POINTS.SUPPORT,
-        ); // Assuming correct endpoint
+        );
         console.log('data', data);
         const isTrackLog = data ? true : false;
 
@@ -111,7 +157,7 @@ export const useCreateIssues = () => {
             END_POINTS.RECENT_ACTIVITIES,
             {
               userId: user.id,
-              actionName: EActivity.SAVE_PROFILE,
+              actionName: EActivity.CREATE_ISSUES,
             },
           );
         }
