@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Flex, Td, Text, Th, Tooltip } from '@chakra-ui/react';
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import Link from 'next/link';
 
 // Components
@@ -41,6 +41,7 @@ import { authStore } from '@/lib/stores';
 const RecentActivitiesTableComponent = () => {
   const userId = authStore((state) => state.user?.id);
   const { get, setSearchParam: setSearchTransaction } = useSearch();
+  const [filter, setFilter] = useState<string>('');
 
   const {
     activities,
@@ -52,6 +53,14 @@ const RecentActivitiesTableComponent = () => {
     userId: userId,
   });
 
+  const activityMemorized = useMemo(
+    () =>
+      activities.filter(
+        ({ actionName }) => actionName?.trim().includes(filter),
+      ),
+    [activities, filter],
+  );
+
   const {
     data,
     filterData,
@@ -62,7 +71,7 @@ const RecentActivitiesTableComponent = () => {
     handleChangeLimit,
     handlePageChange,
     handlePageClick,
-  } = usePagination(activities);
+  } = usePagination(activityMemorized);
 
   const handleDebounceSearch = useDebounce((value: string) => {
     resetPage();
@@ -94,7 +103,7 @@ const RecentActivitiesTableComponent = () => {
         color="text.primary"
         fontWeight="semibold"
         textAlign="left"
-        w={{ base: 200, xl: 220, '3xl': 200, '6xl': 250 }}
+        w={{ base: 200, xl: 220, '3xl': 200, '6xl': 350 }}
       >
         <Flex alignItems="center" gap="10px">
           <Tooltip
@@ -164,6 +173,7 @@ const RecentActivitiesTableComponent = () => {
           filterOptions={ACTIVITY_OPTIONS}
           searchValue={get('actionName')?.toLowerCase() || ''}
           onSearch={handleDebounceSearch}
+          onFilter={setFilter}
         />
       </Flex>
       <Fetching
