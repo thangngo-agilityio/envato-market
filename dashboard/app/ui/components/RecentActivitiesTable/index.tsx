@@ -17,9 +17,9 @@ import {
 
 // Constants
 import {
+  ACTIVITY_OPTIONS,
   COLUMNS_RECENT_ACTIVITIES,
   ERROR_MESSAGES,
-  MONTHS_OPTIONS,
   STATUS,
   SUCCESS_MESSAGES,
 } from '@/lib/constants';
@@ -228,7 +228,7 @@ const RecentActivitiesTableComponent = () => {
       <Flex flexDirection={{ base: 'column', lg: 'row' }}>
         <SearchBar
           placeholder="Search by name or email"
-          filterOptions={MONTHS_OPTIONS}
+          filterOptions={ACTIVITY_OPTIONS}
           searchValue={get('actionName')?.toLowerCase() || ''}
           onSearch={handleDebounceSearch}
         />

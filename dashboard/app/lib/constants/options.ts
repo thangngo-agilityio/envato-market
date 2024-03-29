@@ -145,3 +145,62 @@ export const FILTER_PRODUCT = [
     label: 'In stock',
   },
 ];
+
+export const ACTIVITY_OPTIONS = [
+  {
+    value: 'SI',
+    label: 'Sign in',
+  },
+  {
+    value: 'SO',
+    label: 'Sign out',
+  },
+  {
+    value: 'SU',
+    label: 'Sign up',
+  },
+  {
+    value: 'FP',
+    label: 'Forgot password',
+  },
+  {
+    value: 'AM',
+    label: 'Add money',
+  },
+  {
+    value: 'SM',
+    label: 'Send money',
+  },
+  {
+    value: 'UTR',
+    label: 'Update transaction',
+  },
+  {
+    value: 'DTR',
+    label: 'Delete transaction',
+  },
+  {
+    value: 'CPR',
+    label: 'Create product',
+  },
+  {
+    value: 'UPR',
+    label: 'Update product',
+  },
+  {
+    value: 'DPR',
+    label: 'Delete product',
+  },
+  {
+    value: 'CIS',
+    label: 'Create issues',
+  },
+  {
+    value: 'SP',
+    label: 'Save profile',
+  },
+  {
+    value: 'CP',
+    label: 'Save change password',
+  },
+];
