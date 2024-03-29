@@ -1,6 +1,5 @@
 // Lib
 import dayjs from 'dayjs';
-import { AxiosError } from 'axios';
 import { useCallback, useMemo, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
@@ -11,24 +10,18 @@ import { authStore } from '@/lib/stores';
 import { END_POINTS, PRODUCT_STATUS, TIME_FORMAT } from '@/lib/constants';
 
 // Services
-import {
-  MainHttpService,
-  getProducts,
-  productsHttpService,
-  recentActivitiesHttpService,
-} from '@/lib/services';
+import { getProducts, productsHttpService } from '@/lib/services';
 
 // Interface
 import {
   EActivity,
-  TActivitiesRequest,
   TProduct,
   TProductRequest,
   TProductResponse,
 } from '@/lib/interfaces';
 
 // Utils
-import { formatUppercaseFirstLetter } from '../utils';
+import { handleActivities } from '../utils';
 
 export type TSearchProduct = {
   name: string;
@@ -177,25 +170,7 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         product,
       ),
     onSuccess: async (dataResponse) => {
-      try {
-        const { data } = await MainHttpService.axiosClient.get(
-          END_POINTS.PRODUCTS,
-        );
-
-        if (data && user) {
-          await recentActivitiesHttpService.post<TActivitiesRequest>(
-            END_POINTS.RECENT_ACTIVITIES,
-            {
-              userId: user.id,
-              actionName: EActivity.CREATE_PRODUCT,
-            },
-          );
-        }
-      } catch (error) {
-        const { response } = error as AxiosError<string>;
-
-        throw new Error(formatUppercaseFirstLetter(response?.data));
-      }
+      handleActivities(END_POINTS.PRODUCTS, EActivity.CREATE_PRODUCT);
       queryClient.invalidateQueries({
         queryKey: [END_POINTS.PRODUCTS],
       });
@@ -217,25 +192,7 @@ export const useProducts = (queryParam?: TSearchProduct) => {
       });
     },
     onSuccess: async (_, variables) => {
-      try {
-        const { data } = await MainHttpService.axiosClient.get(
-          END_POINTS.PRODUCTS,
-        );
-
-        if (data && user) {
-          await recentActivitiesHttpService.post<TActivitiesRequest>(
-            END_POINTS.RECENT_ACTIVITIES,
-            {
-              userId: user.id,
-              actionName: EActivity.DELETE_PRODUCT,
-            },
-          );
-        }
-      } catch (error) {
-        const { response } = error as AxiosError<string>;
-
-        throw new Error(formatUppercaseFirstLetter(response?.data));
-      }
+      handleActivities(END_POINTS.PRODUCTS, EActivity.DELETE_PRODUCT);
       queryClient.setQueryData(
         [END_POINTS.PRODUCTS, searchName],
         (oldData: TProduct[]) =>
@@ -253,25 +210,7 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         product,
       ),
     onSuccess: async (_, variables) => {
-      try {
-        const { data } = await MainHttpService.axiosClient.get(
-          END_POINTS.PRODUCTS,
-        );
-
-        if (data && user) {
-          await recentActivitiesHttpService.post<TActivitiesRequest>(
-            END_POINTS.RECENT_ACTIVITIES,
-            {
-              userId: user.id,
-              actionName: EActivity.UPDATE_PRODUCT,
-            },
-          );
-        }
-      } catch (error) {
-        const { response } = error as AxiosError<string>;
-
-        throw new Error(formatUppercaseFirstLetter(response?.data));
-      }
+      handleActivities(END_POINTS.PRODUCTS, EActivity.UPDATE_PRODUCT);
       queryClient.setQueryData(
         [END_POINTS.PRODUCTS, searchName],
         (oldData: TProductResponse[]) => {

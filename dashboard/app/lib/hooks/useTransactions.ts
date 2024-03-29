@@ -1,15 +1,9 @@
 import dayjs from 'dayjs';
-import { AxiosError } from 'axios';
 import { useCallback, useMemo, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 // Services
-import {
-  MainHttpService,
-  getTransactions,
-  recentActivitiesHttpService,
-  transactionHttpService,
-} from '@/lib/services';
+import { getTransactions, transactionHttpService } from '@/lib/services';
 
 // Constants
 import { END_POINTS, TIME_FORMAT, TRANSACTION_STATUS } from '@/lib/constants';
@@ -18,7 +12,6 @@ import { END_POINTS, TIME_FORMAT, TRANSACTION_STATUS } from '@/lib/constants';
 import {
   EActivity,
   IDataList,
-  TActivitiesRequest,
   TAddress,
   TCustomer,
   TTransaction,
@@ -28,7 +21,7 @@ import {
 import { authStore } from '../stores';
 
 // Utils
-import { formatUppercaseFirstLetter } from '../utils';
+import { handleActivities } from '../utils';
 
 export type TSearchTransaction = {
   name: string;
@@ -225,25 +218,7 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
           transaction,
         ),
       onSuccess: async (_, variables) => {
-        try {
-          const { data } = await MainHttpService.axiosClient.get(
-            END_POINTS.PRODUCTS,
-          );
-
-          if (data && user) {
-            await recentActivitiesHttpService.post<TActivitiesRequest>(
-              END_POINTS.RECENT_ACTIVITIES,
-              {
-                userId: user.id,
-                actionName: EActivity.UPDATE_TRANSACTION,
-              },
-            );
-          }
-        } catch (error) {
-          const { response } = error as AxiosError<string>;
-
-          throw new Error(formatUppercaseFirstLetter(response?.data));
-        }
+        handleActivities(END_POINTS.TRANSACTIONS, EActivity.UPDATE_TRANSACTION);
         queryClient.setQueryData(
           [END_POINTS.TRANSACTIONS, searchName, searchMonth],
           (oldData: TTransaction[]) => {
@@ -283,25 +258,7 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
           transaction,
         ),
       onSuccess: async (_, variables) => {
-        try {
-          const { data } = await MainHttpService.axiosClient.get(
-            END_POINTS.PRODUCTS,
-          );
-
-          if (data && user) {
-            await recentActivitiesHttpService.post<TActivitiesRequest>(
-              END_POINTS.RECENT_ACTIVITIES,
-              {
-                userId: user.id,
-                actionName: EActivity.DELETE_TRANSACTION,
-              },
-            );
-          }
-        } catch (error) {
-          const { response } = error as AxiosError<string>;
-
-          throw new Error(formatUppercaseFirstLetter(response?.data));
-        }
+        handleActivities(END_POINTS.TRANSACTIONS, EActivity.DELETE_TRANSACTION);
         queryClient.setQueryData(
           [END_POINTS.TRANSACTIONS, searchName, searchMonth],
           (oldData: TTransaction[]) => {

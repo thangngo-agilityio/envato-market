@@ -14,7 +14,7 @@ import {
 } from '@/lib/constants';
 
 // Services
-import { MainHttpService, recentActivitiesHttpService } from '@/lib/services';
+import { MainHttpService } from '@/lib/services';
 
 // Types
 import { TUserDetail } from '@/lib/interfaces/user';
@@ -24,7 +24,8 @@ import { formatUppercaseFirstLetter, getCurrentTimeSeconds } from '@/lib/utils';
 
 // Stores
 import { authStore } from '@/lib/stores';
-import { EActivity, TActivitiesRequest } from '../interfaces';
+import { EActivity } from '../interfaces';
+import { handleActivities } from '../utils/activities';
 
 type TSignUpErrorField = Partial<
   Record<keyof Omit<TUserDetail, 'id' | 'createdAt'>, string>
@@ -60,7 +61,6 @@ export type TUseAuth = {
 
 export const useAuth = () => {
   const [isLogout, setIsLogout] = useState(false);
-  const { user } = authStore();
   const router = useRouter();
   const { updateStore, clearStore } = authStore(
     (state) => ({
@@ -138,7 +138,7 @@ export const useAuth = () => {
         throw new Error(formatUppercaseFirstLetter(response?.data));
       }
     },
-    [handleSignInWithFirebase, updateStore, user?.id],
+    [handleSignInWithFirebase, updateStore],
   );
 
   const handleSignUp = useCallback(
@@ -185,25 +185,7 @@ export const useAuth = () => {
       option?: keyof Pick<typeof router, 'push' | 'replace'>,
     ) => {
       setIsLogout(true);
-      try {
-        const { data } = await MainHttpService.axiosClient.get(
-          END_POINTS.LOGIN,
-        );
-
-        if (data && user) {
-          await recentActivitiesHttpService.post<TActivitiesRequest>(
-            END_POINTS.RECENT_ACTIVITIES,
-            {
-              userId: user.id,
-              actionName: EActivity.SIGN_OUT,
-            },
-          );
-        }
-      } catch (error) {
-        const { response } = error as AxiosError<string>;
-
-        throw new Error(formatUppercaseFirstLetter(response?.data));
-      }
+      handleActivities(END_POINTS.LOGIN, EActivity.SIGN_OUT);
 
       setTimeout(() => {
         clearStore();

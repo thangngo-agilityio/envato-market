@@ -32,7 +32,7 @@ import { END_POINTS } from '@/lib/constants';
 import { authStore } from '../stores';
 
 // Utils
-import { formatUppercaseFirstLetter } from '../utils';
+import { formatUppercaseFirstLetter, handleActivities } from '../utils';
 
 export const useUpdateUser = () => {
   const { user } = authStore();
@@ -69,7 +69,6 @@ export const useUpdateUser = () => {
 };
 
 export const useUpdatePassword = () => {
-  const { user } = authStore();
   const { error, ...rest } = useMutation({
     mutationFn: async (passwordData: TPassword) => {
       const { oldPassword, newPassword, memberId } = passwordData;
@@ -81,25 +80,7 @@ export const useUpdatePassword = () => {
       });
     },
     onSuccess: async () => {
-      try {
-        const { data } = await MainHttpService.axiosClient.get(
-          END_POINTS.SETTINGS,
-        );
-
-        if (data && user) {
-          await recentActivitiesHttpService.post<TActivitiesRequest>(
-            END_POINTS.RECENT_ACTIVITIES,
-            {
-              userId: user.id,
-              actionName: EActivity.SAVE_PASSWORD,
-            },
-          );
-        }
-      } catch (error) {
-        const { response } = error as AxiosError<string>;
-
-        throw new Error(formatUppercaseFirstLetter(response?.data));
-      }
+      handleActivities(END_POINTS.SETTINGS, EActivity.SAVE_PASSWORD);
     },
   });
 
@@ -131,7 +112,6 @@ export const useGetListIssues = () => {
 
 export const useCreateIssues = () => {
   const queryClient = useQueryClient();
-  const { user } = authStore();
   const { error, ...rest } = useMutation({
     mutationFn: async (
       supportList: Partial<
@@ -147,23 +127,7 @@ export const useCreateIssues = () => {
         {},
       ),
     onSettled: async () => {
-      try {
-        const { data } = await MainHttpService.axiosClient.get(
-          END_POINTS.SUPPORT,
-        );
-
-        if (data && user) {
-          await recentActivitiesHttpService.post<TActivitiesRequest>(
-            END_POINTS.RECENT_ACTIVITIES,
-            {
-              userId: user.id,
-              actionName: EActivity.CREATE_ISSUES,
-            },
-          );
-        }
-      } catch (error) {
-        console.error('Error while fetching data:', error);
-      }
+      handleActivities(END_POINTS.SUPPORT, EActivity.CREATE_ISSUES);
       queryClient.invalidateQueries({ queryKey: [END_POINTS.SUPPORT] });
     },
   });
