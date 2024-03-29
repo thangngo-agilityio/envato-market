@@ -93,6 +93,44 @@ const RecentActivitiesTableComponent = () => {
     [sortBy],
   );
 
+  const renderIdAction = useCallback(
+    ({ _id }: TDataSource): JSX.Element => (
+      <Td
+        py={5}
+        pr={5}
+        pl={0}
+        fontSize="md"
+        color="text.primary"
+        fontWeight="semibold"
+        textAlign="left"
+        w={{ base: 200, xl: 220, '3xl': 300, '6xl': 350 }}
+      >
+        <Flex alignItems="center" gap="10px">
+          <Tooltip
+            minW="max-content"
+            placement="bottom-start"
+            label={_id as string}
+          >
+            <Text
+              display="block"
+              fontSize="md"
+              fontWeight="semibold"
+              wordBreak="break-all"
+              textOverflow="ellipsis"
+              overflow="hidden"
+              pr={10}
+              flex={1}
+              w={{ base: 200, xl: 220, '3xl': 200, '6xl': 250 }}
+            >
+              {formatUppercaseFirstLetter(`${_id}`)}
+            </Text>
+          </Tooltip>
+        </Flex>
+      </Td>
+    ),
+    [],
+  );
+
   const renderNameUser = useCallback(
     ({ actionName }: TDataSource): JSX.Element => (
       <Td
@@ -103,7 +141,7 @@ const RecentActivitiesTableComponent = () => {
         color="text.primary"
         fontWeight="semibold"
         textAlign="left"
-        w={{ base: 200, xl: 220, '3xl': 200, '6xl': 350 }}
+        w={{ base: 200, xl: 220, '3xl': 300, '6xl': 350 }}
       >
         <Flex alignItems="center" gap="10px">
           <Tooltip
@@ -150,7 +188,7 @@ const RecentActivitiesTableComponent = () => {
           fontWeight="semibold"
           whiteSpace="break-spaces"
           noOfLines={1}
-          w={{ base: 100, md: 220, '3xl': 300, '5xl': 200, '7xl': 350 }}
+          w={{ base: 100, md: 220, '3xl': 200, '5xl': 200, '7xl': 350 }}
           flex={1}
         >
           {email}
@@ -161,8 +199,14 @@ const RecentActivitiesTableComponent = () => {
   );
 
   const columns = useMemo(
-    () => COLUMNS_RECENT_ACTIVITIES(renderHead, renderNameUser, renderEmail),
-    [renderHead, renderNameUser, renderEmail],
+    () =>
+      COLUMNS_RECENT_ACTIVITIES(
+        renderHead,
+        renderIdAction,
+        renderNameUser,
+        renderEmail,
+      ),
+    [renderHead, renderIdAction, renderNameUser, renderEmail],
   );
 
   return (
