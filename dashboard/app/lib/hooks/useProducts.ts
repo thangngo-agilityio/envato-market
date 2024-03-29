@@ -168,7 +168,7 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         END_POINTS.PRODUCTS,
         product,
       ),
-    onSuccess: async (dataResponse) => {
+    onSuccess: (dataResponse) => {
       logActivity(END_POINTS.PRODUCTS, EActivity.CREATE_PRODUCT);
       queryClient.invalidateQueries({
         queryKey: [END_POINTS.PRODUCTS],
@@ -190,7 +190,7 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         data: payload,
       });
     },
-    onSuccess: async (_, variables) => {
+    onSuccess: (_, variables) => {
       logActivity(END_POINTS.PRODUCTS, EActivity.DELETE_PRODUCT);
       queryClient.setQueryData(
         [END_POINTS.PRODUCTS, searchName],

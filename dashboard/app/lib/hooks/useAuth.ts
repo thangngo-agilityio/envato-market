@@ -182,7 +182,7 @@ export const useAuth = () => {
   );
 
   const handleLogout = useCallback(
-    async (
+    (
       redirectPath?: string,
       option?: keyof Pick<typeof router, 'push' | 'replace'>,
     ) => {
@@ -195,7 +195,7 @@ export const useAuth = () => {
         router[option ?? 'replace'](redirectPath ?? ROUTES.LOGIN);
       }, LOGOUT_TIME);
     },
-    [clearStore, router],
+    [clearStore, logActivity, router],
   );
 
   return {

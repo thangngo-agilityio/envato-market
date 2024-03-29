@@ -29,9 +29,7 @@ export const useMoney = () => {
         queryKey: [END_POINTS.NOTIFICATION],
       });
     },
-    onSuccess: () => {
-      logActivity(ROUTES.ROOT, EActivity.ADD_MONEY);
-    },
+    onSuccess: () => logActivity(ROUTES.ROOT, EActivity.ADD_MONEY),
   });
 
   const { mutate: sendMoneyToUserWallet } = useMutation({
@@ -47,9 +45,7 @@ export const useMoney = () => {
         queryKey: [END_POINTS.NOTIFICATION],
       });
     },
-    onSuccess: () => {
-      logActivity(ROUTES.ROOT, EActivity.SEND_MONEY);
-    },
+    onSuccess: () => logActivity(ROUTES.ROOT, EActivity.SEND_MONEY),
   });
 
   return {

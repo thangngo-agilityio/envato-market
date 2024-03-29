@@ -25,9 +25,7 @@ export const useUpdateUser = () => {
   const { error, ...rest } = useMutation({
     mutationFn: async (user: TUserDetail) =>
       await MainHttpService.put<TUserDetail>(END_POINTS.USERS, user),
-    onSuccess: async () => {
-      logActivity(END_POINTS.SETTINGS, EActivity.SAVE_PROFILE);
-    },
+    onSuccess: () => logActivity(END_POINTS.SETTINGS, EActivity.SAVE_PROFILE),
   });
 
   return {
@@ -48,9 +46,7 @@ export const useUpdatePassword = () => {
         memberId,
       });
     },
-    onSuccess: async () => {
-      logActivity(END_POINTS.SETTINGS, EActivity.SAVE_PASSWORD);
-    },
+    onSuccess: () => logActivity(END_POINTS.SETTINGS, EActivity.SAVE_PASSWORD),
   });
 
   return {
@@ -96,7 +92,7 @@ export const useCreateIssues = () => {
         supportList,
         {},
       ),
-    onSettled: async () => {
+    onSettled: () => {
       logActivity(END_POINTS.SUPPORT, EActivity.CREATE_ISSUES);
       queryClient.invalidateQueries({ queryKey: [END_POINTS.SUPPORT] });
     },

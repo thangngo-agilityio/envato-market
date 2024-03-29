@@ -217,7 +217,7 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
           END_POINTS.EDIT_TRANSACTION,
           transaction,
         ),
-      onSuccess: async (_, variables) => {
+      onSuccess: (_, variables) => {
         logActivity(END_POINTS.TRANSACTIONS, EActivity.UPDATE_TRANSACTION);
         queryClient.setQueryData(
           [END_POINTS.TRANSACTIONS, searchName, searchMonth],
@@ -257,7 +257,7 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
           END_POINTS.DELETE_TRANSACTION,
           transaction,
         ),
-      onSuccess: async (_, variables) => {
+      onSuccess: (_, variables) => {
         logActivity(END_POINTS.TRANSACTIONS, EActivity.DELETE_TRANSACTION);
         queryClient.setQueryData(
           [END_POINTS.TRANSACTIONS, searchName, searchMonth],
