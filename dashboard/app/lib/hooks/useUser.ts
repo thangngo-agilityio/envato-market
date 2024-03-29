@@ -44,9 +44,8 @@ export const useUpdateUser = () => {
         const { data } = await MainHttpService.axiosClient.get(
           END_POINTS.SETTINGS,
         );
-        const isTrackLog = data ? true : false;
 
-        if (isTrackLog && user) {
+        if (data && user) {
           await recentActivitiesHttpService.post<TActivitiesRequest>(
             END_POINTS.RECENT_ACTIVITIES,
             {
@@ -86,10 +85,8 @@ export const useUpdatePassword = () => {
         const { data } = await MainHttpService.axiosClient.get(
           END_POINTS.SETTINGS,
         );
-        console.log('data', data);
-        const isTrackLog = data ? true : false;
 
-        if (isTrackLog && user) {
+        if (data && user) {
           await recentActivitiesHttpService.post<TActivitiesRequest>(
             END_POINTS.RECENT_ACTIVITIES,
             {
@@ -154,10 +151,8 @@ export const useCreateIssues = () => {
         const { data } = await MainHttpService.axiosClient.get(
           END_POINTS.SUPPORT,
         );
-        console.log('data', data);
-        const isTrackLog = data ? true : false;
 
-        if (isTrackLog && user) {
+        if (data && user) {
           await recentActivitiesHttpService.post<TActivitiesRequest>(
             END_POINTS.RECENT_ACTIVITIES,
             {

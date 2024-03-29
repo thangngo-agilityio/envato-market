@@ -46,9 +46,8 @@ export const useMoney = () => {
     onSuccess: async () => {
       try {
         const { data } = await MainHttpService.axiosClient.get('/');
-        const isTrackLog = data ? true : false;
 
-        if (isTrackLog && user) {
+        if (data && user) {
           await recentActivitiesHttpService.post<TActivitiesRequest>(
             END_POINTS.RECENT_ACTIVITIES,
             {
@@ -81,9 +80,8 @@ export const useMoney = () => {
     onSuccess: async () => {
       try {
         const { data } = await MainHttpService.axiosClient.get('/');
-        const isTrackLog = data ? true : false;
 
-        if (isTrackLog && user) {
+        if (data && user) {
           await recentActivitiesHttpService.post<TActivitiesRequest>(
             END_POINTS.RECENT_ACTIVITIES,
             {

@@ -229,9 +229,8 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
           const { data } = await MainHttpService.axiosClient.get(
             END_POINTS.PRODUCTS,
           );
-          const isTrackLog = data ? true : false;
 
-          if (isTrackLog && user) {
+          if (data && user) {
             await recentActivitiesHttpService.post<TActivitiesRequest>(
               END_POINTS.RECENT_ACTIVITIES,
               {
@@ -288,9 +287,8 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
           const { data } = await MainHttpService.axiosClient.get(
             END_POINTS.PRODUCTS,
           );
-          const isTrackLog = data ? true : false;
 
-          if (isTrackLog && user) {
+          if (data && user) {
             await recentActivitiesHttpService.post<TActivitiesRequest>(
               END_POINTS.RECENT_ACTIVITIES,
               {
