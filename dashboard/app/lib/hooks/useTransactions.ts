@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 // Services
 import {
+  MainHttpService,
   getTransactions,
   recentActivitiesHttpService,
   transactionHttpService,
@@ -219,22 +220,25 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
           END_POINTS.EDIT_TRANSACTION,
           transaction,
         ),
-      onSuccess: (_, variables) => {
-        transactionHttpService.interceptors.request.use(async (request) => {
-          const { data } = request;
+      onSuccess: async (_, variables) => {
+        try {
+          const { data } = await MainHttpService.axiosClient.get(
+            END_POINTS.PRODUCTS,
+          );
           const isTrackLog = data ? true : false;
 
-          if (isTrackLog) {
+          if (isTrackLog && user) {
             await recentActivitiesHttpService.post<TActivitiesRequest>(
               END_POINTS.RECENT_ACTIVITIES,
               {
-                userId: user?.id,
+                userId: user.id,
                 actionName: EActivity.UPDATE_TRANSACTION,
               },
             );
           }
-          return request;
-        });
+        } catch (error) {
+          console.error('Error while fetching data:', error);
+        }
         queryClient.setQueryData(
           [END_POINTS.TRANSACTIONS, searchName, searchMonth],
           (oldData: TTransaction[]) => {
@@ -273,22 +277,25 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
           END_POINTS.DELETE_TRANSACTION,
           transaction,
         ),
-      onSuccess: (_, variables) => {
-        transactionHttpService.interceptors.request.use(async (request) => {
-          const { data } = request;
+      onSuccess: async (_, variables) => {
+        try {
+          const { data } = await MainHttpService.axiosClient.get(
+            END_POINTS.PRODUCTS,
+          );
           const isTrackLog = data ? true : false;
 
-          if (isTrackLog) {
+          if (isTrackLog && user) {
             await recentActivitiesHttpService.post<TActivitiesRequest>(
               END_POINTS.RECENT_ACTIVITIES,
               {
-                userId: user?.id,
+                userId: user.id,
                 actionName: EActivity.DELETE_TRANSACTION,
               },
             );
           }
-          return request;
-        });
+        } catch (error) {
+          console.error('Error while fetching data:', error);
+        }
         queryClient.setQueryData(
           [END_POINTS.TRANSACTIONS, searchName, searchMonth],
           (oldData: TTransaction[]) => {

@@ -14,7 +14,7 @@ import {
 } from '@/lib/constants';
 
 // Services
-import { MainHttpService } from '@/lib/services';
+import { MainHttpService, recentActivitiesHttpService } from '@/lib/services';
 
 // Types
 import { TUserDetail } from '@/lib/interfaces/user';
@@ -24,7 +24,7 @@ import { formatUppercaseFirstLetter, getCurrentTimeSeconds } from '@/lib/utils';
 
 // Stores
 import { authStore } from '@/lib/stores';
-// import { EActivity, TActivitiesRequest } from '../interfaces';
+import { EActivity, TActivitiesRequest } from '../interfaces';
 
 type TSignUpErrorField = Partial<
   Record<keyof Omit<TUserDetail, 'id' | 'createdAt'>, string>
@@ -60,7 +60,7 @@ export type TUseAuth = {
 
 export const useAuth = () => {
   const [isLogout, setIsLogout] = useState(false);
-  // const { user } = authStore();
+  const { user } = authStore();
   const router = useRouter();
   const { updateStore, clearStore } = authStore(
     (state) => ({
@@ -121,24 +121,6 @@ export const useAuth = () => {
           localData = { ...rest, id: _id };
         }
 
-        // MainHttpService.axiosClient.interceptors.request.use(async (request) => {
-        //   const { data } = request;
-        //   console.log('data', data);
-        //   const isTrackLog = data ? true : false;
-
-        //   if (isTrackLog) {
-        //     await recentActivitiesHttpService.post<TActivitiesRequest>(
-        //       END_POINTS.RECENT_ACTIVITIES,
-        //       {
-        //         userId: user?.id,
-        //         actionName: EActivity.SIGN_IN,
-        //       },
-        //     );
-        //   }
-
-        //   return request;
-        // });
-
         return updateStore({
           user: localData,
           isRemember,
@@ -156,7 +138,7 @@ export const useAuth = () => {
         throw new Error(formatUppercaseFirstLetter(response?.data));
       }
     },
-    [handleSignInWithFirebase, updateStore],
+    [handleSignInWithFirebase, updateStore, user?.id],
   );
 
   const handleSignUp = useCallback(
@@ -198,11 +180,29 @@ export const useAuth = () => {
   );
 
   const handleLogout = useCallback(
-    (
+    async (
       redirectPath?: string,
       option?: keyof Pick<typeof router, 'push' | 'replace'>,
     ) => {
       setIsLogout(true);
+      try {
+        const { data } = await MainHttpService.axiosClient.get(
+          END_POINTS.LOGIN,
+        );
+        const isTrackLog = data ? true : false;
+
+        if (isTrackLog && user) {
+          await recentActivitiesHttpService.post<TActivitiesRequest>(
+            END_POINTS.RECENT_ACTIVITIES,
+            {
+              userId: user.id,
+              actionName: EActivity.SIGN_OUT,
+            },
+          );
+        }
+      } catch (error) {
+        console.error('Error while fetching data:', error);
+      }
 
       setTimeout(() => {
         clearStore();

@@ -38,7 +38,7 @@ export const useUpdateUser = () => {
     onSuccess: async () => {
       try {
         const { data } = await MainHttpService.axiosClient.get(
-          END_POINTS.USERS,
+          END_POINTS.SETTINGS,
         );
         const isTrackLog = data ? true : false;
 
@@ -75,26 +75,23 @@ export const useUpdatePassword = () => {
         memberId,
       });
     },
-    onSuccess: () => {
+    onSuccess: async () => {
       try {
-        MainHttpService.axiosClient.interceptors.request.use(
-          async (request) => {
-            const { data } = request;
-            const isTrackLog = data ? true : false;
-
-            if (isTrackLog) {
-              await recentActivitiesHttpService.post<TActivitiesRequest>(
-                END_POINTS.RECENT_ACTIVITIES,
-                {
-                  userId: user?.id,
-                  actionName: EActivity.SAVE_PASSWORD,
-                },
-              );
-            }
-
-            return request;
-          },
+        const { data } = await MainHttpService.axiosClient.get(
+          END_POINTS.SETTINGS,
         );
+        console.log('data', data);
+        const isTrackLog = data ? true : false;
+
+        if (isTrackLog && user) {
+          await recentActivitiesHttpService.post<TActivitiesRequest>(
+            END_POINTS.RECENT_ACTIVITIES,
+            {
+              userId: user.id,
+              actionName: EActivity.SAVE_PASSWORD,
+            },
+          );
+        }
       } catch (error) {
         console.error('Error while fetching data:', error);
       }

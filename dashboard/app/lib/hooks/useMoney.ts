@@ -2,8 +2,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 // Services
 import {
+  MainHttpService,
   addMoneyToUser,
-  moneyHttpRequest,
   recentActivitiesHttpService,
   sendMoneyToUser,
 } from '@/lib/services';
@@ -27,21 +27,6 @@ export const useMoney = () => {
   const { mutate: addMoneyToUserWallet } = useMutation({
     mutationFn: (userData: TAddMoney) => addMoneyToUser(userData),
     onSettled: () => {
-      moneyHttpRequest.interceptors.request.use(async (request) => {
-        const { data } = request;
-        const isTrackLog = data ? true : false;
-
-        if (isTrackLog) {
-          await recentActivitiesHttpService.post<TActivitiesRequest>(
-            END_POINTS.RECENT_ACTIVITIES,
-            {
-              userId: user?.id,
-              actionName: EActivity.ADD_MONEY,
-            },
-          );
-        }
-        return request;
-      });
       queryClient.invalidateQueries({
         queryKey: [END_POINTS.MY_WALLET],
       });
@@ -52,25 +37,29 @@ export const useMoney = () => {
         queryKey: [END_POINTS.NOTIFICATION],
       });
     },
+    onSuccess: async () => {
+      try {
+        const { data } = await MainHttpService.axiosClient.get('/');
+        const isTrackLog = data ? true : false;
+
+        if (isTrackLog && user) {
+          await recentActivitiesHttpService.post<TActivitiesRequest>(
+            END_POINTS.RECENT_ACTIVITIES,
+            {
+              userId: user.id,
+              actionName: EActivity.ADD_MONEY,
+            },
+          );
+        }
+      } catch (error) {
+        console.error('Error while fetching data:', error);
+      }
+    },
   });
 
   const { mutate: sendMoneyToUserWallet } = useMutation({
     mutationFn: (userData: TSendMoney) => sendMoneyToUser(userData),
     onSettled: () => {
-      moneyHttpRequest.interceptors.request.use(async (request) => {
-        const { data } = request;
-        const isTrackLog = data ? true : false;
-        if (isTrackLog) {
-          await recentActivitiesHttpService.post<TActivitiesRequest>(
-            END_POINTS.RECENT_ACTIVITIES,
-            {
-              userId: user?.id,
-              actionName: EActivity.SEND_MONEY,
-            },
-          );
-        }
-        return request;
-      });
       queryClient.invalidateQueries({
         queryKey: [END_POINTS.MY_WALLET],
       });
@@ -80,6 +69,24 @@ export const useMoney = () => {
       queryClient.invalidateQueries({
         queryKey: [END_POINTS.NOTIFICATION],
       });
+    },
+    onSuccess: async () => {
+      try {
+        const { data } = await MainHttpService.axiosClient.get('/');
+        const isTrackLog = data ? true : false;
+
+        if (isTrackLog && user) {
+          await recentActivitiesHttpService.post<TActivitiesRequest>(
+            END_POINTS.RECENT_ACTIVITIES,
+            {
+              userId: user.id,
+              actionName: EActivity.SEND_MONEY,
+            },
+          );
+        }
+      } catch (error) {
+        console.error('Error while fetching data:', error);
+      }
     },
   });
 

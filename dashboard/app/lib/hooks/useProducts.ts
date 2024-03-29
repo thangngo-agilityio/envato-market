@@ -11,6 +11,7 @@ import { END_POINTS, PRODUCT_STATUS, TIME_FORMAT } from '@/lib/constants';
 
 // Services
 import {
+  MainHttpService,
   getProducts,
   productsHttpService,
   recentActivitiesHttpService,
@@ -171,24 +172,22 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         END_POINTS.PRODUCTS,
         product,
       ),
-    onSuccess: (dataResponse) => {
+    onSuccess: async (dataResponse) => {
       try {
-        productsHttpService.interceptors.request.use(async (request) => {
-          const { data } = request;
-          const isTrackLog = data ? true : false;
+        const { data } = await MainHttpService.axiosClient.get(
+          END_POINTS.PRODUCTS,
+        );
+        const isTrackLog = data ? true : false;
 
-          if (isTrackLog) {
-            await recentActivitiesHttpService.post<TActivitiesRequest>(
-              END_POINTS.RECENT_ACTIVITIES,
-              {
-                userId: user?.id,
-                actionName: EActivity.CREATE_PRODUCT,
-              },
-            );
-          }
-
-          return request;
-        });
+        if (isTrackLog && user) {
+          await recentActivitiesHttpService.post<TActivitiesRequest>(
+            END_POINTS.RECENT_ACTIVITIES,
+            {
+              userId: user.id,
+              actionName: EActivity.CREATE_PRODUCT,
+            },
+          );
+        }
       } catch (error) {
         console.error('Error while fetching data:', error);
       }
@@ -212,23 +211,25 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         data: payload,
       });
     },
-    onSuccess: (_, variables) => {
-      productsHttpService.interceptors.request.use(async (request) => {
-        const { data } = request;
+    onSuccess: async (_, variables) => {
+      try {
+        const { data } = await MainHttpService.axiosClient.get(
+          END_POINTS.PRODUCTS,
+        );
         const isTrackLog = data ? true : false;
 
-        if (isTrackLog) {
+        if (isTrackLog && user) {
           await recentActivitiesHttpService.post<TActivitiesRequest>(
             END_POINTS.RECENT_ACTIVITIES,
             {
-              userId: user?.id,
+              userId: user.id,
               actionName: EActivity.DELETE_PRODUCT,
             },
           );
         }
-
-        return request;
-      });
+      } catch (error) {
+        console.error('Error while fetching data:', error);
+      }
       queryClient.setQueryData(
         [END_POINTS.PRODUCTS, searchName],
         (oldData: TProduct[]) =>
@@ -245,24 +246,22 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         END_POINTS.PRODUCTS,
         product,
       ),
-    onSuccess: (_, variables) => {
+    onSuccess: async (_, variables) => {
       try {
-        productsHttpService.interceptors.request.use(async (request) => {
-          const { data } = request;
-          console.log('data', data);
-          const isTrackLog = data ? true : false;
+        const { data } = await MainHttpService.axiosClient.get(
+          END_POINTS.PRODUCTS,
+        );
+        const isTrackLog = data ? true : false;
 
-          if (isTrackLog && user) {
-            await recentActivitiesHttpService.post<TActivitiesRequest>(
-              END_POINTS.RECENT_ACTIVITIES,
-              {
-                userId: user.id,
-                actionName: EActivity.UPDATE_PRODUCT,
-              },
-            );
-          }
-          return request;
-        });
+        if (isTrackLog && user) {
+          await recentActivitiesHttpService.post<TActivitiesRequest>(
+            END_POINTS.RECENT_ACTIVITIES,
+            {
+              userId: user.id,
+              actionName: EActivity.UPDATE_PRODUCT,
+            },
+          );
+        }
       } catch (error) {
         console.error('Error while fetching data:', error);
       }

@@ -90,7 +90,6 @@ const UserFormComponent = () => {
             ...response.data,
             id: response.data._id || '',
           };
-          console.log(updatedUser);
 
           setUser({ user: updatedUser });
 
