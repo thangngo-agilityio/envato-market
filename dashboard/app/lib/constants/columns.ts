@@ -146,7 +146,6 @@ export const COLUMNS_RECENT_ACTIVITIES = (
   onRenderHead: (title: string, key: string) => void,
   onRenderBody: ({ id, actionName }: TDataSource) => void,
   onRenderEmail: (email: TRecentActivities) => void,
-  onRenderActionIcon: (data: TRecentActivities) => void,
 ) => [
   {
     title: 'Action Name',
@@ -163,12 +162,6 @@ export const COLUMNS_RECENT_ACTIVITIES = (
   {
     title: 'Date',
     key: 'date',
-    renderHead: onRenderHead,
-  },
-  {
-    title: '',
-    key: 'action',
-    renderBody: onRenderActionIcon,
     renderHead: onRenderHead,
   },
 ];

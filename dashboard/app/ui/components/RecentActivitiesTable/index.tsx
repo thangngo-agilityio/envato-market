@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Flex, Td, Text, Th, Tooltip, useToast } from '@chakra-ui/react';
+import { Box, Flex, Td, Text, Th, Tooltip } from '@chakra-ui/react';
 import { memo, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 
@@ -10,19 +10,12 @@ import {
   HeadCell,
   SearchBar,
   Fetching,
-  ActionCell,
   Pagination,
   Indicator,
 } from '@/ui/components';
 
 // Constants
-import {
-  ACTIVITY_OPTIONS,
-  COLUMNS_RECENT_ACTIVITIES,
-  ERROR_MESSAGES,
-  STATUS,
-  SUCCESS_MESSAGES,
-} from '@/lib/constants';
+import { ACTIVITY_OPTIONS, COLUMNS_RECENT_ACTIVITIES } from '@/lib/constants';
 
 // Interfaces
 import { TDataSource, THeaderTable, TRecentActivities } from '@/lib/interfaces';
@@ -38,7 +31,6 @@ import {
 
 // Utils
 import {
-  customToast,
   formatRecentActivitiesResponse,
   formatUppercaseFirstLetter,
 } from '@/lib/utils';
@@ -47,7 +39,6 @@ import {
 import { authStore } from '@/lib/stores';
 
 const RecentActivitiesTableComponent = () => {
-  const toast = useToast();
   const userId = authStore((state) => state.user?.id);
   const { get, setSearchParam: setSearchTransaction } = useSearch();
 
@@ -56,8 +47,6 @@ const RecentActivitiesTableComponent = () => {
     isLoading: isLoadingActivities,
     isError: isActivitiesError,
     sortBy,
-    deleteActivity,
-    isDeleteActiviy,
   } = useRecentActivities({
     actionName: get('actionName') || '',
     userId: userId,
@@ -79,42 +68,6 @@ const RecentActivitiesTableComponent = () => {
     resetPage();
     setSearchTransaction('actionName', value);
   }, []);
-
-  const handleDeleteActivities = useCallback(
-    (
-      data: Partial<
-        TRecentActivities & { userId: string; activitiesId: string }
-      >,
-    ) => {
-      deleteActivity(
-        {
-          activitiesId: data._id,
-          userId: userId,
-        },
-        {
-          onSuccess: () => {
-            toast(
-              customToast(
-                SUCCESS_MESSAGES.DELETE_PRODUCT_SUCCESS.title,
-                SUCCESS_MESSAGES.DELETE_PRODUCT_SUCCESS.description,
-                STATUS.SUCCESS,
-              ),
-            );
-          },
-          onError: () => {
-            toast(
-              customToast(
-                ERROR_MESSAGES.DELETE_FAIL.title,
-                ERROR_MESSAGES.DELETE_FAIL.description,
-                STATUS.ERROR,
-              ),
-            );
-          },
-        },
-      );
-    },
-    [deleteActivity, toast, userId],
-  );
 
   const renderHead = useCallback(
     (title: string, key: string): JSX.Element => {
@@ -169,20 +122,6 @@ const RecentActivitiesTableComponent = () => {
     [],
   );
 
-  const renderActionIcon = useCallback(
-    (data: TRecentActivities) => (
-      <ActionCell
-        activities={data}
-        key={`${data._id}-action`}
-        isOpenModal={true}
-        titleDelete="Delete Activity"
-        itemName={data.actionName}
-        onDeleteActivity={handleDeleteActivities}
-      />
-    ),
-    [handleDeleteActivities],
-  );
-
   const renderEmail = useCallback(
     ({ email }: TRecentActivities) => (
       <Td
@@ -213,18 +152,12 @@ const RecentActivitiesTableComponent = () => {
   );
 
   const columns = useMemo(
-    () =>
-      COLUMNS_RECENT_ACTIVITIES(
-        renderHead,
-        renderNameUser,
-        renderEmail,
-        renderActionIcon,
-      ),
-    [renderHead, renderNameUser, renderEmail, renderActionIcon],
+    () => COLUMNS_RECENT_ACTIVITIES(renderHead, renderNameUser, renderEmail),
+    [renderHead, renderNameUser, renderEmail],
   );
 
   return (
-    <Indicator isOpen={isDeleteActiviy}>
+    <Indicator>
       <Flex flexDirection={{ base: 'column', lg: 'row' }}>
         <SearchBar
           placeholder="Search by name or email"
