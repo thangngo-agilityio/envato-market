@@ -189,9 +189,8 @@ export const useAuth = () => {
         const { data } = await MainHttpService.axiosClient.get(
           END_POINTS.LOGIN,
         );
-        const isTrackLog = data ? true : false;
 
-        if (isTrackLog && user) {
+        if (data && user) {
           await recentActivitiesHttpService.post<TActivitiesRequest>(
             END_POINTS.RECENT_ACTIVITIES,
             {
@@ -201,7 +200,9 @@ export const useAuth = () => {
           );
         }
       } catch (error) {
-        console.error('Error while fetching data:', error);
+        const { response } = error as AxiosError<string>;
+
+        throw new Error(formatUppercaseFirstLetter(response?.data));
       }
 
       setTimeout(() => {

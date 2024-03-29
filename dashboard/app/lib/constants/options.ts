@@ -146,7 +146,7 @@ export const FILTER_PRODUCT = [
   },
 ];
 
-export const ACTIVITY_OPTION = [
+export const ACTIVITY_OPTIONS = [
   {
     value: 'SI',
     label: 'Sign in',

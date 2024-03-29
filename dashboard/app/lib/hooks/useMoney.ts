@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 
 // Services
 import {
@@ -18,7 +19,12 @@ import {
 
 // Constants
 import { END_POINTS } from '@/lib/constants';
+
+// Store
 import { authStore } from '../stores';
+
+// Utils
+import { formatUppercaseFirstLetter } from '../utils';
 
 export const useMoney = () => {
   const { user } = authStore();
@@ -52,7 +58,9 @@ export const useMoney = () => {
           );
         }
       } catch (error) {
-        console.error('Error while fetching data:', error);
+        const { response } = error as AxiosError<string>;
+
+        throw new Error(formatUppercaseFirstLetter(response?.data));
       }
     },
   });
@@ -85,7 +93,9 @@ export const useMoney = () => {
           );
         }
       } catch (error) {
-        console.error('Error while fetching data:', error);
+        const { response } = error as AxiosError<string>;
+
+        throw new Error(formatUppercaseFirstLetter(response?.data));
       }
     },
   });

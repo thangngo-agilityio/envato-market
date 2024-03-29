@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { AxiosError } from 'axios';
 import { useCallback, useMemo, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
@@ -25,6 +26,9 @@ import {
 
 // Stores
 import { authStore } from '../stores';
+
+// Utils
+import { formatUppercaseFirstLetter } from '../utils';
 
 export type TSearchTransaction = {
   name: string;
@@ -237,7 +241,9 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
             );
           }
         } catch (error) {
-          console.error('Error while fetching data:', error);
+          const { response } = error as AxiosError<string>;
+
+          throw new Error(formatUppercaseFirstLetter(response?.data));
         }
         queryClient.setQueryData(
           [END_POINTS.TRANSACTIONS, searchName, searchMonth],
@@ -294,7 +300,9 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
             );
           }
         } catch (error) {
-          console.error('Error while fetching data:', error);
+          const { response } = error as AxiosError<string>;
+
+          throw new Error(formatUppercaseFirstLetter(response?.data));
         }
         queryClient.setQueryData(
           [END_POINTS.TRANSACTIONS, searchName, searchMonth],
