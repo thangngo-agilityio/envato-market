@@ -148,59 +148,59 @@ export const FILTER_PRODUCT = [
 
 export const ACTIVITY_OPTIONS = [
   {
-    value: 'SI',
+    value: 'Sign in',
     label: 'Sign in',
   },
   {
-    value: 'SO',
+    value: 'Sign out',
     label: 'Sign out',
   },
   {
-    value: 'SU',
+    value: 'Sign up',
     label: 'Sign up',
   },
   {
-    value: 'FP',
+    value: 'Forgot password',
     label: 'Forgot password',
   },
   {
-    value: 'AM',
+    value: 'Add money',
     label: 'Add money',
   },
   {
-    value: 'SM',
+    value: 'Send money',
     label: 'Send money',
   },
   {
-    value: 'UTR',
+    value: 'Update transaction',
     label: 'Update transaction',
   },
   {
-    value: 'DTR',
+    value: 'Delete transaction',
     label: 'Delete transaction',
   },
   {
-    value: 'CPR',
+    value: 'Create product',
     label: 'Create product',
   },
   {
-    value: 'UPR',
+    value: 'Update product',
     label: 'Update product',
   },
   {
-    value: 'DPR',
+    value: 'Delete product',
     label: 'Delete product',
   },
   {
-    value: 'CIS',
+    value: 'Create issues',
     label: 'Create issues',
   },
   {
-    value: 'SP',
+    value: 'Save profile',
     label: 'Save profile',
   },
   {
-    value: 'CP',
+    value: 'Save change password',
     label: 'Save change password',
   },
 ];
