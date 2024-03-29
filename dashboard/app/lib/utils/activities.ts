@@ -15,7 +15,7 @@ import { MainHttpService, recentActivitiesHttpService } from '../services';
 // Constants
 import { END_POINTS } from '../constants';
 
-export const handleActivities = async (url: string, actionName: string) => {
+export const handleLogActivity = async (url: string, actionName: string) => {
   const { user } = authStore();
   try {
     const { data } = await MainHttpService.axiosClient.get(url);

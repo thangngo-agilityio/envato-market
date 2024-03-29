@@ -25,7 +25,7 @@ import { formatUppercaseFirstLetter, getCurrentTimeSeconds } from '@/lib/utils';
 // Stores
 import { authStore } from '@/lib/stores';
 import { EActivity } from '../interfaces';
-import { handleActivities } from '../utils/activities';
+import { handleLogActivity } from '../utils/activities';
 
 type TSignUpErrorField = Partial<
   Record<keyof Omit<TUserDetail, 'id' | 'createdAt'>, string>
@@ -185,7 +185,7 @@ export const useAuth = () => {
       option?: keyof Pick<typeof router, 'push' | 'replace'>,
     ) => {
       setIsLogout(true);
-      handleActivities(END_POINTS.LOGIN, EActivity.SIGN_OUT);
+      handleLogActivity(END_POINTS.LOGIN, EActivity.SIGN_OUT);
 
       setTimeout(() => {
         clearStore();

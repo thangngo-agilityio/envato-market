@@ -4,16 +4,9 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
 
 // Interfaces
-import {
-  EActivity,
-  IIssues,
-  TActivitiesRequest,
-  TPassword,
-  TUserDetail,
-} from '@/lib/interfaces';
+import { EActivity, IIssues, TPassword, TUserDetail } from '@/lib/interfaces';
 import { TSearchTransaction } from '.';
 
 // Services
@@ -21,44 +14,21 @@ import {
   MainHttpService,
   getAllUserDetailsExceptWithId,
   getSupports,
-  recentActivitiesHttpService,
   userHttpRequest,
 } from '@/lib/services';
 
 // Constants
 import { END_POINTS } from '@/lib/constants';
 
-// Stores
-import { authStore } from '../stores';
-
 // Utils
-import { formatUppercaseFirstLetter, handleActivities } from '../utils';
+import { handleLogActivity } from '../utils';
 
 export const useUpdateUser = () => {
-  const { user } = authStore();
   const { error, ...rest } = useMutation({
     mutationFn: async (user: TUserDetail) =>
       await MainHttpService.put<TUserDetail>(END_POINTS.USERS, user),
     onSuccess: async () => {
-      try {
-        const { data } = await MainHttpService.axiosClient.get(
-          END_POINTS.SETTINGS,
-        );
-
-        if (data && user) {
-          await recentActivitiesHttpService.post<TActivitiesRequest>(
-            END_POINTS.RECENT_ACTIVITIES,
-            {
-              userId: user.id,
-              actionName: EActivity.SAVE_PROFILE,
-            },
-          );
-        }
-      } catch (error) {
-        const { response } = error as AxiosError<string>;
-
-        throw new Error(formatUppercaseFirstLetter(response?.data));
-      }
+      handleLogActivity(END_POINTS.SETTINGS, EActivity.SAVE_PROFILE);
     },
   });
 
@@ -80,7 +50,7 @@ export const useUpdatePassword = () => {
       });
     },
     onSuccess: async () => {
-      handleActivities(END_POINTS.SETTINGS, EActivity.SAVE_PASSWORD);
+      handleLogActivity(END_POINTS.SETTINGS, EActivity.SAVE_PASSWORD);
     },
   });
 
@@ -127,7 +97,7 @@ export const useCreateIssues = () => {
         {},
       ),
     onSettled: async () => {
-      handleActivities(END_POINTS.SUPPORT, EActivity.CREATE_ISSUES);
+      handleLogActivity(END_POINTS.SUPPORT, EActivity.CREATE_ISSUES);
       queryClient.invalidateQueries({ queryKey: [END_POINTS.SUPPORT] });
     },
   });

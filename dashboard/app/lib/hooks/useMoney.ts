@@ -10,7 +10,7 @@ import { EActivity, TAddMoney, TSendMoney } from '@/lib/interfaces';
 import { END_POINTS } from '@/lib/constants';
 
 // Utils
-import { handleActivities } from '../utils';
+import { handleLogActivity } from '../utils';
 
 export const useMoney = () => {
   const queryClient = useQueryClient();
@@ -29,7 +29,7 @@ export const useMoney = () => {
       });
     },
     onSuccess: async () => {
-      handleActivities('/', EActivity.ADD_MONEY);
+      handleLogActivity('/', EActivity.ADD_MONEY);
     },
   });
 
@@ -47,7 +47,7 @@ export const useMoney = () => {
       });
     },
     onSuccess: async () => {
-      handleActivities('/', EActivity.SEND_MONEY);
+      handleLogActivity('/', EActivity.SEND_MONEY);
     },
   });
 

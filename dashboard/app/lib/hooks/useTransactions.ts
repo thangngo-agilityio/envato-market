@@ -21,7 +21,7 @@ import {
 import { authStore } from '../stores';
 
 // Utils
-import { handleActivities } from '../utils';
+import { handleLogActivity } from '../utils';
 
 export type TSearchTransaction = {
   name: string;
@@ -218,7 +218,10 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
           transaction,
         ),
       onSuccess: async (_, variables) => {
-        handleActivities(END_POINTS.TRANSACTIONS, EActivity.UPDATE_TRANSACTION);
+        handleLogActivity(
+          END_POINTS.TRANSACTIONS,
+          EActivity.UPDATE_TRANSACTION,
+        );
         queryClient.setQueryData(
           [END_POINTS.TRANSACTIONS, searchName, searchMonth],
           (oldData: TTransaction[]) => {
@@ -258,7 +261,10 @@ export const useTransactions = (queryParam?: TSearchTransaction) => {
           transaction,
         ),
       onSuccess: async (_, variables) => {
-        handleActivities(END_POINTS.TRANSACTIONS, EActivity.DELETE_TRANSACTION);
+        handleLogActivity(
+          END_POINTS.TRANSACTIONS,
+          EActivity.DELETE_TRANSACTION,
+        );
         queryClient.setQueryData(
           [END_POINTS.TRANSACTIONS, searchName, searchMonth],
           (oldData: TTransaction[]) => {

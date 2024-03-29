@@ -21,7 +21,7 @@ import {
 } from '@/lib/interfaces';
 
 // Utils
-import { handleActivities } from '../utils';
+import { handleLogActivity } from '../utils';
 
 export type TSearchProduct = {
   name: string;
@@ -170,7 +170,7 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         product,
       ),
     onSuccess: async (dataResponse) => {
-      handleActivities(END_POINTS.PRODUCTS, EActivity.CREATE_PRODUCT);
+      handleLogActivity(END_POINTS.PRODUCTS, EActivity.CREATE_PRODUCT);
       queryClient.invalidateQueries({
         queryKey: [END_POINTS.PRODUCTS],
       });
@@ -192,7 +192,7 @@ export const useProducts = (queryParam?: TSearchProduct) => {
       });
     },
     onSuccess: async (_, variables) => {
-      handleActivities(END_POINTS.PRODUCTS, EActivity.DELETE_PRODUCT);
+      handleLogActivity(END_POINTS.PRODUCTS, EActivity.DELETE_PRODUCT);
       queryClient.setQueryData(
         [END_POINTS.PRODUCTS, searchName],
         (oldData: TProduct[]) =>
@@ -210,7 +210,7 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         product,
       ),
     onSuccess: async (_, variables) => {
-      handleActivities(END_POINTS.PRODUCTS, EActivity.UPDATE_PRODUCT);
+      handleLogActivity(END_POINTS.PRODUCTS, EActivity.UPDATE_PRODUCT);
       queryClient.setQueryData(
         [END_POINTS.PRODUCTS, searchName],
         (oldData: TProductResponse[]) => {
