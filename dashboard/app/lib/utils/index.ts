@@ -13,4 +13,3 @@ export * from './toast';
 export * from './getErrorMessage';
 export * from './firebase';
 export * from './recentActivities';
-export * from './activities';

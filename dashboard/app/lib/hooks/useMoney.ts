@@ -7,12 +7,13 @@ import { addMoneyToUser, sendMoneyToUser } from '@/lib/services';
 import { EActivity, TAddMoney, TSendMoney } from '@/lib/interfaces';
 
 // Constants
-import { END_POINTS } from '@/lib/constants';
+import { END_POINTS, ROUTES } from '@/lib/constants';
 
-// Utils
-import { handleLogActivity } from '../utils';
+// Hook
+import { useLogActivity } from '.';
 
 export const useMoney = () => {
+  const { logActivity } = useLogActivity();
   const queryClient = useQueryClient();
 
   const { mutate: addMoneyToUserWallet } = useMutation({
@@ -28,8 +29,8 @@ export const useMoney = () => {
         queryKey: [END_POINTS.NOTIFICATION],
       });
     },
-    onSuccess: async () => {
-      handleLogActivity('/', EActivity.ADD_MONEY);
+    onSuccess: () => {
+      logActivity(ROUTES.ROOT, EActivity.ADD_MONEY);
     },
   });
 
@@ -46,8 +47,8 @@ export const useMoney = () => {
         queryKey: [END_POINTS.NOTIFICATION],
       });
     },
-    onSuccess: async () => {
-      handleLogActivity('/', EActivity.SEND_MONEY);
+    onSuccess: () => {
+      logActivity(ROUTES.ROOT, EActivity.SEND_MONEY);
     },
   });
 

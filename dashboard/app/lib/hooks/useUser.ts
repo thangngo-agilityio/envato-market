@@ -7,7 +7,7 @@ import {
 
 // Interfaces
 import { EActivity, IIssues, TPassword, TUserDetail } from '@/lib/interfaces';
-import { TSearchTransaction } from '.';
+import { TSearchTransaction, useLogActivity } from '.';
 
 // Services
 import {
@@ -20,15 +20,13 @@ import {
 // Constants
 import { END_POINTS } from '@/lib/constants';
 
-// Utils
-import { handleLogActivity } from '../utils';
-
 export const useUpdateUser = () => {
+  const { logActivity } = useLogActivity();
   const { error, ...rest } = useMutation({
     mutationFn: async (user: TUserDetail) =>
       await MainHttpService.put<TUserDetail>(END_POINTS.USERS, user),
     onSuccess: async () => {
-      handleLogActivity(END_POINTS.SETTINGS, EActivity.SAVE_PROFILE);
+      logActivity(END_POINTS.SETTINGS, EActivity.SAVE_PROFILE);
     },
   });
 
@@ -39,6 +37,7 @@ export const useUpdateUser = () => {
 };
 
 export const useUpdatePassword = () => {
+  const { logActivity } = useLogActivity();
   const { error, ...rest } = useMutation({
     mutationFn: async (passwordData: TPassword) => {
       const { oldPassword, newPassword, memberId } = passwordData;
@@ -50,7 +49,7 @@ export const useUpdatePassword = () => {
       });
     },
     onSuccess: async () => {
-      handleLogActivity(END_POINTS.SETTINGS, EActivity.SAVE_PASSWORD);
+      logActivity(END_POINTS.SETTINGS, EActivity.SAVE_PASSWORD);
     },
   });
 
@@ -81,6 +80,7 @@ export const useGetListIssues = () => {
 };
 
 export const useCreateIssues = () => {
+  const { logActivity } = useLogActivity();
   const queryClient = useQueryClient();
   const { error, ...rest } = useMutation({
     mutationFn: async (
@@ -97,7 +97,7 @@ export const useCreateIssues = () => {
         {},
       ),
     onSettled: async () => {
-      handleLogActivity(END_POINTS.SUPPORT, EActivity.CREATE_ISSUES);
+      logActivity(END_POINTS.SUPPORT, EActivity.CREATE_ISSUES);
       queryClient.invalidateQueries({ queryKey: [END_POINTS.SUPPORT] });
     },
   });

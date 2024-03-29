@@ -19,9 +19,7 @@ import {
   TProductRequest,
   TProductResponse,
 } from '@/lib/interfaces';
-
-// Utils
-import { handleLogActivity } from '../utils';
+import { useLogActivity } from '.';
 
 export type TSearchProduct = {
   name: string;
@@ -38,6 +36,7 @@ export type TProductSortHandler = (field: TProductSortField) => void;
 export const useProducts = (queryParam?: TSearchProduct) => {
   const queryClient = useQueryClient();
   const { user } = authStore();
+  const { logActivity } = useLogActivity();
 
   const sortType: Record<TSortType, TSortType> = useMemo(
     () => ({
@@ -170,7 +169,7 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         product,
       ),
     onSuccess: async (dataResponse) => {
-      handleLogActivity(END_POINTS.PRODUCTS, EActivity.CREATE_PRODUCT);
+      logActivity(END_POINTS.PRODUCTS, EActivity.CREATE_PRODUCT);
       queryClient.invalidateQueries({
         queryKey: [END_POINTS.PRODUCTS],
       });
@@ -192,7 +191,7 @@ export const useProducts = (queryParam?: TSearchProduct) => {
       });
     },
     onSuccess: async (_, variables) => {
-      handleLogActivity(END_POINTS.PRODUCTS, EActivity.DELETE_PRODUCT);
+      logActivity(END_POINTS.PRODUCTS, EActivity.DELETE_PRODUCT);
       queryClient.setQueryData(
         [END_POINTS.PRODUCTS, searchName],
         (oldData: TProduct[]) =>
@@ -210,7 +209,7 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         product,
       ),
     onSuccess: async (_, variables) => {
-      handleLogActivity(END_POINTS.PRODUCTS, EActivity.UPDATE_PRODUCT);
+      logActivity(END_POINTS.PRODUCTS, EActivity.UPDATE_PRODUCT);
       queryClient.setQueryData(
         [END_POINTS.PRODUCTS, searchName],
         (oldData: TProductResponse[]) => {

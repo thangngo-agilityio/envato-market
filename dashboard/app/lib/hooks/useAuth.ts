@@ -17,15 +17,16 @@ import {
 import { MainHttpService } from '@/lib/services';
 
 // Types
-import { TUserDetail } from '@/lib/interfaces/user';
+import { TUserDetail, EActivity } from '@/lib/interfaces';
 
 // Utils
 import { formatUppercaseFirstLetter, getCurrentTimeSeconds } from '@/lib/utils';
 
 // Stores
 import { authStore } from '@/lib/stores';
-import { EActivity } from '../interfaces';
-import { handleLogActivity } from '../utils/activities';
+
+// Hook
+import { useLogActivity } from '.';
 
 type TSignUpErrorField = Partial<
   Record<keyof Omit<TUserDetail, 'id' | 'createdAt'>, string>
@@ -60,6 +61,7 @@ export type TUseAuth = {
 };
 
 export const useAuth = () => {
+  const { logActivity } = useLogActivity();
   const [isLogout, setIsLogout] = useState(false);
   const router = useRouter();
   const { updateStore, clearStore } = authStore(
@@ -185,7 +187,7 @@ export const useAuth = () => {
       option?: keyof Pick<typeof router, 'push' | 'replace'>,
     ) => {
       setIsLogout(true);
-      handleLogActivity(END_POINTS.LOGIN, EActivity.SIGN_OUT);
+      logActivity(END_POINTS.LOGIN, EActivity.SIGN_OUT);
 
       setTimeout(() => {
         clearStore();
