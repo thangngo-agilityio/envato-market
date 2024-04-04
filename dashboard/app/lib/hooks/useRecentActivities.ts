@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 
 // Constants
-import { END_POINTS, TIME_FORMAT } from '@/lib/constants';
+import { END_POINTS, TIME_DETAIL_FORMAT } from '@/lib/constants';
 
 // Services
 import { getRecentActivities } from '@/lib/services';
@@ -88,8 +88,8 @@ export const useRecentActivities = (queryParam?: TAction) => {
           email: handleSort(type, prevEmail ?? '', nextEmail ?? ''),
           date: handleSort(
             type,
-            dayjs(prevCreatedAt).format(TIME_FORMAT) ?? '',
-            dayjs(nextCreatedAt).format(TIME_FORMAT) ?? '',
+            dayjs(prevCreatedAt).format(TIME_DETAIL_FORMAT) ?? '',
+            dayjs(nextCreatedAt).format(TIME_DETAIL_FORMAT) ?? '',
           ),
         };
 
@@ -111,9 +111,9 @@ export const useRecentActivities = (queryParam?: TAction) => {
     return activitiesAfterSort.filter(
       ({ actionName, email }: TRecentActivities) => {
         const isMatchWithName: boolean = isNameMatchWith(actionName);
-        const isMatchWtihEmail: boolean = isNameMatchWith(email);
+        const isMatchWithEmail: boolean = isNameMatchWith(email);
 
-        return isMatchWithName || isMatchWtihEmail;
+        return isMatchWithName || isMatchWithEmail;
       },
     );
   }, [activitiesAfterSort, searchActionName]);
