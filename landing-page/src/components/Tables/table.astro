@@ -2,32 +2,23 @@
 // mocks
 import { TABLES_INFO } from '@app/mocks/tableContent';
 
-export interface ITABLE {
-  NameEntity?: string;
-  Address?: string;
-  ScopeCooperation?: string;
-  classname?: string;
-}
-
-const { classname = '' } = Astro.props;
-
 // styles
 const styleTableRow = '*:py-[25px] *:pr-[50px]';
 const styleBorder = '*:border-b border-[#ebebeb]';
 ---
 
-<table class={`my-10 text-left ${classname}`}>
-  <thead class={`${styleBorder}`}>
-    <tr class={`${styleTableRow}`}>
+<table class='my-10 text-left'>
+  <thead class={styleBorder}>
+    <tr class={styleTableRow}>
       <th>Name Entity</th>
       <th>Address</th>
       <th>Scope of Cooperation</th>
     </tr>
   </thead>
-  <tbody class={`${styleBorder}`}>
+  <tbody class={styleBorder}>
     {
       TABLES_INFO.map(({ NameEntity, Address, ScopeCooperation }) => (
-        <tr class={`${styleTableRow}`}>
+        <tr class={styleTableRow}>
           <td>{NameEntity}</td>
           <td>{Address}</td>
           <td>{ScopeCooperation}</td>
