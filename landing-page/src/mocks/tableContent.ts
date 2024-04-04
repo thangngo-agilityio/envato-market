@@ -1,4 +1,4 @@
-export const TABLES = [
+export const TABLES_INFO = [
   {
     NameEntity: 'Amazon Web Sites Inc.',
     Address: 'Data Centres in Dublin and Frankfurt',

@@ -11,24 +11,24 @@ export interface ITABLES_COUNT {
 const { classname = '' } = Astro.props;
 
 // styles
-const styleTable = '*:py-[25px] *:pr-[50px]';
-const styleTableTr = '*:border-b border-[#ebebeb]';
+const styleTableRow = '*:py-[25px] *:pr-[50px]';
+const styleBorder = '*:border-b border-[#ebebeb]';
 ---
 
 <table class={`my-10 text-left ${classname}`}>
-  <thead class={`${styleTableTr}`}>
-    <tr class={`${styleTable}`}>
+  <thead class={`${styleBorder}`}>
+    <tr class={`${styleTableRow}`}>
       <th>Name Entity</th>
       <th>Address</th>
       <th>Country</th>
       <th>AppliedSafeguards</th>
     </tr>
   </thead>
-  <tbody class={`${styleTableTr}`}>
+  <tbody class={`${styleBorder}`}>
     {
       TABLES_COUNTRY.map(
         ({ NameEntity, Address, Country, AppliedSafeguards }) => (
-          <tr class={`${styleTable}`}>
+          <tr class={`${styleTableRow}`}>
             <td>{NameEntity}</td>
             <td>{Address}</td>
             <td>{Country}</td>
