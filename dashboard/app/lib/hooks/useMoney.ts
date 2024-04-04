@@ -7,17 +7,18 @@ import { addMoneyToUser, sendMoneyToUser } from '@/lib/services';
 import { EActivity, TAddMoney, TSendMoney } from '@/lib/interfaces';
 
 // Constants
-import { END_POINTS, ROUTES } from '@/lib/constants';
+import { END_POINTS } from '@/lib/constants';
 
 // Hook
-import { useLogActivity } from '.';
+import { authStore } from '../stores';
 
 export const useMoney = () => {
-  const { logActivity } = useLogActivity();
+  const { user } = authStore();
   const queryClient = useQueryClient();
 
   const { mutate: addMoneyToUserWallet } = useMutation({
-    mutationFn: (userData: TAddMoney) => addMoneyToUser(userData),
+    mutationFn: (userData: TAddMoney) =>
+      addMoneyToUser(userData, user?.id, EActivity.ADD_MONEY),
     onSettled: () => {
       queryClient.invalidateQueries({
         queryKey: [END_POINTS.MY_WALLET],
@@ -29,11 +30,11 @@ export const useMoney = () => {
         queryKey: [END_POINTS.NOTIFICATION],
       });
     },
-    onSuccess: () => logActivity(ROUTES.ROOT, EActivity.ADD_MONEY),
   });
 
   const { mutate: sendMoneyToUserWallet } = useMutation({
-    mutationFn: (userData: TSendMoney) => sendMoneyToUser(userData),
+    mutationFn: (userData: TSendMoney) =>
+      sendMoneyToUser(userData, user?.id, EActivity.SEND_MONEY),
     onSettled: () => {
       queryClient.invalidateQueries({
         queryKey: [END_POINTS.MY_WALLET],
@@ -45,7 +46,6 @@ export const useMoney = () => {
         queryKey: [END_POINTS.NOTIFICATION],
       });
     },
-    onSuccess: () => logActivity(ROUTES.ROOT, EActivity.SEND_MONEY),
   });
 
   return {
