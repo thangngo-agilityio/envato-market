@@ -137,6 +137,10 @@ export const ROLES = [
 
 export const FILTER_PRODUCT = [
   {
+    value: '',
+    label: 'Default',
+  },
+  {
     value: 'Sold',
     label: 'Sold',
   },
