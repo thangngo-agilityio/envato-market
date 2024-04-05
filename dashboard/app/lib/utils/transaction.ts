@@ -35,7 +35,7 @@ export const formatTransactionResponse = (transactions: TTransaction[] = []) =>
       email,
       role,
     } = customer || {};
-    const { state, street, city, zip } = address || { state: '', street: '', city: '', zip: '' };
+    const { state = '', street = '', city = '', zip = +'' } = address || {};
 
     return {
       id: _id,
@@ -50,7 +50,7 @@ export const formatTransactionResponse = (transactions: TTransaction[] = []) =>
         role,
       },
       email,
-      location: `${street || ''} ${city || ''}`,
+      location: `${street} ${city}`,
       date: dayjs(createdAt).format(TIME_FORMAT),
       paymentStatus: formatUppercaseFirstLetter(paymentStatus),
       transactionStatus: formatUppercaseFirstLetter(transactionStatus),
