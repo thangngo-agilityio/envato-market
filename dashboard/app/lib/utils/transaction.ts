@@ -48,7 +48,7 @@ export const formatTransactionResponse = (transactions: TTransaction[] = []) =>
         role,
       },
       email,
-      location: `${street} ${city}`,
+      location: `${street || ''} ${city || ''}`,
       date: dayjs(createdAt).format(TIME_FORMAT),
       paymentStatus: formatUppercaseFirstLetter(paymentStatus),
       transactionStatus: formatUppercaseFirstLetter(transactionStatus),
