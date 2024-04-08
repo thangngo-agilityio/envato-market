@@ -11,6 +11,23 @@ const meta: Meta<typeof ProductFormMemorized> = {
   title: 'Custom Components/ProductForm',
   tags: ['autodocs'],
   component: ProductFormMemorized,
+  argTypes: {
+    data: {
+      description: 'The data of the product',
+    },
+    onCreateProduct: {
+      description: 'The create new product for product table',
+      action: 'onCreateProduct',
+    },
+    onUpdateProduct: {
+      description: 'The update product for product table',
+      action: 'onUpdateProduct',
+    },
+    onCloseModal: {
+      description: 'The close function handler for the product form component',
+      action: 'onCloseModal',
+    },
+  },
   decorators: [
     (Story) => (
       <QueryClientProvider client={queryClient}>
