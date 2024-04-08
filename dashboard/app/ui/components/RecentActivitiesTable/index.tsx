@@ -24,7 +24,6 @@ import { TDataSource, THeaderTable, TRecentActivities } from '@/lib/interfaces';
 import {
   TActivitiesSortField,
   useDebounce,
-  usePagination,
   useRecentActivities,
   useSearch,
 } from '@/lib/hooks';
@@ -43,7 +42,10 @@ const RecentActivitiesTableComponent = () => {
     activities,
     isLoading: isLoadingActivities,
     isError: isActivitiesError,
+    pageArray,
+    currentPage,
     sortBy,
+    handleClickPage,
   } = useRecentActivities({
     actionName: get('actionName') || '',
   });
@@ -56,20 +58,7 @@ const RecentActivitiesTableComponent = () => {
     [activities, filter],
   );
 
-  const {
-    data,
-    filterData,
-    arrOfCurrButtons,
-    isDisabledPrev,
-    isDisableNext,
-    resetPage,
-    handleChangeLimit,
-    handlePageChange,
-    handlePageClick,
-  } = usePagination(activityMemorized);
-
   const handleDebounceSearch = useDebounce((value: string) => {
-    resetPage();
     setSearchTransaction('actionName', value);
   }, []);
 
@@ -223,20 +212,19 @@ const RecentActivitiesTableComponent = () => {
         <Box mt={5}>
           <Table
             columns={columns as unknown as THeaderTable[]}
-            dataSource={formatRecentActivitiesResponse(filterData)}
+            dataSource={formatRecentActivitiesResponse(activityMemorized)}
           />
         </Box>
         {!!activities?.length && (
           <Box mt={8}>
             <Pagination
-              pageSize={data.limit}
-              currentPage={data.currentPage}
-              isDisabledPrev={isDisabledPrev}
-              isDisableNext={isDisableNext}
-              arrOfCurrButtons={arrOfCurrButtons}
-              onLimitChange={handleChangeLimit}
-              onPageChange={handlePageChange}
-              onClickPage={handlePageClick}
+              currentPage={currentPage}
+              // isDisabledPrev={isPreviousData}
+              // isDisableNext={isPreviousData}
+              arrOfCurrButtons={pageArray}
+              // onLimitChange={handleChangeLimit}
+              // onPageChange={handlePageChange}
+              onClickPage={handleClickPage}
             />
           </Box>
         )}
