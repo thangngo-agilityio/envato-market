@@ -1,10 +1,21 @@
+import { ReactElement, ReactNode } from 'react';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 
 // Sections
 import HistoryPage from '../histories/page';
+
+// Utils
 import { renderQueryProviderTest } from '@/lib/utils/testUtils';
 
 jest.mock('react-intersection-observer');
+
+jest.mock('react-intersection-observer', () => ({
+  InView: ({
+    children,
+  }: {
+    children: (props: { inView: boolean; ref: () => void }) => ReactNode;
+  }) => children({ inView: true, ref: jest.fn() }) as ReactElement,
+}));
 
 describe('HistoryPage render', () => {
   (useSearchParams as jest.Mock).mockReturnValue({
