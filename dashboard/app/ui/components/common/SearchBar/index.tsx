@@ -92,6 +92,7 @@ const SearchBarComponent = ({
               leftIcon={<Search2Icon />}
               rightIcon={value && <CloseIcon onClick={handleResetValue} />}
               data-testid="search-transaction"
+              fontSize={{ base: '12px', md: '14px' }}
             />
           )}
         />
