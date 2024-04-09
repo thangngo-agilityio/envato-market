@@ -1,4 +1,5 @@
 import preloadAll from 'jest-next-dynamic';
+import { ReactElement, ReactNode } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 // Utils
@@ -8,6 +9,14 @@ import { renderQueryProviderTest } from '@/lib/utils/testUtils';
 import { ProductsSection } from '..';
 
 jest.mock('react-intersection-observer');
+
+jest.mock('react-intersection-observer', () => ({
+  InView: ({
+    children,
+  }: {
+    children: (props: { inView: boolean; ref: () => void }) => ReactNode;
+  }) => children({ inView: true, ref: jest.fn() }) as ReactElement,
+}));
 
 describe('ProductSection render', () => {
   beforeEach(async () => {
