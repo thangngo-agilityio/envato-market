@@ -56,7 +56,7 @@ export const useRecentActivities = (queryParam?: TAction) => {
   });
 
   const { data, ...query } = useQuery({
-    queryKey: [END_POINTS.RECENT_ACTIVITIES, searchActionName, searchEmail],
+    queryKey: [END_POINTS.RECENT_ACTIVITIES, searchActionName, searchEmail, currentPage],
     queryFn: ({ signal }) => getRecentActivities('', { signal }, userId, currentPage),
   });
 
