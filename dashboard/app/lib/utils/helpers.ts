@@ -2,7 +2,7 @@
 import { REGEX, DOTS, ERROR_MESSAGES } from '@/lib/constants';
 
 // Types
-import { FormatPaginationParams, PageArrayType } from '@/lib/interfaces';
+import { FormatPaginationParams, PaginationTableType } from '@/lib/interfaces';
 
 export const formatNumberButton = (numberOfPage: number): number[] =>
   Array.from({ length: numberOfPage }).map(
@@ -59,7 +59,7 @@ export const formatPageArray = ({
   totalPage,
   currentPage,
   arrOfCurrButtons,
-}: PageArrayType): (string | number)[] => {
+}: PaginationTableType): (string | number)[] => {
   const numberOfPage = Math.ceil(totalPage);
   let tempNumberOfButtons = arrOfCurrButtons;
 

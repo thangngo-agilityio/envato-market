@@ -48,6 +48,8 @@ const RecentActivitiesTableComponent = () => {
     isError: isActivitiesError,
     pageArray,
     currentPage,
+    isDisableNext,
+    isDisablePrev,
     sortBy,
     setCurrentPage,
   } = useRecentActivities({
@@ -232,8 +234,8 @@ const RecentActivitiesTableComponent = () => {
           <Box mt={8}>
             <Pagination
               currentPage={currentPage}
-              // isDisabledPrev={isPreviousData}
-              // isDisableNext={isPreviousData}
+              isDisabledPrev={isDisablePrev}
+              isDisableNext={isDisableNext}
               arrOfCurrButtons={pageArray}
               onPageChange={handlePageChange}
               onClickPage={handleClickPage}

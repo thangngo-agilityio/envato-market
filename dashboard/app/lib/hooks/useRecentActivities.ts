@@ -71,6 +71,10 @@ export const useRecentActivities = (queryParam?: TAction) => {
     arrOfCurrButtons,
   });
 
+  const isDisableNext = currentPage === totalPage || currentPage < 1;
+
+  const isDisablePrev = currentPage <= 1;
+
   // sort activitiesSorted
   const activitiesAfterSort: TRecentActivities[] = useMemo((): TRecentActivities[] => {
     const tempActivities: TRecentActivities[] = [...activitiesData];
@@ -146,6 +150,8 @@ export const useRecentActivities = (queryParam?: TAction) => {
     data: activities,
     pageArray,
     currentPage,
+    isDisableNext,
+    isDisablePrev,
     sortBy,
     setCurrentPage,
   };
