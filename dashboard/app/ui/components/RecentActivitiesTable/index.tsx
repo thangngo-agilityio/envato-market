@@ -15,7 +15,11 @@ import {
 } from '@/ui/components';
 
 // Constants
-import { ACTIVITY_OPTIONS, COLUMNS_RECENT_ACTIVITIES } from '@/lib/constants';
+import {
+  ACTIVITY_OPTIONS,
+  COLUMNS_RECENT_ACTIVITIES,
+  PREV,
+} from '@/lib/constants';
 
 // Interfaces
 import { TDataSource, THeaderTable, TRecentActivities } from '@/lib/interfaces';
@@ -45,7 +49,7 @@ const RecentActivitiesTableComponent = () => {
     pageArray,
     currentPage,
     sortBy,
-    handleClickPage,
+    setCurrentPage,
   } = useRecentActivities({
     actionName: get('actionName') || '',
   });
@@ -61,6 +65,15 @@ const RecentActivitiesTableComponent = () => {
   const handleDebounceSearch = useDebounce((value: string) => {
     setSearchTransaction('actionName', value);
   }, []);
+
+  const handleClickPage = (value: number) => setCurrentPage(value);
+
+  const handlePageChange = useCallback(
+    (direction: string) => {
+      setCurrentPage(direction === PREV ? currentPage - 1 : currentPage + 1);
+    },
+    [currentPage, setCurrentPage],
+  );
 
   const renderHead = useCallback(
     (title: string, key: string): JSX.Element => {
@@ -222,8 +235,7 @@ const RecentActivitiesTableComponent = () => {
               // isDisabledPrev={isPreviousData}
               // isDisableNext={isPreviousData}
               arrOfCurrButtons={pageArray}
-              // onLimitChange={handleChangeLimit}
-              // onPageChange={handlePageChange}
+              onPageChange={handlePageChange}
               onClickPage={handleClickPage}
             />
           </Box>

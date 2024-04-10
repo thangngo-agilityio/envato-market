@@ -63,9 +63,7 @@ export const useRecentActivities = (queryParam?: TAction) => {
   const activitiesData: TRecentActivities[] = data?.data.result || [];
   const totalPage = data?.data.totalPage as number;
 
-  const arrOfCurrButtons: number[] = Array.from({ length: totalPage }, (_, index) => index + 1);
-
-  const handleClickPage = (value: number) => setCurrentPage(value);
+  const arrOfCurrButtons: number[] = Array.from({ length: totalPage }, (_, index) => index);
 
   const pageArray = formatPageArray({
     totalPage,
@@ -73,11 +71,9 @@ export const useRecentActivities = (queryParam?: TAction) => {
     arrOfCurrButtons,
   });
 
-  console.log(currentPage);
-
   // sort activitiesSorted
   const activitiesAfterSort: TRecentActivities[] = useMemo((): TRecentActivities[] => {
-    const tempActivities: TRecentActivities[] = activitiesData;
+    const tempActivities: TRecentActivities[] = [...activitiesData];
     const { field, type } = sortValue;
 
     if (!field) return activitiesData;
@@ -151,6 +147,6 @@ export const useRecentActivities = (queryParam?: TAction) => {
     pageArray,
     currentPage,
     sortBy,
-    handleClickPage,
+    setCurrentPage,
   };
 };
