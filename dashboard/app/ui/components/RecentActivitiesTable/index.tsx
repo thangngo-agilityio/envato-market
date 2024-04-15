@@ -52,6 +52,7 @@ const RecentActivitiesTableComponent = () => {
     isDisablePrev,
     sortBy,
     setCurrentPage,
+    resetPage,
   } = useRecentActivities({
     actionName: get('actionName') || '',
   });
@@ -65,6 +66,7 @@ const RecentActivitiesTableComponent = () => {
   );
 
   const handleDebounceSearch = useDebounce((value: string) => {
+    resetPage();
     setSearchTransaction('actionName', value);
   }, []);
 
