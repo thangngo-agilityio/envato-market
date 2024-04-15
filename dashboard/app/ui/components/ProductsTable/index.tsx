@@ -254,7 +254,7 @@ const ProductsTableComponent = () => {
           minW={180}
           borderRadius="15px"
           paddingLeft={{ base: 30 }}
-          w={{ base: 100, md: 100, '3xl': 150, '5xl': 250 }}
+          w={{ base: 100, '3xl': 150, '5xl': 250 }}
         >
           <Box
             pos="relative"
@@ -297,7 +297,7 @@ const ProductsTableComponent = () => {
           fontWeight="semibold"
           whiteSpace="break-spaces"
           noOfLines={1}
-          w={{ base: 100, md: 100, '3xl': 150, '5xl': 200 }}
+          w={{ base: 100, '3xl': 150, '5xl': 200 }}
           flex={1}
         >
           {amount}
@@ -324,7 +324,7 @@ const ProductsTableComponent = () => {
           fontWeight="semibold"
           whiteSpace="break-spaces"
           noOfLines={1}
-          w={{ base: 100, md: 100, '3xl': 150, '5xl': 200 }}
+          w={{ base: 100, '3xl': 150, '5xl': 200 }}
           flex={1}
         >
           {stock}
