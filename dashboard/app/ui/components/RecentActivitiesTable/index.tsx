@@ -104,7 +104,7 @@ const RecentActivitiesTableComponent = () => {
         color="text.primary"
         fontWeight="semibold"
         textAlign="left"
-        w={{ base: 200, xl: 220, '3xl': 300, '6xl': 350 }}
+        w={{ base: 150, md: 250, '6xl': 300 }}
       >
         <Flex alignItems="center" gap="10px">
           <Tooltip
@@ -121,7 +121,7 @@ const RecentActivitiesTableComponent = () => {
               overflow="hidden"
               pr={10}
               flex={1}
-              w={{ base: 200, xl: 220, '3xl': 200, '6xl': 250 }}
+              w={{ base: 150, md: 250, '6xl': 300 }}
             >
               {formatUppercaseFirstLetter(`${_id}`)}
             </Text>
@@ -142,7 +142,7 @@ const RecentActivitiesTableComponent = () => {
         color="text.primary"
         fontWeight="semibold"
         textAlign="left"
-        w={{ base: 200, xl: 220, '3xl': 300, '6xl': 350 }}
+        w={{ base: 150, md: 250, '6xl': 300 }}
       >
         <Flex alignItems="center" gap="10px">
           <Tooltip
@@ -159,7 +159,7 @@ const RecentActivitiesTableComponent = () => {
               overflow="hidden"
               pr={10}
               flex={1}
-              w={{ base: 200, xl: 220, '3xl': 200, '6xl': 250 }}
+              w={{ base: 150, md: 250, '6xl': 300 }}
             >
               {formatUppercaseFirstLetter(`${actionName}`)}
             </Text>
