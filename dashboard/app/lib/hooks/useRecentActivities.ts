@@ -33,6 +33,8 @@ export const useRecentActivities = (queryParam?: TAction) => {
   const [currentPage, setCurrentPage] = useState(1);
   const userId = authStore((state) => state.user?.id);
 
+  console.log('queryParam', queryParam);
+
   const { actionName: searchActionName, email: searchEmail }: TAction =
     Object.assign(
       {

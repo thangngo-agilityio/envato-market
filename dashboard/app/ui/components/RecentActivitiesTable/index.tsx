@@ -54,7 +54,7 @@ const RecentActivitiesTableComponent = () => {
     setCurrentPage,
     resetPage,
   } = useRecentActivities({
-    actionName: get('actionName') || '',
+    actionName: get('actionName')?.toLowerCase() || '',
   });
 
   const activityMemorized = useMemo(
