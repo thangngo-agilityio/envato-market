@@ -82,7 +82,7 @@ const ProductsTableComponent = () => {
     isDeleteProduct,
     isUpdateProduct,
   } = useProducts({
-    name: get('name') || '',
+    name: get('name')?.toLowerCase() || '',
   });
 
   const productsMemorized = useMemo(
