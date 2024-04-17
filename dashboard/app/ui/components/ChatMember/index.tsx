@@ -1,14 +1,8 @@
 import { memo } from 'react';
-import {
-  Box,
-  Flex,
-  Text,
-  useColorModeValue,
-  useBreakpointValue,
-} from '@chakra-ui/react';
+import { Box, Flex, Text, useBreakpointValue } from '@chakra-ui/react';
 
 // Themes
-import { colors } from '@/ui/themes/bases/colors';
+import { useColorfill } from '@/ui/themes/bases/colors';
 
 // Utils
 import { generatePlaceholder, getStatusColor } from '@/lib/utils';
@@ -36,17 +30,14 @@ const ChatMember = ({
   statusColor = '',
   onClick,
 }: Props) => {
-  const colorFill = useColorModeValue(
-    colors.secondary[200],
-    colors.secondary[600],
-  );
+  const { secondary } = useColorfill();
 
   const isMobile = useBreakpointValue({ base: true, lg: false });
 
   return isMobile ? (
     <Box
       cursor="pointer"
-      _hover={{ bg: colorFill }}
+      _hover={{ bg: secondary }}
       onClick={onClick}
       borderRadius="lg"
     >
@@ -93,7 +84,7 @@ const ChatMember = ({
   ) : (
     <Box
       cursor="pointer"
-      _hover={{ bg: colorFill }}
+      _hover={{ bg: secondary }}
       onClick={onClick}
       borderRadius="lg"
     >
