@@ -23,7 +23,7 @@ import { useColorfill } from '@/ui/themes/bases';
 import { sendMessage } from '@/lib/utils';
 
 interface QuillProps {
-  userUid: string | undefined;
+  userUid?: string;
   avatarUser: string;
   nameUser: string;
 }
