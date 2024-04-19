@@ -47,7 +47,7 @@ const ChatMemberList = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [chats, setChats] = useState<DocumentData | undefined>({});
+  const [chats, setChats] = useState<DocumentData>();
   const [messages, setMessages] = useState<TMessages[]>([]);
   const [userInfo, setUserInfo] = useState({
     roomChatId: '',
