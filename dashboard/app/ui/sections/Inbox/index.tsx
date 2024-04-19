@@ -4,8 +4,6 @@ import { useEffect, useMemo, useState } from 'react';
 import {
   Text,
   Flex,
-  theme,
-  useColorModeValue,
   Grid,
   GridItem,
   useBreakpointValue,
@@ -42,12 +40,10 @@ import { ERROR_MESSAGES, FIREBASE_CHAT, IMAGES, STATUS } from '@/lib/constants';
 // Interfaces
 import { TMessages } from '@/lib/interfaces';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useColorfill } from '@/ui/themes/bases';
 
 const ChatMemberList = () => {
-  const colorFill = useColorModeValue(
-    theme.colors.gray[800],
-    theme.colors.white,
-  );
+  const { primary } = useColorfill();
   const isMobile = useBreakpointValue({ base: true, lg: false });
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -246,7 +242,7 @@ const ChatMemberList = () => {
                 ({chats ? Object.values(chats).length : 0})
               </Text>
             </Text>
-            <EditIcon color={colorFill} />
+            <EditIcon color={primary} />
           </Flex>
           <Flex direction="column" gap={6} py={3.5}>
             {dataChats &&
