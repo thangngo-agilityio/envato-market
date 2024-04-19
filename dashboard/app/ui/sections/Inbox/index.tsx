@@ -8,6 +8,7 @@ import {
   GridItem,
   useBreakpointValue,
   useToast,
+  Hide,
 } from '@chakra-ui/react';
 
 // Firebase
@@ -194,7 +195,7 @@ const ChatMemberList = () => {
       borderTop="1px solid"
       borderColor="border.tertiary"
     >
-      {isMobile ? (
+      <Hide above="lg">
         <GridItem
           colSpan={12}
           mb={4}
@@ -212,7 +213,8 @@ const ChatMemberList = () => {
               ))}
           </Flex>
         </GridItem>
-      ) : (
+      </Hide>
+      <Hide below="lg">
         <GridItem
           colSpan={4}
           bg="background.body.septenary"
@@ -265,7 +267,7 @@ const ChatMemberList = () => {
               ))}
           </Flex>
         </GridItem>
-      )}
+      </Hide>
       {userInfo.openRoom && (
         <GridItem colSpan={isMobile ? 12 : 8}>
           <Conversation
