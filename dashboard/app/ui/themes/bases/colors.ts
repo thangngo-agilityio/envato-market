@@ -331,7 +331,7 @@ export const useColorfill = () => {
     colors.secondary[400],
   );
 
-  const filterIconColor: string = useColorModeValue(
+  const senary: string = useColorModeValue(
     colors.secondary[400] ?? '',
     colors.primary[500] ?? '',
   );
@@ -342,6 +342,6 @@ export const useColorfill = () => {
     tertiary,
     quaternary,
     quinary,
-    filterIconColor
+    senary
   };
 };

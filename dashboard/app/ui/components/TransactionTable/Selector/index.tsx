@@ -8,7 +8,7 @@ import { FilterIcon } from '@/ui/components/Icons';
 import { useColorfill } from '@/ui/themes/bases/colors';
 
 const SelectorComponent = (): JSX.Element => {
-  const { filterIconColor } = useColorfill();
+  const { senary } = useColorfill();
 
   return (
     <Center
@@ -18,7 +18,7 @@ const SelectorComponent = (): JSX.Element => {
       color="text.currencyColor"
       gap={3}
     >
-      <FilterIcon stroke={filterIconColor} />
+      <FilterIcon stroke={senary} />
       Filters
     </Center>
   );
