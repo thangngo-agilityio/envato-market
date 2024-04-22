@@ -45,6 +45,7 @@ const RecentActivitiesTableComponent = () => {
 
   const {
     activities,
+    limit,
     isLoading: isLoadingActivities,
     isError: isActivitiesError,
     pageArray,
@@ -220,6 +221,8 @@ const RecentActivitiesTableComponent = () => {
     [renderHead, renderIdAction, renderNameUser, renderEmail],
   );
 
+  console.log('limit', limit);
+
   return (
     <Indicator>
       <Flex flexDirection={{ base: 'column', lg: 'row' }}>
@@ -245,6 +248,7 @@ const RecentActivitiesTableComponent = () => {
         {!!activities?.length && (
           <Box mt={8}>
             <Pagination
+              pageSize={limit}
               currentPage={currentPage}
               isDisabledPrev={isDisablePrev}
               isDisableNext={isDisableNext}

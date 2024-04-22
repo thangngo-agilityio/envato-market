@@ -152,6 +152,7 @@ export const useRecentActivities = (queryParam?: TAction) => {
 
   return {
     ...query,
+    limit,
     activities,
     data: activities,
     pageArray,
