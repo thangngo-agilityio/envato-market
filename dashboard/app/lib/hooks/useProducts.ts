@@ -7,10 +7,10 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { authStore } from '@/lib/stores';
 
 // Constants
-import { END_POINTS, PRODUCT_STATUS, TIME_FORMAT } from '@/lib/constants';
+import { END_POINTS, PAGE_SIZE, PRODUCT_STATUS, TIME_FORMAT } from '@/lib/constants';
 
 // Services
-import { getProducts, productsHttpService } from '@/lib/services';
+import { TProducts, getProducts, productsHttpService } from '@/lib/services';
 
 // Interface
 import {
@@ -18,11 +18,10 @@ import {
   SortType,
   TProduct,
   TProductRequest,
-  TProductResponse,
 } from '@/lib/interfaces';
 
 // Utils
-import { handleSort, logActivity } from '../utils';
+import { formatPageArray, handleSort, logActivity } from '../utils';
 
 export type TSearchProduct = {
   name: string;
@@ -36,6 +35,8 @@ type TSort = {
 export type TProductSortHandler = (field: TProductSortField) => void;
 
 export const useProducts = (queryParam?: TSearchProduct) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [limit, setLimit] = useState(PAGE_SIZE);
   const queryClient = useQueryClient();
   const { user } = authStore();
 
@@ -60,11 +61,29 @@ export const useProducts = (queryParam?: TSearchProduct) => {
   );
 
   const { data, ...query } = useQuery({
-    queryKey: [END_POINTS.PRODUCTS, searchName],
-    queryFn: ({ signal }) => getProducts('', { signal }, user?.id),
+    queryKey: [END_POINTS.PRODUCTS, searchName, currentPage, limit],
+    queryFn: ({ signal }) => getProducts('', { signal }, user?.id, currentPage, limit),
   });
 
-  const productData: TProduct[] = data?.data.result || [];
+  const productData: TProduct[] = data?.result || [];
+  const totalPage = data?.totalPage as number;
+
+  const arrOfCurrButtons: number[] = Array.from({ length: totalPage }, (_, index) => index);
+
+  const pageArray = formatPageArray({
+    totalPage,
+    currentPage,
+    arrOfCurrButtons,
+  });
+
+  const isDisableNext = currentPage === totalPage || currentPage < 1;
+
+  const isDisablePrev = currentPage <= 1;
+
+  const resetPage = useCallback(
+    () => setCurrentPage(1),
+    [],
+  );
 
   // sort products
   const productsAfterSort: TProduct[] = useMemo(() => {
@@ -161,8 +180,11 @@ export const useProducts = (queryParam?: TSearchProduct) => {
       const newData = JSON.parse(dataResponse.config.data);
 
       queryClient.setQueryData(
-        [END_POINTS.PRODUCTS, searchName],
-        (oldData: TProduct[]) => [newData, ...oldData],
+        [END_POINTS.PRODUCTS, searchName, currentPage, limit],
+        (product: TProducts) => {
+          const oldData = product.result;
+          [newData, ...oldData];
+        }
       );
     },
   });
@@ -188,9 +210,15 @@ export const useProducts = (queryParam?: TSearchProduct) => {
     },
     onSuccess: (_, variables) => {
       queryClient.setQueryData(
-        [END_POINTS.PRODUCTS, searchName],
-        (oldData: TProduct[]) =>
-          oldData.filter((item) => item._id !== variables.productId),
+        [END_POINTS.PRODUCTS, searchName, currentPage, limit],
+        (oldData: TProducts) => {
+          console.log('oldData', oldData.result);
+          const dataUpdated = oldData.result.map((item) => item._id !== variables.productId ? {
+            ...item,
+          }
+            : item,);
+          return dataUpdated;
+        }
       );
     },
   });
@@ -214,9 +242,9 @@ export const useProducts = (queryParam?: TSearchProduct) => {
     },
     onSuccess: async (_, variables) => {
       queryClient.setQueryData(
-        [END_POINTS.PRODUCTS, searchName],
-        (oldData: TProductResponse[]) => {
-          const dataUpdated = oldData.map((item) =>
+        [END_POINTS.PRODUCTS, searchName, currentPage, limit],
+        (oldData: TProducts) => {
+          const dataUpdated = oldData.result.map((item) =>
             item._id === variables.productId
               ? {
                 ...item,
@@ -240,14 +268,22 @@ export const useProducts = (queryParam?: TSearchProduct) => {
 
   return {
     ...query,
+    limit,
+    currentPage,
     products,
     data: products,
     isCreateProduct,
     isDeleteProduct,
     isUpdateProduct,
+    pageArray,
+    isDisableNext,
+    isDisablePrev,
     createProduct,
     deleteProduct,
     updateProduct,
     sortBy,
+    setLimit,
+    resetPage,
+    setCurrentPage,
   };
 };

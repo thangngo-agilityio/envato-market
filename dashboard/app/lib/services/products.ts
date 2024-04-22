@@ -21,13 +21,10 @@ export const getProducts = async (
   userId?: string,
   page = 1,
   limit = PAGE_SIZE,
-): Promise<{ data: TProducts }> => {
-  const response = (
-    await productsHttpService.get(
-      `${END_POINTS.PRODUCTS}/${userId}/${page}/${limit}${searchParam || ''}`,
-      config,
-    )
-  ).data;
+): Promise<TProducts> => (
+  await productsHttpService.get(
+    `${END_POINTS.PRODUCTS}/${userId}/${page}/${limit}${searchParam || ''}`,
+    config,
+  )
+).data;
 
-  return { data: response };
-};

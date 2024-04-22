@@ -44,6 +44,10 @@ export const ERROR_MESSAGES = {
     title: 'Update failed',
     description: 'Your transaction has not been updated successfully',
   },
+  CREATE_TRANSACTION_FAIL: {
+    title: 'Create failed',
+    description: 'Your transaction has not been create successfully',
+  },
   UPDATE_PRODUCT_FAIL: {
     title: 'Update failed',
     description: 'Your product has not been updated successfully',
