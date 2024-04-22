@@ -13,6 +13,7 @@ import {
   Pagination,
   Indicator,
 } from '@/ui/components';
+import { TOption } from '../common/Select';
 
 // Constants
 import {
@@ -52,6 +53,7 @@ const RecentActivitiesTableComponent = () => {
     isDisablePrev,
     sortBy,
     setCurrentPage,
+    setLimit,
     resetPage,
   } = useRecentActivities({
     actionName: get('actionName')?.toLowerCase() || '',
@@ -77,6 +79,14 @@ const RecentActivitiesTableComponent = () => {
       setCurrentPage(direction === PREV ? currentPage - 1 : currentPage + 1);
     },
     [currentPage, setCurrentPage],
+  );
+
+  const handleChangeLimit = useCallback(
+    (limit: TOption) => {
+      setLimit(+limit.value);
+      resetPage();
+    },
+    [resetPage, setLimit],
   );
 
   const renderHead = useCallback(
@@ -241,6 +251,7 @@ const RecentActivitiesTableComponent = () => {
               arrOfCurrButtons={pageArray}
               onPageChange={handlePageChange}
               onClickPage={handleClickPage}
+              onLimitChange={handleChangeLimit}
             />
           </Box>
         )}
