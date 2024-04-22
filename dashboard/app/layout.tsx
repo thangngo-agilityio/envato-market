@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 // Providers
@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   icons: {
     icon: '/icons/logo-mini-light.svg',
   },
+};
+
+export const viewport: Viewport = {
+  colorScheme: 'dark',
 };
 
 export default function RootLayout({
