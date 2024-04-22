@@ -15,23 +15,23 @@ import { getProducts, productsHttpService } from '@/lib/services';
 // Interface
 import {
   EActivity,
+  SortType,
   TProduct,
   TProductRequest,
   TProductResponse,
 } from '@/lib/interfaces';
 
 // Utils
-import { logActivity } from '../utils';
+import { handleSort, logActivity } from '../utils';
 
 export type TSearchProduct = {
   name: string;
 };
 
-type TSortType = 'desc' | 'asc';
 export type TProductSortField = 'name' | 'price' | 'date' | 'quantity';
 type TSort = {
   field: TProductSortField | '';
-  type: TSortType;
+  type: SortType;
 };
 export type TProductSortHandler = (field: TProductSortField) => void;
 
@@ -39,17 +39,17 @@ export const useProducts = (queryParam?: TSearchProduct) => {
   const queryClient = useQueryClient();
   const { user } = authStore();
 
-  const sortType: Record<TSortType, TSortType> = useMemo(
+  const sortType: Record<SortType, SortType> = useMemo(
     () => ({
-      desc: 'asc',
-      asc: 'desc',
+      desc: SortType.ASC,
+      asc: SortType.DESC,
     }),
     [],
   );
 
   const [sortValue, setSortValue] = useState<TSort>({
     field: '',
-    type: 'asc',
+    type: SortType.ASC,
   });
 
   const { name: searchName }: TSearchProduct = Object.assign(
@@ -59,43 +59,19 @@ export const useProducts = (queryParam?: TSearchProduct) => {
     queryParam,
   );
 
-  const { data = [], ...query } = useQuery({
+  const { data, ...query } = useQuery({
     queryKey: [END_POINTS.PRODUCTS, searchName],
     queryFn: ({ signal }) => getProducts('', { signal }, user?.id),
   });
 
+  const productData: TProduct[] = data?.data.result || [];
+
   // sort products
   const productsAfterSort: TProduct[] = useMemo(() => {
-    const tempProducts: TProduct[] = [...data];
+    const tempProducts: TProduct[] = productData;
     const { field, type } = sortValue;
 
-    if (!field) return data;
-
-    const handleSort = (
-      type: TSortType,
-      prevValue: string,
-      nextValue: string,
-    ): number => {
-      const convertPreValue: string = prevValue.toString().trim().toLowerCase();
-      const convertNextValue: string = nextValue
-        .toString()
-        .trim()
-        .toLowerCase();
-
-      if (type === 'asc') {
-        if (convertPreValue > convertNextValue) return 1;
-
-        if (convertPreValue < convertNextValue) return -1;
-      }
-
-      if (type === 'desc') {
-        if (convertPreValue > convertNextValue) return -1;
-
-        if (convertPreValue < convertNextValue) return 1;
-      }
-
-      return 0;
-    };
+    if (!field) return productData;
 
     tempProducts.sort(
       (

@@ -221,8 +221,6 @@ const RecentActivitiesTableComponent = () => {
     [renderHead, renderIdAction, renderNameUser, renderEmail],
   );
 
-  console.log('limit', limit);
-
   return (
     <Indicator>
       <Flex flexDirection={{ base: 'column', lg: 'row' }}>
