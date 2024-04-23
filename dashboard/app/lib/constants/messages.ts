@@ -155,8 +155,8 @@ export const SUCCESS_MESSAGES = {
     description: 'Check your email inbox to recover your password',
   },
   CREATE_PRODUCT_SUCCESS: {
-    title: 'Update success',
-    description: 'Your product has been updated successfully',
+    title: 'Created success',
+    description: 'Your product has been created successfully',
   },
 };
 

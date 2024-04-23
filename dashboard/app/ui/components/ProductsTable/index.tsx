@@ -172,8 +172,7 @@ const ProductsTableComponent = () => {
               ),
             );
           },
-          onError: (error) => {
-            console.log(error);
+          onError: () => {
             toast(
               customToast(
                 ERROR_MESSAGES.DELETE_FAIL.title,
