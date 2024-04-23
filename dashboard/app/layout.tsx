@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 import { cookies } from 'next/headers';
 import './globals.css';
 
@@ -31,23 +32,18 @@ export const metadata: Metadata = {
   },
 };
 
-const cookieStore = cookies();
-const colorMode = cookieStore
-  .getAll()
-  .find((cookie) => cookie.name === 'colormode');
-
-export const viewport: Viewport = {
-  themeColor:
-    colorMode && colorMode.value === THEMES.DARK
-      ? colors['background']['body']['primary']['_dark']
-      : colors['primary']['200'],
-};
+let colorMode: RequestCookie | undefined;
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const cookieStore = cookies();
+  colorMode = cookieStore
+    .getAll()
+    .find((cookie) => cookie.name === 'colormode');
+
   return (
     <html
       lang="en"
@@ -70,3 +66,10 @@ export default function RootLayout({
     </html>
   );
 }
+
+export const viewport: Viewport = {
+  themeColor:
+    colorMode && colorMode.value === THEMES.DARK
+      ? colors['background']['body']['primary']['_dark']
+      : colors['primary']['200'],
+};
