@@ -429,21 +429,19 @@ const ProductsTableComponent = () => {
             dataSource={formatProductResponse(productsMemorized)}
           />
         </Box>
-        {!!products?.length && (
-          <Box mt={8}>
-            <Pagination
-              pageSize={limit}
-              currentPage={currentPage}
-              isDisabledPrev={isDisablePrev}
-              isDisableNext={isDisableNext}
-              arrOfCurrButtons={pageArray}
-              onLimitChange={handleChangeLimit}
-              onPageChange={handlePageChange}
-              onClickPage={handleClickPage}
-            />
-          </Box>
-        )}
       </Fetching>
+      <Box mt={8}>
+        <Pagination
+          pageSize={limit}
+          currentPage={currentPage}
+          isDisabledPrev={isDisablePrev}
+          isDisableNext={isDisableNext}
+          arrOfCurrButtons={pageArray}
+          onLimitChange={handleChangeLimit}
+          onPageChange={handlePageChange}
+          onClickPage={handleClickPage}
+        />
+      </Box>
 
       {isOpenConfirmModal && (
         <Modal

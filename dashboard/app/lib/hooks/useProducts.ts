@@ -175,6 +175,7 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         EActivity.CREATE_PRODUCT,
         user?.id,
       );
+      console.log('activity', activity);
 
       return await productsHttpService
         .post<TProductRequest>(END_POINTS.PRODUCTS, product)
@@ -188,7 +189,10 @@ export const useProducts = (queryParam?: TSearchProduct) => {
 
       queryClient.setQueryData(
         [END_POINTS.PRODUCTS, searchName, currentPage, limit],
-        (oldData: TProductsResponse) => [newData, ...(oldData?.result || [])],
+        (oldData: TProductsResponse) => ({
+          result: [newData, ...(oldData?.result || [])],
+          totalPage: oldData.totalPage,
+        })
       );
     },
   });
@@ -202,6 +206,7 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         EActivity.DELETE_PRODUCT,
         user?.id,
       );
+      console.log('activity', activity);
 
       return await productsHttpService
         .delete(END_POINTS.PRODUCTS, {
@@ -215,8 +220,10 @@ export const useProducts = (queryParam?: TSearchProduct) => {
     onSuccess: (_, variables) => {
       queryClient.setQueryData(
         [END_POINTS.PRODUCTS, searchName, currentPage, limit],
-        (oldData: TProductsResponse) =>
-          oldData.result.filter((item) => item._id !== variables.productId),
+        (oldData: TProductsResponse) => ({
+          result: oldData.result.filter((item) => item._id !== variables.productId),
+          totalPage: oldData.totalPage,
+        })
       );
     },
   });
@@ -241,25 +248,25 @@ export const useProducts = (queryParam?: TSearchProduct) => {
     onSuccess: async (_, variables) => {
       queryClient.setQueryData(
         [END_POINTS.PRODUCTS, searchName, currentPage, limit],
-        (oldData: TProductsResponse) => {
-          const dataUpdated = oldData.result.map((item) =>
+        (oldData: TProductsResponse) => ({
+          result: oldData.result.map((item) =>
             item._id === variables.productId
               ? {
-                  ...item,
-                  name: variables.name,
-                  imageURLs: variables.imageURLs,
-                  stock: variables.stock,
-                  productStatus:
-                    Number(variables.stock) > 0
-                      ? PRODUCT_STATUS.IN_STOCK
-                      : PRODUCT_STATUS.SOLD,
-                  amount: variables.amount,
-                  product: { ...variables },
-                }
+                ...item,
+                name: variables.name,
+                imageURLs: variables.imageURLs,
+                stock: variables.stock,
+                productStatus:
+                  Number(variables.stock) > 0
+                    ? PRODUCT_STATUS.IN_STOCK
+                    : PRODUCT_STATUS.SOLD,
+                amount: variables.amount,
+                product: { ...variables },
+              }
               : item,
-          );
-          return dataUpdated;
-        },
+          ),
+          totalPage: oldData.totalPage
+        })
       );
     },
   });
