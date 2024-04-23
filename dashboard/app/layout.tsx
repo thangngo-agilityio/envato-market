@@ -1,4 +1,5 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
+import { cookies } from 'next/headers';
 import './globals.css';
 
 // Providers
@@ -12,6 +13,15 @@ import {
 import { fontFamilies } from '@/ui/themes/bases';
 import MetadataMemorize from './metadata';
 
+// Utils
+import { getTheme } from '@/lib/utils/updateColorScheme';
+
+// Themes
+import { colors } from '@/ui/themes/bases';
+
+// Constants
+import { THEMES } from '@/lib/constants';
+
 export const metadata: Metadata = {
   title: 'Envato Market - Manage users and transactions on every purchase',
   description:
@@ -19,6 +29,18 @@ export const metadata: Metadata = {
   icons: {
     icon: '/icons/logo-mini-light.svg',
   },
+};
+
+const cookieStore = cookies();
+const colorMode = cookieStore
+  .getAll()
+  .find((cookie) => cookie.name === 'colormode');
+
+export const viewport: Viewport = {
+  themeColor:
+    colorMode && colorMode.value === THEMES.DARK
+      ? colors['background']['body']['primary']['_dark']
+      : colors['primary']['200'],
 };
 
 export default function RootLayout({
@@ -31,7 +53,11 @@ export default function RootLayout({
       lang="en"
       className={`${fontFamilies.urbanist.variable} ${fontFamilies.poppins.variable}`}
     >
-      <MetadataMemorize />
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: getTheme }}></script>
+        <MetadataMemorize />
+      </head>
+
       <body>
         <QueryProvider>
           <ChakraProvider>
