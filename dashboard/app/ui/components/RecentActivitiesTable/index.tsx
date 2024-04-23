@@ -76,9 +76,8 @@ const RecentActivitiesTableComponent = () => {
   const handleClickPage = (value: number) => setCurrentPage(value);
 
   const handlePageChange = useCallback(
-    (direction: string) => {
-      setCurrentPage(direction === PREV ? currentPage - 1 : currentPage + 1);
-    },
+    (direction: string) =>
+      setCurrentPage(direction === PREV ? currentPage - 1 : currentPage + 1),
     [currentPage, setCurrentPage],
   );
 
