@@ -91,7 +91,7 @@ export const useRecentActivities = (queryParam?: TAction) => {
   // sort activitiesSorted
   const activitiesAfterSort: TRecentActivities[] =
     useMemo((): TRecentActivities[] => {
-      const tempActivities: TRecentActivities[] = [...activitiesData];
+      const tempActivities: TRecentActivities[] = activitiesData;
       const { field, type } = sortValue;
 
       if (!field) return activitiesData;
@@ -112,14 +112,14 @@ export const useRecentActivities = (queryParam?: TAction) => {
           const valueForField: Record<TActivitiesSortField, number> = {
             actionName: handleSort(
               type,
-              prevActivitiesName ?? '',
-              nextActivitiesName ?? '',
+              prevActivitiesName,
+              nextActivitiesName,
             ),
-            email: handleSort(type, prevEmail ?? '', nextEmail ?? ''),
+            email: handleSort(type, prevEmail, nextEmail),
             date: handleSort(
               type,
-              dayjs(prevCreatedAt).format(TIME_DETAIL_FORMAT) ?? '',
-              dayjs(nextCreatedAt).format(TIME_DETAIL_FORMAT) ?? '',
+              dayjs(prevCreatedAt).format(TIME_DETAIL_FORMAT),
+              dayjs(nextCreatedAt).format(TIME_DETAIL_FORMAT),
             ),
           };
 
