@@ -175,7 +175,6 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         EActivity.CREATE_PRODUCT,
         user?.id,
       );
-      console.log('activity', activity);
 
       return await productsHttpService
         .post<TProductRequest>(END_POINTS.PRODUCTS, product)
@@ -206,7 +205,6 @@ export const useProducts = (queryParam?: TSearchProduct) => {
         EActivity.DELETE_PRODUCT,
         user?.id,
       );
-      console.log('activity', activity);
 
       return await productsHttpService
         .delete(END_POINTS.PRODUCTS, {
