@@ -55,10 +55,10 @@ const PaginationComponent = ({
     <Flex
       data-testid="pagination"
       w="100%"
-      justifyContent={{ base: 'center', lg: 'space-between' }}
+      justifyContent={{ base: 'space-between' }}
     >
       <Flex
-        display={{ base: 'none', lg: 'inline-flex' }}
+        display={{ base: 'inline-flex' }}
         alignItems="center"
         position="relative"
       >
