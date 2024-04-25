@@ -52,7 +52,7 @@ const PaginationComponent = ({
   );
 
   return (
-    <Flex data-testid="pagination" justifyContent="space-between">
+    <Flex data-testid="pagination" justifyContent="space-between" mt={8}>
       <Flex alignItems="center">
         <Text w={100} fontSize="sm" fontWeight="semibold" color="text.primary">
           Show result:
