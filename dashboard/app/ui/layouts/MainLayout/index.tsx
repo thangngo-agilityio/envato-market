@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   Box,
@@ -47,8 +47,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
   const user = authStore((state): TAuthStoreData['user'] => state.user);
   const { isLogoutHandling, signOut } = useAuth();
-
-  const handleSignOut = useCallback(() => signOut(), [signOut]);
 
   useEffect(() => {
     if (isDesktop) {
@@ -111,7 +109,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
               user={user as TUserDetail}
               onOpen={onOpen}
               onClose={onClose}
-              onSignOut={handleSignOut}
+              onSignOut={signOut}
             />
             <Header />
             {children}
