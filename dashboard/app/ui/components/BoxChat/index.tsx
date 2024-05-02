@@ -19,6 +19,8 @@ import { getInfoRoomChat, useSubscribeToChat } from '@/lib/hooks';
 // Firebase
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/lib/utils';
+
+// Constants
 import { AUTHENTICATION_ROLE, FIREBASE_CHAT } from '@/lib/constants';
 
 const initialUserChat = {
