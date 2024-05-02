@@ -1,13 +1,11 @@
 'use client';
 
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { Box, Heading, Flex, Spinner } from '@chakra-ui/react';
+import { Box, Heading, Flex } from '@chakra-ui/react';
 
 // Components
+import { InputSendMessages, Loading } from '@/ui/components';
 import Message from './Message';
-
-// Components
-import { InputSendMessages } from '@/ui/components';
 
 // Interface
 import { TMessages } from '@/lib/interfaces';
@@ -42,7 +40,6 @@ const BoxChatComponent = () => {
 
   const fetchData = async () => {
     const usersData = await getInfoRoomChat(user);
-    // Get user data
 
     // Check if usersData is undefined before accessing its properties
     if (usersData) {
@@ -95,12 +92,10 @@ const BoxChatComponent = () => {
           </Heading>
         </Flex>
 
-        <Box padding={{ base: '24px 20px', lg: '45px 35px' }}>
-          {isLoading ? (
-            <Flex justifyContent="center">
-              <Spinner />
-            </Flex>
-          ) : (
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <Box padding={{ base: '24px 20px', lg: '45px 35px' }}>
             <Box
               ref={boxRef}
               overflowX="auto"
@@ -131,10 +126,10 @@ const BoxChatComponent = () => {
                 />
               ))}
             </Box>
-          )}
 
-          <InputSendMessages boxRef={boxRef} />
-        </Box>
+            <InputSendMessages boxRef={boxRef} />
+          </Box>
+        )}
       </Box>
     )
   );
