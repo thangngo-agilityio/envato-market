@@ -10,9 +10,29 @@ import {
   useToast,
   Hide,
 } from '@chakra-ui/react';
+import { useRouter, useSearchParams } from 'next/navigation';
+
+// Components
+import {
+  ChatMember,
+  Conversation,
+  EditIcon,
+  FallbackImage,
+} from '@/ui/components';
+
+// Constants
+import { ERROR_MESSAGES, FIREBASE_CHAT, IMAGES, STATUS } from '@/lib/constants';
+
+// Hooks
+import { useGetUserDetails, useSubscribeToChat } from '@/lib/hooks';
+
+// Store
+import { authStore } from '@/lib/stores';
+
+// Utils
+import { convertTimeMessage, customToast, db } from '@/lib/utils';
 
 // Firebase
-import { convertTimeMessage, customToast, db } from '@/lib/utils';
 import {
   DocumentData,
   DocumentReference,
@@ -23,24 +43,10 @@ import {
   setDoc,
 } from 'firebase/firestore';
 
-// Components
-import {
-  ChatMember,
-  Conversation,
-  EditIcon,
-  FallbackImage,
-} from '@/ui/components';
-
-// Hooks
-import { useGetUserDetails, useSubscribeToChat } from '@/lib/hooks';
-
-// Store
-import { authStore } from '@/lib/stores';
-import { ERROR_MESSAGES, FIREBASE_CHAT, IMAGES, STATUS } from '@/lib/constants';
-
 // Interfaces
 import { TMessages } from '@/lib/interfaces';
-import { useRouter, useSearchParams } from 'next/navigation';
+
+// Themes
 import { useColorfill } from '@/ui/themes/bases';
 
 const ChatMemberList = () => {
