@@ -70,6 +70,8 @@ const HistoriesTableComponent = () => {
     handlePageClick,
   } = usePagination(transactionsMemorized);
 
+  const { limit, currentPage } = data || {};
+
   // Update search params when end time debounce
   const handleDebounceSearch = useDebounce((value: string) => {
     resetPage();
@@ -188,8 +190,8 @@ const HistoriesTableComponent = () => {
         </Box>
       </Fetching>
       <Pagination
-        pageSize={data.limit}
-        currentPage={data.currentPage}
+        pageSize={limit}
+        currentPage={currentPage}
         isDisabledPrev={isDisabledPrev}
         isDisableNext={isDisableNext}
         arrOfCurrButtons={arrOfCurrButtons}

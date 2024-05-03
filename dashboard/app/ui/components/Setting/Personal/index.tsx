@@ -56,6 +56,23 @@ const UserFormComponent = () => {
   const toast = useToast();
 
   const {
+    id,
+    avatarURL,
+    email,
+    firstName,
+    lastName,
+    phoneNumber,
+    country,
+    city,
+    address,
+    postalCode,
+    facebookURL,
+    linkedinURL,
+    twitterURL,
+    youtubeURL,
+  } = user || {};
+
+  const {
     control,
     formState: {
       errors: { root },
@@ -67,20 +84,20 @@ const UserFormComponent = () => {
     reset,
   } = useForm<TUserDetail>({
     defaultValues: {
-      id: user?.id,
-      avatarURL: user?.avatarURL,
-      email: user?.email,
-      firstName: user?.firstName,
-      lastName: user?.lastName,
-      phoneNumber: user?.phoneNumber,
-      country: user?.country,
-      city: user?.city,
-      address: user?.address,
-      postalCode: user?.postalCode,
-      facebookURL: user?.facebookURL,
-      linkedinURL: user?.linkedinURL,
-      twitterURL: user?.twitterURL,
-      youtubeURL: user?.youtubeURL,
+      id: id,
+      avatarURL: avatarURL,
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
+      country: country,
+      city: city,
+      address: address,
+      postalCode: postalCode,
+      facebookURL: facebookURL,
+      linkedinURL: linkedinURL,
+      twitterURL: twitterURL,
+      youtubeURL: youtubeURL,
     },
     mode: 'onBlur',
   });
@@ -113,7 +130,7 @@ const UserFormComponent = () => {
 
         const updatedInfo = {
           ...data,
-          avatarURL: uploadedAvatarUrl || user?.avatarURL,
+          avatarURL: uploadedAvatarUrl || avatarURL,
         };
 
         updateUser(updatedInfo, {
@@ -156,7 +173,7 @@ const UserFormComponent = () => {
       updateUser,
       avatarFile,
       handleShowErrorWhenUploadImage,
-      user?.avatarURL,
+      avatarURL,
       setUser,
       toast,
       reset,

@@ -41,6 +41,8 @@ const BoxChatComponent = () => {
   const [userChat, setUserChat] = useState(initialUserChat);
   const boxRef = useRef<HTMLDivElement | null>(null);
 
+  const { avatarAdminUrl, avatarUrl, adminId } = userChat || {};
+
   const fetchData = async () => {
     const usersData = await getInfoRoomChat(user);
 
@@ -118,16 +120,21 @@ const BoxChatComponent = () => {
               maxHeight={361}
               padding={5}
             >
-              {messages.map((message) => (
-                <Message
-                  content={message.text}
-                  key={message.date.seconds}
-                  senderId={message.senderId}
-                  avatarAdmin={userChat.avatarAdminUrl}
-                  avatarUser={userChat.avatarUrl}
-                  superAdminId={userChat.adminId}
-                />
-              ))}
+              {messages.map((message) => {
+                const { text, date, senderId } = message || {};
+                const { seconds } = date || {};
+
+                return (
+                  <Message
+                    content={text}
+                    key={seconds}
+                    senderId={senderId}
+                    avatarAdmin={avatarAdminUrl}
+                    avatarUser={avatarUrl}
+                    superAdminId={adminId}
+                  />
+                );
+              })}
             </Box>
 
             <InputSendMessages boxRef={boxRef} />

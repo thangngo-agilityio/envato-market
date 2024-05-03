@@ -53,10 +53,20 @@ const ProductForm = ({
   onUpdateProduct,
   onCloseModal,
 }: ProductProps) => {
+  const { product } = data || {};
+  const {
+    _id,
+    name,
+    imageURLs,
+    currency,
+    amount,
+    stock,
+    description,
+    createdAt,
+  } = product || {};
+
   const toast = useToast();
-  const [previewURLs, setPreviewURL] = useState<string[]>(
-    data?.product.imageURLs || [],
-  );
+  const [previewURLs, setPreviewURL] = useState<string[]>(imageURLs || []);
   const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [isImagesDirty, setIsImagesDirty] = useState(false);
 
@@ -68,14 +78,14 @@ const ProductForm = ({
     reset,
   } = useForm<TProductRequest>({
     defaultValues: {
-      _id: data?.product._id,
-      name: data?.product.name,
-      imageURLs: data?.product.imageURLs,
-      currency: data?.product.currency || CURRENCY_PRODUCT,
-      amount: data?.product.amount,
-      stock: data?.product.stock,
-      description: data?.product.description,
-      createdAt: data?.product.createdAt,
+      _id: _id,
+      name: name,
+      imageURLs: imageURLs,
+      currency: currency || CURRENCY_PRODUCT,
+      amount: amount,
+      stock: stock,
+      description: description,
+      createdAt: createdAt,
     },
   });
   const userId = authStore((state) => state.user?.id);
