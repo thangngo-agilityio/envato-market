@@ -4,8 +4,7 @@ import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Box, Heading, Flex } from '@chakra-ui/react';
 
 // Components
-import { InputSendMessages, Loading } from '@/ui/components';
-import Message from './Message';
+import { InputSendMessages, Loading, Message } from '@/ui/components';
 
 // Interface
 import { TMessages } from '@/lib/interfaces';
@@ -18,6 +17,8 @@ import { getInfoRoomChat, useSubscribeToChat } from '@/lib/hooks';
 
 // Firebase
 import { doc, getDoc, setDoc } from 'firebase/firestore';
+
+// Utils
 import { db } from '@/lib/utils';
 
 // Constants
