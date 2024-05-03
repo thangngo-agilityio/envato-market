@@ -18,8 +18,8 @@ interface CustomerProps {
 }
 
 const CustomerIssues = ({
-  dataList,
-  isFetching,
+  dataList = [],
+  isFetching = false,
   isDisabled = false,
   hasNextPage = true,
   onLoadMore,

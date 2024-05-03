@@ -21,7 +21,7 @@ export type TUploadImageImagesProps = {
 };
 
 const UploadImagesComponent = ({
-  label,
+  label = 'Upload images',
   previewURLs = [],
   onChange,
   onRemove,
