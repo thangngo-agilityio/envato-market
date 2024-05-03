@@ -14,8 +14,9 @@ import {
   Fetching,
 } from '@/ui/components';
 
-// Utils
-import { formatTransactionResponse } from '@/lib/utils';
+// Constants
+import { COLUMNS_HISTORY, STATUS_LABEL, MONTHS_OPTIONS } from '@/lib/constants';
+import { TYPE } from '@/lib/constants/notification';
 
 // Hooks
 import {
@@ -26,9 +27,8 @@ import {
   useTransactions,
 } from '@/lib/hooks';
 
-// Constants
-import { COLUMNS_HISTORY, STATUS_LABEL, MONTHS_OPTIONS } from '@/lib/constants';
-import { TYPE } from '@/lib/constants/notification';
+// Utils
+import { formatTransactionResponse } from '@/lib/utils';
 
 // Types
 import { TDataSource, THeaderTable, TTransaction } from '@/lib/interfaces';
