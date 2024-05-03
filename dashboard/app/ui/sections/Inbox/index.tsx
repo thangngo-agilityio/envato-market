@@ -213,8 +213,10 @@ const ChatMemberList = () => {
               dataChats.map((chat) => (
                 <ChatMember
                   key={chat[0]}
+                  uid={chat[1].userInfo?.uid}
                   avatar={chat[1].userInfo?.avatarUrl}
-                  onClick={() => handleSelectMember(chat[1].userInfo)}
+                  name={chat[1].userInfo?.displayName}
+                  onClick={handleSelectMember}
                 />
               ))}
           </Flex>
@@ -257,9 +259,10 @@ const ChatMemberList = () => {
               dataChats.map((chat) => (
                 <ChatMember
                   key={chat[0]}
+                  uid={chat[1].userInfo?.uid}
                   avatar={chat[1].userInfo?.avatarUrl}
                   name={chat[1].userInfo?.displayName}
-                  onClick={() => handleSelectMember(chat[1].userInfo)}
+                  onClick={handleSelectMember}
                   icon={
                     <FallbackImage
                       boxSize={4}

@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, memo, useCallback } from 'react';
+import { ChangeEvent, memo, useCallback, MouseEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
@@ -183,6 +183,17 @@ const AuthFormComponent = ({
     [clearErrors],
   );
 
+  const handleClickForgotPassword = useCallback(
+    (e: MouseEvent<HTMLButtonElement>) => {
+      isSubmitting && e.preventDefault();
+    },
+    [],
+  );
+
+  const handleClickSubmit = useCallback((e: MouseEvent<HTMLButtonElement>) => {
+    isSubmitting && e.preventDefault();
+  }, []);
+
   return (
     <Box
       id={!isRegister ? 'login-form' : 'register-form'}
@@ -339,9 +350,7 @@ const AuthFormComponent = ({
               fontWeight="semibold"
               textTransform="capitalize"
               textDecoration="underline"
-              onClick={(e) => {
-                isSubmitting && e.preventDefault();
-              }}
+              onClick={handleClickForgotPassword}
             >
               forgot password?
             </Button>
@@ -476,9 +485,7 @@ const AuthFormComponent = ({
           fontWeight="semibold"
           textDecoration="underline"
           ml={2}
-          onClick={(e) => {
-            isSubmitting && e.preventDefault();
-          }}
+          onClick={handleClickSubmit}
         >
           {!isRegister ? 'Sign Up' : 'Sign In'}
         </Button>

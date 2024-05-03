@@ -54,7 +54,7 @@ const ProductForm = ({
   onCloseModal,
 }: ProductProps) => {
   const toast = useToast();
-  const [previewURL, setPreviewURL] = useState<string[]>(
+  const [previewURLs, setPreviewURL] = useState<string[]>(
     data?.product.imageURLs || [],
   );
   const [imageFiles, setImageFiles] = useState<File[]>([]);
@@ -128,13 +128,13 @@ const ProductForm = ({
 
   const handleRemoveImage = useCallback(
     (index: number) => {
-      const updatedImages = [...previewURL];
+      const updatedImages = [...previewURLs];
       updatedImages.splice(index, 1);
 
       setPreviewURL(updatedImages);
       setIsImagesDirty(true);
     },
-    [previewURL],
+    [previewURLs],
   );
 
   const handleChangeValue = useCallback(
@@ -167,7 +167,7 @@ const ProductForm = ({
 
       const requestData = {
         ...data,
-        imageURLs: imagesUpload.length ? imagesUpload : previewURL,
+        imageURLs: imagesUpload.length ? imagesUpload : previewURLs,
         stock: parseFormattedNumber(data.stock).toString(),
         amount: parseFormattedNumber(data.amount).toString(),
         userId,
@@ -185,7 +185,7 @@ const ProductForm = ({
       onCloseModal,
       onCreateProduct,
       onUpdateProduct,
-      previewURL,
+      previewURLs,
       reset,
       userId,
     ],
@@ -368,7 +368,7 @@ const ProductForm = ({
           <FormControl>
             <UploadImages
               label="Gallery Thumbnail"
-              previewURL={previewURL}
+              previewURLs={previewURLs}
               onChange={handleFilesChange}
               onRemove={handleRemoveImage}
             />

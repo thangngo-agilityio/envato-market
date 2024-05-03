@@ -164,6 +164,10 @@ const UserSelectorComponent = ({
     [handleFilterOptions],
   );
 
+  const handleClick = useCallback((e: MouseEvent<HTMLInputElement>) => {
+    e.stopPropagation();
+  }, []);
+
   const handleSelectEmail = useCallback(
     (email: string, onChange: (val: string) => void) => (e: MouseEvent) => {
       e.stopPropagation();
@@ -233,7 +237,7 @@ const UserSelectorComponent = ({
                     onChange={handleChange}
                     onFocus={handleFocusOrBlur}
                     onBlur={handleFocusOrBlur}
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={handleClick}
                   />
                   <InputRightElement>
                     <IconButton
