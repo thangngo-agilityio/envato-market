@@ -2,9 +2,9 @@
 import { memo } from 'react';
 import { useStore } from 'zustand';
 import { usePathname } from 'next/navigation';
+import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 
 // Components
-import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 import {
   BonusNotification,
   Dropdown,
@@ -12,20 +12,21 @@ import {
   Logo,
   SwitchTheme,
 } from '@/ui/components';
-
-// Assets
 import { Email } from '@/ui/components/Icons';
+import Notification from '@/ui/components/common/Notification';
 
 // Constants
 import { AUTHENTICATION_ROLE, TITLES_HEADER } from '@/lib/constants';
 
-// Components
-import Notification from '@/ui/components/common/Notification';
-
 // Stores
 import { authStore } from '@/lib/stores';
+
+// Types
 import { TUserDetail } from '@/lib/interfaces';
+
+// Themes
 import { useColorfill } from '@/ui/themes/bases';
+
 const HeaderComponent = () => {
   const { primary } = useColorfill();
   const pathname = usePathname();

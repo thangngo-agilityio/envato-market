@@ -4,28 +4,29 @@ import { useCallback, useEffect, useId } from 'react';
 import { VStack, Flex, Text } from '@chakra-ui/react';
 import 'react-quill/dist/quill.snow.css';
 import { Controller, useForm } from 'react-hook-form';
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 // Components
 import { SendIconLight } from '..';
 import CustomButton from '@/ui/components/common/Button';
 
-// Interfaces
-import { TMessages } from '@/lib/interfaces';
+// Hooks
+import { sendMessage } from '@/lib/utils';
 
 // Stores
 import { authStore } from '@/lib/stores';
 
-// bases
+// Interfaces
+import { TMessages } from '@/lib/interfaces';
+
+// Themes
 import { useColorfill } from '@/ui/themes/bases';
 
-// Hooks
-import { sendMessage } from '@/lib/utils';
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 interface QuillProps {
-  userUid?: string;
   avatarUser: string;
   nameUser: string;
+  userUid?: string;
 }
 
 const Quill = ({ userUid, avatarUser, nameUser }: QuillProps) => {

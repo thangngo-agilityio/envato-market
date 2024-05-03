@@ -2,7 +2,6 @@
 
 import { memo, useCallback, useMemo, useState } from 'react';
 import { AxiosResponse } from 'axios';
-
 import {
   HStack,
   VStack,
@@ -14,15 +13,10 @@ import {
   Flex,
   useToast,
 } from '@chakra-ui/react';
-
-// Hooks
 import { Controller, useForm } from 'react-hook-form';
 
-// Interfaces
-import { TUserDetail } from '@/lib/interfaces';
-
-// Hooks
-import { useAuth, useUpdateUser } from '@/lib/hooks';
+// Components
+import { Indicator, InputField, UpdateProfile } from '@/ui/components';
 
 // Constants
 import {
@@ -34,8 +28,8 @@ import {
   STATUS,
 } from '@/lib/constants';
 
-// Components
-import { Indicator, InputField, UpdateProfile } from '@/ui/components';
+// Hooks
+import { useAuth, useUpdateUser } from '@/lib/hooks';
 
 // Stores
 import { authStore } from '@/lib/stores';
@@ -45,7 +39,12 @@ import { customToast, formatAllowOnlyNumbers } from '@/lib/utils';
 
 // Providers
 import { QueryProvider } from '@/ui/providers';
+
+// Services
 import { uploadImage } from '@/lib/services';
+
+// Interfaces
+import { TUserDetail } from '@/lib/interfaces';
 
 const UserFormComponent = () => {
   const [avatarFile, setAvatarFile] = useState<File>();

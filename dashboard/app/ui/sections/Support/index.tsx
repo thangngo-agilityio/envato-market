@@ -3,9 +3,6 @@
 import { memo, useCallback, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { Controller, useForm } from 'react-hook-form';
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
-
-// Components
 import {
   Box,
   Button,
@@ -15,6 +12,8 @@ import {
   useToast,
   VStack,
 } from '@chakra-ui/react';
+
+// Components
 import { CustomerIssues, InputField } from '@/ui/components';
 
 // Constants
@@ -29,17 +28,19 @@ import {
 // Hooks
 import { useCreateIssues, useGetListIssues } from '@/lib/hooks';
 
-// Interfaces
-import { TUserDetail } from '@/lib/interfaces';
-
 // Stores
 import { authStore } from '@/lib/stores';
+
+// Utils
+import { customToast, formatAllowOnlyNumbers } from '@/lib/utils';
+
+// Interfaces
+import { TUserDetail } from '@/lib/interfaces';
 
 // Themes
 import { useColorfill } from '@/ui/themes/bases';
 
-// Utils
-import { customToast, formatAllowOnlyNumbers } from '@/lib/utils';
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const SupportsSection = () => {
   const toast = useToast();

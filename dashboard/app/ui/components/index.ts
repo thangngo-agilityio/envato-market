@@ -56,6 +56,7 @@ export { default as Quill } from './Quill';
 export { default as MessageAdmin } from './MessagesAdmin';
 export { default as ListMessages } from './Conversation/ListMessage';
 export { default as InputSendMessages } from './InputSendMessages';
+export { default as Message } from './BoxChat/Message';
 export { default as PinCodeModal } from './PinCodeModal';
 export { default as ProductsTable } from './ProductsTable';
 export { default as UploadImages } from './UploadImages';

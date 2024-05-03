@@ -1,15 +1,15 @@
 import { memo } from 'react';
+import Image from 'next/image';
 import { Box, Flex, Hide, Text } from '@chakra-ui/react';
 
-// Themes
-import { useColorfill } from '@/ui/themes/bases/colors';
+// Constants
+import { IMAGES } from '@/lib/constants';
 
 // Utils
 import { generatePlaceholder, getStatusColor } from '@/lib/utils';
 
-// Constants
-import { IMAGES } from '@/lib/constants';
-import Image from 'next/image';
+// Themes
+import { useColorfill } from '@/ui/themes/bases/colors';
 
 export type Props = {
   avatar?: string;

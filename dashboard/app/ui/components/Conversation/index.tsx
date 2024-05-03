@@ -6,16 +6,14 @@ import { ChatMember, ListMessages } from '..';
 
 // Interface
 import { TMessages } from '@/lib/interfaces';
-
-// Interfaces
 import { MessageType } from '@/lib/interfaces/messages';
 
 export type Props = {
-  adminUid?: string;
-  filteredMessages?: MessageType[];
   nameUser: string;
   avatarUser: string;
   messages: TMessages[];
+  adminUid?: string;
+  filteredMessages?: MessageType[];
 };
 
 const Conversation = ({ nameUser, avatarUser, messages, adminUid }: Props) => {

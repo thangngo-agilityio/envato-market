@@ -1,6 +1,8 @@
 import isEqual from 'react-fast-compare';
 import { memo, useCallback } from 'react';
 import { Box, Flex, Text, Heading } from '@chakra-ui/react';
+
+// Themes
 import { useColorfill } from '@/ui/themes/bases';
 
 export interface ItemSideBarSettingProps {
