@@ -18,18 +18,18 @@ import {
 } from 'react';
 import { Control, Controller } from 'react-hook-form';
 
-// Icons
+// Components
 import { ChevronIcon } from '@/ui/components/Icons';
-
-// Types
-import { TTransfer } from '.';
-import { TUserDetail } from '@/lib/interfaces';
 
 // Hooks
 import { useDebounce } from '@/lib/hooks';
 import { AUTH_SCHEMA, COMMON_MESSAGES } from '@/lib/constants';
 import { InputField } from '..';
 import isEqual from 'react-fast-compare';
+
+// Types
+import { TTransfer } from '.';
+import { TUserDetail } from '@/lib/interfaces';
 
 export type TUseSelectorProps = {
   control: Control<TTransfer>;
