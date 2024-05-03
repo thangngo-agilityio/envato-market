@@ -17,14 +17,14 @@ import {
   Flex,
 } from '@chakra-ui/react';
 
-// Hooks
-import { useForm, useAuth } from '@/lib/hooks';
+// Components
+import { InputField } from '@/ui/components';
 
 // Constants
 import { ROUTES, AUTH_SCHEMA } from '@/lib/constants';
 
-// Components
-import { InputField } from '@/ui/components';
+// Hooks
+import { useForm, useAuth } from '@/lib/hooks';
 
 // Utils
 import {
