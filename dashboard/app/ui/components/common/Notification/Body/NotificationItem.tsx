@@ -2,11 +2,11 @@ import { memo } from 'react';
 import { DeleteIcon } from '@chakra-ui/icons';
 import { Box, Divider, Flex, MenuItem, Text } from '@chakra-ui/react';
 
-// Interfaces
-import { TNotification } from '@/lib/interfaces';
-
 // Utils
 import { convertDateToTime } from '@/lib/utils';
+
+// Interfaces
+import { TNotification } from '@/lib/interfaces';
 
 interface NotificationProps {
   notification: TNotification;
