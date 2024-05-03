@@ -104,11 +104,11 @@ const SupportsSection = () => {
     ({ title, description }: TUserDetail) => {
       createIssues(
         {
-          userId: user?.id,
-          firstName: user?.firstName,
-          lastName: user?.lastName,
-          email: user?.email,
-          phone: user?.phoneNumber,
+          userId: id,
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          phone: phoneNumber,
           title: title,
           description: description,
         },

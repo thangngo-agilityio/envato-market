@@ -32,11 +32,15 @@ const HeaderComponent = () => {
   const pathname = usePathname();
   const name = TITLES_HEADER[`${pathname?.slice(1)}`] || TITLES_HEADER.DEFAULT;
   const user = useStore(authStore, (state) => state.user);
-  const username = `${user?.firstName || ''} ${user?.lastName || ''}`;
-  const roles = user?.role === AUTHENTICATION_ROLE.SUPER_ADMIN;
   const bonusTimes = authStore(
     (state): number | undefined => state.user?.bonusTimes,
   );
+
+  const { firstName = '', lastName = '', role = '', avatarURL } = user || {};
+
+  const username = `${firstName} ${lastName}`;
+
+  const roles = role === AUTHENTICATION_ROLE.SUPER_ADMIN;
   return (
     <Flex
       h="100%"
@@ -79,9 +83,9 @@ const HeaderComponent = () => {
         <Box display={{ base: 'block', default: 'none' }}>
           <Dropdown
             name={username}
-            role={user?.role as string}
+            role={role}
             permission="Super Admin"
-            src={user?.avatarURL}
+            src={avatarURL}
           />
         </Box>
       </Flex>
@@ -113,9 +117,9 @@ const HeaderComponent = () => {
           >
             <Dropdown
               name={username}
-              role={user?.role as string}
+              role={role}
               permission={roles ? AUTHENTICATION_ROLE.SUPER_ADMIN : ''}
-              src={user?.avatarURL}
+              src={avatarURL}
             />
           </Box>
         </Flex>
@@ -128,9 +132,9 @@ const HeaderComponent = () => {
         >
           <Dropdown
             name={username}
-            role={user?.role as string}
+            role={role}
             permission={roles ? AUTHENTICATION_ROLE.SUPER_ADMIN : ''}
-            src={user?.avatarURL}
+            src={avatarURL}
           />
         </Box>
       </Flex>
