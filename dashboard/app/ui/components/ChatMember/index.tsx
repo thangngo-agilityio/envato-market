@@ -47,7 +47,7 @@ const ChatMember = ({
     };
 
     onClick && onClick(user);
-  }, []);
+  }, [avatar, name, onClick, uid]);
 
   return (
     <>
