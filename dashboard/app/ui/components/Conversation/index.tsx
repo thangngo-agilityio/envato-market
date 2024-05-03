@@ -4,19 +4,25 @@ import { Box, Heading, Flex } from '@chakra-ui/react';
 // Components
 import { ChatMember, ListMessages } from '..';
 
+// Constants
+import { IMAGES } from '@/lib/constants';
+
 // Interface
 import { TMessages } from '@/lib/interfaces';
-import { MessageType } from '@/lib/interfaces/messages';
 
 export type Props = {
   nameUser: string;
   avatarUser: string;
   messages: TMessages[];
   adminUid?: string;
-  filteredMessages?: MessageType[];
 };
 
-const Conversation = ({ nameUser, avatarUser, messages, adminUid }: Props) => {
+const Conversation = ({
+  nameUser,
+  avatarUser = IMAGES.AVATAR.url,
+  messages = [],
+  adminUid = '',
+}: Props) => {
   const defaultName = nameUser;
 
   return (

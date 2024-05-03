@@ -24,10 +24,10 @@ interface TotalCardComponentProps {
 }
 
 const TotalCardComponent = ({
-  title,
-  total,
-  growth,
-  weeklyIncome,
+  title = 'Total',
+  total = 0,
+  growth = 0,
+  weeklyIncome = [],
   isLoading = false,
 }: TotalCardComponentProps) => (
   <Box p={5} bg="background.component.primary" rounded="lg">

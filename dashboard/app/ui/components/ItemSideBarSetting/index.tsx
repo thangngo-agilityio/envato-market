@@ -17,10 +17,10 @@ export interface ItemSideBarSettingProps {
 const ItemSideBarSetting = ({
   id,
   children,
-  activeItemId,
+  activeItemId = '',
+  title = '',
+  content = '',
   onClick,
-  title,
-  content,
 }: ItemSideBarSettingProps): JSX.Element => {
   const handleToggle = useCallback(() => {
     onClick(id);

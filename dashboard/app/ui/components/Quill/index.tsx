@@ -9,6 +9,9 @@ import { Controller, useForm } from 'react-hook-form';
 import { SendIconLight } from '..';
 import CustomButton from '@/ui/components/common/Button';
 
+// Constants
+import { IMAGES } from '@/lib/constants';
+
 // Hooks
 import { sendMessage } from '@/lib/utils';
 
@@ -29,7 +32,11 @@ interface QuillProps {
   userUid?: string;
 }
 
-const Quill = ({ userUid, avatarUser, nameUser }: QuillProps) => {
+const Quill = ({
+  userUid = '',
+  avatarUser = IMAGES.AVATAR.url,
+  nameUser = 'User',
+}: QuillProps) => {
   const currentUser = authStore((state) => state.user);
 
   // TODO: get from list users

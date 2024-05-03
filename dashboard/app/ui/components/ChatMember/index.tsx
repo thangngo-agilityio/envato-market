@@ -19,23 +19,23 @@ export type Props = {
   localeTime?: string;
   icon?: React.ReactNode;
   statusColor?: string;
+  lastMessages?: string;
   onClick?: (user: {
     uid: string;
     avatarUrl: string;
     displayName: string;
   }) => void;
-  lastMessages?: string;
 };
 
 const ChatMember = ({
-  avatar = IMAGES.CHAT_USER_AVATAR.url,
+  uid = '',
   name = '',
-  lastMessages,
-  localeTime,
+  avatar = IMAGES.CHAT_USER_AVATAR.url,
+  localeTime = '',
   icon,
   statusColor = '',
+  lastMessages = '',
   onClick,
-  uid = '',
 }: Props) => {
   const { secondary } = useColorfill();
 
