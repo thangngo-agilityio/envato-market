@@ -3,8 +3,6 @@ import isEqual from 'react-fast-compare';
 
 // Components
 import { Box, Flex, Heading, Text, IconButton, Avatar } from '@chakra-ui/react';
-
-// Icons
 import { BookMark, ShareNodes } from '@/ui/components/Icons';
 
 // Types
@@ -12,6 +10,8 @@ import { TEmployee } from '@/lib/interfaces';
 
 // Utils
 import { formatDecimalNumber } from '@/lib/utils';
+
+// Mocks
 import { USER_MOCK } from '@/lib/mocks';
 
 interface userCardProps {
