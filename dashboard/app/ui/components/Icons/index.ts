@@ -36,4 +36,3 @@ export * from './Send';
 export * from './Inbox';
 export * from './Product';
 export * from './RecentActivity';
-export * from './ArrowDown';
