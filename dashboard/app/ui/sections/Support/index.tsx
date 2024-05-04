@@ -45,8 +45,15 @@ const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 const SupportsSection = () => {
   const toast = useToast();
   const user = authStore((state) => state.user);
-  const { id, email, firstName, lastName, phoneNumber, title, description } =
-    (user as TUserDetail) || {};
+  const {
+    id = '',
+    email = '',
+    firstName = '',
+    lastName = '',
+    phoneNumber = '',
+    title = '',
+    description = '',
+  } = (user as TUserDetail) || {};
 
   const {
     data: listIssue,
@@ -105,8 +112,8 @@ const SupportsSection = () => {
       createIssues(
         {
           userId: id,
-          firstName: firstName,
-          lastName: lastName,
+          firstName,
+          lastName,
           email: email,
           phone: phoneNumber,
           title: title,
@@ -138,7 +145,7 @@ const SupportsSection = () => {
         },
       );
     },
-    [createIssues, reset],
+    [createIssues, email, firstName, id, lastName, phoneNumber, reset, toast],
   );
 
   return (
