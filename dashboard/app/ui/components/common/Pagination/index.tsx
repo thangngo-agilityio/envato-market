@@ -3,7 +3,7 @@ import { Box, Flex, Text, theme } from '@chakra-ui/react';
 
 // Components
 import { Button, Select } from '@/ui/components';
-import { Arrow } from '@/ui/components/Icons';
+import { Arrow, ArrowDown } from '@/ui/components/Icons';
 
 // Constants
 import { NEXT, PAGE_SIZE, PAGINATION, PREV } from '@/lib/constants';
@@ -57,16 +57,20 @@ const PaginationComponent = ({
         </Text>
         <Box
           w={70}
+          display="flex"
+          alignItems="center"
           borderRadius="lg"
           borderWidth="1px"
           backgroundColor="border.denary"
           borderColor="border.nonary"
+          flexDirection="row"
         >
           <Select
             options={PAGINATION}
             renderTitle={renderTitle}
             onSelect={onLimitChange}
           />
+          <ArrowDown />
         </Box>
       </Flex>
       <Flex justifyContent="space-between" alignItems="center">
