@@ -20,6 +20,7 @@ import { CustomerIssues, InputField } from '@/ui/components';
 import {
   AUTH_SCHEMA,
   ERROR_MESSAGES,
+  REGEX,
   STATUS,
   STATUS_SUBMIT,
   SUCCESS_MESSAGES,
@@ -84,15 +85,17 @@ const SupportsSection = () => {
     },
   });
 
-  const hasTitle = watch('title');
-  const hasDescription = watch('description');
+  const hasTitle = watch('title')?.trim();
+  const hasDescription = watch('description')
+    ?.replace(REGEX.HTML_TAG_PATTERN, '')
+    ?.trim();
 
   const disabled = useMemo(
     () =>
       !isDirty ||
       status === STATUS_SUBMIT.PENDING ||
-      hasTitle === '' ||
-      hasDescription === '',
+      !hasTitle ||
+      !hasDescription,
     [isDirty, status, hasTitle, hasDescription],
   );
 
