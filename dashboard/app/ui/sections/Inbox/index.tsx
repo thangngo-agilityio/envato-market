@@ -65,15 +65,20 @@ const ChatMemberList = () => {
   });
 
   const { user: superAdmin } = authStore((state) => state);
-  const { uid: superAdminUid, id: superAdminId = '' } = superAdmin || {};
+  const { uid: superAdminUid = '', id: superAdminId = '' } = superAdmin || {};
   const uidUser = searchParams?.get('id') as string;
 
   const { filterDataUser } = useGetUserDetails(superAdminId);
   const userChat = filterDataUser?.find((user) => user.uid === uidUser);
   const toast = useToast();
 
-  const { openRoom, nameUser, avatar, adminUid } = userInfo || {};
-  const { firstName = '', lastName = '', avatarURL } = userChat || {};
+  const {
+    openRoom = false,
+    nameUser = '',
+    avatar = '',
+    adminUid = '',
+  } = userInfo || {};
+  const { firstName = '', lastName = '', avatarURL = '' } = userChat || {};
 
   const handleGetMessage = async (
     chatDocSnap: DocumentSnapshot<DocumentData, DocumentData>,

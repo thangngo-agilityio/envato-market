@@ -15,7 +15,12 @@ import {
 } from '@/ui/components';
 
 // Constants
-import { COLUMNS_HISTORY, STATUS_LABEL, MONTHS_OPTIONS } from '@/lib/constants';
+import {
+  COLUMNS_HISTORY,
+  STATUS_LABEL,
+  MONTHS_OPTIONS,
+  PAGE_SIZE,
+} from '@/lib/constants';
 import { TYPE } from '@/lib/constants/notification';
 
 // Hooks
@@ -70,7 +75,7 @@ const HistoriesTableComponent = () => {
     handlePageClick,
   } = usePagination(transactionsMemorized);
 
-  const { limit, currentPage } = data || {};
+  const { limit = PAGE_SIZE, currentPage = 1 } = data || {};
 
   // Update search params when end time debounce
   const handleDebounceSearch = useDebounce((value: string) => {

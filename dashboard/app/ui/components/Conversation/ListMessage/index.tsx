@@ -24,7 +24,7 @@ const ListMessages = ({ messages, adminUid, avatarUser, nameUser }: Props) => {
   const user = authStore((state) => state.user);
   const boxRef = useRef<HTMLDivElement | null>(null);
 
-  const { uid, avatarURL } = user || {};
+  const { uid = '', avatarURL = '' } = user || {};
 
   useEffect(() => {
     if (boxRef.current) {
@@ -54,8 +54,8 @@ const ListMessages = ({ messages, adminUid, avatarUser, nameUser }: Props) => {
         padding={5}
       >
         {messages.map((message) => {
-          const { senderId, text, date } = message || {};
-          const { seconds } = date || {};
+          const { senderId = '', text = '', date } = message || {};
+          const { seconds = 0 } = date || {};
           const isSuperAdmin = senderId === uid;
 
           return (
