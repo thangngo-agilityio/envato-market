@@ -58,7 +58,7 @@ const ChatMemberList = () => {
   const [messages, setMessages] = useState<TMessages[]>([]);
   const [userInfo, setUserInfo] = useState({
     roomChatId: '',
-    nameUser: '',
+    userName: '',
     adminUid: '',
     avatar: '',
     openRoom: false,
@@ -74,7 +74,7 @@ const ChatMemberList = () => {
 
   const {
     openRoom = false,
-    nameUser = '',
+    userName = '',
     avatar = '',
     adminUid = '',
   } = userInfo || {};
@@ -95,7 +95,7 @@ const ChatMemberList = () => {
 
     setUserInfo({
       roomChatId: combinedId,
-      nameUser: nameUser,
+      userName: nameUser,
       adminUid: adminUid,
       avatar: avatar,
       openRoom: true,
@@ -272,7 +272,7 @@ const ChatMemberList = () => {
                     />
                   }
                   localeTime={convertTimeMessage(chat[1].date)}
-                  lastMessages={chat[1]?.lastMessage?.text}
+                  lastMessage={chat[1]?.lastMessage?.text}
                 />
               ))}
           </Flex>
@@ -281,8 +281,8 @@ const ChatMemberList = () => {
       {openRoom && (
         <GridItem colSpan={isMobile ? 12 : 8}>
           <Conversation
-            nameUser={nameUser}
-            avatarUser={avatar}
+            userName={userName}
+            userAvatar={avatar}
             messages={messages}
             adminUid={adminUid}
           />
