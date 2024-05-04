@@ -48,7 +48,7 @@ const HistoriesTableComponent = () => {
     isError: isTransactionsError,
     sortBy,
   } = useTransactions({
-    name: get('name') || '',
+    name: get('keyword')?.toLowerCase() || '',
   });
 
   const transactionsMemorized = useMemo(
@@ -80,7 +80,7 @@ const HistoriesTableComponent = () => {
   // Update search params when end time debounce
   const handleDebounceSearch = useDebounce((value: string) => {
     resetPage();
-    setSearchTransaction('name', value);
+    setSearchTransaction('keyword', value);
   }, []);
 
   const renderHead = useCallback(
@@ -178,7 +178,7 @@ const HistoriesTableComponent = () => {
     <>
       <SearchBar
         filterOptions={MONTHS_OPTIONS}
-        searchValue={get('name') || ''}
+        searchValue={get('keyword')?.toLowerCase() || ''}
         onSearch={handleDebounceSearch}
         onFilter={setFilter}
       />
