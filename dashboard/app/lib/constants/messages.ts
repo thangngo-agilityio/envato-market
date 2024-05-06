@@ -27,7 +27,7 @@ export const ERROR_MESSAGES = {
   LIMIT_QUANTITY: 'Quantity must not exceed 1 million',
   QUANTITY_INVALID: 'Quantity is invalid',
   INVALID_TRANSFER_AMOUNT: 'Amount is invalid',
-  LIMIT_TRANSFER_AMOUNT: 'Amount cannot exceed 1 million dollar',
+  LIMIT_TRANSFER_AMOUNT: 'Amount cannot exceed $999,999',
   SET_PIN_CODE: {
     title: 'Set PIN code failed',
     description:

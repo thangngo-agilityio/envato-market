@@ -1,5 +1,6 @@
 import { ERROR_MESSAGES } from './messages';
 import { REGEX } from './regex';
+import { TRANSFER_AMOUNT_LIMIT } from './amount';
 
 export const AUTH_SCHEMA = {
   FIRST_NAME: {
@@ -110,7 +111,7 @@ export const AUTH_SCHEMA = {
         return ERROR_MESSAGES.INVALID_TRANSFER_AMOUNT;
       }
 
-      if (removedFormatValue > 1000000) {
+      if (removedFormatValue > TRANSFER_AMOUNT_LIMIT) {
         return ERROR_MESSAGES.LIMIT_TRANSFER_AMOUNT;
       }
 
