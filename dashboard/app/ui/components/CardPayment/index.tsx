@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, memo, useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { Box, Heading, useDisclosure, useToast } from '@chakra-ui/react';
 import { SubmitHandler } from 'react-hook-form';
 import { AxiosError } from 'axios';
@@ -32,6 +32,7 @@ import {
   customToast,
   getErrorMessageFromAxiosError,
   removeAmountFormat,
+  isEnableSubmitButton,
 } from '@/lib/utils';
 
 // Types
@@ -68,21 +69,9 @@ const CardPaymentComponent = (): JSX.Element => {
     },
   });
 
-  const isEnableSubmitButton = (
-    requiredFields: string[] = [],
-    dirtyFields: string[] = [],
-  ): boolean => {
-    const isMatchAllRequiredFields: boolean = requiredFields.every((field) =>
-      dirtyFields.includes(field),
-    );
-
-    return isMatchAllRequiredFields;
-  };
-
   const dirtyItems = Object.keys(dirtyFields).filter(
     (key) => dirtyFields[key as keyof TTransfer],
   );
-
   const shouldEnable = isEnableSubmitButton(REQUIRE_FIELDS, dirtyItems);
 
   const { currentWalletMoney } = useWallet(user?.id);
@@ -167,7 +156,6 @@ const CardPaymentComponent = (): JSX.Element => {
   };
 
   const handleOnSubmitSendMoney = () => {
-    // e.preventDefault();
     hasPinCode ? onOpenConfirmPinCodeModal() : onOpenSetPinCodeModal();
   };
 

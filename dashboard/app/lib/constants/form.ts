@@ -1,6 +1,5 @@
 import { ERROR_MESSAGES } from './messages';
 import { REGEX } from './regex';
-import { removeAmountFormat } from '@/lib/utils';
 
 export const AUTH_SCHEMA = {
   FIRST_NAME: {
@@ -103,19 +102,19 @@ export const AUTH_SCHEMA = {
   },
 
   TRANSFER_AMOUNT: {
-    required: ERROR_MESSAGES.FIELD_REQUIRED('amount'),
+    required: ERROR_MESSAGES.FIELD_REQUIRED('Amount'),
     validate: (value: string) => {
       const removedFormatValue = +value.replaceAll(',', '');
 
       if (removedFormatValue <= 0) {
-        return ERROR_MESSAGES.AMOUNT_INVALID;
+        return ERROR_MESSAGES.INVALID_TRANSFER_AMOUNT;
       }
 
       if (removedFormatValue > 1000000) {
-        return ERROR_MESSAGES.LIMIT_AMOUNT;
+        return ERROR_MESSAGES.LIMIT_TRANSFER_AMOUNT;
       }
 
-      return value.length > 0 && value[0] !== '';
+      return true;
     },
   },
   OLD_PASSWORD: {
