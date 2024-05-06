@@ -3,7 +3,7 @@ import { AxiosInstance } from 'axios';
 
 export type TOnActivity = (
   httpService: AxiosInstance,
-  actionName?: string,
+  actionName: string,
   userId?: string,
 ) => number;
 

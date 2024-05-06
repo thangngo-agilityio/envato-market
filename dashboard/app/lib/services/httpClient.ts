@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 
 // Constants
-import { PAGE_SIZE, STATISTICAL_API } from '@/lib/constants';
+import { STATISTICAL_API } from '@/lib/constants';
 
 // Interfaces
 import { QueryOptions } from '@/lib/interfaces';
@@ -24,13 +24,17 @@ class HttpService {
     configs,
     userId = '',
     searchParam = '',
-    page = 1,
-    limit = PAGE_SIZE,
+    page,
+    limit,
   }: Omit<QueryOptions, 'data'>): Promise<AxiosResponse<T>> {
-    return this.axiosClient.get<T>(
-      `${this.baseApi}${path}/${userId}/${page}/${limit}${searchParam}`,
-      configs,
-    );
+    if (page && limit) {
+      return this.axiosClient.get<T>(
+        `${this.baseApi}${path}/${userId}/${page}/${limit}${searchParam}`,
+        configs,
+      );
+    }
+
+    return this.axiosClient.get<T>(`${this.baseApi}${path}/${userId}`, configs);
   }
 
   post<T>({
@@ -42,13 +46,15 @@ class HttpService {
     onActivity,
   }: QueryOptions): Promise<AxiosResponse<T>> {
     const activity =
-      onActivity && onActivity(this.axiosClient, actionName, userId);
+      actionName &&
+      onActivity &&
+      onActivity(this.axiosClient, actionName, userId);
 
     return this.axiosClient
       .post<T>(`${this.baseApi}${path}`, data, configs)
       .then((response) => {
-        console.log('activity', activity);
-        activity && this.axiosClient.interceptors.response.eject(activity);
+        typeof activity === 'number' &&
+          this.axiosClient.interceptors.response.eject(activity);
         return response;
       });
   }
@@ -62,12 +68,15 @@ class HttpService {
     onActivity,
   }: QueryOptions): Promise<AxiosResponse<T>> {
     const activity =
-      onActivity && onActivity(this.axiosClient, actionName, userId);
+      actionName &&
+      onActivity &&
+      onActivity(this.axiosClient, actionName, userId);
 
     return this.axiosClient
       .put<T>(`${this.baseApi}${path}`, data, configs)
       .then((response) => {
-        activity && this.axiosClient.interceptors.response.eject(activity);
+        typeof activity === 'number' &&
+          this.axiosClient.interceptors.response.eject(activity);
         return response;
       });
   }
@@ -80,12 +89,15 @@ class HttpService {
     onActivity,
   }: QueryOptions): Promise<AxiosResponse<T>> {
     const activity =
-      onActivity && onActivity(this.axiosClient, actionName, userId);
+      actionName &&
+      onActivity &&
+      onActivity(this.axiosClient, actionName, userId);
 
     return this.axiosClient
       .patch<T>(`${this.baseApi}${path}`, data)
       .then((response) => {
-        activity && this.axiosClient.interceptors.response.eject(activity);
+        typeof activity === 'number' &&
+          this.axiosClient.interceptors.response.eject(activity);
         return response;
       });
   }
@@ -98,12 +110,15 @@ class HttpService {
     onActivity,
   }: QueryOptions): Promise<AxiosResponse<T>> {
     const activity =
-      onActivity && onActivity(this.axiosClient, actionName, userId);
+      actionName &&
+      onActivity &&
+      onActivity(this.axiosClient, actionName, userId);
 
     return this.axiosClient
       .delete<T>(`${this.baseApi}${path}`, data)
       .then((response) => {
-        activity && this.axiosClient.interceptors.response.eject(activity);
+        typeof activity === 'number' &&
+          this.axiosClient.interceptors.response.eject(activity);
         return response;
       });
   }
