@@ -2,25 +2,22 @@ import { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
+import { AxiosRequestHeaders, AxiosResponse } from 'axios';
 
 // Hooks
 import { useNotification } from '@/lib/hooks';
 
 // Services
-import * as services from '@/lib/services';
-import { notificationHttpRequest } from '@/lib/services';
+import { MainHttpService } from '@/lib/services';
 
 // Constants
-import { END_POINTS, NOTIFICATION_LIST } from '@/lib/constants';
+import { END_POINTS } from '@/lib/constants';
 
-// Mock the notificationHttpRequest module
-jest.mock('@/lib/services', () => ({
-  getNotifications: jest.fn(),
-  notificationHttpRequest: {
-    delete: jest.fn(),
-    put: jest.fn(),
-  },
-}));
+// Interface
+import { TNotification } from '@/lib/interfaces';
+
+// Mocks
+import { NOTIFICATION } from '@/lib/mocks';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,24 +32,24 @@ const wrapper = ({ children }: { children: ReactNode }) => (
 );
 
 describe('useNotification', () => {
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
+  const notificationData: AxiosResponse<{ data: TNotification[] }> = {
+    data: { data: NOTIFICATION },
+    status: 200,
+    statusText: 'Ok',
+    headers: {},
+    config: {
+      headers: {} as AxiosRequestHeaders,
+    },
+  };
 
-  it('should fetch transactions and apply sorting and filtering', async () => {
-    const getNotificationsSpy = jest.spyOn(services, 'getNotifications');
-    getNotificationsSpy.mockResolvedValue(NOTIFICATION_LIST);
+  jest.spyOn(MainHttpService, 'get').mockResolvedValue(notificationData);
 
-    const { result, rerender } = renderHook(
-      () => useNotification('6593beacff649fc6c4d2964b'),
-      { wrapper },
-    );
-    expect(result.current.data).toEqual([]);
-    expect(result.current.isLoading).toBe(true);
-
-    await rerender();
+  it('should fetch notification data successfully', async () => {
+    const { result } = renderHook(() => useNotification(), { wrapper });
 
     expect(result.current.isLoading).toBe(true);
+
+    await waitFor(() => expect(result.current.data).toEqual(NOTIFICATION));
   });
 
   it('deletes a notification successfully', async () => {
@@ -68,14 +65,9 @@ describe('useNotification', () => {
       });
     });
 
-    expect(notificationHttpRequest.delete).toHaveBeenCalledWith(
+    expect(jest.spyOn(MainHttpService, 'delete')).toHaveBeenCalledWith(
       END_POINTS.NOTIFICATION,
-      {
-        data: {
-          userId: '6593beacff649fc6c4d2964b',
-          notificationId: '1',
-        },
-      },
+      { data: { notificationId: '1', userId: '6593beacff649fc6c4d2964b' } },
     );
   });
 
@@ -93,7 +85,7 @@ describe('useNotification', () => {
       });
     });
 
-    expect(notificationHttpRequest.put).toHaveBeenCalledWith(
+    expect(jest.spyOn(MainHttpService, 'put')).toHaveBeenCalledWith(
       END_POINTS.NOTIFICATION,
       {
         userId: '6593beacff649fc6c4d2964b',
