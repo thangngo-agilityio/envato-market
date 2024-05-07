@@ -10,7 +10,9 @@ import {
   TRecentActivities,
   TSendMoney,
 } from '@/lib/interfaces';
-import { MainHttpService, recentActivitiesHttpService } from '.';
+
+// Service
+import { MainHttpService, recentActivitiesHttpService } from '@/lib/services';
 
 export const moneyHttpRequest: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API,
