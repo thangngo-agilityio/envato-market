@@ -10,7 +10,7 @@ import {
   TRecentActivities,
   TSendMoney,
 } from '@/lib/interfaces';
-import { recentActivitiesHttpService } from '.';
+import { MainHttpService, recentActivitiesHttpService } from '.';
 
 export const moneyHttpRequest: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API,
@@ -22,7 +22,7 @@ export type TMoneyResponse = {
 
 export const addMoneyToUser = async (
   actionName: string,
-  data?: TAddMoney,
+  data: TAddMoney,
   userId?: string,
   config?: IAxiosConfig,
 ): Promise<TMoneyResponse> => {
@@ -34,17 +34,17 @@ export const addMoneyToUser = async (
     },
   );
   return (
-    await moneyHttpRequest.put<TMoneyResponse>(
-      `${END_POINTS.ADD_MONEY}`,
-      data,
-      config,
-    )
+    await MainHttpService.put<TMoneyResponse>({
+      path: END_POINTS.ADD_MONEY,
+      data: data,
+      configs: config,
+    })
   ).data;
 };
 
 export const sendMoneyToUser = async (
   actionName: string,
-  data?: TSendMoney,
+  data: TSendMoney,
   userId?: string,
   config?: IAxiosConfig,
 ): Promise<TMoneyResponse> => {
@@ -56,10 +56,10 @@ export const sendMoneyToUser = async (
     },
   );
   return (
-    await moneyHttpRequest.put<TMoneyResponse>(
-      `${END_POINTS.SEND_MONEY}`,
-      data,
-      config,
-    )
+    await MainHttpService.put<TMoneyResponse>({
+      path: END_POINTS.SEND_MONEY,
+      data: data,
+      configs: config,
+    })
   ).data;
 };

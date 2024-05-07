@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { END_POINTS } from '@/lib/constants';
 
 // Services
-import { getNotifications, notificationHttpRequest } from '@/lib/services';
+import { MainHttpService } from '@/lib/services';
 
 // Interfaces
 import { TNotification } from '@/lib/interfaces';
@@ -12,12 +12,18 @@ import { TNotification } from '@/lib/interfaces';
 export const useNotification = (userId?: string) => {
   const queryClient = useQueryClient();
 
-  const { data = [], ...query } = useQuery({
+  const { data, ...query } = useQuery<{ data: TNotification[] }>({
     queryKey: [END_POINTS.NOTIFICATION],
-    queryFn: () => getNotifications(userId),
+    queryFn: () =>
+      MainHttpService.get({
+        path: END_POINTS.NOTIFICATION,
+        userId: userId,
+      }),
   });
 
-  const { quantity, hasNewNotification } = data.reduce(
+  const notificationData: TNotification[] = data?.data || [];
+
+  const { quantity, hasNewNotification } = notificationData.reduce(
     (result, notification) => {
       if (!notification?.isMarkAsRead) {
         result.quantity += 1;
@@ -35,8 +41,11 @@ export const useNotification = (userId?: string) => {
           TNotification & { userId: string; notificationId: string }
         >,
       ) => {
-        await notificationHttpRequest.delete(END_POINTS.NOTIFICATION, {
-          data: payload,
+        await MainHttpService.delete({
+          path: END_POINTS.NOTIFICATION,
+          data: {
+            data: payload,
+          },
         });
       },
       onSuccess: (_, variables) => {
@@ -54,10 +63,10 @@ export const useNotification = (userId?: string) => {
         TNotification & { userId: string; notificationId: string }
       >,
     ) =>
-      await notificationHttpRequest.put<TNotification>(
-        END_POINTS.NOTIFICATION,
-        transaction,
-      ),
+      await MainHttpService.put<TNotification>({
+        path: END_POINTS.NOTIFICATION,
+        data: transaction,
+      }),
     onSuccess: (_, variables) => {
       queryClient.setQueryData(
         [END_POINTS.NOTIFICATION],
