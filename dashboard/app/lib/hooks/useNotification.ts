@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 // Constants
@@ -16,15 +15,13 @@ export const useNotification = (userId?: string) => {
   const { data, ...query } = useQuery({
     queryKey: [END_POINTS.NOTIFICATION],
     queryFn: async () =>
-      (
-        await MainHttpService.get<TNotification[]>({
-          path: END_POINTS.NOTIFICATION,
-          userId: userId,
-        })
-      ).data,
+      await MainHttpService.get<TNotification[]>({
+        path: END_POINTS.NOTIFICATION,
+        userId: userId,
+      }),
   });
 
-  const notificationData: TNotification[] = useMemo(() => data || [], [data]);
+  const notificationData: TNotification[] = data?.data || [];
 
   const { quantity, hasNewNotification } = notificationData.reduce(
     (result, notification) => {
