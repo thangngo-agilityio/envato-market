@@ -12,10 +12,10 @@ import { TNotification } from '@/lib/interfaces';
 export const useNotification = (userId?: string) => {
   const queryClient = useQueryClient();
 
-  const { data, ...query } = useQuery({
+  const { data, ...query } = useQuery<{ data: TNotification[] }>({
     queryKey: [END_POINTS.NOTIFICATION],
-    queryFn: async () =>
-      await MainHttpService.get<TNotification[]>({
+    queryFn: () =>
+      MainHttpService.get({
         path: END_POINTS.NOTIFICATION,
         userId: userId,
       }),
@@ -51,8 +51,11 @@ export const useNotification = (userId?: string) => {
       onSuccess: (_, variables) => {
         queryClient.setQueryData(
           [END_POINTS.NOTIFICATION],
-          (oldData: TNotification[]) =>
-            oldData.filter((item) => item._id !== variables.notificationId),
+          (oldData: { data: TNotification[] }) => ({
+            data: oldData.data.filter(
+              (item) => item._id !== variables.notificationId,
+            ),
+          }),
         );
       },
     });
@@ -70,14 +73,13 @@ export const useNotification = (userId?: string) => {
     onSuccess: (_, variables) => {
       queryClient.setQueryData(
         [END_POINTS.NOTIFICATION],
-        (oldData: TNotification[]) => {
-          const dataUpdated = oldData.map((item) =>
+        (oldData: { data: TNotification[] }) => ({
+          data: oldData.data.map((item) =>
             item._id === variables.notificationId
               ? { ...item, isMarkAsRead: true }
               : item,
-          );
-          return dataUpdated;
-        },
+          ),
+        }),
       );
     },
   });
