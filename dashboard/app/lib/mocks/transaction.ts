@@ -81,7 +81,7 @@ export const TRANSACTIONS: TTransaction[] = [
     location: 'Philadelphia, USA',
     createdAt: '1681982541000',
     paymentStatus: PAYMENT_STATUS.UN_PAID,
-    transactionStatus: TRANSACTION_STATUS.PENDING,
+    transactionStatus: TRANSACTION_STATUS.ARCHIVED,
   },
 ];
 
