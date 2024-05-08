@@ -1,6 +1,8 @@
-import { ReactNode } from 'react';
-import { renderHook } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+// Libs
+import { renderHook, act } from '@testing-library/react';
+
+// Constants
+import { TRANSACTION_STATUS } from '@/lib/constants';
 
 // Hooks
 import { useTransactions } from '@/lib/hooks';
@@ -8,51 +10,24 @@ import { useTransactions } from '@/lib/hooks';
 // Services
 import { MainHttpService } from '@/lib/services';
 
+// Utils
+import { sortByKey, queryProviderWrapper } from '@/lib/utils';
+
 // Mocks
-import { TRANSACTIONS } from '@/lib/mocks';
-import { AxiosRequestHeaders, AxiosResponse } from 'axios';
-import { TTransaction } from '@/lib/interfaces';
-import { sortByKey } from '@/lib/utils';
-
-// jest.mock('@/lib/services', () => ({
-//   getTransactions: jest.fn(),
-// }));
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-    },
-  },
-});
-
-// jest.mock('@/lib/hooks', () => {
-//   const originalModule = jest.requireActual('@/lib/hooks');
-//   return {
-//     ...originalModule,
-//     handleSort: jest.fn(),
-//   };
-// });
-
-const wrapper = ({ children }: { children: ReactNode }) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
+import {
+  MOCK_TRANSACTIONS_SUCCESS_RES,
+  MOCK_UPDATE_SUCCESS_RES,
+  TRANSACTIONS,
+} from '@/lib/mocks';
 
 describe('useTransactions', () => {
-  const transactionResponse: AxiosResponse<TTransaction[]> = {
-    data: TRANSACTIONS,
-    status: 200,
-    statusText: 'Ok',
-    headers: {},
-    config: {
-      headers: {} as AxiosRequestHeaders,
-    },
-  };
-  jest.spyOn(MainHttpService, 'get').mockResolvedValue(transactionResponse);
+  jest
+    .spyOn(MainHttpService, 'get')
+    .mockResolvedValue(MOCK_TRANSACTIONS_SUCCESS_RES);
 
   it('should fetch transactions data successfully', async () => {
     const { result } = renderHook(() => useTransactions(), {
-      wrapper,
+      wrapper: queryProviderWrapper,
     });
 
     await waitFor(() => expect(result.current.data).toEqual(TRANSACTIONS));
@@ -62,10 +37,12 @@ describe('useTransactions', () => {
     const expectResult = sortByKey(TRANSACTIONS, 'amount', false);
 
     const { result } = renderHook(() => useTransactions(), {
-      wrapper,
+      wrapper: queryProviderWrapper,
     });
 
-    result.current.sortBy('spent');
+    act(() => {
+      result.current.sortBy('spent');
+    });
 
     await waitFor(() => expect(result.current.data).toEqual(expectResult));
   });
@@ -74,31 +51,46 @@ describe('useTransactions', () => {
     const expectResult = sortByKey(TRANSACTIONS, 'amount', true);
 
     const { result } = renderHook(() => useTransactions(), {
-      wrapper,
+      wrapper: queryProviderWrapper,
     });
 
-    result.current.sortBy('spent');
-    result.current.sortBy('spent');
+    act(() => {
+      result.current.sortBy('spent');
+      result.current.sortBy('spent');
+    });
 
     await waitFor(() => expect(result.current.data).toEqual(expectResult));
   });
 
-  it('should update transactions successfully if have that item in cache', async () => {
-    const updateTransactionResponse: AxiosResponse<string> = {
-      data: 'success',
-      status: 200,
-      statusText: 'Ok',
-      headers: {},
-      config: {
-        headers: {} as AxiosRequestHeaders,
+  it('should search transactions successfully by location', async () => {
+    const { result } = renderHook(() => useTransactions({ name: '123' }), {
+      wrapper: queryProviderWrapper,
+    });
+
+    await waitFor(() => expect(result.current.data).toEqual(TRANSACTIONS));
+  });
+
+  it('should search transactions successfully by name', async () => {
+    const { result } = renderHook(
+      () =>
+        useTransactions({
+          name: TRANSACTIONS[0].customer.firstName.toLowerCase(),
+        }),
+      {
+        wrapper: queryProviderWrapper,
       },
-    };
+    );
+
+    await waitFor(() => expect(result.current.data).toEqual([TRANSACTIONS[0]]));
+  });
+
+  it('should update transactions successfully if have that item in cache', async () => {
     jest
       .spyOn(MainHttpService, 'put')
-      .mockResolvedValue(updateTransactionResponse);
+      .mockResolvedValue(MOCK_UPDATE_SUCCESS_RES);
 
     const { result } = renderHook(() => useTransactions(), {
-      wrapper,
+      wrapper: queryProviderWrapper,
     });
 
     result.current.updateTransaction({ transactionId: TRANSACTIONS[0]._id });
@@ -109,21 +101,12 @@ describe('useTransactions', () => {
   });
 
   it('should update transactions successfully if NO have that item in cache', async () => {
-    const updateTransactionResponse: AxiosResponse<string> = {
-      data: 'success',
-      status: 200,
-      statusText: 'Ok',
-      headers: {},
-      config: {
-        headers: {} as AxiosRequestHeaders,
-      },
-    };
     jest
       .spyOn(MainHttpService, 'put')
-      .mockResolvedValue(updateTransactionResponse);
+      .mockResolvedValue(MOCK_UPDATE_SUCCESS_RES);
 
     const { result } = renderHook(() => useTransactions(), {
-      wrapper,
+      wrapper: queryProviderWrapper,
     });
 
     result.current.updateTransaction({ transactionId: '1' });
@@ -131,5 +114,37 @@ describe('useTransactions', () => {
     await waitFor(() =>
       expect(jest.spyOn(MainHttpService, 'put')).toHaveBeenCalled(),
     );
+  });
+
+  it('should delete transactions successfully if have that item in cache', async () => {
+    jest
+      .spyOn(MainHttpService, 'put')
+      .mockResolvedValue(MOCK_UPDATE_SUCCESS_RES);
+
+    const { result } = renderHook(() => useTransactions(), {
+      wrapper: queryProviderWrapper,
+    });
+
+    result.current.deleteTransaction({ transactionId: TRANSACTIONS[0]._id });
+
+    await waitFor(() =>
+      expect(result.current.data[0].transactionStatus).toEqual(
+        TRANSACTION_STATUS.ARCHIVED,
+      ),
+    );
+  });
+
+  it('should delete transactions successfully if NO have that item in cache', async () => {
+    jest
+      .spyOn(MainHttpService, 'put')
+      .mockResolvedValue(MOCK_UPDATE_SUCCESS_RES);
+
+    const { result } = renderHook(() => useTransactions(), {
+      wrapper: queryProviderWrapper,
+    });
+
+    result.current.deleteTransaction({ transactionId: '1' });
+
+    await waitFor(() => expect(result.current.data).toEqual(TRANSACTIONS));
   });
 });
