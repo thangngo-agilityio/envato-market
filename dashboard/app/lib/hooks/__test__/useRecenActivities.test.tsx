@@ -1,5 +1,5 @@
 // Libs
-import { renderHook } from '@testing-library/react';
+import { renderHook, act } from '@testing-library/react';
 
 // Hooks
 import { useRecentActivities } from '@/lib/hooks';
@@ -34,8 +34,10 @@ describe('useRecentActivities', () => {
       wrapper: queryProviderWrapper,
     });
 
-    result.current.setCurrentPage(2);
-    result.current.resetPage();
+    act(() => {
+      result.current.setCurrentPage(2);
+      result.current.resetPage();
+    });
 
     await waitFor(() => expect(result.current.currentPage).toEqual(1));
   });
@@ -47,7 +49,9 @@ describe('useRecentActivities', () => {
       wrapper: queryProviderWrapper,
     });
 
-    result.current.sortBy('actionName');
+    act(() => {
+      result.current.sortBy('actionName');
+    });
 
     await waitFor(() => expect(result.current.data).toEqual(expectResult));
   });
