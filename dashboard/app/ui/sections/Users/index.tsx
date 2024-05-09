@@ -61,7 +61,7 @@ const UsersSections = () => {
   });
 
   const { isSendRequestUser, managementUser } = useManagementUser(
-    get('name') || '',
+    get('name')?.toLowerCase() || '',
   );
 
   const {

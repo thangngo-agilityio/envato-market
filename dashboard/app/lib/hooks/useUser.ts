@@ -15,7 +15,7 @@ import { authStore } from '../stores';
 import { TSearchTransaction } from '@/lib/hooks';
 
 // Services
-import { MainHttpService, getSupports, userHttpRequest } from '@/lib/services';
+import { MainHttpService } from '@/lib/services';
 
 // Utils
 import { logActivity } from '@/lib/utils';
@@ -28,6 +28,11 @@ export type UsersResponse = Array<
     _id: string;
   }
 >;
+
+export type TIssueResponse = {
+  result: Array<IIssues>;
+  totalPage: number;
+};
 
 export const useUpdateUser = () => {
   const { error, ...rest } = useMutation({
@@ -76,7 +81,16 @@ export const useUpdatePassword = () => {
 export const useGetListIssues = () => {
   const { data, ...rest } = useInfiniteQuery({
     queryKey: [END_POINTS.SUPPORT],
-    queryFn: ({ pageParam = 1 }) => getSupports(END_POINTS.SUPPORT, pageParam),
+    queryFn: async ({ pageParam = 1 }) => {
+      const data = (
+        await MainHttpService.get<TIssueResponse>({
+          path: END_POINTS.SUPPORT,
+          page: pageParam,
+        })
+      ).data;
+
+      return { data, pageParams: pageParam + 1 };
+    },
     getNextPageParam: (lastPage) => {
       if (lastPage.pageParams > lastPage.data.totalPage) return undefined;
 
@@ -135,7 +149,7 @@ export const useGetUserDetails = (
   );
 
   const { data: res, ...query } = useQuery({
-    queryKey: [END_POINTS.USERS],
+    queryKey: [END_POINTS.USERS, queryParam?.name],
     queryFn: () =>
       MainHttpService.get<UsersResponse>({
         path: END_POINTS.USERS,
@@ -166,22 +180,27 @@ export const useManagementUser = (querySearch = '') => {
     isPending: isSendRequestUser,
     ...query
   } = useMutation({
-    mutationFn: async ({
+    mutationFn: ({
       urlEndpoint = '',
       ...user
     }: Partial<
       TUserDetail & { memberId: string; userId: string; urlEndpoint: string }
-    >) => await userHttpRequest.put<TUserDetail>(urlEndpoint, user),
+    >) =>
+      MainHttpService.put<TUserDetail>({
+        path: urlEndpoint,
+        data: user,
+      }),
     onSuccess: (_, variables) => {
       queryClient.setQueryData(
         [END_POINTS.USERS, querySearch],
-        (oldData: TUserDetail[]) => {
-          const dataUpdated = oldData.map((item) =>
+        (oldData: { data: TUserDetail[] }) => {
+          const updatedData = oldData.data.map((item) =>
             item._id === variables.memberId
               ? { ...item, isBlock: !item.isBlock }
               : item,
           );
-          return dataUpdated;
+
+          return { ...oldData, data: updatedData };
         },
       );
     },
