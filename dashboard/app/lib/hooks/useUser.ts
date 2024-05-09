@@ -15,18 +15,19 @@ import { authStore } from '../stores';
 import { TSearchTransaction } from '@/lib/hooks';
 
 // Services
-import {
-  MainHttpService,
-  getAllUserDetailsExceptWithId,
-  getSupports,
-  userHttpRequest,
-} from '@/lib/services';
+import { MainHttpService, getSupports, userHttpRequest } from '@/lib/services';
 
 // Utils
 import { logActivity } from '@/lib/utils';
 
 // Interfaces
 import { EActivity, IIssues, TPassword, TUserDetail } from '@/lib/interfaces';
+
+export type UsersResponse = Array<
+  Omit<TUserDetail, 'id'> & {
+    _id: string;
+  }
+>;
 
 export const useUpdateUser = () => {
   const { error, ...rest } = useMutation({
@@ -133,15 +134,21 @@ export const useGetUserDetails = (
     queryParam,
   );
 
-  const { data: listUserDetail, ...query } = useQuery({
-    queryKey: [END_POINTS.USERS, queryParam?.name],
-    queryFn: () => getAllUserDetailsExceptWithId(id, ''),
+  const { data: res, ...query } = useQuery({
+    queryKey: [END_POINTS.USERS],
+    queryFn: () =>
+      MainHttpService.get<UsersResponse>({
+        path: END_POINTS.USERS,
+        userId: id,
+      }),
   });
+
+  const listUserDetail = res?.data || [];
 
   const isNameMatchWith = (target: string): boolean =>
     (target || '').trim().toLowerCase().includes(searchName);
 
-  const filterDataUser = listUserDetail?.filter(({ firstName, lastName }) =>
+  const filterDataUser = listUserDetail.filter(({ firstName, lastName }) =>
     isNameMatchWith(`${firstName} ${lastName}`),
   );
 
