@@ -32,7 +32,7 @@ import {
   ERROR_MESSAGES,
   LIMIT_PRODUCT_IMAGES,
   REGEX,
-  SHOW_TIME,
+  STATUS,
   STATUS_SUBMIT,
 } from '@/lib/constants';
 
@@ -43,7 +43,11 @@ import { authStore } from '@/lib/stores';
 import { useUploadImage } from '@/lib/hooks';
 
 // Utils
-import { formatAmountNumber, parseFormattedNumber } from '@/lib/utils';
+import {
+  customToast,
+  formatAmountNumber,
+  parseFormattedNumber,
+} from '@/lib/utils';
 
 interface ProductProps {
   data?: TProductResponse;
@@ -104,12 +108,7 @@ const ProductForm = ({
 
   const handleShowErrorMessage = useCallback(
     (message: string) => {
-      toast({
-        description: message,
-        status: 'error',
-        duration: SHOW_TIME,
-        position: 'top-right',
-      });
+      toast(customToast('', message, STATUS.ERROR));
     },
     [toast],
   );
