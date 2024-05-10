@@ -7,7 +7,7 @@ import { waitFor } from '@testing-library/react';
 import { END_POINTS } from '@/lib/constants';
 
 // Services
-import { MainHttpService } from '@/lib/services';
+import { mainHttpService } from '@/lib/services';
 
 // Hooks
 import { useMoney } from '@/lib/hooks';
@@ -41,7 +41,7 @@ describe('useMoney Hook', () => {
     );
 
     waitFor(() =>
-      expect(MainHttpService.put).toHaveBeenCalledWith(END_POINTS.ADD_MONEY, {
+      expect(mainHttpService.put).toHaveBeenCalledWith(END_POINTS.ADD_MONEY, {
         amount: 10,
         userId: '6593beacff649fc6c4d2964b',
       }),
@@ -60,7 +60,7 @@ describe('useMoney Hook', () => {
     );
 
     waitFor(() =>
-      expect(MainHttpService.put).toHaveBeenCalledWith(END_POINTS.SEND_MONEY, {
+      expect(mainHttpService.put).toHaveBeenCalledWith(END_POINTS.SEND_MONEY, {
         amount: 10,
         memberId: '65a4a3a280522b2e38c4b4a6',
         userId: '6593beacff649fc6c4d2964b',
