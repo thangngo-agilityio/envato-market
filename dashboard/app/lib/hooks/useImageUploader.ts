@@ -8,12 +8,12 @@ import { IUploadImageResponse } from '@/lib/interfaces';
 import { SEARCH_PARAM } from '@/lib/constants';
 
 // Services
-import { UploadImageHttpService } from '@/lib/services';
+import { uploadImageHttpService } from '@/lib/services';
 
 export const useUploadImage = () => {
   const { mutate: uploadImage, ...rest } = useMutation({
     mutationFn: (payload: FormData) =>
-      UploadImageHttpService.post<IUploadImageResponse>({
+      uploadImageHttpService.post<IUploadImageResponse>({
         path: '',
         data: payload,
         configs: {
