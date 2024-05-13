@@ -295,6 +295,7 @@ const TotalBalanceComponent = (): JSX.Element => {
             ? !isConfirmValid || isConfirmSubmitting
             : !isSetValid || isSetSubmitting
         }
+        isLoading={hasPinCode ? isConfirmSubmitting : isSetSubmitting}
         onclose={
           isSetPinCodeModalOpen
             ? handleCloseSetPinCodeModal
