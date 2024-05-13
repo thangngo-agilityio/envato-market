@@ -16,7 +16,7 @@ import { AddMoneyInput } from './AddMoneyInput';
 import { PinCodeModal } from '..';
 
 // Types
-import { TPinCodeForm } from '@/lib/interfaces';
+import { TPinCodeForm, TMoneyResponse } from '@/lib/interfaces';
 
 // utils
 import {
@@ -24,9 +24,6 @@ import {
   getErrorMessageFromAxiosError,
   removeAmountFormat,
 } from '@/lib/utils';
-
-// Services
-import { TMoneyResponse } from '@/lib/services';
 
 // Constants
 import {
