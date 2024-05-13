@@ -56,20 +56,7 @@ export const EFFICIENCY: IEfficiency = {
 };
 
 export const MOCK_EFFICIENCY_SUCCESS_RES: AxiosResponse<IEfficiency> = {
-  data: {
-    arrival: 5230,
-    spending: 6230,
-    statistical: [
-      {
-        title: 'Goal',
-        value: 50,
-      },
-      {
-        title: 'Spend',
-        value: 30,
-      },
-    ],
-  },
+  data: EFFICIENCY,
   status: 200,
   statusText: 'Ok',
   headers: {},
