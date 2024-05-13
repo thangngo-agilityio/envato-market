@@ -1,97 +1,75 @@
-import { ReactNode } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+// Libs
 import { renderHook } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
-import { AxiosRequestHeaders, AxiosResponse } from 'axios';
 
 // Hooks
 import { useNotification } from '@/lib/hooks';
 
 // Services
-import { MainHttpService } from '@/lib/services';
+import { mainHttpService } from '@/lib/services';
 
-// Constants
-import { END_POINTS } from '@/lib/constants';
-
-// Interface
-import { TNotification } from '@/lib/interfaces';
+// Utils
+import { queryProviderWrapper } from '@/lib/utils';
 
 // Mocks
-import { NOTIFICATION } from '@/lib/mocks';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-    },
-  },
-});
-
-const wrapper = ({ children }: { children: ReactNode }) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
+import {
+  MOCK_NOTIFICATION_PAYLOAD,
+  MOCK_NOTIFICATIONS_SUCCESS_RES,
+  MOCK_UPDATE_SUCCESS_RES,
+  NOTIFICATION,
+} from '@/lib/mocks';
 
 describe('useNotification', () => {
-  const notificationData: AxiosResponse<{ data: TNotification[] }> = {
-    data: { data: NOTIFICATION },
-    status: 200,
-    statusText: 'Ok',
-    headers: {},
-    config: {
-      headers: {} as AxiosRequestHeaders,
-    },
-  };
+  beforeEach(() => {
+    jest
+      .spyOn(mainHttpService, 'get')
+      .mockResolvedValue(MOCK_NOTIFICATIONS_SUCCESS_RES);
+  });
 
-  jest.spyOn(MainHttpService, 'get').mockResolvedValue(notificationData);
+  afterEach(() => jest.clearAllMocks());
 
   it('should fetch notification data successfully', async () => {
-    const { result } = renderHook(() => useNotification(), { wrapper });
-
-    expect(result.current.isLoading).toBe(true);
+    const { result } = renderHook(() => useNotification(), {
+      wrapper: queryProviderWrapper,
+    });
 
     await waitFor(() => expect(result.current.data).toEqual(NOTIFICATION));
   });
 
-  it('deletes a notification successfully', async () => {
-    const { result } = renderHook(
-      () => useNotification('6593beacff649fc6c4d2964b'),
-      { wrapper },
-    );
+  it('delete a notification successfully', async () => {
+    const expectedData = NOTIFICATION.slice(1);
 
-    await act(async () => {
-      await result.current.deleteNotification({
-        userId: '6593beacff649fc6c4d2964b',
-        notificationId: '1',
-      });
+    jest
+      .spyOn(mainHttpService, 'delete')
+      .mockResolvedValue(MOCK_UPDATE_SUCCESS_RES);
+
+    const { result } = renderHook(() => useNotification(), {
+      wrapper: queryProviderWrapper,
     });
 
-    expect(jest.spyOn(MainHttpService, 'delete')).toHaveBeenCalledWith(
-      END_POINTS.NOTIFICATION,
-      { data: { notificationId: '1', userId: '6593beacff649fc6c4d2964b' } },
-    );
+    result.current.deleteNotification(MOCK_NOTIFICATION_PAYLOAD);
+
+    await waitFor(() => expect(result.current.isSuccess).toEqual(true));
+    expect(result.current.data).toEqual(expectedData);
   });
 
-  it('updates a notification successfully', async () => {
-    const { result } = renderHook(
-      () => useNotification('6593beacff649fc6c4d2964b'),
-      { wrapper },
-    );
+  it('updates a notification successfully that item have in cache', async () => {
+    const expectedData = [...NOTIFICATION];
+    expectedData[0].isMarkAsRead = true;
 
-    await act(async () => {
-      await result.current.updateNotification({
-        userId: '6593beacff649fc6c4d2964b',
-        notificationId: '1',
-        isMarkAsRead: true,
-      });
+    jest
+      .spyOn(mainHttpService, 'put')
+      .mockResolvedValue(MOCK_UPDATE_SUCCESS_RES);
+
+    const { result } = renderHook(() => useNotification(), {
+      wrapper: queryProviderWrapper,
     });
 
-    expect(jest.spyOn(MainHttpService, 'put')).toHaveBeenCalledWith(
-      END_POINTS.NOTIFICATION,
-      {
-        userId: '6593beacff649fc6c4d2964b',
-        notificationId: '1',
-        isMarkAsRead: true,
-      },
-    );
+    result.current.updateNotification({
+      ...MOCK_NOTIFICATION_PAYLOAD,
+      isMarkAsRead: true,
+    });
+
+    await waitFor(() => expect(result.current.isSuccess).toEqual(true));
+    expect(result.current.data).toEqual(expectedData);
   });
 });

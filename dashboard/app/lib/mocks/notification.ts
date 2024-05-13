@@ -1,3 +1,7 @@
+// Libs
+import { AxiosRequestHeaders, AxiosResponse } from 'axios';
+
+// Types
 import { TNotification } from '@/lib/interfaces';
 
 export const NOTIFICATION: TNotification[] = [
@@ -57,3 +61,18 @@ export const NOTIFICATION: TNotification[] = [
     type: 'send',
   },
 ];
+
+export const MOCK_NOTIFICATIONS_SUCCESS_RES: AxiosResponse<TNotification[]> = {
+  data: NOTIFICATION,
+  status: 200,
+  statusText: 'Ok',
+  headers: {},
+  config: {
+    headers: {} as AxiosRequestHeaders,
+  },
+};
+
+export const MOCK_NOTIFICATION_PAYLOAD = {
+  userId: NOTIFICATION[0].userId,
+  notificationId: NOTIFICATION[0]._id,
+};

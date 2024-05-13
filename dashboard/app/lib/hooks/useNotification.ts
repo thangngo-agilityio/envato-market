@@ -86,7 +86,7 @@ export const useNotification = (userId?: string) => {
 
   return {
     ...query,
-    data: notificationData,
+    data,
     notificationData,
     quantity,
     hasNewNotification,
