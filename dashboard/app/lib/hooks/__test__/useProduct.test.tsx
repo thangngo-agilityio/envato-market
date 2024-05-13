@@ -124,7 +124,7 @@ describe('useProducts', () => {
     });
 
     result.current.updateProduct({
-      name: 'Update name',
+      ...MOCK_UPDATE_PRODUCT_PAYLOAD,
       productId: '1',
     });
 

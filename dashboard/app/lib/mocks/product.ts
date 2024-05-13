@@ -106,12 +106,8 @@ export const MOCK_ADD_PRODUCT_RES: AxiosResponse = {
   config: {
     headers: {} as AxiosRequestHeaders,
     data: {
-      amount: '1',
-      currency: '$',
-      description: '',
-      imageURLs: ['https://i.ibb.co/xXd07BD/Img-01.png'],
-      name: 'Shoe',
-      stock: '2',
+      ...MOCK_ADD_PRODUCT_PAYLOAD,
+      id: '1',
     },
   },
 };
