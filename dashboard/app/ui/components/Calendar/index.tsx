@@ -1,6 +1,7 @@
 'use client';
 
 // Libs
+import dynamic from 'next/dynamic';
 import { useCallback, useMemo, useState, memo } from 'react';
 import {
   Calendar as BigCalendar,
@@ -13,13 +14,19 @@ import isEqual from 'react-fast-compare';
 import moment from 'moment';
 
 // Components
-import { Modal, CustomToolBar, EventForm } from '@/ui/components';
+import { CustomToolBar, EventForm } from '@/ui/components';
 
 // Types
 import { TEvent } from '@/lib/interfaces';
 
+// Constants
+import { DATE_FORMAT, TIME_FORMAT_HH_MM } from '@/lib/constants';
+
 // Styles
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+
+// Lazy loading components
+const Modal = dynamic(() => import('@/ui/components/common/Modal'));
 
 type ViewType = 'month' | 'week' | 'work_week' | 'day' | 'agenda';
 
@@ -36,7 +43,7 @@ type CalendarProps = Omit<BigCalendarProps, 'localizer'> & {
   onDeleteEvent?: (id: string) => void;
 };
 
-const Calendar = ({
+const CalendarComponent = ({
   events = [],
   onAddEvent,
   onEditEvent,
@@ -50,16 +57,19 @@ const Calendar = ({
   const { start: startSlot = '', end: endSlot = '' } = slot || {};
 
   const slotDate = useMemo(
-    () => moment(startSlot).format('YYYY-MM-DD'),
+    () => moment(startSlot).format(DATE_FORMAT),
     [startSlot],
   );
 
   const slotStartTime = useMemo(
-    () => moment(startSlot).format('hh:mm'),
+    () => moment(startSlot).format(TIME_FORMAT_HH_MM),
     [startSlot],
   );
 
-  const slotEndTime = useMemo(() => moment(endSlot).format('hh:mm'), [endSlot]);
+  const slotEndTime = useMemo(
+    () => moment(endSlot).format(TIME_FORMAT_HH_MM),
+    [endSlot],
+  );
 
   const handleToggleModal = useCallback(
     () => setIsOpenModal((prev) => !prev),
@@ -130,6 +140,6 @@ const Calendar = ({
   );
 };
 
-const CalendarComponent = memo(Calendar, isEqual);
+const Calendar = memo(CalendarComponent, isEqual);
 
-export default CalendarComponent;
+export default Calendar;

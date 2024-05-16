@@ -43,7 +43,7 @@ const EventFormComponent = ({
     control,
     clearErrors,
     handleSubmit,
-    formState: { isDirty, errors },
+    formState: { isDirty, isValid },
     reset,
   } = useForm<TEventForm>({
     defaultValues: {
@@ -55,8 +55,7 @@ const EventFormComponent = ({
     },
   });
 
-  const hasErrors = Object.keys(errors).length > 0;
-  const shouldEnable = isDirty && !hasErrors;
+  const isEnable = isDirty && isValid;
 
   const handleChangeValue = useCallback(
     <T,>(field: keyof TEventForm, changeHandler: (value: T) => void) =>
@@ -127,7 +126,7 @@ const EventFormComponent = ({
         />
       </Flex>
 
-      <Flex w={{ base: '100%' }} flexDirection={{ base: 'column', md: 'row' }}>
+      <Flex w="100%" flexDirection={{ base: 'column', md: 'row' }}>
         <Flex w="100%" mb={5}>
           <Controller
             control={control}
@@ -181,7 +180,7 @@ const EventFormComponent = ({
           w={44}
           bg="green.600"
           mr={3}
-          isDisabled={!shouldEnable}
+          isDisabled={!isEnable}
         >
           Save
         </Button>

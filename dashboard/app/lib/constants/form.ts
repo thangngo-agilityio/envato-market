@@ -175,13 +175,8 @@ export const AUTH_SCHEMA = {
 
 export const EVENT_SCHEMA = {
   TITLE: {
-    validate: (value: string) => {
-      if (!value.trim()) {
-        return ERROR_MESSAGES.FIELD_REQUIRED('Title');
-      }
-
-      return true;
-    },
+    validate: (value: string) =>
+      !value.trim() ? ERROR_MESSAGES.FIELD_REQUIRED('Title') : true,
   },
   DATE: {
     required: ERROR_MESSAGES.FIELD_REQUIRED('Date'),

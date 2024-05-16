@@ -4,7 +4,9 @@
 import { Box, Flex, Grid, GridItem } from '@chakra-ui/react';
 import { InView } from 'react-intersection-observer';
 import dynamic from 'next/dynamic';
-import moment from 'moment';
+
+// Mocks
+import { MOCK_EVENTS } from '@/lib/mocks';
 
 // dynamic loading components
 const Calendar = dynamic(() => import('@/ui/components/Calendar'));
@@ -12,14 +14,7 @@ const CardPayment = dynamic(() => import('@/ui/components/CardPayment'));
 
 const CalendarSection = () => {
   // TODO: Update later
-  const mockEvents = [
-    {
-      _id: '664576b910c4c653733941c2',
-      title: 'Event 1',
-      start: moment('2024-05-16 01:30').toDate(),
-      end: moment('2024-05-16 05:30').toDate(),
-    },
-  ];
+  const mockEvents = [...MOCK_EVENTS];
 
   // TODO: Update later
   const handleAddEvent = () => {};
