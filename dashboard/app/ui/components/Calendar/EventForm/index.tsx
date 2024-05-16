@@ -5,14 +5,17 @@ import { memo, useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button, Flex, VStack } from '@chakra-ui/react';
 
-// Components
-import InputField from '@/ui/components/common/InputField';
-
 // Interfaces
 import { TEvent } from '@/lib/interfaces';
 
 // Constants
 import { EVENT_SCHEMA } from '@/lib/constants';
+
+// Utils
+import { isEnableSubmitButton } from '@/lib/utils';
+
+// Components
+import InputField from '@/ui/components/common/InputField';
 
 interface TEventForm extends TEvent {
   date: string;
@@ -29,6 +32,8 @@ interface AddEventFormProps {
   onEditEvent?: (data: TEvent) => void;
 }
 
+const REQUIRE_FIELDS = ['eventName'];
+
 const AddEventFormComponent = ({
   _id = '',
   eventName = '',
@@ -39,7 +44,13 @@ const AddEventFormComponent = ({
   onAddEvent,
   onEditEvent,
 }: AddEventFormProps) => {
-  const { control, clearErrors, handleSubmit, reset } = useForm<TEventForm>({
+  const {
+    control,
+    clearErrors,
+    handleSubmit,
+    formState: { dirtyFields, errors },
+    reset,
+  } = useForm<TEventForm>({
     defaultValues: {
       _id: _id,
       eventName: eventName,
@@ -48,6 +59,13 @@ const AddEventFormComponent = ({
       date: date,
     },
   });
+
+  const dirtyItems = Object.keys(dirtyFields).filter(
+    (key) => dirtyFields[key as keyof TEventForm],
+  );
+  const hasErrors = Object.keys(errors).length > 0;
+  const shouldEnable =
+    isEnableSubmitButton(REQUIRE_FIELDS, dirtyItems) && !hasErrors;
 
   const handleChangeValue = useCallback(
     <T,>(field: keyof TEventForm, changeHandler: (value: T) => void) =>
@@ -167,7 +185,13 @@ const AddEventFormComponent = ({
       </Flex>
 
       <Flex my={4}>
-        <Button type="submit" w={44} bg="green.600" mr={3}>
+        <Button
+          type="submit"
+          w={44}
+          bg="green.600"
+          mr={3}
+          isDisabled={!shouldEnable}
+        >
           Save
         </Button>
         <Button
