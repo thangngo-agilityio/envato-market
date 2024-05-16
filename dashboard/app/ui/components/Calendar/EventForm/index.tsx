@@ -11,9 +11,6 @@ import { TEvent } from '@/lib/interfaces';
 // Constants
 import { EVENT_SCHEMA } from '@/lib/constants';
 
-// Utils
-import { isEnableSubmitButton } from '@/lib/utils';
-
 // Components
 import InputField from '@/ui/components/common/InputField';
 
@@ -32,9 +29,7 @@ interface AddEventFormProps {
   onEditEvent?: (data: TEvent) => void;
 }
 
-const REQUIRE_FIELDS = ['eventName'];
-
-const AddEventFormComponent = ({
+const EventFormComponent = ({
   _id = '',
   eventName = '',
   date = '',
@@ -48,7 +43,7 @@ const AddEventFormComponent = ({
     control,
     clearErrors,
     handleSubmit,
-    formState: { dirtyFields, errors },
+    formState: { isDirty, errors },
     reset,
   } = useForm<TEventForm>({
     defaultValues: {
@@ -60,12 +55,8 @@ const AddEventFormComponent = ({
     },
   });
 
-  const dirtyItems = Object.keys(dirtyFields).filter(
-    (key) => dirtyFields[key as keyof TEventForm],
-  );
   const hasErrors = Object.keys(errors).length > 0;
-  const shouldEnable =
-    isEnableSubmitButton(REQUIRE_FIELDS, dirtyItems) && !hasErrors;
+  const shouldEnable = isDirty && !hasErrors;
 
   const handleChangeValue = useCallback(
     <T,>(field: keyof TEventForm, changeHandler: (value: T) => void) =>
@@ -207,5 +198,5 @@ const AddEventFormComponent = ({
   );
 };
 
-const AddEventForm = memo(AddEventFormComponent);
-export default AddEventForm;
+const EventForm = memo(EventFormComponent);
+export default EventForm;
