@@ -17,25 +17,18 @@ const CustomToolbarComponent = ({
 }: ToolbarProps) => {
   const { primary } = useColorfill();
 
-  const handleViewDay = useCallback(() => {
-    onView(Views.DAY);
-  }, [onView]);
+  const handleViewDay = useCallback(() => onView(Views.DAY), [onView]);
 
-  const handleViewWeek = useCallback(() => {
-    onView(Views.WEEK);
-  }, [onView]);
+  const handleViewWeek = useCallback(() => onView(Views.WEEK), [onView]);
 
-  const handleViewMonth = useCallback(() => {
-    onView(Views.MONTH);
-  }, [onView]);
+  const handleViewMonth = useCallback(() => onView(Views.MONTH), [onView]);
 
-  const handleBack = useCallback(() => {
-    onNavigate(Navigate.PREVIOUS);
-  }, [onNavigate]);
+  const handleBack = useCallback(
+    () => onNavigate(Navigate.PREVIOUS),
+    [onNavigate],
+  );
 
-  const handleNext = useCallback(() => {
-    onNavigate(Navigate.NEXT);
-  }, [onNavigate]);
+  const handleNext = useCallback(() => onNavigate(Navigate.NEXT), [onNavigate]);
 
   return (
     <Flex justifyContent="space-between" alignItems="center" wrap="wrap" mb={6}>
@@ -48,7 +41,7 @@ const CustomToolbarComponent = ({
       </Heading>
 
       <Flex alignItems="center" wrap="wrap" gap={3}>
-        <Flex gap={1}>
+        <Flex gap={1} wrap="wrap">
           <Button
             size="sm"
             bg={view === Views.MONTH ? 'primary.600' : 'primary.500'}

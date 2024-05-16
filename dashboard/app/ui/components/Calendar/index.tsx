@@ -1,5 +1,6 @@
 'use client';
 
+// Libs
 import { useCallback, useState } from 'react';
 import {
   Calendar as BigCalendar,
@@ -10,7 +11,8 @@ import {
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
-import CustomToolbar from './CutomToolBar';
+// Components
+import CustomToolbar from './CustomToolBar';
 
 type ViewType = 'month' | 'week' | 'work_week' | 'day' | 'agenda';
 
@@ -31,23 +33,20 @@ const Calendar = (props: Omit<CalendarProps, 'localizer'>) => {
   );
 
   return (
-    <div className="myCustomHeight">
-      <BigCalendar
-        {...props}
-        localizer={localizer}
-        // events={myEventsList}
-        startAccessor="start"
-        endAccessor="end"
-        style={{ height: '50vh' }}
-        date={date}
-        onNavigate={onNavigate}
-        defaultView={Views.MONTH}
-        view={view}
-        views={[Views.MONTH, Views.WEEK, Views.DAY]}
-        onView={onView}
-        components={{ toolbar: CustomToolbar }}
-      />
-    </div>
+    <BigCalendar
+      {...props}
+      localizer={localizer}
+      startAccessor="start"
+      endAccessor="end"
+      style={{ height: '50vh' }}
+      date={date}
+      onNavigate={onNavigate}
+      defaultView={Views.MONTH}
+      view={view}
+      views={[Views.MONTH, Views.WEEK, Views.DAY]}
+      onView={onView}
+      components={{ toolbar: CustomToolbar }}
+    />
   );
 };
 

@@ -21,24 +21,31 @@ const CalendarSection = () => (
     <InView>
       {({ inView, ref }) => (
         <GridItem colSpan={3} ref={ref}>
-          <Box
-            as="section"
-            bgColor="background.component.primary"
-            borderRadius={8}
-            px={10}
-            py={5}
-          >
-            {inView && <Calendar />}
-          </Box>
+          {inView && (
+            <Box
+              as="section"
+              bgColor="background.component.primary"
+              borderRadius={8}
+              px={10}
+              py={5}
+            >
+              <Calendar />
+            </Box>
+          )}
         </GridItem>
       )}
     </InView>
     <InView>
       {({ inView, ref }) => (
         <GridItem mt={{ base: 6, '2xl': 0 }} ref={ref}>
-          <Flex direction={{ base: 'column', lg: 'row', xl: 'column' }} gap={6}>
-            {inView && <CardPayment />}
-          </Flex>
+          {inView && (
+            <Flex
+              direction={{ base: 'column', lg: 'row', xl: 'column' }}
+              gap={6}
+            >
+              <CardPayment />
+            </Flex>
+          )}
         </GridItem>
       )}
     </InView>
